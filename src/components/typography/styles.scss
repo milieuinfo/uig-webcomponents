@@ -6,18 +6,18 @@
 // ==========================================================================
 // Core
 // ==========================================================================
-@import "@govflanders/vl-ui-core/src/scss/core";
+@import "../../../node_modules/@govflanders/vl-ui-core/src/scss/core";
 
 // ==========================================================================
 // Components
 // ==========================================================================
-@import "@govflanders/vl-ui-typography/src/scss/typography";
+@import "../../../node_modules/@govflanders/vl-ui-typography/src/scss/typography";
 @import "../titles/styles.scss";
 
 // ==========================================================================
 // Util
 // ==========================================================================
-@import "@govflanders/vl-ui-util/src/scss/util";
+@import "../../../node_modules/@govflanders/vl-ui-util/src/scss/util";
 
 .vl-typography {
     display: inline;

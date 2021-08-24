@@ -1,9 +1,11 @@
 // sass-lint:disable placeholder-in-extend
+$vl-annotation-color: #c6538c;
+$vl-border-color: #c6538c;
 
 .vl-contact-card__title,
 .vl-link.vl-contact-card__title {
-  @include title(4);
-  @include reset-button;
+  // @include title(4);
+  // @include reset-button;
   margin-bottom: 1rem;
 
   display: block;
@@ -19,19 +21,19 @@
   line-height: 2rem;
 
   .vl-region--alt & {
-    @include respond-to(medium-up) {
-      padding: 0;
-    }
+    // @include respond-to(medium-up) {
+    //   padding: 0;
+    // }
   }
 
-  @include respond-to(small) {
-    display: block;
-    font-size: 1.5rem;
-    padding: 1.5rem;
-  }
+  // @include respond-to(small) {
+  //   display: block;
+  //   font-size: 1.5rem;
+  //   padding: 1.5rem;
+  // }
 
   .no-flexbox & {
-    @include clearfix;
+    // @include clearfix;
   }
 
   .vl-map__container {
@@ -48,22 +50,22 @@
     float: left;
   }
 
-  @include respond-to(small) {
-    width: auto;
-  }
+  // @include respond-to(small) {
+  //   width: auto;
+  // }
 }
 
 .vl-contact-card__data {
   padding-right: 1.5rem;
   line-height: 2.4rem;
 
-  @include respond-to(small) {
-    padding-right: 0;
-  }
+  // @include respond-to(small) {
+  //   padding-right: 0;
+  // }
 }
 
 .vl-contact-card__data__title {
-  @include vl-u-text--ellipse;
+  // @include vl-u-text--ellipse;
   float: left;
   clear: left;
   width: 30%;
@@ -72,23 +74,23 @@
   white-space: normal;
   color: $vl-annotation-color;
 
-  @include respond-to(small) {
-    display: none;
-  }
+  // @include respond-to(small) {
+  //   display: none;
+  // }
 }
 
 .vl-contact-card__data__content {
-  @include vl-u-text--ellipse;
+  // @include vl-u-text--ellipse;
   float: left;
   width: 70%;
   margin-bottom: 2.5rem;
   white-space: normal;
 
-  @include respond-to(small) {
-    float: none;
-    width: auto;
-    margin-bottom: 1.25rem;
-  }
+  // @include respond-to(small) {
+  //   float: none;
+  //   width: auto;
+  //   margin-bottom: 1.25rem;
+  // }
 }
 
 .vl-contact-card__data__title *,
@@ -109,22 +111,22 @@
   min-height: 25rem;
   overflow: hidden;
 
-  @include respond-to(small) {
-    padding-left: 0;
-    margin-top: 2rem;
-    min-height: 0;
-  }
+  // @include respond-to(small) {
+  //   padding-left: 0;
+  //   margin-top: 2rem;
+  //   min-height: 0;
+  // }
 
   .vl-map {
     width: 100%;
     height: 100%;
     border: 1px solid $vl-border-color;
 
-    @include respond-to(small) {
-      position: relative;
-      min-height: 15rem;
-      height: auto;
-    }
+    // @include respond-to(small) {
+    //   position: relative;
+    //   min-height: 15rem;
+    //   height: auto;
+    // }
   }
 
   .no-js & {
@@ -145,10 +147,10 @@
   font-size: 1.6rem;
   overflow: hidden;
 
-  @include respond-to(small) {
-    margin-top: 1.5rem;
-    font-size: $vl-base-mobile-font-size;
-  }
+  // @include respond-to(small) {
+  //   margin-top: 1.5rem;
+  //   font-size: $vl-base-mobile-font-size;
+  // }
 }
 
 @import "collapsible";

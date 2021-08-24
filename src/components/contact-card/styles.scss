@@ -6,12 +6,12 @@
 // ==========================================================================
 // Core
 // ==========================================================================
-@import "@govflanders/vl-ui-core/src/scss/core";
+@import "../../../node_modules/@govflanders/vl-ui-core/src/scss/core";
 
 // ==========================================================================
 // Components
 // ==========================================================================
-@import "@govflanders/vl-ui-contact-card/src/scss/contact-card";
+@import "../../../node_modules/@govflanders/vl-ui-contact-card/src/scss/contact-card";
 @import "../titles/styles.scss";
 @import "../accordion/styles.scss";
 @import "../infoblock/styles.scss";
@@ -29,4 +29,4 @@
 // ==========================================================================
 // Util
 // ==========================================================================
-@import "@govflanders/vl-ui-util/src/scss/util";
+@import "../../../node_modules/@govflanders/vl-ui-util/src/scss/util";

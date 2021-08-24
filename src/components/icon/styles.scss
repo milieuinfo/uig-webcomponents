@@ -6,17 +6,17 @@
 // ==========================================================================
 // Core
 // ==========================================================================
-@import "@govflanders/vl-ui-core/src/scss/core";
+@import "../../../node_modules/@govflanders/vl-ui-core/src/scss/core";
 
 // ==========================================================================
 // Components
 // ==========================================================================
-@import "@govflanders/vl-ui-icon/src/scss/icon";
+@import "../../../node_modules/@govflanders/vl-ui-icon/src/scss/icon";
 
 // ==========================================================================
 // Util
 // ==========================================================================
-@import "@govflanders/vl-ui-util/src/scss/util";
+@import "../../../node_modules/@govflanders/vl-ui-util/src/scss/util";
 
 .vl-icon {
     vertical-align: text-top;

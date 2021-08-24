@@ -6,16 +6,16 @@
 // ==========================================================================
 // Core
 // ==========================================================================
-@import "@govflanders/vl-ui-core/src/scss/core";
+@import "../../../node_modules/@govflanders/vl-ui-core/src/scss/core";
 
 // ==========================================================================
 // Components
 // ==========================================================================
 @import "../link/styles.scss";
-@import "@govflanders/vl-ui-toggle/src/scss/toggle";
-@import "@govflanders/vl-ui-accordion/src/scss/accordion";
+@import "../../../node_modules/@govflanders/vl-ui-toggle/src/scss/toggle";
+@import "../../../node_modules/@govflanders/vl-ui-accordion/src/scss/accordion";
 
 // ==========================================================================
 // Util
 // ==========================================================================
-@import "@govflanders/vl-ui-util/src/scss/util";
+@import "../../../node_modules/@govflanders/vl-ui-util/src/scss/util";
