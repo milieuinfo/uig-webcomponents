@@ -1,0 +1,32 @@
+// ==========================================================================
+// Vlaanderen UI -- ContactCard
+// ==========================================================================
+@charset "utf-8";
+
+// ==========================================================================
+// Core
+// ==========================================================================
+@import "@govflanders/vl-ui-core/src/scss/core";
+
+// ==========================================================================
+// Components
+// ==========================================================================
+@import "@govflanders/vl-ui-contact-card/src/scss/contact-card";
+@import "../titles/styles.scss";
+@import "../accordion/styles.scss";
+@import "../infoblock/styles.scss";
+@import "../button/styles.scss";
+@import '../grid/styles.scss';
+// @import "../properties/styles.scss";
+
+// todo: refactor when layer-map-is included in build
+// @import "vl-ui-layer-map/src/scss/layer-map";
+
+@import "contact-data";
+@import "collapsible";
+
+
+// ==========================================================================
+// Util
+// ==========================================================================
+@import "@govflanders/vl-ui-util/src/scss/util";
