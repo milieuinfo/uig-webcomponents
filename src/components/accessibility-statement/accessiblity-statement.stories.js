@@ -1,7 +1,5 @@
 import { html } from "lit-html";
 import "../accessibility-statement";
-import "../body";
-import "../body/style.css";
 
 export default {
   title: "custom-elements/vl-accessibility-statement",
@@ -48,8 +46,7 @@ export const Default = ({
   limitations,
   evaluation,
 }) => {
-  return html`<body is="vl-body">
-    <script id="limitations-01" type="application/json">
+  return html` <script id="limitations-01" type="application/json">
       [
         {
           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -83,6 +80,5 @@ export const Default = ({
       compliance=${compliance}
       limitations=${limitations}
       evaluation=${evaluation}
-    ></vl-accessibility-statement>
-  </body>`;
+    ></vl-accessibility-statement>`;
 };
