@@ -3,7 +3,7 @@ const path = require("path");
 const sass = require("sass");
 const buildConfig = {
   src: "src",
-  dist: "dist",
+  dist: "distribution",
   nativeComponents: [
     "body",
     "button",
@@ -48,6 +48,7 @@ const handleSass = (directoryToSearch, pattern) => {
       const result = sass
         .renderSync({
           file: subDirectoryToSearch,
+          outputStyle: "compressed",
         })
         .css.toString();
       if (isNative) {
