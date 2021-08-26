@@ -13,7 +13,7 @@ export default {
 export const Default = () => html`<style>
     ${styles}
   </style>
-  <vl-contact-card id="contact-card">
+  <vl-contact-card>
     <vl-infoblock
       slot="info"
       data-vl-title="Departement Onderwijs en Vorming"
