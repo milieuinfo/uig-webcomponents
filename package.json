@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test:component",
+    "test": "npm run build && npm run test:component",
     "test:grid": "npm run test:component:grid",
     "test:unit": "npm run test:component:unit",
     "test:unit:grid": "npm run test:component:unit:grid",
