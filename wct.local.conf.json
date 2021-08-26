@@ -12,5 +12,6 @@
       }
     }
   },
-  "suites": ["src/components/**/test/unit/*.test.html"]
+  "suites": ["src/components/**/test/unit/*.test.html"],
+  "webserver": {"port": "8080"}
 }
