@@ -1,10 +1,10 @@
-import { VlSideNavigation } from "./vl-side-navigation.js";
-import { VlSideNavigationReference } from "./vl-side-navigation-reference.js";
-import { VlSideNavigationTitle } from "./vl-side-navigation-title.js";
-import { VlSideNavigationContent } from "./vl-side-navigation-content.js";
-import { VlSideNavigationGroup } from "./vl-side-navigation-group.js";
-import { VlSideNavigationItem } from "./vl-side-navigation-item.js";
-import { VlSideNavigationToggle } from "./vl-side-navigation-toggle.js";
+import { VlSideNavigation } from "./components/navigation";
+import { VlSideNavigationReference } from "./components/reference";
+import { VlSideNavigationTitle } from "./components/title";
+import { VlSideNavigationContent } from "./components/content";
+import { VlSideNavigationGroup } from "./components/group";
+import { VlSideNavigationItem } from "./components/item";
+import { VlSideNavigationToggle } from "./components/toggle";
 
 export {
   VlSideNavigation,

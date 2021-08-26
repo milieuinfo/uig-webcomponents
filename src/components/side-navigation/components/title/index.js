@@ -1,4 +1,4 @@
-import { nativeVlElement, define } from "../../utils/vl-core";
+import { nativeVlElement, define } from "../../../../utils/vl-core";
 
 /**
  * VlSideNavigationTitle
