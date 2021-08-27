@@ -48,7 +48,7 @@
           const text = "dit is een titel";
           element.setAttribute("data-vl-title", text);
           const title = element._titleElement;
-          assert.equal(title.innerText, text);
+          assert.equal(title.innerHTML, text);
         });
 
         test("kan de titel link bepalen door het link attribuut", () => {
