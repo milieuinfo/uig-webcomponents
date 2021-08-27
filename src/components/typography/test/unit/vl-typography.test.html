@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+
+    <script
+      type="module"
+      src="../../../../../distribution/components/typography/index.js"
+    ></script>
+  </head>
+
+  <body>
+    <test-fixture id="vl-typography-fixture">
+      <template>
+        <vl-typography>
+          <span id="span-1">span 1</span>
+          <span id="span-2">span 2</span>
+          <span id="span-3">span 3</span>
+        </vl-typography>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-typography-text-fixture">
+      <template>
+        <vl-typography> text </vl-typography>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-typography-empty-fixture">
+      <template>
+        <vl-typography></vl-typography>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-typography-parameters-fixture">
+      <template>
+        <vl-typography>
+          <span id="key1">${parameter.key1}</span>
+          <span id="key2">${parameter.key2}</span>
+        </vl-typography>
+      </template>
+    </test-fixture>
+
+    <script type="module">
+      import { awaitUntil } from "../../../../utils/vl-core/vl-core.js";
+      import { VlTypography } from "../../../typography/index.js";
+
+      suite("vl-typography", () => {
+        const should = chai.should();
+
+        test("bevat een container met de typography class", () => {
+          const typography = fixture("vl-typography-fixture");
+          const container = typography.shadowRoot.querySelector(
+            ".vl-typography"
+          );
+          should.exist(container);
+        });
+
+        test("zal al de slot elementen kopiëren naar de typography container zodat de juiste stijl toegepast wordt", () => {
+          const typography = fixture("vl-typography-fixture");
+          const container = typography.shadowRoot.querySelector(
+            ".vl-typography"
+          );
+          const span1 = container.querySelector("#span-1");
+          const span2 = container.querySelector("#span-2");
+          const span3 = container.querySelector("#span-3");
+          should.exist(span1);
+          should.exist(span2);
+          should.exist(span3);
+        });
+
+        test("zal ook tekst elementen kopiëren naar de typography container zodat de juiste stijl toegepast wordt", () => {
+          const typography = fixture("vl-typography-text-fixture");
+          const container = typography.shadowRoot.querySelector(
+            ".vl-typography"
+          );
+          assert.equal(typography.textContent, container.textContent);
+        });
+
+        test("wanneer een slot element wijzigt, zal dit ook gewijzigd worden in de typography container", () => {
+          const typography = fixture("vl-typography-fixture");
+          const container = typography.shadowRoot.querySelector(
+            ".vl-typography"
+          );
+          const slot = typography.querySelector("#span-1");
+          let clone = container.querySelector("#span-1");
+          assert.equal(slot.innerText, "span 1");
+          assert.equal(clone.innerText, "span 1");
+          const text = "test";
+          slot.innerText = text;
+          clone = typography.querySelector("#span-1");
+          assert.equal(slot.innerText, text);
+          assert.equal(clone.innerText, text);
+        });
+
+        test("wanneer een slot element at runtime wordt toegevoegd, zal deze gekopieerd worden naar de typography container zodat de juiste stijl toegepast wordt", (done) => {
+          const typography = fixture("vl-typography-empty-fixture");
+          const container = typography.shadowRoot.querySelector(
+            ".vl-typography"
+          );
+          container.childElementCount.should.equal(0);
+
+          const p = document.createElement("p");
+          p.textContent = "foobar";
+          typography.appendChild(p);
+
+          awaitUntil(() => container.querySelector("p")).then(() => {
+            assert.equal(container.querySelector("p").textContent, "foobar");
+            done();
+          });
+        });
+
+        test("parameters zullen in het content element verwerkt en getoond worden", () => {
+          const typography = fixture("vl-typography-parameters-fixture");
+          const container = typography.shadowRoot.querySelector(
+            ".vl-typography"
+          );
+          let key1 = container.querySelector("#key1");
+          let key2 = container.querySelector("#key2");
+          assert.equal(key1.innerText, "");
+          assert.equal(key2.innerText, "");
+          const parameters = {
+            key1: "key1",
+            key2: "key2",
+          };
+          typography.setAttribute(
+            "data-vl-parameters",
+            JSON.stringify(parameters)
+          );
+          key1 = container.querySelector("#key1");
+          key2 = container.querySelector("#key2");
+          assert.equal(key1.innerText, parameters.key1);
+          assert.equal(key2.innerText, parameters.key2);
+        });
+
+        test("via de processTemplateParameters methode kunnen parameters in een template verwerkt worden", () => {
+          assert.equal(
+            VlTypography.replaceTemplateParameters(
+              "Van ${parameter.key1} tot en met ${parameter.key2}",
+              { key1: 50, key2: 500 }
+            ),
+            "Van 50 tot en met 500"
+          );
+        });
+      });
+    </script>
+  </body>
+</html>

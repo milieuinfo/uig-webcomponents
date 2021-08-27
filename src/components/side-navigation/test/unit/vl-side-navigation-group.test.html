@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+
+    <script
+      type="module"
+      src="../../../../../distribution/components/side-navigation/components/group/index.js"
+    ></script>
+  </head>
+
+  <body>
+    <test-fixture id="vl-side-navigation-group-fixture">
+      <template>
+        <ul is="vl-side-navigation-group"></ul>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite("vl-side-navigation-group", () => {
+        test("de side navigation class wordt toegevoegd", () => {
+          const element = fixture("vl-side-navigation-group-fixture");
+          assert.isTrue(
+            element.classList.contains("vl-side-navigation__group")
+          );
+        });
+      });
+    </script>
+  </body>
+</html>

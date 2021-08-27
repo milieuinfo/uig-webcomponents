@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+
+    <script
+      type="module"
+      src="../../../../../distribution/components/side-navigation/components/title/index.js"
+    ></script>
+  </head>
+
+  <body>
+    <test-fixture id="vl-side-navigation-h1-fixture">
+      <template>
+        <h1 is="vl-side-navigation-h1"></h1>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-side-navigation-h2-fixture">
+      <template>
+        <h2 is="vl-side-navigation-h2"></h2>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-side-navigation-h3-fixture">
+      <template>
+        <h3 is="vl-side-navigation-h3"></h3>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-side-navigation-h4-fixture">
+      <template>
+        <h4 is="vl-side-navigation-h4"></h4>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-side-navigation-h5-fixture">
+      <template>
+        <h5 is="vl-side-navigation-h5"></h5>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-side-navigation-h6-fixture">
+      <template>
+        <h6 is="vl-side-navigation-h6"></h6>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite("vl-side-navigation-reference", () => {
+        test("de side navigation class wordt toegevoegd", () => {
+          const h1 = fixture("vl-side-navigation-h1-fixture");
+          const h2 = fixture("vl-side-navigation-h2-fixture");
+          const h3 = fixture("vl-side-navigation-h3-fixture");
+          const h4 = fixture("vl-side-navigation-h4-fixture");
+          const h5 = fixture("vl-side-navigation-h5-fixture");
+          const h6 = fixture("vl-side-navigation-h6-fixture");
+          assert.isTrue(h1.classList.contains("vl-side-navigation__title"));
+          assert.isTrue(h2.classList.contains("vl-side-navigation__title"));
+          assert.isTrue(h3.classList.contains("vl-side-navigation__title"));
+          assert.isTrue(h4.classList.contains("vl-side-navigation__title"));
+          assert.isTrue(h5.classList.contains("vl-side-navigation__title"));
+          assert.isTrue(h6.classList.contains("vl-side-navigation__title"));
+        });
+      });
+    </script>
+  </body>
+</html>

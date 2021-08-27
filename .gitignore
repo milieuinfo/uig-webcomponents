@@ -1,2 +1,5 @@
 node_modules
+dist
 distribution
+my-app
+.DS_STORE

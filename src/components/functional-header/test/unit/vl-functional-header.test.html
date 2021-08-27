@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+    <script src="/node_modules/sinon/pkg/sinon.js"></script>
+
+    <script
+      type="module"
+      src="../../../../../distribution/components/functional-header/index.js"
+    ></script>
+  </head>
+
+  <body>
+    <test-fixture id="vl-functional-header-fixture">
+      <template>
+        <vl-functional-header></vl-functional-header>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-functional-header-slots-fixture">
+      <template>
+        <vl-functional-header>
+          <a slot="title" href="https://webcomponents.omgeving.Vlaanderen.be/"
+            >dit is een titel</a
+          >
+          <span slot="sub-title">dit is een sub titel</span>
+          <span slot="back">dit is een back link tekst</span>
+          <div slot="actions">
+            <a>dit is een actie</a>
+            <a>dit is een actie</a>
+          </div>
+        </vl-functional-header>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite("vl-functional-header", () => {
+        const sandbox = sinon.createSandbox();
+
+        teardown(() => {
+          sandbox.restore();
+        });
+
+        test("toont de titel op basis van het titel attribuut", () => {
+          const element = fixture("vl-functional-header-fixture");
+          const text = "dit is een titel";
+          element.setAttribute("data-vl-title", text);
+          const title = element._titleElement;
+          assert.equal(title.innerHTML, text);
+        });
+
+        test("kan de titel link bepalen door het link attribuut", () => {
+          const element = fixture("vl-functional-header-fixture");
+          const link = "https://webcomponenten.omgeving.vlaanderen.be/";
+          element.setAttribute("data-vl-link", link);
+          const title = element._titleElement;
+          assert.equal(title.href, link);
+        });
+
+        test("toont de titel op basis van het slot element", () => {
+          const element = fixture("vl-functional-header-slots-fixture");
+          const slot = element.querySelector('[slot="title"]');
+          const title = element._shadow.querySelector('slot[name="title"]');
+          assert.equal(title.assignedElements()[0], slot);
+        });
+
+        test("toont de sub titel op basis van het sub titel attribuut", () => {
+          const element = fixture("vl-functional-header-fixture");
+          const text = "Dit is een sub titel";
+          element.setAttribute("data-vl-sub-title", text);
+          const subTitle = element._subTitleElement;
+          assert.equal(subTitle.innerText, text);
+        });
+
+        test("toont de sub titel op basis van het slot element", () => {
+          const element = fixture("vl-functional-header-slots-fixture");
+          const slot = element.querySelector('[slot="sub-title"]');
+          const subTitle = element._shadow.querySelector(
+            'slot[name="sub-title"]'
+          );
+          assert.equal(subTitle.assignedElements()[0], slot);
+        });
+
+        test("bevat een back link element die bij het klikken de vorige browser pagina zal openen", () => {
+          const element = fixture("vl-functional-header-fixture");
+          const backLink = element._backLinkElement;
+          assert.include(
+            backLink.href,
+            "/components/uig-webcomponents/generated-index.html"
+          );
+        });
+
+        test("de click event listener van de back link kan gewijzigd worden", (done) => {
+          const element = fixture("vl-functional-header-fixture");
+          const backLink = element._backLinkElement;
+          backLink.href = "#";
+          element.backLinkEventListener = () => {
+            assert.isNotNull(element._backLinkEventListener);
+            done();
+          };
+          backLink.click();
+        });
+
+        test("kan de tekst van de back link wijzigen via een attribuut", () => {
+          const element = fixture("vl-functional-header-fixture");
+          const text = "test";
+          element.setAttribute("data-vl-back", text);
+          const backLink = element._backLinkElement;
+          assert.equal(backLink.innerText, text);
+        });
+
+        test("kan de tekst van de back link wijzigen via een slot element", () => {
+          const element = fixture("vl-functional-header-slots-fixture");
+          const slot = element.querySelector('[slot="back"]');
+          const back = element._shadow.querySelector('slot[name="back"]');
+          assert.equal(back.assignedElements()[0], slot);
+        });
+
+        test("toont geen acties container als er geen actie aanwezig is", () => {
+          const element = fixture("vl-functional-header-fixture");
+          assert.isTrue(element._actionsElement.hidden);
+        });
+
+        test("toont voor elk actie slot child element een actie", () => {
+          const element = fixture("vl-functional-header-slots-fixture");
+          assert.isFalse(element._actionsElement.hidden);
+          const actions = [
+            ...element.querySelector('[slot="actions"]').children,
+          ];
+          assert.equal(
+            element._actionsListElement.children.length,
+            actions.length
+          );
+          [...element._actionsListElement.children].forEach((child, index) => {
+            assert.isTrue(
+              child.classList.contains("vl-functional-header__action")
+            );
+            const p = child.querySelector("p");
+            assert.isTrue(p.firstElementChild.isEqualNode(actions[index]));
+          });
+        });
+
+        test("toont de acties opnieuw indien er iets wijzigt", (done) => {
+          const element = fixture("vl-functional-header-slots-fixture");
+          const actions = [
+            ...element.querySelector('[slot="actions"]').children,
+          ];
+          [...element._actionsListElement.children].forEach((child, index) =>
+            assert.isTrue(
+              child
+                .querySelector("p")
+                .firstElementChild.isEqualNode(actions[index])
+            )
+          );
+          actions[0].innerText = "dit is een nieuwe actie";
+          setTimeout(() => {
+            [...element._actionsListElement.children].forEach((child, index) =>
+              assert.isTrue(
+                child
+                  .querySelector("p")
+                  .firstElementChild.isEqualNode(actions[index])
+              )
+            );
+            done();
+          });
+        });
+
+        test("de link elementen hebben een tabindex zodat ze bereikbaar zijn via de tab toets", () => {
+          const element = fixture("vl-functional-header-fixture");
+          assert.equal(element._titleElement.getAttribute("tabindex"), 0);
+          assert.equal(element._backLinkElement.getAttribute("tabindex"), 0);
+        });
+
+        test("het back link href attribuut kan bepaald worden", () => {
+          const element = fixture("vl-functional-header-fixture");
+          const href = "https://www.google.be/";
+          element.setAttribute("back-link", href);
+          assert.equal(element._backLinkElement.href, href);
+        });
+
+        test("bij het verwijderen van het custom back link href attribuut zal de document referrer als fallback gebruikt worden", () => {
+          const element = fixture("vl-functional-header-fixture");
+          element.setAttribute("back-link", "https://www.google.be/");
+          assert.notInclude(
+            element._backLinkElement.href,
+            "/components/uig-webcomponents/generated-index.html"
+          );
+          element.removeAttribute("back-link");
+          assert.include(
+            element._backLinkElement.href,
+            "/components/uig-webcomponents/generated-index.html"
+          );
+        });
+
+        test("WCAG het header element bevat geen role banner attribuut", () => {
+          const element = fixture("vl-functional-header-fixture");
+          assert.isFalse(element._element.hasAttribute("role"));
+        });
+      });
+    </script>
+  </body>
+</html>
