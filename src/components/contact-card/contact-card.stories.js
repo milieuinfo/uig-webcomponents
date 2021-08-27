@@ -8,6 +8,9 @@ import styles from "../properties/styles.scss";
 
 export default {
   title: "custom-elements/vl-contact-card",
+  parameters: {
+    controls: { hideNoControlsWarning: true },
+  },
 };
 
 export const Default = () => html`<style>

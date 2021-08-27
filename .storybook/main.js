@@ -1,5 +1,8 @@
 module.exports = {
-  stories: ["../src/components/**/*.stories.@(js|jsx|ts|tsx)"],
+  stories: [
+    "../src/components/**/*.stories.@(js|jsx|ts|tsx)",
+    "../docs/*.stories.mdx",
+  ],
   addons: ["@storybook/addon-links", "@storybook/addon-essentials"],
   webpackFinal: async (config, { configType }) => {
     const newConfig = {
