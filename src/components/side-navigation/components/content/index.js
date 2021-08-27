@@ -1,11 +1,11 @@
-import { nativeVlElement, define } from "../../utils/vl-core";
+import { nativeVlElement, define } from "../../../../utils/vl-core";
 
 /**
- * VlSideNavigationGroup
+ * VlSideNavigationContent
  * @class
- * @classdesc Het navigatie groep element.
+ * @classdesc Het navigatie content element.
  *
- * @extends HTMLUListElement
+ * @extends HTMLDivElement
  * @mixes nativeVlElement
  *
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-side-navigation/releases/latest|Release notes}
@@ -13,15 +13,17 @@ import { nativeVlElement, define } from "../../utils/vl-core";
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-side-navigation.html|Demo}
  *
  */
-export class VlSideNavigationGroup extends nativeVlElement(HTMLUListElement) {
+export class VlSideNavigationContent extends nativeVlElement(HTMLDivElement) {
   constructor() {
     super();
     this._processClasses();
   }
 
   _processClasses() {
-    this.classList.add("vl-side-navigation__group");
+    this.classList.add("vl-side-navigation__content");
   }
 }
 
-define("vl-side-navigation-group", VlSideNavigationGroup, { extends: "ul" });
+define("vl-side-navigation-content", VlSideNavigationContent, {
+  extends: "div",
+});

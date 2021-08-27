@@ -1,5 +1,5 @@
-import { nativeVlElement, define } from "../../utils/vl-core";
-import "./lib/side-navigation.js";
+import { nativeVlElement, define } from "../../../../utils/vl-core";
+import "../../lib/side-navigation.js";
 
 /**
  * VlSideNavigation

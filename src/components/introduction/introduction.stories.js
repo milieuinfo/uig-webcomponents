@@ -4,6 +4,9 @@ import styles from "./styles.scss";
 
 export default {
   title: "native-elements/vl-introduction",
+  parameters: {
+    controls: { hideNoControlsWarning: true },
+  },
 };
 
 const stylesheet = html`<style>
