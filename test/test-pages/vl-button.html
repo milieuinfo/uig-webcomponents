@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <title>vl-button voorbeeld</title>
+    <!-- <script
+      type="module"
+      src="/node_modules/vl-ui-core/dist/vl-text.js"
+    ></script> -->
+    <script type="module" src="../../build/index.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../distribution/components/button/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../distribution/components/body/styles.css"
+    />
+  </head>
+
+  <body is="vl-body">
+    <button
+      is="vl-button"
+      type="button"
+      id="button-primary"
+      onclick="getElementById('button-primary').innerHTML = 'Klik geregistreerd'"
+    >
+      Gegevens opslaan
+    </button>
+    <button
+      is="vl-button"
+      type="button"
+      disabled
+      type="button"
+      id="button-disabled"
+      onclick="getElementById('button-disabled').innerHTML = 'Klik geregistreerd'"
+    >
+      Gegevens opslaan
+    </button>
+    <button
+      is="vl-button"
+      type="button"
+      data-vl-error
+      type="button"
+      id="button-error"
+    >
+      Gegevens opslaan
+    </button>
+    <button is="vl-button" type="button" id="button-icon-after">
+      Contactpersoon opslaan
+      <span is="vl-icon" data-vl-icon="location" data-vl-after></span>
+    </button>
+    <button is="vl-button" type="button" id="button-icon-before">
+      <span is="vl-icon" data-vl-icon="location" data-vl-before></span>
+      Contactpersoon opslaan
+    </button>
+    <button is="vl-button" type="button" id="button-block" data-vl-block>
+      Gegevens opslaan
+    </button>
+    <button is="vl-button" type="button" id="button-large" data-vl-large>
+      Gegevens opslaan
+    </button>
+    <button is="vl-button" type="button" id="button-wide" data-vl-wide>
+      Gegevens opslaan
+    </button>
+    <button is="vl-button" type="button" id="button-narrow" data-vl-narrow>
+      Gegevens opslaan
+    </button>
+    <button
+      is="vl-button"
+      type="button"
+      id="button-loading"
+      data-vl-loading
+      disabled
+    >
+      Gegevens verwerken
+    </button>
+    <button
+      is="vl-button"
+      type="button"
+      id="button-secondary"
+      data-vl-secondary
+    >
+      Gegevens opslaan
+    </button>
+    <button
+      is="vl-button"
+      type="button"
+      id="button-secondary-voor"
+      data-vl-secondary
+    >
+      <span is="vl-icon" data-vl-icon="location" data-vl-before></span>
+      Gegevens opslaan
+    </button>
+    <button
+      is="vl-button"
+      type="button"
+      id="button-secondary-error"
+      data-vl-secondary
+    >
+      <span is="vl-icon" data-vl-icon="location" data-vl-before></span>
+      Gegevens opslaan
+    </button>
+    <button
+      is="vl-button"
+      type="button"
+      id="button-secondary-error-voor"
+      data-vl-secondary
+      data-vl-error
+    >
+      <span is="vl-icon" data-vl-icon="location" data-vl-before></span>
+      Gegevens opslaan
+    </button>
+    <button is="vl-button" type="button" id="button-tertiary" data-vl-tertiary>
+      Gegevens opslaan
+    </button>
+    <button
+      is="vl-button"
+      type="button"
+      id="button-tertiary-icon-voor"
+      data-vl-tertiary
+    >
+      <span is="vl-icon" data-vl-icon="location" data-vl-before></span>
+      Gegevens opslaan
+    </button>
+    <button
+      is="vl-button"
+      type="button"
+      id="button-tertiary-error"
+      data-vl-tertiary
+      data-vl-error
+    >
+      Gegevens verwerken
+    </button>
+    <button is="vl-button" type="button" id="button-icon">
+      <span is="vl-icon" data-vl-icon="location"></span>
+      <span is="vl-text" data-vl-visually-hidden>Verborgen tekst</span>
+    </button>
+
+    <a id="button-a-link" is="vl-link-button" href="/demo">
+      Ga naar startpagina
+    </a>
+  </body>
+</html>

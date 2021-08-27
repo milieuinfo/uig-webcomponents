@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <title>vl-accordion voorbeeld</title>
+    <!-- <script type="module" src="/node_modules/vl-ui-action-group/dist/vl-action-group.js"></script>
+    <script type="module" src="/node_modules/vl-ui-info-tile/dist/vl-info-tile.js"></script> -->
+    <script type="module" src="../../build/index.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../distribution//components/body/styles.css"
+    />
+    <!-- <link
+      rel="stylesheet"
+      type="text/css"
+      href="/node_modules/vl-ui-action-group/dist/style.css"
+    /> -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../distribution/components/body/styles.css"
+    />
+  </head>
+
+  <body is="vl-body">
+    <vl-accordion
+      id="accordion-standard"
+      data-vl-toggle-text="Lees meer over de onderwijsdoelstelling"
+    >
+      <span>Onderwijs</span>
+    </vl-accordion>
+
+    <vl-accordion id="accordion-titel-slot">
+      <span slot="title">Lees meer over de onderwijsdoelstelling</span>
+      <span
+        >Onderwijs helpt jonge mensen en volwassenen om zichzelf te ontwikkelen
+        en hun weg te vinden in onze samenleving. Het hoger onderwijs speelt
+        daarnaast een belangrijke rol in innovatie dankzij het belang van
+        wetenschappelijk onderzoek.</span
+      >
+    </vl-accordion>
+
+    <vl-accordion
+      id="accordion-dynamic-toggle"
+      data-vl-toggle-text="Open de onderwijsdoelstelling"
+      data-vl-open-toggle-text="Open de onderwijsdoelstelling"
+      data-vl-close-toggle-text="Sluit de onderwijsdoelstelling"
+    >
+      <span>Onderwijs</span>
+    </vl-accordion>
+
+    <vl-accordion
+      id="accordion-javascript-toggle"
+      data-vl-toggle-text="Lees meer over de onderwijsdoelstelling"
+    >
+      <span
+        >Onderwijs helpt jonge mensen en volwassenen om zichzelf te ontwikkelen
+        en hun weg te vinden in onze samenleving. Het hoger onderwijs speelt
+        daarnaast een belangrijke rol in innovatie dankzij het belang van
+        wetenschappelijk onderzoek.</span
+      >
+    </vl-accordion>
+
+    <div is="vl-action-group" slot="actions">
+      <button
+        id="open-accordion"
+        is="vl-button"
+        onclick="document.querySelector('#accordion-javascript-toggle').open()"
+      >
+        Open
+      </button>
+      <button
+        id="close-accordion"
+        is="vl-button"
+        onclick="document.querySelector('#accordion-javascript-toggle').close()"
+      >
+        Close
+      </button>
+      <button
+        id="toggle-accordion"
+        is="vl-button"
+        onclick="document.querySelector('#accordion-javascript-toggle').toggle()"
+      >
+        Toggle
+      </button>
+    </div>
+
+    <vl-accordion id="accordion-dynamic-attributen">
+      <span
+        >Onderwijs helpt jonge mensen en volwassenen om zichzelf te ontwikkelen
+        en hun weg te vinden in onze samenleving. Het hoger onderwijs speelt
+        daarnaast een belangrijke rol in innovatie dankzij het belang van
+        wetenschappelijk onderzoek.</span
+      >
+    </vl-accordion>
+
+    <script type="text/javascript">
+      document
+        .querySelector("#accordion-dynamic-attributen")
+        .setAttribute("data-vl-toggle-text", "Open de onderwijsdoelstelling");
+      document
+        .querySelector("#accordion-dynamic-attributen")
+        .setAttribute(
+          "data-vl-open-toggle-text",
+          "Open de onderwijsdoelstelling"
+        );
+      document
+        .querySelector("#accordion-dynamic-attributen")
+        .setAttribute(
+          "data-vl-close-toggle-text",
+          "Sluit de onderwijsdoelstelling"
+        );
+    </script>
+  </body>
+</html>

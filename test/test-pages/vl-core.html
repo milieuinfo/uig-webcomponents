@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <title>vl-core voorbeeld</title>
+    <script type="module" src="../../build/index.js"></script>
+    <script>
+      class VlSlowElement extends HTMLElement {
+        connectedCallback() {
+          const shadowRoot = this.attachShadow({ mode: "open" });
+          shadowRoot.innerHTML = "<div>Only visible when defined!</div>";
+        }
+      }
+      setTimeout(
+        () => customElements.define("vl-slow-element", VlSlowElement),
+        10000
+      );
+    </script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../distribution/components/body/styles.css"
+    />
+  </head>
+  <body is="vl-body">
+    <vl-slow-element id="slow-element"></vl-slow-element>
+  </body>
+</html>
