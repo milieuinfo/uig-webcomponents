@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+    <script
+      type="module"
+      src="../../../../../distribution/components/body/index.js"
+    ></script>
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../../../distribution/components/body/styles.css"
+    />
+  </head>
+
+  <body id="body" is="vl-body">
+    <script>
+      suite("vl-body", () => {
+        test("controle body constructie", () => {
+          const body = document.getElementById("body");
+          assert.equal(body.constructor, customElements.get("vl-body"));
+        });
+
+        test("body zorgt voor basis huisstijl zoals bijvoorbeeld de HTML font-family", () => {
+          const html = document.querySelector("html");
+          assert.equal(
+            window.getComputedStyle(html)["font-family"],
+            '"Flanders Art Sans", sans-serif'
+          );
+        });
+
+        test("body bevat sticky class om de footer zichtbaar te maken bij weinig content", () => {
+          const body = document.getElementById("body");
+          assert.isTrue(body.classList.contains("vl-u-sticky-gf"));
+        });
+      });
+    </script>
+  </body>
+</html>
+
