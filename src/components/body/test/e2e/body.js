@@ -1,4 +1,4 @@
-const { VlElement } = require("../../../test").Test;
+const { VlElement } = require("../../../../../test").Test;
 
 class VlBody extends VlElement {}
 

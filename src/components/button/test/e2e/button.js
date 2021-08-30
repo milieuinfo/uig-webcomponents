@@ -1,11 +1,11 @@
-const { VlElement } = require("../../../test").Test;
-const { By } = require("../../../test").Test.Setup;
+const { VlElement } = require("../../../../../test").Test;
+const { By } = require("../../../../../test").Test.Setup;
 
 class VlButtonElement extends VlElement {
   async getIcon() {
     const icon = await this.findElement(By.css('[is="vl-icon"]'));
     if (icon) {
-      const { VlIcon } = require("vl-ui-icon").Test;
+      const VlIcon = require("../../../icon/test/e2e/icon.js");
       return new VlIcon(this.driver, icon);
     }
   }

@@ -1,6 +1,6 @@
-const VlAccordion = require("../components/vl-accordion");
-const { Page, Config } = require("../../index.js").Test;
-const { By } = require("../../index.js").Test.Setup;
+const VlAccordion = require("./accordion.js");
+const { Page, Config } = require("../../../../../test/index.js").Test;
+const { By } = require("../../../../../test/index.js").Test.Setup;
 
 class VlAccordionPage extends Page {
   async _getAccordion(selector) {
@@ -45,7 +45,7 @@ class VlAccordionPage extends Page {
   }
 
   async load() {
-    await super.load(Config.baseUrl + "/test/test-pages/vl-accordion.html");
+    await super.load(Config.baseUrl + "accordion/test/e2e");
   }
 }
 

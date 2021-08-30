@@ -1,5 +1,5 @@
-const VlBody = require("../components/vl-body");
-const { Page, Config } = require("../../../test").Test;
+const VlBody = require("./body.js");
+const { Page, Config } = require("../../../../../test").Test;
 
 class VlBodyPage extends Page {
   async getBody() {
@@ -7,7 +7,7 @@ class VlBodyPage extends Page {
   }
 
   async load() {
-    await super.load(Config.baseUrl + "/test/test-pages/vl-body.html");
+    await super.load(Config.baseUrl + "body/test/e2e");
   }
 
   async _getBody(selector) {

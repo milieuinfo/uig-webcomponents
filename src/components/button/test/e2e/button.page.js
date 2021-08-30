@@ -1,5 +1,5 @@
-const { VlButton, VlLinkButton } = require("../components/vl-button");
-const { Page, Config } = require("../../../test").Test;
+const { VlButton, VlLinkButton } = require("./button.js");
+const { Page, Config } = require("../../../../../test").Test;
 
 class VlButtonPage extends Page {
   async _getButton(selector) {
@@ -71,7 +71,7 @@ class VlButtonPage extends Page {
   }
 
   async load() {
-    await super.load(Config.baseUrl + "/test/test-pages/vl-button.html");
+    await super.load(Config.baseUrl + "button/test/e2e");
   }
 }
 

@@ -1,5 +1,8 @@
-const { assert, getDriver } = require("../../index.js").Test.Setup;
-const VlAccordionPage = require("../pages/vl-accordion.page");
+const {
+  assert,
+  getDriver,
+} = require("../../../../../test/index.js").Test.Setup;
+const VlAccordionPage = require("./accordion.page.js");
 
 describe("vl-accordion", async () => {
   let driver;

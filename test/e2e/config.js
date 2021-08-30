@@ -1,16 +1,16 @@
-const yargs = require('yargs').argv;
+const yargs = require("yargs").argv;
 
-const macOS = 'OS X';
-const windows = 'Windows';
+const macOS = "OS X";
+const windows = "Windows";
 
-const macOsVersion = 'Catalina';
-const windowsVersion = '10';
+const macOsVersion = "Catalina";
+const windowsVersion = "10";
 
-const chrome = 'chrome';
-const firefox = 'firefox';
-const edge = 'edge';
-const safari = 'safari';
-const opera = 'opera';
+const chrome = "chrome";
+const firefox = "firefox";
+const edge = "edge";
+const safari = "safari";
+const opera = "opera";
 
 const osName = () => {
   switch (browserName()) {
@@ -43,7 +43,7 @@ const browserName = () => {
     } else if (process.argv.includes(opera) || yargs.opera) {
       return opera;
     } else {
-      console.warn('Geen geldige browser gevonden, default Chrome browser!');
+      console.warn("Geen geldige browser gevonden, default Chrome browser!");
       return chrome;
     }
   }
@@ -52,17 +52,18 @@ const browserName = () => {
 const browserVersion = () => {
   switch (browserName()) {
     case chrome:
-      return '85.0';
+      return "85.0";
     case firefox:
-      return '83.0';
+      return "83.0";
     case edge:
-      return '86.0';
-    default: 'latest';
+      return "86.0";
+    default:
+      "latest";
   }
 };
 
 const browserstack = () => {
-  return process.argv.includes('browserstack') || yargs.browserstack;
+  return process.argv.includes("browserstack") || yargs.browserstack;
 };
 
 module.exports = {
@@ -71,6 +72,6 @@ module.exports = {
   browserName: browserName(),
   browserVersion: browserVersion(),
   browserstack: browserstack(),
-  gridUrl: 'http://selenium-hub:4444/wd/hub',
-  baseUrl: 'http://localhost:8080',
+  gridUrl: "http://selenium-hub:4444/wd/hub",
+  baseUrl: "http://localhost:8080/src/components/",
 };

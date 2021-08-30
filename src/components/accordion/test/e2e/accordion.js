@@ -1,5 +1,6 @@
-const { VlElement } = require("../../index.js").Test;
-const { By } = require("../../index.js").Test.Setup;
+const { VlElement } = require("../../../../../test/index.js").Test;
+const { By } = require("../../../../../test/index.js").Test.Setup;
+
 class VlAccordion extends VlElement {
   async linkText() {
     return await this.titleText();
