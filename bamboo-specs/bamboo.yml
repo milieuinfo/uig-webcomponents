@@ -58,7 +58,7 @@ Release:
 ---
 version: 2
 plan:
-  key: UIGWEBCO
+  key: WEBCO-UIGWEBCO
 
 plan-permissions:
   - groups:
