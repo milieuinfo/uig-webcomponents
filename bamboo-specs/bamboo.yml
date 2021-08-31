@@ -2,7 +2,7 @@
 version: 2
 plan:
   project-key: WEBCO
-  key: WEBCOMPONENTS
+  key: UIGWEBCOMPONENTS
   name: uig-webcomponents
 
 triggers:
@@ -58,7 +58,7 @@ Release:
 ---
 version: 2
 plan:
-  key: UIGWEBCOMPONENTS
+  key: WEBCO-UIGWEBCOMPONENTS
 
 plan-permissions:
   - groups:
