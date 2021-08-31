@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run build && start-storybook -s ./ -p 8080",
     "build-storybook": "build-storybook",
-    "build": "node ./scripts/build.js"
+    "build": "npm install && node ./scripts/build.js"
   },
   "author": "",
   "license": "ISC",
@@ -38,6 +38,7 @@
     "sass": "^1.38.0",
     "sass-loader": "^10.0.5",
     "sass-to-string": "^1.5.1",
-    "string-replace-loader": "^3.0.3"
+    "string-replace-loader": "^3.0.3",
+    "fs-extra": "^10.0.0"
   }
 }
