@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && start-storybook -s ./ -p 8000",
+    "start": "npm run build && start-storybook -s ./ -p 8080",
     "build-storybook": "build-storybook",
     "build": "node ./scripts/build.js"
   },
@@ -34,6 +34,7 @@
     "@storybook/addon-links": "^6.3.2",
     "@storybook/web-components": "^6.3.2",
     "lit-html": "^1.4.1",
+    "babel-loader": "^8.2.2",
     "sass": "^1.38.0",
     "sass-loader": "^10.0.5",
     "sass-to-string": "^1.5.1",
