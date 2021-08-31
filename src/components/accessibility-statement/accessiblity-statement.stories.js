@@ -1,5 +1,6 @@
 import { html } from "lit-html";
 import "../accessibility-statement";
+import { COMPLIANCE_STATUS, EVALUATION_STATUS } from "./enums";
 
 export default {
   title: "custom-elements/vl-accessibility-statement",
@@ -8,28 +9,86 @@ export default {
     version: "1.0.0",
     date: "20 juli 2021",
     dateModified: "20 juli 2021",
+    compliance: COMPLIANCE_STATUS.PARTIALLY_COMPLIANT,
+    limitations: "limitations-01",
+    evaluation: EVALUATION_STATUS.SELF_EVALUATED,
   },
   argTypes: {
+    application: {
+      name: "data-vl-application",
+      type: { summary: "string" },
+      description: "description",
+      table: {
+        defaultValue: { summary: '"deze applicatie"' },
+      },
+    },
+    version: {
+      name: "data-vl-version",
+      type: { summary: "string" },
+      description: "description",
+      table: {
+        defaultValue: { summary: '"1.0.0"' },
+      },
+    },
+    date: {
+      name: "data-vl-date",
+      type: { summary: "string" },
+      description: "description",
+      table: {
+        defaultValue: { summary: '"20 juli 2021"' },
+      },
+    },
+    dateModified: {
+      name: "data-vl-date-modified",
+      type: { summary: "string" },
+      description: "description",
+      table: {
+        defaultValue: { summary: '"20 juli 2021"' },
+      },
+    },
     compliance: {
+      name: "data-vl-compliance",
+      type: { summary: "string" },
+      description: "description",
       control: {
         type: "select",
-        options: ["fully-compliant", "partially-compliant", "not-compliant"],
+        options: [
+          COMPLIANCE_STATUS.FULLY_COMPLIANT,
+          COMPLIANCE_STATUS.PARTIALLY_COMPLIANT,
+          COMPLIANCE_STATUS.NOT_COMPLIANT,
+        ],
       },
-      defaultValue: "partially-compliant",
+      table: {
+        defaultValue: { summary: `"${COMPLIANCE_STATUS.PARTIALLY_COMPLIANT}"` },
+      },
     },
     limitations: {
+      name: "data-vl-limitations",
+      type: { summary: "string" },
+      description: "description",
       control: {
         type: "select",
         options: ["limitations-01", "limitations-02"],
       },
-      defaultValue: "limitations-01",
+      table: {
+        defaultValue: { summary: "" },
+      },
     },
     evaluation: {
+      name: "data-vl-evaluation",
+      type: { summary: "string" },
+      description: "description",
       control: {
         type: "select",
-        options: ["expert-evaluated", "self-evaluated", "not-evaluated"],
+        options: [
+          EVALUATION_STATUS.EXPERT_EVALUATED,
+          EVALUATION_STATUS.SELF_EVALUATED,
+          EVALUATION_STATUS.NOT_EVALUATED,
+        ],
       },
-      defaultValue: "self-evaluated",
+      table: {
+        defaultValue: { summary: `"${EVALUATION_STATUS.SELF_EVALUATED}"` },
+      },
     },
   },
 };
@@ -73,12 +132,12 @@ export const Default = ({
       ]
     </script>
     <vl-accessibility-statement
-      application=${application}
-      version=${version}
-      date=${date}
-      dateModified=${dateModified}
-      compliance=${compliance}
-      limitations=${limitations}
-      evaluation=${evaluation}
+      data-vl-application=${application}
+      data-vl-version=${version}
+      data-vl-date=${date}
+      data-vl-date-modified=${dateModified}
+      data-vl-compliance=${compliance}
+      data-vl-limitations=${limitations}
+      data-vl-evaluation=${evaluation}
     ></vl-accessibility-statement>`;
 };

@@ -15,42 +15,62 @@ import { header, title, content } from "./templates";
 import { COMPLIANCE_STATUS } from "./enums";
 import styles from "./styles.scss";
 
+const props = {
+  version: "data-vl-version",
+  application: "data-vl-application",
+  date: "data-vl-date",
+  dateModified: "data-vl-date-modified",
+  compliance: "data-vl-compliance",
+  limitations: "data-vl-limitations",
+  evaluation: "data-vl-evalutation",
+};
+
+const {
+  version,
+  application,
+  date,
+  dateModified,
+  compliance,
+  limitations,
+  evaluation,
+} = props;
+
 export class VlAccessibility extends LitElement {
   static get properties() {
     return {
-      version: { type: String },
-      application: { type: String },
-      date: { type: String },
-      dateModified: { type: String },
-      compliance: { type: String },
-      limitations: {
+      [version]: { type: String },
+      [application]: { type: String },
+      [date]: { type: String },
+      [dateModified]: { type: String },
+      [compliance]: { type: String },
+      [limitations]: {
         type: String,
       },
-      evaluation: { type: String },
+      [evaluation]: { type: String },
     };
   }
 
   constructor() {
     super();
-    this.version = "1.0.0";
-    this.application = "deze applicatie";
-    this.date = "20 juli 2021";
-    this.dateModified = "20 juli 2021";
-    this.compliance = COMPLIANCE_STATUS.PARTIALLY_COMPLIANT;
+    this[version] = "1.0.0";
+    this[application] = "deze applicatie";
+    this[date] = "20 juli 2021";
+    this[dateModified] = "20 juli 2021";
+    this[compliance] = COMPLIANCE_STATUS.PARTIALLY_COMPLIANT;
   }
 
   render() {
     this.limitationsArray = JSON.parse(
-      document.getElementById(this.limitations).innerHTML
+      document.getElementById(this[limitations]).innerHTML
     );
     const props = {
-      version: this.version,
-      date: this.date,
-      application: this.application,
-      evaluation: this.evaluation,
-      compliance: this.compliance,
+      version: this[version],
+      date: this[date],
+      application: this[application],
+      evaluation: this[evaluation],
+      compliance: this[compliance],
       limitationsArray: this.limitationsArray,
-      dateModified: this.dateModified,
+      dateModified: this[dateModified],
     };
 
     return html`<style>
