@@ -3,10 +3,6 @@ services:
   build:
     image: ${DOCKER_REGISTRY}milieuinfo/ubuntu-node:14
     command: "npm run build"
-    depends_on:
-      - selenium-hub
-      - selenium-chrome
-      - selenium-firefox
     environment:
       - http_proxy=${http_proxy}
       - https_proxy=${https_proxy}
