@@ -25,8 +25,9 @@ Build:
   tasks:
     - clean
     - script: |
-        #!/usr/env/bin bash
+        #!/bin/bash
         set -e
+        set -x
         docker-compose -f docker-compose.yml up
   final-tasks:
     - script: /opt/scripts/docker/stop-docker-containers.sh
