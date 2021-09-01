@@ -16,7 +16,7 @@ export default {
       type: { summary: "string" },
       description: "Attribuut wordt gebruikt om de download link te bepalen.",
       table: {
-        defaultValue: { summary: "" },
+        defaultValue: { summary: "#" },
       },
     },
     type: { name: "type (for demo purposes)" },
