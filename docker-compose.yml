@@ -23,7 +23,8 @@ services:
       - ${HOME:-.}/.git-credentials:/root/.git-credentials:ro
       - .:/data
   release:
-    image: ${DOCKER_REGISTRY}milieuinfo/wc-release:1.0.2
+    image: ${DOCKER_REGISTRY}milieuinfo/ubuntu-node:14
+    command: "npm run release"
     environment:
       - http_proxy=${http_proxy}
       - https_proxy=${https_proxy}
