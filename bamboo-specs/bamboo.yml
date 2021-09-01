@@ -28,7 +28,7 @@ Build:
         #!/bin/bash
         set -e
         set -x
-        docker-compose -f docker-compose.yml up
+        docker-compose -f docker-compose.yml run build
   final-tasks:
     - script: /opt/scripts/docker/stop-docker-containers.sh
   requirements:
