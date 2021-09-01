@@ -39,8 +39,9 @@ Release:
   tasks:
     - clean
     - script: |
-        #!/usr/env/bin bash
+        #!/bin/bash
         set -e
+        set -x
         /opt/scripts/git/git-repository-information-restore.sh
         export git_repo="${bamboo_repository_git_repositoryUrl}"
         export release_version="${bamboo.release_version}"
