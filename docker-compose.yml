@@ -38,3 +38,8 @@ services:
     extra_hosts:
       - "repository.milieuinfo.be:${REPOSITORY_FIXED_IP}"
     working_dir: /data
+    volumes:
+      - ${HOME:-.}/.npmrc:/root/.npmrc:ro
+      - ${HOME:-.}/.gitconfig:/root/.gitconfig:ro
+      - ${HOME:-.}/.git-credentials:/root/.git-credentials:ro
+      - .:/data
