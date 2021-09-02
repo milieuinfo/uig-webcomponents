@@ -24,7 +24,7 @@ services:
       - .:/data
   release:
     image: ${DOCKER_REGISTRY}milieuinfo/ubuntu-node:14
-    command: "npm run release"
+    command: "npm run release ${artifactory_user} ${artifactory_password}"
     environment:
       - http_proxy=${http_proxy}
       - https_proxy=${https_proxy}
@@ -35,6 +35,8 @@ services:
       - GIT_REPO=${git_repo}
       - RELEASE_VERSION=${release_version}
       - SKIP_WCT_SAUCE_POSTINSTALL_DOWNLOAD=1
+      - artifactory_user=${artifactory_user}
+      - artifactory_password=${artifactory_password}
     extra_hosts:
       - "repository.milieuinfo.be:${REPOSITORY_FIXED_IP}"
     working_dir: /data
