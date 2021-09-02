@@ -1,1 +1,3 @@
-console.log("should release now");
+process.argv.forEach(function (val, index, array) {
+  console.log(index + ": " + val);
+});
