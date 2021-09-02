@@ -1,16 +1,24 @@
 {
   "name": "uig-webcomponents",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "npm run build && start-storybook -s ./ -p 8080",
     "build-storybook": "build-storybook",
     "build": "npm install && node ./scripts/build.js",
-    "release": "npm install && node ./scripts/build.js && node ./scripts/release.js"
+    "release": "npm install && node ./scripts/build.js && npm publish"
   },
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/milieuinfo/uig-webcomponents.git"
+  },
+  "publishConfig": {
+    "registry": "http://artifactory-pr-build.lb.cumuli.be:8081/artifactory/api/npm/acd-npm/"
+  },
+  "files": ["/distribution/*"],
   "dependencies": {
     "@govflanders/vl-ui-accordion": "^3.12.17",
     "@govflanders/vl-ui-core": "^4.1.24",
@@ -41,6 +49,7 @@
     "sass-loader": "^10.0.5",
     "sass-to-string": "^1.5.1",
     "string-replace-loader": "^3.0.3",
-    "fs-extra": "^10.0.0"
+    "fs-extra": "^10.0.0",
+    "tar": "^6.0.1"
   }
 }
