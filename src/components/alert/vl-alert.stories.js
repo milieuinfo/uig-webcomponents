@@ -1,4 +1,5 @@
 import { html } from "lit-html";
+import "../button";
 import "../alert";
 import styles from "./styles.scss";
 
@@ -90,3 +91,31 @@ const alertWrap = (props, children) => {
 };
 
 export const Default = (props) => html`${alertWrap(props, props.content)}`;
+
+export const AlertWithButton = (props) =>
+  html`${alertWrap(props, props.content)}`;
+
+AlertWithButton.args = {
+  ...defaultArgs,
+  title: "Alert met button",
+  content: html`<p>
+      U heeft geen rechten om deze actie uit te voeren.
+      <a href="#">Vraag rechten aan</a>.
+    </p>
+    <button slot="actions" is="vl-button">Fout melden</button> `,
+};
+
+export const WithTitleSlot = (props) =>
+  html`${alertWrap(props, props.content)}`;
+
+WithTitleSlot.args = {
+  ...defaultArgs,
+  title: "",
+  content: html`
+    <span slot="title">Alert titel via slot</span>
+    <p>
+      U heeft geen rechten om deze actie uit te voeren.
+      <a href="#">Vraag rechten aan</a>.
+    </p>
+  `,
+};
