@@ -16,7 +16,7 @@
     "url": "git+https://github.com/milieuinfo/uig-webcomponents.git"
   },
   "publishConfig": {
-    "registry": "http://artifactory-pr-build.lb.cumuli.be:8081/artifactory/api/npm/acd-npm/"
+    "registry": "https://repo.omgeving.vlaanderen.be/artifactory/api/npm/local-npm/"
   },
   "files": ["/distribution/*"],
   "dependencies": {
