@@ -24,7 +24,7 @@ services:
       - .:/data
   release:
     image: ${DOCKER_REGISTRY}milieuinfo/ubuntu-node:14
-    command: "npm version ${RELEASE_VERSION} && git push && npm publish"
+    command: "npm version ${release_version} && git push && npm publish"
     environment:
       - http_proxy=${http_proxy}
       - https_proxy=${https_proxy}
