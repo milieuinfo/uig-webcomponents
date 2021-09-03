@@ -6,7 +6,8 @@
   "scripts": {
     "start": "npm run build && start-storybook -s ./ -p 8080",
     "build-storybook": "npm run build && build-storybook",
-    "build": "npm install && node ./scripts/build.js"
+    "build": "npm install && node ./scripts/build.js",
+    "release": "npm run build && npm version patch && git push && npm publish"
   },
   "author": "",
   "license": "ISC",
