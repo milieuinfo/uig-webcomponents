@@ -4,6 +4,6 @@ module.exports = {
   reporterOptions: {
     configFile: "./config/reporter-config.json",
   },
-  spec: ["./src/components/contact-card/test/e2e/*.spec.js"],
+  spec: ["./src/components/button/test/e2e/*.spec.js"],
   timeout: "300000",
 };
