@@ -1,17 +1,28 @@
-const {WebElement, By} = require('selenium-webdriver');
+const { WebElement, By } = require("selenium-webdriver");
 
 class VlElement extends WebElement {
   constructor(driver, identifier, mixins) {
     return (async () => {
-      if (typeof identifier === 'string') {
+      if (typeof identifier === "string") {
         super(driver, await driver.findElement(By.css(identifier)).getId());
         this.selector = identifier;
       } else {
         super(driver, await identifier.getId());
       }
       this.driver = driver;
-      if (await this.driver.executeScript('return arguments[0].shadowRoot != undefined', this)) {
-        this.shadowRoot = await new VlElement(this.driver, await this.driver.executeScript('return arguments[0].shadowRoot.lastElementChild', this));
+      if (
+        await this.driver.executeScript(
+          "return arguments[0].shadowRoot != undefined",
+          this
+        )
+      ) {
+        this.shadowRoot = await new VlElement(
+          this.driver,
+          await this.driver.executeScript(
+            "return arguments[0].shadowRoot.lastElementChild",
+            this
+          )
+        );
       }
       if (mixins && Array.isArray(mixins)) {
         mixins.forEach((mixin) => Object.assign(this, mixin));
@@ -26,12 +37,12 @@ class VlElement extends WebElement {
   }
 
   async getClassList() {
-    return (await this.getAttribute('class')).split(' ');
+    return (await this.getAttribute("class")).split(" ");
   }
 
   async getText() {
     let text;
-    if ((await this.hasAssignedSlot())) {
+    if (await this.hasAssignedSlot()) {
       text = await this.getTextContent();
     } else {
       text = await super.getText();
@@ -40,7 +51,7 @@ class VlElement extends WebElement {
   }
 
   async getTextContent() {
-    return this.getAttribute('textContent');
+    return this.getAttribute("textContent");
   }
 
   async isDisabled() {
@@ -56,15 +67,17 @@ class VlElement extends WebElement {
   }
 
   async hasText() {
-    return (await this.getText()) !== '';
+    return (await this.getText()) !== "";
   }
 
   async getInnerHTML() {
-    return this.getAttribute('innerHTML');
+    return this.getAttribute("innerHTML");
   }
 
   async hasFocus() {
-    const rootActiveElement = await this._getActiveElement(await new VlElement(this.driver, this.driver.switchTo().activeElement()));
+    const rootActiveElement = await this._getActiveElement(
+      await new VlElement(this.driver, this.driver.switchTo().activeElement())
+    );
     const activeElement = await this._getActiveElement(this);
 
     if (activeElement && rootActiveElement) {
@@ -75,48 +88,73 @@ class VlElement extends WebElement {
   }
 
   async hasAssignedSlot() {
-    return (this.driver.executeScript('return arguments[0].assignedSlot != undefined', this));
+    return this.driver.executeScript(
+      "return arguments[0].assignedSlot != undefined",
+      this
+    );
   }
 
   async hover() {
     const actions = this.driver.actions();
     await this.scrollIntoView();
-    return actions.move({origin: this}).perform();
+    return actions.move({ origin: this }).perform();
   }
 
   async getAssignedElements(slot) {
     return this.driver.executeScript(
-        'return arguments[0].assignedElements()', slot);
+      "return arguments[0].assignedElements()",
+      slot
+    );
   }
 
   async getAssignedNodes(slot) {
     return this.driver.executeScript(
-        'return arguments[0].assignedNodes()', slot);
+      "return arguments[0].assignedNodes()",
+      slot
+    );
   }
 
   async scrollIntoView() {
-    return this.driver.executeScript('return arguments[0].scrollIntoView()', this);
+    return this.driver.executeScript(
+      "return arguments[0].scrollIntoView()",
+      this
+    );
   }
 
   async isInViewport() {
-    const bounding = await this.driver.executeScript('return arguments[0].getBoundingClientRect()', this);
-    const height = await this.driver.executeScript('return (window.innerHeight || document.documentElement.clientHeight)');
-    const width = await this.driver.executeScript('return (window.innerWidth || document.documentElement.clientWidth)');
+    const bounding = await this.driver.executeScript(
+      "return arguments[0].getBoundingClientRect()",
+      this
+    );
+    const height = await this.driver.executeScript(
+      "return (window.innerHeight || document.documentElement.clientHeight)"
+    );
+    const width = await this.driver.executeScript(
+      "return (window.innerWidth || document.documentElement.clientWidth)"
+    );
     const outOfViewport = {
       top: bounding.top < 0,
       left: bounding.left < 0,
       bottom: bounding.bottom > height,
       right: bounding.right > width,
     };
-    return !outOfViewport.top && !outOfViewport.left && !outOfViewport.bottom && !outOfViewport.right;
+    return (
+      !outOfViewport.top &&
+      !outOfViewport.left &&
+      !outOfViewport.bottom &&
+      !outOfViewport.right
+    );
   }
 
   async scrollToTop() {
-    return this.driver.executeScript('return arguments[0].scrollTop = 0;', this);
+    return this.driver.executeScript(
+      "return arguments[0].scrollTop = 0;",
+      this
+    );
   }
 
   async parent() {
-    const element = await this.findElement(By.xpath('..'));
+    const element = await this.findElement(By.xpath(".."));
     return new VlElement(this.driver, element);
   }
 
@@ -134,7 +172,7 @@ class VlElement extends WebElement {
   }
 
   get _attributePrefix() {
-    return 'data-vl-';
+    return "data-vl-";
   }
 
   async _getActiveElement(element) {
@@ -146,9 +184,14 @@ class VlElement extends WebElement {
   }
 
   async _findActiveElementInShadowRoot(element) {
-    const activeElement = await (this.driver.executeScript('return arguments[0].shadowRoot.activeElement', element));
+    const activeElement = await this.driver.executeScript(
+      "return arguments[0].shadowRoot.activeElement",
+      element
+    );
     if (activeElement) {
-      return this._getActiveElement(await new VlElement(this.driver, activeElement));
+      return this._getActiveElement(
+        await new VlElement(this.driver, activeElement)
+      );
     } else {
       return null;
     }

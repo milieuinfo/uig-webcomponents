@@ -1,7 +1,8 @@
 const { VlElement } = require("../../../../../test").Test;
 const { By } = require("../../../../../test").Test.Setup;
 const VlInfoblock = require("../../../infoblock/test/e2e/infoblock.js");
-const { VlProperties } = require("../../../properties/test/e2e/properties.js");
+const VlProperties = require("../../../properties/test/e2e/properties.js")
+  .VlProperties;
 
 class VlContactCard extends VlElement {
   async getInfoblockElement() {

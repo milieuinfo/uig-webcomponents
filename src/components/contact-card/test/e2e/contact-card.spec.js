@@ -6,8 +6,6 @@ const VlContactCardPage = require("./contact-card.page.js");
 const VlPropertiesList = require("../../../properties/test/e2e/properties.js")
   .VlPropertiesList;
 
-console.log(VlPropertiesList);
-
 describe("vl-contact-card", async () => {
   let driver;
   let vlContactCardPage;
