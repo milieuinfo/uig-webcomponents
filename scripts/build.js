@@ -3,7 +3,7 @@ const path = require("path");
 const sass = require("sass");
 const buildConfig = {
   src: "src",
-  dist: "distribution",
+  dist: "lib",
   nativeComponents: [
     "body",
     "button",
