@@ -3,9 +3,6 @@
   "version": "0.0.2",
   "description": "",
   "main": "index.js",
-  "config": {
-    "version": "patch"
-  },
   "scripts": {
     "start": "npm run build && start-storybook -s ./ -p 8080",
     "build-storybook": "npm run build && build-storybook",
