@@ -44,9 +44,8 @@ Release:
         set -x
         /opt/scripts/git/git-repository-information-restore.sh
         export git_repo="${bamboo_repository_git_repositoryUrl}"
-        export artifactory_user="${bamboo_acd_repository_debian_login}"
-        export artifactory_password="${bamboo_acd_repository_debian_password}"
-        docker-compose -f docker-compose.yml run release -e RELEASE_VERSION=${bamboo.release_version}
+        export release_version="${bamboo.release_version}"
+        docker-compose -f docker-compose.yml run release
   final-tasks:
     - script: /opt/scripts/docker/stop-docker-containers.sh
   requirements:

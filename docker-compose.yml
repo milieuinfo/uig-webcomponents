@@ -2,7 +2,6 @@ version: "3"
 services:
   build:
     image: ${DOCKER_REGISTRY}milieuinfo/ubuntu-node:14
-    command: "npm run build"
     environment:
       - http_proxy=${http_proxy}
       - https_proxy=${https_proxy}
@@ -14,6 +13,7 @@ services:
       - SKIP_WCT_SAUCE_POSTINSTALL_DOWNLOAD=1
       - browserstack_username=${browserstack_username}
       - browserstack_password=${browserstack_password}
+    command: "npm run build"
     extra_hosts:
       - "repository.milieuinfo.be:${REPOSITORY_FIXED_IP}"
     working_dir: /data
@@ -24,7 +24,6 @@ services:
       - .:/data
   release:
     image: ${DOCKER_REGISTRY}milieuinfo/ubuntu-node:14
-    command: "npm run release --uig-webcomponents:version=${RELEASE_VERSION}"
     environment:
       - http_proxy=${http_proxy}
       - https_proxy=${https_proxy}
@@ -36,6 +35,7 @@ services:
       - SKIP_WCT_SAUCE_POSTINSTALL_DOWNLOAD=1
       - artifactory_user=${artifactory_user}
       - artifactory_password=${artifactory_password}
+    command: "npm run release --uig-webcomponents:version=${release_version}"
     extra_hosts:
       - "repository.milieuinfo.be:${REPOSITORY_FIXED_IP}"
     working_dir: /data
