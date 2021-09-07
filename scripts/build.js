@@ -89,7 +89,6 @@ const removeFolder = (directoryToSearch, pattern) => {
     const subDirectoryToSearch = path.resolve(directoryToSearch, subDirectory);
     const stat = fs.statSync(subDirectoryToSearch);
     if (stat.isDirectory()) {
-      console.log({ subDirectoryToSearch }, { pattern });
       if (subDirectoryToSearch.endsWith(pattern)) {
         fs.rmdirSync(subDirectoryToSearch, { recursive: true });
       } else {
