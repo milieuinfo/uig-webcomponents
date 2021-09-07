@@ -84,6 +84,21 @@ const replaceFonts = (content) => {
     );
 };
 
+const removeFolder = (directoryToSearch, pattern) => {
+  fs.readdirSync(directoryToSearch).forEach((subDirectory) => {
+    const subDirectoryToSearch = path.resolve(directoryToSearch, subDirectory);
+    const stat = fs.statSync(subDirectoryToSearch);
+    if (stat.isDirectory()) {
+      console.log({ subDirectoryToSearch }, { pattern });
+      if (subDirectoryToSearch.endsWith(pattern)) {
+        fs.rmdirSync(subDirectoryToSearch, { recursive: true });
+      } else {
+        removeFolder(subDirectoryToSearch, pattern);
+      }
+    }
+  });
+};
+
 const removeFilesWithExtension = (directoryToSearch, pattern) => {
   fs.readdirSync(directoryToSearch).forEach((subDirectory) => {
     const subDirectoryToSearch = path.resolve(directoryToSearch, subDirectory);
@@ -97,21 +112,9 @@ const removeFilesWithExtension = (directoryToSearch, pattern) => {
   });
 };
 
-const replaceFontUlrs = (directoryToSearch) => {
-  fs.readdirSync(directoryToSearch).forEach((subDirectory) => {
-    const subDirectoryToSearch = path.resolve(directoryToSearch, subDirectory);
-    const stat = fs.statSync(subDirectoryToSearch);
-    if (stat.isDirectory()) {
-      replaceFontUlrs(subDirectoryToSearch);
-    }
-    if (stat.isFile() && subDirectoryToSearch.endsWith(".css")) {
-      console.log({ subDirectoryToSearch });
-    }
-  });
-};
-
 const execute = () => {
   handleSass(src, ".scss");
+  removeFolder(dist, "test");
   removeFilesWithExtension(dist, ".scss");
   removeFilesWithExtension(dist, ".stories.js");
 };
