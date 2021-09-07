@@ -7,7 +7,7 @@ export class VlContactCardPage extends Page {
   }
 
   async load() {
-    await super.load(config.baseUrl + "contact-card/test/e2e");
+    await super.load(config.baseUrl + "components/contact-card/test/e2e");
   }
 
   async _getContactCard(selector) {

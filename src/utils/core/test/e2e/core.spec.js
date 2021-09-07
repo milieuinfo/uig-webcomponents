@@ -1,5 +1,5 @@
-const { assert, getDriver } = require("../..").Test.Setup;
-const VlCorePage = require("../pages/vl-core.page");
+import { assert, getDriver } from "../../../test";
+import { VlCorePage } from "./core.page.js";
 
 describe("vl-core", async () => {
   let driver;

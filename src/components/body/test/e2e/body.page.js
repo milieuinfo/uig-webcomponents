@@ -7,7 +7,7 @@ export class VlBodyPage extends Page {
   }
 
   async load() {
-    await super.load(config.baseUrl + "body/test/e2e");
+    await super.load(config.baseUrl + "components/body/test/e2e");
   }
 
   async _getBody(selector) {

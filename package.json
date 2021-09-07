@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm run build && webpack --config ./config/webpack.config.js && npm run test:e2e",
+    "test": "npm run build && webpack --config ./config/webpack.config.js && npm run test:e2e && npm run test:unit",
     "test:server:start": "http-server ./ &",
-    "test:unit": "npm run test:component:unit",
+    "test:unit": "wct --config-file ./../../wct.local.conf.json",
     "test:e2e": "npm run test:server:start && mocha --chrome --config ./config/.mocharc.json --require esm",
     "start": "npm run build && start-storybook -s ./ -p 8080",
     "build-storybook": "npm run build && build-storybook",

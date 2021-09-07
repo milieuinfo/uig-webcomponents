@@ -71,6 +71,6 @@ export class VlButtonPage extends Page {
   }
 
   async load() {
-    await super.load(config.baseUrl + "button/test/e2e");
+    await super.load(config.baseUrl + "components/button/test/e2e");
   }
 }

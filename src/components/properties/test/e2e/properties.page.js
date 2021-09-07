@@ -3,7 +3,7 @@ const { Page, Config } = require("../../../../../test/index.js").Test;
 
 class VlPropertiesPage extends Page {
   async load() {
-    await super.load(Config.baseUrl + "properties/test/e2e");
+    await super.load(Config.baseUrl + "components/properties/test/e2e");
   }
 
   async getProperties() {

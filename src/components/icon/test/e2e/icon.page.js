@@ -39,6 +39,6 @@ export class VlIconPage extends Page {
   }
 
   async load() {
-    await super.load(config.baseUrl + "/icon/test/e2e");
+    await super.load(config.baseUrl + "components/icon/test/e2e");
   }
 }

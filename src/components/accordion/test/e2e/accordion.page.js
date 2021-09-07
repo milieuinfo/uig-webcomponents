@@ -44,6 +44,6 @@ export class VlAccordionPage extends Page {
   }
 
   async load() {
-    await super.load(config.baseUrl + "accordion/test/e2e");
+    await super.load(config.baseUrl + "components/accordion/test/e2e");
   }
 }

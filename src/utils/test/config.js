@@ -73,5 +73,5 @@ export const config = {
   browserVersion: browserVersion(),
   browserstack: browserstack(),
   gridUrl: "http://selenium-hub:4444/wd/hub",
-  baseUrl: "http://localhost:8080/src/components/",
+  baseUrl: "http://localhost:8080/src/",
 };

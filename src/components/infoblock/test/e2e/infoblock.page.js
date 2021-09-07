@@ -43,7 +43,7 @@ class VlInfoblockPage extends Page {
   }
 
   async load() {
-    await super.load(Config.baseUrl + "infoblock/test/e2e");
+    await super.load(Config.baseUrl + "components/infoblock/test/e2e");
   }
 }
 
