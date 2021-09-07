@@ -1,18 +1,16 @@
-const VlBody = require("./body.js");
-const { Page, Config } = require("../../../../../test").Test;
+import { VlBody } from "./body.js";
+import { Page, config } from "../../../../utils/test";
 
-class VlBodyPage extends Page {
+export class VlBodyPage extends Page {
   async getBody() {
     return this._getBody("#body");
   }
 
   async load() {
-    await super.load(Config.baseUrl + "body/test/e2e");
+    await super.load(config.baseUrl + "body/test/e2e");
   }
 
   async _getBody(selector) {
     return new VlBody(this.driver, selector);
   }
 }
-
-module.exports = VlBodyPage;

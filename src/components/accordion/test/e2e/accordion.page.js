@@ -1,8 +1,7 @@
-const VlAccordion = require("./accordion.js");
-const { Page, Config } = require("../../../../../test/index.js").Test;
-const { By } = require("../../../../../test/index.js").Test.Setup;
+import { VlAccordion } from "./accordion.js";
+import { Page, config, By } from "../../../../utils/test";
 
-class VlAccordionPage extends Page {
+export class VlAccordionPage extends Page {
   async _getAccordion(selector) {
     return new VlAccordion(this.driver, selector);
   }
@@ -45,8 +44,6 @@ class VlAccordionPage extends Page {
   }
 
   async load() {
-    await super.load(Config.baseUrl + "accordion/test/e2e");
+    await super.load(config.baseUrl + "accordion/test/e2e");
   }
 }
-
-module.exports = VlAccordionPage;

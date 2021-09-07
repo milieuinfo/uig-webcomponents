@@ -1,5 +1,3 @@
-const { VlElement } = require("../../../../../test").Test;
+import { VlElement } from "../../../../utils/test";
 
-class VlBody extends VlElement {}
-
-module.exports = VlBody;
+export class VlBody extends VlElement {}

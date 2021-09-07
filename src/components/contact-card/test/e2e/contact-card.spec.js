@@ -1,10 +1,6 @@
-const {
-  assert,
-  getDriver,
-} = require("../../../../../test/index.js").Test.Setup;
-const VlContactCardPage = require("./contact-card.page.js");
-const VlPropertiesList = require("../../../properties/test/e2e/properties.js")
-  .VlPropertiesList;
+import { assert, getDriver } from "../../../../utils/test";
+import { VlContactCardPage } from "./contact-card.page.js";
+import { VlPropertiesList } from "../../../properties/test/e2e/properties.js";
 
 describe("vl-contact-card", async () => {
   let driver;

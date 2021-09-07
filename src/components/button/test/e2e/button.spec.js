@@ -1,5 +1,5 @@
-const { assert, getDriver } = require("../../../../../test").Test.Setup;
-const VlButtonPage = require("./button.page.js");
+import { assert, getDriver } from "../../../../utils/test";
+import { VlButtonPage } from "./button.page.js";
 
 describe("vl-button", async () => {
   let vlButtonPage;

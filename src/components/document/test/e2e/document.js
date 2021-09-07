@@ -1,5 +1,5 @@
-const { VlElement } = require("../../../../../test").Test;
-const { By } = require("../../../../../test").Test.Setup;
+const { VlElement } = require("../../../../../test/index.js").Test;
+const { By } = require("../../../../../test/index.js").Test.Setup;
 
 class VlDocument extends VlElement {
   async download() {

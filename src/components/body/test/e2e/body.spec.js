@@ -1,5 +1,5 @@
-const { assert, getDriver, By } = require("../../../../../test").Test.Setup;
-const VlBodyPage = require("./body.page.js");
+import { assert, getDriver, By } from "../../../../utils/test";
+import { VlBodyPage } from "./body.page.js";
 
 describe("vl-body", async () => {
   let vlBodyPage;

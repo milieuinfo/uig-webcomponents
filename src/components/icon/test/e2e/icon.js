@@ -1,6 +1,6 @@
-const { VlElement } = require("../../../../../test/index.js").Test;
+import { VlElement } from "../../../../utils/test";
 
-class VlIcon extends VlElement {
+export class VlIcon extends VlElement {
   constructor(driver, selector) {
     super(driver, selector);
   }
@@ -48,5 +48,3 @@ class VlIcon extends VlElement {
     return this.hasAttribute("180deg");
   }
 }
-
-module.exports = VlIcon;

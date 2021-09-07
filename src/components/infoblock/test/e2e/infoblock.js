@@ -1,8 +1,6 @@
-const { VlElement } = require("../../../../../test").Test;
-const { By } = require("../../../../../test").Test.Setup;
-const VlIcon = require("../../../icon/test/e2e/icon.js");
-
-class VlInfoblock extends VlElement {
+import { VlElement, By } from "../../../../utils/test";
+import { VlIcon } from "../../../icon/test/e2e/icon.js";
+export class VlInfoblock extends VlElement {
   async getTitleSlotElements() {
     const titleSlot = await this._getTitleSlot();
     return this.getAssignedElements(titleSlot);
@@ -57,5 +55,3 @@ class VlInfoblock extends VlElement {
     return this.shadowRoot.findElement(By.css('[is="vl-icon"]'));
   }
 }
-
-module.exports = VlInfoblock;

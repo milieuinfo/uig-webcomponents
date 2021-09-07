@@ -1,16 +1,16 @@
-import {vlElement, define} from '/src/vl-core.js';
+import { vlElement, define } from "../../src/utils";
 
 class VlElementImpl extends vlElement(HTMLElement) {
   static get _observedAttributes() {
-    return ['attribute'];
+    return ["attribute"];
   }
 
   static get _observedClassAttributes() {
-    return ['class-attribute'];
+    return ["class-attribute"];
   }
 
   static get _observedChildClassAttributes() {
-    return ['child-class-attribute'];
+    return ["child-class-attribute"];
   }
 
   constructor() {
@@ -20,23 +20,23 @@ class VlElementImpl extends vlElement(HTMLElement) {
   }
 
   get _classPrefix() {
-    return 'vl-span--';
+    return "vl-span--";
   }
 
-  _attributeChangedCallback(oldValue, newValue) { }
+  _attributeChangedCallback(oldValue, newValue) {}
 }
 
 class VlPrefixedElementImpl extends vlElement(HTMLElement) {
   static get _observedAttributes() {
-    return ['attribute'];
+    return ["attribute"];
   }
 
   static get _observedClassAttributes() {
-    return ['class-attribute'];
+    return ["class-attribute"];
   }
 
   static get _observedChildClassAttributes() {
-    return ['child-class-attribute'];
+    return ["child-class-attribute"];
   }
 
   constructor() {
@@ -46,11 +46,11 @@ class VlPrefixedElementImpl extends vlElement(HTMLElement) {
   }
 
   get _classPrefix() {
-    return 'vl-span--';
+    return "vl-span--";
   }
 
-  _dataVlAttributeChangedCallback(oldValue, newValue) { }
+  _dataVlAttributeChangedCallback(oldValue, newValue) {}
 }
 
-define('vl-element', VlElementImpl);
-define('vl-prefixed-element', VlPrefixedElementImpl);
+define("vl-element", VlElementImpl);
+define("vl-prefixed-element", VlPrefixedElementImpl);

@@ -1,7 +1,7 @@
-const VlIcon = require("./icon.js");
-const { Page, Config } = require("../../../../../test/index.js").Test;
+import { VlIcon } from "./icon.js";
+import { Page, config } from "../../../../utils/test";
 
-class VlIconPage extends Page {
+export class VlIconPage extends Page {
   async _getIcon(selector) {
     return new VlIcon(this.driver, selector);
   }
@@ -39,8 +39,6 @@ class VlIconPage extends Page {
   }
 
   async load() {
-    await super.load(Config.baseUrl + "/icon/test/e2e");
+    await super.load(config.baseUrl + "/icon/test/e2e");
   }
 }
-
-module.exports = VlIconPage;

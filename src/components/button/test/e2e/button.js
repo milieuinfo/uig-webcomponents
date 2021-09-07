@@ -1,11 +1,9 @@
-const { VlElement } = require("../../../../../test").Test;
-const { By } = require("../../../../../test").Test.Setup;
-
+import { VlElement, By } from "../../../../utils/test";
+import { VlIcon } from "../../../icon/test/e2e/icon.js";
 class VlButtonElement extends VlElement {
   async getIcon() {
     const icon = await this.findElement(By.css('[is="vl-icon"]'));
     if (icon) {
-      const VlIcon = require("../../../icon/test/e2e/icon.js");
       return new VlIcon(this.driver, icon);
     }
   }
@@ -52,11 +50,6 @@ class VlButtonElement extends VlElement {
   }
 }
 
-class VlButton extends VlButtonElement {}
+export class VlButton extends VlButtonElement {}
 
-class VlLinkButton extends VlButtonElement {}
-
-module.exports = {
-  VlButton,
-  VlLinkButton,
-};
+export class VlLinkButton extends VlButtonElement {}

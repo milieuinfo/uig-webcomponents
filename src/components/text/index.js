@@ -1,4 +1,4 @@
-import { nativeVlElement, define } from "./index";
+import { nativeVlElement, define } from "../../utils/core";
 
 export class VlText extends nativeVlElement(HTMLSpanElement) {
   static get _observedClassAttributes() {

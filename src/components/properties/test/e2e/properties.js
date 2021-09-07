@@ -1,14 +1,13 @@
-const { VlElement } = require("../../../../../test").Test;
-const { By } = require("../../../../../test").Test.Setup;
+import { VlElement, By } from "../../../../utils/test";
 
-class VlProperties extends VlElement {
+export class VlProperties extends VlElement {
   async getSlotElements() {
     const slot = await this.shadowRoot.findElement(By.css("slot"));
     return this.getAssignedElements(slot);
   }
 }
 
-class VlPropertiesColumn extends VlElement {
+export class VlPropertiesColumn extends VlElement {
   async isFullSize() {
     return this.hasAttribute("full");
   }
@@ -21,7 +20,7 @@ class VlPropertiesColumn extends VlElement {
   }
 }
 
-class VlPropertiesList extends VlElement {
+export class VlPropertiesList extends VlElement {
   async getPropertyByTermText(termText) {
     const properties = await this.getProperties();
     for (let i = 0; i < properties.length; i++) {
@@ -61,14 +60,6 @@ class VlPropertiesList extends VlElement {
   }
 }
 
-class VlPropertyTerm extends VlElement {}
+export class VlPropertyTerm extends VlElement {}
 
-class VlPropertyValue extends VlElement {}
-
-module.exports = {
-  VlProperties,
-  VlPropertiesColumn,
-  VlPropertiesList,
-  VlPropertyTerm,
-  VlPropertyValue,
-};
+export class VlPropertyValue extends VlElement {}

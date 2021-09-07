@@ -1,10 +1,8 @@
-const { VlElement } = require("../../../../../test").Test;
-const { By } = require("../../../../../test").Test.Setup;
-const VlInfoblock = require("../../../infoblock/test/e2e/infoblock.js");
-const VlProperties = require("../../../properties/test/e2e/properties.js")
-  .VlProperties;
+import { VlElement, By } from "../../../../utils/test";
+import { VlInfoblock } from "../../../infoblock/test/e2e/infoblock.js";
+import { VlProperties } from "../../../properties/test/e2e/properties.js";
 
-class VlContactCard extends VlElement {
+export class VlContactCard extends VlElement {
   async getInfoblockElement() {
     return new VlInfoblock(this.driver, await this._getSlotElement("info"));
   }
@@ -24,5 +22,3 @@ class VlContactCard extends VlElement {
     return elements[0];
   }
 }
-
-module.exports = VlContactCard;

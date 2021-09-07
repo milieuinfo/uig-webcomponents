@@ -1,7 +1,7 @@
-const { VlButton, VlLinkButton } = require("./button.js");
-const { Page, Config } = require("../../../../../test").Test;
+import { VlButton, VlLinkButton } from "./button.js";
+import { Page, config } from "../../../../utils/test";
 
-class VlButtonPage extends Page {
+export class VlButtonPage extends Page {
   async _getButton(selector) {
     return new VlButton(this.driver, selector);
   }
@@ -71,8 +71,6 @@ class VlButtonPage extends Page {
   }
 
   async load() {
-    await super.load(Config.baseUrl + "button/test/e2e");
+    await super.load(config.baseUrl + "button/test/e2e");
   }
 }
-
-module.exports = VlButtonPage;

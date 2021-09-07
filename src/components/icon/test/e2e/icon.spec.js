@@ -1,8 +1,5 @@
-const {
-  assert,
-  getDriver,
-} = require("../../../../../test/index.js").Test.Setup;
-const VlIconPage = require("./icon.page.js");
+import { assert, getDriver } from "../../../../utils/test";
+import { VlIconPage } from "./icon.page.js";
 
 describe("vl-icon", async () => {
   let vlIconPage;

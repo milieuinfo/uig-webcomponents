@@ -1,7 +1,5 @@
-const { VlElement } = require("../../../../../test/index.js").Test;
-const { By } = require("../../../../../test/index.js").Test.Setup;
-
-class VlAccordion extends VlElement {
+import { VlElement, By } from "../../../../utils/test";
+export class VlAccordion extends VlElement {
   async linkText() {
     return await this.titleText();
   }
@@ -81,5 +79,3 @@ class VlAccordion extends VlElement {
     return firstContent.isDisplayed();
   }
 }
-
-module.exports = VlAccordion;

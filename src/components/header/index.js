@@ -1,5 +1,5 @@
 import { LitElement, html } from "lit";
-import { define, awaitScript } from "../../utils/vl-core";
+import { define, awaitScript } from "../../utils/core";
 
 awaitScript(
   "vl-header-client",
