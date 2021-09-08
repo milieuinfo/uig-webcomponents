@@ -78,6 +78,18 @@ export const WithSlotElements = ({ title, subTitle, link, backLink, back }) =>
     <span slot="back">${back}</span>
   </vl-functional-header>`;
 
+WithSlotElements.argTypes = {
+  title: {
+    name: "title (slot)",
+  },
+  subTitle: {
+    name: "sub-title (slot)",
+  },
+  back: {
+    name: "back (slot)",
+  },
+};
+
 export const WithUserInteraction = ({
   title,
   subTitle,
@@ -106,7 +118,16 @@ WithUserInteraction.args = {
 
 WithUserInteraction.argTypes = {
   content: {
-    name: "content (for demo purposes)",
+    name: "actions (slot)",
     type: "string",
+  },
+  title: {
+    name: "title (slot)",
+  },
+  subTitle: {
+    name: "sub-title (slot)",
+  },
+  back: {
+    name: "back (slot)",
   },
 };

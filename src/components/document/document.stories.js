@@ -5,7 +5,7 @@ import "../document";
 export default {
   title: "custom-elements/vl-document",
   args: {
-    href: "",
+    href: "#",
     type: "PDF",
     title: "Hubert en Jan van Eyck, Vlaamse Primitieven",
     metadata: "PDF - 580 kB",
@@ -19,9 +19,9 @@ export default {
         defaultValue: { summary: "#" },
       },
     },
-    type: { name: "type (for demo purposes)" },
-    title: { name: "title (for demo purposes)" },
-    metadata: { name: "metadata (for demo purposes)" },
+    type: { name: "type (slot)" },
+    title: { name: "title (slot)" },
+    metadata: { name: "metadata (slot)" },
   },
 };
 

@@ -65,6 +65,9 @@ export const WithTitleSlot = ({ toggleText, content }) => html`
 WithTitleSlot.argTypes = {
   openToggleText: { control: false },
   closedToggleText: { control: false },
+  toggleText: {
+    name: "title (slot)",
+  },
 };
 
 export const DynamicToggle = ({
