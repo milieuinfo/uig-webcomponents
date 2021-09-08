@@ -138,3 +138,9 @@ WithSlotElements.args = {
     "Hieronder bevindt zich een overzicht van al uw contacten binnen de Vlaamse Overheid.",
   type: "contact",
 };
+
+WithSlotElements.argTypes = {
+  title: {
+    name: "title (slot)",
+  },
+};
