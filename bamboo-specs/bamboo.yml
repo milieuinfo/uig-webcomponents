@@ -14,13 +14,13 @@ variables:
 stages:
   - Build:
       jobs:
-        - Build
+        - Test
   - Release:
       manual: true
       jobs:
         - Release
 
-Build:
+Test:
   key: BD
   tasks:
     - clean
@@ -28,7 +28,7 @@ Build:
         #!/bin/bash
         set -e
         set -x
-        docker-compose -f docker-compose.yml run build
+        docker-compose -f --force-recreate --exit-code-from docker-compose.yml run test
   final-tasks:
     - script: /opt/scripts/docker/stop-docker-containers.sh
   requirements:
