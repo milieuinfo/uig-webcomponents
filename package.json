@@ -10,7 +10,7 @@
     "test:unit": "wct --config-file ./config/wct.local.config.json",
     "test:unit:bamboo": "wct --config-file ./config/wct.docker.config.json",
     "test:e2e": "npm run test:server:start && mocha --chrome --config ./config/mocha.config.json --require esm",
-    "test:e2e:bamboo": "npm run test:component:server:start && npm run test:e2e:bamboo:chrome && npm run test:e2e:bamboo:firefox && npm run test:e2e:bamboo:edge",
+    "test:e2e:bamboo": "npm run test:server:start && npm run test:e2e:bamboo:chrome && npm run test:e2e:bamboo:firefox && npm run test:e2e:bamboo:edge",
     "test:e2e:bamboo:chrome": "mocha --chrome --browserstack --config ./config/mocha.config.json --require esm",
     "test:e2e:bamboo:firefox": "mocha --firefox --browserstack --config ./config/mocha.config.json --require esm",
     "test:e2e:bamboo:edge": "mocha --edge --browserstack --config ./config/mocha.config.json --require esm",
