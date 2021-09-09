@@ -25,7 +25,7 @@ Test:
   tasks:
     - clean
     - script: |
-        #!/usr/env/bin bash
+        #!/bin/bash
         set -e
         export browserstack_username="${bamboo_browserstack_username}"
         export browserstack_password="${bamboo_browserstack_password}"
