@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <title>vl-icon voorbeeld</title>
+    <script type="module" src="../../../../../build/index.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../../../lib/components/icon/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../../../lib/components/body/styles.css"
+    />
+  </head>
+  <body is="vl-body">
+    <p>
+      <span id="icon" is="vl-icon" data-vl-icon="calendar"></span>
+    </p>
+    <p is="vl-icon-wrapper">
+      <span
+        id="icon-before"
+        is="vl-icon"
+        data-vl-icon="calendar"
+        data-vl-before
+      ></span
+      ><span
+        >Integer posuere erat a ante venenatis dapibus posuere velit
+        aliquet.</span
+      >
+    </p>
+    <p is="vl-icon-wrapper">
+      <span
+        >Integer posuere erat a ante venenatis dapibus posuere velit
+        aliquet.</span
+      ><span
+        id="icon-after"
+        is="vl-icon"
+        data-vl-icon="nav-right"
+        data-vl-after
+      ></span>
+    </p>
+    <span
+      id="icon-small"
+      is="vl-icon"
+      data-vl-icon="calendar"
+      data-vl-size="small"
+    ></span>
+    <span
+      id="icon-large"
+      is="vl-icon"
+      data-vl-icon="chat-help"
+      data-vl-size="large"
+    ></span>
+    <span
+      id="icon-light"
+      is="vl-icon"
+      data-vl-icon="chat-help"
+      data-vl-light
+    ></span>
+    <p is="vl-icon-wrapper">
+      <span is="vl-icon" data-vl-icon="chat-help" data-vl-before></span
+      ><span>My icon is aligned neatly in the middle</span>
+    </p>
+    <span
+      id="icon-90"
+      is="vl-icon"
+      data-vl-icon="calendar"
+      data-vl-90deg
+    ></span>
+    <span
+      id="icon-180"
+      is="vl-icon"
+      data-vl-icon="calendar"
+      data-vl-180deg
+    ></span>
+  </body>
+</html>

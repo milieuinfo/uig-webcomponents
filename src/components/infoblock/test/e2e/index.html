@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <title>vl-infoblock voorbeeld</title>
+    <script type="module" src="../../../../../build/index.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../../../lib/components/body/styles.css"
+    />
+  </head>
+
+  <body is="vl-body">
+    <vl-infoblock
+      id="contact"
+      data-vl-title="Contactenlijst"
+      data-vl-type="contact"
+    >
+      Contacten
+    </vl-infoblock>
+    <vl-infoblock
+      id="publications"
+      data-vl-title="Contracten"
+      data-vl-type="publications"
+    >
+      Hieronder bevindt zicht een overzicht van al uw contracten binnen de
+      Vlaamse Overheid.
+    </vl-infoblock>
+    <vl-infoblock
+      id="faq"
+      data-vl-title="Veelgestelde vragen"
+      data-vl-type="faq"
+    >
+      Hieronder bevindt zicht een overzicht van alle veelgestelde vragen binnen
+      de Vlaamse Overheid.
+    </vl-infoblock>
+    <vl-infoblock id="news" data-vl-title="Nieuwsberichten" data-vl-type="news">
+      Hieronder bevindt zicht een overzicht van alle nieuwsberichten binnen de
+      Vlaamse Overheid.
+    </vl-infoblock>
+    <vl-infoblock id="timeline" data-vl-title="Archief" data-vl-type="timeline">
+      Hieronder bevindt zicht een overzicht van alle gearchiveerde berichten
+      binnen de Vlaamse Overheid.
+    </vl-infoblock>
+    <vl-infoblock
+      id="question"
+      data-vl-title="Overheidsdiensten"
+      data-vl-type="question"
+    >
+      Hieronder bevindt zicht een overzicht van alle overheidsdiensten binnen de
+      Vlaamse Overheid.
+    </vl-infoblock>
+    <vl-infoblock
+      id="calendar"
+      data-vl-title="Evenementen"
+      data-vl-icon="calendar"
+    >
+      Hieronder bevindt zicht een overzicht van alle evenementen binnen de
+      Vlaamse Overheid.
+    </vl-infoblock>
+    <vl-infoblock
+      id="contact-title"
+      data-vl-title="Titel via title attribuut"
+      data-vl-type="contact"
+    >
+      Hieronder bevindt zich een overzicht van al uw contacten binnen de Vlaamse
+      Overheid.
+    </vl-infoblock>
+    <vl-infoblock id="contact-slot" data-vl-type="contact">
+      <h2 slot="title">Titel via slot</h2>
+      Hieronder bevindt zich een overzicht van al uw contacten binnen de Vlaamse
+      Overheid.
+    </vl-infoblock>
+  </body>
+</html>

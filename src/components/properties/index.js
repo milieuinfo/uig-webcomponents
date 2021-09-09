@@ -1,4 +1,4 @@
-import { nativeVlElement, vlElement, define } from "../../utils/vl-core";
+import { nativeVlElement, vlElement, define } from "../../utils/core";
 import styles from "./styles.scss";
 
 /**

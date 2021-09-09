@@ -414,9 +414,6 @@ export const awaitScript = (id, src) => {
   return promise;
 };
 
-export const VlElement = vlElement;
-export const NativeVlElement = nativeVlElement;
-
 /**
  * Wacht.
  *
@@ -441,3 +438,6 @@ export const awaitUntil = (condition) => {
     resolve();
   });
 };
+
+export const VlElement = vlElement;
+export const NativeVlElement = nativeVlElement;

@@ -1,4 +1,4 @@
-import { define } from "../../../../utils/vl-core";
+import { define } from "../../../../utils/core";
 import "../../../properties";
 import "../../../typography";
 import styles from "./styles.scss";
