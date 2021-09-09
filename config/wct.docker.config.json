@@ -26,7 +26,6 @@
     "src/**/**/test/unit/*.test.html"
   ],
   "webserver": {
-    "port": "8080",
     "hostname": "test"
   },
   "root": "./"
