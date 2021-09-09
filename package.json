@@ -44,6 +44,8 @@
     "swipe-detect": "^1.0.1"
   },
   "devDependencies": {
+    "@govflanders/vl-ui-image": "^3.12.3",
+    "@govflanders/vl-ui-content-header": "^3.12.3",
     "@govflanders/vl-ui-button": "^3.12.24",
     "@govflanders/vl-ui-checkbox": "^3.12.23",
     "@govflanders/vl-ui-contact-card": "^3.12.17",
