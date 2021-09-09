@@ -17,13 +17,17 @@
     "sauce": false,
     "junit-reporter": {
       "output": {
-        "path": "../../test/",
+        "path": "results/",
         "name": "wct-results.xml"
       }
     }
   },
-  "suites": ["src/components/**/test/unit/*.test.html"],
+  "suites": [
+    "src/**/**/test/unit/*.test.html"
+  ],
   "webserver": {
-    "hostname": "tests"
-  }
+    "port": "8080",
+    "hostname": "test"
+  },
+  "root": "./"
 }
