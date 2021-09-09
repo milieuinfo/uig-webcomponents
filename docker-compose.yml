@@ -50,7 +50,7 @@ services:
       - https_proxy=${https_proxy}
       - no_proxy=${no_proxy},selenium-hub,tests
     shm_size: 2g
-  test:
+  tests:
     image: ${DOCKER_REGISTRY}milieuinfo/ubuntu-node:14
     command: bash -c "npm run test:bamboo"
     depends_on:
