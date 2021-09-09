@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run build && webpack --config ./config/webpack.config.js && npm run test:unit && npm run test:e2e",
-    "test:bamboo": "npm run build && npm run test:unit:bamboo && npm run test:e2e:bamboo",
+    "test:bamboo": "npm run build && webpack --config ./config/webpack.config.js && npm run test:unit:bamboo && npm run test:e2e:bamboo",
     "test:server:start": "http-server ./ &",
     "test:unit": "wct --config-file ./config/wct.local.config.json",
     "test:unit:bamboo": "wct --config-file ./config/wct.docker.config.json",
