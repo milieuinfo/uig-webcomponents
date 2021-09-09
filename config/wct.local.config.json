@@ -7,13 +7,14 @@
     },
     "junit-reporter": {
       "output": {
-        "path": "../../test/",
+        "path": "results/",
         "name": "wct-results.xml"
       }
     }
   },
   "suites": [
-    "src/components/**/test/unit/*.test.html"
+    "src/**/**/test/unit/*.test.html"
   ],
-  "webserver": { "port": "8080" }
+  "webserver": { "port": "8080" },
+  "root": "./"
 }

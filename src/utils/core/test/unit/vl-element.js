@@ -1,4 +1,4 @@
-import { vlElement, define } from "../../src/utils";
+import { vlElement, define } from "../../../core";
 
 class VlElementImpl extends vlElement(HTMLElement) {
   static get _observedAttributes() {

@@ -6,8 +6,8 @@
   "scripts": {
     "test": "npm run build && webpack --config ./config/webpack.config.js && npm run test:unit && npm run test:e2e",
     "test:server:start": "http-server ./ &",
-    "test:unit": "wct --config-file ./wct.local.conf.json",
-    "test:e2e": "npm run test:server:start && mocha --chrome --config ./config/.mocharc.json --require esm",
+    "test:unit": "wct --config-file ./config/wct.local.config.json",
+    "test:e2e": "npm run test:server:start && mocha --chrome --config ./config/mocha.config.json --require esm",
     "start": "npm run build && start-storybook -s ./ -p 8080",
     "build-storybook": "npm run build && build-storybook",
     "build": "npm install && node ./scripts/build.js",
