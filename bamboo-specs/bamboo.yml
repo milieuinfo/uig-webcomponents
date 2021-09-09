@@ -25,9 +25,10 @@ Test:
   tasks:
     - clean
     - script: |
-        #!/bin/bash
+        #!/usr/bin/env bash
         set -e
-        set -x
+        export browserstack_username="${bamboo_browserstack_username}"
+        export browserstack_password="${bamboo_browserstack_password}"
         docker-compose -f docker-compose.yml run test --force-recreate --exit-code-from
   final-tasks:
     - script: /opt/scripts/docker/stop-docker-containers.sh
