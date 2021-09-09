@@ -28,7 +28,7 @@ Test:
         #!/bin/bash
         set -e
         set -x
-        docker-compose -f --force-recreate --exit-code-from docker-compose.yml run test
+        docker-compose -f docker-compose.yml run test --force-recreate --exit-code-from
   final-tasks:
     - script: /opt/scripts/docker/stop-docker-containers.sh
   requirements:
