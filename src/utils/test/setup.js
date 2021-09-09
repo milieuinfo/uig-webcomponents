@@ -1,6 +1,7 @@
 import { By, Key, Builder } from "selenium-webdriver";
 import { config } from "./config.js";
 import { name } from "../../../package.json";
+import browserstack from "browserstack-local";
 
 // let packagejson;
 // try {
