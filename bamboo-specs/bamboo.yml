@@ -29,7 +29,7 @@ Test:
         set -e
         export browserstack_username="${bamboo_browserstack_username}"
         export browserstack_password="${bamboo_browserstack_password}"
-        docker-compose -f docker-compose.yml run tests --scale selenium-chrome=3 --scale selenium-firefox=3 --exit-code-from tests --force-recreate
+        docker-compose -f docker-compose.yml up test --scale selenium-chrome=3 --scale selenium-firefox=3 --exit-code-from tests --force-recreate
   final-tasks:
     - script: /opt/scripts/docker/stop-docker-containers.sh
     - test-parser:
