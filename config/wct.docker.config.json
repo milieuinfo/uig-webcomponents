@@ -26,7 +26,7 @@
     "src/**/**/test/unit/*.test.html"
   ],
   "webserver": {
-    "hostname": "test"
+    "hostname": "tests"
   },
   "root": "./"
 }
