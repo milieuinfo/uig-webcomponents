@@ -1,14 +1,13 @@
 import { html } from "lit-html";
-import "../../index.js";
-import "../../mapactions";
-import styles from "../../styles.scss";
-
-const defaultArgs = {};
+import "../../../index.js";
+import "../../../mapactions";
+import styles from "../../../styles.scss";
+import { defaultArgs, defaultArgTypes } from "../config";
 
 export default {
-  title: "custom-elements/vl-map/vl-map-baselayer-grb-gray",
+  title: "custom-elements/vl-map/vl-map-baselayer-grb",
   args: { ...defaultArgs },
-  argTypes: {},
+  argTypes: defaultArgTypes,
 };
 
 const stylesheet = html`<style>
@@ -27,9 +26,7 @@ export const Default = (props) => html`
     props,
     html`
       <vl-map id="map">
-        <vl-map-baselayer-grb-gray
-          id="baselayer-grb-gray"
-        ></vl-map-baselayer-grb-gray>
+        <vl-map-baselayer-grb id="baselayer-grb"></vl-map-baselayer-grb>
       </vl-map>
     `
   )}

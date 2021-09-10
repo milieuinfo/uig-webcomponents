@@ -1,10 +1,10 @@
-import { define } from "../../../../utils/vl-core";
-import { VlMapBaseLayer } from "../map-baselayer/vl-map-baselayer";
+import { define } from "../../../../../utils/vl-core";
+import { VlMapBaseLayer } from "../../map-baselayer/vl-map-baselayer";
 
 /**
- * VlMapBaseLayerGRB
+ * VlMapBaseLayerGRBGray
  * @class
- * @classdesc De kaart layer component voor GRB.
+ * @classdesc De kaart basis laag component voor GRB grijstinten.
  *
  * @extends VlMapBaseLayer
  *
@@ -12,16 +12,16 @@ import { VlMapBaseLayer } from "../map-baselayer/vl-map-baselayer";
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map.html|Demo}
  */
-export class VlMapBaseLayerGRB extends VlMapBaseLayer {
+export class VlMapBaseLayerGRBGray extends VlMapBaseLayer {
   constructor() {
     super();
     this.setAttribute(
       "url",
       "https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts"
     );
-    this.setAttribute("layer", "grb_bsk");
-    this.setAttribute("title", "GRB basis laag");
+    this.setAttribute("layer", "grb_bsk_grijs");
+    this.setAttribute("title", "GRB basis laag grijs");
   }
 }
 
-define("vl-map-baselayer-grb", VlMapBaseLayerGRB);
+define("vl-map-baselayer-grb-gray", VlMapBaseLayerGRBGray);
