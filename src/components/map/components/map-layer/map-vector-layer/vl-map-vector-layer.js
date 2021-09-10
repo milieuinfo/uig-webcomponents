@@ -1,6 +1,6 @@
-import { VlMapLayer } from "../map-layer/vl-map-layer";
-import { VlMapLayerStyle } from "../map-layer-style/vl-map-layer-style";
-import { OlVectorLayer } from "../../mapactions";
+import { VlMapLayer } from "../vl-map-layer";
+import { VlMapLayerStyle } from "../../map-layer-style/vl-map-layer-style";
+import { OlVectorLayer } from "../../../mapactions";
 
 /**
  * VlMapVectorLayer style changed event

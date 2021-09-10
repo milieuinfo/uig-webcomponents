@@ -1,6 +1,10 @@
-import { define } from "../../../../utils/vl-core";
-import { VlMapVectorLayer } from "../map-vector-layer/vl-map-vector-layer";
-import { OlVectorSource, OlLoadingstrategy, OlGML2 } from "../../mapactions";
+import { define } from "../../../../../../utils/vl-core";
+import { VlMapVectorLayer } from "../vl-map-vector-layer";
+import {
+  OlVectorSource,
+  OlLoadingstrategy,
+  OlGML2,
+} from "../../../../mapactions";
 
 /**
  * VlMapWfsLayer

@@ -1,6 +1,6 @@
-import { define } from "../../../../utils/vl-core";
-import { VlMapWmsLayer } from "../map-wms-layer/vl-map-wms-layer";
-import { OlImageLayer, OlImageWMSSource } from "../../mapactions";
+import { define } from "../../../../../../utils/vl-core";
+import { VlMapWmsLayer } from "../vl-map-wms-layer";
+import { OlImageLayer, OlImageWMSSource } from "../../../../mapactions";
 
 /**
  * VlMapImageWmsLayer

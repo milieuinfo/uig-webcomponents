@@ -1,11 +1,11 @@
-import { define } from "../../../../utils/vl-core";
-import { VlMapLayerStyle } from "../map-layer-style/vl-map-layer-style";
+import { define } from "../../../../../utils/vl-core";
+import { VlMapLayerStyle } from "../vl-map-layer-style";
 import {
   OlStyle,
   OlStyleCircle,
   OlStyleStroke,
   OlStyleFill,
-} from "../../mapactions";
+} from "../../../mapactions";
 
 /**
  * VlMapLayerCircleStyle

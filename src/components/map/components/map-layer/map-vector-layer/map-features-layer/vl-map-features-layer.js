@@ -1,11 +1,11 @@
-import { define } from "../../../../utils/vl-core";
-import { VlMapVectorLayer } from "../map-vector-layer/vl-map-vector-layer";
+import { define } from "../../../../../../utils/vl-core";
+import { VlMapVectorLayer } from "../vl-map-vector-layer";
 import {
   OlVectorSource,
   OlGeoJSON,
   OlClusterSource,
   OlPoint,
-} from "../../mapactions";
+} from "../../../../mapactions";
 
 /**
  * VlMapFeaturesLayer
