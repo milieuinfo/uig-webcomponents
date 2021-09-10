@@ -1,5 +1,5 @@
-import { define } from "../../../../utils/vl-core";
-import { VlMapLayer } from "../map-layer/vl-map-layer";
+import { define } from "../../../../../utils/vl-core";
+import { VlMapLayer } from "../vl-map-layer";
 import {
   OlWMTSSource,
   OlWMTSTileGrid,

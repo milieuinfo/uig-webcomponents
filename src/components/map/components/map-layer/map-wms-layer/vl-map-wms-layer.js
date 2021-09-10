@@ -1,4 +1,4 @@
-import { VlMapLayer } from "../map-layer/vl-map-layer";
+import { VlMapLayer } from "../vl-map-layer";
 import "./vl-map-wms-style.js";
 
 /**

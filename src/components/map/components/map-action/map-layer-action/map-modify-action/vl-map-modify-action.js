@@ -1,6 +1,6 @@
-import { define } from "../../../../utils/vl-core";
-import { VlMapLayerAction } from "../map-layer-action/vl-map-layer-action";
-import { VlModifyAction } from "../../mapactions";
+import { define } from "../../../../../../utils/vl-core";
+import { VlMapLayerAction } from "../../map-layer-action/vl-map-layer-action";
+import { VlModifyAction } from "../../../../mapactions";
 
 /**
  * VlMapModifyAction

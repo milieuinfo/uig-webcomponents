@@ -1,6 +1,6 @@
 import { VlMapLayerAction } from "../map-layer-action/vl-map-layer-action";
-import { VlMapVectorLayer } from "../map-vector-layer/vl-map-vector-layer";
-import { VlCompositeVectorLayer } from "../../mapactions";
+import { VlMapVectorLayer } from "../../map-vector-layer/vl-map-vector-layer";
+import { VlCompositeVectorLayer } from "../../../mapactions";
 
 /**
  * VlMapDrawAction

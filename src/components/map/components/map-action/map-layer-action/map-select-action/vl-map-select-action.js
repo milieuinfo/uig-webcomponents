@@ -1,7 +1,7 @@
-import { define } from "../../../../utils/vl-core";
-import { VlMapLayerAction } from "../map-layer-action/vl-map-layer-action";
-import { VlMapLayerStyle } from "../map-layer-style/vl-map-layer-style";
-import { VlSelectAction } from "../../mapactions";
+import { define } from "../../../../../../utils/vl-core";
+import { VlMapLayerAction } from "../../map-layer-action/vl-map-layer-action";
+import { VlMapLayerStyle } from "../../../map-layer-style/vl-map-layer-style";
+import { VlSelectAction } from "../../../../mapactions";
 
 /**
  * VlMapSelectAction

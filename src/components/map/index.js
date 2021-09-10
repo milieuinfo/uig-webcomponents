@@ -13,12 +13,12 @@ import { VlMapBaseLayerGRBGray } from "./components/map-baselayer-grb-gray/vl-ma
 import { VlMapBaseLayerGRB } from "./components/map-baselayer-grb/vl-map-baselayer-grb";
 import { VlMapBaseLayerGRBOrtho } from "./components/map-baselayer-grb-ortho/vl-map-baselayer-grb-ortho";
 import { VlMapAction } from "./components/map-action/vl-map-action";
-import { VlMapLayerAction } from "./components/map-layer-action/vl-map-layer-action";
-import { VlMapSelectAction } from "./components/map-select-action/vl-map-select-action";
-import { VlMapDeleteAction } from "./components/map-delete-action/vl-map-delete-action";
-import { VlMapDrawPointAction } from "./components/map-draw-point-action/vl-map-draw-point-action";
-import { VlMapDrawLineAction } from "./components/map-draw-line-action/vl-map-draw-line-action";
-import { VlMapDrawPolygonAction } from "./components/map-draw-polygon-action/vl-map-draw-polygon-action";
+import { VlMapLayerAction } from "./components/map-action/map-layer-action/vl-map-layer-action";
+import { VlMapSelectAction } from "./components/map-action/map-layer-action/map-select-action/vl-map-select-action";
+import { VlMapDeleteAction } from "./components/map-action/map-layer-action/map-delete-action/vl-map-delete-action";
+import { VlMapDrawPointAction } from "./components/map-action/map-draw-action/map-draw-point-action/vl-map-draw-point-action";
+import { VlMapDrawLineAction } from "./components/map-action/map-draw-action/map-draw-line-action/vl-map-draw-line-action";
+import { VlMapDrawPolygonAction } from "./components/map-action/map-draw-action/map-draw-polygon-action/vl-map-draw-polygon-action";
 import { VlMapLayerStyle } from "./components/map-layer-style/vl-map-layer-style";
 import { VlMapLayerCircleStyle } from "./components/map-layer-circle-style/vl-map-layer-circle-style";
 import { VlMapSearch } from "./components/map-search/vl-map-search";
@@ -26,7 +26,7 @@ import { VlMapSideSheet } from "./components/map-side-sheet/vl-map-side-sheet";
 import { VlMapLayerSwitcher } from "./components/map-layer-switcher/vl-map-layer-switcher";
 import { VlMapSideSheetMenu } from "./components/map-side-sheet-menu/vl-map-side-sheet-menu";
 import { VlMapSideSheetMenuItem } from "./components/map-side-sheet-menu-item/vl-map-side-sheet-menu-item";
-import { VlMapModifyAction } from "./components/map-modify-action/vl-map-modify-action";
+import { VlMapModifyAction } from "./components/map-action/map-layer-action/map-modify-action/vl-map-modify-action";
 import { VlSelectLocation } from "./components/select-location/vl-select-location";
 
 export {

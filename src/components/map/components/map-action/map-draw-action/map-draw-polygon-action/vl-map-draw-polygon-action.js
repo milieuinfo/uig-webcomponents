@@ -1,6 +1,6 @@
-import { define } from "../../../../utils/vl-core";
-import { VlMapDrawAction } from "../map-draw-action/vl-map-draw-action";
-import { VlDrawPolygonAction } from "../../mapactions";
+import { define } from "../../../../../../utils/vl-core";
+import { VlMapDrawAction } from "../vl-map-draw-action";
+import { VlDrawPolygonAction } from "../../../../mapactions";
 
 /**
  * VlMapDrawPolygonAction
