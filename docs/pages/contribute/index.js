@@ -1,5 +1,5 @@
 import { html, LitElement, css, unsafeCSS } from "lit";
-import { docsWrap } from "../../templates";
+import { wrap } from "../../wrap";
 import gridStyles from "../../../src/components/grid/styles.scss";
 import titleStyles from "../../../src/components/titles/styles.scss";
 import introStyles from "../../../src/components/introduction/styles.scss";
@@ -19,8 +19,10 @@ export class Contribute extends LitElement {
     ];
   }
   render() {
-    return docsWrap({
+    return wrap({
       title: "Contribute",
+      intro:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac turpis accumsan, maximus purus sit amet, suscipit elit. Vivamus egestas a diam a luctus. Sed et viverra nibh. Nam sed ipsum felis.",
       children: html``,
     });
   }

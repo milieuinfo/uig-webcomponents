@@ -7,7 +7,7 @@ import "../../src/components/grid";
 import "../../src/components/titles";
 import "../../src/components/introduction";
 
-export const docsWrap = ({ title, children }) => html`<vl-template>
+export const wrap = ({ title, intro, children }) => html`<vl-template>
   <div slot="main">
     <vl-content-header>
       <img
@@ -40,12 +40,7 @@ export const docsWrap = ({ title, children }) => html`<vl-template>
             <div is="vl-grid" data-vl-is-stacked>
               <div is="vl-column" data-vl-size="8">
                 <h1 is="vl-h1" style="margin-bottom: 3rem">${title}</h1>
-                <p is="vl-introduction">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                  ac turpis accumsan, maximus purus sit amet, suscipit elit.
-                  Vivamus egestas a diam a luctus. Sed et viverra nibh. Nam sed
-                  ipsum felis.
-                </p>
+                <p is="vl-introduction">${intro}</p>
               </div>
             </div>
           </div>

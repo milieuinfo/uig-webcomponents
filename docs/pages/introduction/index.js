@@ -1,11 +1,18 @@
 import { html, LitElement, css, unsafeCSS } from "lit";
-import { docsWrap } from "../../templates";
+import { wrap } from "../../wrap";
 import "../../../src/components/typography";
 import "../../../src/components/grid";
 import gridStyles from "../../../src/components/grid/styles.scss";
 import "../../../src/components/titles";
 import titleStyles from "../../../src/components/titles/styles.scss";
 import introStyles from "../../../src/components/introduction/styles.scss";
+
+const block = ({ title, text }) => html`
+  <div is="vl-column" data-vl-size="8">
+    <h2 is="vl-h2" style="margin-bottom: 3rem">${title}</h2>
+    <p>${text}</p>
+  </div>
+`;
 
 export class Introduction extends LitElement {
   static get styles() {
@@ -22,26 +29,27 @@ export class Introduction extends LitElement {
     ];
   }
   render() {
-    return docsWrap({
+    return wrap({
       title: "Introduction",
+      intro:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac turpis accumsan, maximus purus sit amet, suscipit elit. Vivamus egestas a diam a luctus. Sed et viverra nibh. Nam sed ipsum felis.",
       children: html` <div is="vl-layout">
         <div is="vl-grid" data-vl-is-stacked>
-          <div is="vl-column" data-vl-size="8">
-            <h2 is="vl-h2" style="margin-bottom: 3rem">Getting started</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac
-              turpis accumsan, maximus purus sit amet, suscipit elit. Vivamus
-              egestas a diam a luctus. Sed et viverra nibh. Nam sed ipsum felis.
-            </p>
-          </div>
-          <div is="vl-column" data-vl-size="8">
-            <h2 is="vl-h2" style="margin-bottom: 3rem">Basic usage</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac
-              turpis accumsan, maximus purus sit amet, suscipit elit. Vivamus
-              egestas a diam a luctus. Sed et viverra nibh. Nam sed ipsum felis.
-            </p>
-          </div>
+          ${block({
+            title: "Single source of truth",
+            text:
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac turpis accumsan, maximus purus sit amet, suscipit elit. Vivamus egestas a diam a luctus. Sed et viverra nibh. Nam sed ipsum felis.",
+          })}
+          ${block({
+            title: "Getting started",
+            text:
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac turpis accumsan, maximus purus sit amet, suscipit elit. Vivamus egestas a diam a luctus. Sed et viverra nibh. Nam sed ipsum felis.",
+          })}
+          ${block({
+            title: "Basic usage",
+            text:
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac turpis accumsan, maximus purus sit amet, suscipit elit. Vivamus egestas a diam a luctus. Sed et viverra nibh. Nam sed ipsum felis.",
+          })}
         </div>
       </div>`,
     });

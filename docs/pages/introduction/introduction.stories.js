@@ -1,6 +1,6 @@
 import { html } from "lit-html";
 import { version } from "../../../package.json";
-import ".";
+import "../introduction";
 
 export default {
   title: `UIG-${version}/Introduction`,
