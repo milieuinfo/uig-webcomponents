@@ -14,6 +14,7 @@ const buildConfig = {
     "link",
     "side-navigation",
     "titles",
+    "image",
   ],
 };
 const { src, dist, nativeComponents } = buildConfig;
