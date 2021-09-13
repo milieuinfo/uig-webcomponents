@@ -1,4 +1,4 @@
-import { vlElement, define } from "../../utils/vl-core";
+import { vlElement, define } from "../../utils/core";
 import "@govflanders/vl-ui-util/dist/js/util.js";
 import "@govflanders/vl-ui-accordion/dist/js/accordion.js";
 import styles from "./styles.scss";

@@ -29,3 +29,4 @@ export { VlH1, VlH2, VlH3, VlH4, VlH5, VlH6 } from "./components/titles";
 export { VlTypography } from "./components/typography";
 export { VlHeader } from "./components/header";
 export { VlFooter } from "./components/footer";
+export { VlDocument } from "./components/document";

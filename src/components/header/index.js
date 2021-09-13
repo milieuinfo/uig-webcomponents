@@ -1,5 +1,5 @@
 import { LitElement, html } from "lit";
-import { define, awaitScript } from "../../utils/vl-core";
+import { define, awaitScript } from "../../utils/core";
 
 awaitScript(
   "vl-header-client",
@@ -29,11 +29,6 @@ export class VlHeader extends LitElement {
       [identifier]: { type: String },
       [development]: { type: Boolean },
     };
-  }
-
-  constructor() {
-    super();
-    this[development] = true;
   }
 
   vlwHeader() {

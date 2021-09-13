@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+
+    <script
+      type="module"
+      src="../../../../../lib/components/document/index.js"
+    ></script>
+  </head>
+
+  <body>
+    <test-fixture id="vl-document-fixture">
+      <template>
+        <vl-document>
+          <span id="type" slot="type">type</span>
+          <span id="title" slot="title">title</span>
+          <span id="metadata" slot="metadata">metadata</span>
+        </vl-document>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite("vl-document", () => {
+        test("de href zal correct gepropageerd worden zodat het document downloadbaar is", () => {
+          const document = fixture("vl-document-fixture");
+          const link = "https://google.be/";
+          document.setAttribute("href", link);
+          assert.equal(document._element.href, link);
+        });
+
+        test("de slot elementen worden op de correcte plaatst getoond", () => {
+          const document = fixture("vl-document-fixture");
+          const shadow = document._shadow;
+          const type = shadow.querySelector(".vl-document__type__text slot");
+          const title = shadow.querySelector(".vl-document__title slot");
+          const metadata = shadow.querySelector(".vl-document__metadata slot");
+          assert.equal(
+            type.assignedElements()[0],
+            document.querySelector("#type")
+          );
+          assert.equal(
+            title.assignedElements()[0],
+            document.querySelector("#title")
+          );
+          assert.equal(
+            metadata.assignedElements()[0],
+            document.querySelector("#metadata")
+          );
+        });
+      });
+    </script>
+  </body>
+</html>
