@@ -1,6 +1,6 @@
 import { define } from "../../../../utils/vl-core";
 import { VlSelect } from "../../../select";
-import LambertCoordinaat from "../../lambert-coordinaat.js";
+import LambertCoordinaat from "../../utils/lambert-coordinaat";
 
 /**
  * VlSelectLocation

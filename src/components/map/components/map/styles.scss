@@ -1,10 +1,10 @@
-@import '../../../node_modules/ol/ol';
-@import './mapactions/styles.scss';
-@import '../form-message/styles.scss';
+@import '../../../../../node_modules/ol/ol';
+@import '../../mapactions/styles.scss';
+@import '../../../form-message/styles.scss';
 
-@import "../../../node_modules/@govflanders/vl-ui-core/src/scss/setting/colorsRaw";
-@import "../../../node_modules/@govflanders/vl-ui-core/src/scss/setting/colors";
-@import "../../../node_modules/@govflanders/vl-ui-core/src/scss/setting/breakpoints";
+@import "../../../../../node_modules/@govflanders/vl-ui-core/src/scss/setting/colorsRaw";
+@import "../../../../../node_modules/@govflanders/vl-ui-core/src/scss/setting/colors";
+@import "../../../../../node_modules/@govflanders/vl-ui-core/src/scss/setting/breakpoints";
 
 :host {
     display: none;

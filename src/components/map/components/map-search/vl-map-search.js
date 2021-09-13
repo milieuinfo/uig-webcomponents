@@ -2,7 +2,7 @@ import { vlElement, define } from "../../../../utils/vl-core";
 import "../../../search";
 import "../select-location/vl-select-location";
 import { OlOverlay } from "../../mapactions";
-import LambertCoordinaat from "../../lambert-coordinaat.js";
+import LambertCoordinaat from "../../utils/lambert-coordinaat";
 import searchStyles from "../../../search/styles.scss";
 import selectStyles from "../../../select/styles.scss";
 

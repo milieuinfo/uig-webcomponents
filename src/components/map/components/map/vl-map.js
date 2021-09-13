@@ -1,11 +1,11 @@
-import { vlElement, define } from "../../utils/vl-core";
+import { vlElement, define } from "../../../../utils/vl-core";
 import {
   OlFullScreenControl,
   OlLayerGroup,
   OlProjection,
   VlCustomMap,
   proj4,
-} from "./mapactions";
+} from "../../mapactions";
 import styles from "./styles.scss";
 
 /**

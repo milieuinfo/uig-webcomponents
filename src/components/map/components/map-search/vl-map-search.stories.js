@@ -1,7 +1,7 @@
 import { html } from "lit-html";
 import "../../index.js";
 import "../../mapactions";
-import styles from "../../styles.scss";
+import styles from "../map/styles.scss";
 import "../../../form-message";
 import "../../../button";
 import "../../../select";

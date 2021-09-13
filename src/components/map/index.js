@@ -1,4 +1,4 @@
-import { VlMap } from "./vl-map";
+import { VlMap } from "./components/map/vl-map";
 import { VlMapOverviewMap } from "./components/map-overview-map/vl-map-overview-map";
 import { VlMapLayer } from "./components/map-layer/vl-map-layer";
 import { VlMapVectorLayer } from "./components/map-layer/map-vector-layer/vl-map-vector-layer";
