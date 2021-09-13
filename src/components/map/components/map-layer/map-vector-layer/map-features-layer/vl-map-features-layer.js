@@ -1,4 +1,4 @@
-import { define } from "../../../../../../utils/vl-core";
+import { define } from "../../../../../../utils/core";
 import { VlMapVectorLayer } from "../vl-map-vector-layer";
 import {
   OlVectorSource,

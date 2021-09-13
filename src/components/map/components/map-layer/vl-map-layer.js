@@ -1,4 +1,4 @@
-import { vlElement } from "../../../../utils/vl-core";
+import { vlElement } from "../../../../utils/core";
 
 /**
  * VlMapLayer

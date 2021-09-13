@@ -1,4 +1,4 @@
-import { awaitUntil } from "../../utils/vl-core";
+import { awaitUntil } from "../../utils/core";
 import "../../../node_modules/@govflanders/vl-ui-util/dist/js/util.js";
 // import "../../../node_modules/@govflanders/vl-ui-util/dist/js/core.js";
 import "./lib/pattern.js";

@@ -1,4 +1,4 @@
-import { define } from "../../../../../utils/vl-core";
+import { define } from "../../../../../utils/core";
 import { VlMapLayer } from "../vl-map-layer";
 import {
   OlWMTSSource,

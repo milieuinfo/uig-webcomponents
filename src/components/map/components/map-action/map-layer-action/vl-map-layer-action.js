@@ -1,4 +1,4 @@
-import { define } from "../../../../../utils/vl-core";
+import { define } from "../../../../../utils/core";
 import { VlMapAction } from "../vl-map-action";
 
 /**

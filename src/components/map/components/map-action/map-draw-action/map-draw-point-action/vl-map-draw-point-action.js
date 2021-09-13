@@ -1,4 +1,4 @@
-import { define } from "../../../../../../utils/vl-core";
+import { define } from "../../../../../../utils/core";
 import { VlMapDrawAction } from "../vl-map-draw-action";
 import { VlDrawAction, OlGeometryType } from "../../../../mapactions";
 

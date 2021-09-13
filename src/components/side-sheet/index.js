@@ -1,5 +1,5 @@
-import { vlElement, define } from "../../utils/vl-core";
-import "../../utils/vl-core/vl-text";
+import { vlElement, define } from "../../utils/core";
+import "../text";
 import "../grid";
 import "../button";
 import "../icon";

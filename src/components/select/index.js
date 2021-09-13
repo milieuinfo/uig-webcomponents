@@ -1,4 +1,4 @@
-import { nativeVlElement, awaitUntil, define } from "../../utils/vl-core";
+import { nativeVlElement, awaitUntil, define } from "../../utils/core";
 import {
   vlFormValidation,
   vlFormValidationElement,

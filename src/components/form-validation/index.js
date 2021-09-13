@@ -1,4 +1,4 @@
-import { awaitUntil } from "../../utils/vl-core";
+import { awaitUntil } from "../../utils/core";
 import "../../../node_modules/@govflanders/vl-ui-util/dist/js/util.js";
 // import '/node_modules/@govflanders/vl-ui-core/dist/js/core.js';
 import "./lib/form-validation.js";

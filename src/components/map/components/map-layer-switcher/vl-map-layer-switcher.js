@@ -1,4 +1,4 @@
-import { vlElement, define, awaitUntil } from "../../../../utils/vl-core";
+import { vlElement, define, awaitUntil } from "../../../../utils/core";
 import "../../../form-message";
 import "../../../checkbox";
 import formMessageStyles from "../../../form-message/styles.scss";

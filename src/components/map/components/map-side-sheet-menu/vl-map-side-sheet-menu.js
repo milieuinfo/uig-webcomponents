@@ -1,4 +1,4 @@
-import { vlElement, define } from "../../../../utils/vl-core";
+import { vlElement, define } from "../../../../utils/core";
 import linkStyles from "../../../link/styles.scss";
 
 /**
