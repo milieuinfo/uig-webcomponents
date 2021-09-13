@@ -3,7 +3,7 @@ import "../../utils/vl-core/vl-text";
 import "../grid";
 import "../button";
 import "../icon";
-import swipeDetect from "../../../node_modules/swipe-detect/dist";
+import swipeDetect from "../../../node_modules/swipe-detect/dist/";
 import styles from "./styles.scss";
 
 /**
