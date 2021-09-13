@@ -1,5 +1,5 @@
 import { VlMapLayerAction } from "../map-layer-action/vl-map-layer-action";
-import { VlMapVectorLayer } from "../../map-vector-layer/vl-map-vector-layer";
+import { VlMapVectorLayer } from "../../map-layer/map-vector-layer/vl-map-vector-layer";
 import { VlCompositeVectorLayer } from "../../../mapactions";
 
 /**
