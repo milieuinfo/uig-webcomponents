@@ -31,11 +31,6 @@ export class VlHeader extends LitElement {
     };
   }
 
-  constructor() {
-    super();
-    this[development] = true;
-  }
-
   vlwHeader() {
     return document.querySelector("div[class=vlw__header]");
   }
