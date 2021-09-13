@@ -5,7 +5,7 @@ export default {
   title: "custom-elements/vl-footer",
   args: {
     identifier: "0337f8dc-3266-4e7a-8f4a-95fd65189e5b",
-    development: true,
+    development: false,
   },
   argTypes: {
     identifier: {
@@ -23,7 +23,7 @@ export default {
       description:
         "Attribuut geeft aan dat de AIV ontwikkel servers gebruikt moeten worden.",
       table: {
-        defaultValue: { summary: true },
+        defaultValue: { summary: false },
       },
     },
   },

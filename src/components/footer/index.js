@@ -31,11 +31,6 @@ export class VlFooter extends LitElement {
     };
   }
 
-  constructor() {
-    super();
-    this[development] = true;
-  }
-
   vlwFooter() {
     return document.querySelector("footer[class=vlw__footer]");
   }
