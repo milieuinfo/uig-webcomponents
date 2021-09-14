@@ -1,0 +1,507 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../../web-component-tester/browser.js"></script>
+  <script src="../../node_modules/sinon/pkg/sinon.js"></script>
+
+  <script type="module" src="../../src/vl-select.js"></script>
+  <script type="module" src="../../node_modules/vl-ui-form/dist/vl-form-all.js"></script>
+</head>
+
+<body>
+  <test-fixture id="vl-select-fixture">
+    <template>
+      <select id="select" is="vl-select" />
+    </template>
+  </test-fixture>
+
+  <test-fixture id="vl-select-auto-dress-fixture">
+    <template>
+      <select id="select" is="vl-select" data-vl-select />
+    </template>
+  </test-fixture>
+
+  <test-fixture id="vl-select-with-options-fixture">
+    <template>
+      <select id="select" is="vl-select">
+        <option value="België">België</option>
+        <option value="Duitsland">Duitsland</option>
+      </select>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="vl-select-auto-dress-with-options-fixture">
+    <template>
+      <select id="select" is="vl-select" data-vl-select>
+        <option placeholder value="">Kies een land</option>
+        <option value="België">België</option>
+        <option value="Duitsland" selected>Duitsland</option>
+      </select>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="vl-select-form-fixture">
+    <template>
+      <form is="vl-form" data-vl-validate>
+        <select id="select" is="vl-select" data-vl-required data-vl-error-message="Verplicht!" data-vl-error-placeholder="select-error" data-vl-validation-type="select">
+        </select>
+        <p error data-vl-error-id="select-error"></p>
+      </form>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="vl-select-auto-dress-form-fixture">
+    <template>
+      <form is="vl-form" data-vl-validate>
+        <select id="select" is="vl-select" data-vl-select />
+      </form>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="multiple-selects-fixture">
+    <template>
+      <select id="select1" is="vl-select" data-vl-select data-vl-search-placeholder="placeholder 1" data-vl-search-no-results-text="custom no results found 1" data-vl-no-more-options="no more options 1"></select>
+      <select id="select2" is="vl-select" data-vl-select data-vl-search-placeholder="placeholder 2" data-vl-search-no-results-text="custom no results found 2" data-vl-no-more-options="no more options 2"></select>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="multiple-selects-default-texts-fixture">
+    <template>
+      <select id="select1" is="vl-select" data-vl-select data-vl-search-placeholder="placeholder 1" data-vl-search-no-results-text="custom no results found 1" data-vl-no-more-options="no more options 1"></select>
+      <select id="select2" is="vl-select" data-vl-select></select>
+    </template>
+  </test-fixture>
+
+  <script type="module">
+    import {awaitUntil} from 'vl-ui-core/dist/vl-core';
+    import {VlSelect} from '../../src/vl-select';
+    import {vlFormValidation} from 'vl-ui-form-validation/dist/vl-form-validation';
+
+    suite('vl-select', () => {
+      const sandbox = sinon.createSandbox();
+
+      setup((done) => {
+        customElements.whenDefined('vl-select').then(() => {
+          sandbox.spy(window.vl.select, 'dress');
+          sandbox.spy(window.vl.select, 'undress');
+          sandbox.spy(window.vl.select, 'enable');
+          sandbox.spy(window.vl.select, 'disable');
+          sandbox.spy(window.vl.select, 'showDropdown');
+          sandbox.spy(window.vl.select, 'hideDropdown');
+          done();
+        });
+      });
+
+      teardown(() => {
+        sandbox.restore();
+      });
+
+      test('heeft de vl-select class', () => {
+        const element = fixture('vl-select-fixture');
+        assert.isTrue(element.classList.contains('vl-select'));
+      });
+
+      test('krijgt de juiste class wanneer het element een correct attribuut bevat', () => {
+        const element = fixture('vl-select-fixture');
+        ['block', 'error', 'success', 'disabled'].forEach((attribuut) => {
+          assert.isFalse(element.classList.contains('vl-select--' + attribuut));
+          element.setAttribute(`data-vl-${attribuut}`, '');
+          assert.isTrue(element.classList.contains('vl-select--' + attribuut));
+          element.removeAttribute(`data-vl-${attribuut}`);
+          assert.isFalse(element.classList.contains('vl-select--' + attribuut));
+        });
+      });
+
+      test('krijgt geen class wanneer het veld een onbeschikbaar attribuut bevat', () => {
+        const element = fixture('vl-select-fixture');
+        const attribuut = 'onbeschikbaarattribuut';
+        element.setAttribute(attribuut, '');
+        assert.isFalse(element.classList.contains('vl-select--' + attribuut));
+      });
+
+      test('de dress methode callt vl.select.dress', (done) => {
+        const element = fixture('vl-select-fixture');
+        element.addEventListener(element.readyEvent, () => {
+          assert(window.vl.select.dress.calledWith(element));
+          done();
+        });
+        element.dress();
+      });
+
+      test('de dress methode callt vl.select.dress niet als dressed attribuut al gezet is', () => {
+        const element = fixture('vl-select-fixture');
+        element.setAttribute('data-vl-select-dressed', 'true');
+        element.dress();
+        assert(window.vl.select.dress.notCalled);
+      });
+
+      test('de dress methode met params callt vl.select.dress met params', (done) => {
+        const element = fixture('vl-select-fixture');
+        const params = {callbackFn: () => { }};
+        element.addEventListener(element.readyEvent, () => {
+          assert(window.vl.select.dress.calledWith(element, params));
+          done();
+        });
+        element.dress(params);
+      });
+
+      test('de undress methode callt vl.select.undress niet als dressed atribuut niet is gezet', () => {
+        const element = fixture('vl-select-fixture');
+        element.undress();
+        assert(window.vl.select.undress.notCalled);
+      });
+
+      test('de undress methode callt vl.select.undress met de choices instantie enkel als dressed atribuut is gezet', (done) => {
+        const element = fixture('vl-select-fixture');
+        element.addEventListener(element.readyEvent, () => {
+          const selectInstance = vl.select.selectInstances.find((instance) => {
+            return instance.element === element;
+          });
+          element.undress();
+          assert(window.vl.select.undress.calledWith(selectInstance));
+          done();
+        });
+        element.dress();
+      });
+
+      test('de enable methode callt vl.select.enable', () => {
+        const element = fixture('vl-select-fixture');
+        element.enable();
+        assert(window.vl.select.enable.calledWith(element));
+      });
+
+      test('de disable methode callt vl.select.enable', () => {
+        const element = fixture('vl-select-fixture');
+        element.disable();
+        assert(window.vl.select.disable.calledWith(element));
+      });
+
+      test('de removeActive methode callt vl.select.removeActive', () => {
+        const element = fixture('vl-select-fixture');
+        sandbox.spy(window.vl.select, 'removeActive');
+        element.removeActive();
+        assert(window.vl.select.removeActive.calledWith(element));
+      });
+
+      test('de showDropdown methode callt vl.select.showDropdown', () => {
+        const element = fixture('vl-select-fixture');
+        element.showDropdown();
+        assert(window.vl.select.showDropdown.calledWith(element));
+      });
+
+      test('de hideDropdown methode callt vl.select.hideDropdown', () => {
+        const element = fixture('vl-select-fixture');
+        element.hideDropdown();
+        assert(window.vl.select.hideDropdown.calledWith(element));
+      });
+
+      test('de mogelijkheden kunnen achteraf nog bepaald worden', (done) => {
+        const element = fixture('vl-select-auto-dress-fixture');
+        element.addEventListener(element.readyEvent, () => {
+          const selectInstance = vl.select.selectInstances.find((instance) => {
+            return instance.element === element;
+          });
+          sandbox.spy(selectInstance, 'setChoices');
+          const data = [{
+            value: 'test value',
+            label: 'test label',
+          }];
+          element.choices = data;
+          assert(selectInstance.setChoices.calledWith(data, 'value', 'label', true));
+          done();
+        });
+      });
+
+      test('het zetten van de sortFilter zorgt er voor de choices config aangepast worden met een sortFilter', (done) => {
+        const element = fixture('vl-select-auto-dress-fixture');
+        element.addEventListener(element.readyEvent, () => {
+          const sortFn = (item1, item2) => item1.id > item2.id;
+          element.sortFilter = sortFn;
+          const selectInstance = vl.select.selectInstances.find((instance) => {
+            return instance.element === element;
+          });
+          assert.equal(selectInstance.config.sortFilter, sortFn);
+          done();
+        });
+      });
+
+      test('bij het toevoegen van een select element aan de DOM zal de dress functie aangeroepen worden zodat de select functionaliteit geactiveerd wordt', (done) => {
+        const element = document.createElement('select', {is: 'vl-select'});
+        element.setAttribute('data-vl-select', '');
+        document.body.appendChild(element);
+        element.addEventListener(element.readyEvent, () => {
+          assert(window.vl.select.dress.called);
+          done();
+        });
+      });
+
+      test('de dress functie wordt maar 1 keer aangeroepen per select element', (done) => {
+        const element = fixture('vl-select-auto-dress-fixture');
+        element.addEventListener(element.readyEvent, () => {
+          assert.lengthOf(vl.select.selectInstances.filter((instance) => {
+            return instance.element === element;
+          }), 1);
+          done();
+        });
+      });
+
+      test('de undress functie zorgt er ook voor dat de select instance verwijderd wordt', (done) => {
+        const element = fixture('vl-select-fixture');
+        element.addEventListener(element.readyEvent, () => {
+          element.undress();
+          assert.lengthOf(vl.select.selectInstances.filter((instance) => {
+            return instance.element === element;
+          }), 0);
+          done();
+        });
+        element.dress();
+      });
+
+      test('de geselecteerde keuze kan gezet en opgevraagd worden', () => {
+        const element = fixture('vl-select-with-options-fixture');
+        assert.equal(element.value, 'België');
+        element.value = 'Duitsland';
+        assert.equal(element.value, 'Duitsland');
+      });
+
+      test('de geselecteerde keuze kan gezet en opgevraagd worden bij een dressed select', (done) => {
+        const element = fixture('vl-select-auto-dress-with-options-fixture');
+        element.addEventListener(element.readyEvent, () => {
+          assert.equal(element.value, 'Duitsland');
+          element.value = 'België';
+          assert.equal(element.value, 'België');
+          done();
+        });
+      });
+
+      test('wanneer het vl-select element volledig klaar is zal het een ready event versturen', (done) => {
+        const element1 = fixture('vl-select-fixture');
+        element1.addEventListener(element1.readyEvent, () => {
+          const element2 = fixture('vl-select-auto-dress-fixture');
+          element2.addEventListener(element2.readyEvent, () => {
+            done();
+          });
+        });
+        element1.dress();
+      });
+
+      test('wanneer het vl-select element volledig klaar is resolved de ready functie', (done) => {
+        const element = fixture('vl-select-fixture');
+        element.dress();
+        element.ready().then(() => done());
+      });
+
+      test('wanneer het select element een slot attribuut bevat, zal het na de dress het slot attribuut kopiëren naar het wrapper element', (done) => {
+        const element = fixture('vl-select-auto-dress-fixture');
+        const slot = 'test';
+        element.setAttribute('slot', slot);
+        element.ready().then(() => {
+          assert.isFalse(element.hasAttribute('slot'));
+          assert.isTrue(element._wrapperElement.hasAttribute('slot'));
+          assert.equal(element._wrapperElement.getAttribute('slot'), slot);
+          done();
+        });
+      });
+
+      test('change event wordt bij een dressed variant gepropageerd', (done) => {
+        const select = fixture('vl-select-auto-dress-with-options-fixture');
+        select.addEventListener(select.readyEvent, () => {
+          const options = select._wrapperElement.querySelectorAll('.vl-select__item--choice');
+          select.addEventListener('change', () => done());
+          options[1].dispatchEvent(new MouseEvent('mousedown', {bubbles: true}));
+        });
+      });
+
+      test('change event wordt bij een dressed variant gepropageerd ook wanneer value leeg is', (done) => {
+        const select = fixture('vl-select-auto-dress-with-options-fixture');
+        select.addEventListener(select.readyEvent, () => {
+          const options = select._wrapperElement.querySelectorAll('.vl-select__item--choice');
+          select.addEventListener('change', () => done());
+          options[1].dispatchEvent(new MouseEvent('mousedown', {bubbles: true}));
+        });
+      });
+
+      test('bij het programmatisch verwijderen van een geselecteerde optie in combinatie met het data-vl-deletable attribuut zal de select gesloten blijven', (done) => {
+        const element = fixture('vl-select-auto-dress-with-options-fixture');
+        element.setAttribute('data-vl-select-deletable', '');
+        element.addEventListener(element.readyEvent, () => {
+          element.value = 'België';
+          element.removeActive();
+          assert.isFalse(element.parentElement.parentElement.classList.contains('is-open'));
+          done();
+        });
+      });
+
+      test('na het manueel dressen van een select wordt het error en success attribuut correct verwerkt', (done) => {
+        const select = fixture('vl-select-form-fixture').querySelector('select');
+        select.addEventListener(select.readyEvent, () => {
+          const states = ['error', 'success'];
+          states.forEach((state, index) => {
+            select.setAttribute(`data-vl-${state}`, '');
+            awaitUntil(() => select._dressed).then(() => {
+              assert.isTrue(select._wrapperElement.parentNode.classList.contains(`vl-input-field--${state}`));
+              select.removeAttribute(`data-vl-${state}`);
+              assert.isFalse(select._wrapperElement.parentNode.classList.contains(`vl-input-field--${state}`));
+              if (index + 1 == states.length) {
+                done();
+              }
+            });
+          });
+        });
+        select.dress();
+      });
+
+      test('kan programmatisch focus activeren', (done) => {
+        const select = fixture('vl-select-fixture');
+        select.addEventListener('focus', () => done());
+        select.focus();
+      });
+
+      test('kan programmatisch focus activeren bij een dressed variant', (done) => {
+        const select = fixture('vl-select-auto-dress-fixture');
+        select.addEventListener(select.readyEvent, () => {
+          select._wrapperElement.addEventListener('focus', () => {
+            select._wrapperElement.addEventListener('click', () => done());
+          });
+          select.focus();
+        });
+      });
+
+      test('bevat de form validation observed attributes om correcte formulier validatie te realiseren', () => {
+        vlFormValidation._observedAttributes().forEach((attribute) => assert.include(VlSelect._observedAttributes, attribute));
+      });
+
+      test('de select zal de validation dress functie uitvoeren als het onderdeel van een formulier is', () => {
+        sandbox.spy(vl.formValidation, 'dress');
+        fixture('vl-select-fixture');
+        assert(vl.formValidation.dress.notCalled);
+        const select = fixture('vl-select-form-fixture').querySelector('select');
+        assert(vl.formValidation.dress.calledWith(select.form));
+      });
+
+      test('de auto dress select zal pas wanneer dress uitgevoerd werd de validation dress functie uitvoeren als het onderdeel van een formulier is', (done) => {
+        sandbox.spy(vl.formValidation, 'dress');
+        fixture('vl-select-auto-dress-fixture');
+        assert(vl.formValidation.dress.notCalled);
+        const select = fixture('vl-select-auto-dress-form-fixture').querySelector('select');
+        awaitUntil(() => select._dressed).then(() => {
+          assert(vl.formValidation.dress.calledWith(select.form));
+          done();
+        });
+      });
+
+      test('na een dress bevat de parent van het wrap element het validatie error parent attribuut voor correcte formulier validatie', (done) => {
+        const select = fixture('vl-select-auto-dress-fixture');
+        select.addEventListener(select.readyEvent, () => {
+          select.setAttribute('data-vl-error', '');
+          awaitUntil(() => select._dressed).then(() => {
+            assert.isTrue(select._wrapperElement.parentNode.hasAttribute('data-vl-validate-error-parent'));
+            done();
+          });
+        });
+      });
+
+      test('de select standaard teksten zijn identiek aan de standaard die centraal gedeclareerd wordt', () => {
+        const select = fixture('vl-select-auto-dress-fixture');
+        assert.equal(vl.i18n.i18n['select.no_more_options'], select.DEFAULT_NO_MORE_OPTIONS);
+        assert.equal(vl.i18n.i18n['select.no_results'], select.DEFAULT_SEARCH_NO_RESULT);
+        assert.equal(vl.i18n.i18n['select.search_placeholder_value'], select.DEFAULT_SEARCH_PLACEHOLDER);
+      });
+
+      test('de placeholder tekst kan per select geconfigureerd worden', async () => {
+        const selects = fixture('multiple-selects-fixture');
+        assert.equal(await getPlaceholderText(selects[0]), selects[0].getAttribute('data-vl-search-placeholder'));
+        assert.equal(await getPlaceholderText(selects[1]), selects[1].getAttribute('data-vl-search-placeholder'));
+        assert.notEqual(await getPlaceholderText(selects[0]), await getPlaceholderText(selects[1]));
+      });
+
+      test('de geen resultaten tekst kan per select geconfigureerd worden', async () => {
+        const selects = fixture('multiple-selects-fixture');
+        const geenResultatenText1 = await getNoResultsText(selects[0]);
+        const geenResultatenText2 = await getNoResultsText(selects[1]);
+        assert.equal(geenResultatenText1, selects[0].getAttribute('data-vl-search-no-results-text'));
+        assert.equal(geenResultatenText2, selects[1].getAttribute('data-vl-search-no-results-text'));
+        assert.notEqual(geenResultatenText1, geenResultatenText2);
+      });
+
+      test('de geen keuzes meer tekst kan per select geconfigureerd worden', async () => {
+        const selects = fixture('multiple-selects-fixture');
+        assert.equal(await getNoMoreOptionsText(selects[0]), selects[0].getAttribute('data-vl-no-more-options'));
+        assert.equal(await getNoMoreOptionsText(selects[1]), selects[1].getAttribute('data-vl-no-more-options'));
+        assert.notEqual(await getNoMoreOptionsText(selects[0]), await getNoMoreOptionsText(selects[1]));
+      });
+
+      test('de teksten configuratie van een select heeft geen invloed op een select zonder tekst configuratie die de standaard teksten zal tonen', async () => {
+        const selects = fixture('multiple-selects-default-texts-fixture');
+        assert.equal(await getPlaceholderText(selects[0]), selects[0].getAttribute('data-vl-search-placeholder'));
+        assert.equal(await getPlaceholderText(selects[1]), selects[1].DEFAULT_SEARCH_PLACEHOLDER);
+        assert.notEqual(await getPlaceholderText(selects[0]), await getPlaceholderText(selects[1]));
+
+        assert.equal(await getNoResultsText(selects[0]), selects[0].getAttribute('data-vl-search-no-results-text'));
+        assert.equal(await getNoResultsText(selects[1]), selects[1].DEFAULT_SEARCH_NO_RESULT);
+        assert.notEqual(await getNoResultsText(selects[0]), await getNoResultsText(selects[1]));
+
+        assert.equal(await getNoMoreOptionsText(selects[0]), selects[0].getAttribute('data-vl-no-more-options'));
+        assert.equal(await getNoMoreOptionsText(selects[1]), selects[1].DEFAULT_NO_MORE_OPTIONS);
+        assert.notEqual(await getNoMoreOptionsText(selects[0]), await getNoMoreOptionsText(selects[1]));
+      });
+
+      test('een dressed required select is alleen valid als hij een waarde heeft', (done) => {
+        const form = fixture('vl-select-form-fixture');
+        const select = form.querySelector('select');
+        assert.isFalse(select.checkValidity());
+        select.addEventListener(select.readyEvent, () => {
+          assert.isFalse(select.checkValidity());
+          select.value = 'my_value';
+          assert.isTrue(select.checkValidity());
+          done();
+        });
+        select.dress({
+          callbackFn: () => [{value: 'my_value', label: 'label'}],
+        });
+      });
+
+      const getPlaceholderText = (select) => {
+        return new Promise(async (resolve, reject) => {
+          await select.ready();
+          return resolve(select._wrapperElement.querySelector('input').getAttribute('placeholder'));
+        });
+      };
+    
+      const getNoResultsText = (select) => {
+        return new Promise(async (resolve, reject) => {
+          await select.ready();
+          select._wrapperElement.addEventListener('click', async () => {
+            sendKey(select, 'P');
+            await awaitUntil(() => select._wrapperElement.querySelector('.has-no-results') != null);
+            resolve(select._wrapperElement.querySelector('.has-no-results').innerText);
+            setTimeout(() => sendKey(select, ''));
+          });
+          select.focus();
+        });
+      };
+
+      const getNoMoreOptionsText = (select) => {
+        return new Promise(async (resolve, reject) => {
+          await select.ready();
+          select._wrapperElement.addEventListener('click', async () => {
+            await awaitUntil(() => select._wrapperElement.querySelector('.has-no-choices') != null);
+            resolve(select._wrapperElement.querySelector('.has-no-choices').innerText);
+          });
+          select.focus();
+        });
+      };
+
+      const sendKey = (select, key) => {
+        select._wrapperElement.querySelector('input').focus();
+        select._wrapperElement.querySelector('input').value = key;
+        select._wrapperElement.querySelector('input').dispatchEvent(new KeyboardEvent('keyup', {'bubbles': true, 'keyCode': key.charCodeAt(0) || 46} ));
+      };
+    });
+  </script>
+</body>
+
+</html>
