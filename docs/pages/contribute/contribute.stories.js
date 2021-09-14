@@ -10,6 +10,7 @@ export default {
         hidden: true,
       },
     },
+    controls: { hideNoControlsWarning: true },
   },
 };
 
