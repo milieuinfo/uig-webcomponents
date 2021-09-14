@@ -26,7 +26,7 @@ export const wrap = ({ title, intro, children }) => html`<vl-template>
           https://images.unsplash.com/photo-1561070791-2526d30994b5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1900&q=80 1900w,
           https://images.unsplash.com/photo-1561070791-2526d30994b5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80 2000w
         "
-        alt=""
+        alt="Design system hero image"
       />
       <a slot="context-link" href="https://www.vlaanderen.be">
         uig-webcomponents

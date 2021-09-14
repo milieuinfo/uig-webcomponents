@@ -1,68 +1,6 @@
-import { nativeVlElement, define } from "../../utils/core";
-
-/**
- * Gebruik de button mixin in combinatie met button elementen.
- * @mixin vlButtonElement
- *
- * @param {Object} SuperClass - Class die als base class gebruikt zal worden.
- * @return {Object} class
- */
-export const vlButtonElement = (SuperClass) => {
-  return class extends nativeVlElement(SuperClass) {
-    static get _observedAttributes() {
-      return [];
-    }
-
-    static get _observedClassAttributes() {
-      return [
-        "disabled",
-        "error",
-        "block",
-        "large",
-        "wide",
-        "narrow",
-        "secondary",
-        "tertiary",
-        "loading",
-      ];
-    }
-
-    connectedCallback() {
-      this.classList.add("vl-button");
-      setTimeout(() => {
-        this._setIconClass();
-      });
-    }
-
-    get _classPrefix() {
-      return "vl-button--";
-    }
-
-    _setIconClass() {
-      const icon = this.querySelector('[is="vl-icon"]');
-      if (icon) {
-        let suffix = "";
-        suffix +=
-          icon.hasAttribute("data-vl-before") || icon.hasAttribute("before")
-            ? "-before"
-            : "";
-        suffix +=
-          icon.hasAttribute("data-vl-after") || icon.hasAttribute("after")
-            ? "-after"
-            : "";
-        this.classList.add(this._classPrefix + "icon" + suffix);
-        icon.classList.add("vl-button__icon");
-        if (suffix) {
-          icon.classList.add("vl-button__icon-" + suffix);
-        }
-        icon.classList.remove("vl-icon--before");
-        icon.classList.remove("vl-icon--after");
-      }
-    }
-  };
-};
-
-export const VlButtonElement = vlButtonElement;
+import { define } from "../../utils/core";
+import { vlButtonElement } from "./mixins";
+import "./components/link-button";
 
 /**
  * VlButton
@@ -85,20 +23,7 @@ export const VlButtonElement = vlButtonElement;
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-button/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-button.html|Demo}
  */
+
 export class VlButton extends vlButtonElement(HTMLButtonElement) {}
 
-/**
- * VlLinkButton
- * @class
- * @classdesc Gebruik de vl-link-button om een CTA toe te voegen.
- *
- * @extends HTMLAnchorElement
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-link/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-link/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-link.html|Demo}
- */
-export class VlLinkButton extends vlButtonElement(HTMLAnchorElement) {}
-
 define("vl-button", VlButton, { extends: "button" });
-define("vl-link-button", VlLinkButton, { extends: "a" });
