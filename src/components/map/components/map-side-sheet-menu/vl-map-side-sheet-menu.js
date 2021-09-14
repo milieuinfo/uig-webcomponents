@@ -1,5 +1,5 @@
 import { vlElement, define } from "../../../../utils/core";
-import linkStyles from "../../../link/styles.scss";
+import styles from "./styles.scss";
 
 /**
  * VlMapSideSheetMenu
@@ -17,7 +17,7 @@ export class VlMapSideSheetMenu extends vlElement(HTMLElement) {
   constructor() {
     super(`
       <style>
-        ${linkStyles}
+        ${styles}
 
         :host {
           margin: -1.5rem;

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+
+    <script type="module" src="../../../../../lib/index.js"></script>
+  </head>
+
+  <body>
+    <test-fixture id="vl-map-baselayer-fixture">
+      <template>
+        <vl-map>
+          <vl-map-baselayer
+            data-vl-url="https://localhost"
+            data-vl-layer="layername_1"
+            data-vl-title="layer title 1"
+          ></vl-map-baselayer>
+        </vl-map>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-map-baselayer-wmts-fixture">
+      <template>
+        <vl-map>
+          <vl-map-baselayer
+            data-vl-url="https://localhost/wmts"
+            data-vl-layer="layername_2"
+            data-vl-type="wmts"
+            data-vl-title="layer title 2"
+          ></vl-map-baselayer>
+        </vl-map>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-map-baselayer-wfs-fixture">
+      <template>
+        <vl-map>
+          <vl-map-baselayer
+            data-vl-url="https://localhost/wfs"
+            data-vl-layer="layername_3"
+            data-vl-type="wfs"
+            data-vl-title="layer title 3"
+          ></vl-map-baselayer>
+        </vl-map>
+      </template>
+    </test-fixture>
+
+    <script type="module">
+      suite("vl-map-baselayer", () => {
+        setup((done) => {
+          customElements.whenDefined("vl-map-baselayer").then(() => done());
+        });
+      });
+    </script>
+  </body>
+</html>

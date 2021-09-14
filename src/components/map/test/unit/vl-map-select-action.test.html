@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+
+    <script type="module" src="../../../../../lib/index.js"></script>
+    <script src="/node_modules/sinon/pkg/sinon.js"></script>
+  </head>
+
+  <body>
+    <test-fixture id="vl-map-select-action-fixture">
+      <template>
+        <vl-map>
+          <vl-map-features-layer>
+            <vl-map-select-action>
+              <vl-map-layer-style
+                data-vl-text-color="#000"
+                data-vl-color="#FFE615"
+                data-vl-border-color="#FFE615"
+              ></vl-map-layer-style>
+            </vl-map-select-action>
+          </vl-map-features-layer>
+        </vl-map>
+      </template>
+    </test-fixture>
+
+    <script type="module">
+      import {
+        OlFeature,
+        OlPoint,
+      } from "../../../../../lib/components/map/mapactions/index.js";
+      import { VlMapSelectAction } from "../../../../../lib/components/map/components/map-action/map-layer-action/map-select-action/vl-map-select-action.js";
+      import { awaitUntil } from "../../../../utils/core/index.js";
+
+      suite("vl-map-select-action", () => {
+        const sandbox = sinon.createSandbox();
+
+        setup((done) => {
+          customElements.whenDefined("vl-map-select-action").then(() => done());
+        });
+
+        teardown(() => {
+          sandbox.restore();
+        });
+
+        test("een selecteer actie is een map actie", () => {
+          assert.isTrue(VlMapSelectAction.isVlMapAction());
+        });
+
+        test("controle van de selecteer actie configuratie", async () => {
+          const map = fixture("vl-map-select-action-fixture");
+          const styleElement = map.querySelector("vl-map-layer-style");
+          const layer = map.querySelector("vl-map-features-layer").layer;
+
+          await map.ready;
+          const action = map.map.actions[0];
+          assert.deepEqual(action.layer, layer);
+          await awaitUntil(() => {
+            const selectAction = map.map.actions[0];
+            return (
+              selectAction &&
+              selectAction.style &&
+              typeof selectAction.style === "function" &&
+              selectAction.style().getFill().getColor() === "#FFE615"
+            );
+          });
+          assert.deepEqual(map.map.actions[0].style(), styleElement.style());
+        });
+
+        test("er kunnen features op de kaart gemarkeerd worden", (done) => {
+          const map = fixture("vl-map-select-action-fixture");
+          const actionElement = map.querySelector("vl-map-select-action");
+          const id = 1;
+
+          map.ready.then(() => {
+            sandbox.spy(actionElement.action, "markFeatureWithId");
+            actionElement.mark(id);
+            assert(actionElement.action.markFeatureWithId.calledWith(id));
+            done();
+          });
+        });
+
+        test("de gemarkeerde features op de kaart kunnen gedemarkeerd worden", (done) => {
+          const map = fixture("vl-map-select-action-fixture");
+          const actionElement = map.querySelector("vl-map-select-action");
+
+          map.ready.then(() => {
+            sandbox.spy(actionElement.action, "demarkAllFeatures");
+            actionElement.removeMarks();
+            assert(actionElement.action.demarkAllFeatures.called);
+            done();
+          });
+        });
+
+        test("er kan een feature op de kaart geselecteerd worden", (done) => {
+          const map = fixture("vl-map-select-action-fixture");
+          const actionElement = map.querySelector("vl-map-select-action");
+          const feature = new OlFeature({
+            geometry: new OlPoint([1, 1]),
+          });
+
+          map.ready.then(() => {
+            sandbox.spy(actionElement.action, "selectFeature");
+            actionElement.select(feature);
+            assert(actionElement.action.selectFeature.calledWith(feature));
+            done();
+          });
+        });
+
+        test("alle features kunnen gedeselecteerd en gedehighlight worden", (done) => {
+          const map = fixture("vl-map-select-action-fixture");
+          const actionElement = map.querySelector("vl-map-select-action");
+
+          map.ready.then(() => {
+            sandbox.spy(actionElement.action, "clearFeatures");
+            actionElement.reset();
+            assert(actionElement.action.clearFeatures.calledWith());
+            done();
+          });
+        });
+
+        test("het cluster attribuut wordt doorgegeven aan de select actie", (done) => {
+          const map = fixture("vl-map-select-action-fixture");
+          const actionElement = map.querySelector("vl-map-select-action");
+          actionElement.setAttribute("cluster", "");
+
+          map.ready.then(() => {
+            const action = map.map.actions[0];
+            assert.equal(action.cluster, true);
+            done();
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

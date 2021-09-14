@@ -35,7 +35,7 @@ class VlSelectLocation extends VlSelect {
    * @return {Promise}
    */
   get location() {
-    const value = this._choices?.getValue()?.value;
+    const value = this._choices.getValue().value;
     if (value) {
       if (value.BoundingBox) {
         return Promise.resolve([

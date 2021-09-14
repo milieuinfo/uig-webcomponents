@@ -1,5 +1,5 @@
 import { vlElement, define } from "../../../../utils/core";
-import linkStyles from "../../../link/styles.scss";
+import styles from "./styles.scss";
 
 /**
  * VlMapSideSheetMenuItem
@@ -24,7 +24,7 @@ export class VlMapSideSheetMenuItem extends vlElement(HTMLElement) {
   constructor() {
     super(`
       <style>
-        ${linkStyles}
+        ${styles}
 
         .vl-map-side-sheet-menu-item {
           background: #e8ebee;
