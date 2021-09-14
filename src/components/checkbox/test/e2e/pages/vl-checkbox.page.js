@@ -1,4 +1,4 @@
-import {VlCheckbox} from "../../../../checkbox/test/e2e/components/vl-checkbox"
+import { VlCheckbox } from "../components/vl-checkbox.js";
 import { Page, config } from "../../../../../utils/test";
 
 export class VlCheckboxPage extends Page {
@@ -11,35 +11,35 @@ export class VlCheckboxPage extends Page {
   }
 
   async getCheckboxBlock() {
-    return this._getCheckbox('#checkbox-block');
+    return this._getCheckbox("#checkbox-block");
   }
 
   async getCheckboxError() {
-    return this._getCheckbox('#checkbox-error');
+    return this._getCheckbox("#checkbox-error");
   }
 
   async getCheckboxDisabledUnchecked() {
-    return this._getCheckbox('#checkbox-disabled-unchecked');
+    return this._getCheckbox("#checkbox-disabled-unchecked");
   }
 
   async getCheckboxDisabledChecked() {
-    return this._getCheckbox('#checkbox-disabled-checked');
+    return this._getCheckbox("#checkbox-disabled-checked");
   }
 
   async getCheckboxSingle() {
-    return this._getCheckbox('#checkbox-single');
+    return this._getCheckbox("#checkbox-single");
   }
 
   async getCheckboxSwitch() {
-    return this._getCheckbox('#checkbox-switch');
+    return this._getCheckbox("#checkbox-switch");
   }
 
   async getCheckboxSwitchDisabled() {
-    return this._getCheckbox('#checkbox-switch-disabled');
+    return this._getCheckbox("#checkbox-switch-disabled");
   }
 
   async getCheckboxSwitchLabel() {
-    return this._getCheckbox('#checkbox-switch-label');
+    return this._getCheckbox("#checkbox-switch-label");
   }
 
   async getCheckboxMulti(number) {
@@ -51,15 +51,14 @@ export class VlCheckboxPage extends Page {
   }
 
   async getCheckboxSlot() {
-    return this._getCheckbox('#checkbox-slot');
+    return this._getCheckbox("#checkbox-slot");
   }
 
   async getCheckboxSlotSwitch() {
-    return this._getCheckbox('#checkbox-slot-switch');
+    return this._getCheckbox("#checkbox-slot-switch");
   }
 
   async load() {
     await super.load(config.baseUrl + "components/checkbox/test/e2e");
   }
 }
-

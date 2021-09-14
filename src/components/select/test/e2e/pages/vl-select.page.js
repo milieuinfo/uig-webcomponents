@@ -1,8 +1,7 @@
-const VlSelect = require("../components/vl-select");
-const { Page, Config } = require("vl-ui-core").Test;
-const { By } = require("vl-ui-core").Test.Setup;
+import { VlSelect } from "../components/vl-select";
+import { Page, config, By } from "../../../../../utils/test";
 
-class VlSelectPage extends Page {
+export class VlSelectPage extends Page {
   async _getSelect(selector) {
     return new VlSelect(this.driver, selector);
   }
@@ -125,5 +124,3 @@ class VlSelectPage extends Page {
     await super.load(config.baseUrl + "components/select/test/e2e");
   }
 }
-
-module.exports = VlSelectPage;

@@ -3,8 +3,6 @@ import "../../../search";
 import "../select-location/vl-select-location";
 import { OlOverlay } from "../../mapactions";
 import LambertCoordinaat from "../../utils/lambert-coordinaat";
-import searchStyles from "../../../search/styles.scss";
-import selectStyles from "../../../select/styles.scss";
 
 /**
  * VlMapSearch
@@ -36,8 +34,6 @@ class VlMapSearch extends vlElement(HTMLElement) {
   constructor() {
     super(`
       <style>
-      ${searchStyles}
-      ${selectStyles}
 
         :host {
           display: block;
