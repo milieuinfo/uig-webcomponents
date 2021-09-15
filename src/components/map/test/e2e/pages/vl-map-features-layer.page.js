@@ -15,6 +15,8 @@ export class VlMapFeaturesLayerPage extends VlMapPage {
   }
 
   async load() {
-    await super.load(config.baseUrl + "components/map/test/e2e");
+    await super.load(
+      config.baseUrl + "components/map/test/e2e/map-features/layer"
+    );
   }
 }
