@@ -1,11 +1,11 @@
 import { html } from "lit-html";
 import "../button";
-import { defaultArgs, argTypes } from "./config";
+import { args, argTypes } from "./config";
 import styles from "./styles.scss";
 
 export default {
   title: "native-elements/vl-button",
-  args: { ...defaultArgs },
+  args,
   argTypes,
 };
 
@@ -63,10 +63,10 @@ export const IconButton = (props) => {
 };
 
 IconButton.args = {
-  ...defaultArgs,
   content: "Icon button",
   type: "after",
 };
+
 IconButton.argTypes = {
   type: {
     name: "type (for demo purposes)",

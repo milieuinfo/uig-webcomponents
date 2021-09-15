@@ -1,11 +1,11 @@
 import { html } from "lit-html";
 import "../../../button";
-import { defaultArgs, argTypes } from "../../config";
+import { args, argTypes } from "../../config";
 import styles from "../../styles.scss";
 
 export default {
-  title: "native-elements/vl-button/vl-button-link",
-  args: { ...defaultArgs },
+  title: "native-elements/vl-button/vl-link-button",
+  args,
   argTypes,
 };
 
@@ -30,4 +30,4 @@ export const Default = (props) =>
       >${props.content}</a
     >`;
 
-Default.args = { ...defaultArgs, content: "Link button" };
+Default.args = { content: "Link button" };

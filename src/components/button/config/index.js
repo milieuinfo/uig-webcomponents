@@ -1,4 +1,4 @@
-export const defaultArgs = {
+export const args = {
   content: "Button",
   secondary: false,
   tertiary: false,

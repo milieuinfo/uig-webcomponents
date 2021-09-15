@@ -1,13 +1,12 @@
-import { vlLinkElement } from "./mixins";
-import { define } from "../../utils/core";
-import "./components/button-link";
+import { vlLinkElement } from "../../mixins";
+import { define } from "../../../../utils/core";
 
 /**
- * VlLink
+ * VlButtonLink
  * @class
- * @classdesc Gebruik de vl-link om de gebruiker door te verwijzen naar een andere URL, bijvoorbeeld een nieuwe pagina of een document.
+ * @classdesc Een button gestyled als link.
  *
- * @extends HTMLAnchorElement
+ * @extends HTMLButtonElement
  * @mixes vlLinkElement
  *
  * @property {string} data-vl-block - Attribuut zorgt ervoor dat het element als block getoond wordt.
@@ -17,6 +16,7 @@ import "./components/button-link";
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-link/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-link.html|Demo}
  */
-export class VlLink extends vlLinkElement(HTMLAnchorElement) {}
 
-define("vl-link", VlLink, { extends: "a" });
+export class VlButtonLink extends vlLinkElement(HTMLButtonElement) {}
+
+define("vl-button-link", VlButtonLink, { extends: "button" });

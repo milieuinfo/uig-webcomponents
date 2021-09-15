@@ -90,6 +90,18 @@ export default {
         defaultValue: { summary: "false" },
       },
     },
+    link: {
+      name: "data-vl-link",
+      type: { summary: "boolean" },
+      description:
+        "Attribuut moet gebruikt worden wanneer het icoon binnen een a tag gebruikt wordt zodat de stijl goed is.",
+      control: {
+        disable: true,
+      },
+      table: {
+        defaultValue: { summary: "false" },
+      },
+    },
     content: {
       name: "content (for demo purposes)",
       type: { summary: "string" },
