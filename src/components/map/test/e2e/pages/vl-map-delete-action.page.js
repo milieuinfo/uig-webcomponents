@@ -1,6 +1,6 @@
 import { VlMapDeleteAction } from "../components/vl-map-delete-action";
 import { config } from "../../../../../utils/test";
-import { VlMapPage } from "./vl-map.page";
+import { VlMapPage } from ".//vl-map.page";
 
 export class VlMapDeleteActionPage extends VlMapPage {
   async getDeleteAction() {
@@ -12,7 +12,9 @@ export class VlMapDeleteActionPage extends VlMapPage {
   }
 
   async load() {
-    await super.load(config.baseUrl + "components/map/test/e2e");
+    await super.load(
+      config.baseUrl + "components/map/test/e2e/map-delete-action"
+    );
   }
 
   async _getDeleteAction(selector) {

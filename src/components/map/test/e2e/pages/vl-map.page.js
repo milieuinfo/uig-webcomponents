@@ -1,5 +1,5 @@
-import { VlMap } from "../components/vl-map";
-import { VlMapBaseLayer } from "../components/vl-map-baselayer";
+import { VlMap } from "../components/vl-map.js";
+import { VlMapBaseLayer } from "../components/vl-map-baselayer.js";
 import { Page, config } from "../../../../../utils/test";
 
 export class VlMapPage extends Page {
@@ -32,7 +32,7 @@ export class VlMapPage extends Page {
   }
 
   async load(url) {
-    await super.load(config.baseUrl + "components/map/test/e2e");
+    await super.load(url || config.baseUrl + "components/map/test/e2e/map");
   }
 
   async _getMap(selector) {

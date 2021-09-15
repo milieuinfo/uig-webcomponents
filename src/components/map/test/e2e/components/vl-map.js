@@ -1,15 +1,15 @@
 import { VlElement, By } from "../../../../../utils/test";
-import { VlMapBaseLayer } from "./vl-map-baselayer";
-import { VlMapSearch } from "./vl-map-search";
-import { VlMapLayers } from "./vl-map-layers";
-import { VlMapWfsLayer } from "./vl-map-wfs-layer";
-import { VlMapTiledWmsLayer } from "./vl-map-tiled-wms-layer";
-import { VlMapImageWmsLayer } from "./vl-map-image-wms-layer";
-import { VlMapWmtsLayer } from "./vl-map-wmts-layer";
-import { VlMapFeaturesLayer } from "./vl-map-features-layer";
-import { VlMapOverviewMap } from "./vl-map-overview-map";
-import { VlMapLayerSwitcher } from "./vl-map-layer-switcher";
-import { VlMapSideSheet } from "./vl-map-side-sheet";
+import { VlMapBaseLayer } from "./vl-map-baselayer.js";
+import { VlMapSearch } from "./vl-map-search.js";
+import { VlMapLayers } from "./vl-map-layers.js";
+import { VlMapWfsLayer } from "./vl-map-wfs-layer.js";
+import { VlMapTiledWmsLayer } from "./vl-map-tiled-wms-layer.js";
+import { VlMapImageWmsLayer } from "./vl-map-image-wms-layer.js";
+import { VlMapWmtsLayer } from "./vl-map-wmts-layer.js";
+import { VlMapFeaturesLayer } from "./vl-map-features-layer.js";
+import { VlMapOverviewMap } from "./vl-map-overview-map.js";
+import { VlMapLayerSwitcher } from "./vl-map-layer-switcher.js";
+import { VlMapSideSheet } from "./vl-map-side-sheet.js";
 
 export class VlMap extends VlElement {
   async getBaseLayers() {

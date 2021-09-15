@@ -1,5 +1,5 @@
-import { assert, getDriver } from "../../../../utils/test";
-import { VlMapPage } from "./pages/vl-map.page";
+import { assert, getDriver } from "../../../../../utils/test";
+import { VlMapPage } from "../pages/vl-map.page";
 
 describe("vl-map", async () => {
   let vlMapPage;
@@ -90,7 +90,8 @@ describe("vl-map", async () => {
 
   it("als gebruiker kan ik een kaart fullscreen aan- en uitzetten", async () => {
     const map = await vlMapPage.getMap();
-    const mapWithFullscreenAllowed = await vlMapPage.getMapWithFullscreenAllowed();
+    const mapWithFullscreenAllowed =
+      await vlMapPage.getMapWithFullscreenAllowed();
     await assert.eventually.isFalse(map.isFullscreenAllowed());
     await assert.eventually.isTrue(
       mapWithFullscreenAllowed.isFullscreenAllowed()
