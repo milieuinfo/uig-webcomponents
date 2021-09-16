@@ -21,7 +21,7 @@ export class VlMapSearchPage extends VlMapPage {
   }
 
   async load() {
-    await super.load(config.baseUrl + "components/map/test/e2e");
+    await super.load(config.baseUrl + "components/map/test/e2e/map-search");
   }
 
   async _getSearch(selector) {

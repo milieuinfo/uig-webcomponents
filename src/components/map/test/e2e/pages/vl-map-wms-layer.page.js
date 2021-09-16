@@ -11,6 +11,6 @@ export class VlMapWmsLayerPage extends VlMapPage {
   }
 
   async load() {
-    await super.load(config.baseUrl + "components/map/test/e2e");
+    await super.load(config.baseUrl + "components/map/test/e2e/map-wms-layer");
   }
 }

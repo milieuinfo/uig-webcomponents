@@ -39,7 +39,9 @@ export class VlMapSelectActionPage extends VlMapPage {
   }
 
   async load() {
-    await super.load(config.baseUrl + "components/map/test/e2e");
+    await super.load(
+      config.baseUrl + "components/map/test/e2e/map-select-action"
+    );
   }
 
   async _getSelectAction(selector) {
