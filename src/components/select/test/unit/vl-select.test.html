@@ -3,12 +3,11 @@
 
 <head>
   <meta charset="utf-8">
-  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
-  <script src="../../../web-component-tester/browser.js"></script>
-  <script src="../../node_modules/sinon/pkg/sinon.js"></script>
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
 
-  <script type="module" src="../../src/vl-select.js"></script>
-  <script type="module" src="../../node_modules/vl-ui-form/dist/vl-form-all.js"></script>
+    <script type="module" src="../../../../../lib/index.js"></script>
+    <script src="/node_modules/sinon/pkg/sinon.js"></script>
 </head>
 
 <body>
@@ -76,9 +75,9 @@
   </test-fixture>
 
   <script type="module">
-    import {awaitUntil} from 'vl-ui-core/dist/vl-core';
-    import {VlSelect} from '../../src/vl-select';
-    import {vlFormValidation} from 'vl-ui-form-validation/dist/vl-form-validation';
+    import {awaitUntil} from '../../../../utils/core';
+    import {VlSelect} from '../../../select';
+    import {vlFormValidation} from '../../../form-validation';
 
     suite('vl-select', () => {
       const sandbox = sinon.createSandbox();
