@@ -1,5 +1,5 @@
 import { vlElement, define } from "../../../../utils/core";
-import { VlMap } from "../map/vl-map";
+import { VlMap } from "../map";
 
 /**
  * VlMapAction
