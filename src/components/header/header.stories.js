@@ -1,4 +1,5 @@
 import { html } from "lit-html";
+import { bodySimulation } from "../../../.storybook/bodySimulation";
 import "../header";
 
 export default {
@@ -30,9 +31,11 @@ export default {
 };
 
 export const Default = ({ identifier, development }) =>
-  html`
-    <vl-header
-      data-vl-identifier=${identifier}
-      ?data-vl-development=${development}
-    ></vl-header>
-  `;
+  bodySimulation(
+    html`
+      <vl-header
+        data-vl-identifier=${identifier}
+        ?data-vl-development=${development}
+      ></vl-header>
+    `
+  );

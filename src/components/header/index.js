@@ -31,8 +31,25 @@ export class VlHeader extends LitElement {
     };
   }
 
+  constructor() {
+    super();
+    this[development] = true;
+  }
+
+  injectHeader() {
+    const vlBody = document.querySelector('[is="vl-body"]');
+    (vlBody || document.body).insertAdjacentHTML(
+      "afterbegin",
+      '<div id="header"></div>'
+    );
+  }
+
   vlwHeader() {
     return document.querySelector("div[class=vlw__header]");
+  }
+
+  header() {
+    return document.querySelector("#header");
   }
 
   async __isUserAuthenticated() {
@@ -48,7 +65,9 @@ export class VlHeader extends LitElement {
     window.vl.widget.client
       .bootstrap(widgetUrl)
       .then((widget) => {
-        this.insertAdjacentHTML("afterbegin", '<div id="header"></div>');
+        document
+          .querySelector('[is="vl-body"]')
+          .insertAdjacentHTML("afterbegin", '<div id="header"></div>');
         widget.setMountElement(document.getElementById("header"));
         widget.mount().catch((e) => console.error(e));
         return widget;
@@ -75,8 +94,11 @@ export class VlHeader extends LitElement {
     if (this.vlwHeader()) {
       this.vlwHeader().parentElement.remove();
     }
+    if (this.header()) {
+      this.header().remove();
+    }
     this.loadWidget();
-    return html`<div id="header"></div>`;
+    this.injectHeader();
   }
 
   createRenderRoot() {

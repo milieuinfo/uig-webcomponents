@@ -1,4 +1,5 @@
 import { html } from "lit-html";
+import { bodySimulation } from "../../../.storybook/bodySimulation";
 import "../footer";
 
 export default {
@@ -30,9 +31,11 @@ export default {
 };
 
 export const Default = ({ identifier, development }) =>
-  html`
-    <vl-footer
-      data-vl-identifier=${identifier}
-      ?data-vl-development=${development}
-    ></vl-footer>
-  `;
+  bodySimulation(
+    html`
+      <vl-footer
+        data-vl-identifier=${identifier}
+        ?data-vl-development=${development}
+      ></vl-footer>
+    `
+  );
