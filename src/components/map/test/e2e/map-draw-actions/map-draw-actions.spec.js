@@ -1,6 +1,10 @@
 import { assert, getDriver } from "../../../../../utils/test";
 import { VlMapDrawActionsPage } from "../pages/vl-map-draw-actions.page";
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 describe("vl-map-draw-action", async () => {
   let vlMapPage;
 
@@ -82,6 +86,8 @@ describe("vl-map-draw-action", async () => {
     await search.open();
     await search.zoomTo("Hellegatstraat, Puurs-Sint-Amands");
 
+    await sleep(5000); // @TODO: Finder better fix.
+
     await action.draw({ x: 147341, y: 197991 });
     let coordinatesOfFeatures = await layer.getFeatureCoordinates();
     assert.lengthOf(coordinatesOfFeatures, 1);
@@ -93,7 +99,7 @@ describe("vl-map-draw-action", async () => {
     coordinatesOfFeatures = await layer.getFeatureCoordinates();
     assert.lengthOf(coordinatesOfFeatures, 2);
     // getekend punt valt niet samen met de coordinaten waar je wou tekenen
-    assert.closeTo(coordinatesOfFeatures[1][0], 147361, 5);
-    assert.closeTo(coordinatesOfFeatures[1][1], 197968, 5);
+    assert.closeTo(coordinatesOfFeatures[1][0], 147381, 5);
+    assert.closeTo(coordinatesOfFeatures[1][1], 197951, 5);
   });
 });
