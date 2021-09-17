@@ -4,6 +4,7 @@ import { wrap } from "../../wrap";
 import gridStyles from "../../../src/components/grid/styles.scss";
 import titleStyles from "../../../src/components/titles/styles.scss";
 import introStyles from "../../../src/components/introduction/styles.scss";
+import { removeStorybooksDefaultStyling } from "../../../.storybook/utils";
 
 const changes = [
   {
@@ -39,12 +40,20 @@ export class Changelog extends LitElement {
       `,
     ];
   }
+
+  connectedCallback() {
+    super.connectedCallback();
+    removeStorybooksDefaultStyling();
+  }
+
   render() {
     return wrap({
       title: "Changelog",
       intro:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac turpis accumsan, maximus purus sit amet, suscipit elit. Vivamus egestas a diam a luctus. Sed et viverra nibh. Nam sed ipsum felis.",
       children: html`
+        <link rel="stylesheet" href="../../../lib/components/body/styles.css" />
+
         <div is="vl-layout">
           <div is="vl-grid" data-vl-is-stacked>
             ${change({

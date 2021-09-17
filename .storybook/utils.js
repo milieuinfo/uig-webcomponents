@@ -11,3 +11,9 @@ export const stylesheet = (styles) =>
   html`<style>
     ${styles}
   </style>`;
+
+export const removeStorybooksDefaultStyling = () => {
+  document.querySelector(".sbdocs-p").classList = "sbdocs sbdocs-p";
+  document.querySelector(".sbdocs-content").style.maxWidth = "initial";
+  document.querySelector(".sbdocs-wrapper").style.padding = "0";
+};

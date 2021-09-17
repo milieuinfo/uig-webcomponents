@@ -6,6 +6,7 @@ import gridStyles from "../../../src/components/grid/styles.scss";
 import "../../../src/components/titles";
 import titleStyles from "../../../src/components/titles/styles.scss";
 import introStyles from "../../../src/components/introduction/styles.scss";
+import { removeStorybooksDefaultStyling } from "../../../.storybook/utils.js";
 
 const block = ({ title, children }) => html`
   <div is="vl-column" data-vl-size="8">
@@ -28,6 +29,12 @@ export class Introduction extends LitElement {
       `,
     ];
   }
+
+  connectedCallback() {
+    super.connectedCallback();
+    removeStorybooksDefaultStyling();
+  }
+
   render() {
     return wrap({
       title: "Introduction",
