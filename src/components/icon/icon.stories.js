@@ -1,9 +1,11 @@
 import { html } from "lit-html";
 import "../icon";
 import styles from "./styles.scss";
+import { stylesheet } from "../../../.storybook/utils.js";
 
 export default {
   title: "native-elements/vl-icon",
+  decorators: [(story) => html`${stylesheet(styles)}${story()}`],
   args: {
     icon: "calendar",
     light: false,
@@ -109,27 +111,16 @@ export default {
   },
 };
 
-const stylesheet = html`<style>
-  ${styles}
-</style>`;
-
-export const Default = ({
-  size,
-  icon,
-  light,
-  rotate,
-  fullRotate,
-}) => html`${stylesheet}
-  <p>
-    <span
-      is="vl-icon"
-      data-vl-size=${size}
-      data-vl-icon=${icon}
-      ?data-vl-light=${light}
-      ?data-vl-90deg=${rotate}
-      ?data-vl-180deg=${fullRotate}
-    ></span>
-  </p>`;
+export const Default = ({ size, icon, light, rotate, fullRotate }) => html`<p>
+  <span
+    is="vl-icon"
+    data-vl-size=${size}
+    data-vl-icon=${icon}
+    ?data-vl-light=${light}
+    ?data-vl-90deg=${rotate}
+    ?data-vl-180deg=${fullRotate}
+  ></span>
+</p>`;
 
 Default.argTypes = { content: { control: false } };
 
@@ -141,19 +132,18 @@ export const BeforeElement = ({
   fullRotate,
   content,
   before,
-}) => html`${stylesheet}
-  <p is="vl-icon-wrapper">
-    <span
-      is="vl-icon"
-      ?data-vl-before=${before}
-      data-vl-icon=${icon}
-      data-vl-size=${size}
-      ?data-vl-light=${light}
-      ?data-vl-90deg=${rotate}
-      ?data-vl-180deg=${fullRotate}
-    ></span
-    ><span>${content}</span>
-  </p>`;
+}) => html`<p is="vl-icon-wrapper">
+  <span
+    is="vl-icon"
+    ?data-vl-before=${before}
+    data-vl-icon=${icon}
+    data-vl-size=${size}
+    ?data-vl-light=${light}
+    ?data-vl-90deg=${rotate}
+    ?data-vl-180deg=${fullRotate}
+  ></span
+  ><span>${content}</span>
+</p>`;
 
 BeforeElement.args = {
   before: true,
@@ -167,19 +157,18 @@ export const AfterElement = ({
   fullRotate,
   content,
   after,
-}) => html`${stylesheet}
-  <p is="vl-icon-wrapper">
-    <span>${content}</span
-    ><span
-      is="vl-icon"
-      ?data-vl-after=${after}
-      data-vl-icon=${icon}
-      data-vl-size=${size}
-      ?data-vl-light=${light}
-      ?data-vl-90deg=${rotate}
-      ?data-vl-180deg=${fullRotate}
-    ></span>
-  </p>`;
+}) => html`<p is="vl-icon-wrapper">
+  <span>${content}</span
+  ><span
+    is="vl-icon"
+    ?data-vl-after=${after}
+    data-vl-icon=${icon}
+    data-vl-size=${size}
+    ?data-vl-light=${light}
+    ?data-vl-90deg=${rotate}
+    ?data-vl-180deg=${fullRotate}
+  ></span>
+</p>`;
 
 AfterElement.args = {
   after: true,

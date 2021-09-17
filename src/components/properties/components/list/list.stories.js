@@ -1,5 +1,5 @@
 export default {
-  title: "custom-elements/vl-properties/vl-properties-list",
+  title: "native-elements/vl-properties/vl-properties-list",
   parameters: {
     controls: { hideNoControlsWarning: true },
   },

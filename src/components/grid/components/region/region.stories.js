@@ -1,9 +1,11 @@
 import { html } from "lit-html";
 import "../../../grid";
 import styles from "../../../grid/styles.scss";
+import { stylesheet } from "../../../../../.storybook/utils.js";
 
 export default {
   title: "native-elements/vl-grid/vl-region",
+  decorators: [(story) => html`${stylesheet(styles)}${story()}`],
   args: {
     alt: false,
     noSpace: false,
@@ -91,12 +93,6 @@ export default {
   },
 };
 
-const stylesheet = html`<style>
-  ${styles}
-</style>`;
-
-const wrap = (component) => html`${stylesheet} ${component}`;
-
 export const Default = ({
   alt,
   noSpace,
@@ -107,7 +103,7 @@ export const Default = ({
   bordered,
   content,
 }) =>
-  wrap(html`<section
+  html`<section
     is="vl-region"
     ?data-vl-alt=${alt}
     ?data-vl-no-space=${noSpace}
@@ -122,7 +118,7 @@ export const Default = ({
         <div is="vl-column">${content}</div>
       </div>
     </div>
-  </section>`);
+  </section>`;
 
 export const Overlap = ({
   alt,
@@ -135,25 +131,23 @@ export const Overlap = ({
   overlap,
   content,
 }) =>
-  wrap(
-    html`<section
-      is="vl-region"
-      ?data-vl-alt=${alt}
-      ?data-vl-no-space=${noSpace}
-      ?data-vl-no-space-bottom=${noSpaceBottom}
-      ?data-vl-no-space-top=${noSpaceTop}
-      ?data-vl-small=${small}
-      ?data-vl-medium=${medium}
-      ?data-vl-bordered=${bordered}
-      ?data-vl-overlap=${overlap}
-    >
-      <div is="vl-layout" class="vl-layout">
-        <div is="vl-grid">
-          <div is="vl-column">${content}</div>
-        </div>
+  html`<section
+    is="vl-region"
+    ?data-vl-alt=${alt}
+    ?data-vl-no-space=${noSpace}
+    ?data-vl-no-space-bottom=${noSpaceBottom}
+    ?data-vl-no-space-top=${noSpaceTop}
+    ?data-vl-small=${small}
+    ?data-vl-medium=${medium}
+    ?data-vl-bordered=${bordered}
+    ?data-vl-overlap=${overlap}
+  >
+    <div is="vl-layout" class="vl-layout">
+      <div is="vl-grid">
+        <div is="vl-column">${content}</div>
       </div>
-    </section>`
-  );
+    </div>
+  </section>`;
 
 Overlap.argTypes = {
   overlap: {

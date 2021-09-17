@@ -1,5 +1,5 @@
 import { html } from "lit-html";
-import { bodySimulation } from "../../../.storybook/bodySimulation";
+import { bodySimulation } from "../../../.storybook/utils.js";
 import "../header";
 
 export default {

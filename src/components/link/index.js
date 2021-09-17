@@ -1,4 +1,4 @@
-import { vlLinkElement } from "./mixins";
+import { vlLinkElement } from "./mixin";
 import { define } from "../../utils/core";
 import "./components/button-link";
 

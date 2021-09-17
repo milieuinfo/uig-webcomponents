@@ -1,21 +1,19 @@
 import { html } from "lit-html";
 import "../button";
+import "../text";
 import { args, argTypes } from "./config";
 import styles from "./styles.scss";
+import { stylesheet } from "../../../.storybook/utils.js";
 
 export default {
   title: "native-elements/vl-button",
+  decorators: [(story) => html`${stylesheet(styles)}${story()}`],
   args,
   argTypes,
 };
 
-const stylesheet = html`<style>
-  ${styles}
-</style>`;
-
-const buttonWrap = (props, children) => {
-  return html`
-    ${stylesheet}
+const buttonWrap = (props, children) =>
+  html`
     <button
       is="vl-button"
       type="button"
@@ -32,7 +30,6 @@ const buttonWrap = (props, children) => {
       ${children}
     </button>
   `;
-};
 
 export const Default = (props) => html`${buttonWrap(props, props.content)}`;
 

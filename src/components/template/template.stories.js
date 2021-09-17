@@ -1,6 +1,6 @@
 import { html } from "lit-html";
 import { version } from "../../../package.json";
-import { bodySimulation } from "../../../.storybook/bodySimulation.js";
+import { bodySimulation } from "../../../.storybook/utils.js";
 import "../content-header";
 
 export default {

@@ -1,13 +1,11 @@
 import { html } from "lit-html";
 import "../grid";
 import styles from "./styles.scss";
-
-const stylesheet = html`<style>
-  ${styles}
-</style>`;
+import { stylesheet } from "../../../.storybook/utils.js";
 
 export default {
   title: "native-elements/vl-grid",
+  decorators: [(story) => html`${stylesheet(styles)}${story()}`],
   args: {
     background: "#f7f9fc",
     stacked: true,
@@ -166,31 +164,28 @@ const Template = ({
       <p>${content}</p>
     </div>
   </div>`;
-
   const columns = Array.apply(null, Array(columnsAmount));
-
-  return html`${stylesheet}
-    <section is="vl-region">
-      <div is="vl-layout">
-        <div
-          is="vl-grid"
-          ?data-vl-is-stacked=${stacked}
-          ?data-vl-is-stacked-small=${stackedSmall}
-          ?data-vl-is-stacked-large=${stackedLarge}
-          ?data-vl-align-start=${alignStart}
-          ?data-vl-align-center=${alignCenter}
-          ?data-vl-align-end=${alignEnd}
-          ?data-vl-align-space-between=${alignSpaceBetween}
-          ?data-vl-align-space-around=${alignSpaceAround}
-          ?data-vl-v-top=${vTop}
-          ?data-vl-v-center=${vCenter}
-          ?data-vl-v-bottom=${vBottom}
-          ?data-vl-v-stretch=${vStretch}
-        >
-          ${columns.map(() => column)}
-        </div>
+  return html`<section is="vl-region">
+    <div is="vl-layout">
+      <div
+        is="vl-grid"
+        ?data-vl-is-stacked=${stacked}
+        ?data-vl-is-stacked-small=${stackedSmall}
+        ?data-vl-is-stacked-large=${stackedLarge}
+        ?data-vl-align-start=${alignStart}
+        ?data-vl-align-center=${alignCenter}
+        ?data-vl-align-end=${alignEnd}
+        ?data-vl-align-space-between=${alignSpaceBetween}
+        ?data-vl-align-space-around=${alignSpaceAround}
+        ?data-vl-v-top=${vTop}
+        ?data-vl-v-center=${vCenter}
+        ?data-vl-v-bottom=${vBottom}
+        ?data-vl-v-stretch=${vStretch}
+      >
+        ${columns.map(() => column)}
       </div>
-    </section>`;
+    </div>
+  </section>`;
 };
 
 export const Default = Template.bind({});

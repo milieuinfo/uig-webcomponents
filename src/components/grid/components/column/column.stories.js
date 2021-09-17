@@ -1,8 +1,11 @@
 import { html } from "lit-html";
 import "../../../grid";
+import styles from "../../styles.scss";
+import { stylesheet } from "../../../../../.storybook/utils.js";
 
 export default {
   title: "native-elements/vl-grid/vl-column",
+  decorators: [(story) => html`${stylesheet(styles)}${story()}`],
   args: {
     size: 8,
     maxSize: 12,

@@ -3,6 +3,7 @@ import { args, argTypes, iconArgs, iconArgTypes } from "./config";
 import "../link";
 import "../icon";
 import styles from "./styles.scss";
+import { stylesheet } from "../../../.storybook/utils.js";
 
 const defaultArgs = {
   block: false,
@@ -11,6 +12,7 @@ const defaultArgs = {
 
 export default {
   title: "native-elements/vl-link",
+  decorators: [(story) => html`${stylesheet(styles)}${story()}`],
   args,
   argTypes,
 };
@@ -18,50 +20,47 @@ export default {
 const hrefArgs = { href: "#" };
 const hrefArgTypes = { href: { name: "href (for demo purposes)" } };
 
-const stylesheet = html`<style>
-  ${styles}
-</style>`;
-
 export const Default = ({ block, error, href, content }) =>
-  html`${stylesheet}
-    <a is="vl-link" href=${href} ?data-vl-block=${block} ?data-vl-error=${error}
-      >${content}</a
-    >`;
+  html`<a
+    is="vl-link"
+    href=${href}
+    ?data-vl-block=${block}
+    ?data-vl-error=${error}
+    >${content}</a
+  >`;
 
 Default.args = hrefArgs;
 Default.argTypes = hrefArgTypes;
 
 export const WithIcon = ({ block, error, type, href, content, icon }) => {
   if (type === "before") {
-    return html`${stylesheet}
-      <a
-        is="vl-link"
-        href=${href}
-        ?data-vl-block=${block}
-        ?data-vl-error=${error}
-        ><span
-          is="vl-icon"
-          data-vl-icon=${icon}
-          data-vl-before
-          data-vl-link
-        ></span>
-        ${content}</a
-      >`;
-  }
-  return html`${stylesheet}
-    <a
+    return html`<a
       is="vl-link"
       href=${href}
       ?data-vl-block=${block}
       ?data-vl-error=${error}
-    >
-      ${content}<span
+      ><span
         is="vl-icon"
         data-vl-icon=${icon}
-        data-vl-after
+        data-vl-before
         data-vl-link
-      ></span
-    ></a>`;
+      ></span>
+      ${content}</a
+    >`;
+  }
+  return html`<a
+    is="vl-link"
+    href=${href}
+    ?data-vl-block=${block}
+    ?data-vl-error=${error}
+  >
+    ${content}<span
+      is="vl-icon"
+      data-vl-icon=${icon}
+      data-vl-after
+      data-vl-link
+    ></span
+  ></a>`;
 };
 
 WithIcon.args = { ...iconArgs, ...hrefArgs };

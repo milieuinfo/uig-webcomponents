@@ -1,5 +1,5 @@
 import { define } from "../../utils/core";
-import { vlButtonElement } from "./mixins";
+import { vlButtonElement } from "./mixin";
 import "./components/link-button";
 
 /**
