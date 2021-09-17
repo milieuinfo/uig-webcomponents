@@ -3,13 +3,13 @@ import "../checkbox";
 import styles from "./styles.scss";
 
 const defaultArgs = {
-  block: true,
+  block: false,
   disabled: false,
   error: false,
   label: "test label",
   name: "test name",
   single: false,
-  switch: true,
+  switch: false,
   value: "test value",
 };
 
@@ -37,11 +37,11 @@ export default {
     },
     error: {
       name: "data-vl-error",
-      type: { summary: "string" },
+      type: { summary: "boolean" },
       description:
         "Attribuut wordt gebruikt om aan te duiden dat de checkbox verplicht is.",
       table: {
-        defaultValue: { summary: "" },
+        defaultValue: { summary: "false" },
       },
     },
     label: {
@@ -76,7 +76,7 @@ export default {
       description:
         "Attribuut wordt gebruikt om een checkbox variant te genereren met de stijl van een switch.",
       table: {
-        defaultValue: { summary: "" },
+        defaultValue: { summary: "false" },
       },
     },
     value: {
