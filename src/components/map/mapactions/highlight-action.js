@@ -1,6 +1,6 @@
-import {Select} from 'ol/interaction';
-import {pointerMove} from 'ol/events/condition';
-import {VlMapAction} from './vl-mapactions-mapaction';
+import { Select } from "ol/interaction";
+import { pointerMove } from "ol/events/condition";
+import { VlMapAction } from "./mapaction";
 
 export class VlHighlightAction extends VlMapAction {
   constructor(layer, options) {
@@ -23,9 +23,16 @@ export class VlHighlightAction extends VlMapAction {
 
   highlightFeatureWithId(id) {
     if (id) {
-      const feature = this.layer.getSource().getFeatureById(id) || this._getClusterByFeatureId(this.layer.getSource().getFeatures(), id);
+      const feature =
+        this.layer.getSource().getFeatureById(id) ||
+        this._getClusterByFeatureId(this.layer.getSource().getFeatures(), id);
       if (feature) {
-        if (this.highlightInteraction.getFeatures().getArray().indexOf(feature) === -1) {
+        if (
+          this.highlightInteraction
+            .getFeatures()
+            .getArray()
+            .indexOf(feature) === -1
+        ) {
           this.highlightInteraction.getFeatures().push(feature);
         }
       }
@@ -34,7 +41,7 @@ export class VlHighlightAction extends VlMapAction {
 
   _getClusterByFeatureId(clusters, id) {
     for (let i = 0; i < clusters.length; i++) {
-      const features = clusters[i].get('features');
+      const features = clusters[i].get("features");
       if (features && this._getFeatureById(features, id)) {
         return clusters[i];
       }

@@ -1,5 +1,5 @@
-import {VlDrawAction} from './vl-mapactions-draw-action';
-import GeometryType from 'ol/geom/GeometryType';
+import { VlDrawAction } from "./draw-action";
+import GeometryType from "ol/geom/GeometryType";
 
 export class VlDrawLineAction extends VlDrawAction {
   constructor(layer, onDraw, options = {}) {

@@ -1,6 +1,6 @@
-import {Polygon} from 'ol/geom';
-import {VlDrawAction} from './vl-mapactions-draw-action';
-import GeometryType from 'ol/geom/GeometryType';
+import { Polygon } from "ol/geom";
+import { VlDrawAction } from "./draw-action";
+import GeometryType from "ol/geom/GeometryType";
 
 export class VlDrawRectangleAction extends VlDrawAction {
   constructor(layer, onDraw, options = {}) {

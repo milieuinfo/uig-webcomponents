@@ -1,12 +1,17 @@
-import Overlay from 'ol/Overlay';
-import {unByKey} from 'ol/Observable';
-import {VlDrawAction} from './vl-mapactions-draw-action';
+import Overlay from "ol/Overlay";
+import { unByKey } from "ol/Observable";
+import { VlDrawAction } from "./draw-action";
 
 export class VlMeasureAction extends VlDrawAction {
   constructor(layer, options) {
-    super(layer, 'LineString', () => {
-      unByKey(this.measurePointermoveHandler);
-    }, options);
+    super(
+      layer,
+      "LineString",
+      () => {
+        unByKey(this.measurePointermoveHandler);
+      },
+      options
+    );
 
     let featureCounter = 0;
 
@@ -16,24 +21,26 @@ export class VlMeasureAction extends VlDrawAction {
 
     const showMeasureTooltip = (feature, tooltip, tooltipElement) => {
       const length = feature.getGeometry().getLength().toFixed(2);
-      tooltipElement.textContent = length + ' m';
+      tooltipElement.textContent = length + " m";
       tooltip.setElement(tooltipElement);
       tooltip.setPosition(feature.getGeometry().getLastCoordinate());
     };
 
-    this.drawInteraction.on('drawstart', (event) => {
+    this.drawInteraction.on("drawstart", (event) => {
       const id = featureCounter++;
       const measureFeature = event.feature;
       measureFeature.setId(id);
-      const tooltipElement = document.createElement('div');
-      tooltipElement.setAttribute('class', 'measure-tooltip');
+      const tooltipElement = document.createElement("div");
+      tooltipElement.setAttribute("class", "measure-tooltip");
       const tooltip = new Overlay({
         offset: [-15, 10],
-        positioning: 'bottom-center',
+        positioning: "bottom-center",
       });
       this.map.addOverlay(tooltip);
       this.measureTooltips[id] = tooltip;
-      this.measurePointermoveHandler = this.map.on('pointermove', () => showMeasureTooltip(measureFeature, tooltip, tooltipElement));
+      this.measurePointermoveHandler = this.map.on("pointermove", () =>
+        showMeasureTooltip(measureFeature, tooltip, tooltipElement)
+      );
     });
 
     const removeTooltip = (id) => {
@@ -41,7 +48,7 @@ export class VlMeasureAction extends VlDrawAction {
       this.measureTooltips[id] = null;
     };
 
-    this.layer.getSource().on('removefeature', (event) => {
+    this.layer.getSource().on("removefeature", (event) => {
       removeTooltip(event.feature.getId());
     });
 

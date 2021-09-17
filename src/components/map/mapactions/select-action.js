@@ -1,6 +1,6 @@
-import {Select} from 'ol/interaction';
-import {click, pointerMove} from 'ol/events/condition';
-import {VlMapAction} from './vl-mapactions-mapaction';
+import { Select } from "ol/interaction";
+import { click, pointerMove } from "ol/events/condition";
+import { VlMapAction } from "./mapaction";
 
 export class VlSelectAction extends VlMapAction {
   constructor(layer, onSelect, options) {
@@ -15,7 +15,8 @@ export class VlSelectAction extends VlMapAction {
     };
 
     const hoverInteractionFilter = (feature, layer) => {
-      const isSelected = this.selectInteraction.getFeatures().getArray().indexOf(feature) !== -1;
+      const isSelected =
+        this.selectInteraction.getFeatures().getArray().indexOf(feature) !== -1;
       return this.filter(feature, layer) && !isSelected;
     };
 
@@ -49,12 +50,12 @@ export class VlSelectAction extends VlMapAction {
     this.markInteraction = markInteraction;
     this.selectInteraction = selectInteraction;
 
-    this.hoverInteraction.on('select', () => {
+    this.hoverInteraction.on("select", () => {
       const element = this.map.getTargetElement();
       if (this.hoverInteraction.getFeatures().getLength() > 0) {
-        element.style.cursor = 'pointer';
+        element.style.cursor = "pointer";
       } else {
-        element.style.cursor = '';
+        element.style.cursor = "";
       }
       this.map.render();
     });
@@ -72,13 +73,17 @@ export class VlSelectAction extends VlMapAction {
       return features.getArray()[next];
     };
 
-    this.selectInteraction.on('select', (event) => {
+    this.selectInteraction.on("select", (event) => {
       this.markInteraction.getFeatures().clear();
       if (this.selectInteraction.getFeatures().getLength() > 0) {
         if (this.selectInteraction.getFeatures().getLength() === 1) {
-          this.selectedFeature = this.selectInteraction.getFeatures().getArray()[0];
+          this.selectedFeature = this.selectInteraction
+            .getFeatures()
+            .getArray()[0];
         } else {
-          this.selectedFeature = nextFeature(this.selectInteraction.getFeatures());
+          this.selectedFeature = nextFeature(
+            this.selectInteraction.getFeatures()
+          );
         }
         if (onSelect) {
           onSelect(this.selectedFeature, event, this.getLayer());
@@ -97,7 +102,9 @@ export class VlSelectAction extends VlMapAction {
 
   _fixClusterBehavior() {
     if (this.selectedFeature) {
-      const features = this.selectedFeature.get('features') || [this.selectedFeature];
+      const features = this.selectedFeature.get("features") || [
+        this.selectedFeature,
+      ];
       this.selectInteraction.getFeatures().clear();
       this.markInteraction.getFeatures().clear();
       if (features) {
@@ -112,12 +119,12 @@ export class VlSelectAction extends VlMapAction {
 
   getClusterWithFeatureId(clusters, id) {
     for (let i = 0; i < clusters.length; i++) {
-      const features = clusters[i].get('features');
+      const features = clusters[i].get("features");
       if (features && this.getFeatureById(features, id)) {
         return clusters[i];
       }
     }
-  };
+  }
 
   getFeatureById(features, id) {
     for (let i = 0; i < features.length; i++) {
@@ -136,16 +143,16 @@ export class VlSelectAction extends VlMapAction {
   activate() {
     if (this.cluster && this.map) {
       this._fixClusterBehaviorListener = () => this._fixClusterBehavior();
-      this.map.on('moveend', this._fixClusterBehaviorListener);
-      this.selectInteraction.on('select', this._fixClusterBehaviorListener);
+      this.map.on("moveend", this._fixClusterBehaviorListener);
+      this.selectInteraction.on("select", this._fixClusterBehaviorListener);
     }
     super.activate();
   }
 
   deactivate() {
     if (this._fixClusterBehaviorListener) {
-      this.map.un('moveend', this._fixClusterBehaviorListener);
-      this.selectInteraction.un('select', this._fixClusterBehaviorListener);
+      this.map.un("moveend", this._fixClusterBehaviorListener);
+      this.selectInteraction.un("select", this._fixClusterBehaviorListener);
     }
     this.clearFeatures();
     super.deactivate();
@@ -154,7 +161,7 @@ export class VlSelectAction extends VlMapAction {
   selectFeature(feature) {
     this.selectInteraction.getFeatures().push(feature);
     this.selectInteraction.dispatchEvent({
-      type: 'select',
+      type: "select",
       feature: feature,
     });
   }
@@ -169,9 +176,13 @@ export class VlSelectAction extends VlMapAction {
 
   markFeatureWithId(id, layer) {
     layer = layer || this.layer;
-    const feature = layer.getSource().getFeatureById(id) || this.getClusterWithFeatureId(layer.getSource().getFeatures(), id);
+    const feature =
+      layer.getSource().getFeatureById(id) ||
+      this.getClusterWithFeatureId(layer.getSource().getFeatures(), id);
     if (feature) {
-      if (this.markInteraction.getFeatures().getArray().indexOf(feature) === -1) {
+      if (
+        this.markInteraction.getFeatures().getArray().indexOf(feature) === -1
+      ) {
         this.markInteraction.getFeatures().push(feature);
       }
     }

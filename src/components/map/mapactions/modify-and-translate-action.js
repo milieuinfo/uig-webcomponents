@@ -1,5 +1,5 @@
-import {Translate} from 'ol/interaction';
-import {VlModifyAction} from './vl-mapactions-modify-action';
+import { Translate } from "ol/interaction";
+import { VlModifyAction } from "./modify-action";
 
 export class VlModifyAndTranslateAction extends VlModifyAction {
   constructor(layer, onModify, options) {
@@ -11,10 +11,12 @@ export class VlModifyAndTranslateAction extends VlModifyAction {
 
     this.addInteraction(this.translateInteraction);
 
-    this.translateInteraction.on('translateend', (event) => {
+    this.translateInteraction.on("translateend", (event) => {
       event.features.forEach((feature) => {
         onModify(feature, (feature) => {
-          feature.getGeometry().setCoordinates(feature.get('entity').geometry.coordinates);
+          feature
+            .getGeometry()
+            .setCoordinates(feature.get("entity").geometry.coordinates);
         });
         this.selectInteraction.getFeatures().clear();
       });

@@ -1,6 +1,6 @@
-import {Modify} from 'ol/interaction';
-import {VlSnapInteraction} from './vl-mapactions-snap-interaction';
-import {VlSelectAction} from './vl-mapactions-select-action';
+import { Modify } from "ol/interaction";
+import { VlSnapInteraction } from "./snap-interaction";
+import { VlSelectAction } from "./select-action";
 
 export class VlModifyAction extends VlSelectAction {
   constructor(layer, onModify, options) {
@@ -19,17 +19,27 @@ export class VlModifyAction extends VlSelectAction {
     if (options && options.snapping) {
       const snappingOptions = Object.assign({}, options.snapping);
       if (snappingOptions.layer) {
-        this.addInteraction(new VlSnapInteraction(snappingOptions.layer.getSource(), options.snapping));
+        this.addInteraction(
+          new VlSnapInteraction(
+            snappingOptions.layer.getSource(),
+            options.snapping
+          )
+        );
       } else {
-        this.addInteraction(new VlSnapInteraction(layer.getSource(), options.snapping));
+        this.addInteraction(
+          new VlSnapInteraction(layer.getSource(), options.snapping)
+        );
       }
     }
 
-    this.modifyInteraction.on('modifystart', (event) => {
-      this.currentGeometryBeingModified = event.features.getArray()[0].getGeometry().clone();
+    this.modifyInteraction.on("modifystart", (event) => {
+      this.currentGeometryBeingModified = event.features
+        .getArray()[0]
+        .getGeometry()
+        .clone();
     });
 
-    this.modifyInteraction.on('modifyend', (event) => {
+    this.modifyInteraction.on("modifyend", (event) => {
       event.features.forEach((feature) => {
         onModify(feature, (feature) => {
           feature.setGeometry(this.currentGeometryBeingModified);

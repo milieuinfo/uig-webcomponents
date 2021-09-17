@@ -1,13 +1,8 @@
-import GeoJSON from 'ol/format/GeoJSON';
-import View from 'ol/View';
-import Overlay from 'ol/Overlay';
-import {
-  Zoom,
-  Rotate,
-  ScaleLine,
-  OverviewMap,
-} from 'ol/control';
-import {VlMapWithActions} from './vl-mapactions-map-with-actions';
+import GeoJSON from "ol/format/GeoJSON";
+import View from "ol/View";
+import Overlay from "ol/Overlay";
+import { Zoom, Rotate, ScaleLine, OverviewMap } from "ol/control";
+import { VlMapWithActions } from "./map-with-actions";
 
 /**
  * Dit is een versie van de VlMapWithActions die nog enkele extra functies bevat zoals het zoomen naar een bepaalde extent (of bounding box), het togglen van de layers, en alle functionaliteit omtrent een overzichtskaartje (ol.control.OverviewMap).
@@ -51,11 +46,16 @@ export class VlCustomMap extends VlMapWithActions {
 
     this.custom = options.custom || {};
 
-    if (options.customLayers.overviewMapLayers && options.customLayers.overviewMapLayers.length > 0) {
+    if (
+      options.customLayers.overviewMapLayers &&
+      options.customLayers.overviewMapLayers.length > 0
+    ) {
       this.createOverviewMapControl(options);
     }
 
-    this.baseLayers = options.customLayers.baseLayerGroup.getLayers().getArray();
+    this.baseLayers = options.customLayers.baseLayerGroup
+      .getLayers()
+      .getArray();
 
     this.maxZoomViewToExtent = options.maxZoomViewToExtent || 16;
   }
@@ -71,16 +71,22 @@ export class VlCustomMap extends VlMapWithActions {
             currentIndex = index;
           }
         });
-        return layers[(currentIndex + 1) >= layers.length ? 0 : currentIndex + 1];
+        return layers[currentIndex + 1 >= layers.length ? 0 : currentIndex + 1];
       };
 
       if (!baseLayer) {
         baseLayer = getNextLayerAfterVisibleLayer(self.baseLayers);
       }
       self.baseLayers.forEach((layer) => layer.setVisible(layer == baseLayer));
-      const overviewMapLayers = self.overviewMapControl.getOverviewMap().getLayers().getArray();
-      const nextVisibleOverviewMapLayer = getNextLayerAfterVisibleLayer(overviewMapLayers);
-      overviewMapLayers.forEach((layer) => layer.setVisible(layer == nextVisibleOverviewMapLayer));
+      const overviewMapLayers = self.overviewMapControl
+        .getOverviewMap()
+        .getLayers()
+        .getArray();
+      const nextVisibleOverviewMapLayer =
+        getNextLayerAfterVisibleLayer(overviewMapLayers);
+      overviewMapLayers.forEach((layer) =>
+        layer.setVisible(layer == nextVisibleOverviewMapLayer)
+      );
       self.render();
       self.overviewMapControl.getOverviewMap().render();
     };
@@ -94,7 +100,11 @@ export class VlCustomMap extends VlMapWithActions {
       }),
     });
 
-    this.overviewMapControl.element.addEventListener('click', () => toggleBaseLayer(), false);
+    this.overviewMapControl.element.addEventListener(
+      "click",
+      () => toggleBaseLayer(),
+      false
+    );
 
     if (this.view) {
       this.addControl(this.overviewMapControl);
@@ -108,7 +118,11 @@ export class VlCustomMap extends VlMapWithActions {
     this.baseLayers.push(baseLayer);
 
     if (this.overviewMapControl) {
-      this.overviewMapControl.getOverviewMap().getLayers().getArray().push(overlayMapLayer);
+      this.overviewMapControl
+        .getOverviewMap()
+        .getLayers()
+        .getArray()
+        .push(overlayMapLayer);
     } else {
       this.createOverviewMapControl({
         customLayers: {
@@ -116,15 +130,26 @@ export class VlCustomMap extends VlMapWithActions {
         },
       });
     }
-    overlayMapLayer.setVisible(this.overviewMapControl.getOverviewMap().getLayers().getArray().length === 2);
+    overlayMapLayer.setVisible(
+      this.overviewMapControl.getOverviewMap().getLayers().getArray().length ===
+      2
+    );
   }
 
   getBaseLayers() {
-    return this.getLayerGroup().getLayers().getArray()[0].getLayers().getArray();
+    return this.getLayerGroup()
+      .getLayers()
+      .getArray()[0]
+      .getLayers()
+      .getArray();
   }
 
   getOverlayLayers() {
-    return this.getLayerGroup().getLayers().getArray()[1].getLayers().getArray();
+    return this.getLayerGroup()
+      .getLayers()
+      .getArray()[1]
+      .getLayers()
+      .getArray();
   }
 
   initializeView(boundingBox, maxZoom) {
@@ -137,7 +162,7 @@ export class VlCustomMap extends VlMapWithActions {
 
   zoomViewToExtent(view, boundingBox, maxZoom) {
     if (boundingBox) {
-      view.fit(boundingBox, {size: this.getSize()});
+      view.fit(boundingBox, { size: this.getSize() });
     }
 
     if (maxZoom || this.maxZoomViewToExtent) {
@@ -149,33 +174,39 @@ export class VlCustomMap extends VlMapWithActions {
 
   zoomToGeometry(geometry, maxZoom) {
     const geoJson = {
-      type: 'FeatureCollection',
-      features: [{
-        type: 'Feature',
-        geometry: geometry,
-      }],
+      type: "FeatureCollection",
+      features: [
+        {
+          type: "Feature",
+          geometry: geometry,
+        },
+      ],
     };
-    this.zoomToExtent(this.geoJSONFormat.readFeatures(geoJson)[0].getGeometry().getExtent(), maxZoom);
+    this.zoomToExtent(
+      this.geoJSONFormat.readFeatures(geoJson)[0].getGeometry().getExtent(),
+      maxZoom
+    );
   }
 
   showInfo(info, coordinate) {
-    const close = document.createElement('div');
-    close.setAttribute('class', 'close');
+    const close = document.createElement("div");
+    close.setAttribute("class", "close");
     close.onclick = () => event.currentTarget.parentNode.remove();
 
-    const element = document.createElement('div');
-    element.innerHTML = '<span class=\'content\'>' + info + '</span><div class=\'arrow\'></div>';
-    element.setAttribute('class', 'info-tooltip');
+    const element = document.createElement("div");
+    element.innerHTML =
+      "<span class='content'>" + info + "</span><div class='arrow'></div>";
+    element.setAttribute("class", "info-tooltip");
     element.appendChild(close);
 
     const tooltip = new Overlay({
       offset: [0, -5],
-      positioning: 'bottom-center',
+      positioning: "bottom-center",
       element: element,
     });
 
     this.addOverlay(tooltip);
     tooltip.setPosition(coordinate);
-    element.parentNode.style.position = 'fixed'; // because the overlay has absolute positioning and otherwise the left side panel could influence the overlay elements
+    element.parentNode.style.position = "fixed"; // because the overlay has absolute positioning and otherwise the left side panel could influence the overlay elements
   }
 }

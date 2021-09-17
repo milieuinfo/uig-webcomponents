@@ -1,6 +1,6 @@
-import {VlMapAction} from './vl-mapactions-mapaction';
-import Select from 'ol/interaction/Select';
-import Translate from 'ol/interaction/Translate';
+import { VlMapAction } from "./mapaction";
+import Select from "ol/interaction/Select";
+import Translate from "ol/interaction/Translate";
 
 export class VlTranslateAction extends VlMapAction {
   constructor(layer, onTranslate) {
@@ -18,10 +18,12 @@ export class VlTranslateAction extends VlMapAction {
     this.selectInteraction = selectInteraction;
     this.translateInteraction = translateInteraction;
 
-    this.translateInteraction.on('translateend', (event) => {
+    this.translateInteraction.on("translateend", (event) => {
       event.features.forEach((feature) => {
         onTranslate(feature, (feature) => {
-          feature.getGeometry().setCoordinates(feature.get('entity').geometry.coordinates);
+          feature
+            .getGeometry()
+            .setCoordinates(feature.get("entity").geometry.coordinates);
         });
         this.selectInteraction.getFeatures().clear();
       });
