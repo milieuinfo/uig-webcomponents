@@ -1,11 +1,23 @@
 import { html } from "lit-html";
 import "../../../grid";
 import styles from "../../styles.scss";
-import { stylesheet } from "../../../../../.storybook/utils.js";
+import { stylesheet, docsIntro } from "../../../../../.storybook/utils.js";
 
 export default {
   title: "native-elements/vl-grid/vl-layout",
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          stylesheet: true,
+          root: "grid",
+          intro:
+            "Het layout element centreert uw inhoud in de viewport. Het layout element heeft een breedte van 1200px. Je kan het layout element vergelijken met het Container element in Bootstrap.",
+        }),
+      },
+    },
+  },
   args: {
     content:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores assumenda dignissimos doloremque eos est eveniet fugiat illo illum impedit, libero nam, omnis optio praesentium qui quod ratione vel voluptas voluptatibus?",

@@ -3,7 +3,7 @@ import { args, argTypes, iconArgs, iconArgTypes } from "./config";
 import "../link";
 import "../icon";
 import styles from "./styles.scss";
-import { stylesheet } from "../../../.storybook/utils.js";
+import { stylesheet, docsIntro } from "../../../.storybook/utils.js";
 
 const defaultArgs = {
   block: false,
@@ -13,6 +13,18 @@ const defaultArgs = {
 export default {
   title: "native-elements/vl-link",
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          stylesheet: true,
+          root: "link",
+          intro:
+            "Gebruik de vl-link om de gebruiker door te verwijzen naar een andere URL, bijvoorbeeld een nieuwe pagina of een document.",
+        }),
+      },
+    },
+  },
   args,
   argTypes,
 };

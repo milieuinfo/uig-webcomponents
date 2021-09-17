@@ -1,11 +1,23 @@
 import { html } from "lit-html";
 import "../properties";
 import styles from "./styles.scss";
-import { stylesheet } from "../../../.storybook/utils.js";
+import { stylesheet, docsIntro } from "../../../.storybook/utils.js";
 
 export default {
   title: "native-elements/vl-properties",
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          stylesheet: true,
+          root: "properties",
+          intro:
+            "De properties webcomponent vormt de container van een lijst van kenmerken van een onderwerp. Deze component wordt meestal gebruikt om informatie te tonen dat ingevuld werd in een formulier.",
+        }),
+      },
+    },
+  },
   args: { fullWidth: false },
   argTypes: {
     fullWidth: {

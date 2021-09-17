@@ -1,13 +1,23 @@
 import { html } from "lit-html";
 import "../introduction";
 import styles from "./styles.scss";
-import { stylesheet } from "../../../.storybook/utils.js";
+import { stylesheet, docsIntro } from "../../../.storybook/utils.js";
 
 export default {
   title: "native-elements/vl-introduction",
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
   parameters: {
     controls: { hideNoControlsWarning: true },
+    docs: {
+      description: {
+        component: docsIntro({
+          stylesheet: true,
+          root: "introduction",
+          intro:
+            "Gebruik deze component als introductie van de website. Deze component krijgt een opvallende layout zodat de gebruiker zijn aandacht getrokken wordt.",
+        }),
+      },
+    },
   },
   args: {
     content:

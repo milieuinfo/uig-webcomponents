@@ -17,3 +17,12 @@ export const removeStorybooksDefaultStyling = () => {
   document.querySelector(".sbdocs-content").style.maxWidth = "initial";
   document.querySelector(".sbdocs-wrapper").style.padding = "0";
 };
+
+export const docsIntro = ({ stylesheet, root, intro }) => {
+  const componentImport = `${"`"}import "uig-webcomponents/lib/components/${root}"${"`"}`;
+  const styleImport = `<br/>${"`"}import "uig-webcomponents/lib/components/${root}/styles.css"${"`"}`;
+  const brIntro = `<br/><br/>${intro}`;
+  return stylesheet
+    ? `${componentImport}${styleImport}${brIntro}`
+    : `${componentImport}${brIntro}`;
+};

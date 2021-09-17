@@ -3,11 +3,22 @@ import { args, argTypes, iconArgs, iconArgTypes } from "../../config";
 import "../../../link";
 import "../../../icon";
 import styles from "../../styles.scss";
-import { stylesheet } from "../../../../../.storybook/utils.js";
+import { stylesheet, docsIntro } from "../../../../../.storybook/utils.js";
 
 export default {
   title: "native-elements/vl-link/vl-button-link",
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          stylesheet: true,
+          root: "link",
+          intro: "Een button gestyled als link.",
+        }),
+      },
+    },
+  },
   args,
   argTypes,
 };

@@ -1,11 +1,23 @@
 import { html } from "lit-html";
 import "../icon";
 import styles from "./styles.scss";
-import { stylesheet } from "../../../.storybook/utils.js";
+import { stylesheet, docsIntro } from "../../../.storybook/utils.js";
 
 export default {
   title: "native-elements/vl-icon",
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          stylesheet: true,
+          root: "icon",
+          intro:
+            "Gebruik een vl-icon om een extra visueel element toe te voegen.",
+        }),
+      },
+    },
+  },
   args: {
     icon: "calendar",
     light: false,

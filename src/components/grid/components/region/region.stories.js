@@ -1,11 +1,23 @@
 import { html } from "lit-html";
 import "../../../grid";
 import styles from "../../../grid/styles.scss";
-import { stylesheet } from "../../../../../.storybook/utils.js";
+import { stylesheet, docsIntro } from "../../../../../.storybook/utils.js";
 
 export default {
   title: "native-elements/vl-grid/vl-region",
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          stylesheet: true,
+          root: "grid",
+          intro:
+            'Het region element wordt gebruikt om secties te definiëren op je website. Het zorgt ervoor dat er consistente spacing is tussen verschillende secties beschikbaar op een pagina. Als een voorbeeld: een pagina die de modules "intro", "portfolio", "nieuws" en "contact" bevat, zal in vier verschillende regions worden gewrapped.',
+        }),
+      },
+    },
+  },
   args: {
     alt: false,
     noSpace: false,

@@ -3,13 +3,23 @@ import "../side-navigation";
 import "../titles";
 import "../grid";
 import styles from "./styles.scss";
-import { stylesheet } from "../../../.storybook/utils.js";
+import { stylesheet, docsIntro } from "../../../.storybook/utils.js";
 
 export default {
   title: "native-elements/vl-side-navigation",
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
   parameters: {
     controls: { hideNoControlsWarning: true },
+    docs: {
+      description: {
+        component: docsIntro({
+          stylesheet: true,
+          root: "side-navigation",
+          intro:
+            "Een compact navigatie element dat je aan een pagina kan toevoegen. Het vat de inhoud van lange pagina's samen, leidt de gebruiker door de pagina inhoud en kan ook naar externe pagina's verwijzen.",
+        }),
+      },
+    },
   },
 };
 

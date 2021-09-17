@@ -1,13 +1,23 @@
 import { html } from "lit-html";
 import "../image";
 import styles from "./styles.scss";
-import { stylesheet } from "../../../.storybook/utils.js";
+import { stylesheet, docsIntro } from "../../../.storybook/utils.js";
 
 export default {
   title: "native-elements/vl-image",
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
   parameters: {
     controls: { hideNoControlsWarning: true },
+    docs: {
+      description: {
+        component: docsIntro({
+          stylesheet: true,
+          root: "image",
+          intro:
+            "Gebruik de image component om illustratiens, graphics, tekeningen, foto's, etc. te tonen op je site.",
+        }),
+      },
+    },
   },
 };
 

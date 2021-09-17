@@ -1,11 +1,23 @@
 import { html } from "lit-html";
 import "../grid";
 import styles from "./styles.scss";
-import { stylesheet } from "../../../.storybook/utils.js";
+import { stylesheet, docsIntro } from "../../../.storybook/utils.js";
 
 export default {
   title: "native-elements/vl-grid",
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          stylesheet: true,
+          root: "grid",
+          intro:
+            "De grid dient om de lay-out van jouw pagina in orde te brengen. Je kan vl-grid vergelijken met de Row element in Bootstrap.",
+        }),
+      },
+    },
+  },
   args: {
     background: "#f7f9fc",
     stacked: true,

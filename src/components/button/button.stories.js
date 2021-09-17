@@ -3,20 +3,31 @@ import "../button";
 import "../text";
 import { args, argTypes } from "./config";
 import styles from "./styles.scss";
-import { stylesheet } from "../../../.storybook/utils.js";
+import { stylesheet, docsIntro } from "../../../.storybook/utils.js";
 
 export default {
   title: "native-elements/vl-button",
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
   args,
   argTypes,
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          stylesheet: true,
+          root: "button",
+          intro:
+            "Gebruik de vl-button om een CTA toe te voegen. Het type call-to-action wordt bepaald door het label of de pictogram. ",
+        }),
+      },
+    },
+  },
 };
 
 const buttonWrap = (props, children) =>
   html`
     <button
       is="vl-button"
-      type="button"
       ?disabled=${props.disabled}
       ?data-vl-error=${props.error}
       ?data-vl-block=${props.block}
