@@ -10,7 +10,7 @@ export default {
     docs: {
       description: {
         component: docsIntro({
-          stylesheet: true,
+          stylesheets: ["grid"],
           root: "grid",
           intro:
             'Het region element wordt gebruikt om secties te definiëren op je website. Het zorgt ervoor dat er consistente spacing is tussen verschillende secties beschikbaar op een pagina. Als een voorbeeld: een pagina die de modules "intro", "portfolio", "nieuws" en "contact" bevat, zal in vier verschillende regions worden gewrapped.',

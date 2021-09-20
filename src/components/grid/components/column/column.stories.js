@@ -10,7 +10,7 @@ export default {
     docs: {
       description: {
         component: docsIntro({
-          stylesheet: true,
+          stylesheets: ["grid"],
           root: "grid",
           intro: "De parent van een VlColumn is altijd een VlGrid.",
         }),

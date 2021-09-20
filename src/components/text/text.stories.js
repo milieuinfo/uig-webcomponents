@@ -1,8 +1,19 @@
 import { html } from "lit-html";
 import "../text";
+import { docsIntro } from "../../../.storybook/utils.js";
 
 export default {
   title: "native-elements/vl-text",
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          root: "text",
+          intro: "",
+        }),
+      },
+    },
+  },
   args: { hidden: false, content: "Text" },
   argTypes: {
     hidden: {

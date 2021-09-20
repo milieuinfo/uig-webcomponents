@@ -12,7 +12,7 @@ export default {
     docs: {
       description: {
         component: docsIntro({
-          stylesheet: true,
+          stylesheets: ["link"],
           root: "link",
           intro: "Een button gestyled als link.",
         }),

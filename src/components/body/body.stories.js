@@ -9,7 +9,7 @@ export default {
     docs: {
       description: {
         component: docsIntro({
-          stylesheet: true,
+          stylesheets: ["body"],
           root: "body",
           intro:
             "Door gebruik te maken van het native vl-body element incl. stijl zal er een minimum aan huisstijl geladen worden.",

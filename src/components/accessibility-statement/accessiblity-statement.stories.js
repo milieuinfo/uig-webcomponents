@@ -1,9 +1,20 @@
 import { html } from "lit-html";
 import "../accessibility-statement";
 import { COMPLIANCE_STATUS, EVALUATION_STATUS } from "./enums";
+import { docsIntro } from "../../../.storybook/utils.js";
 
 export default {
   title: "custom-elements/vl-accessibility-statement",
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          root: "accessibility-statement",
+          intro: "Toegankelijkheidspagina.",
+        }),
+      },
+    },
+  },
   args: {
     application: "deze applicatie",
     version: "1.0.0",

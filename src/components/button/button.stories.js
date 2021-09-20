@@ -14,10 +14,10 @@ export default {
     docs: {
       description: {
         component: docsIntro({
-          stylesheet: true,
+          stylesheets: ["button"],
           root: "button",
           intro:
-            "Gebruik de vl-button om een CTA toe te voegen. Het type call-to-action wordt bepaald door het label of de pictogram. ",
+            "Gebruik de vl-button om een CTA toe te voegen. Het type call-to-action wordt bepaald door het label of de pictogram.",
         }),
       },
     },

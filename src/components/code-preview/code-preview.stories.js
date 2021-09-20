@@ -1,10 +1,19 @@
 import { html } from "lit-html";
 import "../code-preview";
+import { docsIntro } from "../../../.storybook/utils.js";
 
 export default {
   title: "custom-elements/vl-code-preview",
   parameters: {
     controls: { hideNoControlsWarning: true },
+    docs: {
+      description: {
+        component: docsIntro({
+          root: "code-preview",
+          intro: "De code preview visualiseert de broncode.",
+        }),
+      },
+    },
   },
 };
 

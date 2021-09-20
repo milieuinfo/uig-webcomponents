@@ -11,7 +11,7 @@ export default {
     docs: {
       description: {
         component: docsIntro({
-          stylesheet: true,
+          stylesheets: ["image"],
           root: "image",
           intro:
             "Gebruik de image component om illustratiens, graphics, tekeningen, foto's, etc. te tonen op je site.",

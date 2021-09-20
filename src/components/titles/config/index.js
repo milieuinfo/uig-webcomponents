@@ -1,3 +1,5 @@
+import { docsIntro } from "../../../../.storybook/utils.js";
+
 export const args = {
   border: false,
   sans: false,
@@ -45,5 +47,18 @@ export const argTypes = {
   },
   content: {
     name: "content (for demo purposes)",
+  },
+};
+
+export const parameters = {
+  docs: {
+    description: {
+      component: docsIntro({
+        stylesheet: true,
+        root: "titles",
+        intro:
+          "Gebruik titels en subtitels als leidraad voor de gebruiker om door de content te gaan.",
+      }),
+    },
   },
 };

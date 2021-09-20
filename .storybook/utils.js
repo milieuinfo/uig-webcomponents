@@ -18,11 +18,16 @@ export const removeStorybooksDefaultStyling = () => {
   document.querySelector(".sbdocs-wrapper").style.padding = "0";
 };
 
-export const docsIntro = ({ stylesheet, root, intro }) => {
+export const docsIntro = ({ stylesheets, root, intro }) => {
   const componentImport = `${"`"}import "uig-webcomponents/lib/components/${root}"${"`"}`;
-  const styleImport = `<br/>${"`"}import "uig-webcomponents/lib/components/${root}/styles.css"${"`"}`;
+  const styleImports =
+    stylesheets &&
+    stylesheets.map(
+      (stylesheet) =>
+        `<br/>${"`"}import "uig-webcomponents/lib/components/${stylesheet}/styles.css"${"`"}`
+    );
   const brIntro = `<br/><br/>${intro}`;
-  return stylesheet
-    ? `${componentImport}${styleImport}${brIntro}`
+  return stylesheets
+    ? `${componentImport}${styleImports}${brIntro}`
     : `${componentImport}${brIntro}`;
 };

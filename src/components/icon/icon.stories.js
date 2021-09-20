@@ -10,7 +10,7 @@ export default {
     docs: {
       description: {
         component: docsIntro({
-          stylesheet: true,
+          stylesheets: ["icon"],
           root: "icon",
           intro:
             "Gebruik een vl-icon om een extra visueel element toe te voegen.",

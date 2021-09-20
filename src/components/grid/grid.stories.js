@@ -10,7 +10,7 @@ export default {
     docs: {
       description: {
         component: docsIntro({
-          stylesheet: true,
+          stylesheets: ["grid"],
           root: "grid",
           intro:
             "De grid dient om de lay-out van jouw pagina in orde te brengen. Je kan vl-grid vergelijken met de Row element in Bootstrap.",
