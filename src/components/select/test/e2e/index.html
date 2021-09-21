@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>vl-select voorbeeld</title>
+    <script type="module" src="../../../../../build/index.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../../../lib/components/select/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../../../lib/components/body/styles.css"
+    />
+  </head>
+
+  <body is="vl-body">
+    <select id="select-default" is="vl-select">
+      <option value="Belgium">België</option>
+      <option value="Germany">Duitsland</option>
+      <option value="France">Frankrijk</option>
+    </select>
+
+    <select is="vl-select">
+      <option value="België">België</option>
+      <option selected value="Duitsland">Duitsland</option>
+      <option value="Frankrijk">Frankrijk</option>
+    </select>
+
+    <select is="vl-select" data-vl-block>
+      <option value="België">België</option>
+      <option value="Duitsland">Duitsland</option>
+      <option value="Frankrijk">Frankrijk</option>
+    </select>
+
+    <select id="select-error" is="vl-select" data-vl-error>
+      <option value="België">België</option>
+      <option value="Duitsland">Duitsland</option>
+      <option value="Frankrijk">Frankrijk</option>
+    </select>
+
+    <select id="select-success" is="vl-select" data-vl-success>
+      <option value="België">België</option>
+      <option value="Duitsland">Duitsland</option>
+      <option value="Frankrijk">Frankrijk</option>
+    </select>
+
+    <select is="vl-select" data-vl-select id="select-dressed">
+      <option value="België">België</option>
+      <option value="Duitsland">Duitsland</option>
+      <option value="Frankrijk">Frankrijk</option>
+    </select>
+
+    <select id="select-dressed-toggle-success" is="vl-select" data-vl-select>
+      <option value="België">België</option>
+      <option value="Duitsland">Duitsland</option>
+      <option value="Frankrijk">Frankrijk</option>
+    </select>
+
+    <button
+      id="toggle-success-button"
+      is="vl-button"
+      onclick="toggleSuccess()"
+      type="button"
+      slot="actions"
+    >
+      Toggle success
+    </button>
+
+    <script type="text/javascript">
+      toggleSuccess = () => {
+        const element = document.getElementById(
+          "select-dressed-toggle-success"
+        );
+        if (!element.hasAttribute("success")) {
+          element.setAttribute("success", "");
+        } else {
+          element.removeAttribute("success");
+        }
+      };
+    </script>
+
+    <select
+      id="select-searchable"
+      is="vl-select"
+      tabindex="0"
+      data-vl-select
+      data-vl-select-search-empty-text="Geen resultaten gevonden"
+    >
+      <optgroup label="Landen">
+        <option value="België">België</option>
+        <option value="Duitsland">Duitsland</option>
+        <option value="Frankrijk">Frankrijk</option>
+      </optgroup>
+      <optgroup label="Steden">
+        <option value="Brugge">Brugge</option>
+        <option value="Brussel">Brussel</option>
+        <option value="Gent">Gent</option>
+      </optgroup>
+    </select>
+
+    <div>Je hebt gezocht naar: <span id="search-value">/</span></div>
+
+    <script type="text/javascript">
+      const element = document.getElementById("select-searchable");
+      element.addEventListener("changeQuery", ({ detail: { value } }) => {
+        const searchValueElement = document.getElementById("search-value");
+        searchValueElement.textContent = value;
+      });
+    </script>
+
+    <select
+      is="vl-select"
+      id="select-not-searchable"
+      tabindex="0"
+      data-vl-select
+      data-vl-select-search="false"
+    >
+      <optgroup label="Landen">
+        <option value="België">België</option>
+        <option value="Duitsland">Duitsland</option>
+        <option value="Frankrijk">Frankrijk</option>
+      </optgroup>
+      <optgroup label="Steden">
+        <option value="Brugge">Brugge</option>
+        <option value="Brussel">Brussel</option>
+        <option value="Gent">Gent</option>
+      </optgroup>
+    </select>
+
+    <select
+      id="select-disabled"
+      is="vl-select"
+      tabindex="0"
+      data-vl-select
+      data-vl-select-search="false"
+      disabled
+    >
+      <optgroup label="Landen">
+        <option value="België">België</option>
+        <option value="Duitsland">Duitsland</option>
+        <option value="Frankrijk">Frankrijk</option>
+      </optgroup>
+      <optgroup label="Steden">
+        <option value="Brugge">Brugge</option>
+        <option value="Brussel">Brussel</option>
+        <option value="Gent">Gent</option>
+      </optgroup>
+    </select>
+
+    <select
+      id="select-deletable"
+      is="vl-select"
+      tabindex="0"
+      data-vl-select-deletable
+      data-vl-select
+      data-vl-select-search="false"
+    >
+      <optgroup label="Landen">
+        <option value="België">België</option>
+        <option value="Duitsland">Duitsland</option>
+        <option value="Frankrijk">Frankrijk</option>
+      </optgroup>
+      <optgroup label="Steden">
+        <option value="Brugge">Brugge</option>
+        <option value="Brussel">Brussel</option>
+        <option value="Gent">Gent</option>
+      </optgroup>
+    </select>
+
+    <select
+      id="select-limited-search-results"
+      is="vl-select"
+      data-vl-select
+      data-vl-select-search-result-limit="5"
+    >
+      <option placeholder value="">Kies een straat</option>
+      <option value="Aakstraat">Aakstraat</option>
+      <option value="Aalmoezenierstraat">Aalmoezenierstraat</option>
+      <option value="Aarschotstraat">Aarschotstraat</option>
+      <option value="Aartselaarstraat">Aartselaarstraat</option>
+      <option value="Abdijstraat">Abdijstraat</option>
+      <option value="Abtenstraat">Abtenstraat</option>
+      <option value="Achturendagstraat">Achturendagstraat</option>
+      <option value="Adelaarstraat">Adelaarstraat</option>
+      <option value="Admiraal de Boisotstraat">Admiraal de Boisotstraat</option>
+      <option value="Adolf Greinerstraat">Adolf Greinerstraat</option>
+      <option value="Adolf Menystraat">Adolf Menystraat</option>
+      <option value="Adolf Meurissestraat">Adolf Meurissestraat</option>
+      <option value="Adriaan Brouwerstraat">Adriaan Brouwerstraat</option>
+      <option value="Aimé De Graevestraat">Aimé De Graevestraat</option>
+    </select>
+
+    <select
+      id="select-unlimited-search-results"
+      is="vl-select"
+      data-vl-select
+      data-vl-select-search-no-result-limit
+    >
+      <option placeholder value="">Kies een straat</option>
+      <option value="Aakstraat">Aakstraat</option>
+      <option value="Aalmoezenierstraat">Aalmoezenierstraat</option>
+      <option value="Aarschotstraat">Aarschotstraat</option>
+      <option value="Aartselaarstraat">Aartselaarstraat</option>
+      <option value="Abdijstraat">Abdijstraat</option>
+      <option value="Abtenstraat">Abtenstraat</option>
+      <option value="Achturendagstraat">Achturendagstraat</option>
+      <option value="Adelaarstraat">Adelaarstraat</option>
+      <option value="Admiraal de Boisotstraat">Admiraal de Boisotstraat</option>
+      <option value="Adolf Greinerstraat">Adolf Greinerstraat</option>
+      <option value="Adolf Menystraat">Adolf Menystraat</option>
+      <option value="Adolf Meurissestraat">Adolf Meurissestraat</option>
+      <option value="Adriaan Brouwerstraat">Adriaan Brouwerstraat</option>
+      <option value="Aimé De Graevestraat">Aimé De Graevestraat</option>
+    </select>
+
+    <select id="select-dynamic" is="vl-select">
+      <option placeholder>Selecteer item</option>
+    </select>
+
+    <button
+      id="activate-data-button"
+      is="vl-button"
+      onclick="laadDynamisch()"
+      type="button"
+      slot="actions"
+    >
+      Activeer dynamische data
+    </button>
+
+    <script type="text/javascript">
+      laadDynamisch = () => {
+        document.getElementById("select-dynamic").dress({
+          callbackFn: (select) => {
+            return [
+              { value: "one", label: "Label one", disabled: true },
+              { value: "two", label: "Label two", selected: true },
+              { value: "three", label: "Label three" },
+            ];
+          },
+        });
+      };
+    </script>
+
+    <select id="select-dynamic-grouping" is="vl-select">
+      <option placeholder>Selecteer item</option>
+    </select>
+
+    <button
+      id="activate-data-grouping-button"
+      is="vl-button"
+      onclick="laadDynamischGrouping()"
+      type="button"
+      slot="actions"
+    >
+      Activeer dynamische data met grouping
+    </button>
+
+    <script type="text/javascript">
+      laadDynamischGrouping = () => {
+        document.getElementById("select-dynamic-grouping").dress({
+          callbackFn: (select) => {
+            return [
+              {
+                id: 1,
+                label: "Group 1",
+                choices: [
+                  { value: "one", label: "Label one" },
+                  { value: "two", label: "Label two" },
+                ],
+              },
+              {
+                id: 2,
+                label: "Group 2",
+                choices: [
+                  { value: "three", label: "Label three" },
+                  { value: "four", label: "Label four" },
+                ],
+              },
+            ];
+          },
+        });
+      };
+    </script>
+
+    <select id="select-undressed-grouping" is="vl-select">
+      <optgroup label="Group 1">
+        <option value="one">Label one</option>
+        <option value="two">Label two</option>
+      </optgroup>
+      <optgroup label="Group 2">
+        <option value="three">Label three</option>
+        <option value="four">Label four</option>
+      </optgroup>
+    </select>
+
+    <select id="select-dress-undress-methode" is="vl-select">
+      <option placeholder value="">Kies een land</option>
+      <option value="België">België</option>
+      <option value="Duitsland">Duitsland</option>
+      <option value="Frankrijk">Frankrijk</option>
+      <option value="Nederland">Nederland</option>
+      <option value="Italië">Italië</option>
+    </select>
+
+    <div is="vl-action-group" slot="actions">
+      <button
+        id="dress-button"
+        is="vl-button"
+        onclick="document.getElementById('select-dress-undress-methode').dress()"
+        type="button"
+      >
+        Dress
+      </button>
+      <button
+        id="undress-button"
+        is="vl-button"
+        onclick="document.getElementById('select-dress-undress-methode').undress()"
+        type="button"
+      >
+        Undress
+      </button>
+    </div>
+
+    <select id="select-enable-disable-methode" is="vl-select" data-vl-select>
+      <option placeholder value="">Kies een land</option>
+      <option value="België">België</option>
+      <option value="Duitsland">Duitsland</option>
+      <option value="Frankrijk">Frankrijk</option>
+      <option value="Nederland">Nederland</option>
+      <option value="Italië">Italië</option>
+    </select>
+
+    <div is="vl-action-group" slot="actions">
+      <button
+        id="enable-button"
+        is="vl-button"
+        onclick="document.getElementById('select-enable-disable-methode').enable()"
+        type="button"
+      >
+        Enable
+      </button>
+      <button
+        id="disable-button"
+        is="vl-button"
+        onclick="document.getElementById('select-enable-disable-methode').disable()"
+        type="button"
+      >
+        Disable
+      </button>
+    </div>
+
+    <select id="select-set-get-methode" is="vl-select" data-vl-select>
+      <option placeholder value="">Kies een land</option>
+      <option value="België">België</option>
+      <option value="Duitsland">Duitsland</option>
+      <option value="Frankrijk">Frankrijk</option>
+      <option value="Nederland">Nederland</option>
+      <option value="Italië">Italië</option>
+    </select>
+
+    <div is="vl-action-group" slot="actions">
+      <button
+        id="select-button"
+        is="vl-button"
+        onclick="document.getElementById('select-set-get-methode').value = 'Duitsland'"
+        type="button"
+      >
+        Kies Duitsland
+      </button>
+      <button
+        id="remove-button"
+        is="vl-button"
+        onclick="document.getElementById('select-set-get-methode').removeActive()"
+        type="button"
+      >
+        Verwijder selectie
+      </button>
+    </div>
+
+    <button is="vl-button" data-vl-modal-open="modal-4">Open</button>
+    <vl-modal id="modal-4" data-vl-title="Modal 4" closable not-cancellable>
+      <span slot="content">
+        <form>
+          <div is="vl-form-grid" is-stacked>
+            <div is="vl-form-column" size="12">
+              <select is="vl-select" data-vl-select>
+                <option placeholder value="">Kies een land</option>
+                <option value="België">België</option>
+                <option value="Duitsland">Duitsland</option>
+                <option value="Frankrijk">Frankrijk</option>
+                <option value="Nederland">Nederland</option>
+                <option value="Italië">Italië</option>
+              </select>
+            </div>
+            <div is="vl-form-column" size="12">
+              <vl-upload
+                url="http://example.com"
+                input-name="files"
+                autoprocess="true"
+              ></vl-upload>
+            </div>
+          </div>
+        </form>
+      </span>
+      <button is="vl-button" slot="button">Andere actie</button>
+    </vl-modal>
+
+    <select is="vl-select" data-vl-select id="select-dressed-focus">
+      <option value="België">België</option>
+      <option value="Duitsland">Duitsland</option>
+      <option value="Frankrijk">Frankrijk</option>
+    </select>
+    <button
+      is="vl-button"
+      onclick="document.getElementById('select-dressed-focus').focus();"
+      slot="actions"
+    >
+      Focus
+    </button>
+  </body>
+</html>

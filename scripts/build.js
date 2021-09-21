@@ -7,6 +7,7 @@ const buildConfig = {
   nativeComponents: [
     "body",
     "button",
+    "select",
     "grid",
     "icon",
     "introduction",

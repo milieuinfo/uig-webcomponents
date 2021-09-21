@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>vl-map-features-layer voorbeeld</title>
+    <script type="module" src="../../../../../../build/index.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../../../../lib/components/body/styles.css"
+    />
+  </head>
+
+  <body is="vl-body">
+    <div style="width: 805px;">
+      <vl-map id="map-with-standard-layer">
+        <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+        <vl-map-baselayer-grb></vl-map-baselayer-grb>
+        <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
+        <vl-map-features-layer data-vl-name="layer" data-vl-features='
+        {
+        "type": "FeatureCollection",
+        "features": [{
+        "type": "Feature",
+        "geometry": {
+        "type": "Point",
+        "coordinates": [147055.0,197908.0]
+        }
+        }, {
+        "type": "Feature",
+        "geometry": {
+        "type": "Point",
+        "coordinates": [149055.0,199908.0]
+        }
+        }, {
+        "type": "Feature",
+        "geometry": {
+        "type": "Point",
+        "coordinates": [151055.0,201908.0]
+        }
+        }]
+          }'>
+          <vl-map-layer-circle-style></vl-map-layer-circle-style>
+        </vl-map-features-layer>
+      </vl-map>
+
+      <vl-map id="map-with-clustered-layer">
+        <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+        <vl-map-baselayer-grb></vl-map-baselayer-grb>
+        <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
+        <vl-map-features-layer data-vl-name="layer" data-vl-features='
+        {
+        "type": "FeatureCollection",
+        "features": [{
+        "type": "Feature",
+        "geometry": {
+        "type": "Point",
+        "coordinates": [147055.0,197908.0]
+        }
+        }, {
+        "type": "Feature",
+        "geometry": {
+        "type": "Point",
+        "coordinates": [149055.0,199908.0]
+        }
+        }, {
+        "type": "Feature",
+        "geometry": {
+        "type": "Point",
+        "coordinates": [151055.0,201908.0]
+        }
+        }]
+          }' data-vl-cluster data-vl-cluster-distance="100">
+          <vl-map-layer-circle-style></vl-map-layer-circle-style>
+        </vl-map-features-layer>
+      </vl-map>
+
+      <vl-map id="map-with-auto-extent-layer">
+        <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+        <vl-map-baselayer-grb></vl-map-baselayer-grb>
+        <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
+        <vl-map-features-layer data-vl-name="layer" data-vl-features='
+        {
+        "type": "FeatureCollection",
+        "features": [{
+        "type": "Feature",
+        "geometry": {
+        "type": "Point",
+        "coordinates": [147055.0,197908.0]
+        }
+        }, {
+        "type": "Feature",
+        "geometry": {
+        "type": "Point",
+        "coordinates": [149055.0,199908.0]
+        }
+        }, {
+        "type": "Feature",
+        "geometry": {
+        "type": "Point",
+        "coordinates": [151055.0,201908.0]
+        }
+        }]
+          }' data-vl-auto-extent data-vl-auto-extent-max-zoom="3">
+          <vl-map-layer-circle-style></vl-map-layer-circle-style>
+        </vl-map-features-layer>
+      </vl-map>
+    </div>
+  </body>
+
+</html>
