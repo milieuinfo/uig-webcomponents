@@ -1,78 +1,81 @@
 import { html } from "lit-html";
-import "../../index.js";
-import "../../mapactions";
-import styles from "../map/styles.scss";
+import "../../../map";
 
 export default {
   title: "custom-elements/vl-map/vl-map-layer-switcher",
-  args: {},
-  argTypes: {},
+  parameters: {
+    controls: { hideNoControlsWarning: true },
+  },
 };
 
-const stylesheet = html`<style>
-  ${styles}
-</style>`;
+export const Default = () => {
+  const features1 = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        geometry: { type: "Point", coordinates: [149055.0, 199908.0] },
+      },
+    ],
+  };
+  const features2 = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        geometry: { type: "Point", coordinates: [154055.0, 199908.0] },
+      },
+    ],
+  };
+  const features3 = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        geometry: { type: "Point", coordinates: [159055.0, 199908.0] },
+      },
+    ],
+  };
 
-const mapWrapper = (props, children) => {
-  return html`
-    ${stylesheet}
-    <div is="vl-grid">${children}</div>
-  `;
-};
-
-export const Default = (props) => {
-  const features1 =
-    '{"type": "FeatureCollection" , "features" : [{ "type" : "Feature" , "geometry" : { "type" : "Point" , "coordinates" : [149055.0,199908.0] } }] }';
-  const features2 =
-    '{"type": "FeatureCollection" , "features" : [{ "type" : "Feature" , "geometry" : { "type" : "Point" , "coordinates" : [154055.0,199908.0] } }] }';
-  const features3 =
-    '{"type": "FeatureCollection" , "features" : [{ "type" : "Feature" , "geometry" : { "type" : "Point" , "coordinates" : [159055.0,199908.0] } }] }';
   return html`
     <vl-map id="map">
       <vl-map-side-sheet>
         <vl-map-layer-switcher></vl-map-layer-switcher>
       </vl-map-side-sheet>
       <vl-map-overview-map></vl-map-overview-map>
-      <vl-map-baselayer-grb-gray
-        id="baselayer-grb-gray"
-      ></vl-map-baselayer-grb-gray>
-      <vl-map-baselayer-grb id="baselayer-grb"></vl-map-baselayer-grb>
+      <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+      <vl-map-baselayer-grb></vl-map-baselayer-grb>
       <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
-
       <vl-map-features-layer
         data-vl-name="Kaartlaag 1"
-        data-vl-features=${features1}
+        data-vl-features=${JSON.stringify(features1)}
       >
         <vl-map-layer-circle-style
           data-vl-color="black"
         ></vl-map-layer-circle-style>
       </vl-map-features-layer>
-
       <vl-map-features-layer
         data-vl-name="Kaartlaag 2"
-        data-vl-features=${features2}
+        data-vl-features=${JSON.stringify(features2)}
       >
         <vl-map-layer-circle-style
           data-vl-color="yellow"
         ></vl-map-layer-circle-style>
       </vl-map-features-layer>
-
       <vl-map-features-layer
         data-vl-name="Kaartlaag 3"
-        data-vl-features=${features3}
+        data-vl-features=${JSON.stringify(features3)}
       >
         <vl-map-layer-circle-style
           data-vl-color="red"
         ></vl-map-layer-circle-style>
       </vl-map-features-layer>
-
       <vl-map-wmts-layer
         data-vl-url="https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts"
         data-vl-layer="grb_sel"
         data-vl-name="WMTS kaartlaag"
       >
       </vl-map-wmts-layer>
-
       <vl-map-tiled-wms-layer
         data-vl-name="WMS kaartlaag"
         data-vl-version="1.3.0"
@@ -81,7 +84,6 @@ export const Default = (props) => {
         data-vl-layers="GEM_GRENS"
       >
       </vl-map-tiled-wms-layer>
-
       <vl-map-wfs-layer
         data-vl-name="WFS kaartlaag"
         data-vl-url="https://geoserver.vmm.be/geoserver/vmm/wfs"
@@ -93,13 +95,34 @@ export const Default = (props) => {
   `;
 };
 
-export const WithSpecialisedOptions = (props) => {
-  const features1 =
-    '{"type": "FeatureCollection" , "features" : [{ "type" : "Feature" , "geometry" : { "type" : "Point" , "coordinates" : [149055.0,199908.0] } }] }';
-  const features2 =
-    '{"type": "FeatureCollection" , "features" : [{ "type" : "Feature" , "geometry" : { "type" : "Point" , "coordinates" : [154055.0,199908.0] } }] }';
-  const features3 =
-    '{"type": "FeatureCollection" , "features" : [{ "type" : "Feature" , "geometry" : { "type" : "Point" , "coordinates" : [159055.0,199908.0] } }] }';
+export const WithSpecialisedOptions = () => {
+  const features1 = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        geometry: { type: "Point", coordinates: [149055.0, 199908.0] },
+      },
+    ],
+  };
+  const features2 = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        geometry: { type: "Point", coordinates: [154055.0, 199908.0] },
+      },
+    ],
+  };
+  const features3 = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        geometry: { type: "Point", coordinates: [159055.0, 199908.0] },
+      },
+    ],
+  };
   return html`
     <vl-map id="map">
       <vl-map-side-sheet>
@@ -118,7 +141,7 @@ export const WithSpecialisedOptions = (props) => {
       <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
       <vl-map-features-layer
         data-vl-name="layer-1"
-        data-vl-features=${features1}
+        data-vl-features=${JSON.stringify(features1)}
       >
         <vl-map-layer-circle-style
           data-vl-color="black"
@@ -126,7 +149,7 @@ export const WithSpecialisedOptions = (props) => {
       </vl-map-features-layer>
       <vl-map-features-layer
         data-vl-name="layer-2"
-        data-vl-features=${features2}
+        data-vl-features=${JSON.stringify(features2)}
       >
         <vl-map-layer-circle-style
           data-vl-color="yellow"
@@ -134,7 +157,7 @@ export const WithSpecialisedOptions = (props) => {
       </vl-map-features-layer>
       <vl-map-features-layer
         data-vl-name="layer-3"
-        data-vl-features=${features3}
+        data-vl-features=${JSON.stringify(features3)}
       >
         <vl-map-layer-circle-style
           data-vl-color="red"
@@ -144,11 +167,25 @@ export const WithSpecialisedOptions = (props) => {
   `;
 };
 
-export const WithOptionForResolution = (props) => {
-  const features1 =
-    '{"type": "FeatureCollection" , "features" : [{ "type" : "Feature" , "geometry" : { "type" : "Point" , "coordinates" : [149055.0,199908.0] } }] }';
-  const features2 =
-    '{"type": "FeatureCollection" , "features" : [{ "type" : "Feature" , "geometry" : { "type" : "Point" , "coordinates" : [154055.0,199908.0] } }] }';
+export const WithOptionForResolution = () => {
+  const features1 = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        geometry: { type: "Point", coordinates: [149055.0, 199908.0] },
+      },
+    ],
+  };
+  const features2 = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        geometry: { type: "Point", coordinates: [154055.0, 199908.0] },
+      },
+    ],
+  };
 
   return html`
     <vl-map id="map-with-resolution-layer-switcher">
@@ -170,14 +207,17 @@ export const WithOptionForResolution = (props) => {
       ></vl-map-baselayer-grb-gray>
       <vl-map-baselayer-grb id="baselayer-grb"></vl-map-baselayer-grb>
       <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
-      <vl-map-features-layer data-vl-name="layer" data-vl-features=${features1}>
+      <vl-map-features-layer
+        data-vl-name="layer"
+        data-vl-features=${JSON.stringify(features1)}
+      >
         <vl-map-layer-circle-style></vl-map-layer-circle-style>
       </vl-map-features-layer>
       <vl-map-features-layer
         data-vl-name="resolution-layer"
         data-vl-min-resolution="128"
         data-vl-max-resolution="256"
-        data-vl-features=${features2}
+        data-vl-features=${JSON.stringify(features2)}
       >
         <vl-map-layer-circle-style></vl-map-layer-circle-style>
       </vl-map-features-layer>

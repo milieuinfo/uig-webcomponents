@@ -1,11 +1,11 @@
-export const defaultArgs = {
+export const args = {
   type: "wmts",
   url: "",
   layer: "",
   title: "",
 };
 
-export const defaultArgTypes = {
+export const argTypes = {
   type: {
     name: "data-vl-type",
     type: "select",
@@ -16,6 +16,7 @@ export const defaultArgTypes = {
       type: { summary: "string" },
       defaultValue: { summary: "" },
     },
+    control: { disable: true },
   },
   url: {
     name: "data-vl-url",
@@ -25,6 +26,7 @@ export const defaultArgTypes = {
     table: {
       defaultValue: { summary: "" },
     },
+    control: { disable: true },
   },
   layer: {
     name: "data-vl-layer",
@@ -33,6 +35,7 @@ export const defaultArgTypes = {
     table: {
       defaultValue: { summary: "" },
     },
+    control: { disable: true },
   },
   title: {
     name: "data-vl-title",
@@ -41,5 +44,6 @@ export const defaultArgTypes = {
     table: {
       defaultValue: { summary: "" },
     },
+    control: { disable: true },
   },
 };

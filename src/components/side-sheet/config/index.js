@@ -1,12 +1,11 @@
-export const defaultArgs = {
+export const args = {
   enableSwipe: false,
   left: false,
   absolute: false,
-  right: false,
-  toggleText: false,
+  toggleText: "toggle text",
 };
 
-export const defaultArgTypes = {
+export const argTypes = {
   enableSwipe: {
     name: "data-vl-enable-swipe",
     type: { summary: "boolean" },
@@ -34,22 +33,13 @@ export const defaultArgTypes = {
       defaultValue: { summary: "false" },
     },
   },
-  right: {
-    name: "data-vl-right",
-    type: { summary: "boolean" },
-    description:
-      "Attribute wordt gebruikt om aan te duiden dat de side-sheet de rechterkant van het scherm moet plaatsen.",
-    table: {
-      defaultValue: { summary: "false" },
-    },
-  },
   toggleText: {
     name: "data-vl-toggle-text",
-    type: { summary: "boolean" },
+    type: { summary: "string" },
     description:
       "Attribute wordt gebruikt om de toggle knop tekst te wijzigen.",
     table: {
-      defaultValue: { summary: "false" },
+      defaultValue: { summary: "Zijpaneel" },
     },
   },
 };

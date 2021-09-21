@@ -3,7 +3,7 @@ import "../text";
 import "../grid";
 import "../button";
 import "../icon";
-import swipeDetect from "../../../node_modules/swipe-detect/dist/";
+import swipeDetect from "swipe-detect/dist/";
 import styles from "./styles.scss";
 
 /**
@@ -165,7 +165,7 @@ export class VlSideSheet extends vlElement(HTMLElement) {
   }
 
   _enableSwipeChangedCallback(oldValue, newValue) {
-    if (newValue !== undefined) {
+    if (newValue !== null) {
       swipeDetect(
         this._sheetElement,
         (direction) => {
@@ -179,6 +179,7 @@ export class VlSideSheet extends vlElement(HTMLElement) {
         50
       );
     } else {
+      //TODO: disable does not work, needs to be refactored: https://github.com/mhfen/swipe-detect/issues/11
       swipeDetect.disable();
     }
   }

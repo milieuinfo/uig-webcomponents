@@ -1,18 +1,14 @@
 import { html } from "lit-html";
-import "../../index.js";
-import "../../mapactions";
-import styles from "./styles.scss";
-
-const defaultArgs = {
-  fullscreen: false,
-  escape: false,
-  rotation: false,
-  mousewheelzoom: false,
-};
+import "../../../map";
 
 export default {
   title: "custom-elements/vl-map",
-  args: { ...defaultArgs },
+  args: {
+    fullscreen: false,
+    escape: false,
+    rotation: false,
+    mousewheelzoom: false,
+  },
   argTypes: {
     fullscreen: {
       name: "data-vl-allow-fullscreen",
@@ -22,6 +18,7 @@ export default {
       table: {
         defaultValue: { summary: "false" },
       },
+      control: { disable: true },
     },
     escape: {
       name: "data-vl-disable-escape-key",
@@ -31,6 +28,7 @@ export default {
       table: {
         defaultValue: { summary: "false" },
       },
+      control: { disable: true },
     },
     rotation: {
       name: "data-vl-disable-rotation",
@@ -40,6 +38,7 @@ export default {
       table: {
         defaultValue: { summary: "false" },
       },
+      control: { disable: true },
     },
     mousewheelzoom: {
       name: "data-vl-disable-mouse-wheel-zoom",
@@ -49,38 +48,26 @@ export default {
       table: {
         defaultValue: { summary: "false" },
       },
+      control: { disable: true },
     },
   },
 };
 
-const stylesheet = html`<style>
-  ${styles}
-</style>`;
-
-const mapWrapper = (props, children) => {
-  return html`
-    ${stylesheet}
-    <div is="vl-grid">${children}</div>
-  `;
-};
-
-export const BaseMap = (props) => html`
-  ${mapWrapper(
-    props,
-    html`
-      <vl-map
-        id="map"
-        ?data-vl-allow-fullscreen=${props.fullscreen}
-        ?data-vl-disable-escape-key=${props.escape}
-        ?data-vl-disable-rotation=${props.rotation}
-        ?data-vl-disable-mouse-wheel-zoom=${props.mousewheelzoom}
-      >
-        <vl-map-baselayer-grb-gray
-          id="baselayer-grb-gray"
-        ></vl-map-baselayer-grb-gray>
-        <vl-map-baselayer-grb id="baselayer-grb"></vl-map-baselayer-grb>
-        <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
-      </vl-map>
-    `
-  )}
+export const Default = ({
+  fullscreen,
+  escape,
+  rotation,
+  mousewheelzoom,
+}) => html`
+  <vl-map
+    id="map"
+    ?data-vl-allow-fullscreen=${fullscreen}
+    ?data-vl-disable-escape-key=${escape}
+    ?data-vl-disable-rotation=${rotation}
+    ?data-vl-disable-mouse-wheel-zoom=${mousewheelzoom}
+  >
+    <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+    <vl-map-baselayer-grb></vl-map-baselayer-grb>
+    <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
+  </vl-map>
 `;

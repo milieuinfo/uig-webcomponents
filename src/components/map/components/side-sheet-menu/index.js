@@ -18,7 +18,6 @@ export class VlMapSideSheetMenu extends vlElement(HTMLElement) {
     super(`
       <style>
         ${styles}
-
         :host {
           margin: -1.5rem;
           display: block;

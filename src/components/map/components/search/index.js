@@ -1,8 +1,9 @@
 import { vlElement, define } from "../../../../utils/core";
 import "../../../search";
-import "../select-location/select-location";
+import "../select-location";
 import { OlOverlay } from "../../mapactions";
 import LambertCoordinaat from "../../utils/lambert-coordinaat";
+import styles from "./styles.scss";
 
 /**
  * VlMapSearch
@@ -34,7 +35,7 @@ class VlMapSearch extends vlElement(HTMLElement) {
   constructor() {
     super(`
       <style>
-
+        ${styles}
         :host {
           display: block;
         }

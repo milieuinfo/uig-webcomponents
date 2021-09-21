@@ -1,100 +1,27 @@
 import { html } from "lit-html";
 import "../side-sheet";
-import styles from "./styles.scss";
-
-const defaultArgs = {
-  enableSwipe: false,
-  left: false,
-  absolute: false,
-  toggleText: "Toggle side sheet",
-};
+import { args, argTypes } from "./config";
 
 export default {
   title: "custom-elements/vl-side-sheet",
-  args: { ...defaultArgs },
-  argTypes: {
-    enableSwipe: {
-      name: "data-vl-enable-swipe",
-      type: { summary: "boolean" },
-      description:
-        "Attribute wordt gebruikt om aan te duiden dat swipe functie toegelaten is.",
-      table: {
-        defaultValue: { summary: "false" },
-      },
-    },
-    left: {
-      name: "data-vl-left",
-      type: { summary: "boolean" },
-      description:
-        "Attribute wordt gebruikt om aan te duiden dat de side-sheet de linkererand van het scherm moet plaatsen.",
-      table: {
-        defaultValue: { summary: "false" },
-      },
-    },
-    absolute: {
-      name: "data-vl-absolute",
-      type: { summary: "boolean" },
-      description:
-        "Attribute wordt gebruikt om aan te duiden dat de side-sheet absoluut gepositioneerd wordt.",
-      table: {
-        defaultValue: { summary: "false" },
-      },
-    },
-    toggleText: {
-      name: "data-vl-toggle-text",
-      type: { summary: "string" },
-      description:
-        "Attribute wordt gebruikt om de toggle knop tekst te wijzigen. (data-vl-visually-hidden element voor screen readers.)",
-      table: {
-        defaultValue: { summary: "" },
-      },
-    },
-  },
+  args,
+  argTypes,
 };
 
-const stylesheet = html`<style>
-  ${styles}
-</style>`;
-
-export const Default = (props) => html`
-  ${stylesheet}
-  <button
-    id="vl-side-sheet-toggle-button"
-    is="vl-button"
-    type="button"
-    onclick="document.getElementById('vl-side-sheet').toggle();"
-  >
-    Toggle</button
-  ><button
-    id="vl-side-sheet-open-button"
-    is="vl-button"
-    type="button"
-    onclick="document.getElementById('vl-side-sheet').open();"
-  >
-    Open</button
-  ><button
-    id="vl-side-sheet-close-button"
-    is="vl-button"
-    type="button"
-    onclick="document.getElementById('vl-side-sheet').close();"
-  >
-    Close</button
-  ><button
-    id="vl-side-sheet-open-button-with-close-listener"
-    is="vl-button"
-    type="button"
-    onclick="document.getElementById('vl-side-sheet-open-button-with-close-listener').innerText='Waiting for close';document.getElementById('vl-side-sheet').open(); document.getElementById('vl-side-sheet').onClose(() => { document.getElementById('vl-side-sheet-open-button-with-close-listener').innerText='Open with close listener';})"
-  >
-    Open with close listener
-  </button>
+export const Default = ({
+  enableSwipe,
+  absolute,
+  left,
+  toggleText,
+  right,
+}) => html`
   <vl-side-sheet
-    id="vl-side-sheet"
-    ?data-vl-enable-swipe=${props.enableSwipe}
-    ?data-vl-absolute=${props.absolute}
-    ?data-vl-left=${props.left}
-    data-vl-toggle-text=${props.toggleText}
+    ?data-vl-enable-swipe=${enableSwipe}
+    ?data-vl-absolute=${absolute}
+    ?data-vl-left=${left}
+    ?data-vl-right=${right}
+    data-vl-toggle-text=${toggleText}
   >
-    <h2 is="vl-h2">Lorem ipsum</h2>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla interdum
       urna ante. Integer eu sem mollis, ornare libero nec, pulvinar augue. Nunc

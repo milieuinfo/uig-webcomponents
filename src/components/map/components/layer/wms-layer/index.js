@@ -1,5 +1,5 @@
 import { VlMapLayer } from "../../layer";
-import "./wms-style.js";
+import "./wms-style";
 
 /**
  * VlMapWmsLayer

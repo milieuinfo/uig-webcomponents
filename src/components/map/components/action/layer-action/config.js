@@ -1,9 +1,9 @@
-export const defaultArgs = {
+export const args = {
   defaultActive: false,
   layer: false,
 };
 
-export const defaultArgTypes = {
+export const argTypes = {
   defaultActive: {
     name: "data-vl-default-active",
     type: { summary: "boolean" },
@@ -11,6 +11,7 @@ export const defaultArgTypes = {
     table: {
       defaultValue: { summary: "false" },
     },
+    control: { disable: true },
   },
   layer: {
     name: "data-vl-layer",
@@ -20,5 +21,6 @@ export const defaultArgTypes = {
     table: {
       defaultValue: { summary: "false" },
     },
+    control: { disable: true },
   },
 };
