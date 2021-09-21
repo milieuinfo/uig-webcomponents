@@ -31,8 +31,8 @@ import {
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map.html|Demo}
  */
 export class VlMapBaseLayer extends vlElement(HTMLElement) {
-  connectedCallback() {
-    this._configureMap();
+  async connectedCallback() {
+    await this._configureMap();
   }
 
   /**
@@ -83,7 +83,7 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
     }
   }
 
-  get _WMTSSource() {
+  _WMTSSource() {
     this._wmtsSource = this._wmtsSource || this._createWMTSSource();
     return this._wmtsSource;
   }
@@ -94,12 +94,14 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
     return this._createdVectorSource;
   }
 
-  _configureMap() {
+  async _configureMap() {
     if (this._map) {
       this._map.addBaseLayerAndOverlayMapLayer(
         this._createBaseLayer(),
         this._createBaseLayer()
       );
+      // nodig anders is map initially blanc
+      this._map.render();
     }
   }
 
@@ -134,7 +136,7 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
       format: new OlGeoJSON({
         dataProjection: self._projection,
       }),
-      url: function () {
+      url: function() {
         return self.url + "&typeName=" + self.layer;
       },
       strategy: OlLoadingstrategy.bbox,
@@ -147,7 +149,7 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
         return new OlTileLayer({
           title: this.title,
           type: "base",
-          source: this._WMTSSource,
+          source: this._WMTSSource(),
         });
       case "wfs":
         return new OlVectorLayer({
