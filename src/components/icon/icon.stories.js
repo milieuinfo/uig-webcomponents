@@ -123,16 +123,14 @@ export default {
   },
 };
 
-export const Default = ({ size, icon, light, rotate, fullRotate }) => html`<p>
-  <span
-    is="vl-icon"
-    data-vl-size=${size}
-    data-vl-icon=${icon}
-    ?data-vl-light=${light}
-    ?data-vl-90deg=${rotate}
-    ?data-vl-180deg=${fullRotate}
-  ></span>
-</p>`;
+export const Default = ({ size, icon, light, rotate, fullRotate }) => html`<span
+  is="vl-icon"
+  data-vl-size=${size}
+  data-vl-icon=${icon}
+  ?data-vl-light=${light}
+  ?data-vl-90deg=${rotate}
+  ?data-vl-180deg=${fullRotate}
+></span>`;
 
 Default.argTypes = { content: { control: false } };
 
