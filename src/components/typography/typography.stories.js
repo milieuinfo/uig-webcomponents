@@ -1,8 +1,21 @@
 import { html } from "lit-html";
 import "../typography";
+import { docsIntro } from "../../../.storybook/utils.js";
 
 export default {
   title: "custom-elements/vl-typography",
+  parameters: {
+    controls: { hideNoControlsWarning: true },
+    docs: {
+      description: {
+        component: docsIntro({
+          root: "typography",
+          intro:
+            "Gebruik de typograhpy component om de standaard elementen te visualiseren binnen een container. De typography component wordt voornamelijk gebruikt om de stijl van de inhoud van een wysiwyg-editor correct te renderen.",
+        }),
+      },
+    },
+  },
   args: {
     parameters: '{"key1": "tempus" , "key2": "ipsum" }',
   },
@@ -12,16 +25,10 @@ export default {
       type: { summary: "string" },
       description:
         "De key/value parameters die verwerkt en getoond zullen worden in het content element.",
-      table: {
-        defaultValue: { summary: `""` },
-      },
       control: {
         disable: true,
       },
     },
-  },
-  parameters: {
-    controls: { hideNoControlsWarning: true },
   },
 };
 

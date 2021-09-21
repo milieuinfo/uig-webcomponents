@@ -11,7 +11,7 @@ export default {
     docs: {
       description: {
         component: docsIntro({
-          stylesheet: true,
+          stylesheets: ["side-navigation"],
           root: "side-navigation",
           intro: "Het navigatie groep element.",
         }),

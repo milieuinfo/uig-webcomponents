@@ -1,8 +1,19 @@
 import { html } from "lit-html";
 import "../content-header";
+import { docsIntro } from "../../../.storybook/utils.js";
 
 export default {
   title: "custom-elements/vl-content-header",
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          root: "content-header",
+          intro: "Content header.",
+        }),
+      },
+    },
+  },
   args: {
     contextLink: "Context",
     titleLink: "Vlaanderen",

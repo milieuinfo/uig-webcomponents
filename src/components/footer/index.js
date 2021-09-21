@@ -1,4 +1,4 @@
-import { LitElement, html } from "lit";
+import { LitElement } from "lit";
 import { awaitScript } from "../../utils/core";
 
 awaitScript(

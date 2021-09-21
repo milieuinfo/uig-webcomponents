@@ -4,14 +4,14 @@ import styles from "../../styles.scss";
 import { stylesheet, docsIntro } from "../../../../../.storybook/utils.js";
 
 export default {
-  title: "native-elements/vl-properties/vl-property-term",
+  title: "custom-elements/vl-properties/vl-property-term",
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
       description: {
         component: docsIntro({
-          stylesheet: true,
+          stylesheets: ["properties"],
           root: "properties",
           intro:
             "De property-term webcomponent toont de beschrijving van een onderwerp kenmerk.",

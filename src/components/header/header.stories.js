@@ -1,9 +1,19 @@
 import { html } from "lit-html";
-import { bodySimulation } from "../../../.storybook/utils.js";
+import { bodySimulation, docsIntro } from "../../../.storybook/utils.js";
 import "../header";
 
 export default {
   title: "custom-elements/vl-header",
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          root: "header",
+          intro: "De Vlaanderen header.",
+        }),
+      },
+    },
+  },
   args: {
     identifier: "59188ff6-662b-45b9-b23a-964ad48c2bfb",
     development: false,

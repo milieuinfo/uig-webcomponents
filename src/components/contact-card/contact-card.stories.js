@@ -16,8 +16,9 @@ export default {
       description: {
         component: docsIntro({
           stylesheets: ["properties"],
-          root: "code-preview",
-          intro: "De code preview visualiseert de broncode.",
+          root: "contact-card",
+          intro:
+            "Gebruik een contact card om contactgegevens van een overheidsdienst te tonen.",
         }),
       },
     },

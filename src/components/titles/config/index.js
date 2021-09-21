@@ -54,7 +54,7 @@ export const parameters = {
   docs: {
     description: {
       component: docsIntro({
-        stylesheet: true,
+        stylesheets: ["titles"],
         root: "titles",
         intro:
           "Gebruik titels en subtitels als leidraad voor de gebruiker om door de content te gaan.",

@@ -1,9 +1,21 @@
 import { html } from "lit-html";
 import "../grid";
 import "../document";
+import { docsIntro } from "../../../.storybook/utils.js";
 
 export default {
   title: "custom-elements/vl-document",
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          root: "document",
+          intro:
+            "Gebruik de document component om een link naar een bestand toe te voegen dat de gebruiker kan bekijken in de browser of downloaden.",
+        }),
+      },
+    },
+  },
   args: {
     href: "#",
     type: "PDF",

@@ -4,13 +4,13 @@ import styles from "../../styles.scss";
 import { stylesheet, docsIntro } from "../../../../../.storybook/utils.js";
 
 export default {
-  title: "native-elements/vl-properties/vl-properties-column",
+  title: "custom-elements/vl-properties/vl-properties-column",
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
   parameters: {
     docs: {
       description: {
         component: docsIntro({
-          stylesheet: true,
+          stylesheets: ["properties"],
           root: "properties",
           intro:
             "De properties kolom webcomponent wordt gebruikt om lijsten van kenmerken van een onderwerp te verdelen in verschillende kolommen.",

@@ -1,11 +1,22 @@
 import { html } from "lit-html";
 import { version } from "../../../package.json";
-import { bodySimulation } from "../../../.storybook/utils.js";
+import { bodySimulation, docsIntro } from "../../../.storybook/utils.js";
 import "../content-header";
 
 export default {
   title: "custom-elements/vl-template",
-  parameters: { layout: "fullscreen" },
+  parameters: {
+    layout: "fullscreen",
+    docs: {
+      description: {
+        component: docsIntro({
+          root: "template",
+          intro:
+            "De standaard template voor websites en applicaties van de Vlaamse overheid.",
+        }),
+      },
+    },
+  },
   args: { center: false, stretch: false },
   argTypes: {
     center: {

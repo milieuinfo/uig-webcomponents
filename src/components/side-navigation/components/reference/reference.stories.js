@@ -11,7 +11,7 @@ export default {
     docs: {
       description: {
         component: docsIntro({
-          stylesheet: true,
+          stylesheets: ["side-navigation"],
           root: "side-navigation",
           intro:
             "Het content element waar het navigatie element naar verwijst.",

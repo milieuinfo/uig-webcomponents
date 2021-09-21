@@ -52,8 +52,6 @@ export class Changelog extends LitElement {
       intro:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac turpis accumsan, maximus purus sit amet, suscipit elit. Vivamus egestas a diam a luctus. Sed et viverra nibh. Nam sed ipsum felis.",
       children: html`
-        <link rel="stylesheet" href="../../../lib/components/body/styles.css" />
-
         <div is="vl-layout">
           <div is="vl-grid" data-vl-is-stacked>
             ${change({

@@ -10,7 +10,7 @@ export default {
       description: {
         component: docsIntro({
           root: "accessibility-statement",
-          intro: "Toegankelijkheidspagina.",
+          intro: "Toegankelijkheid pagina.",
         }),
       },
     },

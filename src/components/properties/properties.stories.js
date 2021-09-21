@@ -4,13 +4,13 @@ import styles from "./styles.scss";
 import { stylesheet, docsIntro } from "../../../.storybook/utils.js";
 
 export default {
-  title: "native-elements/vl-properties",
+  title: "custom-elements/vl-properties",
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
   parameters: {
     docs: {
       description: {
         component: docsIntro({
-          stylesheet: true,
+          stylesheets: ["properties"],
           root: "properties",
           intro:
             "De properties webcomponent vormt de container van een lijst van kenmerken van een onderwerp. Deze component wordt meestal gebruikt om informatie te tonen dat ingevuld werd in een formulier.",
