@@ -5,11 +5,6 @@ import "../icon";
 import styles from "./styles.scss";
 import { stylesheet, docsIntro } from "../../../.storybook/utils.js";
 
-const defaultArgs = {
-  block: false,
-  error: false,
-};
-
 export default {
   title: "native-elements/vl-link",
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],

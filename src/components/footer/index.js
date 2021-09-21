@@ -33,7 +33,6 @@ export class VlFooter extends LitElement {
 
   constructor() {
     super();
-    this[development] = true;
   }
 
   injectFooter() {

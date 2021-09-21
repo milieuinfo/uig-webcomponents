@@ -16,7 +16,7 @@ export default {
   },
   args: {
     identifier: "59188ff6-662b-45b9-b23a-964ad48c2bfb",
-    development: false,
+    development: true,
   },
   argTypes: {
     identifier: {

@@ -33,7 +33,6 @@ export class VlHeader extends LitElement {
 
   constructor() {
     super();
-    this[development] = true;
   }
 
   injectHeader() {
