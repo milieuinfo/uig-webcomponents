@@ -1,0 +1,91 @@
+import { html, LitElement, css, unsafeCSS } from "lit";
+import { wrap } from "../../wrap";
+import { removeStorybooksDefaultStyling } from "../../../.storybook/utils.js";
+import "../../../src/components/typography";
+import "../../../src/components/grid";
+import "../../../src/components/titles";
+import titleStyles from "../../../src/components/titles/styles.scss";
+import introStyles from "../../../src/components/introduction/styles.scss";
+
+const block = ({ title, children }) => html`
+  <div is="vl-column" data-vl-size="8">
+    <h2 is="vl-h2" style="margin-bottom: 3rem">${title}</h2>
+    ${children}
+  </div>
+`;
+
+export class Introduction extends LitElement {
+  static get styles() {
+    return [
+      css`
+        ${unsafeCSS(titleStyles)}
+      `,
+      css`
+        ${unsafeCSS(introStyles)}
+      `,
+    ];
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    removeStorybooksDefaultStyling();
+  }
+
+  render() {
+    return wrap({
+      title: "Introduction",
+      intro:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac turpis accumsan, maximus purus sit amet, suscipit elit. Vivamus egestas a diam a luctus. Sed et viverra nibh. Nam sed ipsum felis.",
+      children: html`<section is="vl-region">
+        <div is="vl-layout">
+          <div is="vl-grid" data-vl-is-stacked>
+            ${block({
+              title: "Getting started",
+              children: html`<p>
+                To get started, you need to install our package. To do so, run
+                <vl-typography
+                  ><code>npm install uig-webcomponents</code></vl-typography
+                >. Once the installation is done, you are ready to go.
+              </p>`,
+            })}
+            ${block({
+              title: "Usage",
+              children: html`
+                <p>
+                  You can now import and use our components in your project.
+                  Each component has a docs page, where you find what needs to
+                  be imported in order to use it.
+                </p>
+              `,
+            })}
+            ${block({
+              title: "Getting in touch",
+              children: html`
+                <vl-typography>
+                  <p>
+                    We use our internal Rocket.Chat as our main
+                    communication-channel. We have two channels that each serve
+                    a specific purpose. Feel free to join the ones that are
+                    applicable to you.
+                  </p>
+                  <ul>
+                    <li>
+                      <code>#uig-development</code> for all development related
+                      questions and assistance.
+                    </li>
+                    <li>
+                      <code>#uig-releases</code> to get notified when the
+                      package launches a new release.
+                    </li>
+                  </ul>
+                </vl-typography>
+              `,
+            })}
+          </div>
+        </div>
+      </section>`,
+    });
+  }
+}
+
+customElements.define("docs-introduction", Introduction);

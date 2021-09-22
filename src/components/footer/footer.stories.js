@@ -1,11 +1,22 @@
 import { html } from "lit-html";
+import { bodySimulation, docsIntro } from "../../../.storybook/utils.js";
 import "../footer";
 
 export default {
   title: "custom-elements/vl-footer",
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          root: "footer",
+          intro: "De Vlaanderen footer.",
+        }),
+      },
+    },
+  },
   args: {
     identifier: "0337f8dc-3266-4e7a-8f4a-95fd65189e5b",
-    development: false,
+    development: true,
   },
   argTypes: {
     identifier: {
@@ -30,9 +41,11 @@ export default {
 };
 
 export const Default = ({ identifier, development }) =>
-  html`
-    <vl-footer
-      data-vl-identifier=${identifier}
-      ?data-vl-development=${development}
-    ></vl-footer>
-  `;
+  bodySimulation(
+    html`
+      <vl-footer
+        data-vl-identifier=${identifier}
+        ?data-vl-development=${development}
+      ></vl-footer>
+    `
+  );

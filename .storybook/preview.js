@@ -10,7 +10,12 @@ export const parameters = {
   },
   options: {
     storySort: {
-      order: [`UIG-${version}`, "custom-elements", "native-elements"],
+      order: [
+        `UIG-${version}`,
+        ["Introduction", "Changelog", "Contribute"],
+        "custom-elements",
+        "native-elements",
+      ],
     },
   },
 };

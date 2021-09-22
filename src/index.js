@@ -62,3 +62,5 @@ export {
   VlMapModifyAction,
   VlSelectLocation,
 } from "./components/map";
+export { VlTemplate } from "./components/template";
+export { VlContentHeader } from "./components/content-header";
