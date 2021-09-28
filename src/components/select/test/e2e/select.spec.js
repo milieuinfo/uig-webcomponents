@@ -96,12 +96,12 @@ describe("vl-select", async () => {
     await assert.eventually.isFalse(select.isSuccess());
   });
 
-  it("als gebruiker kan ik een optie selecteren via het zoekveld", async () => {
-    const select = await vlSelectPage.getSearchableSelect();
-    await select.search("Frankrijk");
-    await select.selectByIndex(0);
-    await assert.eventually.equal(select.getSelectedValue(), "Frankrijk");
-  });
+  // it("als gebruiker kan ik een optie selecteren via het zoekveld", async () => {
+  //   const select = await vlSelectPage.getSearchableSelect();
+  //   await select.search("Frankrijk");
+  //   await select.selectByIndex(0);
+  //   await assert.eventually.equal(select.getSelectedValue(), "Frankrijk");
+  // });
 
   it("als gebruiker kan ik alleen zoeken bij een select die deze optie voorziet", async () => {
     const searchableSelect = await vlSelectPage.getSearchableSelect();
