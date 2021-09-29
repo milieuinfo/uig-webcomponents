@@ -102,10 +102,8 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
         this._createBaseLayer(),
         this._createBaseLayer()
       );
-      this._map.addBaseLayerAndOverlayMapLayer(
-        await this._createBaseLayer(),
-        await this._createBaseLayer()
-      );
+      this._map.addBaseLayerAndOverlayMapLayer(await this._createBaseLayer());
+
       // nodig anders is map initially blanc
       this._map.render();
     }
@@ -125,12 +123,12 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
       response.text()
     );
     const parser = new WMTSCapabilities();
-    const val = optionsFromCapabilities(parser.read(response), {
+    const options = optionsFromCapabilities(parser.read(response), {
       layer: this.layer,
       matrixSet: "BPL72VL",
     });
 
-    return new OlWMTSSource(val);
+    return new OlWMTSSource(options);
   }
 
   _createVectorSource() {

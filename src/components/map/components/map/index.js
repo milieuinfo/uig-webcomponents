@@ -75,9 +75,9 @@ export class VlMap extends vlElement(HTMLElement) {
     this.__prepareReadyPromises();
   }
 
-  _extentChangedCallback(oldValue, newValue) {
+  _extentChangedCallback(_oldValue, newValue) {
+    this.__viewExtent = JSON.parse(newValue);
     if (newValue) {
-      this.__viewExtent = JSON.parse(newValue);
       if (this.map) {
         this.map.setView(
           new OlView({
@@ -88,7 +88,6 @@ export class VlMap extends vlElement(HTMLElement) {
         );
       }
     } else {
-      this.__viewExtent = [9928, 66928, 272072, 329072];
       if (this.map) {
         this.map.setView(
           new OlView({

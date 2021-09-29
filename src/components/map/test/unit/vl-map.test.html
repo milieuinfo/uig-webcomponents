@@ -86,7 +86,7 @@ suite("vl-map", () => {
     ]);
   });
 
-  test('de extent is gewijzigd', (done) => {
+  test('kan de extent dynamisch wijzigen', (done) => {
       const element = fixture('vl-map-fixture');
       element.setAttribute('data-vl-extent', '[-73122.443418, -23915.714632, 347445.354629, 297624.297341]');
       setTimeout(() => {

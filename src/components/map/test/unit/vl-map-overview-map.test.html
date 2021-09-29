@@ -35,7 +35,7 @@ suite("vl-map-overview-map", () => {
       const bevatOverviewMap = (map) =>
       map.getControls().getArray().includes(map.overviewMapControl);
       while (!bevatOverviewMap(vlMapOverviewMapElement._map)) {
-        await new Promise((resolve) => setTimeout(resolve, 100));
+        awaitUntil(() => setTimeout(resolve, 100));
       }
       done();
     })();
