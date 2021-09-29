@@ -1,8 +1,20 @@
 import { html } from "lit-html";
 import "../infoblock";
+import { docsIntro } from "../../../.storybook/utils.js";
 
 export default {
   title: "custom-elements/vl-infoblock",
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          root: "infoblock",
+          intro:
+            "Gebruik de infoblock om een sectie met een nieuwe content te starten.",
+        }),
+      },
+    },
+  },
   argTypes: {
     type: {
       name: "data-vl-type",

@@ -1,8 +1,19 @@
 import { html } from "lit-html";
 import "../privacy";
+import { docsIntro } from "../../../.storybook/utils.js";
 
 export default {
   title: "custom-elements/vl-privacy",
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          root: "privacy",
+          intro: "Privacy pagina.",
+        }),
+      },
+    },
+  },
   args: {
     version: "1.0.0",
     date: "3 maart 2021",

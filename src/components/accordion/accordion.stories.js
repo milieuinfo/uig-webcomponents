@@ -1,5 +1,6 @@
 import { html } from "lit-html";
 import "../accordion";
+import { docsIntro } from "../../../.storybook/utils.js";
 
 const defaultArgs = {
   toggleText: "Lees meer over de onderwijsdoelstelling",
@@ -8,6 +9,17 @@ const defaultArgs = {
 
 export default {
   title: "custom-elements/vl-accordion",
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          root: "accordion",
+          intro:
+            "De accordion component kan gebruikt worden om informatie te tonen of te verbergen aan de hand van een toggle.",
+        }),
+      },
+    },
+  },
   args: { ...defaultArgs },
   argTypes: {
     toggleText: {

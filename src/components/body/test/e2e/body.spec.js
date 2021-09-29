@@ -14,7 +14,7 @@ describe("vl-body", async () => {
     const p = await body.findElement(By.css("p"));
     await assert.eventually.equal(
       p.getText(),
-      "Door gebruik te maken van het native vl-body element incl. stijl zal er een minimum aan huisstijl geladen worden."
+      "By using the native vl-body element incl. styling, a minimum of corporate identity will be loaded."
     );
   });
 });

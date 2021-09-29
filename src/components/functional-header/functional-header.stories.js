@@ -1,8 +1,20 @@
 import { html } from "lit-html";
 import "../functional-header";
+import { docsIntro } from "../../../.storybook/utils.js";
 
 export default {
   title: "custom-elements/vl-functional-header",
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          root: "functional-header",
+          intro:
+            "Toont bovenaan de pagina generieke informatie zonder af te leiden zoals bijvoorgeeld titel, acties, tab navigatie of zoek input.",
+        }),
+      },
+    },
+  },
   args: {
     title: "School- en studietoelagen",
     subTitle: "Voor lager, middelbaar en hoger onderwijs",
