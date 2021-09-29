@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<testsuites>
+	<testsuite errors="0" failures="0" name="test/unit/lambert-coordinaat.test.html (chrome 93)" skipped="0" tests="26">
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een vrije tekst, geeft &#x22;undefined&#x22;" time="1"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. &#x22;null&#x22;, geeft &#x22;undefined&#x22;" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. &#x22;undefined&#x22;, geeft &#x22;undefined&#x22;" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een lege string, geeft &#x22;undefined&#x22;" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een spatie, geeft &#x22;undefined&#x22;" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een geldige co&#xF6;rdinaat, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een geldige co&#xF6;rdinaat met gehele getallen, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een geldige co&#xF6;rdinaat met haakjes en gescheiden door een puntkomma, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een x-co&#xF6;rdinaat zonder decimaal getal, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een x en y-co&#xF6;rdinaat zonder decimaal getal, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een y-co&#xF6;rdinaat zonder decimaal getal, geeft een LambertCoordinaat" time="1"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een co&#xF6;rdinaat met gehele getallen, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een co&#xF6;rdinaat gescheiden door een punt komma, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een co&#xF6;rdinaat gescheiden door een komma, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een co&#xF6;rdinaat met haakjes, geeft een LambertCoordinaat" time="1"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een co&#xF6;rdinaat met enkel een starthaakje, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een co&#xF6;rdinaat met enkel een eindhaakje, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een co&#xF6;rdinaat met spaties ervoor, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een co&#xF6;rdinaat zonder spatie na het scheidingsteken, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een co&#xF6;rdinaat met meerdere spaties na het scheidingsteken, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een co&#xF6;rdinaat met 3 cijfers na de komma, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een co&#xF6;rdinaat met 5 cijfers na de komma, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat, is een geldige LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; &#x22;null&#x22;, is geen geldige LambertCoordinaat" time="1"/>
+		<testcase name="lambert-co&#xF6;rdinaat; &#x22;undefined&#x22;, is geen geldige LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een lege string, is geen geldige LambertCoordinaat" time="0"/>
+	</testsuite>
+	<testsuite errors="0" failures="0" name="test/unit/lambert-coordinaat.test.html (firefox 92)" skipped="0" tests="26">
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een vrije tekst, geeft &#x22;undefined&#x22;" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. &#x22;null&#x22;, geeft &#x22;undefined&#x22;" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. &#x22;undefined&#x22;, geeft &#x22;undefined&#x22;" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een lege string, geeft &#x22;undefined&#x22;" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een spatie, geeft &#x22;undefined&#x22;" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een geldige co&#xF6;rdinaat, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een geldige co&#xF6;rdinaat met gehele getallen, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een geldige co&#xF6;rdinaat met haakjes en gescheiden door een puntkomma, geeft een LambertCoordinaat" time="1"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een x-co&#xF6;rdinaat zonder decimaal getal, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een x en y-co&#xF6;rdinaat zonder decimaal getal, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een y-co&#xF6;rdinaat zonder decimaal getal, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een co&#xF6;rdinaat met gehele getallen, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een co&#xF6;rdinaat gescheiden door een punt komma, geeft een LambertCoordinaat" time="1"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een co&#xF6;rdinaat gescheiden door een komma, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een co&#xF6;rdinaat met haakjes, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een co&#xF6;rdinaat met enkel een starthaakje, geeft een LambertCoordinaat" time="1"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een co&#xF6;rdinaat met enkel een eindhaakje, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een co&#xF6;rdinaat met spaties ervoor, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een co&#xF6;rdinaat zonder spatie na het scheidingsteken, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een co&#xF6;rdinaat met meerdere spaties na het scheidingsteken, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een co&#xF6;rdinaat met 3 cijfers na de komma, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat o.b.v. een co&#xF6;rdinaat met 5 cijfers na de komma, geeft een LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een Lambert-co&#xF6;rdinaat, is een geldige LambertCoordinaat" time="1"/>
+		<testcase name="lambert-co&#xF6;rdinaat; &#x22;null&#x22;, is geen geldige LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; &#x22;undefined&#x22;, is geen geldige LambertCoordinaat" time="0"/>
+		<testcase name="lambert-co&#xF6;rdinaat; een lege string, is geen geldige LambertCoordinaat" time="0"/>
+	</testsuite>
+	<testsuite errors="0" failures="0" name="test/unit/vl-map-baselayer-grb-gray.test.html (chrome 93)" skipped="0" tests="1">
+		<testcase name="vl-map-baselayer-grb-gray; de grb basiskaartlaag wordt goed geconfigureerd" time="17"/>
+	</testsuite>
+	<testsuite errors="0" failures="0" name="test/unit/vl-map-baselayer-grb-gray.test.html (firefox 92)" skipped="0" tests="1">
+		<testcase name="vl-map-baselayer-grb-gray; de grb basiskaartlaag wordt goed geconfigureerd" time="21"/>
+	</testsuite>
+</testsuites>
