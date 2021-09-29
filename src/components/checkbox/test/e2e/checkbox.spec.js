@@ -1,5 +1,5 @@
 import { assert, getDriver } from "../../../../utils/test";
-import { VlCheckboxPage } from "./pages/vl-checkbox.page";
+import { VlCheckboxPage } from "./checkbox.page.js";
 
 describe("vl-checkbox", async () => {
   let vlCheckboxPage;

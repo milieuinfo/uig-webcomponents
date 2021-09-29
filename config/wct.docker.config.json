@@ -23,11 +23,10 @@
     }
   },
   "suites": [
-    "src/**/**/test/unit/*.test.html"
+    "src/**/**/test/unit/**/*.test.html"
   ],
   "webserver": {
-    "hostname": "tests", 
-    "port": "8080"
+    "hostname": "tests"
   },
   "root": "./"
 }
