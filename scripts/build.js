@@ -17,15 +17,8 @@ const buildConfig = {
     "properties",
   ],
 };
+
 const { src, dist, componentsWithStylesheet } = buildConfig;
-
-if (fs.existsSync(dist)) {
-  fs.rmdirSync(dist, { recursive: true });
-}
-
-fs.readdirSync(src).map((folder) => {
-  fs.copySync(`${src}/${folder}`, `${dist}/${folder}`);
-});
 
 const handleSass = (directoryToSearch, pattern) => {
   let computedPath;
@@ -86,7 +79,7 @@ const replaceFonts = (content) => {
     );
 };
 
-const removeFolder = (directoryToSearch, pattern) => {
+const removeFolders = (directoryToSearch, pattern) => {
   fs.readdirSync(directoryToSearch).forEach((subDirectory) => {
     const subDirectoryToSearch = path.resolve(directoryToSearch, subDirectory);
     const stat = fs.statSync(subDirectoryToSearch);
@@ -94,7 +87,7 @@ const removeFolder = (directoryToSearch, pattern) => {
       if (subDirectoryToSearch.endsWith(pattern)) {
         fs.rmdirSync(subDirectoryToSearch, { recursive: true });
       } else {
-        removeFolder(subDirectoryToSearch, pattern);
+        removeFolders(subDirectoryToSearch, pattern);
       }
     }
   });
@@ -114,8 +107,14 @@ const removeFilesWithExtension = (directoryToSearch, pattern) => {
 };
 
 const execute = () => {
+  if (fs.existsSync(dist)) {
+    fs.rmdirSync(dist, { recursive: true });
+  }
+  fs.readdirSync(src).map((folder) => {
+    fs.copySync(`${src}/${folder}`, `${dist}/${folder}`);
+  });
   handleSass(src, ".scss");
-  removeFolder(dist, "test");
+  removeFolders(dist, "test");
   removeFilesWithExtension(dist, ".scss");
   removeFilesWithExtension(dist, ".stories.js");
 };
