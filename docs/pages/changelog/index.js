@@ -7,12 +7,18 @@ import { removeStorybooksDefaultStyling } from "../../../.storybook/utils";
 
 const changes = [
   {
-    version: "0.0.24",
-    date: "09/09/2021",
-    children: html`<p>Example</p>
+    version: "1.0.0",
+    date: "30/09/2021",
+    children: html`<p>Today we celebrate! &#x1F389;</p>
       <ul>
-        <li>Example</li>
-        <li>Example</li>
+        <li>
+          <code>vl-accessibility-statement</code>
+          <ul>
+            <li>The accessibility</li>
+          </ul>
+        </li>
+        <li><code>vl-header</code></li>
+        <li><code>vl-footer</code></li>
       </ul>`,
   },
 ];
@@ -43,13 +49,13 @@ export class Changelog extends LitElement {
         <section is="vl-region">
           <div is="vl-layout">
             <div is="vl-grid" data-vl-is-stacked>
-              ${change({
+              <!-- ${change({
                 version: "Unreleased",
                 date: "?",
                 children: html`<ul>
                   <li>Unreleased item</li>
                 </ul>`,
-              })}
+              })} -->
               ${changes.map(({ version, date, children }) =>
                 change({
                   version,

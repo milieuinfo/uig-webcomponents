@@ -1,5 +1,4 @@
-import { html, LitElement } from "lit";
-import "./components/accessibility-limitation";
+import { html, LitElement, css, unsafeCSS } from "lit";
 import "../functional-header";
 import "../grid";
 import "../titles";
@@ -12,7 +11,7 @@ import "../properties";
 import "../infoblock";
 import "../contact-card";
 import { header, title, content } from "./templates";
-import { COMPLIANCE_STATUS } from "./enums";
+import { COMPLIANCE_STATUS, EVALUATION_STATUS } from "./enums";
 import styles from "./styles.scss";
 
 const props = {
@@ -22,7 +21,7 @@ const props = {
   dateModified: "data-vl-date-modified",
   compliance: "data-vl-compliance",
   limitations: "data-vl-limitations",
-  evaluation: "data-vl-evalutation",
+  evaluation: "data-vl-evaluation",
 };
 
 const {
@@ -36,6 +35,13 @@ const {
 } = props;
 
 export class VlAccessibility extends LitElement {
+  static get styles() {
+    return [
+      css`
+        ${unsafeCSS(styles)}
+      `,
+    ];
+  }
   static get properties() {
     return {
       [version]: { type: String },
@@ -57,26 +63,23 @@ export class VlAccessibility extends LitElement {
     this[date] = "20 juli 2021";
     this[dateModified] = "20 juli 2021";
     this[compliance] = COMPLIANCE_STATUS.PARTIALLY_COMPLIANT;
+    this[evaluation] = EVALUATION_STATUS.EXPERT_EVALUATED;
   }
 
   render() {
-    this.limitationsArray = JSON.parse(
-      document.getElementById(this[limitations]).innerHTML
-    );
+    const limitationsScript = document.getElementById(this[limitations]);
     const props = {
       version: this[version],
       date: this[date],
       application: this[application],
       evaluation: this[evaluation],
       compliance: this[compliance],
-      limitationsArray: this.limitationsArray,
+      parsedLimitations:
+        limitationsScript && JSON.parse(limitationsScript.innerHTML),
       dateModified: this[dateModified],
     };
 
-    return html`<style>
-        ${styles}
-      </style>
-      ${header()} ${title(props)} ${content(props)}`;
+    return html`${header()} ${title(props)} ${content(props)}`;
   }
 }
 

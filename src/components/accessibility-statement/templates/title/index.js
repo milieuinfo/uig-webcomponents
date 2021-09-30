@@ -1,4 +1,4 @@
-import { html } from 'lit';
+import { html } from "lit";
 
 export const title = ({ version, date }) => html`<section is="vl-region">
   <div is="vl-layout">

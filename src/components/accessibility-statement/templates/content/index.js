@@ -1,10 +1,11 @@
-import { html } from 'lit';
-import { COMPLIANCE_STATUS, EVALUATION_STATUS } from '../../enums';
-import { complianceStatus, inaccessibleContent } from '..';
-import { setupStatement } from '../setupStatement';
+import { html } from "lit";
+import { COMPLIANCE_STATUS, EVALUATION_STATUS } from "../../enums";
+import { complianceStatus, inaccessibleContent } from "..";
+import { setupStatement } from "../setupStatement";
 
 export const content = (props) => {
   const { application, evaluation, compliance } = props;
+
   return html`<section id="content" is="vl-region">
     <div is="vl-layout">
       <div is="vl-grid" data-vl-is-stacked>
@@ -17,13 +18,23 @@ export const content = (props) => {
         >
           <div is="vl-side-navigation-reference" data-vl--scrollspy-content>
             <div is="vl-grid" data-vl-is-stacked-large>
-              <div id="accessibility-statement" is="vl-column" data-vl-size="12" data-vl-medium-size="12">
+              <div
+                id="accessibility-statement"
+                is="vl-column"
+                data-vl-size="12"
+                data-vl-medium-size="12"
+              >
                 <h2 is="vl-h2">Toegankelijkheidsverklaring</h2>
                 <div is="vl-grid" data-vl-is-stacked>
-                  <div is="vl-column" data-vl-size="12" data-vl-medium-size="12">
+                  <div
+                    is="vl-column"
+                    data-vl-size="12"
+                    data-vl-medium-size="12"
+                  >
                     <p>
-                      De Vlaamse overheid streeft ernaar haar websites en mobiele applicaties toegankelijk te maken,
-                      overeenkomstig het
+                      De Vlaamse overheid streeft ernaar haar websites en
+                      mobiele applicaties toegankelijk te maken, overeenkomstig
+                      het
                       <a
                         is="vl-link"
                         href="http://www.ejustice.just.fgov.be/cgi_loi/loi_a1.pl?language=nl&cn=2018120705&table_name=wet&caller=list&fromtab=wet#LNK0011"
@@ -50,87 +61,157 @@ export const content = (props) => {
                       is omgezet.
                     </p>
                     <br />
-                    <p>Deze toegankelijkheidsverklaring is van toepassing op ${application}.</p>
+                    <p>
+                      Deze toegankelijkheidsverklaring is van toepassing op
+                      ${application}.
+                    </p>
                   </div>
-                  ${complianceStatus(props)} ${inaccessibleContent(props)} ${setupStatement(props)}
+                  ${complianceStatus(props)} ${inaccessibleContent(props)}
+                  ${setupStatement(props)}
                 </div>
               </div>
-              <div id="feedback-contact" is="vl-column" data-vl-size="12" data-vl-medium-size="12">
+              <div
+                id="feedback-contact"
+                is="vl-column"
+                data-vl-size="12"
+                data-vl-medium-size="12"
+              >
                 <h2 is="vl-h2">Feedback en contactgegevens</h2>
                 <p>
-                  Ondervindt u problemen en wenst u hulp bij het vinden van informatie of het uitvoeren van een actie?
-                  Hebt u een vraag of opmerking over de toegankelijkheid van deze website of toepassing, of over deze
-                  toegankelijkheidsverklaring? Neem contact op met Departement Omgeving. omgeving@vlaanderen.be of bel
-                  het nummer 02 553 80 11, elke werkdag bereikbaar van 8u30 tot 17 uur.
+                  Ondervindt u problemen en wenst u hulp bij het vinden van
+                  informatie of het uitvoeren van een actie? Hebt u een vraag of
+                  opmerking over de toegankelijkheid van deze website of
+                  toepassing, of over deze toegankelijkheidsverklaring? Neem
+                  contact op met Departement Omgeving.
                 </p>
                 <br />
                 <vl-contact-card id="contact-card">
-                  <vl-infoblock slot="info" data-vl-title="Departement Omgeving" data-vl-type="contact"></vl-infoblock>
+                  <vl-infoblock
+                    slot="info"
+                    data-vl-title="Departement Omgeving"
+                    data-vl-type="contact"
+                  ></vl-infoblock>
                   <vl-properties slot="properties">
                     <dl is="vl-properties-list">
                       <dt is="vl-property-term">Adres</dt>
-                      <dd is="vl-property-value">Koning Albert II-laan 20 bus 8<br />1000 Brussel<br />België</dd>
-                      <dt is="vl-property-term">E-mail</dt>
                       <dd is="vl-property-value">
-                        <a is="vl-link" href="mailto:klachten.omgeving@vlaanderen.be"
-                          >klachten.omgeving@vlaanderen.be<span is="vl-icon" data-vl-icon="mail" data-vl-after></span
-                        ></a>
+                        Koning Albert II-laan 20 bus 8<br />1000 Brussel<br />België
                       </dd>
-                    </dl>
-                  </vl-properties>
-                </vl-contact-card>
-              </div>
-              <div id="enforcement-procedure" is="vl-column" data-vl-size="12" data-vl-medium-size="12">
-                <h2 is="vl-h2">Handhavingsprocedure</h2>
-                <p>
-                  Heeft u contact opgenomen via omgeving@vlaanderen.be maar bent u niet tevreden met het antwoord? Stuur
-                  dan uw klacht naar de klachtenbehandelaar van Departement Omgeving.
-                </p>
-                <br />
-                <vl-contact-card id="contact-card">
-                  <vl-infoblock slot="info" data-vl-title="Klachtenbehandelaar" data-vl-type="contact"></vl-infoblock>
-                  <vl-properties slot="properties">
-                    <dl is="vl-properties-list">
-                      <dt is="vl-property-term">Adres</dt>
-                      <dd is="vl-property-value">Koning Albert II-laan 20 bus 8<br />1000 Brussel<br />België</dd>
-                      <dt is="vl-property-term">E-mail</dt>
-                      <dd is="vl-property-value">
-                        <a is="vl-link" href="mailto:klachten.omgeving@vlaanderen.be"
-                          >klachten.omgeving@vlaanderen.be<span is="vl-icon" data-vl-icon="mail" data-vl-after></span
-                        ></a>
-                      </dd>
-                    </dl>
-                  </vl-properties>
-                </vl-contact-card>
-                <br />
-                <p>
-                  Heeft u contact opgenomen met de klachtenbehandelaar van het Departement Omgeving, maar bent u niet
-                  tevreden met het antwoord? Stuur dan uw klacht naar de Vlaamse Ombudsdienst.
-                </p>
-                <br />
-                <vl-contact-card id="contact-card">
-                  <vl-infoblock slot="info" data-vl-title="Vlaamse ombudsdienst" data-vl-type="contact"></vl-infoblock>
-                  <vl-properties slot="properties">
-                    <dl is="vl-properties-list">
-                      <dt is="vl-property-term">Adres</dt>
-                      <dd is="vl-property-value">Leuvenseweg 86<br />1000 Brussel<br />België</dd>
                       <dt is="vl-property-term">Telefoon</dt>
                       <dd is="vl-property-value">
                         <p>
-                          <a is="vl-link" href="tel:08 002 40 50"
-                            >08 002 40 50<span is="vl-icon" data-vl-icon="phone" data-vl-after=""></span
+                          <a is="vl-link" href="tel:02 553 80 11"
+                            >02 553 80 11<span
+                              is="vl-icon"
+                              data-vl-icon="phone"
+                              data-vl-after
+                            ></span
                           ></a>
                         </p>
                       </dd>
                       <dt is="vl-property-term">E-mail</dt>
                       <dd is="vl-property-value">
-                        <a is="vl-link" href="mailto:klachten@vlaamseombudsdienst.be"
-                          >klachten@vlaamseombudsdienst.be<span is="vl-icon" data-vl-icon="mail" data-vl-after></span
+                        <a is="vl-link" href="mailto:omgeving@vlaanderen.be"
+                          >omgeving@vlaanderen.be<span
+                            is="vl-icon"
+                            data-vl-icon="mail"
+                            data-vl-after
+                          ></span
+                        ></a>
+                      </dd>
+                    </dl>
+                  </vl-properties>
+                </vl-contact-card>
+              </div>
+              <div
+                id="enforcement-procedure"
+                is="vl-column"
+                data-vl-size="12"
+                data-vl-medium-size="12"
+              >
+                <h2 is="vl-h2">Handhavingsprocedure</h2>
+                <p>
+                  Heeft u contact opgenomen via omgeving@vlaanderen.be maar bent
+                  u niet tevreden met het antwoord? Stuur dan uw klacht naar de
+                  klachtenbehandelaar van Departement Omgeving.
+                </p>
+                <br />
+                <vl-contact-card id="contact-card">
+                  <vl-infoblock
+                    slot="info"
+                    data-vl-title="Klachtenbehandelaar"
+                    data-vl-type="contact"
+                  ></vl-infoblock>
+                  <vl-properties slot="properties">
+                    <dl is="vl-properties-list">
+                      <dt is="vl-property-term">Adres</dt>
+                      <dd is="vl-property-value">
+                        Koning Albert II-laan 20 bus 8<br />1000 Brussel<br />België
+                      </dd>
+                      <dt is="vl-property-term">E-mail</dt>
+                      <dd is="vl-property-value">
+                        <a
+                          is="vl-link"
+                          href="mailto:klachten.omgeving@vlaanderen.be"
+                          >klachten.omgeving@vlaanderen.be<span
+                            is="vl-icon"
+                            data-vl-icon="mail"
+                            data-vl-after
+                          ></span
+                        ></a>
+                      </dd>
+                    </dl>
+                  </vl-properties>
+                </vl-contact-card>
+                <br />
+                <p>
+                  Heeft u contact opgenomen met de klachtenbehandelaar van het
+                  Departement Omgeving, maar bent u niet tevreden met het
+                  antwoord? Stuur dan uw klacht naar de Vlaamse Ombudsdienst.
+                </p>
+                <br />
+                <vl-contact-card id="contact-card">
+                  <vl-infoblock
+                    slot="info"
+                    data-vl-title="Vlaamse ombudsdienst"
+                    data-vl-type="contact"
+                  ></vl-infoblock>
+                  <vl-properties slot="properties">
+                    <dl is="vl-properties-list">
+                      <dt is="vl-property-term">Adres</dt>
+                      <dd is="vl-property-value">
+                        Leuvenseweg 86<br />1000 Brussel<br />België
+                      </dd>
+                      <dt is="vl-property-term">Telefoon</dt>
+                      <dd is="vl-property-value">
+                        <p>
+                          <a is="vl-link" href="tel:08 002 40 50"
+                            >08 002 40 50<span
+                              is="vl-icon"
+                              data-vl-icon="phone"
+                              data-vl-after=""
+                            ></span
+                          ></a>
+                        </p>
+                      </dd>
+                      <dt is="vl-property-term">E-mail</dt>
+                      <dd is="vl-property-value">
+                        <a
+                          is="vl-link"
+                          href="mailto:klachten@vlaamseombudsdienst.be"
+                          >klachten@vlaamseombudsdienst.be<span
+                            is="vl-icon"
+                            data-vl-icon="mail"
+                            data-vl-after
+                          ></span
                         ></a>
                       </dd>
                       <dt is="vl-property-term">Website</dt>
                       <dd is="vl-property-value">
-                        <a is="vl-link" href="http://www.vlaamseombudsdienst.be" target="_blank"
+                        <a
+                          is="vl-link"
+                          href="http://www.vlaamseombudsdienst.be"
+                          target="_blank"
                           >http://www.vlaamseombudsdienst.be<span
                             is="vl-icon"
                             data-vl-icon="external"
@@ -168,13 +249,20 @@ export const content = (props) => {
                   <ul>
                     <li is="vl-side-navigation-item">
                       <div>
-                        <a href="#compliance-status" data-vl-parent="accessibility-statement">Nalevingsstatus</a>
+                        <a
+                          href="#compliance-status"
+                          data-vl-parent="accessibility-statement"
+                          >Nalevingsstatus</a
+                        >
                       </div>
                     </li>
-                    ${compliance !== COMPLIANCE_STATUS.FULLY_COMPLIANT || evaluation === EVALUATION_STATUS.NOT_EVALUATED
+                    ${compliance !== COMPLIANCE_STATUS.FULLY_COMPLIANT ||
+                    evaluation === EVALUATION_STATUS.NOT_EVALUATED
                       ? html`<li is="vl-side-navigation-item">
                           <div>
-                            <a href="#inaccessible-content" data-vl-parent="accessibility-statement"
+                            <a
+                              href="#inaccessible-content"
+                              data-vl-parent="accessibility-statement"
                               >Niet-toegankelijke inhoud</a
                             >
                           </div>
@@ -182,7 +270,9 @@ export const content = (props) => {
                       : null}
                     <li is="vl-side-navigation-item">
                       <div>
-                        <a href="#setup-accessibility-statement" data-vl-parent="accessibility-statement"
+                        <a
+                          href="#setup-accessibility-statement"
+                          data-vl-parent="accessibility-statement"
                           >Opstelling van deze toegankelijkheidsverklaring</a
                         >
                       </div>
@@ -196,7 +286,10 @@ export const content = (props) => {
                   </a>
                 </li>
                 <li is="vl-side-navigation-item" data-vl-parent>
-                  <a is="vl-side-navigation-toggle" href="#enforcement-procedure">
+                  <a
+                    is="vl-side-navigation-toggle"
+                    href="#enforcement-procedure"
+                  >
                     Handhavingsprocedure
                     <i class="vl-vi vl-vi-arrow-right-fat"></i>
                   </a>

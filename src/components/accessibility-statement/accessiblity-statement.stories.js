@@ -22,13 +22,14 @@ export default {
     dateModified: "20 juli 2021",
     compliance: COMPLIANCE_STATUS.PARTIALLY_COMPLIANT,
     limitations: "limitations-01",
-    evaluation: EVALUATION_STATUS.SELF_EVALUATED,
+    evaluation: EVALUATION_STATUS.EXPERT_EVALUATED,
   },
   argTypes: {
     application: {
       name: "data-vl-application",
       type: { summary: "string" },
-      description: "description",
+      description:
+        "Attribuut wordt gebruikt om te duiden over welke applicatie de verklaring gaat.",
       table: {
         defaultValue: { summary: '"deze applicatie"' },
       },
@@ -36,7 +37,8 @@ export default {
     version: {
       name: "data-vl-version",
       type: { summary: "string" },
-      description: "description",
+      description:
+        "Attribuut wordt gebruikt om de huidige versie van de verklaring aan te geven.",
       table: {
         defaultValue: { summary: '"1.0.0"' },
       },
@@ -44,7 +46,8 @@ export default {
     date: {
       name: "data-vl-date",
       type: { summary: "string" },
-      description: "description",
+      description:
+        "Attribuut wordt gebruikt om de aanmaakdatum van de verklaring te beschrijven.",
       table: {
         defaultValue: { summary: '"20 juli 2021"' },
       },
@@ -52,15 +55,20 @@ export default {
     dateModified: {
       name: "data-vl-date-modified",
       type: { summary: "string" },
-      description: "description",
+      description:
+        "Attribuut wordt gebruikt om de datum van de laatste wijziging van de verklaring te beschrijven.",
       table: {
         defaultValue: { summary: '"20 juli 2021"' },
       },
     },
     compliance: {
       name: "data-vl-compliance",
-      type: { summary: "string" },
-      description: "description",
+      type: {
+        summary: `${COMPLIANCE_STATUS.FULLY_COMPLIANT} |
+      ${COMPLIANCE_STATUS.PARTIALLY_COMPLIANT} |
+      ${COMPLIANCE_STATUS.NOT_COMPLIANT}`,
+      },
+      description: "Attribuut om de nalevingsstatus aan te geven.",
       control: {
         type: "select",
         options: [
@@ -76,19 +84,22 @@ export default {
     limitations: {
       name: "data-vl-limitations",
       type: { summary: "string" },
-      description: "description",
+      description:
+        "Attribuut om limitaties mee te geven aan de verklaring. De string die verwacht wordt is de `id` van een script dat aanwezig is op de pagina waarin een object zit. Voorbeeld van zo'n object: `{withTiming: ['limitatie 1', 'limitatie 2'], withoutTiming: ['limitatie 3']}`. Met de property `withTiming` geef je tijdelijke limitaties mee, met de property `withoutTiming` permanente limitaties. Bekijk de broncode van deze story voor een praktisch voorbeeld.",
       control: {
         type: "select",
         options: ["limitations-01", "limitations-02"],
       },
-      table: {
-        defaultValue: { summary: "" },
-      },
     },
     evaluation: {
       name: "data-vl-evaluation",
-      type: { summary: "string" },
-      description: "description",
+      type: {
+        summary: `${EVALUATION_STATUS.EXPERT_EVALUATED} |
+      ${EVALUATION_STATUS.SELF_EVALUATED} |
+      ${EVALUATION_STATUS.NOT_EVALUATED}`,
+      },
+      description:
+        "Attribuut om de evaluatiestatus van de verklaring aan te geven.",
       control: {
         type: "select",
         options: [
@@ -98,14 +109,11 @@ export default {
         ],
       },
       table: {
-        defaultValue: { summary: `"${EVALUATION_STATUS.SELF_EVALUATED}"` },
+        defaultValue: { summary: `"${EVALUATION_STATUS.EXPERT_EVALUATED}"` },
       },
     },
   },
 };
-
-// export const Default = () =>
-//   html`<vl-accessibility-statement></vl-accessibility-statement>`;
 
 export const Default = ({
   application,
@@ -117,30 +125,26 @@ export const Default = ({
   evaluation,
 }) => {
   return html` <script id="limitations-01" type="application/json">
-      [
-        {
-          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "alternative": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.",
-          "timing": "Lorem ipsum dolor sit amet"
-        },
-        {
-          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "alternative": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut."
-        }
-      ]
+      {
+        "withTiming": [
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        ],
+        "withoutTiming": [
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        ]
+      }
     </script>
     <script id="limitations-02" type="application/json">
-      [
-        {
-          "description": "Limitations 2 issue",
-          "alternative": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.",
-          "timing": "Lorem ipsum dolor sit amet"
-        },
-        {
-          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "alternative": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut."
-        }
-      ]
+      {
+        "withTiming": [
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        ],
+        "withoutTiming": [
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        ]
+      }
     </script>
     <vl-accessibility-statement
       data-vl-application=${application}
