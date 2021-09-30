@@ -1,8 +1,20 @@
 import { html } from "lit-html";
 import "../../../map";
+import { docsIntro } from "../../../../../.storybook/utils.js";
 
 export default {
   title: "custom-elements/vl-map/vl-map-side-sheet-menu-item",
+  parameters: {
+    controls: { hideNoControlsWarning: true },
+    docs: {
+      description: {
+        component: docsIntro({
+          root: "map",
+          intro: "De menu item die verbonden is aan een side sheet.",
+        }),
+      },
+    },
+  },
   args: { title: "Terug naar resultaten", href: "/" },
   argTypes: {
     title: {
@@ -22,9 +34,6 @@ export default {
         defaultValue: { summary: "#" },
       },
     },
-  },
-  parameters: {
-    controls: { hideNoControlsWarning: true },
   },
 };
 export const Default = ({ title, href }) => html`

@@ -4,10 +4,9 @@ const sass = require("sass");
 const buildConfig = {
   src: "src",
   dist: "lib",
-  nativeComponents: [
+  componentsWithStylesheet: [
     "body",
     "button",
-    "select",
     "grid",
     "icon",
     "introduction",
@@ -15,17 +14,11 @@ const buildConfig = {
     "side-navigation",
     "titles",
     "image",
+    "properties",
   ],
 };
-const { src, dist, nativeComponents } = buildConfig;
 
-if (fs.existsSync(dist)) {
-  fs.rmdirSync(dist, { recursive: true });
-}
-
-fs.readdirSync(src).map((folder) => {
-  fs.copySync(`${src}/${folder}`, `${dist}/${folder}`);
-});
+const { src, dist, componentsWithStylesheet } = buildConfig;
 
 const handleSass = (directoryToSearch, pattern) => {
   let computedPath;
@@ -37,7 +30,7 @@ const handleSass = (directoryToSearch, pattern) => {
       handleSass(subDirectoryToSearch, pattern);
     }
     if (stat.isFile() && subDirectoryToSearch.endsWith(pattern)) {
-      const isNative = nativeComponents.includes(
+      const isNative = componentsWithStylesheet.includes(
         directoryToSearch.split("/").pop()
       );
       const nativePath = `${subDirectoryToSearch
@@ -86,7 +79,7 @@ const replaceFonts = (content) => {
     );
 };
 
-const removeFolder = (directoryToSearch, pattern) => {
+const removeFolders = (directoryToSearch, pattern) => {
   fs.readdirSync(directoryToSearch).forEach((subDirectory) => {
     const subDirectoryToSearch = path.resolve(directoryToSearch, subDirectory);
     const stat = fs.statSync(subDirectoryToSearch);
@@ -94,7 +87,7 @@ const removeFolder = (directoryToSearch, pattern) => {
       if (subDirectoryToSearch.endsWith(pattern)) {
         fs.rmdirSync(subDirectoryToSearch, { recursive: true });
       } else {
-        removeFolder(subDirectoryToSearch, pattern);
+        removeFolders(subDirectoryToSearch, pattern);
       }
     }
   });
@@ -114,8 +107,15 @@ const removeFilesWithExtension = (directoryToSearch, pattern) => {
 };
 
 const execute = () => {
+  if (fs.existsSync(dist)) {
+    fs.rmdirSync(dist, { recursive: true });
+  }
+  fs.readdirSync(src).map((folder) => {
+    fs.copySync(`${src}/${folder}`, `${dist}/${folder}`);
+  });
   handleSass(src, ".scss");
-  removeFolder(dist, "test");
+  removeFolders(dist, "test");
+  removeFolders(dist, "config");
   removeFilesWithExtension(dist, ".scss");
   removeFilesWithExtension(dist, ".stories.js");
 };

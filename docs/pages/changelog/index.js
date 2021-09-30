@@ -7,12 +7,34 @@ import { removeStorybooksDefaultStyling } from "../../../.storybook/utils";
 
 const changes = [
   {
-    version: "0.0.24",
-    date: "09/09/2021",
-    children: html`<p>Example</p>
+    version: "1.0.0",
+    date: "30/09/2021",
+    children: html`<p>We have a lift-off! &#x1F680;</p>
       <ul>
-        <li>Example</li>
-        <li>Example</li>
+        <li>
+          <p><code>vl-accessibility</code></p>
+          <p>
+            The accessibility statement got an update. You can now provide
+            limitations, a compliancestatus and an evaluationstatus. The changes
+            are not breaking, but we recommend taking a look at the new
+            documentation because the evaluationstatus is default
+            'not-evaluated'.
+          </p>
+        </li>
+        <li>
+          <p><code>vl-privacy</code></p>
+          <p>
+            The privacy statement is transformed into a lit-component and its
+            attributes are now reactive.
+          </p>
+        </li>
+        <li>
+          <p><code>vl-header</code> & <code>vl-footer</code></p>
+          <p>
+            The header and footer are transformed into lit-components and their
+            attributes are now reactive.
+          </p>
+        </li>
       </ul>`,
   },
 ];
@@ -37,19 +59,17 @@ export class Changelog extends LitElement {
   render() {
     return wrap({
       title: "Changelog",
-      intro:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac turpis accumsan, maximus purus sit amet, suscipit elit. Vivamus egestas a diam a luctus. Sed et viverra nibh. Nam sed ipsum felis.",
       children: html`
         <section is="vl-region">
           <div is="vl-layout">
             <div is="vl-grid" data-vl-is-stacked>
-              ${change({
+              <!-- ${change({
                 version: "Unreleased",
                 date: "?",
                 children: html`<ul>
                   <li>Unreleased item</li>
                 </ul>`,
-              })}
+              })} -->
               ${changes.map(({ version, date, children }) =>
                 change({
                   version,

@@ -1,9 +1,20 @@
 import { html } from "lit-html";
 import "../../../../map";
 import { argTypes } from "../config";
+import { docsIntro } from "../../../../../../.storybook/utils.js";
 
 export default {
   title: "custom-elements/vl-map/vl-map-wmts-layer",
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          root: "map",
+          intro: "Een WMTS (overlay) layer.",
+        }),
+      },
+    },
+  },
   argTypes,
 };
 

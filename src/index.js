@@ -1,4 +1,4 @@
-export { VlAccessibility } from "./components/accessibility-statement";
+export { VlAccessibility } from "./components/accessibility";
 export { VlAccordion } from "./components/accordion";
 export { VlBody } from "./components/body";
 export { VlButton } from "./components/button";
