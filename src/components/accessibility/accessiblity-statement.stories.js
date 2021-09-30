@@ -1,15 +1,16 @@
 import { html } from "lit-html";
-import "../accessibility-statement";
+import "../accessibility";
 import { COMPLIANCE_STATUS, EVALUATION_STATUS } from "./enums";
 import { docsIntro } from "../../../.storybook/utils.js";
 
 export default {
-  title: "custom-elements/vl-accessibility-statement",
+  title: "custom-elements/vl-accessibility",
   parameters: {
+    layout: "fullscreen",
     docs: {
       description: {
         component: docsIntro({
-          root: "accessibility-statement",
+          root: "accessibility",
           intro: "Toegankelijkheid pagina.",
         }),
       },
@@ -109,7 +110,7 @@ export default {
         ],
       },
       table: {
-        defaultValue: { summary: `"${EVALUATION_STATUS.EXPERT_EVALUATED}"` },
+        defaultValue: { summary: `"${EVALUATION_STATUS.NOT_EVALUATED}"` },
       },
     },
   },
@@ -146,7 +147,7 @@ export const Default = ({
         ]
       }
     </script>
-    <vl-accessibility-statement
+    <vl-accessibility
       data-vl-application=${application}
       data-vl-version=${version}
       data-vl-date=${date}
@@ -154,5 +155,5 @@ export const Default = ({
       data-vl-compliance=${compliance}
       data-vl-limitations=${limitations}
       data-vl-evaluation=${evaluation}
-    ></vl-accessibility-statement>`;
+    ></vl-accessibility>`;
 };

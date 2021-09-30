@@ -39,8 +39,14 @@ export const wrap = ({ title, intro, children }) => html`<vl-template>
           <div is="vl-column" data-vl-size="12" data-vl-medium-size="12">
             <div is="vl-grid" data-vl-is-stacked>
               <div is="vl-column" data-vl-size="8">
-                <h1 is="vl-h1" style="margin-bottom: 3rem">${title}</h1>
-                <p is="vl-introduction">${intro}</p>
+                <h1
+                  is="vl-h1"
+                  ?data-vl-no-space-bottom=${!intro}
+                  style=${intro && "margin-bottom: 3rem"}
+                >
+                  ${title}
+                </h1>
+                ${intro && html`<p is="vl-introduction">${intro}</p>`}
               </div>
             </div>
           </div>

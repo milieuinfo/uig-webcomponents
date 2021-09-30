@@ -5,6 +5,7 @@ import { docsIntro } from "../../../.storybook/utils.js";
 export default {
   title: "custom-elements/vl-privacy",
   parameters: {
+    layout: "fullscreen",
     docs: {
       description: {
         component: docsIntro({

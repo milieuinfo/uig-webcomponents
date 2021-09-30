@@ -63,7 +63,7 @@ export class VlAccessibility extends LitElement {
     this[date] = "20 juli 2021";
     this[dateModified] = "20 juli 2021";
     this[compliance] = COMPLIANCE_STATUS.PARTIALLY_COMPLIANT;
-    this[evaluation] = EVALUATION_STATUS.EXPERT_EVALUATED;
+    this[evaluation] = EVALUATION_STATUS.NOT_EVALUATED;
   }
 
   render() {
@@ -83,4 +83,4 @@ export class VlAccessibility extends LitElement {
   }
 }
 
-customElements.define("vl-accessibility-statement", VlAccessibility);
+customElements.define("vl-accessibility", VlAccessibility);

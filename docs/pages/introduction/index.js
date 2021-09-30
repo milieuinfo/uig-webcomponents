@@ -35,7 +35,7 @@ export class Introduction extends LitElement {
     return wrap({
       title: "Introduction",
       intro:
-        "We offer a library of web components that is build upon the design system of Digitaal Vlaanderen. It is designed to work with any framework, or even without one. We make sure the consistency between components is guaranteed.",
+        "We offer a library of web components that is build upon the design system of Digitaal Vlaanderen. It is designed to work with any framework, or even without one. We guarantee consistency between the components.",
       children: html`<section is="vl-region">
         <div is="vl-layout">
           <div is="vl-grid" data-vl-is-stacked>
