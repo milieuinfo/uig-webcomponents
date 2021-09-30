@@ -115,6 +115,7 @@ const execute = () => {
   });
   handleSass(src, ".scss");
   removeFolders(dist, "test");
+  removeFolders(dist, "config");
   removeFilesWithExtension(dist, ".scss");
   removeFilesWithExtension(dist, ".stories.js");
 };

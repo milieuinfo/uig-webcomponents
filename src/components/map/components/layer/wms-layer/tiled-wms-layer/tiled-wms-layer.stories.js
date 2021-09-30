@@ -2,11 +2,20 @@ import { html } from "lit-html";
 import "../../../../../map";
 import { argTypes as wmsLayerArgTypes } from "../config.js";
 import { argTypes as layerArgTypes } from "../../config.js";
+import { docsIntro } from "../../../../../../../.storybook/utils.js";
 
 export default {
   title: "custom-elements/vl-map/vl-map-tiled-wms-layer",
   parameters: {
     controls: { hideNoControlsWarning: true },
+    docs: {
+      description: {
+        component: docsIntro({
+          root: "map",
+          intro: "Deze kaartlaag staat toe om een WMS laag aan te maken.",
+        }),
+      },
+    },
   },
   argTypes: { ...wmsLayerArgTypes, ...layerArgTypes },
 };
