@@ -15,6 +15,7 @@ const buildConfig = {
     "titles",
     "image",
     "properties",
+    "select",
   ],
 };
 
