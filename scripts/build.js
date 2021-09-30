@@ -4,10 +4,9 @@ const sass = require("sass");
 const buildConfig = {
   src: "src",
   dist: "lib",
-  nativeComponents: [
+  componentsWithStylesheet: [
     "body",
     "button",
-    "select",
     "grid",
     "icon",
     "introduction",
@@ -15,9 +14,10 @@ const buildConfig = {
     "side-navigation",
     "titles",
     "image",
+    "properties",
   ],
 };
-const { src, dist, nativeComponents } = buildConfig;
+const { src, dist, componentsWithStylesheet } = buildConfig;
 
 if (fs.existsSync(dist)) {
   fs.rmdirSync(dist, { recursive: true });
@@ -37,7 +37,7 @@ const handleSass = (directoryToSearch, pattern) => {
       handleSass(subDirectoryToSearch, pattern);
     }
     if (stat.isFile() && subDirectoryToSearch.endsWith(pattern)) {
-      const isNative = nativeComponents.includes(
+      const isNative = componentsWithStylesheet.includes(
         directoryToSearch.split("/").pop()
       );
       const nativePath = `${subDirectoryToSearch
