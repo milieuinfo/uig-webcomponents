@@ -1,9 +1,6 @@
 import { nativeVlElement, awaitUntil, define } from "../../utils/core";
-import {
-  vlFormValidation,
-  vlFormValidationElement,
-} from "../form-validation/vl-form-validation-all";
-import "./lib/select";
+import { vlFormValidation, vlFormValidationElement } from "../form-validation";
+import "./lib";
 
 Promise.all([vlFormValidation.ready()]).then(() =>
   define("vl-select", VlSelect, { extends: "select" })

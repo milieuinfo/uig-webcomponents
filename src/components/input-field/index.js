@@ -1,8 +1,5 @@
 import { nativeVlElement, define } from "../../utils/core";
-import {
-  vlFormValidation,
-  vlFormValidationElement,
-} from "../form-validation/vl-form-validation-all.js";
+import { vlFormValidation, vlFormValidationElement } from "../form-validation";
 import { vlPattern } from "../pattern";
 
 Promise.all([vlFormValidation.ready(), vlPattern.ready()]).then(() =>

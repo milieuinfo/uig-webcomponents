@@ -7,6 +7,19 @@ import { removeStorybooksDefaultStyling } from "../../../.storybook/utils";
 
 const changes = [
   {
+    version: "1.0.1",
+    date: "1/10/2021",
+    children: html`<ul>
+      <li>
+        <p><code>vl-header</code></p>
+        <p>
+          It is no longer an obligation to use the header inside a vl-body, from
+          now on it can be used inside a standard body too.
+        </p>
+      </li>
+    </ul>`,
+  },
+  {
     version: "1.0.0",
     date: "30/09/2021",
     children: html`<p>We have a lift-off! &#x1F680;</p>
