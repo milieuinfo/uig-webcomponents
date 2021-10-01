@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>vl-map-side-sheet voorbeeld</title>
+    <script type="module" src="../../../../../../../build/index.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../../../../../lib/components/body/styles.css"
+    />
+  </head>
+
+  <body is="vl-body">
+    <div style="width: 780px">
+      <vl-map id="vl-map-side-sheet-map">
+        <vl-map-baselayer-grb-gray
+          id="baselayer-grb-gray"
+        ></vl-map-baselayer-grb-gray>
+        <vl-map-side-sheet data-vl-open>
+          <vl-map-side-sheet-menu>
+            <vl-map-side-sheet-menu-item
+              data-vl-title="Terug naar resultaten"
+              data-vl-href="/"
+            >
+              <span>Gelieve een resultaat aan te maken</span>
+            </vl-map-side-sheet-menu-item>
+          </vl-map-side-sheet-menu>
+        </vl-map-side-sheet>
+      </vl-map>
+    </div>
+  </body>
+</html>

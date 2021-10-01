@@ -1,5 +1,5 @@
 import { assert, getDriver } from "../../../../utils/test";
-import { VlSelectPage } from "./pages/vl-select.page";
+import { VlSelectPage } from "./select.page.js";
 
 describe("vl-select", async () => {
   let vlSelectPage;
