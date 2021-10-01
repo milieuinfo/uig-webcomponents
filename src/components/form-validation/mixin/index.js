@@ -1,4 +1,4 @@
-import { vlFormValidation } from "../form-validation";
+import { vlFormValidation } from "..";
 
 /**
  * Gebruik de form validation element mixin in combinatie met elementen die formulier validatie bevatten.

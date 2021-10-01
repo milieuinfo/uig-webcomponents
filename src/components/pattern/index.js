@@ -1,7 +1,6 @@
 import { awaitUntil } from "../../utils/core";
-import "../../../node_modules/@govflanders/vl-ui-util/dist/js/util.js";
-// import "../../../node_modules/@govflanders/vl-ui-util/dist/js/core.js";
-import "./lib/pattern.js";
+import "@govflanders/vl-ui-util/dist/js/util.js";
+import "./lib";
 
 /**
  * Gebruik de pattern mixin in combinatie met een input field om de gebruiker te verplichten om informatie in een bepaald formaat op te geven.

@@ -64,9 +64,7 @@ export class VlHeader extends LitElement {
     window.vl.widget.client
       .bootstrap(widgetUrl)
       .then((widget) => {
-        document
-          .querySelector('[is="vl-body"]')
-          .insertAdjacentHTML("afterbegin", '<div id="header"></div>');
+        this.injectHeader();
         widget.setMountElement(document.getElementById("header"));
         widget.mount().catch((e) => console.error(e));
         return widget;
