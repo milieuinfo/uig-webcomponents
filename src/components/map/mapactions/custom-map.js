@@ -115,6 +115,10 @@ export class VlCustomMap extends VlMapWithActions {
 
   addBaseLayerAndOverlayMapLayer(baseLayer, overlayMapLayer) {
     baseLayer.setVisible(this.baseLayers.length === 0);
+    overlayMapLayer.setVisible(
+        !this.overviewMapControl ||
+        this.overviewMapControl.getOverviewMap().getLayers().getArray().length === 0
+    );
     this.baseLayers.push(baseLayer);
 
     if (this.overviewMapControl) {
@@ -130,10 +134,6 @@ export class VlCustomMap extends VlMapWithActions {
         },
       });
     }
-    overlayMapLayer.setVisible(
-      this.overviewMapControl.getOverviewMap().getLayers().getArray().length ===
-      2
-    );
   }
 
   getBaseLayers() {

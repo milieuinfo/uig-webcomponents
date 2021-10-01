@@ -1,7 +1,6 @@
 import { vlElement, define } from "../../../../utils/core";
 import {
   OlWMTSSource,
-  OlWMTSTileGrid,
   OlVectorSource,
   OlVectorLayer,
   OlTileLayer,
@@ -9,11 +8,10 @@ import {
   OlStyle,
   OlStyleStroke,
   OlStyleFill,
-  OlExtent,
   OlLoadingstrategy,
 } from "../../mapactions";
-import { optionsFromCapabilities } from "../../../../../node_modules/ol/source/WMTS.js";
-import WMTSCapabilities from "../../../../../node_modules/ol/format/WMTSCapabilities.js";
+import { optionsFromCapabilities } from "ol/source/WMTS";
+import WMTSCapabilities from "ol/format/WMTSCapabilities";
 
 /**
  * VlMapBaseLayer
@@ -99,10 +97,9 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
   async _configureMap() {
     if (this._map) {
       this._map.addBaseLayerAndOverlayMapLayer(
-        this._createBaseLayer(),
-        this._createBaseLayer()
-      );
-      this._map.addBaseLayerAndOverlayMapLayer(await this._createBaseLayer());
+        await this._createBaseLayer(),
+        await this._createBaseLayer()
+      )
 
       // nodig anders is map initially blanc
       this._map.render();
@@ -113,7 +110,6 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
     const params = {
       request: "getcapabilities",
       service: "wmts",
-      version: "1.0.0",
     };
 
     const urlConstruct = new URL(this.url);
