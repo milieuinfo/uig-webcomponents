@@ -8,6 +8,7 @@ export default {
     escape: false,
     rotation: false,
     mousewheelzoom: false,
+    extent: "",
   },
   argTypes: {
     fullscreen: {
@@ -50,6 +51,16 @@ export default {
       },
       control: { disable: true },
     },
+    extent: {
+      name: "data-vl-extent",
+      type: { summary: "string" },
+      description:
+        "Attribuut wordt gebruikt de grootte van de kaart view te bepalen.",
+      table: {
+        defaultValue: { summary: "" },
+      },
+      control: { disable: true },
+    },
   },
 };
 
@@ -58,9 +69,11 @@ export const Default = ({
   escape,
   rotation,
   mousewheelzoom,
+  extent
 }) => html`
   <vl-map
     id="map"
+    data-vl-extent=${extent}
     ?data-vl-allow-fullscreen=${fullscreen}
     ?data-vl-disable-escape-key=${escape}
     ?data-vl-disable-rotation=${rotation}
