@@ -1,4 +1,4 @@
-import { html, nothing } from "lit";
+import { html } from "lit";
 import { COMPLIANCE_STATUS, EVALUATION_STATUS } from "../../enums";
 
 export const inaccessibleContent = ({
