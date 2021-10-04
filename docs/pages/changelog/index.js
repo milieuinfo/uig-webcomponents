@@ -13,8 +13,8 @@ const changes = [
       <li>
         <p><code>vl-accessibility</code></p>
         <p>
-          It is no longer an obligation to use the header inside a vl-body, from
-          now on it can be used inside a standard body too.
+          The accessibility statement got some content updates, and uses the new
+          link properties.
         </p>
       </li>
       <li>
