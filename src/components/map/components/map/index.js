@@ -98,7 +98,7 @@ export class VlMap extends vlElement(HTMLElement) {
         new OlView({
           center: OlExtent.getCenter(this.__viewExtent),
           extent: this.__viewExtent,
-          // properties overnemen uit VlCustomMap
+          // properties from VlCustomMap
           projection: this.map.getView().getProjection(),
           zoom: this.map.getView().getZoom(),
           maxZoom: this.map.getView().getMaxZoom(),
