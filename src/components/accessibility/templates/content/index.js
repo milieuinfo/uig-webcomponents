@@ -1,10 +1,9 @@
 import { html } from "lit";
-import { COMPLIANCE_STATUS, EVALUATION_STATUS } from "../../enums";
-import { complianceStatus, inaccessibleContent } from "..";
+import { complianceStatus, inaccessibleContent, sideNavigation } from "..";
 import { setupStatement } from "../setupStatement";
 
 export const content = (props) => {
-  const { application, evaluation, compliance } = props;
+  const { application, compliance } = props;
 
   return html`<section id="content" is="vl-region">
     <div is="vl-layout">
@@ -18,58 +17,45 @@ export const content = (props) => {
         >
           <div is="vl-side-navigation-reference" data-vl--scrollspy-content>
             <div is="vl-grid" data-vl-is-stacked-large>
-              <div
-                id="accessibility-statement"
-                is="vl-column"
-                data-vl-size="12"
-                data-vl-medium-size="12"
-              >
-                <h2 is="vl-h2">Toegankelijkheidsverklaring</h2>
-                <div is="vl-grid" data-vl-is-stacked>
-                  <div
-                    is="vl-column"
-                    data-vl-size="12"
-                    data-vl-medium-size="12"
-                  >
-                    <p>
-                      De Vlaamse overheid streeft ernaar haar websites en
-                      mobiele applicaties toegankelijk te maken, overeenkomstig
-                      het
-                      <a
-                        is="vl-link"
-                        href="http://www.ejustice.just.fgov.be/cgi_loi/loi_a1.pl?language=nl&cn=2018120705&table_name=wet&caller=list&fromtab=wet#LNK0011"
-                        target="_blank"
-                        >bestuursdecreet van 7 december 2018<span
-                          is="vl-icon"
-                          data-vl-icon="external"
-                          data-vl-after
-                          data-vl-light
-                        ></span
-                      ></a>
-                      waarmee de
-                      <a
-                        is="vl-link"
-                        href="https://eur-lex.europa.eu/legal-content/NL/TXT/?uri=uriserv:OJ.L_.2016.327.01.0001.01.NLD&toc=OJ:L:2016:327:TOC"
-                        target="_blank"
-                        >Europese Richtlijn 2016/2102<span
-                          is="vl-icon"
-                          data-vl-icon="external"
-                          data-vl-after
-                          data-vl-light
-                        ></span
-                      ></a>
-                      is omgezet.
-                    </p>
-                    <br />
-                    <p>
-                      Deze toegankelijkheidsverklaring is van toepassing op
-                      ${application}.
-                    </p>
-                  </div>
-                  ${complianceStatus(props)} ${inaccessibleContent(props)}
-                  ${setupStatement(props)}
-                </div>
+              <div is="vl-column" data-vl-size="12" data-vl-medium-size="12">
+                <p>
+                  De Vlaamse overheid streeft ernaar haar websites en mobiele
+                  applicaties toegankelijk te maken, overeenkomstig het
+                  <a
+                    is="vl-link"
+                    href="http://www.ejustice.just.fgov.be/cgi_loi/loi_a1.pl?language=nl&cn=2018120705&table_name=wet&caller=list&fromtab=wet#LNK0011"
+                    target="_blank"
+                    data-vl-inline
+                    >bestuursdecreet van 7 december 2018<span
+                      is="vl-icon"
+                      data-vl-icon="external"
+                      data-vl-after
+                      data-vl-light
+                    ></span
+                  ></a>
+                  waarmee de
+                  <a
+                    is="vl-link"
+                    href="https://eur-lex.europa.eu/legal-content/NL/TXT/?uri=uriserv:OJ.L_.2016.327.01.0001.01.NLD&toc=OJ:L:2016:327:TOC"
+                    target="_blank"
+                    data-vl-inline
+                    >Europese Richtlijn 2016/2102<span
+                      is="vl-icon"
+                      data-vl-icon="external"
+                      data-vl-after
+                      data-vl-light
+                    ></span
+                  ></a>
+                  is omgezet.
+                </p>
+                <br />
+                <p>
+                  Deze toegankelijkheidsverklaring is van toepassing op
+                  ${application}.
+                </p>
               </div>
+              ${complianceStatus(props)} ${inaccessibleContent(props)}
+              ${setupStatement(props)}
               <div
                 id="feedback-contact"
                 is="vl-column"
@@ -86,11 +72,9 @@ export const content = (props) => {
                 </p>
                 <br />
                 <vl-contact-card id="contact-card">
-                  <vl-infoblock
-                    slot="info"
-                    data-vl-title="Departement Omgeving"
-                    data-vl-type="contact"
-                  ></vl-infoblock>
+                  <vl-infoblock slot="info" data-vl-type="contact">
+                    <h3 slot="title">Departement Omgeving</h3>
+                  </vl-infoblock>
                   <vl-properties slot="properties">
                     <dl is="vl-properties-list">
                       <dt is="vl-property-term">Adres</dt>
@@ -137,11 +121,9 @@ export const content = (props) => {
                 </p>
                 <br />
                 <vl-contact-card id="contact-card">
-                  <vl-infoblock
-                    slot="info"
-                    data-vl-title="Klachtenbehandelaar"
-                    data-vl-type="contact"
-                  ></vl-infoblock>
+                  <vl-infoblock slot="info" data-vl-type="contact">
+                    <h3 slot="title">Klachtenbehandelaar</h3>
+                  </vl-infoblock>
                   <vl-properties slot="properties">
                     <dl is="vl-properties-list">
                       <dt is="vl-property-term">Adres</dt>
@@ -171,11 +153,9 @@ export const content = (props) => {
                 </p>
                 <br />
                 <vl-contact-card id="contact-card">
-                  <vl-infoblock
-                    slot="info"
-                    data-vl-title="Vlaamse ombudsdienst"
-                    data-vl-type="contact"
-                  ></vl-infoblock>
+                  <vl-infoblock slot="info" data-vl-type="contact">
+                    <h3 slot="title">Vlaamse ombudsdienst</h3>
+                  </vl-infoblock>
                   <vl-properties slot="properties">
                     <dl is="vl-properties-list">
                       <dt is="vl-property-term">Adres</dt>
@@ -226,78 +206,7 @@ export const content = (props) => {
             </div>
           </div>
         </div>
-        <div
-          is="vl-column"
-          data-vl-size="4"
-          data-vl-medium-size="4"
-          data-vl-small-size="4"
-          data-vl-extra-small-size="0"
-        >
-          <nav is="vl-side-navigation" aria-label="inhoudsopgave">
-            <h5 is="vl-side-navigation-h5">Op deze pagina</h5>
-            <div is="vl-side-navigation-content">
-              <ul is="vl-side-navigation-group">
-                <li is="vl-side-navigation-item" data-vl-parent>
-                  <a
-                    is="vl-side-navigation-toggle"
-                    href="#accessibility-statement"
-                    data-vl-child="accessibility-statement"
-                  >
-                    Toegankelijkheidsverklaring
-                    <i class="vl-vi vl-vi-arrow-right-fat"></i>
-                  </a>
-                  <ul>
-                    <li is="vl-side-navigation-item">
-                      <div>
-                        <a
-                          href="#compliance-status"
-                          data-vl-parent="accessibility-statement"
-                          >Nalevingsstatus</a
-                        >
-                      </div>
-                    </li>
-                    ${compliance !== COMPLIANCE_STATUS.FULLY_COMPLIANT ||
-                    evaluation === EVALUATION_STATUS.NOT_EVALUATED
-                      ? html`<li is="vl-side-navigation-item">
-                          <div>
-                            <a
-                              href="#inaccessible-content"
-                              data-vl-parent="accessibility-statement"
-                              >Niet-toegankelijke inhoud</a
-                            >
-                          </div>
-                        </li>`
-                      : null}
-                    <li is="vl-side-navigation-item">
-                      <div>
-                        <a
-                          href="#setup-accessibility-statement"
-                          data-vl-parent="accessibility-statement"
-                          >Opstelling van deze toegankelijkheidsverklaring</a
-                        >
-                      </div>
-                    </li>
-                  </ul>
-                </li>
-                <li is="vl-side-navigation-item" data-vl-parent>
-                  <a is="vl-side-navigation-toggle" href="#feedback-contact">
-                    Feedback en contactgegevens
-                    <i class="vl-vi vl-vi-arrow-right-fat"></i>
-                  </a>
-                </li>
-                <li is="vl-side-navigation-item" data-vl-parent>
-                  <a
-                    is="vl-side-navigation-toggle"
-                    href="#enforcement-procedure"
-                  >
-                    Handhavingsprocedure
-                    <i class="vl-vi vl-vi-arrow-right-fat"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
+        ${sideNavigation({ compliance })}
       </div>
     </div>
   </section>`;

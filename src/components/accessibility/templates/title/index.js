@@ -4,7 +4,7 @@ export const title = ({ version, date }) => html`<section is="vl-region">
   <div is="vl-layout">
     <div is="vl-grid" data-vl-is-stacked>
       <div is="vl-column" data-vl-size="10">
-        <h1 is="vl-h1" data-vl-no-space-bottom>Toegankelijkheid</h1>
+        <h1 is="vl-h1" data-vl-no-space-bottom>Toegankelijkheidsverklaring</h1>
       </div>
       <div is="vl-column" data-vl-size="10">
         <p is="vl-introduction">

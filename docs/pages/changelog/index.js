@@ -7,6 +7,26 @@ import { removeStorybooksDefaultStyling } from "../../../.storybook/utils";
 
 const changes = [
   {
+    version: "1.1.0",
+    date: "4/10/2021",
+    children: html`<ul>
+      <li>
+        <p><code>vl-accessibility</code></p>
+        <p>
+          It is no longer an obligation to use the header inside a vl-body, from
+          now on it can be used inside a standard body too.
+        </p>
+      </li>
+      <li>
+        <p><code>vl-link</code> & <code>vl-button-link</code></p>
+        <p>
+          The link and the button-link are expanded with a few new features.
+          From now on you can use inline, small, large and bold variants.
+        </p>
+      </li>
+    </ul>`,
+  },
+  {
     version: "1.0.1",
     date: "1/10/2021",
     children: html`<ul>

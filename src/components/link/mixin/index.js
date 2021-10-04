@@ -14,7 +14,7 @@ export const vlLinkElement = (SuperClass) => {
     }
 
     static get _observedClassAttributes() {
-      return ["block"];
+      return ["block", "inline", "small", "bold", "large"];
     }
 
     connectedCallback() {

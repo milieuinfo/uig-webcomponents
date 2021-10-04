@@ -27,25 +27,53 @@ export default {
 const hrefArgs = { href: "#" };
 const hrefArgTypes = { href: { name: "href (for demo purposes)" } };
 
-export const Default = ({ block, error, href, content }) =>
+export const Default = ({
+  block,
+  error,
+  href,
+  content,
+  inline,
+  small,
+  large,
+  bold,
+}) =>
   html`<a
     is="vl-link"
     href=${href}
     ?data-vl-block=${block}
     ?data-vl-error=${error}
+    ?data-vl-inline=${inline}
+    ?data-vl-small=${small}
+    ?data-vl-large=${large}
+    ?data-vl-bold=${bold}
     >${content}</a
   >`;
 
 Default.args = hrefArgs;
 Default.argTypes = hrefArgTypes;
 
-export const WithIcon = ({ block, error, type, href, content, icon }) => {
+export const WithIcon = ({
+  block,
+  error,
+  type,
+  href,
+  content,
+  icon,
+  inline,
+  small,
+  large,
+  bold,
+}) => {
   if (type === "before") {
     return html`<a
       is="vl-link"
       href=${href}
       ?data-vl-block=${block}
       ?data-vl-error=${error}
+      ?data-vl-inline=${inline}
+      ?data-vl-small=${small}
+      ?data-vl-large=${large}
+      ?data-vl-bold=${bold}
       ><span
         is="vl-icon"
         data-vl-icon=${icon}
@@ -60,6 +88,10 @@ export const WithIcon = ({ block, error, type, href, content, icon }) => {
     href=${href}
     ?data-vl-block=${block}
     ?data-vl-error=${error}
+    ?data-vl-inline=${inline}
+    ?data-vl-small=${small}
+    ?data-vl-large=${large}
+    ?data-vl-bold=${bold}
   >
     ${content}<span
       is="vl-icon"

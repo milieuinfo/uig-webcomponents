@@ -23,21 +23,47 @@ export default {
   argTypes,
 };
 
-export const Default = ({ block, error, content }) =>
+export const Default = ({
+  block,
+  error,
+  content,
+  inline,
+  small,
+  large,
+  bold,
+}) =>
   html`<button
     is="vl-button-link"
     ?data-vl-block=${block}
     ?data-vl-error=${error}
+    ?data-vl-inline=${inline}
+    ?data-vl-small=${small}
+    ?data-vl-large=${large}
+    ?data-vl-bold=${bold}
   >
     ${content}
   </button>`;
 
-export const WithIcon = ({ block, error, content, type, icon }) => {
+export const WithIcon = ({
+  block,
+  error,
+  content,
+  type,
+  icon,
+  inline,
+  small,
+  large,
+  bold,
+}) => {
   if (type === "before") {
     return html`<button
       is="vl-button-link"
       ?data-vl-block=${block}
       ?data-vl-error=${error}
+      ?data-vl-inline=${inline}
+      ?data-vl-small=${small}
+      ?data-vl-large=${large}
+      ?data-vl-bold=${bold}
     >
       <span is="vl-icon" data-vl-icon=${icon} data-vl-before></span>${content}
     </button>`;
@@ -46,9 +72,12 @@ export const WithIcon = ({ block, error, content, type, icon }) => {
     is="vl-button-link"
     ?data-vl-block=${block}
     ?data-vl-error=${error}
+    ?data-vl-inline=${inline}
+    ?data-vl-small=${small}
+    ?data-vl-large=${large}
+    ?data-vl-bold=${bold}
   >
-    ${content}
-    <span is="vl-icon" data-vl-icon=${icon} data-vl-after></span>
+    ${content}<span is="vl-icon" data-vl-icon=${icon} data-vl-after></span>
   </button>`;
 };
 

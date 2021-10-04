@@ -8,12 +8,18 @@ export const setupStatement = ({ evaluation, date, dateModified }) => {
         return html`Deze toegankelijkheidsverklaring is opgesteld op ${date} en
         gebaseerd op een analyse van een web accessibility specialist,
         gecertificeerd door the International Association of Accessibility
-        Professionals (IAAP).`;
+        Professionals (IAAP). Deze toegankelijkheidsverklaring is voor het
+        laatst herzien op ${dateModified}.`;
         break;
       case EVALUATION_STATUS.SELF_EVALUATED:
         return html`Deze toegankelijkheidsverklaring is opgesteld op ${date} en
-        gebaseerd op een analyse van Departement Omgeving.`;
+        gebaseerd op een analyse van Departement Omgeving. Deze
+        toegankelijkheidsverklaring is voor het laatst herzien op
+        ${dateModified}.`;
         break;
+      case EVALUATION_STATUS.NOT_EVALUATED:
+        return html`Deze toegankelijkheidsverklaring is opgesteld op ${date} en
+        werd voor het laatst herzien op ${dateModified}.`;
       default:
         return null;
         break;
@@ -25,10 +31,7 @@ export const setupStatement = ({ evaluation, date, dateModified }) => {
     data-vl-size="12"
     data-vl-medium-size="12"
   >
-    <h3 is="vl-h3">Opstelling van deze toegankelijkheidsverklaring</h3>
-    <p>
-      ${setupStatementTemplate()} Deze toegankelijkheidsverklaring is voor het
-      laatst herzien op ${dateModified}.
-    </p>
+    <h2 is="vl-h2">Opstelling van deze toegankelijkheidsverklaring</h2>
+    <p>${setupStatementTemplate()}</p>
   </div>`;
 };
