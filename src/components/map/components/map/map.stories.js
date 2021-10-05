@@ -15,13 +15,14 @@ export default {
     },
   },
   args: {
-    fullscreen: false,
-    escape: false,
-    rotation: false,
-    mousewheelzoom: false,
+    allowFullscreen: false,
+    disableEscape: false,
+    disableRotation: false,
+    disableMousewheelzoom: false,
+    extent: "[9928, 66928, 272072, 329072]",
   },
   argTypes: {
-    fullscreen: {
+    allowFullscreen: {
       name: "data-vl-allow-fullscreen",
       type: { summary: "boolean" },
       description:
@@ -31,7 +32,7 @@ export default {
       },
       control: { disable: true },
     },
-    escape: {
+    disableEscape: {
       name: "data-vl-disable-escape-key",
       type: { summary: "boolean" },
       description:
@@ -41,7 +42,7 @@ export default {
       },
       control: { disable: true },
     },
-    rotation: {
+    disableRotation: {
       name: "data-vl-disable-rotation",
       type: { summary: "boolean" },
       description:
@@ -51,7 +52,7 @@ export default {
       },
       control: { disable: true },
     },
-    mousewheelzoom: {
+    disableMousewheelzoom: {
       name: "data-vl-disable-mouse-wheel-zoom",
       type: { summary: "boolean" },
       description:
@@ -61,24 +62,48 @@ export default {
       },
       control: { disable: true },
     },
+    extent: {
+      name: "data-vl-extent",
+      type: "select",
+      options: [
+        "[9928, 66928, 272072, 329072]",
+        "[-73122.443418, -23915.714632, 347445.354629, 297624.297341]",
+      ],
+      description:
+        "Attribuut wordt gebruikt de grootte van de kaart view te bepalen.",
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: "[9928, 66928, 272072, 329072]" },
+      },
+    },
   },
 };
 
-export const Default = ({
-  fullscreen,
-  escape,
-  rotation,
-  mousewheelzoom,
+const Template = ({
+  allowFullscreen,
+  disableEscape,
+  disableRotation,
+  disableMousewheelzoom,
+  extent,
 }) => html`
   <vl-map
     id="map"
-    ?data-vl-allow-fullscreen=${fullscreen}
-    ?data-vl-disable-escape-key=${escape}
-    ?data-vl-disable-rotation=${rotation}
-    ?data-vl-disable-mouse-wheel-zoom=${mousewheelzoom}
+    data-vl-extent=${extent}
+    ?data-vl-allow-fullscreen=${allowFullscreen}
+    ?data-vl-disable-escape-key=${disableEscape}
+    ?data-vl-disable-rotation=${disableRotation}
+    ?data-vl-disable-mouse-wheel-zoom=${disableMousewheelzoom}
   >
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
     <vl-map-baselayer-grb></vl-map-baselayer-grb>
     <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
   </vl-map>
 `;
+
+export const Default = Template.bind({});
+
+export const AllowFullscreen = Template.bind({});
+AllowFullscreen.args = { allowFullscreen: true };
+
+export const DisabledMouseweelZoom = Template.bind({});
+DisabledMouseweelZoom.args = { disableMousewheelzoom: true };

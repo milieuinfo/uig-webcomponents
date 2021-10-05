@@ -1,7 +1,6 @@
 import { vlElement, define } from "../../../../utils/core";
 import {
   OlWMTSSource,
-  OlWMTSTileGrid,
   OlVectorSource,
   OlVectorLayer,
   OlTileLayer,
@@ -9,9 +8,10 @@ import {
   OlStyle,
   OlStyleStroke,
   OlStyleFill,
-  OlExtent,
   OlLoadingstrategy,
 } from "../../mapactions";
+import { optionsFromCapabilities } from "ol/source/WMTS";
+import WMTSCapabilities from "ol/format/WMTSCapabilities";
 
 /**
  * VlMapBaseLayer
@@ -31,8 +31,8 @@ import {
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map.html|Demo}
  */
 export class VlMapBaseLayer extends vlElement(HTMLElement) {
-  connectedCallback() {
-    this._configureMap();
+  async connectedCallback() {
+    await this._configureMap();
   }
 
   /**
@@ -83,8 +83,8 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
     }
   }
 
-  get _WMTSSource() {
-    this._wmtsSource = this._wmtsSource || this._createWMTSSource();
+  async _WMTSSource() {
+    this._wmtsSource = this._wmtsSource || (await this._createWMTSSource());
     return this._wmtsSource;
   }
 
@@ -94,38 +94,37 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
     return this._createdVectorSource;
   }
 
-  _configureMap() {
+  async _configureMap() {
     if (this._map) {
       this._map.addBaseLayerAndOverlayMapLayer(
-        this._createBaseLayer(),
-        this._createBaseLayer()
-      );
+        await this._createBaseLayer(),
+        await this._createBaseLayer()
+      )
+
+      // nodig anders is map initially blanc
+      this._map.render();
     }
   }
 
-  _createWMTSSource() {
-    const size = OlExtent.getWidth(this._projection.getExtent()) / 256;
-    const resolutions = new Array(16);
-    const matrixIds = new Array(16);
-    for (let z = 0; z < 16; ++z) {
-      resolutions[z] = size / Math.pow(2, z);
-      matrixIds[z] = z;
-    }
+  async _createWMTSSource() {
+    const params = {
+      request: "getcapabilities",
+      service: "wmts",
+    };
 
-    return new OlWMTSSource({
-      url: this.url,
+    const urlConstruct = new URL(this.url);
+    urlConstruct.search = new URLSearchParams(params);
+
+    const response = await fetch(urlConstruct.href).then((response) =>
+      response.text()
+    );
+    const parser = new WMTSCapabilities();
+    const options = optionsFromCapabilities(parser.read(response), {
       layer: this.layer,
       matrixSet: "BPL72VL",
-      format: "image/png",
-      projection: this._projection,
-      tileGrid: new OlWMTSTileGrid({
-        extent: this._projection.getExtent(),
-        origin: OlExtent.getTopLeft(this._projection.getExtent()),
-        resolutions: resolutions,
-        matrixIds: matrixIds,
-      }),
-      style: "",
     });
+
+    return new OlWMTSSource(options);
   }
 
   _createVectorSource() {
@@ -134,20 +133,20 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
       format: new OlGeoJSON({
         dataProjection: self._projection,
       }),
-      url: function () {
+      url: function() {
         return self.url + "&typeName=" + self.layer;
       },
       strategy: OlLoadingstrategy.bbox,
     });
   }
 
-  _createBaseLayer() {
+  async _createBaseLayer() {
     switch (this.type) {
       case "wmts":
         return new OlTileLayer({
           title: this.title,
           type: "base",
-          source: this._WMTSSource,
+          source: await this._WMTSSource(),
         });
       case "wfs":
         return new OlVectorLayer({

@@ -4,9 +4,12 @@ import {
   OlLayerGroup,
   OlProjection,
   VlCustomMap,
+  OlView,
   proj4,
+  OlExtent,
 } from "../../mapactions";
 import styles from "./styles.scss";
+import { register } from "ol/proj/proj4";
 
 /**
  * VlMap
@@ -41,6 +44,10 @@ import styles from "./styles.scss";
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wmts-layer.html|Demo}
  */
 export class VlMap extends vlElement(HTMLElement) {
+  static get _observedAttributes() {
+    return ["extent"];
+  }
+
   /**
    * Geeft de event naam die gebruikt wordt wanneer een nieuwe actie toegevoegd wordt aan de kaart
    *
@@ -54,6 +61,14 @@ export class VlMap extends vlElement(HTMLElement) {
     };
   }
 
+  static get PROJECTION_EXTENT() {
+    return [17736.0314, 23697.0977, 297289.9391, 245375.4223];
+  }
+
+  static get DEFAULT_VIEW_EXTENT() {
+    return [9928, 66928, 272072, 329072];
+  }
+
   constructor() {
     super(`
       <style>
@@ -64,7 +79,33 @@ export class VlMap extends vlElement(HTMLElement) {
       </div>
     `);
 
+    this.__viewExtent = VlMap.DEFAULT_VIEW_EXTENT;
     this.__prepareReadyPromises();
+  }
+
+  _extentChangedCallback(_oldValue, newValue) {
+    if (newValue) {
+      this.__viewExtent = JSON.parse(newValue);
+    } else {
+      this.__viewExtent = VlMap.DEFAULT_VIEW_EXTENT;
+    }
+    this.__changeMapView();
+  }
+
+  __changeMapView() {
+    if (this.map) {
+      this.map.setView(
+        new OlView({
+          center: OlExtent.getCenter(this.__viewExtent),
+          extent: this.__viewExtent,
+          // properties from VlCustomMap
+          projection: this.map.getView().getProjection(),
+          zoom: this.map.getView().getZoom(),
+          maxZoom: this.map.getView().getMaxZoom(),
+          minZoom: this.map.getView().getMinZoom(),
+        })
+      );
+    }
   }
 
   /**
@@ -149,13 +190,13 @@ export class VlMap extends vlElement(HTMLElement) {
   get _projection() {
     return new OlProjection({
       code: "EPSG:31370",
-      extent: this._extent,
+      extent: VlMap.PROJECTION_EXTENT,
       getPointResolution: (r) => r,
     });
   }
 
   get _extent() {
-    return [9928, 66928, 272072, 329072];
+    return this.__viewExtent;
   }
 
   connectedCallback() {
@@ -172,11 +213,14 @@ export class VlMap extends vlElement(HTMLElement) {
         overlayGroup: this.__createLayerGroup("Lagen", []),
       },
       projection: this._projection,
+      view: {
+        projection: this._projection,
+        extent: this._extent,
+      },
       target: this._mapElement,
       controls: this._controls,
     });
 
-    this._map.initializeView();
     this.__updateMapSizeOnLoad();
     this.__updateOverviewMapSizeOnLoad();
   }
@@ -286,6 +330,7 @@ export class VlMap extends vlElement(HTMLElement) {
       "EPSG:31370",
       "+proj=lcc +lat_1=51.16666723333333 +lat_2=49.8333339 +lat_0=90 +lon_0=4.367486666666666 +x_0=150000.013 +y_0=5400088.438 +ellps=intl +towgs84=-106.869,52.2978,-103.724,0.3366,-0.457,1.8422,-1.2747 +units=m +no_defs"
     );
+    register(proj4);
   }
 
   static __callOnceOnLoad(callback) {
