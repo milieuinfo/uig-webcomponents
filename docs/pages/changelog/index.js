@@ -18,6 +18,15 @@ const changes = [
         </p>
       </li>
       <li>
+        <p><code>vl-side-navigation</code></p>
+        <p>
+          The click events from the anchor elements are now added in the
+          side-navigation-toggle itself instead of in the side-navigation. The
+          previous approach assumed that all anchor elements where there on
+          load, but this is not always the case.
+        </p>
+      </li>
+      <li>
         <p><code>vl-link</code> & <code>vl-button-link</code></p>
         <p>
           The link and the button-link are expanded with a few new features.

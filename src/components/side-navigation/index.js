@@ -25,12 +25,7 @@ export class VlSideNavigation extends nativeVlElement(HTMLElement) {
     super();
     this._processAttributes();
     this._processClasses();
-    this._processAnchors();
     this._dress();
-  }
-
-  get _anchorElements() {
-    return this.querySelectorAll('[is="vl-side-navigation-item"] a');
   }
 
   _dress() {
@@ -54,22 +49,6 @@ export class VlSideNavigation extends nativeVlElement(HTMLElement) {
     this.classList.add("js-vl-side-navigation");
     this.classList.add("js-vl-sticky");
     this.classList.add("js-vl-scrollspy");
-  }
-
-  _processAnchors() {
-    if (this._anchorElements && this._anchorElements.length > 0) {
-      this._anchorElements.forEach((anchor) =>
-        anchor.addEventListener("click", () => {
-          const element = this.getRootNode().querySelector(
-            anchor.getAttribute("href")
-          );
-          if (element) {
-            element.scrollIntoView();
-            window.scrollBy(0, -43);
-          }
-        })
-      );
-    }
   }
 }
 
