@@ -20,14 +20,15 @@ export default {
     },
   },
   args: {
-    title: "Opgelet!",
-    icon: "warning",
-    size: "normal",
-    type: "info",
+    title: "Lorem ipsum",
+    icon: ALERT_ICON.WARNING,
+    size: "",
+    type: ALERT_TYPE.INFO,
     closable: false,
-    buttonText: "Fout melden",
-    slotTitle: "Alert titel via slot",
-    content: "U heeft geen rechten om deze actie uit te voeren.",
+    buttonSlotText: "Fout melden",
+    titleSlotText: "Alert titel via slot",
+    content:
+      "Phasellus congue ipsum ut felis auctor, eget maximus justo dapibus. Nam sit amet pulvinar odio. Maecenas rhoncus quam eget neque porttitor, et faucibus nisl elementum.",
   },
   argTypes: {
     title: {
@@ -55,16 +56,16 @@ export default {
     size: {
       name: "data-vl-size",
       type: {
-        summary: `${ALERT_SIZE.NORMAL} | ${ALERT_SIZE.SMALL}`,
+        summary: `${ALERT_SIZE.SMALL}`,
       },
       description:
         "Attribuut activeert een variant van de waarschuwing maar kleiner.",
       control: {
         type: "select",
-        options: [ALERT_SIZE.NORMAL, ALERT_SIZE.SMALL],
+        options: [ALERT_SIZE.SMALL],
       },
       table: {
-        defaultValue: { summary: `"${ALERT_SIZE.NORMAL}"` },
+        defaultValue: { summary: "" },
       },
     },
     type: {
@@ -98,20 +99,26 @@ export default {
     },
     content: {
       name: "content (for demo purposes)",
-      description: "Test",
-    },
-    slotTitle: {
-      name: "title (slot)",
       description: "",
     },
-    buttonText: {
+    titleSlotText: {
+      name: "actions (slot)",
+      description: "",
+      control: {
+        disable: true,
+      },
+    },
+    buttonSlotText: {
       name: "button text (slot, for demo purposes)",
       description: "",
+      control: {
+        disable: true,
+      },
     },
   },
 };
 
-export const Default = ({ closable, icon, title, size, type, content }) => html`
+const Template = ({ closable, icon, title, size, type, content }) => html`
   <vl-alert
     ?data-vl-closable=${closable}
     data-vl-icon=${icon}
@@ -123,41 +130,18 @@ export const Default = ({ closable, icon, title, size, type, content }) => html`
   </vl-alert>
 `;
 
-export const Alert = ({ closable, icon, title, size, type, content }) => html`
-  <vl-alert
-    ?data-vl-closable=${closable}
-    data-vl-icon=${icon}
-    data-vl-title=${title}
-    data-vl-size=${size}
-    data-vl-type=${type}
-  >
-    <p>${content}</p>
-  </vl-alert>
-`;
+export const Default = Template.bind({});
+export const Error = Template.bind({});
+export const Info = Template.bind({});
+export const Success = Template.bind({});
+export const Warning = Template.bind({});
 
-Alert.args = {
+Error.args = {
   title: "Opgelet!",
   type: ALERT_TYPE.ERROR,
   icon: ALERT_ICON.WARNING,
   content: "U heeft geen rechten om deze actie uit te voeren.",
 };
-
-export const Info = ({
-  closable,
-  icon,
-  title,
-  size,
-  type,
-  content,
-}) => html`<vl-alert
-  ?data-vl-closable=${closable}
-  data-vl-icon=${icon}
-  data-vl-title=${title}
-  data-vl-size=${size}
-  data-vl-type=${type}
->
-  <p>${content}</p>
-</vl-alert>`;
 
 Info.args = {
   title: "Info",
@@ -167,23 +151,6 @@ Info.args = {
     "Als u vaststelt dat er foute informatie over u in het bestand van de Centrale voor Kredieten aan Particulieren staat, dan kunt u een rechtzetting aanvragen.",
 };
 
-export const Success = ({
-  closable,
-  icon,
-  title,
-  size,
-  type,
-  content,
-}) => html`<vl-alert
-  ?data-vl-closable=${closable}
-  data-vl-icon=${icon}
-  data-vl-title=${title}
-  data-vl-size=${size}
-  data-vl-type=${type}
->
-  <p>${content}</p>
-</vl-alert>`;
-
 Success.args = {
   title: "Gelukt!",
   type: ALERT_TYPE.SUCCESS,
@@ -191,18 +158,6 @@ Success.args = {
   content:
     "We hebben uw melding goed ontvangen en nemen deze spoedig in behandeling.",
 };
-
-export const Warning = ({ closable, icon, title, size, type, content }) => html`
-  <vl-alert
-    ?data-vl-closable=${closable}
-    data-vl-icon=${icon}
-    data-vl-title=${title}
-    data-vl-size=${size}
-    data-vl-type=${type}
-  >
-    <p>${content}</p>
-  </vl-alert>
-`;
 
 Warning.args = {
   title: "Technische storing",
@@ -218,7 +173,7 @@ export const WithButton = ({
   title,
   size,
   type,
-  buttonText,
+  buttonSlotText,
   content,
 }) => html`
   <vl-alert
@@ -229,27 +184,41 @@ export const WithButton = ({
     data-vl-type=${type}
   >
     <p>${content}</p>
-    <button slot="actions" is="vl-button">${buttonText}</button>
+    <button slot="actions" is="vl-button">${buttonSlotText}</button>
   </vl-alert>
 `;
+
+WithButton.argTypes = {
+  buttonSlotText: {
+    control: {
+      disable: false,
+    },
+  },
+};
 
 export const WithTitleSlot = ({
   closable,
   icon,
-  title,
   size,
   type,
-  slotTitle,
+  titleSlotText,
   content,
 }) => html`
   <vl-alert
     ?data-vl-closable=${closable}
     data-vl-icon=${icon}
-    data-vl-title=${title}
     data-vl-size=${size}
     data-vl-type=${type}
   >
-    <span slot="title">${slotTitle}</span>
+    <span slot="title">${titleSlotText}</span>
     <p>${content}</p>
   </vl-alert>
 `;
+
+WithTitleSlot.argTypes = {
+  titleSlotText: {
+    control: {
+      disable: false,
+    },
+  },
+};

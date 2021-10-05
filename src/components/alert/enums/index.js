@@ -12,6 +12,5 @@ export const ALERT_ICON = {
 };
 
 export const ALERT_SIZE = {
-  NORMAL: "normal",
   SMALL: "small",
 };
