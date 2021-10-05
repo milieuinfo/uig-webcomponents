@@ -1,0 +1,18 @@
+{
+  "expanded": true,
+  "npm": true,
+  "plugins": {
+    "local": {
+      "browsers": ["chrome", "firefox"]
+    },
+    "junit-reporter": {
+      "output": {
+        "path": "results/",
+        "name": "wct-results.xml"
+      }
+    }
+  },
+  "suites": ["src/**/**/test/unit/**/*.test.html"],
+  "webserver": { "port": "8080" },
+  "root": "./"
+}

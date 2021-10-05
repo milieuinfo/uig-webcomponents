@@ -1,5 +1,5 @@
-import { LitElement, html } from "lit";
-import { awaitScript } from "../../utils/vl-core";
+import { LitElement } from "lit";
+import { awaitScript } from "../../utils/core";
 
 awaitScript(
   "vl-footer-client",
@@ -33,11 +33,22 @@ export class VlFooter extends LitElement {
 
   constructor() {
     super();
-    this[development] = true;
+  }
+
+  injectFooter() {
+    const vlBody = document.querySelector('[is="vl-body"]');
+    (vlBody || document.body).insertAdjacentHTML(
+      "beforeend",
+      '<div id="footer"></div>'
+    );
   }
 
   vlwFooter() {
     return document.querySelector("footer[class=vlw__footer]");
+  }
+
+  footer() {
+    return document.querySelector("#footer");
   }
 
   loadWidget() {
@@ -48,7 +59,7 @@ export class VlFooter extends LitElement {
     window.vl.widget.client
       .bootstrap(widgetUrl)
       .then((widget) => {
-        this.insertAdjacentHTML("beforeend", '<div id="footer"></div>');
+        this.injectFooter();
         widget.setMountElement(document.getElementById("footer"));
         widget.mount().catch((e) => console.error(e));
       })
@@ -59,8 +70,11 @@ export class VlFooter extends LitElement {
     if (this.vlwFooter()) {
       this.vlwFooter().parentElement.remove();
     }
+    if (this.footer()) {
+      this.footer().remove();
+    }
     this.loadWidget();
-    return html`<div id="footer"></div>`;
+    this.injectFooter();
   }
 
   createRenderRoot() {

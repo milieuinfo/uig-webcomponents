@@ -1,5 +1,8 @@
 node_modules
-distribution
+lib
+!src/**/lib
 build
 .DS_STORE
 storybook-static
+.npmrc
+results

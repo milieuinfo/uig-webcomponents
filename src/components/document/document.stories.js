@@ -1,11 +1,23 @@
 import { html } from "lit-html";
 import "../grid";
 import "../document";
+import { docsIntro } from "../../../.storybook/utils.js";
 
 export default {
   title: "custom-elements/vl-document",
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          root: "document",
+          intro:
+            "Gebruik de document component om een link naar een bestand toe te voegen dat de gebruiker kan bekijken in de browser of downloaden.",
+        }),
+      },
+    },
+  },
   args: {
-    href: "",
+    href: "#",
     type: "PDF",
     title: "Hubert en Jan van Eyck, Vlaamse Primitieven",
     metadata: "PDF - 580 kB",
@@ -19,9 +31,9 @@ export default {
         defaultValue: { summary: "#" },
       },
     },
-    type: { name: "type (for demo purposes)" },
-    title: { name: "title (for demo purposes)" },
-    metadata: { name: "metadata (for demo purposes)" },
+    type: { name: "type (slot)" },
+    title: { name: "title (slot)" },
+    metadata: { name: "metadata (slot)" },
   },
 };
 

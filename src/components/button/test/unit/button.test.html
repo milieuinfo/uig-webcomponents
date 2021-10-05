@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+
+    <script type="module" src="../../../icon/vl-icon.js"></script>
+    <script
+      type="module"
+      src="../../../../../lib/components/button/index.js"
+    ></script>
+  </head>
+
+  <body>
+    <test-fixture id="vl-button-fixture">
+      <template>
+        <button id="button" is="vl-button"></button>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-button-with-icon-fixture">
+      <template>
+        <button is="vl-button">
+          <span is="vl-icon" data-vl-icon="calendar"></span>
+        </button>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-button-with-icon-before-fixture">
+      <template>
+        <button is="vl-button">
+          <span is="vl-icon" data-vl-icon="calendar" data-vl-before></span
+          >Kalender
+        </button>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-button-with-icon-after-fixture">
+      <template>
+        <button is="vl-button">
+          <span is="vl-icon" data-vl-icon="calendar" data-vl-after></span
+          >Kalender
+        </button>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-link-button-fixture">
+      <template>
+        <a is="vl-link-button"></a>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite("vl-button", () => {
+        test("heeft de vl-button class", () => {
+          const button = fixture("vl-button-fixture");
+          assert.isTrue(button.classList.contains("vl-button"));
+        });
+
+        test("krijgt de juiste class wanneer de knop een attribuut bevat", () => {
+          const button = fixture("vl-button-fixture");
+          [
+            "disabled",
+            "error",
+            "block",
+            "large",
+            "wide",
+            "narrow",
+            "secondary",
+            "tertiary",
+          ].forEach((attribuut) => {
+            assert.isFalse(
+              button.classList.contains("vl-button--" + attribuut)
+            );
+            button.setAttribute(`data-vl-${attribuut}`, "");
+            assert.isTrue(button.classList.contains("vl-button--" + attribuut));
+            button.removeAttribute(`data-vl-${attribuut}`);
+            assert.isFalse(
+              button.classList.contains("vl-button--" + attribuut)
+            );
+          });
+        });
+
+        test("met icon child element bevat de juiste class", (done) => {
+          const button = fixture("vl-button-with-icon-fixture");
+          setTimeout(() => {
+            assert.isTrue(button.classList.contains("vl-button--icon"));
+            done();
+          });
+        });
+
+        test("met icon before of after child element bevat de juiste class", (done) => {
+          const attributes = ["before", "after"];
+          attributes.forEach((attribute) => {
+            const button = fixture(
+              "vl-button-with-icon-" + attribute + "-fixture"
+            );
+            setTimeout(() => {
+              assert.isTrue(
+                button.classList.contains("vl-button--icon-" + attribute)
+              );
+              const icon = button.querySelector('[is="vl-icon"]');
+              assert.isTrue(icon.classList.contains("vl-button__icon"));
+              assert.isTrue(
+                icon.classList.contains("vl-button__icon--" + attribute)
+              );
+              assert.isFalse(icon.classList.contains("vl-icon--" + attribute));
+              if (attributes.indexOf(attribute) === attributes.length - 1) {
+                done();
+              }
+            });
+          });
+        });
+      });
+
+      suite("vl-link-button", () => {
+        test("heeft de vl-button class", () => {
+          const linkButton = fixture("vl-link-button-fixture");
+          assert.isTrue(linkButton.classList.contains("vl-button"));
+        });
+      });
+    </script>
+  </body>
+</html>

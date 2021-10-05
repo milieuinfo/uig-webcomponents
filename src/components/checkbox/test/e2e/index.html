@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>vl-checkbox voorbeeld</title>
+    <script type="module" src="../../../../../build/index.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../../../lib/components/body/styles.css"
+    />
+  </head>
+
+  <body is="vl-body">
+    <vl-checkbox id="checkbox-default-1" data-vl-label="Optie 1"></vl-checkbox>
+    <script>
+      document
+        .querySelector("#checkbox-default-1")
+        .addEventListener("input", (e) => {
+          console.log(e.srcElement.id + " value: " + e.srcElement.checked);
+        });
+    </script>
+
+    <vl-checkbox
+      id="checkbox-block"
+      data-vl-label="Optie 2"
+      data-vl-block
+    ></vl-checkbox>
+
+    <vl-checkbox
+      id="checkbox-error"
+      data-vl-label="Optie 3"
+      data-vl-error
+    ></vl-checkbox>
+
+    <vl-checkbox
+      id="checkbox-disabled-unchecked"
+      data-vl-label="Optie 4"
+      data-vl-disabled
+    ></vl-checkbox>
+    <vl-checkbox
+      id="checkbox-disabled-checked"
+      data-vl-label="Optie 5"
+      data-vl-checked
+      data-vl-disabled
+    ></vl-checkbox>
+
+    <vl-checkbox
+      id="checkbox-single"
+      data-vl-label="Optie 6"
+      data-vl-single
+    ></vl-checkbox>
+
+    <vl-checkbox
+      id="checkbox-switch"
+      data-vl-label="Instellingen blokkeren"
+      data-vl-switch
+      data-vl-single
+    ></vl-checkbox>
+
+    <vl-checkbox
+      id="checkbox-switch-disabled"
+      data-vl-label="Instellingen blokkeren"
+      data-vl-switch
+      data-vl-disabled
+      data-vl-single
+    ></vl-checkbox>
+
+    <vl-checkbox
+      id="checkbox-switch-label"
+      data-vl-switch
+      data-vl-label="Instellingen blokkeren"
+    ></vl-checkbox>
+
+    <vl-checkbox
+      id="checkbox-multi-1"
+      data-vl-label="Optie 1"
+      data-vl-value="1"
+      data-vl-checked="[]"
+    ></vl-checkbox>
+    <vl-checkbox
+      id="checkbox-multi-2"
+      data-vl-label="Optie 2"
+      data-vl-value="2"
+      data-vl-checked="[]"
+    ></vl-checkbox>
+    <vl-checkbox
+      id="checkbox-multi-3"
+      data-vl-label="Optie 3"
+      data-vl-value="3"
+      data-vl-checked="[]"
+    ></vl-checkbox>
+
+    <vl-checkbox
+      id="checkbox-multi-st-1"
+      data-vl-label="Optie 1"
+      data-vl-value="1"
+      data-vl-checked="[2,3]"
+    ></vl-checkbox>
+    <vl-checkbox
+      id="checkbox-multi-st-2"
+      data-vl-label="Optie 2"
+      data-vl-value="2"
+      data-vl-checked="[2,3]"
+    ></vl-checkbox>
+    <vl-checkbox
+      id="checkbox-multi-st-3"
+      data-vl-label="Optie 3"
+      data-vl-value="3"
+      data-vl-checked="[2,3]"
+    ></vl-checkbox>
+
+    <vl-checkbox id="checkbox-slot" data-vl-value="1">
+      <span>Optie <strong>1</strong></span>
+    </vl-checkbox>
+    <vl-checkbox id="checkbox-slot-switch" data-vl-switch>
+      <span>Optie <strong>2</strong></span>
+    </vl-checkbox>
+  </body>
+</html>

@@ -3,8 +3,8 @@ const path = require("path");
 const sass = require("sass");
 const buildConfig = {
   src: "src",
-  dist: "distribution",
-  nativeComponents: [
+  dist: "lib",
+  componentsWithStylesheet: [
     "body",
     "button",
     "grid",
@@ -13,17 +13,13 @@ const buildConfig = {
     "link",
     "side-navigation",
     "titles",
+    "image",
+    "properties",
+    "select",
   ],
 };
-const { src, dist, nativeComponents } = buildConfig;
 
-if (fs.existsSync(dist)) {
-  fs.rmdirSync(dist, { recursive: true });
-}
-
-fs.readdirSync(src).map((folder) => {
-  fs.copySync(`${src}/${folder}`, `${dist}/${folder}`);
-});
+const { src, dist, componentsWithStylesheet } = buildConfig;
 
 const handleSass = (directoryToSearch, pattern) => {
   let computedPath;
@@ -35,7 +31,7 @@ const handleSass = (directoryToSearch, pattern) => {
       handleSass(subDirectoryToSearch, pattern);
     }
     if (stat.isFile() && subDirectoryToSearch.endsWith(pattern)) {
-      const isNative = nativeComponents.includes(
+      const isNative = componentsWithStylesheet.includes(
         directoryToSearch.split("/").pop()
       );
       const nativePath = `${subDirectoryToSearch
@@ -84,6 +80,20 @@ const replaceFonts = (content) => {
     );
 };
 
+const removeFolders = (directoryToSearch, pattern) => {
+  fs.readdirSync(directoryToSearch).forEach((subDirectory) => {
+    const subDirectoryToSearch = path.resolve(directoryToSearch, subDirectory);
+    const stat = fs.statSync(subDirectoryToSearch);
+    if (stat.isDirectory()) {
+      if (subDirectoryToSearch.endsWith(pattern)) {
+        fs.rmdirSync(subDirectoryToSearch, { recursive: true });
+      } else {
+        removeFolders(subDirectoryToSearch, pattern);
+      }
+    }
+  });
+};
+
 const removeFilesWithExtension = (directoryToSearch, pattern) => {
   fs.readdirSync(directoryToSearch).forEach((subDirectory) => {
     const subDirectoryToSearch = path.resolve(directoryToSearch, subDirectory);
@@ -97,21 +107,16 @@ const removeFilesWithExtension = (directoryToSearch, pattern) => {
   });
 };
 
-const replaceFontUlrs = (directoryToSearch) => {
-  fs.readdirSync(directoryToSearch).forEach((subDirectory) => {
-    const subDirectoryToSearch = path.resolve(directoryToSearch, subDirectory);
-    const stat = fs.statSync(subDirectoryToSearch);
-    if (stat.isDirectory()) {
-      replaceFontUlrs(subDirectoryToSearch);
-    }
-    if (stat.isFile() && subDirectoryToSearch.endsWith(".css")) {
-      console.log({ subDirectoryToSearch });
-    }
-  });
-};
-
 const execute = () => {
+  if (fs.existsSync(dist)) {
+    fs.rmdirSync(dist, { recursive: true });
+  }
+  fs.readdirSync(src).map((folder) => {
+    fs.copySync(`${src}/${folder}`, `${dist}/${folder}`);
+  });
   handleSass(src, ".scss");
+  removeFolders(dist, "test");
+  removeFolders(dist, "config");
   removeFilesWithExtension(dist, ".scss");
   removeFilesWithExtension(dist, ".stories.js");
 };

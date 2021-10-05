@@ -1,8 +1,20 @@
 import { html } from "lit-html";
 import "../infoblock";
+import { docsIntro } from "../../../.storybook/utils.js";
 
 export default {
   title: "custom-elements/vl-infoblock",
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          root: "infoblock",
+          intro:
+            "Gebruik de infoblock om een sectie met een nieuwe content te starten.",
+        }),
+      },
+    },
+  },
   argTypes: {
     type: {
       name: "data-vl-type",
@@ -137,4 +149,10 @@ WithSlotElements.args = {
   content:
     "Hieronder bevindt zich een overzicht van al uw contacten binnen de Vlaamse Overheid.",
   type: "contact",
+};
+
+WithSlotElements.argTypes = {
+  title: {
+    name: "title (slot)",
+  },
 };

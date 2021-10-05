@@ -1,8 +1,20 @@
 import { html } from "lit-html";
 import "../functional-header";
+import { docsIntro } from "../../../.storybook/utils.js";
 
 export default {
   title: "custom-elements/vl-functional-header",
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          root: "functional-header",
+          intro:
+            "Toont bovenaan de pagina generieke informatie zonder af te leiden zoals bijvoorgeeld titel, acties, tab navigatie of zoek input.",
+        }),
+      },
+    },
+  },
   args: {
     title: "School- en studietoelagen",
     subTitle: "Voor lager, middelbaar en hoger onderwijs",
@@ -78,6 +90,18 @@ export const WithSlotElements = ({ title, subTitle, link, backLink, back }) =>
     <span slot="back">${back}</span>
   </vl-functional-header>`;
 
+WithSlotElements.argTypes = {
+  title: {
+    name: "title (slot)",
+  },
+  subTitle: {
+    name: "sub-title (slot)",
+  },
+  back: {
+    name: "back (slot)",
+  },
+};
+
 export const WithUserInteraction = ({
   title,
   subTitle,
@@ -106,7 +130,16 @@ WithUserInteraction.args = {
 
 WithUserInteraction.argTypes = {
   content: {
-    name: "content (for demo purposes)",
+    name: "actions (slot)",
     type: "string",
+  },
+  title: {
+    name: "title (slot)",
+  },
+  subTitle: {
+    name: "sub-title (slot)",
+  },
+  back: {
+    name: "back (slot)",
   },
 };

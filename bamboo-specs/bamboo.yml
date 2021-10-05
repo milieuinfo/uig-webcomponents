@@ -14,23 +14,28 @@ variables:
 stages:
   - Build:
       jobs:
-        - Build
+        - Test
   - Release:
       manual: true
       jobs:
         - Release
 
-Build:
+Test:
   key: BD
   tasks:
     - clean
     - script: |
         #!/bin/bash
         set -e
-        set -x
-        docker-compose -f docker-compose.yml run build
+        export browserstack_username="${bamboo_browserstack_username}"
+        export browserstack_password="${bamboo_browserstack_password}"
+        docker-compose -f docker/docker-compose-test.yml up --scale selenium-chrome=3 --scale selenium-firefox=3 --exit-code-from tests --force-recreate
   final-tasks:
     - script: /opt/scripts/docker/stop-docker-containers.sh
+    - test-parser:
+        type: junit
+        test-results:
+          - results
   requirements:
     - REMOTE_ONLY
 
@@ -45,7 +50,7 @@ Release:
         /opt/scripts/git/git-repository-information-restore.sh
         export git_repo="${bamboo_repository_git_repositoryUrl}"
         export release_version="${bamboo.release_version}"
-        docker-compose -f docker-compose.yml run release
+        docker-compose -f docker/docker-compose-release.yml run release
   final-tasks:
     - script: /opt/scripts/docker/stop-docker-containers.sh
   requirements:

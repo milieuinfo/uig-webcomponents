@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <title>vl-properties voorbeeld</title>
+    <script type="module" src="../../../../../build/index.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../../../lib/components/body/styles.css"
+    />
+  </head>
+  <body is="vl-body">
+    <vl-properties>
+      <h4>Gegevens</h4>
+      <dl is="vl-properties-list">
+        <dt is="vl-property-term">Voornaam</dt>
+        <dd is="vl-property-value">Koen</dd>
+        <dt is="vl-property-term">Naam</dt>
+        <dd is="vl-property-value">Peeters</dd>
+        <dt is="vl-property-term">Geslacht</dt>
+        <dd is="vl-property-value">Man</dd>
+      </dl>
+    </vl-properties>
+    <vl-properties id="properties">
+      <h4>Gegevens</h4>
+      <div is="vl-properties-column">
+        <dl is="vl-properties-list">
+          <dt is="vl-property-term">Voornaam</dt>
+          <dd is="vl-property-value">Koen</dd>
+          <dt is="vl-property-term">Naam</dt>
+          <dd is="vl-property-value">Peeters</dd>
+          <dt is="vl-property-term">Geslacht</dt>
+          <dd is="vl-property-value">Man</dd>
+        </dl>
+      </div>
+      <div is="vl-properties-column">
+        <dl is="vl-properties-list">
+          <dt is="vl-property-term">Telefoon</dt>
+          <dd is="vl-property-value">000/00.00.00</dd>
+          <dt is="vl-property-term">Gsm-nummer</dt>
+          <dd is="vl-property-value">000/00.00.00</dd>
+          <dt is="vl-property-term">E-mailadres</dt>
+          <dd is="vl-property-value">koen.peeters@outlook.be</dd>
+        </dl>
+      </div>
+      <div is="vl-properties-column" data-vl-full>
+        <dl is="vl-properties-list">
+          <dt is="vl-property-term">Nationaliteit</dt>
+          <dd is="vl-property-value">Belg</dd>
+          <dt is="vl-property-term">Burgerlijke staat</dt>
+          <dd is="vl-property-value">Getrouwd</dd>
+          <dt is="vl-property-term">Adres</dt>
+          <dd is="vl-property-value">
+            <p>Havenlaan 88</p>
+            <p>1000 Brussel</p>
+          </dd>
+        </dl>
+      </div>
+    </vl-properties>
+  </body>
+</html>

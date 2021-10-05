@@ -1,9 +1,23 @@
 import { html } from "lit-html";
 import "../icon";
 import styles from "./styles.scss";
+import { stylesheet, docsIntro } from "../../../.storybook/utils.js";
 
 export default {
   title: "native-elements/vl-icon",
+  decorators: [(story) => html`${stylesheet(styles)}${story()}`],
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          stylesheets: ["icon"],
+          root: "icon",
+          intro:
+            "Gebruik een vl-icon om een extra visueel element toe te voegen.",
+        }),
+      },
+    },
+  },
   args: {
     icon: "calendar",
     light: false,
@@ -90,6 +104,18 @@ export default {
         defaultValue: { summary: "false" },
       },
     },
+    link: {
+      name: "data-vl-link",
+      type: { summary: "boolean" },
+      description:
+        "Attribuut moet gebruikt worden wanneer het icoon binnen een a tag gebruikt wordt zodat de stijl goed is.",
+      control: {
+        disable: true,
+      },
+      table: {
+        defaultValue: { summary: "false" },
+      },
+    },
     content: {
       name: "content (for demo purposes)",
       type: { summary: "string" },
@@ -97,27 +123,14 @@ export default {
   },
 };
 
-const stylesheet = html`<style>
-  ${styles}
-</style>`;
-
-export const Default = ({
-  size,
-  icon,
-  light,
-  rotate,
-  fullRotate,
-}) => html`${stylesheet}
-  <p>
-    <span
-      is="vl-icon"
-      data-vl-size=${size}
-      data-vl-icon=${icon}
-      ?data-vl-light=${light}
-      ?data-vl-90deg=${rotate}
-      ?data-vl-180deg=${fullRotate}
-    ></span>
-  </p>`;
+export const Default = ({ size, icon, light, rotate, fullRotate }) => html`<span
+  is="vl-icon"
+  data-vl-size=${size}
+  data-vl-icon=${icon}
+  ?data-vl-light=${light}
+  ?data-vl-90deg=${rotate}
+  ?data-vl-180deg=${fullRotate}
+></span>`;
 
 Default.argTypes = { content: { control: false } };
 
@@ -129,19 +142,18 @@ export const BeforeElement = ({
   fullRotate,
   content,
   before,
-}) => html`${stylesheet}
-  <p is="vl-icon-wrapper">
-    <span
-      is="vl-icon"
-      ?data-vl-before=${before}
-      data-vl-icon=${icon}
-      data-vl-size=${size}
-      ?data-vl-light=${light}
-      ?data-vl-90deg=${rotate}
-      ?data-vl-180deg=${fullRotate}
-    ></span
-    ><span>${content}</span>
-  </p>`;
+}) => html`<p is="vl-icon-wrapper">
+  <span
+    is="vl-icon"
+    ?data-vl-before=${before}
+    data-vl-icon=${icon}
+    data-vl-size=${size}
+    ?data-vl-light=${light}
+    ?data-vl-90deg=${rotate}
+    ?data-vl-180deg=${fullRotate}
+  ></span
+  ><span>${content}</span>
+</p>`;
 
 BeforeElement.args = {
   before: true,
@@ -155,19 +167,18 @@ export const AfterElement = ({
   fullRotate,
   content,
   after,
-}) => html`${stylesheet}
-  <p is="vl-icon-wrapper">
-    <span>${content}</span
-    ><span
-      is="vl-icon"
-      ?data-vl-after=${after}
-      data-vl-icon=${icon}
-      data-vl-size=${size}
-      ?data-vl-light=${light}
-      ?data-vl-90deg=${rotate}
-      ?data-vl-180deg=${fullRotate}
-    ></span>
-  </p>`;
+}) => html`<p is="vl-icon-wrapper">
+  <span>${content}</span
+  ><span
+    is="vl-icon"
+    ?data-vl-after=${after}
+    data-vl-icon=${icon}
+    data-vl-size=${size}
+    ?data-vl-light=${light}
+    ?data-vl-90deg=${rotate}
+    ?data-vl-180deg=${fullRotate}
+  ></span>
+</p>`;
 
 AfterElement.args = {
   after: true,
