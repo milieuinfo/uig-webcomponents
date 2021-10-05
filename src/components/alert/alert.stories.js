@@ -2,22 +2,22 @@ import { html } from "lit-html";
 import "../button";
 import "../alert";
 import styles from "./styles.scss";
-
-const defaultArgs = {
-  title: "Opgelet!",
-  icon: "warning",
-  content: html`<p>
-    U heeft geen rechten om deze actie uit te voeren.
-    <a href="#">Vraag rechten aan</a>.
-  </p> `,
-  size: "normal",
-  type: "info",
-  closable: false,
-};
+import { stylesheet } from "../../../../../.storybook/utils.js";
 
 export default {
   title: "custom-elements/vl-alert",
-  args: { ...defaultArgs },
+  decorators: [(story) => html`${stylesheet(styles)}${story()}`],
+  args: {
+    title: "Opgelet!",
+    icon: "warning",
+    content: html`<p>
+      U heeft geen rechten om deze actie uit te voeren.
+      <a href="#">Vraag rechten aan</a>.
+    </p> `,
+    size: "normal",
+    type: "info",
+    closable: false,
+  },
   argTypes: {
     title: {
       name: "data-vl-title",
@@ -71,32 +71,24 @@ export default {
   },
 };
 
-const stylesheet = html`<style>
-  ${styles}
-</style>`;
+const Template = ({ closable, disabled, icon, title, size, type }) => html`
+  <vl-alert
+    ?data-vl-closable=${closable}
+    ?data-vl-disabled=${disabled}
+    data-vl-icon=${icon}
+    data-vl-title=${title}
+    data-vl-size=${size}
+    data-vl-type=${type}
+  >
+    ${children}
+  </vl-alert>
+`;
 
-const alertWrap = (props, children) => {
-  return html`
-    ${stylesheet}
-    <vl-alert
-      ?data-vl-closable=${props.closable}
-      ?data-vl-disabled=${props.disabled}
-      data-vl-icon=${props.icon}
-      data-vl-title=${props.title}
-      data-vl-size=${props.size}
-      data-vl-type=${props.type}
-      >${children}</vl-alert
-    >
-  `;
-};
-
-export const Default = (props) => html`${alertWrap(props, props.content)}`;
-
-export const AlertWithButton = (props) =>
-  html`${alertWrap(props, props.content)}`;
+export const Default = Template.bind({});
+export const AlertWithButton = Template.bind({});
+export const WithTitleSlot = Template.bind({});
 
 AlertWithButton.args = {
-  ...defaultArgs,
   title: "Alert met button",
   content: html`<p>
       U heeft geen rechten om deze actie uit te voeren.
@@ -105,11 +97,7 @@ AlertWithButton.args = {
     <button slot="actions" is="vl-button">Fout melden</button> `,
 };
 
-export const WithTitleSlot = (props) =>
-  html`${alertWrap(props, props.content)}`;
-
 WithTitleSlot.args = {
-  ...defaultArgs,
   title: "",
   content: html`
     <span slot="title">Alert titel via slot</span>
