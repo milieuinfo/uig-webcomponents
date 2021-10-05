@@ -21,6 +21,18 @@ export class VlSideNavigationToggle extends nativeVlElement(HTMLAnchorElement) {
     this._processClasses();
   }
 
+  connectedCallback() {
+    this.addEventListener("click", () => {
+      const element = this.getRootNode().querySelector(
+        this.getAttribute("href")
+      );
+      if (element) {
+        element.scrollIntoView();
+        window.scrollBy(0, -43);
+      }
+    });
+  }
+
   _processClasses() {
     this.classList.add("vl-side-navigation__toggle");
   }
