@@ -8,7 +8,7 @@ import { removeStorybooksDefaultStyling } from "../../../.storybook/utils";
 const changes = [
   {
     version: "1.1.0",
-    date: "4/10/2021",
+    date: "5/10/2021",
     children: html`<ul>
       <li>
         <p><code>vl-accessibility</code></p>
@@ -20,10 +20,10 @@ const changes = [
       <li>
         <p><code>vl-side-navigation</code></p>
         <p>
-          The click events from the anchor elements are now added in the
-          side-navigation-toggle itself instead of in the side-navigation. The
-          previous approach assumed that all anchor elements where there on
-          load, but this is not always the case.
+          The click events from the anchor elements are now added in the toggle
+          components themselves instead of in the side-navigation. The previous
+          approach assumed that all anchor elements where there on load, but
+          this is not always the case.
         </p>
       </li>
       <li>
