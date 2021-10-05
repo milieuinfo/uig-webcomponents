@@ -10,10 +10,6 @@ export default {
   args: {
     title: "Opgelet!",
     icon: "warning",
-    content: html`<p>
-      U heeft geen rechten om deze actie uit te voeren.
-      <a href="#">Vraag rechten aan</a>.
-    </p> `,
     size: "normal",
     type: "info",
     closable: false,
@@ -71,10 +67,14 @@ export default {
   },
 };
 
-const Template = (
-  { closable, disabled, icon, title, size, type },
-  { args }
-) => html`
+export const Default = ({
+  closable,
+  disabled,
+  icon,
+  title,
+  size,
+  type,
+}) => html`
   <vl-alert
     ?data-vl-closable=${closable}
     ?data-vl-disabled=${disabled}
@@ -83,30 +83,57 @@ const Template = (
     data-vl-size=${size}
     data-vl-type=${type}
   >
-    ${args.content}
-  </vl-alert>
-`;
-
-export const Default = Template.bind({});
-export const AlertWithButton = Template.bind({});
-export const WithTitleSlot = Template.bind({});
-
-AlertWithButton.args = {
-  title: "Alert met button",
-  content: html`<p>
+    <p>
       U heeft geen rechten om deze actie uit te voeren.
       <a href="#">Vraag rechten aan</a>.
     </p>
-    <button slot="actions" is="vl-button">Fout melden</button> `,
-};
+  </vl-alert>
+`;
 
-WithTitleSlot.args = {
-  title: "",
-  content: html`
+export const AlertWithButton = ({
+  closable,
+  disabled,
+  icon,
+  title,
+  size,
+  type,
+}) => html`
+  <vl-alert
+    ?data-vl-closable=${closable}
+    ?data-vl-disabled=${disabled}
+    data-vl-icon=${icon}
+    data-vl-title=${title}
+    data-vl-size=${size}
+    data-vl-type=${type}
+  >
+    <p>
+      U heeft geen rechten om deze actie uit te voeren.
+      <a href="#">Vraag rechten aan</a>.
+    </p>
+    <button slot="actions" is="vl-button">Fout melden</button>
+  </vl-alert>
+`;
+
+export const WithTitleSlot = ({
+  closable,
+  disabled,
+  icon,
+  title,
+  size,
+  type,
+}) => html`
+  <vl-alert
+    ?data-vl-closable=${closable}
+    ?data-vl-disabled=${disabled}
+    data-vl-icon=${icon}
+    data-vl-title=${title}
+    data-vl-size=${size}
+    data-vl-type=${type}
+  >
     <span slot="title">Alert titel via slot</span>
     <p>
       U heeft geen rechten om deze actie uit te voeren.
       <a href="#">Vraag rechten aan</a>.
     </p>
-  `,
-};
+  </vl-alert>
+`;
