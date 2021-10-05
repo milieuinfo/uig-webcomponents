@@ -2,7 +2,7 @@ import { html } from "lit-html";
 import "../button";
 import "../alert";
 import styles from "./styles.scss";
-import { stylesheet } from "../../../../../.storybook/utils.js";
+import { stylesheet } from "../../../.storybook/utils.js";
 
 export default {
   title: "custom-elements/vl-alert",
@@ -71,7 +71,10 @@ export default {
   },
 };
 
-const Template = ({ closable, disabled, icon, title, size, type }) => html`
+const Template = (
+  { closable, disabled, icon, title, size, type },
+  { args }
+) => html`
   <vl-alert
     ?data-vl-closable=${closable}
     ?data-vl-disabled=${disabled}
@@ -80,7 +83,7 @@ const Template = ({ closable, disabled, icon, title, size, type }) => html`
     data-vl-size=${size}
     data-vl-type=${type}
   >
-    ${children}
+    ${args.content}
   </vl-alert>
 `;
 
