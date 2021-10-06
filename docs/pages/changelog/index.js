@@ -7,6 +7,35 @@ import { removeStorybooksDefaultStyling } from "../../../.storybook/utils";
 
 const changes = [
   {
+    version: "1.1.0",
+    date: "5/10/2021",
+    children: html`<ul>
+      <li>
+        <p><code>vl-accessibility</code></p>
+        <p>
+          The accessibility statement got some content updates, uses the new
+          link properties and its limitation possibilities are extended.
+        </p>
+      </li>
+      <li>
+        <p><code>vl-side-navigation</code></p>
+        <p>
+          The click events from the anchor elements are now added in the toggle
+          components themselves instead of in the side-navigation. The previous
+          approach assumed that all anchor elements where there on load, but
+          this is not always the case.
+        </p>
+      </li>
+      <li>
+        <p><code>vl-link</code> & <code>vl-button-link</code></p>
+        <p>
+          The link and the button-link are expanded with a few new features.
+          From now on you can use inline, small, large and bold variants.
+        </p>
+      </li>
+    </ul>`,
+  },
+  {
     version: "1.0.1",
     date: "1/10/2021",
     children: html`<ul>

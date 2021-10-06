@@ -27,7 +27,7 @@ export const complianceStatus = ({ compliance, evaluation }) => {
     data-vl-size="12"
     data-vl-medium-size="12"
   >
-    <h3 is="vl-h3">Nalevingsstatus</h3>
+    <h2 is="vl-h2">Nalevingsstatus</h2>
     ${evaluation === EVALUATION_STATUS.NOT_EVALUATED
       ? html`Deze website voldoet niet aan de ${wcagLink()}.`
       : complianceTemplate()}

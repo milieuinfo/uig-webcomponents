@@ -3,6 +3,19 @@ import "../accessibility";
 import { COMPLIANCE_STATUS, EVALUATION_STATUS } from "./enums";
 import { docsIntro } from "../../../.storybook/utils.js";
 
+const limitationsDescription = `<p>Attribuut om limitaties mee te geven aan de verklaring. De string die verwacht wordt is de <code>id</code> van een script dat aanwezig is op de pagina waarin een object zit.</p>
+
+Voorbeeld van zo'n object:
+<pre style="font-family: monospace;">{
+  withTiming: ['limitatie 1', 'limitatie 2'],
+  withoutTiming: ['limitatie 3'],
+  outsideApplicableLaw: ['limitatie 4']
+}</pre>
+
+<p>De <code>withTiming</code> limitaties vallen onder 'Niet-naleving van het bestuursdecreet'. Dit zijn tijdelijke limitaties.</p>
+<p>De <code>withoutTiming</code> limitaties vallen onder 'Onevenredige last'. Dit zijn permanente limitaties.</p>
+<p>De <code>outsideApplicableLaw</code> limitaties vallen onder 'De inhoud valt buiten de werkingssfeer van de toepasselijke wetgeving'. Dit zijn limitaties die buiten de werkingssfeer van de toepasselijke wetgeving vallen.</p>`;
+
 export default {
   title: "custom-elements/vl-accessibility",
   parameters: {
@@ -85,11 +98,10 @@ export default {
     limitations: {
       name: "data-vl-limitations",
       type: { summary: "string" },
-      description:
-        "Attribuut om limitaties mee te geven aan de verklaring. De string die verwacht wordt is de `id` van een script dat aanwezig is op de pagina waarin een object zit. Voorbeeld van zo'n object: `{withTiming: ['limitatie 1', 'limitatie 2'], withoutTiming: ['limitatie 3']}`. Met de property `withTiming` geef je tijdelijke limitaties mee, met de property `withoutTiming` permanente limitaties. Bekijk de broncode van deze story voor een praktisch voorbeeld.",
+      description: limitationsDescription,
       control: {
         type: "select",
-        options: ["limitations-01", "limitations-02"],
+        options: ["limitations-01", "limitations-02", "limitations-03"],
       },
     },
     evaluation: {
@@ -125,13 +137,18 @@ export const Default = ({
   limitations,
   evaluation,
 }) => {
-  return html` <script id="limitations-01" type="application/json">
+  return html`<script id="limitations-01" type="application/json">
       {
         "withTiming": [
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         ],
         "withoutTiming": [
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        ],
+        "outsideApplicableLaw": [
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         ]
       }
@@ -143,6 +160,13 @@ export const Default = ({
         ],
         "withoutTiming": [
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        ]
+      }
+    </script>
+    <script id="limitations-03" type="application/json">
+      {
+        "withTiming": [
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         ]
       }
