@@ -1,7 +1,7 @@
 import { html } from "lit-html";
 import "../button";
 import "../alert";
-import styles from "./styles.scss";
+import styles from "../button/styles.scss";
 import { stylesheet, docsIntro } from "../../../.storybook/utils.js";
 import { ALERT_SIZE, ALERT_TYPE, ALERT_ICON } from "./enums";
 
@@ -23,7 +23,7 @@ export default {
     title: "Lorem ipsum",
     icon: ALERT_ICON.WARNING,
     size: "",
-    type: ALERT_TYPE.INFO,
+    type: "",
     closable: false,
     buttonSlotText: "Fout melden",
     titleSlotText: "Alert titel via slot",
@@ -65,7 +65,7 @@ export default {
         options: [ALERT_SIZE.SMALL],
       },
       table: {
-        defaultValue: { summary: "" },
+        defaultValue: { summary: `` },
       },
     },
     type: {
