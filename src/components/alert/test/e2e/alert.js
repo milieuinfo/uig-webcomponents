@@ -1,5 +1,5 @@
-import { VlElement, By } from "../../../../../utils/test";
-import { VlIcon } from "../../../../icon/test/e2e/icon.js";
+import { VlElement, By } from "../../../../utils/test";
+import { VlIcon } from "../../../icon/test/e2e/icon.js";
 
 export default class VlAlert extends VlElement {
   async getCloseButton() {

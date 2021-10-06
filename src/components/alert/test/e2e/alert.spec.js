@@ -1,5 +1,5 @@
 import { assert, getDriver } from "../../../../utils/test";
-import VlAlertPage from "./pages/vl-alert.page";
+import VlAlertPage from "./alert.page";
 import { VlButton } from "../../../button/test/e2e/button.js";
 
 describe("vl-alert", async () => {
