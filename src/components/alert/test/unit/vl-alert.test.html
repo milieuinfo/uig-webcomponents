@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+
+    <script
+      type="module"
+      src="../../../../../lib/components/alert/index.js"
+    ></script>
+</head>
+
+<body>
+  <test-fixture id="vl-alert-fixture">
+    <template>
+      <vl-alert></vl-alert>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="vl-alert-fixture-with-title-slot">
+    <template>
+      <vl-alert>
+        <span slot="title">de titel</span>
+      </vl-alert>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('vl-alert', () => {
+      const should = chai.should();
+
+      test('het icon attribuut wordt correct doorgegeven aan het icoon element', () => {
+        const alert = fixture('vl-alert-fixture');
+        let value = 'warning';
+        should.not.exist(alert._iconElement);
+        alert.setAttribute('data-vl-icon', value);
+        should.exist(alert._iconElement);
+        assert.isTrue(alert._iconElement.querySelector('[is="vl-icon"]').hasAttribute('data-vl-icon', value));
+        value = 'info';
+        alert.setAttribute('data-vl-icon', value);
+        assert.isTrue(alert._iconElement.querySelector('[is="vl-icon"]').hasAttribute('data-vl-icon', value));
+        alert.removeAttribute('data-vl-icon');
+        should.not.exist(alert._iconElement);
+      });
+
+      test('bevat een titel op basis van het titel attribuut', () => {
+        const alert = fixture('vl-alert-fixture');
+        const value = 'title';
+        alert.setAttribute('title', value);
+        assert.isTrue(alert._titleSlotElement.textContent == value);
+        assert.isFalse(alert._titleElement.hidden);
+      });
+
+      test('bevat element met juiste size class', () => {
+        const alert = fixture('vl-alert-fixture');
+        const values = ['small'];
+
+        // valid values
+        for (const value of values) {
+          alert.setAttribute('data-vl-size', value);
+          assert.isTrue(alert._element.classList.contains('vl-alert--' + value));
+        }
+
+        // invalid value
+        const value = 'blabla';
+        alert.setAttribute('size', value);
+        assert.isFalse(alert._element.classList.contains('vl-alert--' + value));
+      });
+
+      test('bevat element met juiste type class', () => {
+        const alert = fixture('vl-alert-fixture');
+        const values = ['success', 'warning', 'error', 'info'];
+
+        // valid values
+        for (const value of values) {
+          alert.setAttribute('type', value);
+          assert.isTrue(alert._element.classList.contains('vl-alert--' + value));
+        }
+
+        // invalid value
+        const value = 'blabla';
+        alert.setAttribute('type', value);
+        assert.isFalse(alert._element.classList.contains('vl-alert--' + value));
+      });
+
+      test('bevat sluit-knopje', () => {
+        const alert = fixture('vl-alert-fixture');
+        should.not.exist(alert._closeButtonElement);
+
+        alert.setAttribute('data-vl-closable', '');
+        should.exist(alert._closeButtonElement);
+
+        alert.removeAttribute('data-vl-closable');
+        should.not.exist(alert._closeButtonElement);
+      });
+
+      test('sluit wanneer op sluit-knopje wordt geklikt', () => {
+        const alert = fixture('vl-alert-fixture');
+        alert.setAttribute('data-vl-closable', '');
+
+        assert.isTrue(document.body.contains(alert));
+        alert._closeButtonElement.click();
+        assert.isFalse(document.body.contains(alert));
+      });
+
+      test('de message en actions slots worden op de juiste plaats getoond', () => {
+        const alert = fixture('vl-alert-fixture');
+        const message = document.createElement('p');
+        const button = document.createElement('button');
+        button.setAttribute('slot', 'actions');
+        alert.appendChild(message);
+        alert.appendChild(button);
+        assert.equal(alert.shadowRoot.querySelector('.vl-alert__message slot').assignedElements()[0], message);
+        assert.equal(alert._actionsSlotElement.assignedElements()[0], button);
+      });
+
+      test('de buttons in het action slot zullen voorzien worden van een narrow attribuut', (done) => {
+        const alert = fixture('vl-alert-fixture');
+        const button = document.createElement('button');
+        button.setAttribute('slot', 'actions');
+        alert.appendChild(button);
+        setTimeout(() => {
+          const actionsSlotContent = alert._actionsSlotElement.assignedNodes()[0];
+          assert.isTrue(actionsSlotContent.hasAttribute('data-vl-narrow'));
+          done();
+        });
+      });
+
+      test('wanneer de titel via een slot wordt doorgegeven wordt dit correct gerendered', () => {
+        const alert = fixture('vl-alert-fixture-with-title-slot');
+        assert.equal(alert._titleSlotElement.assignedNodes()[0].textContent, 'de titel');
+        assert.isFalse(alert._titleElement.hidden);
+      });
+
+      test('wanneer er geen titel opgegeven werd, wordt het titel element verborgen', () => {
+        const alert = fixture('vl-alert-fixture');
+        assert.isTrue(alert._titleElement.hidden);
+      });
+
+      test('wanneer de titel via een attribuut verwijderd wordt, wordt het titel element verborgen', () => {
+        const alert = fixture('vl-alert-fixture');
+
+        alert.setAttribute('title', 'foobar');
+        assert.isFalse(alert._titleElement.hidden);
+
+        alert.setAttribute('title', '');
+        assert.isTrue(alert._titleElement.hidden);
+      });
+
+      test('wanneer het titel slot achteraf toegevoegd wordt, wordt het titel element getoond', (done) => {
+        const alert = fixture('vl-alert-fixture');
+
+        assert.isTrue(alert._titleElement.hidden);
+
+        const title = document.createElement('div');
+        title.setAttribute('slot', 'title');
+        title.textContent = 'foobar';
+        alert.appendChild(title);
+
+        setTimeout(() => {
+          assert.isFalse(alert._titleElement.hidden);
+          done();
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

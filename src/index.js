@@ -1,4 +1,5 @@
 export { VlAccessibility } from "./components/accessibility";
+export { VlAlert } from "./components/alert";
 export { VlAccordion } from "./components/accordion";
 export { VlBody } from "./components/body";
 export { VlButton } from "./components/button";
