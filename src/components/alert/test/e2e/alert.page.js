@@ -1,6 +1,5 @@
-import VlAlert from "../components/vl-alert";
-import { Page } from "../../../../../utils/test";
-import { config } from "../../../../../utils/test/config";
+import VlAlert from "./alert";
+import { Page, config } from "../../../../utils/test";
 
 export default class VLAlertPage extends Page {
   async getAlert() {
