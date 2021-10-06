@@ -8,7 +8,7 @@ import { removeStorybooksDefaultStyling } from "../../../.storybook/utils";
 const changes = [
   {
     version: "1.1.0",
-    date: "5/10/2021",
+    date: "6/10/2021",
     children: html`<ul>
       <li>
         <p><code>vl-accessibility</code></p>
