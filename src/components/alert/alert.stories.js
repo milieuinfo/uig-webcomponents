@@ -42,15 +42,16 @@ export default {
     icon: {
       name: "data-vl-icon",
       type: {
-        summary: `${ALERT_ICON.WARNING} | ${ALERT_ICON.CHECK} | ${ALERT_ICON.INFO_CIRCLE}`,
+        summary: "string",
       },
-      description: "Attribuut wordt gebruikt om het icoon type te bepalen.",
+      description:
+        "Attribuut wordt gebruikt om het icoon type te bepalen. Het icoon kan gekozen worden uit de lijst op https://overheid.vlaanderen.be/webuniversum/v3/documentation/atoms/vl-ui-icon.",
       control: {
         type: "select",
         options: [ALERT_ICON.WARNING, ALERT_ICON.CHECK, ALERT_ICON.INFO_CIRCLE],
       },
       table: {
-        defaultValue: { summary: `"${ALERT_ICON.WARNING}"` },
+        defaultValue: { summary: "" },
       },
     },
     size: {
@@ -85,7 +86,7 @@ export default {
         ],
       },
       table: {
-        defaultValue: { summary: `"${ALERT_TYPE.INFO}"` },
+        defaultValue: { summary: "" },
       },
     },
     closable: {
@@ -97,23 +98,23 @@ export default {
         defaultValue: { summary: "false" },
       },
     },
-    content: {
-      name: "content (for demo purposes)",
-      description: "",
-    },
     titleSlotText: {
-      name: "actions (slot)",
+      name: "title (slot)",
       description: "",
       control: {
         disable: true,
       },
     },
     buttonSlotText: {
-      name: "button text (slot, for demo purposes)",
+      name: "actions (slot)",
       description: "",
       control: {
         disable: true,
       },
+    },
+    content: {
+      name: "content (for demo purposes)",
+      description: "",
     },
   },
 };
