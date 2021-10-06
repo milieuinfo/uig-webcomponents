@@ -36,9 +36,17 @@ export const inaccessibleContent = ({
               (limitation) => html`<li><p>${limitation}</p></li>`
             )}
           </ul>`}
-        <h3>
-          De inhoud valt buiten de werkingssfeer van de toepasselijke wetgeving
-        </h3>
+        ${parsedLimitations &&
+        parsedLimitations.outsideApplicableLaw &&
+        html`<h3>
+            De inhoud valt buiten de werkingssfeer van de toepasselijke
+            wetgeving
+          </h3>
+          <ul>
+            ${parsedLimitations.outsideApplicableLaw.map(
+              (limitation) => html`<li><p>${limitation}</p></li>`
+            )}
+          </ul>`}
       </vl-typography>
     `;
   };

@@ -13,8 +13,8 @@ const changes = [
       <li>
         <p><code>vl-accessibility</code></p>
         <p>
-          The accessibility statement got some content updates, and uses the new
-          link properties.
+          The accessibility statement got some content updates, uses the new
+          link properties and its limitation possibilities are extended.
         </p>
       </li>
       <li>
