@@ -25,8 +25,8 @@ export default {
     size: "",
     type: "",
     closable: false,
-    buttonSlotText: "Fout melden",
-    titleSlotText: "Alert titel via slot",
+    buttonSlotText: "Button",
+    titleSlotText: "Title via slot",
     content:
       "Phasellus congue ipsum ut felis auctor, eget maximus justo dapibus. Nam sit amet pulvinar odio. Maecenas rhoncus quam eget neque porttitor, et faucibus nisl elementum.",
   },
