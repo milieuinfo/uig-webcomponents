@@ -118,28 +118,22 @@ export class VlCustomMap extends VlMapWithActions {
     this.baseLayers.push(baseLayer);
 
     if (this.overviewMapControl) {
-
       this.overviewMapControl
         .getOverviewMap()
         .getLayers()
         .getArray()
         .push(overlayMapLayer);
-
-      // set second layer as next in overview control
-      this.overviewMapControl
-      .getOverviewMap()
-      .getLayers()
-      .getArray()
-      .forEach((l, i) => i === 1 ? l.setVisible(true) : l.setVisible(false));
-
     } else {
-      overlayMapLayer.setVisible(true);
       this.createOverviewMapControl({
         customLayers: {
           overviewMapLayers: [overlayMapLayer],
         },
       });
     }
+    overlayMapLayer.setVisible(
+      this.overviewMapControl.getOverviewMap().getLayers().getArray().length ===
+      2
+    );
   }
 
   getBaseLayers() {

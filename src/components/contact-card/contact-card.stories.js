@@ -3,6 +3,8 @@ import "../properties";
 import "../infoblock";
 import "../contact-card";
 import { docsIntro, stylesheet } from "../../../.storybook/utils";
+
+//to do
 import styles from "../properties/styles.scss";
 
 export default {
