@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+
+    <script
+      type="module"
+      src="../../../../../lib/components/link-list/index.js"
+    ></script>
+</head>
+
+<body>
+<test-fixture id="vl-link-list-fixture">
+  <template>
+    <ul is="vl-link-list"></ul>
+  </template>
+</test-fixture>
+
+<test-fixture id="vl-link-list--small-fixture">
+  <template>
+    <ul is="vl-link-list" small></ul>
+  </template>
+</test-fixture>
+
+<test-fixture id="vl-link-list--inline-fixture">
+  <template>
+    <ul is="vl-link-list" inline></ul>
+  </template>
+</test-fixture>
+
+<test-fixture id="vl-link-list--bordered-fixture">
+  <template>
+    <ul is="vl-link-list" bordered></ul>
+  </template>
+</test-fixture>
+
+<test-fixture id="vl-link-list-item-fixture">
+  <template>
+    <li is="vl-link-list-item">
+      <a is="vl-link" href="#">Ga naar a</a>
+      <a is="vl-link" href="#">Ga naar b</a>
+    </li>
+  </template>
+</test-fixture>
+
+<script>
+  suite('vl-link-list', () => {
+    test('heeft vl-link-list class', () => {
+      const element = fixture('vl-link-list-fixture');
+      assert.isTrue(element.classList.contains('vl-link-list'));
+    });
+  });
+
+  suite('vl-link-list small', () => {
+    test('heeft vl-link-list--small class', () => {
+      const element = fixture('vl-link-list--small-fixture');
+      assert.isTrue(element.classList.contains('vl-link-list'));
+      assert.isTrue(element.classList.contains('vl-link-list--small'));
+    });
+  });
+
+  suite('vl-link-list inline', () => {
+    test('heeft vl-link-list--inline class', () => {
+      const element = fixture('vl-link-list--inline-fixture');
+      assert.isTrue(element.classList.contains('vl-link-list'));
+      assert.isTrue(element.classList.contains('vl-link-list--inline'));
+    });
+  });
+
+  suite('vl-link-list', () => {
+    test('heeft vl-link-list--bordered class', () => {
+      const element = fixture('vl-link-list--bordered-fixture');
+      assert.isTrue(element.classList.contains('vl-link-list'));
+      assert.isTrue(element.classList.contains('vl-link-list--bordered'));
+    });
+  });
+
+  suite('vl-link-list-item', () => {
+    const should = chai.should();
+
+    test('heeft vl-link-list__item class', () => {
+      const element = fixture('vl-link-list-item-fixture');
+      assert.isTrue(element.classList.contains('vl-link-list__item'));
+    });
+
+    test('internal link begint met een vl-icon(nav-right)', () => {
+      const element = fixture('vl-link-list-item-fixture');
+      const links = element.querySelectorAll('[is="vl-link"]');
+      links.forEach((link) => {
+        const icon = link.querySelector('i');
+        should.exist(icon);
+        assert.isTrue(icon.classList.contains('vl-vi-arrow-right-fat'));
+      });
+    });
+  });
+</script>
+</body>
+
+</html>
