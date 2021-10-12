@@ -14,7 +14,7 @@ export default {
           stylesheets: ["link-list"],
           root: "link-list",
           intro:
-            "De link list item webcomponent is een item dat getoond wordt binnen de link list component.",
+            "The link list item component is an item that's used inside of the link list component.",
         }),
       },
     },

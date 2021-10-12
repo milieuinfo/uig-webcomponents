@@ -15,7 +15,7 @@ export default {
           stylesheets: ["link-list"],
           root: "link-list",
           intro:
-            "Gebruik de vl-link-list om gelijkaardige items als een lijst te tonen aan de gebruiker. Elk item in de lijst linkt naar een andere pagina.",
+            "Use a link list to display similar items as a list to the user. Each item in the list links to another page.",
         }),
       },
     },
