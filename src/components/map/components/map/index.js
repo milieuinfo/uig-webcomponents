@@ -5,7 +5,7 @@ import {
   OlProjection,
   VlCustomMap,
   proj4,
-} from "../../mapactions";
+} from "vl-mapactions/dist/vl-mapactions.js";
 import styles from "./styles.scss";
 
 /**

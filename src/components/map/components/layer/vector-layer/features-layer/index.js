@@ -5,7 +5,7 @@ import {
   OlGeoJSON,
   OlClusterSource,
   OlPoint,
-} from "../../../../mapactions";
+} from "vl-mapactions/dist/vl-mapactions.js";
 
 /**
  * VlMapFeaturesLayer

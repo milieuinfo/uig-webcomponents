@@ -105,13 +105,19 @@ export class Changelog extends LitElement {
         <section is="vl-region">
           <div is="vl-layout">
             <div is="vl-grid" data-vl-is-stacked>
-              <!-- ${change({
+              ${change({
                 version: "Unreleased",
                 date: "?",
                 children: html`<ul>
-                  <li>Unreleased item</li>
+                  <li>
+                    <p><code>vl-map</code></p>
+                    <p>
+                      From now on the map component uses the actions from a new
+                      depencency, called vl-mapactions.
+                    </p>
+                  </li>
                 </ul>`,
-              })} -->
+              })}
               ${changes.map(({ version, date, children }) =>
                 change({
                   version,

@@ -11,7 +11,7 @@ import {
   OlStyleFill,
   OlExtent,
   OlLoadingstrategy,
-} from "../../mapactions";
+} from "vl-mapactions/dist/vl-mapactions.js";
 
 /**
  * VlMapBaseLayer

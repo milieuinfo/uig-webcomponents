@@ -4,7 +4,7 @@ import {
   OlStyleFill,
   OlStyleStroke,
   OlStyleText,
-} from "../../mapactions";
+} from "vl-mapactions/dist/vl-mapactions.js";
 
 /**
  * VlMapLayerStyle

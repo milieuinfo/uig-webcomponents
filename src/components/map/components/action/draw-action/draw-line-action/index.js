@@ -1,6 +1,6 @@
 import { define } from "../../../../../../utils/core";
 import { VlMapDrawAction } from "../../draw-action";
-import { VlDrawLineAction } from "../../../../mapactions";
+import { VlDrawLineAction } from "vl-mapactions/dist/vl-mapactions.js";
 
 /**
  * VlMapDrawLineAction

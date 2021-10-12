@@ -1,6 +1,9 @@
 import { define } from "../../../../../../utils/core";
 import { VlMapWmsLayer } from "../../wms-layer";
-import { OlTileWMSSource, OlTileLayer } from "../../../../mapactions";
+import {
+  OlTileWMSSource,
+  OlTileLayer,
+} from "vl-mapactions/dist/vl-mapactions.js";
 
 /**
  * VlMapTiledWmsLayer

@@ -1,7 +1,7 @@
 import { vlElement, define } from "../../../../utils/core";
 import "../../../search";
 import "../select-location";
-import { OlOverlay } from "../../mapactions";
+import { OlOverlay } from "vl-mapactions/dist/vl-mapactions.js";
 import LambertCoordinaat from "../../utils/lambert-coordinaat";
 import styles from "./styles.scss";
 
