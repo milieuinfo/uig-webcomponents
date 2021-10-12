@@ -106,6 +106,7 @@ export const Default = (props) => html` <vl-checkbox
     @change=${(e) => props.change(e)}
     @input=${(e) => props.input(e)}
   ></vl-checkbox>
+
   <vl-checkbox-old
     id="test-check2"
     ?data-vl-block=${props.block}

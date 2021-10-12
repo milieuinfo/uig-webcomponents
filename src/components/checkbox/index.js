@@ -38,9 +38,7 @@ export class VlCheckbox extends LitElement {
       [label]: { type: String },
       [name]: { type: String },
       [value]: { type: String },
-      [checked]: {
-        type: Boolean,
-      },
+      [checked]: { type: Boolean },
       [vlSwitch]: { type: Boolean },
       [block]: { type: Boolean },
       [single]: { type: Boolean },
@@ -48,27 +46,6 @@ export class VlCheckbox extends LitElement {
       [error]: { type: Boolean },
     };
   }
-
-  /**
-   * Callback called when the form is reset.
-   */
-  // formResetCallback() {
-  //   this.checked = this.hasAttribute("checked");
-  // }
-
-  get checked() {
-    return this.shadowRoot.querySelector("#checkbox").checked;
-  }
-
-  /**
-   * Zet de waarde van het checkbox input element.
-   *
-   * @param {boolean} value
-   */
-  set checked(value) {
-    return (this.shadowRoot.querySelector("#checkbox").checked = value);
-  }
-
   constructor() {
     super();
     this[vlSwitch] = false;
@@ -80,18 +57,11 @@ export class VlCheckbox extends LitElement {
   }
 
   render() {
-    console.log(this._internals);
     const classes = `vl-checkbox ${
       this[disabled] && "vl-checkbox--disabled vl-checkbox--data-vl-disabled"
     } ${this[block] && "vl-checkbox--block vl-checkbox--data-vl-block"} ${
       this[error] && "vl-checkbox--error vl-checkbox--data-vl-error"
     }`;
-
-    // if (this.attachInternals) {
-    //   this._internals = this.attachInternals();
-    // } else {
-    //   this._internals = null;
-    // }
 
     return this[vlSwitch]
       ? html`<div class="vl-checkbox--switch__wrapper">
@@ -99,7 +69,6 @@ export class VlCheckbox extends LitElement {
             class="vl-checkbox--switch"
             type="checkbox"
             id="checkbox"
-            value=${this[value]}
             value=${this[value]}
           />
           <label class="vl-checkbox__label" for="checkbox">

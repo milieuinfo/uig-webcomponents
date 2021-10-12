@@ -206,8 +206,28 @@ export class VlCheckboxOld extends vlElement(HTMLElement) {
     );
   }
 
+  _switchChangedCallback(oldValue, newValue) {
+    console.log({ newValue: newValue !== null });
+    if (newValue !== null) {
+      this._shadow.append(
+        this._template(`
+        <div class="vl-checkbox--switch__wrapper">
+          <input class="vl-checkbox--switch" type="checkbox" id="checkbox" name="checkbox" value="1" />
+          <label class="vl-checkbox__label" for="checkbox">
+            <span class="vl-checkbox--switch__label">
+              <span aria-hidden="true"></span>
+            </span>
+            <span>
+              <slot></slot>
+            </span>
+          </label>
+        </div>
+      `)
+      );
+    }
+  }
+
   _labelChangedCallback(oldValue, newValue) {
-    this._labelSlotElement.remove();
     this._labelElement.textContent = newValue;
   }
 
