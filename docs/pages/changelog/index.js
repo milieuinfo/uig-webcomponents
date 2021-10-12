@@ -113,7 +113,7 @@ export class Changelog extends LitElement {
                     <p><code>vl-map</code></p>
                     <p>
                       From now on the map component uses the actions from a new
-                      depencency, called vl-mapactions.
+                      dependency, called vl-mapactions.
                     </p>
                   </li>
                 </ul>`,
