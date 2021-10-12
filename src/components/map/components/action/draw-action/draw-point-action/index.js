@@ -1,6 +1,9 @@
 import { define } from "../../../../../../utils/core";
 import { VlMapDrawAction } from "../../draw-action";
-import { VlDrawAction, OlGeometryType } from "../../../../mapactions";
+import {
+  VlDrawAction,
+  OlGeometryType,
+} from "vl-mapactions/dist/vl-mapactions.js";
 
 /**
  * VlMapDrawPointAction
