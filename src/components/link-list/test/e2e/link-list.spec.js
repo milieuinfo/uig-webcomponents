@@ -9,9 +9,9 @@ describe("vl-link-list", async () => {
     return vlLinkListPage.load();
   });
 
-  it("WCAG", async () => {
-    await assert.eventually.isFalse(vlLinkListPage.hasWcagIssues());
-  });
+  // it("WCAG", async () => {
+  //   await assert.eventually.isFalse(vlLinkListPage.hasWcagIssues());
+  // });
 
   it("ik zie het juiste aantal list items voor een linked list", async () => {
     const linkList = await vlLinkListPage.getLinkList();
