@@ -5,7 +5,7 @@ import {
   OlWMTSTileGrid,
   OlTileLayer,
   OlExtent,
-} from "../../../mapactions";
+} from "vl-mapactions/dist/vl-mapactions.js";
 /**
  * VlMapWmtsLayer
  *

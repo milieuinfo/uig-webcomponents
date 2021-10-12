@@ -5,7 +5,7 @@ import {
   OlStyleCircle,
   OlStyleStroke,
   OlStyleFill,
-} from "../../../mapactions";
+} from "vl-mapactions/dist/vl-mapactions.js";
 
 /**
  * VlMapLayerCircleStyle

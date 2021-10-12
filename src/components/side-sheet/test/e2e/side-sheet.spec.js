@@ -1,5 +1,5 @@
 import { assert, getDriver } from "../../../../utils/test";
-import { VlSideSheetPage } from "./vl-side-sheet.page.js";
+import { VlSideSheetPage } from "./side-sheet.page.js";
 
 describe("vl-side-sheet", async () => {
   let vlSideSheetPage;

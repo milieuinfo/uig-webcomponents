@@ -15,13 +15,13 @@ export default {
     },
   },
   args: {
-    fullscreen: false,
-    escape: false,
-    rotation: false,
-    mousewheelzoom: false,
+    allowFullscreen: false,
+    disableEscape: false,
+    disableRotation: false,
+    disableMousewheelZoom: false,
   },
   argTypes: {
-    fullscreen: {
+    allowFullscreen: {
       name: "data-vl-allow-fullscreen",
       type: { summary: "boolean" },
       description:
@@ -31,7 +31,7 @@ export default {
       },
       control: { disable: true },
     },
-    escape: {
+    disableEscape: {
       name: "data-vl-disable-escape-key",
       type: { summary: "boolean" },
       description:
@@ -41,7 +41,7 @@ export default {
       },
       control: { disable: true },
     },
-    rotation: {
+    disableRotation: {
       name: "data-vl-disable-rotation",
       type: { summary: "boolean" },
       description:
@@ -51,7 +51,7 @@ export default {
       },
       control: { disable: true },
     },
-    mousewheelzoom: {
+    disableMousewheelZoom: {
       name: "data-vl-disable-mouse-wheel-zoom",
       type: { summary: "boolean" },
       description:
@@ -64,21 +64,27 @@ export default {
   },
 };
 
-export const Default = ({
-  fullscreen,
-  escape,
-  rotation,
-  mousewheelzoom,
+const Template = ({
+  allowFullscreen,
+  disableEscape,
+  disableRotation,
+  disableMousewheelZoom,
 }) => html`
   <vl-map
     id="map"
-    ?data-vl-allow-fullscreen=${fullscreen}
-    ?data-vl-disable-escape-key=${escape}
-    ?data-vl-disable-rotation=${rotation}
-    ?data-vl-disable-mouse-wheel-zoom=${mousewheelzoom}
+    ?data-vl-allow-fullscreen=${allowFullscreen}
+    ?data-vl-disable-escape-key=${disableEscape}
+    ?data-vl-disable-rotation=${disableRotation}
+    ?data-vl-disable-mouse-wheel-zoom=${disableMousewheelZoom}
   >
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
     <vl-map-baselayer-grb></vl-map-baselayer-grb>
     <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
   </vl-map>
 `;
+
+export const Default = Template.bind({});
+export const AllowFullscreen = Template.bind({});
+AllowFullscreen.args = { allowFullscreen: true };
+export const DisableMousewheelZoom = Template.bind({});
+DisableMousewheelZoom.args = { disableMousewheelZoom: true };

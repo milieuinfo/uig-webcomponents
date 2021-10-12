@@ -4,7 +4,7 @@ import {
   OlVectorSource,
   OlLoadingstrategy,
   OlGML2,
-} from "../../../../mapactions";
+} from "vl-mapactions/dist/vl-mapactions.js";
 
 /**
  * VlMapWfsLayer

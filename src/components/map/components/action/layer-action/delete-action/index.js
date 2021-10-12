@@ -1,5 +1,5 @@
 import { define } from "../../../../../../utils/core";
-import { VlDeleteAction } from "../../../../mapactions";
+import { VlDeleteAction } from "vl-mapactions/dist/vl-mapactions.js";
 import { VlMapLayerAction } from "../../layer-action";
 import { VlMapLayerStyle } from "../../../layer-style";
 
