@@ -15,6 +15,8 @@ export { VlInfoblock } from "./components/infoblock";
 export { VlIntroduction } from "./components/introduction";
 export { VlLink } from "./components/link";
 export { VlButtonLink } from "./components/link/components/button-link";
+export { VlLinkList } from "./components/link-list";
+export { VlLinkListItem } from "./components/link-list/components/link-list-item";
 export { VlProperties } from "./components/properties";
 export { VlPropertiesColumn } from "./components/properties/components/column";
 export { VlPropertiesList } from "./components/properties/components/list";
