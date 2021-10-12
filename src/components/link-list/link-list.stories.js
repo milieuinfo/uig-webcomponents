@@ -24,22 +24,18 @@ export default {
   argTypes,
 };
 
-export const Default = ({ small, inline, bordered }) => {
-  console.log(styles);
-  return html`
-    <ul
-      id="link-list"
-      is="vl-link-list"
-      ?data-vl-small=${small}
-      ?data-vl-inline=${inline}
-      ?data-vl-bordered=${bordered}
-    >
-      <li is="vl-link-list-item">
-        <a is="vl-link" href="#"> Ga naar index</a>
-      </li>
-      <li is="vl-link-list-item">
-        <a is="vl-link" href="#"> Terug naar overzicht</a>
-      </li>
-    </ul>
-  `;
-};
+export const Default = ({ small, inline, bordered }) => html`
+  <ul
+    is="vl-link-list"
+    ?data-vl-small=${small}
+    ?data-vl-inline=${inline}
+    ?data-vl-bordered=${bordered}
+  >
+    <li is="vl-link-list-item">
+      <a is="vl-link" href="#"> Ga naar index</a>
+    </li>
+    <li is="vl-link-list-item">
+      <a is="vl-link" href="#"> Terug naar overzicht</a>
+    </li>
+  </ul>
+`;

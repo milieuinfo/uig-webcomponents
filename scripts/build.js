@@ -12,6 +12,7 @@ const buildConfig = {
     "introduction",
     "link",
     "side-navigation",
+    "link-list",
     "titles",
     "image",
     "properties",

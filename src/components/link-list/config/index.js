@@ -25,7 +25,7 @@ export const argTypes = {
   bordered: {
     name: "data-vl-bordered",
     type: { summary: "boolean" },
-    description: "A link-list that is displayed as a bordered link-list.",
+    description: "A link-list that is displayed with a border.",
     table: {
       defaultValue: { summary: "false" },
     },
