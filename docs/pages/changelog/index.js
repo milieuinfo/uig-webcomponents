@@ -7,6 +7,19 @@ import { removeStorybooksDefaultStyling } from "../../../.storybook/utils";
 
 const changes = [
   {
+    version: "1.1.1",
+    date: "18/10/2021",
+    children: html`<ul>
+      <li>
+        <p><code>vl-map</code></p>
+        <p>
+          From now on the map component uses the actions from a new dependency,
+          called vl-mapactions.
+        </p>
+      </li>
+    </ul>`,
+  },
+  {
     version: "1.1.0",
     date: "6/10/2021",
     children: html`<ul>
@@ -105,7 +118,7 @@ export class Changelog extends LitElement {
         <section is="vl-region">
           <div is="vl-layout">
             <div is="vl-grid" data-vl-is-stacked>
-              ${change({
+              <!-- ${change({
                 version: "Unreleased",
                 date: "?",
                 children: html`<ul>
@@ -117,7 +130,7 @@ export class Changelog extends LitElement {
                     </p>
                   </li>
                 </ul>`,
-              })}
+              })} -->
               ${changes.map(({ version, date, children }) =>
                 change({
                   version,
