@@ -63,6 +63,7 @@
     "@govflanders/vl-ui-link-list": "^3.12.17",
     "@govflanders/vl-ui-typography": "^3.12.17",
     "@govflanders/vl-ui-popover": "^3.12.17",
+    "@govflanders/vl-ui-tooltip": "^3.12.3",
     "@storybook/addon-essentials": "^6.3.2",
     "@storybook/addon-links": "^6.3.2",
     "@storybook/web-components": "^6.3.2",

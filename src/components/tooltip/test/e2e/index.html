@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <title>vl-ui-tooltip voorbeeld</title>
+    <script type="module" src="../../../../../build/index.js"></script>
+    <script>
+      class VlTooltipTest extends HTMLElement {
+        constructor() {
+          super();
+          const shadowRoot = this.attachShadow({ mode: "open" });
+          shadowRoot.innerHTML = `
+            <style>
+                @import '../../../../../lib/components/tooltip/styles.css';
+                @import '../../../../../lib/components/button/styles.css';
+                div {
+                  position: relative;
+                }
+            </style>
+            <div>
+              <button is="vl-button" slot="button">
+                <vl-tooltip placement="top">This is tooltip on the top</vl-tooltip>
+                <span>top</span>
+              </button>
+            </div>
+          `;
+        }
+      }
+      console.log("define");
+      customElements.define("vl-tooltip-test", VlTooltipTest);
+    </script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../../../lib/components/button/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../../../lib/components/body/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../../../lib/components/tooltip/styles.css"
+    />
+  </head>
+
+  <body is="vl-body">
+    <div style="width: 100%; margin-top: 200px">
+      <div style="max-width: 500px; margin: 0 auto">
+        <button id="top-button" is="vl-button">
+          <vl-tooltip id="top-tooltip" data-vl-placement="top"
+            >This is tooltip on the top</vl-tooltip
+          >
+          top
+        </button>
+        <button id="right-button" is="vl-button">
+          <vl-tooltip id="right-tooltip" data-vl-placement="right"
+            >This is tooltip on the right</vl-tooltip
+          >
+          right
+        </button>
+        <button id="bottom-button" is="vl-button">
+          <vl-tooltip id="bottom-tooltip" data-vl-placement="bottom"
+            >This is tooltip on the bottom</vl-tooltip
+          >
+          bottom
+        </button>
+        <button id="left-button" is="vl-button">
+          <vl-tooltip id="left-tooltip" data-vl-placement="left"
+            >This is tooltip on the left</vl-tooltip
+          >
+          left
+        </button>
+        <button id="more-button" is="vl-button">
+          <vl-tooltip id="more-tooltip" data-vl-placement="bottom">
+            For a large button, label or other element with more text, the
+            content is shown in a smaller, more condensed way.
+          </vl-tooltip>
+          more content
+        </button>
+        <div style="margin: 200px 0">
+          <vl-tooltip id="static-tooltip" static data-vl-placement="top"
+            >Static Tooltip</vl-tooltip
+          >
+        </div>
+        <vl-tooltip-test id="shadow-dom-button"></vl-tooltip-test>
+      </div>
+    </div>
+  </body>
+</html>

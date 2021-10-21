@@ -18,13 +18,27 @@ const buildConfig = {
     "properties",
     "select",
   ],
+  componentsWithStylesheetAndInlineStyling: ["tooltip"],
 };
 
-const { src, dist, componentsWithStylesheet } = buildConfig;
+const {
+  src,
+  dist,
+  componentsWithStylesheet,
+  componentsWithStylesheetAndInlineStyling,
+} = buildConfig;
+
+const createStylesObject = (content) =>
+  `const styles = \`${content}\`; export default styles;`;
+
+const generateFiles = (filesToGenerate) => {
+  filesToGenerate.forEach(({ pathName, content }) => {
+    const contentWithReplacedFonts = replaceFonts(content);
+    fs.outputFile(pathName, contentWithReplacedFonts);
+  });
+};
 
 const handleSass = (directoryToSearch, pattern) => {
-  let computedPath;
-  let content;
   fs.readdirSync(directoryToSearch).forEach((subDirectory) => {
     const subDirectoryToSearch = path.resolve(directoryToSearch, subDirectory);
     const stat = fs.statSync(subDirectoryToSearch);
@@ -32,8 +46,10 @@ const handleSass = (directoryToSearch, pattern) => {
       handleSass(subDirectoryToSearch, pattern);
     }
     if (stat.isFile() && subDirectoryToSearch.endsWith(pattern)) {
-      const isNative = componentsWithStylesheet.includes(
-        directoryToSearch.split("/").pop()
+      const folderName = directoryToSearch.split("/").pop();
+      const needsStylesheet = componentsWithStylesheet.includes(folderName);
+      const needsStylesheetAndInlineStyling = componentsWithStylesheetAndInlineStyling.includes(
+        folderName
       );
       const nativePath = `${subDirectoryToSearch
         .replace(`/${src}/`, `/${dist}/`)
@@ -48,15 +64,33 @@ const handleSass = (directoryToSearch, pattern) => {
           outputStyle: "compressed",
         })
         .css.toString();
-      if (isNative) {
-        computedPath = path.resolve(__dirname, dist, nativePath);
-        content = result;
+
+      if (needsStylesheetAndInlineStyling) {
+        generateFiles([
+          {
+            pathName: path.resolve(__dirname, dist, nativePath),
+            content: result,
+          },
+          {
+            pathName: path.resolve(__dirname, dist, customPath),
+            content: createStylesObject(result),
+          },
+        ]);
+      } else if (needsStylesheet) {
+        generateFiles([
+          {
+            pathName: path.resolve(__dirname, dist, nativePath),
+            content: result,
+          },
+        ]);
       } else {
-        computedPath = path.resolve(__dirname, dist, customPath);
-        content = `const styles = \`${result}\`; export default styles;`;
+        generateFiles([
+          {
+            pathName: path.resolve(__dirname, dist, customPath),
+            content: createStylesObject(result),
+          },
+        ]);
       }
-      const contentWithReplacedFonts = replaceFonts(content);
-      fs.outputFile(computedPath, contentWithReplacedFonts);
     }
   });
 };
