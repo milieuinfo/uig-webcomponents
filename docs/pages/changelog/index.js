@@ -118,19 +118,19 @@ export class Changelog extends LitElement {
         <section is="vl-region">
           <div is="vl-layout">
             <div is="vl-grid" data-vl-is-stacked>
-              <!-- ${change({
+              ${change({
                 version: "Unreleased",
                 date: "?",
                 children: html`<ul>
                   <li>
-                    <p><code>vl-map</code></p>
+                    <p><code>vl-tooltip</code></p>
                     <p>
-                      From now on the map component uses the actions from a new
-                      dependency, called vl-mapactions.
+                      The tooltip and its attributes behave reactive from now
+                      on, and it undresses when it disconnects.
                     </p>
                   </li>
                 </ul>`,
-              })} -->
+              })}
               ${changes.map(({ version, date, children }) =>
                 change({
                   version,

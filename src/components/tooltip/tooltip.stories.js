@@ -55,7 +55,9 @@ export default {
     },
     vlStatic: {
       name: "data-vl-static",
+      description: "Adds a tooltip that is always visible",
       table: {
+        type: { summary: "boolean" },
         category: CATEGORIES.ATTRIBUTES,
       },
     },

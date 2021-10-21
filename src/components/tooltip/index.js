@@ -48,7 +48,7 @@ export class VlTooltip extends vlElement(HTMLElement) {
   }
 
   disconnectedCallback() {
-    console.log("leave");
+    vl.tooltip.undress(this.tooltipInstance);
   }
 
   static get _observedAttributes() {
