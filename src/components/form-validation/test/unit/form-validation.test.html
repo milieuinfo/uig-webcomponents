@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+    <script src="/node_modules/sinon/pkg/sinon.js"></script>
+
+    <script type="module" src="./vl-form-validation-element.js"></script>
+    <script
+    type="module"
+    src="../../../../../lib/components/form-validation/index.js"
+    ></script>
+  </head>
+
+  <body>
+    <test-fixture id="vl-form-validation-fixture">
+      <template>
+        <form is="vl-form" data-vl-validate>
+          <label class="vl-form__label" for="validation-naam">Naam</label>
+          <vl-form-validation-element name="validation-naam"
+            data-vl-required 
+            data-vl-error-message="Veld 'Naam' is verplicht" 
+            data-vl-error-placeholder="validation-naam-error">
+          </vl-form-validation-element>
+          <div class="error-message" data-vl-error-id="validation-naam-error"></div>
+          <button type="submit">Submit</button>
+        </form>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-form-validation-zonder-error-message-fixture">
+      <template>
+        <form is="vl-form" data-vl-validate>
+          <label class="vl-form__label" for="validation-naam">Naam</label>
+          <vl-form-validation-element name="validation-naam"
+            data-vl-required 
+            data-vl-error-placeholder="validation-naam-error">
+          </vl-form-validation-element>
+          <div class="error-message" data-vl-error-id="validation-naam-error">Error message via error placeholder</div>
+          <button type="submit">Submit</button>
+        </form>
+      </template>
+    </test-fixture>
+
+<script type="module">
+import {vlFormValidation} from '../../index.js';
+
+suite('vl-form-validation', () => {
+  const sandbox = sinon.createSandbox();
+
+  setup((done) => {
+    customElements.whenDefined('vl-form-validation-element').then(() => done());
+  });
+
+  teardown(() => {
+    sandbox.restore();
+  });
+
+  test('een class die de form validatie mixin toepast heeft een dress functie om de form validatie te activeren', () => {
+    const object = {};
+    assert.isUndefined(object.dress);
+    Object.assign(object, vlFormValidation);
+    assert.isDefined(object.dress);
+  });
+
+  test('de dress functie zal de form validatie niet activeren indien de validatie niet actief staat', () => {
+    sandbox.spy(window.vl.formValidation, 'dress');
+    const object = {};
+    Object.assign(object, vlFormValidation);
+    const form = document.createElement('form');
+    object.dress(form);
+    assert(window.vl.formValidation.dress.notCalled);
+  });
+
+  test('de dress functie zal de form validatie activeren indien de validatie actief staat', () => {
+    sandbox.spy(window.vl.formValidation, 'dress');
+    const object = {};
+    Object.assign(object, vlFormValidation);
+    const form = document.createElement('form');
+    form.setAttribute('data-vl-validate', '');
+    object.dress(form);
+    assert(window.vl.formValidation.dress.calledWith(form));
+  });
+
+  test('de dress functie zal de form validatie niet activeren indien deze reeds uitgevoerd werd', () => {
+    sandbox.spy(window.vl.formValidation, 'dress');
+    const object = {};
+    Object.assign(object, vlFormValidation);
+    const form = document.createElement('form');
+    form.setAttribute('data-vl-formvalidation-dressed', '');
+    object.dress(form);
+    assert(window.vl.formValidation.dress.notCalled);
+  });
+
+  test('er wordt ook een tekstuele foutmelding getoond bij validatie', () => {
+    const form = fixture('vl-form-validation-fixture');
+    const button = form.querySelector('button');
+    button.click();
+    const message = form.querySelector('.error-message');
+    assert.notEqual(message.innerText, '');
+  });
+
+  test('er wordt ook een tekstuele foutmelding getoond bij validatie als de foutmelding enkel in de placeholder staat', () => {
+    const form = fixture('vl-form-validation-zonder-error-message-fixture');
+    const button = form.querySelector('button');
+    button.click();
+    const message = form.querySelector('.error-message');
+    assert.equal(message.innerText, 'Error message via error placeholder');
+  });
+});
+    </script>
+  </body>
+
+</html>

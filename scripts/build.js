@@ -7,9 +7,11 @@ const buildConfig = {
   componentsWithStylesheet: [
     "body",
     "button",
+    "data-table",
     "grid",
     "icon",
     "introduction",
+    "input-addon",
     "link",
     "side-navigation",
     "link-list",
@@ -17,6 +19,8 @@ const buildConfig = {
     "image",
     "properties",
     "select",
+    "search-filter",
+    "form",
   ],
 };
 

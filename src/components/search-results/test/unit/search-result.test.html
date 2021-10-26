@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+
+    <script
+      type="module"
+      src="../../../../../lib/components/search-results/index.js"
+    ></script>
+</head>
+
+<body>
+  <test-fixture id="vl-search-results-fixture">
+    <template>
+      <li is="vl-search-result">
+        <a href="#">Vlaanderenkiest.be</a>
+        <time>Maandag 22 oktober 2018</time>
+        <dl>
+            <dt>Vlaanderenkiest.be</dt>
+            <dd>Verkiezingsresultaten op Vlaanderenkiest.be...</dd>
+            <dt>Vlaanderen intern</dt>
+            <dd>Werkt u bij de Vlaamse overheid...</dd>
+        </dl>
+        <dl>
+            <dt>Vlaanderenkiest.be</dt>
+            <dd>Verkiezingsresultaten op Vlaanderenkiest.be...</dd>
+            <dt>Vlaanderen intern</dt>
+            <dd>Werkt u bij de Vlaamse overheid...</dd>
+        </dl>
+      </li>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="vl-search-results-div-fixture">
+    <template>
+      <li is="vl-search-result">
+        <a href="#">Vlaanderenkiest.be</a>
+        <time>Maandag 22 oktober 2018</time>
+        <div>
+            <span>dit is geen dl tag</span>
+        </div>
+      </li>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('vl-search-result', () => {
+      const should = chai.should();
+
+      test('bevat een li element met section', () => {
+        const li = fixture('vl-search-results-fixture');
+        assert.isTrue(li._sectionElement.classList.contains(`${li._classPrefix}`));
+      });
+
+      test('zet de juiste container en classes op het titel element', () => {
+        const li = fixture('vl-search-results-fixture');
+        assert.isTrue(li._titleElement.classList.contains(`${li._classPrefix}__title`));
+        assert.isTrue(li._titleLinkElement.classList.contains(`${li._classPrefix}__title__link`));
+      });
+
+      test('zet de juiste container en classes op het meta-data element', () => {
+        const li = fixture('vl-search-results-fixture');
+        assert.isTrue(li._metaDataContainerElement.classList.contains(`${li._classPrefix}__content-group`));
+        assert.isTrue(li._metaDataElement.classList.contains(`${li._classPrefix}__meta-data`));
+      });
+
+      test('zet de juiste container en classes op de content elementen van het type dl', () => {
+        const li = fixture('vl-search-results-fixture');
+        li._contentContainerElements.forEach((container) => container.classList.contains(`${li._classPrefix}__content-group`));
+        li._contentElements.forEach((element) => {
+          assert.isTrue(element.classList.contains(`${li._classPrefix}__description-list`));
+          element.querySelectorAll('dt').forEach((dt) => assert.isTrue(dt.classList.contains(`${li._classPrefix}__description-list__description`)));
+        });
+      });
+
+      test('zet geen classes op content elementen die niet van het type dl zijn', () => {
+        const li = fixture('vl-search-results-div-fixture');
+        const div = li.querySelector('div');
+        should.not.exist(li._contentContainerElement);
+        [...div.children].forEach((element) => assert.isFalse(element.classList.contains(`${li._classPrefix}__description-list`)));
+      });
+    });
+  </script>
+</body>
+
+</html>

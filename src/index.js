@@ -3,10 +3,13 @@ export { VlAlert } from "./components/alert";
 export { VlAccordion } from "./components/accordion";
 export { VlBody } from "./components/body";
 export { VlButton } from "./components/button";
+export { VlDatePicker } from "./components/datepicker";
 export { VlLinkButton } from "./components/button/components/link-button";
 export { VlContactCard } from "./components/contact-card";
+export { VlDataTable } from "./components/data-table";
 export { VlFunctionalHeader } from "./components/functional-header";
 export { VlGrid } from "./components/grid";
+export { VlInputField } from "./components/input-field";
 export { VlRegion } from "./components/grid/components/region";
 export { VlLayout } from "./components/grid/components/layout";
 export { VlColumn } from "./components/grid/components/column";
@@ -34,6 +37,12 @@ export { VlTypography } from "./components/typography";
 export { VlHeader } from "./components/header";
 export { VlFooter } from "./components/footer";
 export { VlDocument } from "./components/document";
+export { VlPager } from "./components/pager";
+export { VlForm } from "./components/form";
+export { VlTooltip } from "./components/tooltip";
+export { VlInputGroup } from "./components/input-group";
+export { VlInputAddon, VlButtonInputAddon } from "./components/input-addon";
+export { vlPattern } from "./components/pattern";
 export {
   VlMap,
   VlMapOverviewMap,
@@ -71,3 +80,9 @@ export { VlContentHeader } from "./components/content-header";
 export { VlCheckbox } from "./components/checkbox";
 export { VlSelect } from "./components/select";
 export { VlSideSheet } from "./components/side-sheet";
+export {
+  VlRichDataField,
+  VlRichDataSorter,
+  VlRichDataTable,
+} from "./components/rich-data-table";
+export { VlSearchResults, VlSearchResult } from "./components/search-results";

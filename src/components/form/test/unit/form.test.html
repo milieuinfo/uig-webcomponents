@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+
+    <script
+      type="module"
+      src="../../../../../lib/components/form/index.js"
+    ></script>
+</head>
+
+<body>
+  <test-fixture id="vl-form-fixture">
+    <template>
+      <form is="vl-form"></form>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="vl-form-with-target-fixture">
+    <template>
+      <form is="vl-form" target="target"></form>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="vl-form-with-action-fixture">
+    <template>
+      <form is="vl-form" action="/target"></form>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('<vl-form>', () => {
+      const should = chai.should();
+
+      test('alleen wanneer er geen target of action attribuut aanwezig is, zal er een target element toegevoegd worden', () => {
+        let form = fixture('vl-form-fixture');
+        let iFrame = form.querySelector('iframe');
+        should.exist(iFrame);
+        assert.equal(form.target, iFrame.name);
+
+        form = fixture('vl-form-with-target-fixture');
+        iFrame = form.querySelector('iframe');
+        should.not.exist(iFrame);
+
+        form = fixture('vl-form-with-action-fixture');
+        iFrame = form.querySelector('iframe');
+        should.not.exist(iFrame);
+      });
+
+      test('wanneer er een target of action attribuut toegevoegd wordt zal het gegenereerd target element verwijderd worden', () => {
+        ['target', 'action'].forEach((attribute) => {
+          const form = fixture('vl-form-fixture');
+          let iFrame = form.querySelector('iframe');
+          should.exist(iFrame);
+
+          form.setAttribute(attribute, 'target');
+          iFrame = form.querySelector('iframe');
+          should.not.exist(iFrame);
+        });
+      });
+
+      test('het form element bevat een leeg action attribuut', () => {
+        const form = fixture('vl-form-fixture');
+        assert.equal(form.getAttribute('action'), '');
+      });
+
+      test('de HTML validatie wordt uitgeschakeld om geen conflict te veroorzaken met de achterliggende validatie code', () => {
+        const form = fixture('vl-form-fixture');
+        assert.isTrue(form.hasAttribute('novalidate'));
+      });
+
+      test('de formulier class wordt toegevoegd', () => {
+        const form = fixture('vl-form-fixture');
+        assert.include([...form.classList], 'vl-form');
+      });
+
+      test('alleen wanneer het validate-form attribuut aanwezig is, zal een validatie attribuut toegevoegd worden dat de validatie activeert', () => {
+        const form = fixture('vl-form-fixture');
+        assert.isFalse(form.hasAttribute('data-validate-form'));
+        form.setAttribute('data-vl-validate', '');
+        assert.isTrue(form.hasAttribute('data-validate-form'));
+        form.removeAttribute('data-vl-validate');
+        assert.isFalse(form.hasAttribute('data-validate-form'));
+      });
+    });
+  </script>
+</body>
+
+</html>

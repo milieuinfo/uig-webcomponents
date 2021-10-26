@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>vl-pattern voorbeeld</title>
+
+    <script type="module" src="../../../../../build/index.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../../../lib/components/pattern/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../../../lib/components/body/styles.css"
+    />
+  </head>
+
+  <body is="vl-body">
+    <label is="vl-form-label" for="pattern-iban">IBAN-nummer</label>
+    <input is="vl-input-field-demo" type="text" id="pattern-iban" name="pattern-iban" value="" data-vl-pattern="iban" data-vl-pattern-prefix="BE" />
+
+    <label is="vl-form-label" for="pattern-phone">Telefoonnummer</label>
+    <input is="vl-input-field-demo" data-vl-block type="tel" id="pattern-phone" name="pattern-phone" value="" data-vl-pattern="phone" data-vl-pattern-prefix="+32" />
+
+    <label is="vl-form-label" for="pattern-date">Datum</label>
+    <input is="vl-input-field-demo" data-vl-block type="text" id="pattern-date" name="pattern-date" value="" placeholder="30.08.2018" data-vl-pattern="date" data-vl-datepicker-min="01.01.2016" data-vl-datepicker-max="01.01.2020" />
+
+    <label is="vl-form-label" for="pattern-price">Prijs</label>
+    <input is="vl-input-field-demo" data-vl-block type="text" id="pattern-price" name="pattern-price" value="" data-vl-pattern="price" data-vl-pattern-prefix="€" />
+
+    <label is="vl-form-label" for="pattern-rrn">Rijksregisternummer</label>
+    <input is="vl-input-field-demo" data-vl-block type="text" id="pattern-rrn" name="pattern-rrn" value="" placeholder="11.22.33-444.55" data-vl-pattern="rrn" data-vl-js-dress="true" />
+
+    <label is="vl-form-label" for="pattern-uuid">UUID</label>
+    <input is="vl-input-field-demo" data-vl-block type="text" id="pattern-uuid" name="pattern-uuid" value="" placeholder="1c6fa548-5eef-11eb-ae93-0242ac130002" data-vl-pattern="uuid" />
+
+    <label is="vl-form-label" for="pattern-numerical">Numeriek</label>
+    <input is="vl-input-field-demo" data-vl-block type="text" id="pattern-numerical" name="pattern-numerical" value="" placeholder="12,45" data-vl-pattern="numerical" data-vl-numerical-decimal-scale="4" />
+  </body>
+</html>

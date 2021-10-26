@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+  <head>
+    <title>vl-pager voorbeeld</title>
+    <script type="module" src="../../../../../build/index.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../../../lib/components/body/styles.css"
+    />
+  </head>
+
+  <body is="vl-body">
+    <vl-pager id="pager-default" data-vl-total-items="100" data-vl-items-per-page="10" data-vl-current-page="1"></vl-pager>
+
+    <vl-pager id="pager-single" data-vl-align-center data-vl-total-items="10" data-vl-items-per-page="10" data-vl-current-page="1"></vl-pager>
+
+    <vl-pager id="pager-no-pagination" data-vl-align-center data-vl-total-items="100" data-vl-items-per-page="10" data-vl-current-page="1" data-vl-pagination-disabled></vl-pager>
+
+    <div id="pager-event-listener-log"></div>
+    <vl-pager id="pager-event-listener" data-vl-align-center data-vl-total-items="100" data-vl-items-per-page="10" data-vl-current-page="1"></vl-pager>
+    <script>
+document.querySelector('#pager-event-listener').addEventListener('change', (e) => {
+  document.querySelector('#pager-event-listener-log').innerText = JSON.stringify(e.detail);
+});
+    </script>
+
+    <vl-pager id="pager-center" data-vl-align-center data-vl-total-items="100" data-vl-items-per-page="10" data-vl-current-page="1"></vl-pager>
+
+    <vl-pager id="pager-right" data-vl-align-right data-vl-total-items="100" data-vl-items-per-page="10" data-vl-current-page="1"></vl-pager>
+  </body>
+
+</html>

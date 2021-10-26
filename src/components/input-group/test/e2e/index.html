@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <title>vl-ui-input-group voorbeeld</title>
+    <script type="module" src="/node_modules/vl-ui-demo/dist/vl-demo-all.js"></script>
+    <script type="module" src="/node_modules/vl-ui-body/dist/vl-body.js"></script>
+    <script type="module" src="/node_modules/vl-ui-button/dist/vl-button.js"></script>
+    <script type="module" src="/node_modules/vl-ui-input-addon/dist/vl-input-addon.js"></script>
+    <script type="module" src="/node_modules/vl-ui-input-field/dist/vl-input-field.js"></script>
+    <script type="module" src="/node_modules/vl-ui-icon/dist/vl-icon.js"></script>
+    <script type="module" src="/node_modules/vl-ui-form-message/dist/vl-form-message.js"></script>
+    <script type="module" src="/node_modules/vl-ui-core/dist/vl-text.js"></script>
+
+    <script type="module" src="/src/vl-input-group.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/src/style.css" />
+    <link rel="stylesheet" type="text/css" href="/node_modules/vl-ui-body/dist/style.css" />
+    <link rel="stylesheet" type="text/css" href="/node_modules/vl-ui-demo/dist/style.css" />
+    <link rel="stylesheet" type="text/css" href="/node_modules/vl-ui-button/dist/style.css" />
+    <link rel="stylesheet" type="text/css" href="/node_modules/vl-ui-input-addon/dist/style.css" />
+    <link rel="stylesheet" type="text/css" href="/node_modules/vl-ui-input-field/dist/style.css" />
+    <link rel="stylesheet" type="text/css" href="/node_modules/vl-ui-icon/dist/style.css" />
+    <link rel="stylesheet" type="text/css" href="/node_modules/vl-ui-form-message/dist/style.css" />
+    <link rel="stylesheet" type="text/css" href="/node_modules/vl-ui-core/dist/style.css" />
+</head>
+
+<body is="vl-body">
+    <vl-demo-page data-vl-webcomponent="vl-input-group" data-vl-link="https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-input-group">
+        <vl-demo data-vl-title="Input group met input-addon links">
+            <label is="vl-form-label" for="input-1" data-vl-block>
+                Input-group met input-addon links
+            </label>
+            <div id="input-group" is="vl-input-group">
+                <button is="vl-button-input-addon" type="button" id="button-1">
+                    <span is="vl-icon" data-vl-icon="location"></span>
+                    <span is="vl-text" data-vl-visually-hidden>Locatie kiezen</span>
+                </button>
+                <input is="vl-input-field" type="text" id="input-1" data-vl-block>
+            </div>
+        </vl-demo>
+
+        <vl-demo data-vl-title="Input group met input-addon rechts">
+            <label is="vl-form-label" for="input-2" data-vl-block>
+                Input-group met input-addon rechts
+            </label>
+            <div is="vl-input-group">
+                <input is="vl-input-field" type="text" id="input-2" data-vl-block>
+                <button is="vl-button-input-addon" type="button" id="button-2">
+                    <span is="vl-icon" data-vl-icon="location"></span>
+                    <span is="vl-text" data-vl-visually-hidden>Locatie kiezen</span>
+                </button>
+            </div>
+        </vl-demo>
+
+        <vl-demo data-vl-title="Input group met tekst add-on links">
+            <label is="vl-form-label" for="input-3" data-vl-block>
+                Input group met tekst add-on links
+            </label>
+            <div is="vl-input-group">
+                <button is="vl-button" type="button" id="button-3">Locatie kiezen</button>
+                <input is="vl-input-field" type="text" id="input-3" data-vl-block>
+            </div>
+        </vl-demo>
+
+        <vl-demo data-vl-title="Input group met tekst add-on rechts">
+            <label is="vl-form-label" for="input-4" data-vl-block>
+                Input group met tekst add-on rechts
+            </label>
+            <div is="vl-input-group">
+                <input is="vl-input-field" type="text" id="input-4" data-vl-block>
+                <button is="vl-button" type="button" id="button-4">Locatie kiezen</span></button>
+            </div>
+            </div>
+        </vl-demo>
+
+        <vl-demo data-vl-title="Input group met button links">
+            <label is="vl-form-label" for="input-5" data-vl-block>
+                Input group met button links
+            </label>
+            <div is="vl-input-group">
+                <button is="vl-button" type="button" id="button-5">
+                    <span is="vl-icon" data-vl-icon="location"></span>
+                    <span is="vl-text" data-vl-visually-hidden>Locatie kiezen</span>
+                </button>
+                <input is="vl-input-field" type="text" id="input-5" data-vl-block>
+            </div>
+        </vl-demo>
+    </vl-demo-page>
+</body>
+
+</html>
