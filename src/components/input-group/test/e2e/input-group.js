@@ -1,5 +1,5 @@
-const {VlElement} = require('vl-ui-core').Test;
+import { VlElement } from "../../../../utils/test";
 
 class VlInputGroup extends VlElement { }
 
-module.exports = VlInputGroup;
+export default VlInputGroup;

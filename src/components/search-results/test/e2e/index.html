@@ -2,7 +2,9 @@
 <html lang="nl">
   <head>
     <title>vl-search-results voorbeeld</title>
-    r   <script type="module" src="../../../../../build/index.js"></script>
+    <script type="module" src="../../../../../build/index.js"></script>
+    <script type="module" src="./search-results.js"></script>
+    <script type="module" src="./search-result.js"></script>
     <link
       rel="stylesheet"
       type="text/css"
@@ -16,16 +18,13 @@
   </head>
 
   <body is="vl-body">
-    <ul is="vl-search-results" id="search-results">
-      <li is="vl-search-result">
-        <a href="#">Vlaanderenkiest.be</a>
-        <time>Maandag 22 oktober 2018</time>
-        <dl>
-          <dt>Vlaanderenkiest.be</dt>
-          <dd>Verkiezingsresultaten op Vlaanderenkiest.be...</dd>
-          <dt>Vlaanderen intern</dt>
-          <dd>Werkt u bij de Vlaamse overheid...</dd>
-        </dl>
+    <ul is="vl-search-results" id="search-results" class="vl-search-results">
+      <li is="vl-search-result"><section class="vl-search-result"><h3 class="vl-search-result__title"><a href="#" class="vl-search-result__title__link">Vlaanderenkiest.be</a></h3><p class="vl-search-result__content-group"><time class="vl-search-result__meta-data">Maandag 22 oktober 2018</time></p><div class="vl-search-result__content-group"><dl class="vl-search-result__description-list">
+        <dt class="vl-search-result__description-list__description">Vlaanderenkiest.be</dt>
+        <dd>Verkiezingsresultaten op Vlaanderenkiest.be...</dd>
+        <dt class="vl-search-result__description-list__description">Vlaanderen intern</dt>
+        <dd>Werkt u bij de Vlaamse overheid...</dd>
+      </dl></div></section>
       </li>
     </ul>
   </body>

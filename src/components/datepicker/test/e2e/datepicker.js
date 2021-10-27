@@ -1,5 +1,5 @@
 import { VlElement, By } from "../../../../utils/test";
-import { VlInputField } from "../../../input-field/test/e2e/input-field";
+import VlInputField from "../../../input-field/test/e2e/input-field";
 
 class VlDatepicker extends VlElement {
   async isOpen() {

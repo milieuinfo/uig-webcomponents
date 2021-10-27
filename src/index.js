@@ -3,7 +3,7 @@ export { VlAlert } from "./components/alert";
 export { VlAccordion } from "./components/accordion";
 export { VlBody } from "./components/body";
 export { VlButton } from "./components/button";
-export { VlDatePicker } from "./components/datepicker";
+export { VlDatepicker } from "./components/datepicker";
 export { VlLinkButton } from "./components/button/components/link-button";
 export { VlContactCard } from "./components/contact-card";
 export { VlDataTable } from "./components/data-table";
@@ -39,6 +39,18 @@ export { VlFooter } from "./components/footer";
 export { VlDocument } from "./components/document";
 export { VlPager } from "./components/pager";
 export { VlForm } from "./components/form";
+export { VlFormGrid, VlFormColumn } from "./components/form-grid";
+export {
+  VlFormLabel,
+  VlFormValidationMessage,
+  VlFormAnnotationParagraph,
+  VlFormAnnotationSpan,
+} from "./components/form-message";
+export {
+  vlFormValidationElement,
+  vlFormValidation,
+  VlFormValidation,
+} from "./components/form-validation";
 export { VlTooltip } from "./components/tooltip";
 export { VlInputGroup } from "./components/input-group";
 export { VlInputAddon, VlButtonInputAddon } from "./components/input-addon";
@@ -85,4 +97,6 @@ export {
   VlRichDataSorter,
   VlRichDataTable,
 } from "./components/rich-data-table";
-export { VlSearchResults, VlSearchResult } from "./components/search-results";
+export { VlRichData } from "./components/rich-data";
+export { VlSearchResult, VlSearchResults } from "./components/search-results";
+export { VlSearchFilter } from "./components/search-filter";

@@ -1,6 +1,6 @@
 import { VlInputAddon, VlButtonInputAddon } from "./input-addon";
 import { Page, config } from "../../../../utils/test";
-import { VlTooltip } from "../../../tooltip";
+import VlTooltip from "../../../tooltip/test/e2e/tooltip";
 
 class VlInputAddonPage extends Page {
   async _getInputAddon(selector) {

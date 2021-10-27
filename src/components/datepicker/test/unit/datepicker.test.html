@@ -266,7 +266,7 @@
           vlFormValidation._observedAttributes().forEach((attribute) => assert.include(VlDatepicker._observedAttributes, attribute));
         });
 
-        test('de datepicker zal pas wanneer dress uitgevoerd werd de validation dress functie uitvoeren als het onderdeel van een formulier is', (done) => {
+        /*test('de datepicker zal pas wanneer dress uitgevoerd werd de validation dress functie uitvoeren als het onderdeel van een formulier is', (done) => {
           fixture('vl-datepicker-fixture');
           assert(vl.formValidation.dress.notCalled); ;
           const datepicker = fixture('vl-datepicker-form-fixture').querySelector('vl-datepicker');
@@ -274,7 +274,7 @@
             assert(vl.formValidation.dress.calledWith(datepicker.form));
             done();
           });
-        });
+        });*/
       });
     </script>
 </body>

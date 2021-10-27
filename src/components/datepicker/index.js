@@ -5,7 +5,7 @@ import "../input-field";
 import { vlFormValidation, vlFormValidationElement } from "../form-validation";
 import { vlPattern } from "../pattern";
 import "../icon";
-import "../datepicker/lib/datepicker.js";
+import "./lib/datepicker.js";
 
 Promise.all([vlFormValidation.ready(), vlPattern.ready()]).then(() =>
   define("vl-datepicker", VlDatepicker)
@@ -38,7 +38,7 @@ Promise.all([vlFormValidation.ready(), vlPattern.ready()]).then(() =>
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-datepicker/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-datepicker.html|Demo}
  */
-export default class VlDatepicker extends vlFormValidationElement(
+export class VlDatepicker extends vlFormValidationElement(
   vlElement(HTMLElement)
 ) {
   static get _observedAttributes() {

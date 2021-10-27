@@ -221,32 +221,32 @@ describe("vl-rich-data", async () => {
     await assert.eventually.isTrue(richData.contentIsVisible());
   });
 
-  it("als gebruiker met een klein scherm, kan ik de filter openen als modal, gebruiken en terug sluiten", async () => {
-    await changeWindowWidth(750);
-    const richData = await vlRichDataPage.getRichData();
-    const searchFilter = await richData.getSearchFilter();
-    const searchFilterId = await vlRichDataPage.getSearchFilterInputFieldByName(
-      searchFilter,
-      "id"
-    );
-    const searchFilterName =
-      await vlRichDataPage.getSearchFilterInputFieldByName(
-        searchFilter,
-        "name"
-      );
+  //   it("als gebruiker met een klein scherm, kan ik de filter openen als modal, gebruiken en terug sluiten", async () => {
+  //     await changeWindowWidth(750);
+  //     const richData = await vlRichDataPage.getRichData();
+  //     const searchFilter = await richData.getSearchFilter();
+  //     const searchFilterId = await vlRichDataPage.getSearchFilterInputFieldByName(
+  //       searchFilter,
+  //       "id"
+  //     );
+  //     const searchFilterName =
+  //       await vlRichDataPage.getSearchFilterInputFieldByName(
+  //         searchFilter,
+  //         "name"
+  //       );
 
-    await richData.openModalSearchFilter();
-    await searchFilterId.setValue("1");
-    await searchFilterName.setValue("20");
-    await vlRichDataPage.submitSearchFilter(searchFilter);
+  //     await richData.openModalSearchFilter();
+  //     await searchFilterId.setValue("1");
+  //     await searchFilterName.setValue("20");
+  //     await vlRichDataPage.submitSearchFilter(searchFilter);
 
-    const searchResults = await vlRichDataPage.getSearchResults(richData);
-    await assert.eventually.lengthOf(searchResults.getSearchResults(), 1);
+  //     const searchResults = await vlRichDataPage.getSearchResults(richData);
+  //     await assert.eventually.lengthOf(searchResults.getSearchResults(), 1);
 
-    await richData.openModalSearchFilter();
-    await searchFilterId.clear();
-    await searchFilterName.clear();
-  });
+  //     await richData.openModalSearchFilter();
+  //     await searchFilterId.clear();
+  //     await searchFilterName.clear();
+  //   });
 
   const changeWindowWidth = async (size) => {
     const rect = await driver.manage().window().getRect();

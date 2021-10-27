@@ -1,5 +1,5 @@
-const VlInputGroup = require('../components/vl-input-group');
-const {Page, Config} = require('vl-ui-core').Test;
+import VlInputGroup from "./input-group";
+import { Page, config } from "../../../../utils/test";
 
 class VlInputGroupPage extends Page {
   async _getInputGroup(selector) {
@@ -7,12 +7,12 @@ class VlInputGroupPage extends Page {
   }
 
   async load() {
-    await super.load(Config.baseUrl + '/demo/vl-input-group.html');
+    await super.load(config.baseUrl + "components/input-group/test/e2e");
   }
 
   async getInputGroup() {
-    return this._getInputGroup('#input-group');
+    return this._getInputGroup("#input-group");
   }
 }
 
-module.exports = VlInputGroupPage;
+export default VlInputGroupPage;

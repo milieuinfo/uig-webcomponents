@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+  <head>
+    <title>vl-grid voorbeeld</title>
+    <script type="module" src="../../../../../build/index.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../../../lib/components/alert/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../../../lib/components/body/styles.css"
+    />
+  </head>
+
+  <body is="vl-body">
+    <section id="region" is="vl-region">
+      <span>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores assumenda dignissimos doloremque eos est
+        eveniet fugiat illo illum impedit, libero nam, omnis optio praesentium qui quod ratione vel voluptas
+        voluptatibus?
+      </span>
+    </section>
+
+    <section id="region-alt" is="vl-region" data-vl-alt>
+      <span>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores assumenda dignissimos doloremque eos est
+        eveniet fugiat illo illum impedit, libero nam, omnis optio praesentium qui quod ratione vel voluptas
+        voluptatibus?
+      </span>
+    </section>
+
+    <section id="region-overlap" is="vl-region" data-vl-overlap>
+      <div is="vl-layout">
+        <div is="vl-grid">
+          <span>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores assumenda dignissimos doloremque eos est
+            eveniet fugiat illo illum impedit, libero nam, omnis optio praesentium qui quod ratione vel voluptas
+            voluptatibus?
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <div id="layout" is="vl-layout">
+      <span>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores assumenda dignissimos doloremque eos est
+        eveniet fugiat illo illum impedit, libero nam, omnis optio praesentium qui quod ratione vel voluptas
+        voluptatibus?
+      </span>
+    </div>
+
+    <div id="grid-stacking" is="vl-grid" data-vl-is-stacked>
+      <div is="vl-column" data-vl-size="12">
+        <div class="presentation__grid__col">
+          <p>Stacked</p>
+        </div>
+      </div>
+      <div is="vl-column" data-vl-size="12">
+        <div class="presentation__grid__col">
+          <p>Stacked</p>
+        </div>
+      </div>
+      <div is="vl-column" data-vl-size="12">
+        <div class="presentation__grid__col">
+          <p>Stacked</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="grid-stacking-small" is="vl-grid" data-vl-is-stacked-small>
+      <div is="vl-column" data-vl-size="12">
+        <div class="presentation__grid__col">
+          <p>Stacked met kleine marges</p>
+        </div>
+      </div>
+      <div is="vl-column" data-vl-size="12">
+        <div class="presentation__grid__col">
+          <p>Stacked met kleine marges</p>
+        </div>
+      </div>
+      <div is="vl-column" data-vl-size="12">
+        <div class="presentation__grid__col">
+          <p>Stacked met kleine marges</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="grid-stacking-large" is="vl-grid" data-vl-is-stacked-large>
+      <div is="vl-column" data-vl-size="12">
+        <div class="presentation__grid__col">
+          <p>Stacked met grote marges</p>
+        </div>
+      </div>
+      <div is="vl-column" data-vl-size="12">
+        <div class="presentation__grid__col">
+          <p>Stacked met grote marges</p>
+        </div>
+      </div>
+      <div is="vl-column" data-vl-size="12">
+        <div class="presentation__grid__col">
+          <p>Stacked met grote marges</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="grid-align-start" is="vl-grid" data-vl-align-start>
+      <div is="vl-column" data-vl-size="6">
+        <div class="presentation__grid__col">
+          <p>Ik ben links gealigneerd, standaard gedrag.</p>
+        </div>
+      </div>
+    </div>
+    <div id="grid-align-center" is="vl-grid" data-vl-align-center>
+      <div is="vl-column" data-vl-size="6">
+        <div class="presentation__grid__col">
+          <p>Ik ben gecentreerd.</p>
+        </div>
+      </div>
+    </div>
+    <div id="grid-align-end" is="vl-grid" data-vl-align-end>
+      <div is="vl-column" data-vl-size="6">
+        <div class="presentation__grid__col">
+          <p>Ik ben rechts gealigneerd.</p>
+        </div>
+      </div>
+    </div>
+    <div id="grid-align-space-between" is="vl-grid" data-vl-align-space-between>
+      <div is="vl-column" data-vl-size="4">
+        <div class="presentation__grid__col">
+          <p>Er is zoveel mogelijk plaats tussen ons!</p>
+        </div>
+      </div>
+      <div is="vl-column" data-vl-size="4">
+        <div class="presentation__grid__col">
+          <p>Er is zoveel mogelijk plaats tussen ons!</p>
+        </div>
+      </div>
+    </div>
+    <div id="grid-align-space-around" is="vl-grid" data-vl-align-space-around>
+      <div is="vl-column" data-vl-size="4">
+        <div class="presentation__grid__col">
+          <p>Er is zoveel mogelijk plaats rond ons!</p>
+        </div>
+      </div>
+      <div is="vl-column" data-vl-size="4">
+        <div class="presentation__grid__col">
+          <p>Er is zoveel mogelijk plaats rond ons!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="presentation__grid" style="margin-bottom: 1rem;">
+      <div id="grid-v-top" is="vl-grid" data-vl-v-top style="height: 5rem;">
+        <div is="vl-column" data-vl-size="1" data-vl-max-size="1">
+          <div class="presentation__grid__col" style="height: 3rem;">
+            <p>Ik ben bovenaan gealigneerd, standaard gedrag.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="presentation__grid" style="margin-bottom: 1rem;">
+      <div id="grid-v-center" is="vl-grid" data-vl-v-center style="height: 5rem;">
+        <div is="vl-column" data-vl-size="1" data-vl-max-size="1">
+          <div class="presentation__grid__col" style="height: 3rem;">
+            <p>Ik ben gecentreerd.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="presentation__grid" style="margin-bottom: 1rem;">
+      <div id="grid-v-bottom" is="vl-grid" data-vl-v-bottom style="height: 5rem;">
+        <div is="vl-column" data-vl-size="1" data-vl-max-size="1">
+          <div class="presentation__grid__col" style="height: 3rem;">
+            <p>Ik ben onderaan gealigneerd.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="presentation__grid">
+      <div id="grid-v-stretch" is="vl-grid" data-vl-v-stretch style="height: 5rem;">
+        <div is="vl-column" data-vl-size="1" data-vl-max-size="1">
+          <div class="presentation__grid__col" style="height: 100%;">
+            <p>Ik ben uitgerekt tot de volledige hoogte van de grid.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div is="vl-grid">
+      <div id="vl-column-default-size" is="vl-column" data-vl-size="12">
+        <div class="presentation__grid__col">
+          <p>12/12 breedte</p>
+        </div>
+      </div>
+    </div>
+
+    <div is="vl-grid">
+      <div id="vl-column-default-max-size" is="vl-column" data-vl-size="4">
+        <div class="presentation__grid__col">
+          <p>4/12 breedte</p>
+        </div>
+      </div>
+    </div>
+
+    <div is="vl-grid">
+      <div id="vl-column-3-4-size" is="vl-column" data-vl-size="3" data-vl-max-size="4">
+        <div class="presentation__grid__col">
+          <p>3/4 breedte</p>
+        </div>
+      </div>
+      <div id="vl-column-1-4-size" is="vl-column" data-vl-size="1" data-vl-max-size="4">
+        <div class="presentation__grid__col">
+          <p>1/4 breedte</p>
+        </div>
+      </div>
+    </div>
+
+    <div is="vl-grid">
+      <div id="vl-column-responsive-sizes" is="vl-column" data-vl-size="4" data-vl-max-size="12" data-vl-medium-size="6" data-vl-medium-max-size="12" data-vl-small-size="8" data-vl-small-max-size="12" data-vl-extra-small-size="12" data-vl-extra-small-max-size="12">
+        <div class="presentation__grid__col">
+          <p>4/12 breedte op groot, 8/12 breedte op klein en volledige breedte op extra klein</p>
+        </div>
+      </div>
+    </div>
+
+    <div is="vl-grid">
+      <div id="vl-column-push" is="vl-column" data-vl-size="4" data-vl-max-size="12" data-vl-push="1">
+        <div class="presentation__grid__col">
+          <p>Pushed met 1/12!</p>
+        </div>
+      </div>
+    </div>
+
+    <div is="vl-grid">
+      <div id="vl-column-default-push" is="vl-column" data-vl-size="4" data-vl-max-size="12">
+        <div class="presentation__grid__col">
+          <p>Pushed met 0/12!</p>
+        </div>
+      </div>
+    </div>
+
+    <div is="vl-grid">
+      <div is="vl-column" data-vl-size="7" data-vl-max-size="12">
+        <div is="vl-grid">
+          <div is="vl-column" data-vl-size="6" data-vl-max-size="12">
+            <div class="presentation__grid__col">
+              <p>Helft van 7/12</p>
+            </div>
+          </div>
+          <div is="vl-column" data-vl-size="6" data-vl-max-size="12">
+            <div class="presentation__grid__col">
+              <p>Helft van 7/12</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>

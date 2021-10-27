@@ -1,7 +1,7 @@
 import { VlElement, By } from "../../../../utils/test";
 import VlSearchResult from "./search-result";
 
-class VLSearchResults extends VlElement {
+export default class VLSearchResults extends VlElement {
   async getSearchResult(number) {
     const results = await this.getSearchResults();
     return results[--number];
@@ -14,5 +14,3 @@ class VLSearchResults extends VlElement {
     );
   }
 }
-
-export default VLSearchResults;
