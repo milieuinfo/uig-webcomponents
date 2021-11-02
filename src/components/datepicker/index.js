@@ -5,7 +5,9 @@ import "../input-field";
 import { vlFormValidation, vlFormValidationElement } from "../form-validation";
 import { vlPattern } from "../pattern";
 import "../icon";
+import "../button";
 import "./lib/datepicker.js";
+import styles from "./styles.scss";
 
 Promise.all([vlFormValidation.ready(), vlPattern.ready()]).then(() =>
   define("vl-datepicker", VlDatepicker)
@@ -64,7 +66,7 @@ export class VlDatepicker extends vlFormValidationElement(
   constructor() {
     super(`
       <style>
-        @import '/src/style.css';
+        ${styles}
 
         #wrapper {
           position: relative;
@@ -74,6 +76,7 @@ export class VlDatepicker extends vlFormValidationElement(
           display: none;
         }
       </style>
+
       <div is="vl-input-group" id="wrapper" data-vl-datepicker>
         <input id="input" is="vl-input-field" data-vl-block type="text" class="js-vl-datepicker-input"/>
         <button id="button" is="vl-button-input-addon" type="button" class="js-vl-datepicker-toggle">

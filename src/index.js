@@ -51,7 +51,6 @@ export {
   vlFormValidation,
   VlFormValidation,
 } from "./components/form-validation";
-export { VlTooltip } from "./components/tooltip";
 export { VlInputGroup } from "./components/input-group";
 export { VlInputAddon, VlButtonInputAddon } from "./components/input-addon";
 export { vlPattern } from "./components/pattern";

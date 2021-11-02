@@ -52,9 +52,8 @@ const handleSass = (directoryToSearch, pattern) => {
     if (stat.isFile() && subDirectoryToSearch.endsWith(pattern)) {
       const folderName = directoryToSearch.split("/").pop();
       const needsStylesheet = componentsWithStylesheet.includes(folderName);
-      const needsStylesheetAndInlineStyling = componentsWithStylesheetAndInlineStyling.includes(
-        folderName
-      );
+      const needsStylesheetAndInlineStyling =
+        componentsWithStylesheetAndInlineStyling.includes(folderName);
       const nativePath = `${subDirectoryToSearch
         .replace(`/${src}/`, `/${dist}/`)
         .replace("scss", "css")}`;
