@@ -38,7 +38,7 @@
     "@govflanders/vl-ui-util": "^3.12.24",
     "@ungap/custom-elements": "^0.1.15",
     "lit": "^2.0.0-rc.2",
-    "luxon": "^2.0.2",
+    "luxon": "^1.27.0",
     "swipe-detect": "^1.0.1",
     "vl-mapactions": "^4.0.1"
   },
