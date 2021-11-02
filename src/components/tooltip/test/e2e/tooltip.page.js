@@ -1,7 +1,7 @@
-import VlTooltip from "./tooltip";
+import { VlTooltip } from "./tooltip";
 import { Page, config, VlElement, By } from "../../../../utils/test";
 
-class VlTooltipPage extends Page {
+export class VlTooltipPage extends Page {
   async _getTooltip(selector) {
     return new VlTooltip(this.driver, selector);
   }
@@ -75,5 +75,3 @@ class VlTooltipPage extends Page {
     await body.hover();
   }
 }
-
-export default VlTooltipPage;

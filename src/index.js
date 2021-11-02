@@ -92,11 +92,4 @@ export { VlContentHeader } from "./components/content-header";
 export { VlCheckbox } from "./components/checkbox";
 export { VlSelect } from "./components/select";
 export { VlSideSheet } from "./components/side-sheet";
-export {
-  VlRichDataField,
-  VlRichDataSorter,
-  VlRichDataTable,
-} from "./components/rich-data-table";
-export { VlRichData } from "./components/rich-data";
-export { VlSearchResult, VlSearchResults } from "./components/search-results";
-export { VlSearchFilter } from "./components/search-filter";
+export { VlTooltip } from "./components/tooltip";

@@ -1,6 +1,6 @@
 import { vlElement } from "../../utils/core";
 import "@govflanders/vl-ui-util/dist/js/util.js";
-import "./lib/tooltip.js";
+import "./lib";
 import styles from "./styles.scss";
 
 /**
@@ -28,9 +28,27 @@ export class VlTooltip extends vlElement(HTMLElement) {
   }
 
   connectedCallback() {
+    new MutationObserver(() => {
+      if (!this._isStatic) {
+        this.parentNode.setAttribute(
+          "data-vl-tooltip-content",
+          this.textContent
+        );
+        this.tooltipInstance.updateTitleContent(this.textContent);
+      }
+    }).observe(this, {
+      characterData: true,
+      childList: true,
+      subtree: true,
+    });
+
     if (!this._isStatic) {
       this._dress();
     }
+  }
+
+  disconnectedCallback() {
+    vl.tooltip.undress(this.tooltipInstance);
   }
 
   static get _observedAttributes() {
@@ -53,7 +71,7 @@ export class VlTooltip extends vlElement(HTMLElement) {
     this.parentNode.setAttribute("data-vl-tooltip", "");
     this.parentNode.setAttribute("data-vl-tooltip-placement", this._placement);
     this.parentNode.setAttribute("data-vl-tooltip-content", this.textContent);
-    vl.tooltip.createTooltip(this.parentNode);
+    this.tooltipInstance = vl.tooltip.createTooltip(this.parentNode);
   }
 
   _removeDataTooltipAttributes() {
@@ -70,7 +88,7 @@ export class VlTooltip extends vlElement(HTMLElement) {
         </div>
         <div class="vl-tooltip__arrow"></div>
       </div>
-      `);
+    `);
   }
 
   _placementChangedCallback(oldValue, newValue) {
@@ -78,6 +96,10 @@ export class VlTooltip extends vlElement(HTMLElement) {
       this._staticTooltipElement.setAttribute("x-placement", newValue);
     } else {
       this.parentNode.setAttribute("data-vl-tooltip-placement", newValue);
+      if (this.parentNode.getAttribute("data-vl-tooltip-content")) {
+        vl.tooltip.undress(this.tooltipInstance);
+        this.tooltipInstance = vl.tooltip.createTooltip(this.parentNode);
+      }
     }
   }
 
@@ -87,6 +109,7 @@ export class VlTooltip extends vlElement(HTMLElement) {
     }
 
     if (newValue != undefined) {
+      vl.tooltip.undress(this.tooltipInstance);
       this._removeDataTooltipAttributes();
       const tooltipTemplate = this._getStaticTooltipTemplate();
       this._shadow.appendChild(tooltipTemplate);

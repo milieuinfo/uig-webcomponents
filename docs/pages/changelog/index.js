@@ -7,6 +7,19 @@ import { removeStorybooksDefaultStyling } from "../../../.storybook/utils";
 
 const changes = [
   {
+    version: "1.1.1",
+    date: "18/10/2021",
+    children: html`<ul>
+      <li>
+        <p><code>vl-map</code></p>
+        <p>
+          From now on the map component uses the actions from a new dependency,
+          called vl-mapactions.
+        </p>
+      </li>
+    </ul>`,
+  },
+  {
     version: "1.1.0",
     date: "6/10/2021",
     children: html`<ul>
@@ -110,10 +123,10 @@ export class Changelog extends LitElement {
                 date: "?",
                 children: html`<ul>
                   <li>
-                    <p><code>vl-map</code></p>
+                    <p><code>vl-tooltip</code></p>
                     <p>
-                      From now on the map component uses the actions from a new
-                      dependency, called vl-mapactions.
+                      The tooltip and its attributes behave reactive from now
+                      on, and it undresses when it disconnects.
                     </p>
                   </li>
                 </ul>`,

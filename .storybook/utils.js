@@ -31,3 +31,9 @@ export const docsIntro = ({ stylesheets, root, intro }) => {
     ? `${componentImport}${styleImports}${brIntro}`
     : `${componentImport}${brIntro}`;
 };
+
+export const CATEGORIES = {
+  ATTRIBUTES: "Attributes",
+  PROPERTIES: "Properties",
+  EVENTS: "Events",
+};

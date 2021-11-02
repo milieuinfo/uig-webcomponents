@@ -1,6 +1,6 @@
 import { VlElement, By } from "../../../../utils/test";
 
-class VlTooltip extends VlElement {
+export class VlTooltip extends VlElement {
   async _getPlacement() {
     return this.getAttribute("placement");
   }
@@ -31,6 +31,7 @@ class VlTooltip extends VlElement {
 
   async isLargeTooltip() {
     const tooltip = await this._getTooltipElement();
+
     return tooltip.hasClass("vl-tooltip--large");
   }
 
@@ -65,5 +66,3 @@ class VlTooltip extends VlElement {
     }
   }
 }
-
-export default VlTooltip;
