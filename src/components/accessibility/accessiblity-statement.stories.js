@@ -1,7 +1,7 @@
 import { html } from "lit-html";
 import "../accessibility";
 import { COMPLIANCE_STATUS, EVALUATION_STATUS } from "./enums";
-import { docsIntro } from "../../../.storybook/utils.js";
+import { docsIntro, CATEGORIES } from "../../../.storybook/utils.js";
 
 const limitationsDescription = `<p>Attribuut om limitaties mee te geven aan de verklaring. De string die verwacht wordt is de <code>id</code> van een script dat aanwezig is op de pagina waarin een object zit.</p>
 
@@ -35,7 +35,20 @@ export default {
     date: "20 juli 2021",
     dateModified: "20 juli 2021",
     compliance: COMPLIANCE_STATUS.PARTIALLY_COMPLIANT,
-    limitations: "limitations-01",
+    limitations: {
+      withTiming: [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      ],
+      withoutTiming: [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      ],
+      outsideApplicableLaw: [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      ],
+    },
     evaluation: EVALUATION_STATUS.EXPERT_EVALUATED,
   },
   argTypes: {
@@ -45,6 +58,7 @@ export default {
       description:
         "Attribuut wordt gebruikt om te duiden over welke applicatie de verklaring gaat.",
       table: {
+        category: CATEGORIES.ATTRIBUTES,
         defaultValue: { summary: '"deze applicatie"' },
       },
     },
@@ -54,6 +68,7 @@ export default {
       description:
         "Attribuut wordt gebruikt om de huidige versie van de verklaring aan te geven.",
       table: {
+        category: CATEGORIES.ATTRIBUTES,
         defaultValue: { summary: '"1.0.0"' },
       },
     },
@@ -63,6 +78,7 @@ export default {
       description:
         "Attribuut wordt gebruikt om de aanmaakdatum van de verklaring te beschrijven.",
       table: {
+        category: CATEGORIES.ATTRIBUTES,
         defaultValue: { summary: '"20 juli 2021"' },
       },
     },
@@ -72,6 +88,7 @@ export default {
       description:
         "Attribuut wordt gebruikt om de datum van de laatste wijziging van de verklaring te beschrijven.",
       table: {
+        category: CATEGORIES.ATTRIBUTES,
         defaultValue: { summary: '"20 juli 2021"' },
       },
     },
@@ -92,17 +109,16 @@ export default {
         ],
       },
       table: {
+        category: CATEGORIES.ATTRIBUTES,
         defaultValue: { summary: `"${COMPLIANCE_STATUS.PARTIALLY_COMPLIANT}"` },
       },
     },
     limitations: {
-      name: "data-vl-limitations",
-      type: { summary: "string" },
-      description: limitationsDescription,
-      control: {
-        type: "select",
-        options: ["limitations-01", "limitations-02", "limitations-03"],
-      },
+      name: "limitations",
+      type: { summary: "object" },
+      description:
+        "Property om limitaties mee te geven aan de verklaring. Het object bevat 3 optionele properties. De `withTiming` limitaties vallen onder 'Niet-naleving van het bestuursdecreet'. Dit zijn tijdelijke limitaties. `withoutTiming` limitaties vallen onder 'Onevenredige last'. Dit zijn permanente limitaties. De `outsideApplicableLaw` limitaties vallen onder 'De inhoud valt buiten de werkingssfeer van de toepasselijke wetgeving'. Dit zijn limitaties die buiten de werkingssfeer van de toepasselijke wetgeving vallen.",
+      table: { category: CATEGORIES.PROPERTIES },
     },
     evaluation: {
       name: "data-vl-evaluation",
@@ -122,6 +138,7 @@ export default {
         ],
       },
       table: {
+        category: CATEGORIES.ATTRIBUTES,
         defaultValue: { summary: `"${EVALUATION_STATUS.NOT_EVALUATED}"` },
       },
     },
@@ -137,47 +154,13 @@ export const Default = ({
   limitations,
   evaluation,
 }) => {
-  return html`<script id="limitations-01" type="application/json">
-      {
-        "withTiming": [
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        ],
-        "withoutTiming": [
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        ],
-        "outsideApplicableLaw": [
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        ]
-      }
-    </script>
-    <script id="limitations-02" type="application/json">
-      {
-        "withTiming": [
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        ],
-        "withoutTiming": [
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        ]
-      }
-    </script>
-    <script id="limitations-03" type="application/json">
-      {
-        "withTiming": [
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        ]
-      }
-    </script>
-    <vl-accessibility
-      data-vl-application=${application}
-      data-vl-version=${version}
-      data-vl-date=${date}
-      data-vl-date-modified=${dateModified}
-      data-vl-compliance=${compliance}
-      data-vl-limitations=${limitations}
-      data-vl-evaluation=${evaluation}
-    ></vl-accessibility>`;
+  return html`<vl-accessibility
+    data-vl-application=${application}
+    data-vl-version=${version}
+    data-vl-date=${date}
+    data-vl-date-modified=${dateModified}
+    data-vl-compliance=${compliance}
+    data-vl-evaluation=${evaluation}
+    .limitations=${limitations}
+  ></vl-accessibility>`;
 };

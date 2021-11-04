@@ -4,7 +4,7 @@ import { COMPLIANCE_STATUS, EVALUATION_STATUS } from "../../enums";
 export const inaccessibleContent = ({
   compliance,
   evaluation,
-  parsedLimitations,
+  limitations,
 }) => {
   const inaccessibleContentTemplate = () => {
     if (evaluation === EVALUATION_STATUS.NOT_EVALUATED) {
@@ -20,30 +20,30 @@ export const inaccessibleContent = ({
         <p>
           De onderstaande inhoud is niet-toegankelijk om de volgende reden(en):
         </p>
-        ${parsedLimitations &&
-        parsedLimitations.withTiming &&
+        ${limitations &&
+        limitations.withTiming &&
         html`<h3>Niet-naleving van het bestuursdecreet</h3>
           <ul>
-            ${parsedLimitations.withTiming.map(
+            ${limitations.withTiming.map(
               (limitation) => html`<li><p>${limitation}</p></li>`
             )}
           </ul>`}
-        ${parsedLimitations &&
-        parsedLimitations.withoutTiming &&
+        ${limitations &&
+        limitations.withoutTiming &&
         html`<h3>Onevenredige last</h3>
           <ul>
-            ${parsedLimitations.withoutTiming.map(
+            ${limitations.withoutTiming.map(
               (limitation) => html`<li><p>${limitation}</p></li>`
             )}
           </ul>`}
-        ${parsedLimitations &&
-        parsedLimitations.outsideApplicableLaw &&
+        ${limitations &&
+        limitations.outsideApplicableLaw &&
         html`<h3>
             De inhoud valt buiten de werkingssfeer van de toepasselijke
             wetgeving
           </h3>
           <ul>
-            ${parsedLimitations.outsideApplicableLaw.map(
+            ${limitations.outsideApplicableLaw.map(
               (limitation) => html`<li><p>${limitation}</p></li>`
             )}
           </ul>`}

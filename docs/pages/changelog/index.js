@@ -129,6 +129,14 @@ export class Changelog extends LitElement {
                       on, and it undresses when it disconnects.
                     </p>
                   </li>
+                  <li>
+                    <p><code>vl-progress-bar</code> &#x1F4A5;</p>
+                    <p>The progress bar is refactored.</p>
+                  </li>
+                  <li>
+                    <p><code>vl-accessibility</code> &#x1F4A5;</p>
+                    <p>The limitations must now be set via a property.</p>
+                  </li>
                 </ul>`,
               })}
               ${changes.map(({ version, date, children }) =>
