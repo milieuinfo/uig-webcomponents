@@ -7,6 +7,27 @@ import { removeStorybooksDefaultStyling } from "../../../.storybook/utils";
 
 const changes = [
   {
+    version: "2.0.0",
+    date: "4/11/2021",
+    children: html`<ul>
+      <li>
+        <p><code>vl-tooltip</code></p>
+        <p>
+          The tooltip and its attributes behave reactive from now on, and it
+          undresses when it disconnects.
+        </p>
+      </li>
+      <li>
+        <p><code>vl-progress-bar</code> &#x1F4A5;</p>
+        <p>The progress bar is refactored.</p>
+      </li>
+      <li>
+        <p><code>vl-accessibility</code> &#x1F4A5;</p>
+        <p>The limitations must now be set via a property.</p>
+      </li>
+    </ul>`,
+  },
+  {
     version: "1.1.1",
     date: "18/10/2021",
     children: html`<ul>
@@ -118,27 +139,11 @@ export class Changelog extends LitElement {
         <section is="vl-region">
           <div is="vl-layout">
             <div is="vl-grid" data-vl-is-stacked>
-              ${change({
+              <!-- ${change({
                 version: "Unreleased",
                 date: "?",
-                children: html`<ul>
-                  <li>
-                    <p><code>vl-tooltip</code></p>
-                    <p>
-                      The tooltip and its attributes behave reactive from now
-                      on, and it undresses when it disconnects.
-                    </p>
-                  </li>
-                  <li>
-                    <p><code>vl-progress-bar</code> &#x1F4A5;</p>
-                    <p>The progress bar is refactored.</p>
-                  </li>
-                  <li>
-                    <p><code>vl-accessibility</code> &#x1F4A5;</p>
-                    <p>The limitations must now be set via a property.</p>
-                  </li>
-                </ul>`,
-              })}
+                children: html``,
+              })} -->
               ${changes.map(({ version, date, children }) =>
                 change({
                   version,
