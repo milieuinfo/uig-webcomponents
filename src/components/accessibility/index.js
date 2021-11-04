@@ -13,27 +13,6 @@ import "../contact-card";
 import { header, title, content } from "./templates";
 import { COMPLIANCE_STATUS, EVALUATION_STATUS } from "./enums";
 import styles from "./styles.scss";
-
-const props = {
-  version: "data-vl-version",
-  application: "data-vl-application",
-  date: "data-vl-date",
-  dateModified: "data-vl-date-modified",
-  compliance: "data-vl-compliance",
-  limitations: "data-vl-limitations",
-  evaluation: "data-vl-evaluation",
-};
-
-const {
-  version,
-  application,
-  date,
-  dateModified,
-  compliance,
-  limitations,
-  evaluation,
-} = props;
-
 export class VlAccessibility extends LitElement {
   static get styles() {
     return [
@@ -44,39 +23,53 @@ export class VlAccessibility extends LitElement {
   }
   static get properties() {
     return {
-      [version]: { type: String },
-      [application]: { type: String },
-      [date]: { type: String },
-      [dateModified]: { type: String },
-      [compliance]: { type: String },
-      [limitations]: {
+      version: { type: String, attribute: "data-vl-version", reflect: true },
+      application: {
         type: String,
+        attribute: "data-vl-application",
+        reflect: true,
       },
-      [evaluation]: { type: String },
+      date: { type: String, attribute: "data-vl-date", reflect: true },
+      dateModified: {
+        type: String,
+        attribute: "data-vl-date-modified",
+        reflect: true,
+      },
+      compliance: {
+        type: String,
+        attribute: "data-vl-compliance",
+        reflect: true,
+      },
+      evaluation: {
+        type: String,
+        attribute: "data-vl-evaluation",
+        reflect: true,
+      },
+      limitations: {
+        type: Object,
+      },
     };
   }
 
   constructor() {
     super();
-    this[version] = "1.0.0";
-    this[application] = "deze applicatie";
-    this[date] = "20 juli 2021";
-    this[dateModified] = "20 juli 2021";
-    this[compliance] = COMPLIANCE_STATUS.PARTIALLY_COMPLIANT;
-    this[evaluation] = EVALUATION_STATUS.NOT_EVALUATED;
+    this.version = "1.0.0";
+    this.application = "deze applicatie";
+    this.date = "20 juli 2021";
+    this.dateModified = "20 juli 2021";
+    this.compliance = COMPLIANCE_STATUS.PARTIALLY_COMPLIANT;
+    this.evaluation = EVALUATION_STATUS.NOT_EVALUATED;
   }
 
   render() {
-    const limitationsScript = document.getElementById(this[limitations]);
     const props = {
-      version: this[version],
-      date: this[date],
-      application: this[application],
-      evaluation: this[evaluation],
-      compliance: this[compliance],
-      parsedLimitations:
-        limitationsScript && JSON.parse(limitationsScript.innerHTML),
-      dateModified: this[dateModified],
+      version: this.version,
+      date: this.date,
+      application: this.application,
+      evaluation: this.evaluation,
+      compliance: this.compliance,
+      dateModified: this.dateModified,
+      limitations: this.limitations,
     };
 
     return html`${header()} ${title(props)} ${content(props)}`;

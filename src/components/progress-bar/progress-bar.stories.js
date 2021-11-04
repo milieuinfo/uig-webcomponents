@@ -65,7 +65,7 @@ export default {
       table: { category: CATEGORIES.EVENTS },
     },
     steps: {
-      description: "Set the steps with an array of strings.",
+      description: "Sets the steps with an array of strings.",
       type: { summary: "array" },
       table: {
         category: CATEGORIES.PROPERTIES,
