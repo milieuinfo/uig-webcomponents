@@ -20,8 +20,6 @@ export class VlRichDataSorter extends vlElement(HTMLElement) {
   constructor() {
     super(`
       <style>
-        @import '/node_modules/vl-ui-icon/dist/style.css';
-        
         div {
           display: inline;
         }

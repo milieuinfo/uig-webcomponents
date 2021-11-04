@@ -1,8 +1,8 @@
 import { define } from "../../utils/core";
 import "../data-table";
 import { VlRichData } from "../rich-data";
-import { VlRichDataField } from "./components/rich-data-field.js";
-import { VlRichDataSorter } from "./components/rich-data-sorter.js";
+import { VlRichDataField } from "./components/rich-data-field";
+import { VlRichDataSorter } from "./components/rich-data-sorter";
 import styles from "./styles.scss";
 
 /**
