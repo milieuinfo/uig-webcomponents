@@ -59,6 +59,18 @@ export class Introduction extends LitElement {
               `,
             })}
             ${block({
+              title: "Migrating from legacy packages",
+              children: html`
+                <p>
+                  If you are migrating from the legacy packages to this package,
+                  we recommend to carefully read the docs and the changelog.
+                  Every breaking change across from the legacy package is
+                  mentioned in the changelog with a '&#x1F4A5;'. We use semantic
+                  versioning for our own changes.
+                </p>
+              `,
+            })}
+            ${block({
               title: "Getting in touch",
               children: html`
                 <vl-typography>

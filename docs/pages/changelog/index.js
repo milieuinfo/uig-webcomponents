@@ -131,6 +131,7 @@ export class Changelog extends LitElement {
                   </li>
                   <li>
                     <p><code>vl-progress-bar</code> &#x1F4A5;</p>
+                    <p>The progress bar is refactored.</p>
                   </li>
                   <li>
                     <p><code>vl-accessibility</code> &#x1F4A5;</p>
