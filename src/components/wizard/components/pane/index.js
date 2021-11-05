@@ -1,4 +1,5 @@
 import { vlElement, define } from "../../../../utils/core";
+import styles from "../../styles.scss";
 import "../../../grid";
 import "../../../action-group";
 
@@ -28,10 +29,7 @@ export class VlWizardPane extends vlElement(HTMLElement) {
   constructor() {
     super(`
       <style>
-        @import '/src/style.css';
-        @import '/node_modules/vl-ui-action-group/dist/style.css';
-        @import '/node_modules/vl-ui-grid/dist/style.css';
-
+        ${styles}
         :host(:not(.not-selected)) {
           display: block;
           width: 100%;

@@ -154,6 +154,7 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
   }
 
   _createBaseLayer() {
+    console.log(this.title, this.type, this._WMTSSource);
     switch (this.type) {
       case "wmts":
         return new OlTileLayer({

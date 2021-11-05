@@ -1,8 +1,8 @@
 import { vlElement, define } from "../../utils/core";
-import "vl-ui-progress-bar/dist/vl-progress-bar-all.js";
+import "../progress-bar";
 import "./lib";
-import { VlWizardPane } from "/src/vl-wizard-pane.js";
-import styles from "styles.scss";
+import { VlWizardPane } from "./components/pane";
+import styles from "./styles.scss";
 
 /**
  * VlWizard
