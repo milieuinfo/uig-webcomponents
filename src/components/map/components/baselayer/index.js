@@ -50,7 +50,11 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
    * @Return {string}
    */
   get url() {
-    return this.getAttribute("url");
+    return this.getAttribute("url") || this._url;
+  }
+
+  set url(value) {
+    this._url = value;
   }
 
   /**
@@ -59,7 +63,11 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
    * @Return {string}
    */
   get layer() {
-    return this.getAttribute("layer");
+    return this.getAttribute("layer") || this._layer;
+  }
+
+  set layer(value) {
+    this._layer = value;
   }
 
   /**
@@ -68,7 +76,11 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
    * @Return {string}
    */
   get title() {
-    return this.getAttribute("title");
+    return this.getAttribute("title") || this._title;
+  }
+
+  set title(value) {
+    this._title = value;
   }
 
   get _map() {
@@ -162,6 +174,8 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
             }),
           }),
         });
+      default:
+        return null;
     }
   }
 }
