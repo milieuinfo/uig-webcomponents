@@ -4052,6 +4052,8 @@
       stepElements || wizard.querySelectorAll("[" + wizStepsAtt + "]");
     var progressbarSelector =
       progressbarElement || wizard.getElementsByClassName(pbClass)[0];
+    console.log({ progressbarSelector });
+
     var progressBar = new ProgressBar();
     var curPane = 1,
       navigationIsForward = true,
