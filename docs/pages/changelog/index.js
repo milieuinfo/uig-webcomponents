@@ -7,6 +7,19 @@ import { removeStorybooksDefaultStyling } from "../../../.storybook/utils";
 
 const changes = [
   {
+    version: "2.0.1",
+    date: "8/11/2021",
+    children: html`<ul>
+      <li>
+        <p><code>vl-map</code></p>
+        <p>
+          The layers that extend the baselayer, no longer set their properties
+          via attributes.
+        </p>
+      </li>
+    </ul>`,
+  },
+  {
     version: "2.0.0",
     date: "4/11/2021",
     children: html`<ul>
