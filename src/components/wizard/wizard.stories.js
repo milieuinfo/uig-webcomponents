@@ -1,5 +1,10 @@
 import { html } from "lit-html";
-import { stylesheet, docsIntro } from "../../../.storybook/utils.js";
+import {
+  stylesheet,
+  docsIntro,
+  CATEGORIES,
+} from "../../../.storybook/utils.js";
+import { action } from "@storybook/addon-actions";
 import "../wizard";
 import "../titles";
 import "../grid";
@@ -21,7 +26,6 @@ import actionGroupStyles from "../action-group/styles.scss";
 import linkStyles from "../link/styles.scss";
 import iconStyles from "../icon/styles.scss";
 import "../wizard";
-import "./example";
 
 export default {
   title: "custom-elements/vl-wizard",
@@ -41,35 +45,122 @@ export default {
       },
     },
   },
+  args: {
+    activeStepSlider: 1,
+    title: "Wizard title",
+    header: "You're a wizard Harry",
+    onClickStep: action("vl-click-step"),
+  },
+  argTypes: {
+    activeStepSlider: {
+      name: "data-vl-active-step",
+      description: "",
+      control: { type: "range", min: 1, max: 2, step: 1 },
+      table: {
+        type: {
+          summary: "number",
+        },
+        category: CATEGORIES.ATTRIBUTES,
+        defaultValue: { summary: 1 },
+      },
+    },
+    activeStep: {
+      description: "",
+      table: {
+        type: {
+          summary: "number",
+        },
+        category: CATEGORIES.PROPERTIES,
+        defaultValue: { summary: 1 },
+      },
+    },
+    title: {
+      description: "",
+      table: {
+        category: CATEGORIES.SLOTS,
+      },
+    },
+    header: {
+      description: "",
+      table: {
+        category: CATEGORIES.SLOTS,
+      },
+    },
+    onClickStep: {
+      name: "vl-click-step",
+      description:
+        "The custom event fired on click of a step. In the detail of the event, you can find the number and name of the clicked step.",
+      table: { category: CATEGORIES.EVENTS },
+    },
+  },
 };
 
-export const Default = () => {
-  const steps = ["Stap 1", "Stap 2"];
-  return html`<vl-wizard>
-    <h2 slot="title" is="vl-h2">Wizard title</h2>
-    <p slot="header">You're a wizard Harry</p>
-    <vl-progress-bar
-      slot="progress-bar"
-      data-vl-numeric
-      .steps=${steps}
-    ></vl-progress-bar>
-    <div slot="pane">
+//get last wizard, because storybook can render Default multiple times
+const getWizard = () => {
+  const [lastItem] = [...document.querySelectorAll("vl-wizard")].slice(-1);
+  return lastItem;
+};
+
+export const Default = ({ activeStepSlider, title, header, onClickStep }) => {
+  return html`<vl-wizard
+    data-vl-active-step=${activeStepSlider}
+    @vl-click-step=${(event) => {
+      onClickStep(event.detail);
+      getWizard().activeStep = event.detail.number;
+    }}
+  >
+    <h2 slot="title" is="vl-h2">${title}</h2>
+    <p slot="header">${header}</p>
+    <vl-wizard-pane data-vl-name="Stap 1">
       <h3 is="vl-h3">Stap 1</h3>
       <div is="vl-grid" data-vl-is-stacked>
         <div is="vl-column" data-vl-size="12">
           <div is="vl-form-grid" data-vl-is-stacked>
             <div is="vl-form-column" data-vl-size="12">
-              <label is="vl-form-label" for="naam" data-vl-block>Naam</label>
+              <label is="vl-form-label" for="naam" data-vl-block> Naam </label>
               <input id="naam" is="vl-input-field" data-vl-block />
             </div>
           </div>
         </div>
         <div is="vl-column">
-          <button is="vl-button" type="button">Volgende</button>
+          <button
+            @click=${() => (getWizard().activeStep += 1)}
+            is="vl-button"
+            type="button"
+          >
+            Volgende
+          </button>
         </div>
       </div>
-    </div>
+    </vl-wizard-pane>
+    <vl-wizard-pane data-vl-name="Stap 2">
+      <h3 is="vl-h3">Stap 2</h3>
+      <div is="vl-grid" data-vl-is-stacked>
+        <div is="vl-column" data-vl-size="12">
+          <div is="vl-form-grid" data-vl-is-stacked>
+            <div is="vl-form-column" data-vl-size="12">
+              <label is="vl-form-label" for="years" data-vl-block>
+                Aantal jaren dienst
+              </label>
+              <input id="years" is="vl-input-field" data-vl-block />
+            </div>
+          </div>
+        </div>
+        <div is="vl-column">
+          <button
+            @click=${() => (getWizard().activeStep -= 1)}
+            is="vl-button-link"
+            type="button"
+          >
+            <span
+              is="vl-icon"
+              data-vl-icon="arrow-left-fat"
+              data-vl-before
+            ></span>
+            Vorige
+          </button>
+        </div>
+      </div>
+    </vl-wizard-pane>
   </vl-wizard>`;
 };
-
-export const Example = () => html`<vl-wizard-example></vl-wizard-example>`;
