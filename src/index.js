@@ -14,6 +14,7 @@ export { VlIcon, VlIconWrapper } from "./components/icon";
 export { VlInfoblock } from "./components/infoblock";
 export { VlIntroduction } from "./components/introduction";
 export { VlInputGroup } from "./components/input-group";
+export { VlInputAddon, VlButtonInputAddon } from "./components/input-addon";
 export { VlLink } from "./components/link";
 export { VlButtonLink } from "./components/link/components/button-link";
 export { VlLinkList } from "./components/link-list";

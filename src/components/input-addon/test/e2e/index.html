@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+  <head>
+    <title>vl-input-addon voorbeeld</title>
+    j   <script type="module" src="../../../../../build/index.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../../../lib/components/input-addon/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../../../lib/components/body/styles.css"
+    />
+  </head>
+
+  <body is="vl-body">
+    <p is="vl-input-addon" id="input-addon">€
+    </p>
+
+    <p is="vl-input-addon">€
+      <vl-tooltip id="tooltip" placement="top">Euro</vl-tooltip>
+    </p>
+
+    <button is="vl-button-input-addon" id="button-input-addon" type="button">
+      <span is="vl-icon" icon="location"></span>
+      <span is="vl-text" data-vl-visually-hidden>Kies locatie</span>
+    </button>
+  </body>
+
+</html>
