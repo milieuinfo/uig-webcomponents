@@ -39,6 +39,11 @@ export { VlFooter } from "./components/footer";
 export { VlDocument } from "./components/document";
 export { VlPager } from "./components/pager";
 export { VlForm } from "./components/form";
+export {
+  VlRichDataField,
+  VlRichDataSorter,
+  VlRichDataTable,
+} from "./components/rich-data-table";
 export { VlFormGrid, VlFormColumn } from "./components/form-grid";
 export {
   VlFormLabel,

@@ -3,6 +3,7 @@ import "../grid";
 import "../form-message";
 import "../icon";
 import "../button";
+import "../grid/components/column";
 import "../pager";
 import styles from "./styles.scss";
 

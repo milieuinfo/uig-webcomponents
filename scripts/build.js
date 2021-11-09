@@ -14,6 +14,7 @@ const buildConfig = {
     "input-addon",
     "link",
     "side-navigation",
+    "search-filter",
     "link-list",
     "titles",
     "image",
