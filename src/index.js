@@ -73,3 +73,4 @@ export { VlSelect } from "./components/select";
 export { VlSideSheet } from "./components/side-sheet";
 export { VlTooltip } from "./components/tooltip";
 export { VlForm } from "./components/form";
+export { VlFormGrid, VlFormColumn } from "./components/form-grid";
