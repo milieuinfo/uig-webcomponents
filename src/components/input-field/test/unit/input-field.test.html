@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+
+    <script
+      type="module"
+      src="../../../../../lib/components/input-field/index.js"
+    ></script>
+    <script src="/node_modules/sinon/pkg/sinon.js"></script>
+</head>
+
+<body>
+  <test-fixture id="vl-input-field-fixture">
+    <template>
+      <input is="vl-input-field" />
+    </template>
+  </test-fixture>
+
+  <test-fixture id="vl-input-field-pattern-fixture">
+    <template>
+      <input is="vl-input-field" data-vl-pattern="pattern" />
+    </template>
+  </test-fixture>
+
+  <test-fixture id="vl-input-field-inside-form-fixture">
+    <template>
+      <form is="vl-form" data-vl-validate>
+        <input is="vl-input-field" />
+      </form>
+    </template>
+  </test-fixture>
+
+  <script type="module">
+    import {VlInputField} from '../../../input-field/index.js';
+    import {vlFormValidation} from '../../../form-validation/index.js';
+
+    suite('vl-input-field', () => {
+      const sandbox = sinon.createSandbox();
+
+      setup((done) => {
+        customElements.whenDefined('vl-input-field').then(() => {
+          sandbox.spy(vl.formValidation, 'dress');
+          sandbox.spy(vl.pattern, 'dress');
+          done();
+        });
+      });
+
+      teardown(() => {
+        sandbox.restore();
+      });
+
+      test('heeft de vl-input-field class', () => {
+        const button = fixture('vl-input-field-fixture');
+        assert.isTrue(button.classList.contains('vl-input-field'));
+      });
+
+      test('krijgt de juiste class wanneer het veld een correct attribuut bevat', () => {
+        const field = fixture('vl-input-field-fixture');
+        ['block', 'small', 'error', 'success', 'disabled'].forEach((attribuut) => {
+          assert.isFalse(field.classList.contains('vl-input-field--' + attribuut));
+          field.setAttribute(`data-vl-${attribuut}`, '');
+          assert.isTrue(field.classList.contains('vl-input-field--' + attribuut));
+          field.removeAttribute(`data-vl-${attribuut}`);
+          assert.isFalse(field.classList.contains('vl-input-field--' + attribuut));
+        });
+      });
+
+      test('krijgt geen class wanneer het veld een onbeschikbaar attribuut bevat', () => {
+        const field = fixture('vl-input-field-fixture');
+        const attribuut = 'onbeschikbaarattribuut';
+        field.setAttribute(attribuut, '');
+        assert.isFalse(field.classList.contains('vl-input-field--' + attribuut));
+      });
+
+      test('bevat de form validation observed attributes om correcte formulier validatie te realiseren', () => {
+        vlFormValidation._observedAttributes().forEach((attribute) => assert.include(VlInputField._observedAttributes, attribute));
+      });
+
+      test('indien het input veld onderdeel is van een formulier zal de validatie geactiveerd worden', () => {
+        let form = fixture('vl-input-field-fixture');
+        assert(window.vl.formValidation.dress.notCalled);
+        form = fixture('vl-input-field-inside-form-fixture');
+        assert(window.vl.formValidation.dress.calledWith(form));
+      });
+
+      test('het input veld zal de pattern dress functie uitvoeren wanneer het data-vl-pattern attribuut aanwezig is', () => {
+        let input = fixture('vl-input-field-fixture');
+        assert(window.vl.pattern.dress.notCalled);
+        input = fixture('vl-input-field-pattern-fixture');
+        assert(window.vl.pattern.dress.calledWith(input));
+      });
+    });
+  </script>
+</body>
+
+</html>
