@@ -1,7 +1,11 @@
 import { html } from "lit-html";
 import "../input-field";
 import styles from "./styles.scss";
-import { stylesheet, docsIntro } from "../../../.storybook/utils.js";
+import {
+  stylesheet,
+  docsIntro,
+  CATEGORIES,
+} from "../../../.storybook/utils.js";
 
 const defaultArgs = {
   block: false,
@@ -18,6 +22,7 @@ export default {
     docs: {
       description: {
         component: docsIntro({
+          stylesheets: ["input-field"],
           root: "input-field",
           intro:
             "Het input field laat de gebruiker toe om een informatie in te vullen in uw applicatie: bijvoorbeeld een email adres of een wachtwoord.",
@@ -29,43 +34,48 @@ export default {
   argTypes: {
     block: {
       name: "data-vl-block",
-      type: { summary: "boolean" },
       description: "Het input-veld zal de breedte van zijn parent aannemen",
       table: {
+        category: CATEGORIES.ATTRIBUTES,
+        type: { summary: "boolean" },
         defaultValue: { summary: "false" },
       },
     },
     disabled: {
       name: "data-vl-disabled",
-      type: { summary: "boolean" },
       description: "Schakelt interactie door de gebruiker uit",
       table: {
+        category: CATEGORIES.ATTRIBUTES,
+        type: { summary: "boolean" },
         defaultValue: { summary: "false" },
       },
     },
     error: {
       name: "data-vl-error",
-      type: { summary: "boolean" },
       description:
         "Zorgt ervoor da er een rode rand rond het input-veld verschijnt",
       table: {
-        defaultValue: { summary: "" },
+        category: CATEGORIES.ATTRIBUTES,
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
       },
     },
     small: {
       name: "data-vl-small",
-      type: { summary: "boolean" },
       description: "Kleine variant van het input-field",
       table: {
+        category: CATEGORIES.ATTRIBUTES,
+        type: { summary: "boolean" },
         defaultValue: { summary: "false" },
       },
     },
     success: {
       name: "data-vl-success",
-      type: { summary: "string" },
       description:
         "Zorgt ervoor dat er een groene rand rond het input-veld verschijnt",
       table: {
+        category: CATEGORIES.ATTRIBUTES,
+        type: { summary: "string" },
         defaultValue: { summary: "false" },
       },
     },
@@ -75,7 +85,6 @@ export default {
 export const Default = (props) => html`
   <input
     is="vl-input-field"
-    id="input-field"
     ?data-vl-block=${props.block}
     ?data-vl-error=${props.error}
     ?data-vl-success=${props.success}
