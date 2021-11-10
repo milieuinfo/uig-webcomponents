@@ -7,6 +7,16 @@ import { removeStorybooksDefaultStyling } from "../../../.storybook/utils";
 
 const changes = [
   {
+    version: "2.0.2",
+    date: "10/11/2021",
+    children: html`<ul>
+      <li>
+        <p><code>vl-wizard</code> &#x1F4A5;</p>
+        <p>The wizard is refactored, and an outline styling bug is fixed.</p>
+      </li>
+    </ul>`,
+  },
+  {
     version: "2.0.1",
     date: "8/11/2021",
     children: html`<ul>
