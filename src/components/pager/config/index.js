@@ -1,15 +1,19 @@
+import { CATEGORIES } from "../../../../.storybook/utils.js";
+import { action } from "@storybook/addon-actions";
+
 export const args = {
-  totalItems: 100,
+  totalItems: 50,
   currentPage: 1,
-  itemsPerPage: 10,
+  itemsPerPage: 7,
   paginationDisabled: false,
   alignCenter: false,
   alignRight: false,
+  change: action("change"),
 };
 
 export const argTypes = {
   totalItems: {
-    name: "data-vl-total-items (demo purposes)",
+    name: "data-vl-total-items",
     type: { summary: "number" },
     description: "Attribuut wordt gebruikt om totaal van elementen te bepalen.",
     table: {
@@ -17,7 +21,7 @@ export const argTypes = {
     },
   },
   currentPage: {
-    name: "data-vl-current-page (demo purposes)",
+    name: "data-vl-current-page",
     type: { summary: "number" },
     description: "Attribuut wordt gebruikt om huidige pagina te bepalen.",
     table: {
@@ -25,7 +29,7 @@ export const argTypes = {
     },
   },
   itemsPerPage: {
-    name: "data-vl-items-per-page (demo purposes)",
+    name: "data-vl-items-per-page",
     type: { summary: "number" },
     description:
       "Attribuut wordt gebruikt om het aantal rijen per pagina te bepalen.",
@@ -57,5 +61,10 @@ export const argTypes = {
     table: {
       defaultValue: { summary: "false" },
     },
+  },
+  change: {
+    name: "change",
+    description: "This event fires when the pager items get clicked.",
+    table: { category: CATEGORIES.EVENTS },
   },
 };

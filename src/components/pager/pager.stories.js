@@ -20,13 +20,14 @@ export default {
   },
 };
 
-export const Default = ({
+const Template = ({
   totalItems,
   itemsPerPage,
   currentPage,
   paginationDisabled,
   alignCenter,
   alignRight,
+  change,
 }) => html`
   <vl-pager
     data-vl-total-items=${totalItems}
@@ -35,22 +36,24 @@ export const Default = ({
     ?data-vl-pagination-disabled=${paginationDisabled}
     ?data-vl-align-center=${alignCenter}
     ?data-vl-align-right=${alignRight}
+    @change=${(event) => change(event.detail)}
   ></vl-pager>
 `;
 
-export const SinglePage = () => html`
-  <vl-pager
-    data-vl-total-items="10"
-    data-vl-items-per-page="10"
-    data-vl-current-page="1"
-  ></vl-pager>
-`;
+export const Default = Template.bind({});
+export const SinglePage = Template.bind({});
+export const WithoutPageItems = Template.bind({});
 
-export const WithoutPageItems = () => html`
-  <vl-pager
-    data-vl-total-items="100"
-    data-vl-items-per-page="10"
-    data-vl-current-page="1"
-    data-vl-pagination-disabled=""
-  ></vl-pager>
-`;
+SinglePage.args = {
+  totalItems: 10,
+  itemsPerPage: 10,
+  currentPage: 1,
+  paginationDisabled: false,
+};
+
+WithoutPageItems.args = {
+  totalItems: 100,
+  itemsPerPage: 10,
+  currentPage: 1,
+  paginationDisabled: true,
+};
