@@ -16,7 +16,7 @@ export default {
           stylesheets: ["data-table"],
           root: "data-table",
           intro:
-            "Use a data table to display (large quantities of) related data in a structured way.",
+            "Gebruik een data table om op een gestructureerde manier (grote hoeveelheden) relationele data te tonen.",
         }),
       },
     },
@@ -26,7 +26,7 @@ export default {
 export const Default = ({
   hover,
   matrix,
-  lined,
+  grid,
   zebra,
   collapsedM,
   collapsedS,
@@ -36,7 +36,7 @@ export const Default = ({
     is="vl-data-table"
     ?data-vl-hover=${hover}
     ?data-vl-matrix=${matrix}
-    ?data-vl-lined=${lined}
+    ?data-vl-grid=${grid}
     ?data-vl-zebra=${zebra}
     ?data-vl-collapsed-m=${collapsedM}
     ?data-vl-collapsed-s=${collapsedS}
@@ -75,47 +75,8 @@ export const Default = ({
   </table>
 `;
 
-export const MatrixWithColumnTitles = () => html`
-  <table
-    is="vl-data-table"
-    data-vl-matrix=""
-    id="data-table-matrix-column-titles"
-  >
-    <caption>
-      Data table Matrix - Column titles
-    </caption>
-    <thead>
-      <tr>
-        <th>Entry Header 1</th>
-        <th>Entry Header 2</th>
-        <th>Entry Header 3</th>
-        <th>Entry Header 4</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Entry line 1</td>
-        <td>Entry line 2</td>
-        <td>Entry line 3</td>
-        <td>Entry line 4</td>
-      </tr>
-      <tr>
-        <td>Entry line 1</td>
-        <td colspan="2">Entry line 2</td>
-        <td>Entry line 3</td>
-      </tr>
-      <tr>
-        <td>Entry line 1</td>
-        <td>Entry line 2</td>
-        <td>Entry line 3</td>
-        <td>Entry line 4</td>
-      </tr>
-    </tbody>
-  </table>
-`;
-
 export const MatrixWithJoinedRowTitles = () => html`
-  <table is="vl-data-table" data-vl-matrix="" id="data-table-matrix-row-titles">
+  <table is="vl-data-table" data-vl-matrix="">
     <caption>
       Data table Matrix - Joined row titles
     </caption>
@@ -162,43 +123,8 @@ export const MatrixWithJoinedRowTitles = () => html`
   </table>
 `;
 
-export const Lined = () => html`
-  <table is="vl-data-table" data-vl-lined="" id="data-table-lined">
-    <caption>
-      Data table Lined
-    </caption>
-    <thead>
-      <tr>
-        <th>Entry Header 1</th>
-        <th>Entry Header 2</th>
-        <th>Entry Header 3</th>
-        <th>Entry Header 4</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Entry line 1</td>
-        <td>Entry line 2</td>
-        <td>Entry line 3</td>
-        <td>Entry line 4</td>
-      </tr>
-      <tr>
-        <td>Entry line 1</td>
-        <td colspan="2">Entry line 2</td>
-        <td>Entry line 3</td>
-      </tr>
-      <tr>
-        <td>Entry line 1</td>
-        <td>Entry line 2</td>
-        <td>Entry line 3</td>
-        <td>Entry line 4</td>
-      </tr>
-    </tbody>
-  </table>
-`;
-
 export const LinedWithJoinedRowTitles = () => html`
-  <table is="vl-data-table" data-vl-lined="" id="data-table-lined-row-titles">
+  <table is="vl-data-table" data-vl-lined="">
     <caption>
       Data table Lined - Joined row titles
     </caption>
@@ -245,47 +171,8 @@ export const LinedWithJoinedRowTitles = () => html`
   </table>
 `;
 
-export const Zebra = () => html`
-  <table is="vl-data-table" data-vl-zebra="" id="data-table-zebra">
-    <caption>
-      Data table Zebra
-    </caption>
-    <thead>
-      <tr>
-        <th>Entry Header 1</th>
-        <th>Entry Header 2</th>
-        <th>Entry Header 3</th>
-        <th>Entry Header 4</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Entry line 1</td>
-        <td>Entry line 2</td>
-        <td>Entry line 3</td>
-        <td>Entry line 4</td>
-      </tr>
-      <tr>
-        <td>Entry line 1</td>
-        <td colspan="2">Entry line 2</td>
-        <td>Entry line 3</td>
-      </tr>
-      <tr>
-        <td>Entry line 1</td>
-        <td>Entry line 2</td>
-        <td>Entry line 3</td>
-        <td>Entry line 4</td>
-      </tr>
-    </tbody>
-  </table>
-`;
-
 export const collapsedMedium = () => html`
-  <table
-    is="vl-data-table"
-    data-vl-collapsed-m=""
-    id="data-table-collapsed-medium"
-  >
+  <table is="vl-data-table" data-vl-collapsed-m="">
     <thead>
       <tr>
         <th>Entry Header 1</th>
@@ -312,11 +199,7 @@ export const collapsedMedium = () => html`
 `;
 
 export const collapsedSmall = () => html`
-  <table
-    is="vl-data-table"
-    data-vl-collapsed-s=""
-    id="data-table-collapsed-small"
-  >
+  <table is="vl-data-table" data-vl-collapsed-s="">
     <thead>
       <tr>
         <th>Entry Header 1</th>
@@ -343,11 +226,7 @@ export const collapsedSmall = () => html`
 `;
 
 export const collapsedExtraSmall = () => html`
-  <table
-    is="vl-data-table"
-    data-vl-collapsed-xs=""
-    id="data-table-collapsed-extra-small"
-  >
+  <table is="vl-data-table" data-vl-collapsed-xs="">
     <thead>
       <tr>
         <th>Entry Header 1</th>

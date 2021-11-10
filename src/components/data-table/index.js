@@ -10,7 +10,7 @@ import { nativeVlElement, define } from "../../utils/core";
  *
  * @vollapsedproperty {boolean} data-vl-hover - Attribuut wordt gebruikt om een rij te highlighten waneer de gebruiker erover hovert met muiscursor.
  * @property {boolean} data-vl-matrix - Attribuut wordt gebruikt om data in 2 dimensies te tonen. Zowel de rijen als de kolommen krijgen een titel. Deze titels worden gescheiden door een dikke lijn.
- * @property {boolean} data-vl-lined - Variant met een lijn tussen elke rij en kolom.
+ * @property {boolean} data-vl-grid - Variant met een lijn tussen elke rij en kolom.
  * @property {boolean} data-vl-zebra - Variant waarin de rijen afwisslend een andere achtergrondkleur krijgen. Dit maakt de tabel makkelijker leesbaar.
  * @property {boolean} data-vl-collaped-m - Vanaf een medium schermgrootte zullen de cellen van elke rij onder elkaar ipv naast elkaar getoond worden.
  * @property {boolean} data-vl-collaped-s - Vanaf een small schermgrootte zullen de cellen van elke rij onder elkaar ipv naast elkaar getoond worden.
@@ -25,7 +25,7 @@ export class VlDataTable extends nativeVlElement(HTMLTableElement) {
     return [
       "hover",
       "matrix",
-      "lined",
+      "grid",
       "zebra",
       "collapsed-m",
       "collapsed-s",
