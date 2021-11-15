@@ -47,13 +47,6 @@
         assert.equal(trim(bounds.innerText), 'Rij 11-20 van 100');
       });
 
-      test('het aantal vorige en aantal voglende rijen is zichtbaar via een verborgen element in kader van WCAG', () => {
-        const pager = fixture('vl-pager-fixture');
-        pager.setAttribute('data-vl-current-page', 2);
-        assert.equal(trim(pager._pageBackLink.innerText), 'Vorige 10 rijen');
-        assert.equal(trim(pager._pageForwardLink.innerText), 'Volgende 10 rijen');
-      });
-
       test('voor elke niet actieve pagina wordt een link gemaakt zodat er genavigeerd kan worden met maximaal 3 pagina\'s voor en na de huidige pagina', () => {
         const pager = fixture('vl-pager-fixture');
         let pageLink1 = pager.shadowRoot.querySelector('[data-vl-pager-page="1"]');
