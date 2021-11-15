@@ -12,6 +12,7 @@ const buildConfig = {
     "introduction",
     "input-group",
     "input-addon",
+    "button-input-addon",
     "link",
     "side-navigation",
     "link-list",

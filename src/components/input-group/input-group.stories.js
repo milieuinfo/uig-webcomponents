@@ -21,9 +21,11 @@ export default {
       )}${story()}`,
   ],
   parameters: {
+    controls: { hideNoControlsWarning: true },
     docs: {
       description: {
         component: docsIntro({
+          stylesheets: ["input-group"],
           root: "input-group",
           intro:
             "Gebruik vl-ui-input-group om een 'input field' en een 'input add-on' te combineren. Bijvoorbeeld: de 'vl-datepicker' component combineert een 'input field' en een 'input add-on' in een 'input group'.",
@@ -36,45 +38,45 @@ export default {
 };
 
 export const Default = () => html`
-  <div id="input-group" is="vl-input-group">
-    <button is="vl-button-input-addon" type="button" id="button-1">
+  <div is="vl-input-group">
+    <button is="vl-button-input-addon" type="button">
       <span is="vl-icon" data-vl-icon="location"></span>
-      <span is="vl-text" data-vl-visually-hidden="">Locatie kiezen</span>
+      <span is="vl-text" data-vl-visually-hidden>Locatie kiezen</span>
     </button>
-    <input is="vl-input-field" type="text" id="input-1" data-vl-block="" />
+    <input is="vl-input-field" type="text" data-vl-block />
   </div>
 `;
 
 export const WithInputAddonRight = () => html`
   <div is="vl-input-group">
-    <input is="vl-input-field" type="text" id="input-2" data-vl-block="" />
-    <button is="vl-button-input-addon" type="button" id="button-2">
+    <input is="vl-input-field" type="text" data-vl-block />
+    <button is="vl-button-input-addon" type="button">
       <span is="vl-icon" data-vl-icon="location"></span>
-      <span is="vl-text" data-vl-visually-hidden="">Locatie kiezen</span>
+      <span is="vl-text" data-vl-visually-hidden>Locatie kiezen</span>
     </button>
   </div>
 `;
 
 export const WithTextAddonLeft = () => html`
   <div is="vl-input-group">
-    <button is="vl-button" type="button" id="button-3">Locatie kiezen</button>
-    <input is="vl-input-field" type="text" id="input-3" data-vl-block="" />
+    <button is="vl-button" type="button">Locatie kiezen</button>
+    <input is="vl-input-field" type="text" data-vl-block />
   </div>
 `;
 
 export const WithTextAddonRight = () => html`
   <div is="vl-input-group">
-    <input is="vl-input-field" type="text" id="input-4" data-vl-block="" />
-    <button is="vl-button" type="button" id="button-4">Locatie kiezen</button>
+    <input is="vl-input-field" type="text" data-vl-block />
+    <button is="vl-button" type="button">Locatie kiezen</button>
   </div>
 `;
 
-export const InputGroupWithButtonLeft = () => html`
+export const WithButtonLeft = () => html`
   <div is="vl-input-group">
-    <button is="vl-button" type="button" id="button-5">
+    <button is="vl-button" type="button">
       <span is="vl-icon" data-vl-icon="location"></span>
-      <span is="vl-text" data-vl-visually-hidden="">Locatie kiezen</span>
+      <span is="vl-text" data-vl-visually-hidden>Locatie kiezen</span>
     </button>
-    <input is="vl-input-field" type="text" id="input-5" data-vl-block="" />
+    <input is="vl-input-field" type="text" data-vl-block />
   </div>
 `;
