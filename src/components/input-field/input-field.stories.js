@@ -25,7 +25,7 @@ export default {
           stylesheets: ["input-field"],
           root: "input-field",
           intro:
-            "Het input field laat de gebruiker toe om een informatie in te vullen in uw applicatie: bijvoorbeeld een email adres of een wachtwoord.",
+            "The input field allows the user to enter information in your application: for example an email address or a password.",
         }),
       },
     },
@@ -34,7 +34,7 @@ export default {
   argTypes: {
     block: {
       name: "data-vl-block",
-      description: "Het input-veld zal de breedte van zijn parent aannemen",
+      description: "The input field will take the width of its parent.",
       table: {
         category: CATEGORIES.ATTRIBUTES,
         type: { summary: "boolean" },
@@ -43,7 +43,7 @@ export default {
     },
     disabled: {
       name: "data-vl-disabled",
-      description: "Schakelt interactie door de gebruiker uit",
+      description: "Disables user interaction.",
       table: {
         category: CATEGORIES.ATTRIBUTES,
         type: { summary: "boolean" },
@@ -52,8 +52,7 @@ export default {
     },
     error: {
       name: "data-vl-error",
-      description:
-        "Zorgt ervoor da er een rode rand rond het input-veld verschijnt",
+      description: "Causes a red border to appear around the input field.",
       table: {
         category: CATEGORIES.ATTRIBUTES,
         type: { summary: "boolean" },
@@ -62,7 +61,7 @@ export default {
     },
     small: {
       name: "data-vl-small",
-      description: "Kleine variant van het input-field",
+      description: "Small variant of the input field.",
       table: {
         category: CATEGORIES.ATTRIBUTES,
         type: { summary: "boolean" },
@@ -71,8 +70,7 @@ export default {
     },
     success: {
       name: "data-vl-success",
-      description:
-        "Zorgt ervoor dat er een groene rand rond het input-veld verschijnt",
+      description: "Causes a green border to appear around the input field.",
       table: {
         category: CATEGORIES.ATTRIBUTES,
         type: { summary: "string" },
