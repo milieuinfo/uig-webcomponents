@@ -61,8 +61,7 @@ export const argTypes = {
   },
   alignRight: {
     name: "data-vl-align-right",
-    description:
-      "This attribute is used to align the the pagination to the right.",
+    description: "This attribute is used to align the pagination to the right.",
     table: {
       type: { summary: "boolean" },
       category: CATEGORIES.ATTRIBUTES,
@@ -72,7 +71,7 @@ export const argTypes = {
   change: {
     name: "change",
     description:
-      "This event is triggered when a click on a pager item happens. In the detail of the event you can find the current page, total page number, items per page number and the total items of the pagination.",
+      "This event is triggered when a click on a pager item happens. In the detail of the event you can find the current page, total page number, items per page number and the total amount of items of the pagination.",
     table: { category: CATEGORIES.EVENTS },
   },
 };

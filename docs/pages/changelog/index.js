@@ -152,18 +152,27 @@ export class Changelog extends LitElement {
         <section is="vl-region">
           <div is="vl-layout">
             <div is="vl-grid" data-vl-is-stacked>
-              <!-- ${change({
-                version: "Unreleased",
-                date: "?",
-                children: html``,
-              })} -->
+              ${change({
+        version: "Unreleased",
+        date: "?",
+        children: html` <ul>
+                  <li>
+                    <p><code>vl-pager</code></p>
+                    <p>
+                      Fixed a bug where the
+                      <code>data-vl-pagination-disabled</code>
+                      attribute was not behaving in a reactive way.
+                    </p>
+                  </li>
+                </ul>`,
+      })}
               ${changes.map(({ version, date, children }) =>
-                change({
-                  version,
-                  date,
-                  children,
-                })
-              )}
+        change({
+          version,
+          date,
+          children,
+        })
+      )}
             </div>
           </div>
         </section>
