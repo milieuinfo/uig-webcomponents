@@ -14,7 +14,7 @@ export const args = {
 export const argTypes = {
   totalItems: {
     name: "data-vl-total-items",
-    description: "Attribuut wordt gebruikt om totaal van elementen te bepalen.",
+    description: "This attribute determines the total number of elements.",
     table: {
       type: { summary: "number" },
       category: CATEGORIES.ATTRIBUTES,
@@ -23,7 +23,7 @@ export const argTypes = {
   },
   currentPage: {
     name: "data-vl-current-page",
-    description: "Attribuut wordt gebruikt om huidige pagina te bepalen.",
+    description: "This attribute determines the current page.",
     table: {
       type: { summary: "number" },
       category: CATEGORIES.ATTRIBUTES,
@@ -33,7 +33,7 @@ export const argTypes = {
   itemsPerPage: {
     name: "data-vl-items-per-page",
     description:
-      "Attribuut wordt gebruikt om het aantal rijen per pagina te bepalen.",
+      "This attribute determines the number of rows to show per page.",
     table: {
       type: { summary: "number" },
       category: CATEGORIES.ATTRIBUTES,
@@ -42,7 +42,8 @@ export const argTypes = {
   },
   paginationDisabled: {
     name: "data-vl-pagination-disabled",
-    description: "Attribuut wordt gebruikt om geen pagina links te tonen.",
+    description:
+      "This attribute determines if the page links should be disabled.",
     table: {
       type: { summary: "boolean" },
       category: CATEGORIES.ATTRIBUTES,
@@ -51,7 +52,7 @@ export const argTypes = {
   },
   alignCenter: {
     name: "data-vl-align-center",
-    description: "Attribuut wordt gebruikt om de paginatie te centreren.",
+    description: "This attribute is used to center the pagination.",
     table: {
       type: { summary: "boolean" },
       category: CATEGORIES.ATTRIBUTES,
@@ -61,7 +62,7 @@ export const argTypes = {
   alignRight: {
     name: "data-vl-align-right",
     description:
-      "Attribuut wordt gebruikt om de paginatie rechts uit te lijnen.",
+      "This attribute is used to align the the pagination to the right.",
     table: {
       type: { summary: "boolean" },
       category: CATEGORIES.ATTRIBUTES,
@@ -71,7 +72,7 @@ export const argTypes = {
   change: {
     name: "change",
     description:
-      "Dit event gebeurd wanneer een klik op een pager item gebeurd.",
+      "This event is triggered when a click on a pager item happens. In the detail of the event you can find the current page, total page number, items per page number and the total items of the pagination.",
     table: { category: CATEGORIES.EVENTS },
   },
 };
