@@ -1,5 +1,6 @@
 import { define } from "../../utils/core/";
 import { vlInputAddonElement } from "./mixin";
+import "./components/button-input-addon";
 
 export const VlInputAddonElement = vlInputAddonElement;
 

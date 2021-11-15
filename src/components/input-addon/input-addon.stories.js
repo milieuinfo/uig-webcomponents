@@ -23,8 +23,6 @@ export default {
       },
     },
   },
-  args: {},
-  argTypes: {},
 };
 
 export const Default = () => html` <p is="vl-input-addon">€</p> `;

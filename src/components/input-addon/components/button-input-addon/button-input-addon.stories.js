@@ -6,7 +6,7 @@ import styles from "../../styles.scss";
 import { stylesheet, docsIntro } from "../../../../../.storybook/utils.js";
 
 export default {
-  title: "native-elements/vl-button-input-addon",
+  title: "native-elements/vl-input-addon/vl-button-input-addon",
   decorators: [(story) => html`${stylesheet(`${styles}`)}${story()}`],
   parameters: {
     controls: { hideNoControlsWarning: true },
@@ -14,15 +14,13 @@ export default {
       description: {
         component: docsIntro({
           stylesheets: ["input-addon"],
-          root: "button-input-addon",
+          root: "input-addon",
           intro:
             "Gebruik de vl-button-input-addon in combinatie met de vl-input-group webcomponent. Deze combinatie zorgt er voor dat men een button heeft die naast de input in vl-input-group staat.",
         }),
       },
     },
   },
-  args: {},
-  argTypes: {},
 };
 
 export const Default = () => html`

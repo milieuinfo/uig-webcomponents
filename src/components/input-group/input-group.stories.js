@@ -33,8 +33,6 @@ export default {
       },
     },
   },
-  args: {},
-  argTypes: {},
 };
 
 export const Default = () => html`
