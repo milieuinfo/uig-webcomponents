@@ -13,7 +13,7 @@ export default {
         component: docsIntro({
           root: "pager",
           intro:
-            "Use the pager component to show the number of available pages, highlight the current page (range) and add previous/next buttons for navigation.",
+            "Gebruik de pager component om het aantal beschikbare pagina's weer te geven, markeer de huidige pagina en voeg navigatie knoppen toe.",
         }),
       },
     },

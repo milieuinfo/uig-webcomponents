@@ -265,8 +265,11 @@ export class VlPager extends vlElement(HTMLElement) {
   }
 
   _paginationDisabledChangedCallback(oldValue, newValue) {
-    if (newValue !== undefined) {
+    if (oldValue === null) {
       this.__removePageElements();
+    }
+    if (newValue === null) {
+      this._updatePagination();
     }
   }
 

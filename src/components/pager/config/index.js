@@ -14,57 +14,64 @@ export const args = {
 export const argTypes = {
   totalItems: {
     name: "data-vl-total-items",
-    type: { summary: "number" },
     description: "Attribuut wordt gebruikt om totaal van elementen te bepalen.",
     table: {
+      type: { summary: "number" },
+      category: CATEGORIES.ATTRIBUTES,
       defaultValue: { summary: 100 },
     },
   },
   currentPage: {
     name: "data-vl-current-page",
-    type: { summary: "number" },
     description: "Attribuut wordt gebruikt om huidige pagina te bepalen.",
     table: {
+      type: { summary: "number" },
+      category: CATEGORIES.ATTRIBUTES,
       defaultValue: { summary: 1 },
     },
   },
   itemsPerPage: {
     name: "data-vl-items-per-page",
-    type: { summary: "number" },
     description:
       "Attribuut wordt gebruikt om het aantal rijen per pagina te bepalen.",
     table: {
+      type: { summary: "number" },
+      category: CATEGORIES.ATTRIBUTES,
       defaultValue: { summary: 10 },
     },
   },
   paginationDisabled: {
     name: "data-vl-pagination-disabled",
-    type: { summary: "boolean" },
     description: "Attribuut wordt gebruikt om geen pagina links te tonen.",
     table: {
+      type: { summary: "boolean" },
+      category: CATEGORIES.ATTRIBUTES,
       defaultValue: { summary: "false" },
     },
   },
   alignCenter: {
     name: "data-vl-align-center",
-    type: { summary: "boolean" },
     description: "Attribuut wordt gebruikt om de paginatie te centreren.",
     table: {
+      type: { summary: "boolean" },
+      category: CATEGORIES.ATTRIBUTES,
       defaultValue: { summary: "false" },
     },
   },
   alignRight: {
     name: "data-vl-align-right",
-    type: { summary: "boolean" },
     description:
       "Attribuut wordt gebruikt om de paginatie rechts uit te lijnen.",
     table: {
+      type: { summary: "boolean" },
+      category: CATEGORIES.ATTRIBUTES,
       defaultValue: { summary: "false" },
     },
   },
   change: {
     name: "change",
-    description: "This event fires when the pager items get clicked.",
+    description:
+      "Dit event gebeurd wanneer een klik op een pager item gebeurd.",
     table: { category: CATEGORIES.EVENTS },
   },
 };
