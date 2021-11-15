@@ -5,6 +5,7 @@ export { VlBody } from "./components/body";
 export { VlButton } from "./components/button";
 export { VlLinkButton } from "./components/button/components/link-button";
 export { VlContactCard } from "./components/contact-card";
+export { VlDataTable } from "./components/data-table";
 export { VlFunctionalHeader } from "./components/functional-header";
 export { VlGrid } from "./components/grid";
 export { VlRegion } from "./components/grid/components/region";
