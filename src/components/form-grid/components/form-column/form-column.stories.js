@@ -69,11 +69,6 @@ export const Default = ({
           data-vl-error-message="Gelieve een naam in te vullen"
           data-vl-error-placeholder="surname-error"
         />
-        <p
-          is="vl-form-validation-message"
-          data-vl-error
-          data-vl-error-id="surname-error"
-        ></p>
       </div>
     </div>
   </form>

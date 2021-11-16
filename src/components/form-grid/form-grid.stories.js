@@ -78,11 +78,6 @@ export const Default = ({
           data-vl-error-message="Gelieve een email in te vullen"
           data-vl-error-placeholder="email-error"
         />
-        <p
-          is="vl-form-validation-message"
-          data-vl-error
-          data-vl-error-id="email-error"
-        ></p>
       </div>
 
       <div is="vl-form-column" data-vl-size="2">
@@ -98,11 +93,6 @@ export const Default = ({
           data-vl-error-message="Gelieve een voornaam in te vullen"
           data-vl-error-placeholder="name-error"
         />
-        <p
-          is="vl-form-validation-message"
-          data-vl-error
-          data-vl-error-id="name-error"
-        ></p>
       </div>
 
       <div is="vl-form-column" data-vl-size="2">
@@ -118,11 +108,6 @@ export const Default = ({
           data-vl-error-message="Gelieve een naam in te vullen"
           data-vl-error-placeholder="surname-error"
         />
-        <p
-          is="vl-form-validation-message"
-          data-vl-error
-          data-vl-error-id="surname-error"
-        ></p>
       </div>
 
       <div is="vl-form-column" data-vl-size="10" data-vl-push="2">
