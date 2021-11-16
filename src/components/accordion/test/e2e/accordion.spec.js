@@ -1,99 +1,17 @@
-import { assert, getDriver } from "../../../../utils/test";
-import { VlAccordionPage } from "./accordion.page.js";
+import { assert, getDriver, config } from '../../../../utils/test';
+import { VlAccordion } from './accordion.js';
 
-describe("vl-accordion", async () => {
+const { sbUrl } = config;
+const defaultUrl = `${sbUrl}?id=custom-elements-vl-accordion--default`;
+const dynamicToggleUrl = `${sbUrl}?id=custom-elements-vl-accordion--dynamic-toggle`;
+const titleSlotUrl = `${sbUrl}?id=custom-elements-vl-accordion--with-title-slot`;
+
+describe('vl-accordion', async () => {
   let driver;
-  let vlAccordionPage;
 
   beforeEach(() => {
     driver = getDriver();
-    vlAccordionPage = new VlAccordionPage(driver);
-    return vlAccordionPage.load();
-  });
-
-  // it("WCAG", async () => {
-  //   await assert.eventually.isFalse(vlAccordionPage.hasWcagIssues());
-  // });
-
-  it("als gebruiker kan ik een standaard accordion openen en sluiten", async () => {
-    const accordion = await vlAccordionPage.getStandaardAccordion();
-    await assertAccordionCanBeOpenedAndClosed(accordion);
-  });
-
-  it("als gebruiker kan ik een dynamische accordion openen en sluiten", async () => {
-    const accordion = await vlAccordionPage.getDynamischeAccordion();
-    await assertAccordionCanBeOpenedAndClosed(accordion);
-  });
-
-  it("als gebruiker kan ik een accordion via Javascript openen en sluiten", async () => {
-    const accordion = await vlAccordionPage.getJSAccordion();
-
-    await vlAccordionPage.clickJSAccordionOpenButton();
-    await assert.eventually.isTrue(accordion.isOpen());
-    await assert.eventually.isTrue(accordion.isContentDisplayed());
-
-    await vlAccordionPage.clickJSAccordionCloseButton();
-    await assert.eventually.isTrue(accordion.isClosed());
-    await assert.eventually.isFalse(accordion.isContentDisplayed());
-
-    await vlAccordionPage.clickJSAccordionToggleButton();
-    await assert.eventually.isTrue(accordion.isOpen());
-    await assert.eventually.isTrue(accordion.isContentDisplayed());
-
-    await vlAccordionPage.clickJSAccordionToggleButton();
-    await assert.eventually.isTrue(accordion.isClosed());
-    await assert.eventually.isFalse(accordion.isContentDisplayed());
-  });
-
-  it("als gebruiker kan ik een accordion met title slot openen en sluiten", async () => {
-    const accordion = await vlAccordionPage.getAccordionMetTitleSlot();
-    await assertAccordionCanBeOpenedAndClosed(accordion);
-  });
-
-  it("als gebruiker kan ik een accordion met dynamische toggle text openen en sluiten", async () => {
-    const accordion = await vlAccordionPage.getAccordionMetDynamischeAttributen();
-    await assertAccordionCanBeOpenedAndClosed(accordion);
-  });
-
-  it("als gebruiker kan ik de titel zien van een standaard accordion", async () => {
-    const accordion = await vlAccordionPage.getStandaardAccordion();
-    await assert.eventually.equal(
-      accordion.titleText(),
-      "Lees meer over de onderwijsdoelstelling"
-    );
-    assert.equal((await accordion.getTitleSlotElements()).length, 0);
-  });
-
-  it("als gebruiker kan ik de titel zien van een accordion met title slot", async () => {
-    const accordion = await vlAccordionPage.getAccordionMetTitleSlot();
-    await assert.eventually.equal(
-      accordion.titleText(),
-      "Lees meer over de onderwijsdoelstelling"
-    );
-    assert.eventually.equal(
-      (await accordion.getTitleSlotElements())[0].getText(),
-      "Lees meer over de onderwijsdoelstelling"
-    );
-  });
-
-  it("als gebruiker kan ik aan de tekst zien wanneer een dynamische accordion open of gesloten is", async () => {
-    const accordion = await vlAccordionPage.getDynamischeAccordion();
-    await assert.eventually.equal(
-      accordion.titleText(),
-      "Open de onderwijsdoelstelling"
-    );
-    await accordion.open();
-    await assert.eventually.equal(
-      accordion.titleText(),
-      "Sluit de onderwijsdoelstelling"
-    );
-    await accordion.close();
-  });
-
-  it("als gebruiker kan ik de inhoud van een accordion bekijken", async () => {
-    const accordion = await vlAccordionPage.getStandaardAccordion();
-    const slotElement = (await accordion.contentSlotElements())[0];
-    await assert.eventually.equal(slotElement.getText(), "Onderwijs");
+    driver.manage().window().maximize();
   });
 
   const assertAccordionCanBeOpenedAndClosed = async (accordion) => {
@@ -106,4 +24,79 @@ describe("vl-accordion", async () => {
     await assert.eventually.isTrue(accordion.isClosed());
     await assert.eventually.isFalse(accordion.isContentDisplayed());
   };
+
+  it('as a user, I can open and close a standard accordion', async () => {
+    driver.get(defaultUrl);
+    const accordion = await new VlAccordion(driver, 'vl-accordion');
+    await assertAccordionCanBeOpenedAndClosed(accordion);
+  });
+
+  it('as a user, I can open and close a dynamic accordion', async () => {
+    driver.get(dynamicToggleUrl);
+    const accordion = await new VlAccordion(driver, 'vl-accordion');
+    await assertAccordionCanBeOpenedAndClosed(accordion);
+  });
+
+  it('als gebruiker kan ik een accordion via Javascript openen en sluiten', async () => {
+    driver.get(defaultUrl);
+    const accordion = await new VlAccordion(driver, 'vl-accordion');
+
+    await accordion.open();
+    await assert.eventually.isTrue(accordion.isOpen());
+    await assert.eventually.isTrue(accordion.isContentDisplayed());
+
+    await accordion.close();
+    await assert.eventually.isTrue(accordion.isClosed());
+    await assert.eventually.isFalse(accordion.isContentDisplayed());
+
+    await accordion.toggle();
+    await assert.eventually.isTrue(accordion.isOpen());
+    await assert.eventually.isTrue(accordion.isContentDisplayed());
+
+    await accordion.toggle();
+    await assert.eventually.isTrue(accordion.isClosed());
+    await assert.eventually.isFalse(accordion.isContentDisplayed());
+  });
+
+  it('als gebruiker kan ik een accordion met title slot openen en sluiten', async () => {
+    driver.get(titleSlotUrl);
+    const accordion = await new VlAccordion(driver, 'vl-accordion');
+    await assertAccordionCanBeOpenedAndClosed(accordion);
+  });
+
+  it('als gebruiker kan ik de titel zien van een standaard accordion', async () => {
+    driver.get(defaultUrl);
+    const accordion = await new VlAccordion(driver, 'vl-accordion');
+    await assert.eventually.equal(accordion.titleText(), 'Lees meer over de onderwijsdoelstelling');
+    assert.equal((await accordion.getTitleSlotElements()).length, 0);
+  });
+
+  it('als gebruiker kan ik de titel zien van een accordion met title slot', async () => {
+    driver.get(titleSlotUrl);
+    const accordion = await new VlAccordion(driver, 'vl-accordion');
+    await assert.eventually.equal(accordion.titleText(), 'Lees meer over de onderwijsdoelstelling');
+    assert.eventually.equal(
+      (await accordion.getTitleSlotElements())[0].getText(),
+      'Lees meer over de onderwijsdoelstelling',
+    );
+  });
+
+  it('als gebruiker kan ik aan de tekst zien wanneer een dynamische accordion open of gesloten is', async () => {
+    driver.get(dynamicToggleUrl);
+    const accordion = await new VlAccordion(driver, 'vl-accordion');
+    await assert.eventually.equal(accordion.titleText(), 'Open de onderwijsdoelstelling');
+    await accordion.open();
+    await assert.eventually.equal(accordion.titleText(), 'Sluit de onderwijsdoelstelling');
+    await accordion.close();
+  });
+
+  it('als gebruiker kan ik de inhoud van een accordion bekijken', async () => {
+    driver.get(defaultUrl);
+    const accordion = await new VlAccordion(driver, 'vl-accordion');
+    const slotElement = (await accordion.contentSlotElements())[0];
+    await assert.eventually.equal(
+      slotElement.getText(),
+      'Onderwijs helpt jonge mensen en volwassenen om zichzelf te ontwikkelen en hun weg te vinden in onze samenleving. Het hoger onderwijs speelt daarnaast een belangrijke rol in innovatie dankzij het belang van wetenschappelijk onderzoek.',
+    );
+  });
 });
