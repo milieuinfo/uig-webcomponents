@@ -20,6 +20,7 @@ const buildConfig = {
     "properties",
     "select",
     "form",
+    "form-grid",
     "search-filter",
   ],
   componentsWithStylesheetAndInlineStyling: ["tooltip"],

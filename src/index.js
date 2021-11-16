@@ -76,3 +76,7 @@ export { VlSideSheet } from "./components/side-sheet";
 export { VlTooltip } from "./components/tooltip";
 export { VlPager } from "./components/pager";
 export { VlSearchFilter } from "./components/search-filter";
+export { VlForm } from "./components/form";
+export { VlFormGroup } from "./components/form/components/form-group";
+export { VlFormGrid } from "./components/form-grid";
+export { VlFormColumn } from "./components/form-grid/components/form-column";

@@ -10,7 +10,7 @@ export const args = {
 export const argTypes = {
   title: {
     name: "data-vl-title",
-    description: "De titel van deze search filter.",
+    description: "The title of this search filter.",
     table: {
       type: { summary: "string" },
       category: CATEGORIES.ATTRIBUTES,
@@ -19,7 +19,7 @@ export const argTypes = {
   },
   alt: {
     name: "data-vl-alt",
-    description: "Alternatieve (transparante) achtergrond.",
+    description: "Alternative (transparent) background.",
     table: {
       type: { summary: "boolean" },
       category: CATEGORIES.ATTRIBUTES,
@@ -28,8 +28,7 @@ export const argTypes = {
   },
   mobileModal: {
     name: "data-vl-mobile-modal",
-    description:
-      "Activeert geoptimaliseerde weergave voor op mobiele toestellen.",
+    description: "Activates optimized display for mobile devices.",
     table: {
       type: { summary: "boolean" },
       category: CATEGORIES.ATTRIBUTES,
@@ -39,7 +38,7 @@ export const argTypes = {
   mobileModalTitle: {
     name: "data-vl-mobile-modal-title",
     description:
-      "De titel van deze search filter op mobiele toestellen indien niet gedeclareerd wordt het data-vl-title attribuut of de default genomen.",
+      "The title of this search filter on mobile devices if not declared will have the data-vl-title attribute or default.",
     table: {
       type: { summary: "string" },
       category: CATEGORIES.ATTRIBUTES,

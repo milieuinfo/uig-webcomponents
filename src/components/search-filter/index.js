@@ -1,4 +1,4 @@
-import { nativeVlElement, define } from "../../utils/core/";
+import { nativeVlElement, define } from "../../utils/core";
 import "../titles";
 
 /**

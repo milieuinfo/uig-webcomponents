@@ -1,19 +1,19 @@
 import { html } from "lit-html";
-import "../form";
-import "../form-grid";
-import "../input-field";
-import "../button";
-import "../form-message";
-import styles from "./styles.scss";
-import inputFieldStyles from "../input-field/styles.scss";
-import formGridStyles from "../form-grid/styles.scss";
-import buttonStyles from "../button/styles.scss";
-import formMessageStyle from "../form-message/styles.scss";
-import { stylesheet, docsIntro } from "../../../.storybook/utils.js";
-import { args, argTypes } from "./config";
+import "../../../form";
+import "../../../form-grid";
+import "../../../input-field";
+import "../../../button";
+import "../../../form-message";
+import styles from "../.././styles.scss";
+import inputFieldStyles from "../../../input-field/styles.scss";
+import formGridStyles from "../../../form-grid/styles.scss";
+import buttonStyles from "../../../button/styles.scss";
+import formMessageStyle from "../../../form-message/styles.scss";
+import { stylesheet, docsIntro } from "../../../../../.storybook/utils.js";
 
 export default {
-  title: "native-elements/vl-form",
+  title: "native-elements/vl-form/vl-form-group",
+  controls: { hideNoControlsWarning: true },
   decorators: [
     (story) =>
       html`
@@ -30,15 +30,11 @@ export default {
         component: docsIntro({
           stylesheets: ["form"],
           root: "form",
-          intro: "Form element.",
+          intro: "Form group element is used to group form elements together.",
         }),
       },
     },
   },
-  args: {
-    ...args,
-  },
-  argTypes: { ...argTypes },
 };
 
 export const Default = ({ validate }) => html`
