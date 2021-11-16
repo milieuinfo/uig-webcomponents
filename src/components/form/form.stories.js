@@ -59,11 +59,6 @@ export const Default = ({ validate }) => html`
             data-vl-block
             data-vl-required
           />
-          <p
-            is="vl-form-validation-message"
-            data-vl-error
-            data-vl-error-id="name-error"
-          ></p>
         </div>
 
         <div is="vl-form-column" data-vl-size="3">

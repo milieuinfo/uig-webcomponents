@@ -67,11 +67,6 @@ export const Default = ({
           data-vl-block
           data-required="true"
         />
-        <p
-          is="vl-form-validation-message"
-          data-vl-error
-          data-vl-error-id="surname-error"
-        ></p>
       </div>
     </div>
   </form>

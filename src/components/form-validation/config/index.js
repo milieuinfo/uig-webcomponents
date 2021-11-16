@@ -1,0 +1,137 @@
+import { CATEGORIES } from "../../../../.storybook/utils.js";
+import { VALIDATION_TYPE } from "../enum";
+
+export const args = {
+  validationType: "",
+  required: false,
+  errorMessage: "",
+  errorPlaceholder: "",
+  successClass: false,
+  errorClass: false,
+  numericalOnlyInteger: false,
+  numericalGreaterThan: 0,
+  numericalGreaterThanOrEqualTo: 0,
+  numericalLessThan: 0,
+  numericalLessThanOrEqualTo: 0,
+};
+
+export const argTypes = {
+  validationType: {
+    name: "data-vl-validation-type",
+    description: "Attribute is used to indicate which validation applies.",
+    table: {
+      type: {
+        summary: `${VALIDATION_TYPE.EMAIL} | ${VALIDATION_TYPE.DATE} | ${VALIDATION_TYPE.RRN} | ${VALIDATION_TYPE.UUID} | ${VALIDATION_TYPE.PHONE} | ${VALIDATION_TYPE.IBAN} | ${VALIDATION_TYPE.SELECT} | ${VALIDATION_TYPE.NUMERICAL}`,
+      },
+      category: CATEGORIES.ATTRIBUTES,
+    },
+    control: {
+      type: "select",
+      options: [
+        VALIDATION_TYPE.EMAIL,
+        VALIDATION_TYPE.DATE,
+        VALIDATION_TYPE.RRN,
+        VALIDATION_TYPE.UUID,
+        VALIDATION_TYPE.PHONE,
+        VALIDATION_TYPE.IBAN,
+        VALIDATION_TYPE.SELECT,
+        VALIDATION_TYPE.NUMERICAL,
+      ],
+    },
+  },
+  required: {
+    name: "data-vl-required",
+    description: "Attribute is used to indicate that the field is required.",
+    table: {
+      type: { summary: "boolean" },
+      category: CATEGORIES.ATTRIBUTES,
+      defaultValue: { summary: "false" },
+    },
+  },
+  errorMessage: {
+    name: "data-vl-error-message",
+    description:
+      "Attribute is used to determine the text that appears in the vl-form-validation component.",
+    table: {
+      type: { summary: "" },
+      category: CATEGORIES.ATTRIBUTES,
+      defaultValue: { summary: "" },
+    },
+  },
+  errorPlaceholder: {
+    name: "data-vl-error-placeholder",
+    description:
+      "Attribute is used to make the link with the corresponding vl-form-validation component with id attribute `data-vl-error-id`.",
+    table: {
+      type: { summary: "" },
+      category: CATEGORIES.ATTRIBUTES,
+      defaultValue: { summary: "" },
+    },
+  },
+  successClass: {
+    name: "data-vl-success-class",
+    description:
+      "Attribute is used to set the class when a vl-form-validation component is successfully validated.",
+    table: {
+      type: { summary: "boolean" },
+      category: CATEGORIES.ATTRIBUTES,
+      defaultValue: { summary: "false" },
+    },
+  },
+  errorClass: {
+    name: "data-vl-error-class",
+    description:
+      "Attribute is used to set the class if a vl-form-validation component is incorrectly validated.",
+    table: {
+      type: { summary: "boolean" },
+      category: CATEGORIES.ATTRIBUTES,
+      defaultValue: { summary: "false" },
+    },
+  },
+  numericalOnlyInteger: {
+    name: "data-vl-numerical-only-integer",
+    description:
+      "Attribute is used to indicate that only integers are valid for numerical validation.",
+    table: {
+      type: { summary: "boolean" },
+      category: CATEGORIES.ATTRIBUTES,
+      defaultValue: { summary: "false" },
+    },
+  },
+  numericalGreaterThan: {
+    name: "data-vl-numerical-greater-than",
+    description:
+      "Attribute is used to indicate that for numerical validation the number must be greater than the number in this attribute.",
+    table: {
+      type: { summary: "number" },
+      category: CATEGORIES.ATTRIBUTES,
+    },
+  },
+  numericalGreaterThanOrEqualTo: {
+    name: "data-vl-numerical-greater-than-or-equal-to",
+    description:
+      "Attribute is used to indicate that for numerical validation the number must be greater than or equal to the number in this attribute.",
+    table: {
+      type: { summary: "number" },
+      category: CATEGORIES.ATTRIBUTES,
+    },
+  },
+  numericalLessThan: {
+    name: "data-vl-numerical-less-than",
+    description:
+      "Attribute is used to indicate that for numerical validation the number must be less than the number in this attribute.",
+    table: {
+      type: { summary: "number" },
+      category: CATEGORIES.ATTRIBUTES,
+    },
+  },
+  numericalLessThanOrEqualTo: {
+    name: "data-vl-numerical-less-than-or-equal-to",
+    description:
+      "Attribute is used to indicate that for numerical validation the number must be less than or equal to the number in this attribute.",
+    table: {
+      type: { summary: "number" },
+      category: CATEGORIES.ATTRIBUTES,
+    },
+  },
+};
