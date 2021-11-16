@@ -13,6 +13,7 @@ export { VlLayout } from "./components/grid/components/layout";
 export { VlColumn } from "./components/grid/components/column";
 export { VlIcon, VlIconWrapper } from "./components/icon";
 export { VlInfoblock } from "./components/infoblock";
+export { VlInputField } from "./components/input-field";
 export { VlIntroduction } from "./components/introduction";
 export { VlLink } from "./components/link";
 export { VlButtonLink } from "./components/link/components/button-link";
