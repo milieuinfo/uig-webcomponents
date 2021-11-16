@@ -1,4 +1,4 @@
-import { nativeVlElement, define } from "../../utils/core/";
+import { nativeVlElement, define } from "../../../../utils/core/";
 
 /**
  * VlSearchResult
@@ -26,9 +26,7 @@ export class VlSearchResult extends nativeVlElement(HTMLLIElement) {
   }
 
   get _titleLinkElement() {
-    return (
-      this._titleElement.querySelector(":scope > * ") || this.querySelector("a")
-    );
+    return this.querySelector("a");
   }
 
   get _metaDataContainerElement() {
@@ -36,10 +34,7 @@ export class VlSearchResult extends nativeVlElement(HTMLLIElement) {
   }
 
   get _metaDataElement() {
-    return (
-      this._metaDataContainerElement.querySelector(":scope > *") ||
-      this.querySelector(":scope > *:nth-child(2)")
-    );
+    return this.querySelector(":scope > *:nth-child(2)");
   }
 
   get _contentContainerElements() {
