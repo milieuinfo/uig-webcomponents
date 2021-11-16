@@ -75,6 +75,8 @@ export const Default = ({
           placeholder="Bijv. naam@voorbeeld.be"
           data-vl-block
           data-required="true"
+          data-vl-error-message="Gelieve een email in te vullen"
+          data-vl-error-placeholder="email-error"
         />
         <p
           is="vl-form-validation-message"
@@ -93,6 +95,8 @@ export const Default = ({
           placeholder="John"
           data-vl-block
           data-required="true"
+          data-vl-error-message="Gelieve een voornaam in te vullen"
+          data-vl-error-placeholder="name-error"
         />
         <p
           is="vl-form-validation-message"
@@ -111,6 +115,8 @@ export const Default = ({
           placeholder="Doe"
           data-vl-block
           data-required="true"
+          data-vl-error-message="Gelieve een naam in te vullen"
+          data-vl-error-placeholder="surname-error"
         />
         <p
           is="vl-form-validation-message"

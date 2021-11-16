@@ -54,6 +54,8 @@ export const Default = ({ validate }) => html`
             is="vl-input-field"
             data-vl-block
             data-vl-required
+            data-vl-error-message="Te weinig tekens"
+            data-vl-error-placeholder="name-error"
           />
           <p
             is="vl-form-validation-message"

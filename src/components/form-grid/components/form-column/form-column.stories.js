@@ -66,6 +66,8 @@ export const Default = ({
           placeholder="Doe"
           data-vl-block
           data-required="true"
+          data-vl-error-message="Gelieve een naam in te vullen"
+          data-vl-error-placeholder="surname-error"
         />
         <p
           is="vl-form-validation-message"
