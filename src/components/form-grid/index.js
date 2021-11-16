@@ -1,6 +1,6 @@
-import { define } from "../../utils/core/";
 import { VlGrid } from "../grid";
 import { VlColumn } from "../grid/components/column";
+import { define } from "../../utils/core";
 
 /**
  * VlFormGrid

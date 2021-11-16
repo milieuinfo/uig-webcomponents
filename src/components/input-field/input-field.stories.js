@@ -1,81 +1,92 @@
-// import { html } from "lit-html";
-// import "../input-field";
-// import styles from "./styles.scss";
+import { html } from "lit-html";
+import "../input-field";
+import styles from "./styles.scss";
+import {
+  stylesheet,
+  docsIntro,
+  CATEGORIES,
+} from "../../../.storybook/utils.js";
 
-// const defaultArgs = {
-//   block: false,
-//   disabled: false,
-//   error: false,
-//   small: false,
-//   success: false,
-// };
+const defaultArgs = {
+  block: false,
+  disabled: false,
+  error: false,
+  small: false,
+  success: false,
+};
 
-// export default {
-//   title: "native-elements/vl-input-field",
-//   args: { ...defaultArgs },
-//   argTypes: {
-//     block: {
-//       name: "data-vl-block",
-//       type: { summary: "boolean" },
-//       description: "Het input-veld zal de breedte van zijn parent aannemen",
-//       table: {
-//         defaultValue: { summary: "false" },
-//       },
-//     },
-//     disabled: {
-//       name: "data-vl-disabled",
-//       type: { summary: "boolean" },
-//       description: "Schakelt interactie door de gebruiker uit",
-//       table: {
-//         defaultValue: { summary: "false" },
-//       },
-//     },
-//     error: {
-//       name: "data-vl-error",
-//       type: { summary: "boolean" },
-//       description:
-//         "Zorgt ervoor da er een rode rand rond het input-veld verschijnt",
-//       table: {
-//         defaultValue: { summary: "" },
-//       },
-//     },
-//     small: {
-//       name: "data-vl-small",
-//       type: { summary: "boolean" },
-//       description: "Kleine variant van het input-field",
-//       table: {
-//         defaultValue: { summary: "false" },
-//       },
-//     },
-//     success: {
-//       name: "data-vl-success",
-//       type: { summary: "string" },
-//       description:
-//         "Zorgt ervoor dat er een groene rand rond het input-veld verschijnt",
-//       table: {
-//         defaultValue: { summary: "false" },
-//       },
-//     },
-//   },
-// };
+export default {
+  title: "native-elements/vl-input-field",
+  decorators: [(story) => html`${stylesheet(styles)}${story()}`],
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          stylesheets: ["input-field"],
+          root: "input-field",
+          intro:
+            "The input field allows the user to enter information in your application: for example an email address or a password.",
+        }),
+      },
+    },
+  },
+  args: { ...defaultArgs },
+  argTypes: {
+    block: {
+      name: "data-vl-block",
+      description: "The input field will take the width of its parent.",
+      table: {
+        category: CATEGORIES.ATTRIBUTES,
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    disabled: {
+      name: "data-vl-disabled",
+      description: "Disables user interaction.",
+      table: {
+        category: CATEGORIES.ATTRIBUTES,
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    error: {
+      name: "data-vl-error",
+      description: "Causes a red border to appear around the input field.",
+      table: {
+        category: CATEGORIES.ATTRIBUTES,
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    small: {
+      name: "data-vl-small",
+      description: "Small variant of the input field.",
+      table: {
+        category: CATEGORIES.ATTRIBUTES,
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    success: {
+      name: "data-vl-success",
+      description: "Causes a green border to appear around the input field.",
+      table: {
+        category: CATEGORIES.ATTRIBUTES,
+        type: { summary: "string" },
+        defaultValue: { summary: "false" },
+      },
+    },
+  },
+};
 
-// const stylesheet = html`<style>
-//   ${styles}
-// </style>`;
-
-// const buttonWrap = (props, children) => {
-//   return html`
-//     ${stylesheet}
-//     <input
-//       is="vl-input-field"
-//       id="input-field"
-//       ?data-vl-block=${props.block}
-//       ?data-vl-error=${props.error}
-//       ?data-vl-success=${props.success}
-//       ?data-vl-disabled=${props.disabled}
-//       ?data-vl-small=${props.small}
-//     />
-//   `;
-// };
-
-// export const Default = (props) => html`${buttonWrap(props, props.content)}`;
+export const Default = (props) => html`
+  <input
+    is="vl-input-field"
+    ?data-vl-block=${props.block}
+    ?data-vl-error=${props.error}
+    ?data-vl-success=${props.success}
+    ?data-vl-disabled=${props.disabled}
+    ?data-vl-small=${props.small}
+  />
+`;

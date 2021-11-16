@@ -7,6 +7,16 @@ import { removeStorybooksDefaultStyling } from "../../../.storybook/utils";
 
 const changes = [
   {
+    version: "2.0.2",
+    date: "10/11/2021",
+    children: html`<ul>
+      <li>
+        <p><code>vl-wizard</code> &#x1F4A5;</p>
+        <p>The wizard is refactored, and an outline styling bug is fixed.</p>
+      </li>
+    </ul>`,
+  },
+  {
     version: "2.0.1",
     date: "8/11/2021",
     children: html`<ul>
@@ -152,18 +162,27 @@ export class Changelog extends LitElement {
         <section is="vl-region">
           <div is="vl-layout">
             <div is="vl-grid" data-vl-is-stacked>
-              <!-- ${change({
-                version: "Unreleased",
-                date: "?",
-                children: html``,
-              })} -->
+              ${change({
+        version: "Unreleased",
+        date: "?",
+        children: html` <ul>
+                  <li>
+                    <p><code>vl-pager</code></p>
+                    <p>
+                      Fixed a bug where the
+                      <code>data-vl-pagination-disabled</code>
+                      attribute was not behaving in a reactive way.
+                    </p>
+                  </li>
+                </ul>`,
+      })}
               ${changes.map(({ version, date, children }) =>
-                change({
-                  version,
-                  date,
-                  children,
-                })
-              )}
+        change({
+          version,
+          date,
+          children,
+        })
+      )}
             </div>
           </div>
         </section>
