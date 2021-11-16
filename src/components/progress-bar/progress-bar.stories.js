@@ -21,7 +21,7 @@ export default {
     activeStep: 1,
     focusOnChange: false,
     steps: ["Stap 1/3: Aanvraag", "Stap 2/3: Gegevens", "Stap 3/3: Bevestigen"],
-    clickStep: action("vl-click-step"),
+    onClickStep: action("vl-click-step"),
   },
   argTypes: {
     numeric: {
@@ -58,7 +58,7 @@ export default {
         defaultValue: { summary: false },
       },
     },
-    clickStep: {
+    onClickStep: {
       name: "vl-click-step",
       description:
         "The custom event fired on click of a step. In the detail of the event, you can find the number and name of the clicked step.",
@@ -80,14 +80,14 @@ export const Default = ({
   activeStep,
   steps,
   focusOnChange,
-  clickStep,
+  onClickStep,
 }) => {
   return html`<vl-progress-bar
     ?data-vl-numeric=${numeric}
     ?data-vl-focus-on-change=${focusOnChange}
     data-vl-active-step=${activeStep}
     .steps=${steps}
-    @vl-click-step=${(event) => clickStep(event.detail)}
+    @vl-click-step=${(event) => onClickStep(event.detail)}
   >
   </vl-progress-bar>`;
 };
