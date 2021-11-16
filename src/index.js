@@ -75,3 +75,4 @@ export { VlSelect } from "./components/select";
 export { VlSideSheet } from "./components/side-sheet";
 export { VlTooltip } from "./components/tooltip";
 export { VlPager } from "./components/pager";
+export { VlSearchFilter } from "./components/search-filter";

@@ -1,76 +1,43 @@
 import { html } from "lit-html";
 import "../button";
 import "../select";
+import "../input-field";
 import "../search-filter";
+import "../link";
 import styles from "./styles.scss";
 import buttonStyles from "../button/styles.scss";
 import inputStyles from "../input-field/styles.scss";
 import formStyles from "../form/styles.scss";
 import selectStyles from "../select/styles.scss";
+import linkStyles from "../link/styles.scss";
 import { stylesheet, docsIntro } from "../../../.storybook/utils.js";
+import { args, argTypes } from "./config";
 
 export default {
   title: "native-elements/vl-search-filter",
   decorators: [
-    (story) => html`${stylesheet(`${styles}${buttonStyles}${inputStyles}${formStyles}${selectStyles}`)}${story()}`,
+    (story) =>
+      html`${stylesheet(
+        `${styles}${buttonStyles}${inputStyles}${formStyles}${selectStyles}${linkStyles}`
+      )}${story()}`,
   ],
   parameters: {
     docs: {
       description: {
         component: docsIntro({
+          stylesheets: ["search-filter"],
           root: "search-filter",
           intro: "Search filter component.",
         }),
       },
     },
   },
-  args: {
-    title: "Lorem ipsum",
-    alt: false,
-    mobileModal: false,
-    mobileModalTitle: "Lorem ipsum dolor set",
-  },
-  argTypes: {
-    title: {
-      name: "data-vl-title",
-      type: { summary: "string" },
-      description: "De titel van deze search filter.",
-      table: {
-        defaultValue: { summary: "" },
-      },
-    },
-    alt: {
-      name: "data-vl-alt",
-      type: { summary: "boolean" },
-      description: "Alternatieve (transparante) achtergrond.",
-      table: {
-        defaultValue: { summary: "false" },
-      },
-    },
-    mobileModal: {
-      name: "data-vl-mobile-modal",
-      type: { summary: "boolean" },
-      description:
-        "Activeert geoptimaliseerde weergave voor op mobiele toestellen.",
-      table: {
-        defaultValue: { summary: "false" },
-      },
-    },
-    mobileModalTitle: {
-      name: "data-vl-mobile-modal-title",
-      type: { summary: "string" },
-      description:
-        "De titel van deze search filter op mobiele toestellen indien niet gedeclareerd wordt het data-vl-title attribuut of de default genomen.",
-      table: {
-        defaultValue: { summary: "" },
-      },
-    },
-  },
+  args: { ...args },
+  argTypes: { ...argTypes },
 };
 
 export const Default = ({ title, alt, mobileModal, mobileModalTitle }) => html`
   <div
-    id="search-filter"
     is="vl-search-filter"
     data-vl-title=${title}
     ?data-vl-alt=${alt}
@@ -85,10 +52,9 @@ export const Default = ({ title, alt, mobileModal, mobileModalTitle }) => html`
           <input
             is="vl-input-field"
             type="text"
-            id="firstname"
             name="firstname"
             value=""
-            data-vl-block=""
+            data-vl-block
             autocomplete="given-name"
           />
         </div>
@@ -97,10 +63,9 @@ export const Default = ({ title, alt, mobileModal, mobileModalTitle }) => html`
           <input
             is="vl-input-field"
             type="text"
-            id="name"
             name="name"
             value=""
-            data-vl-block=""
+            data-vl-block
             autocomplete="family-name"
           />
         </div>
@@ -112,9 +77,8 @@ export const Default = ({ title, alt, mobileModal, mobileModalTitle }) => html`
           <select
             is="vl-select"
             name="vl-select-default"
-            id="vl-select-city"
-            data-vl-select-deletable=""
-            data-vl-block=""
+            data-vl-select-deletable
+            data-vl-block
             autocomplete="address-level2"
           >
             <option placeholder="">Kies een stad</option>
@@ -127,9 +91,8 @@ export const Default = ({ title, alt, mobileModal, mobileModalTitle }) => html`
           <select
             is="vl-select"
             name="vl-select-default"
-            id="vl-select-country"
-            data-vl-select-deletable=""
-            data-vl-block=""
+            data-vl-select-deletable
+            data-vl-block
             autocomplete="country"
           >
             <option placeholder="">Kies een land</option>
