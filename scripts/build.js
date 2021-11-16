@@ -11,6 +11,8 @@ const buildConfig = {
     "grid",
     "icon",
     "introduction",
+    "input-group",
+    "input-addon",
     "input-field",
     "link",
     "side-navigation",
