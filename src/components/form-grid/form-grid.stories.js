@@ -74,9 +74,6 @@ export const Default = ({
           is="vl-input-field"
           placeholder="Bijv. naam@voorbeeld.be"
           data-vl-block
-          data-required="true"
-          data-vl-error-message="Gelieve een email in te vullen"
-          data-vl-error-placeholder="email-error"
         />
       </div>
 
@@ -89,9 +86,6 @@ export const Default = ({
           is="vl-input-field"
           placeholder="John"
           data-vl-block
-          data-required="true"
-          data-vl-error-message="Gelieve een voornaam in te vullen"
-          data-vl-error-placeholder="name-error"
         />
       </div>
 
@@ -104,9 +98,6 @@ export const Default = ({
           is="vl-input-field"
           placeholder="Doe"
           data-vl-block
-          data-required="true"
-          data-vl-error-message="Gelieve een naam in te vullen"
-          data-vl-error-placeholder="surname-error"
         />
       </div>
 

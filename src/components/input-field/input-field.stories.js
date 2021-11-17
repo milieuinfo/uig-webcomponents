@@ -12,8 +12,8 @@ import {
   docsIntro,
   CATEGORIES,
 } from "../../../.storybook/utils.js";
-import { args, argTypes } from "../form-validation/config";
-import { VALIDATION_TYPE } from "../form-validation/enum";
+// import { args, argTypes } from "../form-validation/config";
+// import { VALIDATION_TYPE } from "../form-validation/enum";
 
 const defaultArgs = {
   block: false,
@@ -21,7 +21,7 @@ const defaultArgs = {
   error: false,
   small: false,
   success: false,
-  ...args,
+  // ...args,
 };
 
 export default {
@@ -93,7 +93,7 @@ export default {
         defaultValue: { summary: "false" },
       },
     },
-    ...argTypes,
+    // ...argTypes,
   },
 };
 
@@ -108,147 +108,147 @@ export const Default = ({ block, error, success, disabled, small }) => html`
   />
 `;
 
-const Template = ({
-  validationType,
-  required,
-  errorMessage,
-  errorPlaceholder,
-  successClass,
-  errorClass,
-  numericalOnlyInteger,
-  numericalGreaterThan,
-  numericalGreaterThanOrEqualTo,
-  numericalLessThan,
-  numericalLessThanOrEqualTo,
-  block,
-  error,
-  success,
-  disabled,
-  small,
-}) => html`
-  <form is="vl-form" data-vl-validate target="_self" action="#">
-    <div is="vl-form-group">
-      <div is="vl-form-grid" data-vl-is-stacked>
-        <div is="vl-form-column">
-          <label is="vl-form-label" for="name" data-vl-block>
-            Naam
-            <span is="vl-form-annotation-span">(verplicht)</span>
-          </label>
-        </div>
-        <div is="vl-form-column" data-vl-size="9">
-          <input
-            is="vl-input-field"
-            data-vl-validation-type=${validationType}
-            ?data-vl-required=${required}
-            data-vl-error-message=${errorMessage}
-            data-vl-error-placeholder=${errorPlaceholder}
-            ?data-vl-success-class=${successClass}
-            ?data-vl-error-class=${errorClass}
-            ?data-vl-numerical-only-integer=${numericalOnlyInteger}
-            data-vl-numerical-greater-than=${numericalGreaterThan}
-            data-vl-numerical-greater-than-or-equal-to=${numericalGreaterThanOrEqualTo}
-            data-vl-numerical-less-than=${numericalLessThan}
-            data-vl-numerical-less-than-or-equal-to=${numericalLessThanOrEqualTo}
-            ?data-vl-block=${block}
-            ?data-vl-error=${error}
-            ?data-vl-success=${success}
-            ?data-vl-disabled=${disabled}
-            ?data-vl-small=${small}
-          />
-          <p
-            is="vl-form-validation-message"
-            data-vl-error
-            data-vl-error-id=${errorPlaceholder}
-          ></p>
-        </div>
+// const Template = ({
+//   validationType,
+//   required,
+//   errorMessage,
+//   errorPlaceholder,
+//   successClass,
+//   errorClass,
+//   numericalOnlyInteger,
+//   numericalGreaterThan,
+//   numericalGreaterThanOrEqualTo,
+//   numericalLessThan,
+//   numericalLessThanOrEqualTo,
+//   block,
+//   error,
+//   success,
+//   disabled,
+//   small,
+// }) => html`
+//   <form is="vl-form" data-vl-validate target="_self" action="#">
+//     <div is="vl-form-group">
+//       <div is="vl-form-grid" data-vl-is-stacked>
+//         <div is="vl-form-column">
+//           <label is="vl-form-label" for="name" data-vl-block>
+//             Naam
+//             <span is="vl-form-annotation-span">(verplicht)</span>
+//           </label>
+//         </div>
+//         <div is="vl-form-column" data-vl-size="9">
+//           <input
+//             is="vl-input-field"
+//             data-vl-validation-type=${validationType}
+//             ?data-vl-required=${required}
+//             data-vl-error-message=${errorMessage}
+//             data-vl-error-placeholder=${errorPlaceholder}
+//             ?data-vl-success-class=${successClass}
+//             ?data-vl-error-class=${errorClass}
+//             ?data-vl-numerical-only-integer=${numericalOnlyInteger}
+//             data-vl-numerical-greater-than=${numericalGreaterThan}
+//             data-vl-numerical-greater-than-or-equal-to=${numericalGreaterThanOrEqualTo}
+//             data-vl-numerical-less-than=${numericalLessThan}
+//             data-vl-numerical-less-than-or-equal-to=${numericalLessThanOrEqualTo}
+//             ?data-vl-block=${block}
+//             ?data-vl-error=${error}
+//             ?data-vl-success=${success}
+//             ?data-vl-disabled=${disabled}
+//             ?data-vl-small=${small}
+//           />
+//           <p
+//             is="vl-form-validation-message"
+//             data-vl-error
+//             data-vl-error-id=${errorPlaceholder}
+//           ></p>
+//         </div>
 
-        <div is="vl-form-column" data-vl-size="9">
-          <div is="vl-action-group">
-            <button is="vl-button" type="submit">Versturen</button>
-            <a is="vl-link" href="#">
-              <span is="vl-icon" data-vl-icon="cross" data-vl-before></span>
-              Annuleren
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
-`;
+//         <div is="vl-form-column" data-vl-size="9">
+//           <div is="vl-action-group">
+//             <button is="vl-button" type="submit">Versturen</button>
+//             <a is="vl-link" href="#">
+//               <span is="vl-icon" data-vl-icon="cross" data-vl-before></span>
+//               Annuleren
+//             </a>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   </form>
+// `;
 
-export const WithValidation = Template.bind({});
-export const WithNumericalValidation = Template.bind({});
+// export const WithValidation = Template.bind({});
+// export const WithNumericalValidation = Template.bind({});
 
-Default.argTypes = {
-  validationType: {
-    control: {
-      disable: true,
-    },
-  },
-  required: {
-    control: {
-      disable: true,
-    },
-  },
-  errorMessage: {
-    control: {
-      disable: true,
-    },
-  },
-  errorPlaceholder: {
-    control: {
-      disable: true,
-    },
-  },
-  successClass: {
-    control: {
-      disable: true,
-    },
-  },
-  errorClass: {
-    control: {
-      disable: true,
-    },
-  },
-  numericalOnlyInteger: {
-    control: {
-      disable: true,
-    },
-  },
-  numericalGreaterThan: {
-    control: {
-      disable: true,
-    },
-  },
-  numericalGreaterThanOrEqualTo: {
-    control: {
-      disable: true,
-    },
-  },
-  numericalLessThan: {
-    control: {
-      disable: true,
-    },
-  },
-  numericalLessThanOrEqualTo: {
-    control: {
-      disable: true,
-    },
-  },
-};
+// Default.argTypes = {
+//   validationType: {
+//     control: {
+//       disable: true,
+//     },
+//   },
+//   required: {
+//     control: {
+//       disable: true,
+//     },
+//   },
+//   errorMessage: {
+//     control: {
+//       disable: true,
+//     },
+//   },
+//   errorPlaceholder: {
+//     control: {
+//       disable: true,
+//     },
+//   },
+//   successClass: {
+//     control: {
+//       disable: true,
+//     },
+//   },
+//   errorClass: {
+//     control: {
+//       disable: true,
+//     },
+//   },
+//   numericalOnlyInteger: {
+//     control: {
+//       disable: true,
+//     },
+//   },
+//   numericalGreaterThan: {
+//     control: {
+//       disable: true,
+//     },
+//   },
+//   numericalGreaterThanOrEqualTo: {
+//     control: {
+//       disable: true,
+//     },
+//   },
+//   numericalLessThan: {
+//     control: {
+//       disable: true,
+//     },
+//   },
+//   numericalLessThanOrEqualTo: {
+//     control: {
+//       disable: true,
+//     },
+//   },
+// };
 
-WithValidation.args = {
-  errorMessage: "Foutmelding komt hier.",
-  errorPlaceholder: "name-error-id",
-};
+// WithValidation.args = {
+//   errorMessage: "Foutmelding komt hier.",
+//   errorPlaceholder: "name-error-id",
+// };
 
-WithNumericalValidation.args = {
-  validationType: VALIDATION_TYPE.NUMERICAL,
-  errorMessage: "Getal voldoet niet aan de voorwaarden.",
-  errorPlaceholder: "numerical-error-id",
-  numericalOnlyInteger: true,
-  numericalLessThan: 100,
-  numericalLessThanOrEqualTo: 100,
-  numericalGreaterThan: 1,
-  numericalGreaterThanOrEqualTo: 1,
-};
+// WithNumericalValidation.args = {
+//   validationType: VALIDATION_TYPE.NUMERICAL,
+//   errorMessage: "Getal voldoet niet aan de voorwaarden.",
+//   errorPlaceholder: "numerical-error-id",
+//   numericalOnlyInteger: true,
+//   numericalLessThan: 100,
+//   numericalLessThanOrEqualTo: 100,
+//   numericalGreaterThan: 1,
+//   numericalGreaterThanOrEqualTo: 1,
+// };

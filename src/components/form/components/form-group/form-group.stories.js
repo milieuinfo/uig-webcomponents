@@ -53,9 +53,6 @@ export const Default = ({ validate }) => html`
             autocomplete="name"
             is="vl-input-field"
             data-vl-block
-            data-vl-required
-            data-vl-error-message="Te weinig tekens"
-            data-vl-error-placeholder="name-error"
           />
         </div>
 
