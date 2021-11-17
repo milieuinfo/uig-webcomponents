@@ -6,6 +6,17 @@ const defaultUrl = `${sbUrl}?id=custom-elements-vl-accordion--default`;
 const dynamicToggleUrl = `${sbUrl}?id=custom-elements-vl-accordion--dynamic-toggle`;
 const titleSlotUrl = `${sbUrl}?id=custom-elements-vl-accordion--with-title-slot`;
 
+const assertAccordionCanBeOpenedAndClosed = async (accordion) => {
+  await assert.eventually.isTrue(accordion.isClosed());
+  await assert.eventually.isFalse(accordion.isContentDisplayed());
+  await accordion.open();
+  await assert.eventually.isTrue(accordion.isOpen());
+  await assert.eventually.isTrue(accordion.isContentDisplayed());
+  await accordion.close();
+  await assert.eventually.isTrue(accordion.isClosed());
+  await assert.eventually.isFalse(accordion.isContentDisplayed());
+};
+
 describe('vl-accordion', async () => {
   let driver;
 
@@ -13,17 +24,6 @@ describe('vl-accordion', async () => {
     driver = getDriver();
     driver.manage().window().maximize();
   });
-
-  const assertAccordionCanBeOpenedAndClosed = async (accordion) => {
-    await assert.eventually.isTrue(accordion.isClosed());
-    await assert.eventually.isFalse(accordion.isContentDisplayed());
-    await accordion.open();
-    await assert.eventually.isTrue(accordion.isOpen());
-    await assert.eventually.isTrue(accordion.isContentDisplayed());
-    await accordion.close();
-    await assert.eventually.isTrue(accordion.isClosed());
-    await assert.eventually.isFalse(accordion.isContentDisplayed());
-  };
 
   it('as a user, I can open and close a standard accordion', async () => {
     driver.get(defaultUrl);
