@@ -67,6 +67,7 @@ const browserVersion = () => {
 
 const browserstack = () => process.argv.includes('browserstack') || yargs.browserstack;
 const sbRoot = yargs.local ? '' : 'storybook-static/';
+const basePort = yargs.local ? '8081' : '8080';
 
 export const config = {
   osName: osName(),
@@ -75,6 +76,6 @@ export const config = {
   browserVersion: browserVersion(),
   browserstack: browserstack(),
   gridUrl: 'http://selenium-hub:4444/wd/hub',
-  baseUrl: 'http://localhost:8080/src/',
+  baseUrl: `http://localhost:${basePort}/src/`,
   sbUrl: `http://localhost:8080/${sbRoot}iframe.html`,
 };
