@@ -4,7 +4,7 @@ import styles from "../search-results/styles.scss";
 import { stylesheet, docsIntro } from "../../../.storybook/utils.js";
 
 export default {
-  title: "custom-elements/vl-search-results",
+  title: "native-elements/vl-search-results",
   controls: { hideNoControlsWarning: true },
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
   parameters: {
