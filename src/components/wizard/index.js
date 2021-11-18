@@ -1,7 +1,7 @@
-import { html, css, LitElement, unsafeCSS } from "lit";
-import styles from "./styles.scss";
-import "../progress-bar";
-import "./components/pane";
+import { html, css, LitElement, unsafeCSS } from 'lit';
+import styles from './styles.scss';
+import '../progress-bar';
+import './components/pane';
 
 export class VlWizard extends LitElement {
   static get styles() {
@@ -12,14 +12,16 @@ export class VlWizard extends LitElement {
     ];
   }
 
-  static properties = {
-    panes: { type: Array },
-    activeStep: {
-      type: Number,
-      attribute: "data-vl-active-step",
-      reflect: true,
-    },
-  };
+  static get properties() {
+    return {
+      panes: { type: Array },
+      activeStep: {
+        type: Number,
+        attribute: 'data-vl-active-step',
+        reflect: true,
+      },
+    };
+  }
 
   constructor() {
     super();
@@ -28,7 +30,7 @@ export class VlWizard extends LitElement {
   }
 
   onSlotChange() {
-    this.panes = [...this.querySelectorAll("vl-wizard-pane")];
+    this.panes = [...this.querySelectorAll('vl-wizard-pane')];
   }
 
   updated() {
@@ -58,4 +60,4 @@ export class VlWizard extends LitElement {
   }
 }
 
-customElements.define("vl-wizard", VlWizard);
+customElements.define('vl-wizard', VlWizard);

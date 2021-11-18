@@ -3,6 +3,7 @@
   "extends": ["@open-wc/eslint-config", "prettier"],
   "rules": {
     "import/extensions": "off",
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
+    "no-param-reassign": ["error", { "props": false }]
   }
 }
