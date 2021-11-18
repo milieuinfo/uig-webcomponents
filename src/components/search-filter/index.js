@@ -24,7 +24,7 @@ export class VlSearchFilter extends nativeVlElement(HTMLDivElement) {
   }
 
   static get _observedClassAttributes() {
-    return ["alt", "mobile-modal"];
+    return ["alt", "mobile-modal", "mobile-modal-title"];
   }
 
   constructor() {

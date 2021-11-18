@@ -17,11 +17,9 @@ export default {
   decorators: [
     (story) =>
       html`
-        <div style="max-width: 800px">
-          ${stylesheet(
+        ${stylesheet(
         `${styles}${inputFieldStyles}${formGridStyles}${buttonStyles}${formMessageStyle}`
       )}${story()}
-        </div>
       `,
   ],
   parameters: {
@@ -37,48 +35,4 @@ export default {
   },
 };
 
-export const Default = ({ validate }) => html`
-  <form is="vl-form" ?data-vl-validate=${validate}>
-    <div is="vl-form-group">
-      <div is="vl-form-grid" data-vl-is-stacked>
-        <div is="vl-form-column" data-vl-size="3">
-          <label is="vl-form-label" for="name" data-vl-block>
-            Naam
-            <span is="vl-form-annotation-span">(verplicht)</span>
-          </label>
-        </div>
-        <div is="vl-form-column" data-vl-size="9">
-          <input
-            name="name"
-            autocomplete="name"
-            is="vl-input-field"
-            data-vl-block
-          />
-        </div>
-
-        <div is="vl-form-column" data-vl-size="3">
-          <label is="vl-form-label" for="phone" data-vl-block>Telefoon</label>
-        </div>
-        <div is="vl-form-column" data-vl-size="9">
-          <input
-            name="phone"
-            autocomplete="tel"
-            is="vl-input-field"
-            data-vl-block
-          />
-          <p is="vl-form-annotation">Formaat 000/ 00 00 00</p>
-        </div>
-
-        <div is="vl-form-column" data-vl-size="9" data-vl-push="3">
-          <div is="vl-action-group">
-            <button is="vl-button" type="submit">Versturen</button>
-            <a is="vl-link" href="#">
-              <span is="vl-icon" data-vl-icon="cross" data-vl-before></span>
-              Annuleren
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
-`;
+export { Default } from "../../form.stories.js";

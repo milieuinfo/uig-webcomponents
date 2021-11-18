@@ -1,5 +1,5 @@
-import { nativeVlElement, define } from "../../utils/core/";
-import "./components/form-group/";
+import { nativeVlElement, define } from "../../utils/core";
+import "./components/form-group";
 
 /**
  * VlForm

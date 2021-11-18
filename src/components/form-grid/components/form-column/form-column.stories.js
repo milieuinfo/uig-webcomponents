@@ -31,8 +31,8 @@ export default {
       },
     },
   },
-  args: { ...args },
-  argTypes: { ...argTypes },
+  args,
+  argTypes,
 };
 
 export const Default = ({
@@ -48,6 +48,12 @@ export const Default = ({
 }) => html`
   <form is="vl-form">
     <div is="vl-form-grid">
+      <div is="vl-form-column" data-vl-size="12">
+        <label is="vl-form-label" for="name" data-vl-block>
+          Naam
+          <span is="vl-form-annotation-span">(verplicht)</span>
+        </label>
+      </div>
       <div
         is="vl-form-column"
         data-vl-size=${size}

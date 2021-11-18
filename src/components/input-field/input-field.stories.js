@@ -1,28 +1,19 @@
 import { html } from "lit-html";
 import "../input-field";
-import "../button";
-import "../link";
-import "../form-message";
+// import "../button";
+// import "../link";
+// import "../form-message";
 import styles from "./styles.scss";
-import buttonStyles from "../button/styles.scss";
-import linkStyles from "../link/styles.scss";
-import formMessageStyles from "../form-message/styles.scss";
+// import buttonStyles from "../button/styles.scss";
+// import linkStyles from "../link/styles.scss";
+// import formMessageStyles from "../form-message/styles.scss";
 import {
   stylesheet,
   docsIntro,
   CATEGORIES,
 } from "../../../.storybook/utils.js";
 // import { args, argTypes } from "../form-validation/config";
-// import { VALIDATION_TYPE } from "../form-validation/enum";
-
-const defaultArgs = {
-  block: false,
-  disabled: false,
-  error: false,
-  small: false,
-  success: false,
-  // ...args,
-};
+// import { VALIDATION_TYPE } from "../form-validation/enums";
 
 export default {
   title: "native-elements/vl-input-field",
@@ -46,7 +37,14 @@ export default {
       },
     },
   },
-  args: { ...defaultArgs },
+  args: {
+    block: false,
+    disabled: false,
+    error: false,
+    small: false,
+    success: false,
+    // ...args,
+  },
   argTypes: {
     block: {
       name: "data-vl-block",

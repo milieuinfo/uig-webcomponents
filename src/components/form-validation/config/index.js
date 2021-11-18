@@ -1,5 +1,5 @@
 import { CATEGORIES } from "../../../../.storybook/utils.js";
-import { VALIDATION_TYPE } from "../enum";
+import { VALIDATION_TYPE } from "../enums";
 
 export const args = {
   validationType: "",

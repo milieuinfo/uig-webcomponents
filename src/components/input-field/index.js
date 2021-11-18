@@ -45,7 +45,6 @@ export class VlInputField extends vlFormValidationElement(
   }
 
   _dress() {
-    console.log("dress input");
     this._dressFormValidation();
     this._dressPattern();
   }

@@ -1,4 +1,5 @@
 import { html } from "lit-html";
+import "../form";
 import "../button";
 import "../select";
 import "../input-field";
@@ -27,13 +28,14 @@ export default {
         component: docsIntro({
           stylesheets: ["search-filter"],
           root: "search-filter",
-          intro: "Search filter component.",
+          intro:
+            "The search filter allows the user to refine the search results for a specific query.",
         }),
       },
     },
   },
-  args: { ...args },
-  argTypes: { ...argTypes },
+  args,
+  argTypes,
 };
 
 export const Default = ({ title, alt, mobileModal, mobileModalTitle }) => html`
@@ -53,7 +55,6 @@ export const Default = ({ title, alt, mobileModal, mobileModalTitle }) => html`
             is="vl-input-field"
             type="text"
             name="firstname"
-            value=""
             data-vl-block
             autocomplete="given-name"
           />
@@ -64,7 +65,6 @@ export const Default = ({ title, alt, mobileModal, mobileModalTitle }) => html`
             is="vl-input-field"
             type="text"
             name="name"
-            value=""
             data-vl-block
             autocomplete="family-name"
           />
