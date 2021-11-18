@@ -26,7 +26,7 @@ describe('vl-accordion', async () => {
   });
 
   it('as a user, I can open and close a standard accordion', async () => {
-    driver.get(defaultUrl);
+    await driver.get(defaultUrl);
     const accordion = await new VlAccordion(driver, 'vl-accordion');
     await assertAccordionCanBeOpenedAndClosed(accordion);
   });
