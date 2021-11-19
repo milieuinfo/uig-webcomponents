@@ -32,8 +32,15 @@ export default {
   argTypes,
 };
 
-export const Default = ({ validate }) => html`
+const Template = ({ validate }) => html`
   <div style="max-width: 800px">
     <form is="vl-form" ?data-vl-validate=${validate}>${formContent}</form>
   </div>
 `;
+
+export const Default = Template.bind({});
+export const WithValidation = Template.bind({});
+
+Default.args = {
+  validate: false,
+};
