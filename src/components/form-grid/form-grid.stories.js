@@ -32,7 +32,6 @@ export default {
   },
   args: {
     ...args,
-    columnSize: 4,
     columnsAmount: 7,
   },
   argTypes: {
@@ -40,14 +39,6 @@ export default {
     columnsAmount: {
       name: 'amount of columns',
       control: { type: 'range', min: 1, max: 12, step: 1 },
-      table: {
-        type: { summary: 'string' },
-        category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: '' },
-      },
-    },
-    columnSize: {
-      name: 'size of the columns',
       table: {
         type: { summary: 'string' },
         category: CATEGORIES.ATTRIBUTES,
@@ -71,10 +62,9 @@ export const Default = ({
   vBottom,
   vStretch,
   columnsAmount,
-  columnSize,
 }) => {
   const column = html`
-    <div is="vl-form-column" data-vl-size=${columnSize}>
+    <div is="vl-form-column" data-vl-size="4">
       <div
         is="vl-form-grid"
         ?data-vl-v-top=${vTop}
@@ -82,10 +72,10 @@ export const Default = ({
         ?data-vl-v-bottom=${vBottom}
         ?data-vl-v-stretch=${vStretch}
       >
-        <div is="vl-form-column" data-vl-size="4">
+        <div is="vl-form-column" data-vl-size="3">
           <label is="vl-form-label" for="text" data-vl-block>Label</label>
         </div>
-        <div is="vl-form-column" data-vl-size="8">
+        <div is="vl-form-column" data-vl-size="9">
           <input name="email" is="vl-input-field" placeholder="Bijv. naam@voorbeeld.be" data-vl-block />
         </div>
       </div>
@@ -107,7 +97,7 @@ export const Default = ({
       >
         ${columns.map(() => column)}
 
-        <div is="vl-form-column" data-vl-size="12">
+        <div is="vl-form-column" data-vl-size="10" data-vl-push="1">
           <button is="vl-button" type="submit">Inschrijven</button>
         </div>
       </div>
