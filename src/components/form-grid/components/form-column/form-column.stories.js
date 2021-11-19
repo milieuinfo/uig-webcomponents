@@ -1,32 +1,30 @@
-import { html } from "lit-html";
-import "../../../form";
-import "../../../form-grid";
-import "../../../input-field";
-import "../../../button";
-import "../../../form-message";
-import styles from "../.././styles.scss";
-import formStyling from "../../../form/styles.scss";
-import inputFieldStyling from "../../../input-field/styles.scss";
-import buttonStyling from "../../../button/styles.scss";
-import formMessageStyle from "../../../form-message/styles.scss";
-import { stylesheet, docsIntro } from "../../../../../.storybook/utils.js";
-import { args, argTypes } from "../../../grid/components/column/config";
+import { html } from 'lit-html';
+import '../../../form';
+import '../../../form-grid';
+import '../../../input-field';
+import '../../../button';
+import '../../../form-message';
+import styles from '../.././styles.scss';
+import formStyling from '../../../form/styles.scss';
+import inputFieldStyling from '../../../input-field/styles.scss';
+import buttonStyling from '../../../button/styles.scss';
+import formMessageStyle from '../../../form-message/styles.scss';
+import { stylesheet, docsIntro } from '../../../../../.storybook/utils.js';
+import { args, argTypes } from '../../../grid/components/column/config';
 
 export default {
-  title: "native-elements/vl-form-grid/vl-form-column",
+  title: 'native-elements/vl-form-grid/vl-form-column',
   decorators: [
     (story) =>
-      html`${stylesheet(
-        `${styles}${formStyling}${inputFieldStyling}${buttonStyling}${formMessageStyle}`
-      )}${story()}`,
+      html`${stylesheet(`${styles}${formStyling}${inputFieldStyling}${buttonStyling}${formMessageStyle}`)}${story()}`,
   ],
   parameters: {
     docs: {
       description: {
         component: docsIntro({
-          stylesheets: ["form-grid"],
-          root: "form-grid",
-          intro: "Class that represents a column in a form grid layout.",
+          stylesheets: ['form-grid'],
+          root: 'form-grid',
+          intro: 'Class that represents a column in a form grid layout.',
         }),
       },
     },
@@ -48,12 +46,6 @@ export const Default = ({
 }) => html`
   <form is="vl-form">
     <div is="vl-form-grid">
-      <div is="vl-form-column" data-vl-size="12">
-        <label is="vl-form-label" for="name" data-vl-block>
-          Naam
-          <span is="vl-form-annotation-span">(verplicht)</span>
-        </label>
-      </div>
       <div
         is="vl-form-column"
         data-vl-size=${size}
@@ -66,12 +58,7 @@ export const Default = ({
         data-vl-extra-small-max-size=${extraSmallMaxSize}
         data-vl-push=${push}
       >
-        <input
-          name="surname"
-          is="vl-input-field"
-          placeholder="Doe"
-          data-vl-block
-        />
+        <input name="surname" is="vl-input-field" placeholder="Doe" data-vl-block />
       </div>
     </div>
   </form>

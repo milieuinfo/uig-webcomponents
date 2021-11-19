@@ -1,6 +1,6 @@
-import { VlGrid } from "../grid";
-import { define } from "../../utils/core";
-import "./components/form-column";
+import { VlGrid } from '../grid';
+import { define } from '../../utils/core';
+import './components/form-column';
 
 /**
  * VlFormGrid
@@ -15,12 +15,12 @@ import "./components/form-column";
  */
 export class VlFormGrid extends VlGrid {
   connectedCallback() {
-    this.classList.add("vl-form-grid");
+    this.classList.add('vl-grid');
   }
 
   get _classPrefix() {
-    return "vl-form-grid--";
+    return 'vl-grid--';
   }
 }
 
-define("vl-form-grid", VlFormGrid, { extends: "div" });
+define('vl-form-grid', VlFormGrid, { extends: 'div' });
