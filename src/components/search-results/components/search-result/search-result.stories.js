@@ -1,19 +1,19 @@
-import { html } from "lit-html";
-import "../../../search-results";
-import styles from "../../../search-results/styles.scss";
-import { stylesheet, docsIntro } from "../../../../../.storybook/utils.js";
+import { html } from 'lit-html';
+import '../../../search-results';
+import styles from '../../../search-results/styles.scss';
+import { stylesheet, docsIntro } from '../../../../../.storybook/utils.js';
 
 export default {
-  title: "native-elements/vl-search-results/vl-search-result",
-  controls: { hideNoControlsWarning: true },
+  title: 'native-elements/vl-search-results/vl-search-result',
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
   parameters: {
+    controls: { hideNoControlsWarning: true },
     docs: {
       description: {
         component: docsIntro({
-          stylesheets: ["search-results"],
-          root: "search-results",
-          intro: "A search result as part of the search results.",
+          stylesheets: ['search-results'],
+          root: 'search-results',
+          intro: 'A search result as part of the search results.',
         }),
       },
     },
