@@ -2,8 +2,6 @@ import { CATEGORIES } from "../../../../.storybook/utils.js";
 
 export const args = {
   stacked: true,
-  stackedSmall: false,
-  stackedLarge: false,
   alignStart: false,
   alignCenter: false,
   alignEnd: false,
@@ -19,26 +17,6 @@ export const argTypes = {
   stacked: {
     name: "data-vl-is-stacked",
     description: "Add margin between stacked columns.",
-    table: {
-      type: { summary: "boolean" },
-      category: CATEGORIES.ATTRIBUTES,
-      defaultValue: { summary: "false" },
-    },
-  },
-  stackedSmall: {
-    name: "data-vl-is-stacked-small",
-    description:
-      "Add a little less margin between stacked columns. The use of `data-vl-is-stacked` is unnecessary in this case.",
-    table: {
-      type: { summary: "boolean" },
-      category: CATEGORIES.ATTRIBUTES,
-      defaultValue: { summary: "false" },
-    },
-  },
-  stackedLarge: {
-    name: "data-vl-is-stacked-large",
-    description:
-      "Add some more margin between stacked columns. The use of `data-vl-is-stacked` is unnecessary in this case.",
     table: {
       type: { summary: "boolean" },
       category: CATEGORIES.ATTRIBUTES,

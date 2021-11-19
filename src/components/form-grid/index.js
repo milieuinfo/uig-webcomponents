@@ -15,11 +15,11 @@ import './components/form-column';
  */
 export class VlFormGrid extends VlGrid {
   connectedCallback() {
-    this.classList.add('vl-grid');
+    this.classList.add('vl-form-grid');
   }
 
   get _classPrefix() {
-    return 'vl-grid--';
+    return 'vl-form-grid--';
   }
 }
 
