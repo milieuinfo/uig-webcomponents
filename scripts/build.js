@@ -21,6 +21,7 @@ const buildConfig = {
     "image",
     "properties",
     "select",
+    "search-results",
   ],
   componentsWithStylesheetAndInlineStyling: ["tooltip"],
 };
