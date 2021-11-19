@@ -1,7 +1,8 @@
-import { vlElement, define } from "../../utils/core";
-import "@govflanders/vl-ui-util/dist/js/util.js";
-import "@govflanders/vl-ui-accordion/dist/js/accordion.js";
-import styles from "./styles.scss";
+/* eslint-disable no-undef */
+import { vlElement, define } from '../../utils/core';
+import '@govflanders/vl-ui-util/dist/js/util.js';
+import '@govflanders/vl-ui-accordion/dist/js/accordion.js';
+import styles from './styles.scss';
 
 /**
  * VlAccordion
@@ -22,7 +23,7 @@ import styles from "./styles.scss";
  */
 export class VlAccordion extends vlElement(HTMLElement) {
   static get _observedAttributes() {
-    return ["toggle-text", "open-toggle-text", "close-toggle-text"];
+    return ['toggle-text', 'open-toggle-text', 'close-toggle-text'];
   }
 
   constructor() {
@@ -54,7 +55,7 @@ export class VlAccordion extends vlElement(HTMLElement) {
   }
 
   _propagateTitleSlotClickToAccordion() {
-    this._titleElement.addEventListener("click", (event) => {
+    this._titleElement.addEventListener('click', (event) => {
       event.stopPropagation();
       this._buttonElement.click();
     });
@@ -65,11 +66,11 @@ export class VlAccordion extends vlElement(HTMLElement) {
   }
 
   get _accordionElement() {
-    return this._element.querySelector("[data-vl-accordion]");
+    return this._element.querySelector('[data-vl-accordion]');
   }
 
   get _buttonElement() {
-    return this._element.querySelector("button");
+    return this._element.querySelector('button');
   }
 
   get _titleElement() {
@@ -77,15 +78,15 @@ export class VlAccordion extends vlElement(HTMLElement) {
   }
 
   get _openToggleTextAttribute() {
-    return this.getAttribute("open-toggle-text");
+    return this.getAttribute('open-toggle-text');
   }
 
   get _closeToggleTextAttribute() {
-    return this.getAttribute("close-toggle-text");
+    return this.getAttribute('close-toggle-text');
   }
 
   get _dressedAttribute() {
-    return this.getAttribute("accordion-dressed");
+    return this.getAttribute('accordion-dressed');
   }
 
   get _isDressed() {
@@ -93,7 +94,7 @@ export class VlAccordion extends vlElement(HTMLElement) {
   }
 
   get _isOpen() {
-    return this._accordionElement.classList.contains("js-vl-accordion--open");
+    return this._accordionElement.classList.contains('js-vl-accordion--open');
   }
 
   /**
@@ -141,14 +142,14 @@ export class VlAccordion extends vlElement(HTMLElement) {
   }
 
   _openToggleTextChangedCallback(oldValue, newValue) {
-    this._titleElement.classList.add("js-vl-accordion__toggle__text");
-    this._titleElement.setAttribute("data-vl-accordion-open-text", newValue);
+    this._titleElement.classList.add('js-vl-accordion__toggle__text');
+    this._titleElement.setAttribute('data-vl-accordion-open-text', newValue);
   }
 
   _closeToggleTextChangedCallback(oldValue, newValue) {
-    this._titleElement.classList.add("js-vl-accordion__toggle__text");
-    this._titleElement.setAttribute("data-vl-accordion-close-text", newValue);
+    this._titleElement.classList.add('js-vl-accordion__toggle__text');
+    this._titleElement.setAttribute('data-vl-accordion-close-text', newValue);
   }
 }
 
-define("vl-accordion", VlAccordion);
+define('vl-accordion', VlAccordion);

@@ -1,40 +1,34 @@
-const fs = require("fs-extra");
-const path = require("path");
-const sass = require("sass");
+const fs = require('fs-extra');
+const path = require('path');
+const sass = require('sass');
 const buildConfig = {
-  src: "src",
-  dist: "lib",
+  src: 'src',
+  dist: 'lib',
   componentsWithStylesheet: [
-    "body",
-    "button",
-    "data-table",
-    "grid",
-    "icon",
-    "introduction",
-    "input-group",
-    "input-addon",
-    "input-field",
-    "link",
-    "side-navigation",
-    "link-list",
-    "titles",
-    "image",
-    "properties",
-    "select",
-    "search-results",
+    'body',
+    'button',
+    'data-table',
+    'grid',
+    'icon',
+    'introduction',
+    'input-group',
+    'input-addon',
+    'input-field',
+    'link',
+    'side-navigation',
+    'link-list',
+    'titles',
+    'image',
+    'properties',
+    'select',
+    'search-results',
   ],
-  componentsWithStylesheetAndInlineStyling: ["tooltip"],
+  componentsWithStylesheetAndInlineStyling: ['tooltip'],
 };
 
-const {
-  src,
-  dist,
-  componentsWithStylesheet,
-  componentsWithStylesheetAndInlineStyling,
-} = buildConfig;
+const { src, dist, componentsWithStylesheet, componentsWithStylesheetAndInlineStyling } = buildConfig;
 
-const createStylesObject = (content) =>
-  `const styles = \`${content}\`; export default styles;`;
+const createStylesObject = (content) => `const styles = \`${content}\`; export default styles;`;
 
 const generateFiles = (filesToGenerate) => {
   filesToGenerate.forEach(({ pathName, content }) => {
@@ -51,21 +45,15 @@ const handleSass = (directoryToSearch, pattern) => {
       handleSass(subDirectoryToSearch, pattern);
     }
     if (stat.isFile() && subDirectoryToSearch.endsWith(pattern)) {
-      const folderName = directoryToSearch.split("/").pop();
+      const folderName = directoryToSearch.split('/').pop();
       const needsStylesheet = componentsWithStylesheet.includes(folderName);
-      const needsStylesheetAndInlineStyling =
-        componentsWithStylesheetAndInlineStyling.includes(folderName);
-      const nativePath = `${subDirectoryToSearch
-        .replace(`/${src}/`, `/${dist}/`)
-        .replace("scss", "css")}`;
-      const customPath = `${subDirectoryToSearch.replace(
-        `/${src}/`,
-        `/${dist}/`
-      )}.js`;
+      const needsStylesheetAndInlineStyling = componentsWithStylesheetAndInlineStyling.includes(folderName);
+      const nativePath = `${subDirectoryToSearch.replace(`/${src}/`, `/${dist}/`).replace('scss', 'css')}`;
+      const customPath = `${subDirectoryToSearch.replace(`/${src}/`, `/${dist}/`)}.js`;
       const result = sass
         .renderSync({
           file: subDirectoryToSearch,
-          outputStyle: "compressed",
+          outputStyle: 'compressed',
         })
         .css.toString();
 
@@ -103,19 +91,19 @@ const replaceFonts = (content) => {
   return content
     .replace(
       new RegExp(/(?:\/font\/flanders\/italic\/FlandersArtSans)/gm),
-      "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSansItalic"
+      'https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSansItalic',
     )
     .replace(
       new RegExp(/(?:\/font\/flanders\/sans\/FlandersArtSans)/gm),
-      "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSans"
+      'https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSans',
     )
     .replace(
       new RegExp(/(?:\/font\/flanders\/serif\/FlandersArtSerif)/gm),
-      "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSerif"
+      'https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSerif',
     )
     .replace(
       new RegExp(/(?:\/font\/iconfont\/vlaanderen-icon.woff)/gm),
-      "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/iconfont/3.12.23/vlaanderen-icon.woff"
+      'https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/iconfont/3.12.23/vlaanderen-icon.woff',
     );
 };
 
@@ -153,11 +141,10 @@ const execute = () => {
   fs.readdirSync(src).map((folder) => {
     fs.copySync(`${src}/${folder}`, `${dist}/${folder}`);
   });
-  handleSass(src, ".scss");
-  removeFolders(dist, "test");
-  removeFolders(dist, "config");
-  removeFilesWithExtension(dist, ".scss");
-  removeFilesWithExtension(dist, ".stories.js");
+  handleSass(src, '.scss');
+  removeFolders(dist, 'config');
+  removeFilesWithExtension(dist, '.scss');
+  removeFilesWithExtension(dist, '.stories.js');
 };
 
 execute();

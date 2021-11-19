@@ -1,7 +1,7 @@
-import { By, Key, Builder } from "selenium-webdriver";
-import { config } from "./config.js";
-import { name } from "../../../package.json";
-import browserstack from "browserstack-local";
+import { By, Key, Builder } from 'selenium-webdriver';
+import browserstack from 'browserstack-local';
+import { config } from './config.js';
+import { name } from '../../../package.json';
 
 // let packagejson;
 // try {
@@ -10,34 +10,35 @@ import browserstack from "browserstack-local";
 //   packagejson = require("../../package.json");
 // }
 
-const chai = require("chai");
-const chaiAsPromised = require("chai-as-promised");
+const chai = require('chai');
+const chaiAsPromised = require('chai-as-promised');
+
 chai.use(chaiAsPromised);
-export const assert = chai.assert;
+export const { assert } = chai;
 const identifier = `${name}-${config.browserName}-browserstack-identifier`;
 
 const capabilities = {
-  resolution: "1920x1080",
+  resolution: '1920x1080',
   os: config.osName,
   os_version: config.osVersion,
   browserName: config.browserName,
   browser_version: config.browserVersion,
-  name: name,
-  build: "Webcomponenten",
-  "browserstack.user": process.env.browserstack_username,
-  "browserstack.key": process.env.browserstack_password,
-  "browserstack.local": true,
-  "browserstack.localIdentifier": identifier,
-  "browserstack.selenium_version": "4.0.0-alpha-6",
-  "browserstack.idleTimeout": 300,
-  "browserstack.SO_TIMEOUT": 300,
+  name,
+  build: 'Webcomponenten',
+  'browserstack.user': process.env.browserstack_username,
+  'browserstack.key': process.env.browserstack_password,
+  'browserstack.local': true,
+  'browserstack.localIdentifier': identifier,
+  'browserstack.selenium_version': '4.0.0-alpha-6',
+  'browserstack.idleTimeout': 300,
+  'browserstack.SO_TIMEOUT': 300,
 };
 
 const startConfig = {
   key: process.env.browserstack_password,
   force: true,
   forcelocal: true,
-  proxyHost: "forwardproxy-pr-build.lb.cumuli.be",
+  proxyHost: 'forwardproxy-pr-build.lb.cumuli.be',
   proxyPort: 3128,
   localIdentifier: identifier,
 };
@@ -45,9 +46,7 @@ const startConfig = {
 let bsLocal;
 let driver;
 
-export const getDriver = () => {
-  return driver;
-};
+export const getDriver = () => driver;
 
 before((done) => {
   if (config.browserstack) {
@@ -55,7 +54,7 @@ before((done) => {
     try {
       bsLocal.start(startConfig, () => {
         driver = new Builder()
-          .usingServer("https://hub-cloud.browserstack.com/wd/hub")
+          .usingServer('https://hub-cloud.browserstack.com/wd/hub')
           .withCapabilities(capabilities)
           // .usingWebDriverProxy('http://forwardproxy-pr-build.lb.cumuli.be:3128')
           .build();

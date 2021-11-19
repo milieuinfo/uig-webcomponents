@@ -13,6 +13,6 @@
     }
   },
   "suites": ["src/**/**/test/unit/**/*.test.html"],
-  "webserver": { "port": "8080" },
+  "webserver": { "port": "8081" },
   "root": "./"
 }

@@ -1,4 +1,4 @@
-import axeBuilder from "axe-webdriverjs";
+import axeBuilder from 'axe-webdriverjs';
 
 export class Page {
   constructor(driver) {
@@ -12,14 +12,11 @@ export class Page {
 
   async hasWcagIssues() {
     const report = await axeBuilder(this.driver).analyze();
-    const violations = report.violations;
+    const { violations } = report;
     if (violations && violations.length > 0) {
-      violations.map((violation, index) =>
-        console.error(`WCAG issue ${++index}: ${violation.description}`)
-      );
+      violations.map((violation, index) => console.error(`WCAG issue ${index}: ${violation.description}`));
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
 }
