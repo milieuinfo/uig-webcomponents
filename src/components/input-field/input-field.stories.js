@@ -1,38 +1,27 @@
-import { html } from "lit-html";
-import "../input-field";
+import { html } from 'lit-html';
+import '../input-field';
 // import "../button";
 // import "../link";
 // import "../form-message";
-import styles from "./styles.scss";
+import styles from './styles.scss';
 // import buttonStyles from "../button/styles.scss";
 // import linkStyles from "../link/styles.scss";
 // import formMessageStyles from "../form-message/styles.scss";
-import {
-  stylesheet,
-  docsIntro,
-  CATEGORIES,
-} from "../../../.storybook/utils.js";
+import { stylesheet, docsIntro, CATEGORIES } from '../../../.storybook/utils.js';
 // import { args, argTypes } from "../form-validation/config";
 // import { VALIDATION_TYPE } from "../form-validation/enums";
 
 export default {
-  title: "native-elements/vl-input-field",
-  decorators: [
-    (story) =>
-      html`
-        ${stylesheet(
-        `${styles}${buttonStyles}${linkStyles}${formMessageStyles}`
-      )}${story()}
-      `,
-  ],
+  title: 'native-elements/vl-input-field',
+  decorators: [(story) => html` ${stylesheet(`${styles}`)}${story()} `],
   parameters: {
     docs: {
       description: {
         component: docsIntro({
-          stylesheets: ["input-field"],
-          root: "input-field",
+          stylesheets: ['input-field'],
+          root: 'input-field',
           intro:
-            "The input field allows the user to enter information in your application: for example an email address or a password.",
+            'The input field allows the user to enter information in your application: for example an email address or a password.',
         }),
       },
     },
@@ -47,48 +36,48 @@ export default {
   },
   argTypes: {
     block: {
-      name: "data-vl-block",
-      description: "The input field will take the width of its parent.",
+      name: 'data-vl-block',
+      description: 'The input field will take the width of its parent.',
       table: {
         category: CATEGORIES.ATTRIBUTES,
-        type: { summary: "boolean" },
-        defaultValue: { summary: "false" },
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
       },
     },
     disabled: {
-      name: "data-vl-disabled",
-      description: "Disables user interaction.",
+      name: 'data-vl-disabled',
+      description: 'Disables user interaction.',
       table: {
         category: CATEGORIES.ATTRIBUTES,
-        type: { summary: "boolean" },
-        defaultValue: { summary: "false" },
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
       },
     },
     error: {
-      name: "data-vl-error",
-      description: "Causes a red border to appear around the input field.",
+      name: 'data-vl-error',
+      description: 'Causes a red border to appear around the input field.',
       table: {
         category: CATEGORIES.ATTRIBUTES,
-        type: { summary: "boolean" },
-        defaultValue: { summary: "false" },
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
       },
     },
     small: {
-      name: "data-vl-small",
-      description: "Small variant of the input field.",
+      name: 'data-vl-small',
+      description: 'Small variant of the input field.',
       table: {
         category: CATEGORIES.ATTRIBUTES,
-        type: { summary: "boolean" },
-        defaultValue: { summary: "false" },
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
       },
     },
     success: {
-      name: "data-vl-success",
-      description: "Causes a green border to appear around the input field.",
+      name: 'data-vl-success',
+      description: 'Causes a green border to appear around the input field.',
       table: {
         category: CATEGORIES.ATTRIBUTES,
-        type: { summary: "string" },
-        defaultValue: { summary: "false" },
+        type: { summary: 'string' },
+        defaultValue: { summary: 'false' },
       },
     },
     // ...argTypes,
