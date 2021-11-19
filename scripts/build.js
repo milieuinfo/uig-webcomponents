@@ -11,6 +11,8 @@ const buildConfig = {
     "grid",
     "icon",
     "introduction",
+    "input-group",
+    "input-addon",
     "input-field",
     "link",
     "side-navigation",
@@ -22,6 +24,7 @@ const buildConfig = {
     "form",
     "form-grid",
     "search-filter",
+    "search-results",
   ],
   componentsWithStylesheetAndInlineStyling: ["tooltip"],
 };
