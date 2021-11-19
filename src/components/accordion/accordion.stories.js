@@ -1,5 +1,5 @@
 import { html } from 'lit-html';
-import '.';
+import '../accordion';
 import { docsIntro } from '../../../.storybook/utils.js';
 
 const defaultArgs = {
