@@ -1,7 +1,12 @@
 import { html } from "lit-html";
 import "../../../grid";
 import styles from "../../styles.scss";
-import { stylesheet, docsIntro } from "../../../../../.storybook/utils.js";
+import {
+  stylesheet,
+  docsIntro,
+  CATEGORIES,
+} from "../../../../../.storybook/utils.js";
+import { args, argTypes } from "./config";
 
 export default {
   title: "native-elements/vl-grid/vl-column",
@@ -17,95 +22,19 @@ export default {
     },
   },
   args: {
-    size: 8,
-    maxSize: 12,
-    mediumSize: 10,
-    mediumMaxSize: 12,
-    smallSize: 12,
-    smallMaxSize: 12,
-    extraSmallSize: 12,
-    extraSmallMaxSize: 12,
-    push: 0,
+    ...args,
     content:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores assumenda dignissimos doloremque eos est eveniet fugiat illo illum impedit, libero nam, omnis optio praesentium qui quod ratione vel voluptas voluptatibus?",
   },
   argTypes: {
-    size: {
-      name: "data-vl-size",
-      type: { summary: "number" },
-      description:
-        "Het aantal (teller) van het maximum (noemer) dat genomen zal worden bij grote schermen, typisch desktop.",
+    ...argTypes,
+    content: {
+      name: "content (for demo purposes)",
       table: {
-        defaultValue: { summary: 8 },
+        type: { summary: "string" },
+        category: CATEGORIES.ATTRIBUTES,
+        defaultValue: { summary: "" },
       },
-    },
-    maxSize: {
-      name: "data-vl-max-size",
-      type: { summary: "number" },
-      description:
-        "Het maximum (noemer) waartegen zal geevalueerd worden bij grote schermen, typisch desktop.",
-      table: {
-        defaultValue: { summary: 12 },
-      },
-    },
-    mediumSize: {
-      name: "data-vl-medium-size",
-      type: { summary: "number" },
-      description:
-        "Het aantal (teller) van het maximum (noemer) dat genomen zal worden bij medium schermen, typisch tablet.",
-      table: {
-        defaultValue: { summary: 10 },
-      },
-    },
-    mediumMaxSize: {
-      name: "data-vl-medium-max-size",
-      type: { summary: "number" },
-      description:
-        "Het maximum (noemer) waartegen zal geevalueerd worden bij medium schermen, typisch tablet.",
-      table: {
-        defaultValue: { summary: 12 },
-      },
-    },
-    smallSize: {
-      name: "data-vl-small-size",
-      type: { summary: "number" },
-      description:
-        "Het aantal (teller) van het maximum (noemer) dat genomen zal worden bij kleine schermen, typisch mobiel.",
-      table: {
-        defaultValue: { summary: 12 },
-      },
-    },
-    smallMaxSize: {
-      name: "data-vl-small-max-size",
-      type: { summary: "number" },
-      description:
-        "Het maximum (noemer) waartegen zal geevalueerd worden bij kleine schermen, typisch mobiel.",
-      table: {
-        defaultValue: { summary: 12 },
-      },
-    },
-    extraSmallSize: {
-      name: "data-vl-extra-small-size",
-      type: { summary: "number" },
-      description:
-        "Het aantal (teller) van het maximum (noemer) dat genomen zal worden bij zeer kleine schermen.",
-      table: {
-        defaultValue: { summary: 12 },
-      },
-    },
-    extraSmallMaxSize: {
-      name: "data-vl-extra-small-max-size",
-      type: { summary: "number" },
-      description:
-        "Het maximum (noemer) waartegen zal geevalueerd worden bij zeer kleine schermen.",
-      table: {
-        defaultValue: { summary: 12 },
-      },
-    },
-    push: {
-      name: "data-vl-push",
-      type: { summary: "number" },
-      description: "aantal partities te verschuiven.",
     },
   },
 };

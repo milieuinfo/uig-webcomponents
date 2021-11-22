@@ -68,6 +68,7 @@
     "@govflanders/vl-ui-pager": "^3.12.24",
     "@govflanders/vl-ui-popover": "^3.12.17",
     "@govflanders/vl-ui-properties": "^3.12.24",
+    "@govflanders/vl-ui-search-filter": "^3.12.17",
     "@govflanders/vl-ui-search-results": "^3.12.3",
     "@govflanders/vl-ui-titles": "^3.12.3",
     "@govflanders/vl-ui-toggle": "^3.12.17",

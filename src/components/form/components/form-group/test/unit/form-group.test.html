@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+
+    <script type="module" src="../../../../../../../lib/components/form/index.js"></script>
+</head>
+
+<body>
+  <test-fixture id="vl-form-group-fixture">
+    <template>
+      <div is="vl-form-group"></div>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('<vl-form-group>', () => {
+      test('de formulier groep class wordt toegevoegd', () => {
+        const element = fixture('vl-form-group-fixture');
+        assert.include([...element.classList], 'vl-form__group');
+      });
+    });
+  </script>
+</body>
+
+</html>
