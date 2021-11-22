@@ -2,7 +2,7 @@ import { html } from 'lit-html';
 import '../grid';
 import styles from './styles.scss';
 import { stylesheet, docsIntro } from '../../../.storybook/utils.js';
-import { args, argTypes } from './config';
+import { sharedArgs, sharedArgTypes } from './config';
 import { CATEGORIES } from '../../../.storybook/utils.js';
 
 export default {
@@ -20,7 +20,7 @@ export default {
     },
   },
   args: {
-    ...args,
+    ...sharedArgs,
     stackedSmall: false,
     stackedLarge: false,
     background: '#f7f9fc',
@@ -30,7 +30,7 @@ export default {
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores assumenda dignissimos doloremque eos est eveniet fugiat illo illum impedit, libero nam, omnis optio praesentium qui quod ratione vel voluptas voluptatibus?',
   },
   argTypes: {
-    ...argTypes,
+    ...sharedArgTypes,
     stackedSmall: {
       name: 'data-vl-is-stacked-small',
       description:

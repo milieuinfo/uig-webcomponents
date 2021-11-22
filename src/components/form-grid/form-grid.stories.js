@@ -10,8 +10,7 @@ import inputFieldStyling from '../input-field/styles.scss';
 import buttonStyling from '../button/styles.scss';
 import formMessageStyle from '../form-message/styles.scss';
 import { stylesheet, docsIntro } from '../../../.storybook/utils.js';
-import { args, argTypes } from '../grid/config';
-import { CATEGORIES } from '../../../.storybook/utils.js';
+import { sharedArgs, sharedArgTypes } from '../grid/config';
 
 export default {
   title: 'native-elements/vl-form-grid',
@@ -30,22 +29,8 @@ export default {
       },
     },
   },
-  args: {
-    ...args,
-    columnsAmount: 7,
-  },
-  argTypes: {
-    ...argTypes,
-    columnsAmount: {
-      name: 'amount of columns',
-      control: { type: 'range', min: 1, max: 12, step: 1 },
-      table: {
-        type: { summary: 'string' },
-        category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: '' },
-      },
-    },
-  },
+  args: sharedArgs,
+  argTypes: sharedArgTypes,
 };
 
 export const Default = ({
@@ -61,46 +46,48 @@ export const Default = ({
   vCenter,
   vBottom,
   vStretch,
-  columnsAmount,
 }) => {
-  const column = html`
-    <div is="vl-form-column" data-vl-size="4">
-      <div
-        is="vl-form-grid"
-        ?data-vl-v-top=${vTop}
-        ?data-vl-v-center=${vCenter}
-        ?data-vl-v-bottom=${vBottom}
-        ?data-vl-v-stretch=${vStretch}
-      >
-        <div is="vl-form-column" data-vl-size="3">
-          <label is="vl-form-label" for="text" data-vl-block>Label</label>
-        </div>
-        <div is="vl-form-column" data-vl-size="9">
-          <input name="email" is="vl-input-field" placeholder="Bijv. naam@voorbeeld.be" data-vl-block />
-        </div>
-      </div>
-    </div>
-  `;
-  const columns = Array.apply(null, Array(columnsAmount));
   return html`
-    <form is="vl-form">
-      <div
-        is="vl-form-grid"
-        ?data-vl-is-stacked=${stacked}
-        ?data-vl-is-stacked-small=${stackedSmall}
-        ?data-vl-is-stacked-large=${stackedLarge}
-        ?data-vl-align-start=${alignStart}
-        ?data-vl-align-center=${alignCenter}
-        ?data-vl-align-end=${alignEnd}
-        ?data-vl-align-space-between=${alignSpaceBetween}
-        ?data-vl-align-space-around=${alignSpaceAround}
-      >
-        ${columns.map(() => column)}
-
-        <div is="vl-form-column" data-vl-size="10" data-vl-push="1">
-          <button is="vl-button" type="submit">Inschrijven</button>
+    <div style="max-width: 800px">
+      <form is="vl-form">
+        <div
+          is="vl-form-grid"
+          ?data-vl-is-stacked=${stacked}
+          ?data-vl-is-stacked-small=${stackedSmall}
+          ?data-vl-is-stacked-large=${stackedLarge}
+          ?data-vl-align-start=${alignStart}
+          ?data-vl-align-center=${alignCenter}
+          ?data-vl-align-end=${alignEnd}
+          ?data-vl-align-space-between=${alignSpaceBetween}
+          ?data-vl-align-space-around=${alignSpaceAround}
+          ?data-vl-v-top=${vTop}
+          ?data-vl-v-center=${vCenter}
+          ?data-vl-v-bottom=${vBottom}
+          ?data-vl-v-stretch=${vStretch}
+        >
+          <div is="vl-form-column" data-vl-size="2">
+            <label is="vl-form-label" for="text" data-vl-block>Email</label>
+          </div>
+          <div is="vl-form-column" data-vl-size="10">
+            <input id="email" name="email" is="vl-input-field" placeholder="Bijv. naam@voorbeeld.be" data-vl-block />
+          </div>
+          <div is="vl-form-column" data-vl-size="2">
+            <label is="vl-form-label" for="text" data-vl-block>Voornaam</label>
+          </div>
+          <div is="vl-form-column" data-vl-size="10">
+            <input id="name" name="name" is="vl-input-field" placeholder="John" data-vl-block />
+          </div>
+          <div id="surname-label-column" is="vl-form-column" data-vl-size="2">
+            <label is="vl-form-label" for="url" data-vl-block>Naam</label>
+          </div>
+          <div id="surname-input-column" is="vl-form-column" data-vl-size="10">
+            <input id="surname" name="surname" is="vl-input-field" placeholder="Doe" data-vl-block />
+          </div>
+          <div is="vl-form-column" data-vl-size="10" data-vl-push="2">
+            <button is="vl-button" type="submit">Inschrijven</button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   `;
 };
