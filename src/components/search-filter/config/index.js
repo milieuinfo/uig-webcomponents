@@ -5,6 +5,7 @@ export const args = {
   alt: false,
   mobileModal: false,
   mobileModalTitle: 'Lorem ipsum dolor set',
+  maxWidth: '800px',
 };
 
 export const argTypes = {
@@ -43,6 +44,11 @@ export const argTypes = {
       type: { summary: 'string' },
       category: CATEGORIES.ATTRIBUTES,
       defaultValue: { summary: '' },
+    },
+  },
+  maxWidth: {
+    table: {
+      disable: true,
     },
   },
 };

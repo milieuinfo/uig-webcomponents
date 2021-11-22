@@ -35,8 +35,8 @@ export default {
   argTypes,
 };
 
-const Template = ({ title, alt, mobileModal, mobileModalTitle }) => html`
-  <div style="max-width: 800px">
+const Template = ({ title, alt, mobileModal, mobileModalTitle, maxWidth }) => html`
+  <div style="max-width: ${maxWidth}">
     <div
       is="vl-search-filter"
       data-vl-title=${title}
