@@ -1,39 +1,39 @@
-import { html } from "lit-html";
-import { bodySimulation, docsIntro } from "../../../.storybook/utils.js";
-import "../header";
+import { html } from 'lit-html';
+import { bodySimulation, docsIntro, CATEGORIES } from '../../../.storybook/utils.js';
+import '../header';
 
 export default {
-  title: "custom-elements/vl-header",
+  title: 'custom-elements/vl-header',
   parameters: {
     docs: {
       description: {
         component: docsIntro({
-          root: "header",
-          intro: "De Vlaanderen header.",
+          root: 'header',
+          intro: 'De Vlaanderen header.',
         }),
       },
     },
   },
   args: {
-    identifier: "59188ff6-662b-45b9-b23a-964ad48c2bfb",
+    identifier: '59188ff6-662b-45b9-b23a-964ad48c2bfb',
     development: true,
   },
   argTypes: {
     identifier: {
-      name: "data-vl-identifier",
-      type: { summary: "string" },
-      description:
-        "De identifier die gebruikt wordt om bij AIV de footer op te halen.",
+      name: 'data-vl-identifier',
+      type: { summary: 'string' },
+      description: 'De identifier die gebruikt wordt om bij AIV de footer op te halen.',
       table: {
-        defaultValue: { summary: "" },
+        category: CATEGORIES.ATTRIBUTES,
+        defaultValue: { summary: '' },
       },
     },
     development: {
-      name: "data-vl-development",
-      type: { summary: "boolean" },
-      description:
-        "Attribuut geeft aan dat de AIV ontwikkel servers gebruikt moeten worden.",
+      name: 'data-vl-development',
+      type: { summary: 'boolean' },
+      description: 'Attribuut geeft aan dat de AIV ontwikkel servers gebruikt moeten worden.',
       table: {
+        category: CATEGORIES.ATTRIBUTES,
         defaultValue: { summary: false },
       },
     },
@@ -41,11 +41,4 @@ export default {
 };
 
 export const Default = ({ identifier, development }) =>
-  bodySimulation(
-    html`
-      <vl-header
-        data-vl-identifier=${identifier}
-        ?data-vl-development=${development}
-      ></vl-header>
-    `
-  );
+  bodySimulation(html` <vl-header data-vl-identifier=${identifier} ?data-vl-development=${development}></vl-header> `);
