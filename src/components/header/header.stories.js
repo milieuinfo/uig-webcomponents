@@ -90,5 +90,16 @@ export default {
   },
 };
 
-export const Default = ({ identifier, development }) =>
-  bodySimulation(html` <vl-header data-vl-identifier=${identifier} ?data-vl-development=${development}></vl-header> `);
+export const Default = ({ identifier, development, loginUrl, loginRedirectUrl, logoutUrl, switchCapacityUrl, authenticatedUserUrl }) =>
+    bodySimulation(
+        html`
+      <vl-header
+        data-vl-identifier=${identifier}
+        ?data-vl-development=${development}
+        data-vl-login-url=${loginUrl}
+        data-vl-login-redirect-url=${loginRedirectUrl}
+        data-vl-logout-url=${logoutUrl}
+        data-vl-switch-capacity-url=${switchCapacityUrl}
+        data-vl-authenticated-user-url=${authenticatedUserUrl}
+      ></vl-header>
+    `);
