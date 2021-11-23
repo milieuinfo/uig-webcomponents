@@ -20,9 +20,23 @@ awaitScript(
 export class VlHeader extends LitElement {
   static get properties() {
     return {
-      identifier: { type: String, attribute: 'data-vl-identifier', reflect: true },
-      development: { type: Boolean, attribute: 'data-vl-development', reflect: true },
+      identifier: {type: String, attribute: 'data-vl-identifier', reflect: true},
+      development: {type: Boolean, attribute: 'data-vl-development', reflect: true},
+      loginUrl: {type: String, attribute: 'data-vl-login-url', reflect: true},
+      loginRedirectUrl: {type: String, attribute: 'data-vl-login-redirect-url', reflect: true},
+      logoutUrl: {type: String, attribute: 'data-vl-logout-url', reflect: true},
+      switchCapacityUrl: {type: String, attribute: 'data-vl-switch-capacity-url', reflect: true},
+      authenticatedUserUrl: {type: String, attribute: 'data-vl-authenticated-user-url', reflect: true}
     };
+  }
+
+  constructor() {
+    super();
+    this.loginUrl = '/sso/aanmelden';
+    this.loginRedirectUrl = '/';
+    this.logoutUrl = '/sso/afgemeld';
+    this.switchCapacityUrl = '/sso/wissel_organisatie';
+    this.authenticatedUserUrl = '/sso/ingelogde_gebruiker';
   }
 
   injectHeader() {
@@ -39,7 +53,7 @@ export class VlHeader extends LitElement {
   }
 
   async __isUserAuthenticated() {
-    const response = await fetch('/LoggedInUser');
+    const response = await fetch(this.authenticatedUserUrl);
     return response.status === 200;
   }
 
@@ -61,10 +75,10 @@ export class VlHeader extends LitElement {
           session.configure({
             active: await this.__isUserAuthenticated(),
             endpoints: {
-              loginUrl: '/aanmelden',
-              loginRedirectUrl: '/',
-              logoutUrl: '/afgemeld',
-              switchCapacityUrl: '/wissel_organisatie',
+              loginUrl: this.loginUrl,
+              loginRedirectUrl: this.loginRedirectUrl,
+              logoutUrl: this.logoutUrl,
+              switchCapacityUrl: this.switchCapacityUrl,
             },
           });
         });
