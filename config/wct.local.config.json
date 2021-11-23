@@ -12,7 +12,7 @@
       }
     }
   },
-  "suites": ["src/**/**/test/unit/**/*.test.html"],
+  "suites": ["src/**/accessibility/test/unit/**/*.test.html"],
   "webserver": { "port": "8081" },
   "root": "./"
 }

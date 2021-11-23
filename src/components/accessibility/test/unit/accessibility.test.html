@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+    <script type="module" src="../../../../../lib/components/accessibility/index.js"></script>
+    <script src="/node_modules/sinon/pkg/sinon.js"></script>
+  </head>
+
+  <body>
+    <test-fixture id="vl-accessibility-fixture">
+      <template>
+        <vl-accessibility></vl-accessibility>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('vl-accessibility', () => {
+        const should = chai.should();
+        const sandbox = sinon.createSandbox();
+
+        test('has a default version, date, application name and modified date', () => {
+          const element = fixture('vl-accessibility-fixture');
+          const introText = element.shadowRoot.querySelector('[is="vl-introduction"] span').innerText;
+
+          // const version = element.shadowRoot.querySelector('#introduction-version');
+          // const date1 = element.shadowRoot.querySelector('#introduction-date');
+          // const date2 = element.shadowRoot.querySelector('#date');
+          // const application = element.shadowRoot.querySelector('#application');
+          // const date3 = element.shadowRoot.querySelector('#date-modified');
+
+          assert.equal(introText, 'Versie 1.0.0 - 20 juli 2021');
+          // assert.equal(date1.innerText, '20 juli 2021');
+          // assert.equal(date2.innerText, '20 juli 2021');
+          // assert.equal(application.innerText, 'deze applicatie');
+          // assert.equal(date3.innerText, '20 juli 2021');
+        });
+
+        // test('de versie en datum kunnen geconfigureerd worden', () => {
+        //   const element = fixture('vl-accessibility-customized-fixture');
+        //   const version = element.shadowRoot.querySelector('#introduction-version');
+        //   const date1 = element.shadowRoot.querySelector('#introduction-date');
+        //   const date2 = element.shadowRoot.querySelector('#date');
+        //   assert.equal(version.innerText, element.dataset.vlVersion);
+        //   assert.equal(date1.innerText, element.dataset.vlDate);
+        //   assert.equal(date2.innerText, element.dataset.vlDate);
+        // });
+
+        // test('de applicatie naam kan geconfigureerd worden', () => {
+        //   const element = fixture('vl-accessibility-customized-fixture');
+        //   const application = element.shadowRoot.querySelector('#application');
+        //   assert.equal(application.innerText, element.dataset.vlApplication);
+        // });
+
+        // test('de datum van wijziging kan geconfigureerd worden', () => {
+        //   const element = fixture('vl-accessibility-customized-fixture');
+        //   const date = element.shadowRoot.querySelector('#date-modified');
+        //   assert.equal(date.innerText, element.dataset.vlDateModified);
+        // });
+      });
+    </script>
+  </body>
+</html>
