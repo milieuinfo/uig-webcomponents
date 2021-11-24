@@ -10,6 +10,7 @@ const buildConfig = {
     'data-table',
     'grid',
     'icon',
+    'infotext',
     'introduction',
     'input-group',
     'input-addon',
