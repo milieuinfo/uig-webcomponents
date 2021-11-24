@@ -14,7 +14,7 @@ describe('vl-action-group', async () => {
     driver.manage().window().maximize();
   });
 
-  it('als gebruiker kan ik het verschil zien tussen een left, center en right aligned action group', async () => {
+  it('as a dev, I can use the action-group wrapper aligned functionality', async () => {
     await driver.get(defaultUrl);
     const actionGroup = await new VlActionGroup(driver, selector);
     await assert.eventually.isTrue(actionGroup.isLeftAligned());
@@ -34,7 +34,7 @@ describe('vl-action-group', async () => {
     await assert.eventually.isTrue(rightAlignedActionGroup.isRightAligned());
   });
 
-  it('als gebruiker kan ik het verschil zien tussen een standaard en een action group space-between variant', async () => {
+  it('as a dev, I can use the action-group wrapper space between functionality', async () => {
     await driver.get(defaultUrl);
     const actionGroup = await new VlActionGroup(driver, selector);
     await assert.eventually.isFalse(actionGroup.hasSpaceBetween());
@@ -44,7 +44,7 @@ describe('vl-action-group', async () => {
     await assert.eventually.isTrue(spaceBetweenActionGroup.hasSpaceBetween());
   });
 
-  it('als gebruiker kan ik het verschil zien tussen een standaard en een action group bordered variant', async () => {
+  it('as a dev, I can use the action-group wrapper bordered functionality', async () => {
     await driver.get(linksUrl);
     const actionGroup = await new VlActionGroup(driver, selector);
     await assert.eventually.isFalse(actionGroup.isBordered());

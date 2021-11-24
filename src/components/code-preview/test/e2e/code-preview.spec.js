@@ -12,7 +12,7 @@ describe('vl-code-preview', async () => {
     driver.manage().window().maximize();
   });
 
-  it('als gebruiker kan ik de code preview bekijken', async () => {
+  it('as a user, I can see the content of a code preview', async () => {
     await driver.get(defaultUrl);
     const element = await new VlCodePreview(driver, 'vl-code-preview');
     const text = await element.getText();
