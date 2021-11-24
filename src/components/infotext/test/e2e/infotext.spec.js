@@ -1,6 +1,6 @@
 import { assert, getDriver, config } from '../../../../utils/test';
 import { By } from '../../../../utils/test';
-import VlInfotext from './vl-infotext.js';
+import VlInfotext from './infotext.js';
 
 const { sbUrl } = config;
 const defaultUrl = `${sbUrl}?id=native-elements-vl-infotext--default`;
