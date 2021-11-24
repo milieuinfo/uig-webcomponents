@@ -5,6 +5,12 @@ import titleStyles from '../../../src/components/titles/styles.scss';
 import introStyles from '../../../src/components/introduction/styles.scss';
 import { removeStorybooksDefaultStyling } from '../../../.storybook/utils';
 
+// const unreleased = change({
+//   version: 'Unreleased',
+//   date: '?',
+//   children: html``,
+// });
+
 const changes = [
   {
     version: '2.0.3',
@@ -21,6 +27,13 @@ const changes = [
       <li>
         <p><code>vl-progress-bar</code></p>
         <p>Introduced a new dependency, called @govflanders/vl-ui-progress-bar.</p>
+      </li>
+      <li>
+        <p><code>vl-data-table</code> &#x1F4A5;</p>
+        <p>
+          The data-table contained a wrong attribute. The <code>data-vl-lined</code> attribute has been changed to
+          <code>data-vl-grid</code>
+        </p>
       </li>
     </ul>`,
   },
@@ -155,12 +168,6 @@ export class Changelog extends LitElement {
     removeStorybooksDefaultStyling();
   }
 
-  // ${change({
-  //   version: 'Unreleased',
-  //   date: '?',
-  //   children: html``,
-  // })}
-
   render() {
     return wrap({
       title: 'Changelog',
@@ -169,12 +176,12 @@ export class Changelog extends LitElement {
           <div is="vl-layout">
             <div is="vl-grid" data-vl-is-stacked>
               ${changes.map(({ version, date, children }) =>
-                change({
-                  version,
-                  date,
-                  children,
-                }),
-              )}
+        change({
+          version,
+          date,
+          children,
+        }),
+      )}
             </div>
           </div>
         </section>
