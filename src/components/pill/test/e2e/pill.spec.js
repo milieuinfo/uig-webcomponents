@@ -1,5 +1,5 @@
 import { assert, getDriver, config } from '../../../../utils/test';
-import { VlPill, VlButtonPill } from './vl-pill.js';
+import { VlPill, VlButtonPill } from './pill.js';
 
 const { sbUrl } = config;
 const defaultUrl = `${sbUrl}?id=custom-elements-vl-pill--default`;
