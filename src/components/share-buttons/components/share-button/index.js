@@ -1,5 +1,5 @@
 import { html, LitElement } from 'lit';
-import { MEDIA, MEDIUM_NAMES } from '../../enums';
+import { MEDIUM_NAMES } from '../../enums';
 
 export class VlShareButton extends LitElement {
   static get properties() {
