@@ -32,7 +32,7 @@ const changes = [
         <p><code>vl-data-table</code> &#x1F4A5;</p>
         <p>
           The data-table contained a wrong attribute. The <code>data-vl-lined</code> attribute has been changed to
-          <code>data-vl-grid</code>
+          <code>data-vl-grid</code>.
         </p>
       </li>
     </ul>`,
