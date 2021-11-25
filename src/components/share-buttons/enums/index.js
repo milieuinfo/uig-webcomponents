@@ -6,7 +6,7 @@ export const MEDIA = {
   MAIL: 'mail',
 };
 
-export const MEDIUM_NAMES = {
+export const MEDIA_NAMES = {
   [MEDIA.FACEBOOK]: 'Facebook',
   [MEDIA.TWITTER]: 'Twitter',
   [MEDIA.LINKED_IN]: 'LinkedIn',

@@ -1,5 +1,5 @@
 import { html, LitElement } from 'lit';
-import { MEDIUM_NAMES } from '../../enums';
+import { MEDIA_NAMES } from '../../enums';
 
 export class VlShareButton extends LitElement {
   static get properties() {
@@ -10,7 +10,7 @@ export class VlShareButton extends LitElement {
   }
 
   render() {
-    const name = MEDIUM_NAMES[this.medium];
+    const name = MEDIA_NAMES[this.medium];
     return html`<a href=${this.href} class="vl-share-button vl-share-button--${this.medium}" title="Deel op ${name}">
       <i class="vl-vi vl-vi-${this.medium}" aria-hidden="true"></i>
       ${name}
