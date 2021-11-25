@@ -8,6 +8,7 @@ const selector = 'vl-pill';
 
 describe('vl-pill', async () => {
   let driver;
+  const identifier = 'vl-pill';
 
   beforeEach(() => {
     driver = getDriver();
