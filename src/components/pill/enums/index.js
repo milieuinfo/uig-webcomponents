@@ -1,4 +1,4 @@
-export const PILL_TYPE = {
+export const TYPE = {
   SUCCESS: 'success',
   WARNING: 'warning',
   ERROR: 'error',

@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions';
-import { PILL_TYPE } from '../enums';
+import { TYPE } from '../enums';
 import { CATEGORIES } from '../../../../.storybook/utils.js';
 
 export const args = {
@@ -32,14 +32,14 @@ export const argTypes = {
   },
   type: {
     name: 'data-vl-type',
-    description: 'Attribute determines the type of warning, error message, problem message, or success message. ',
+    description: 'Attribute determines the type of warning, error message or success message. ',
     control: {
       type: 'select',
-      options: [PILL_TYPE.SUCCESS, PILL_TYPE.WARNING, PILL_TYPE.ERROR],
+      options: [TYPE.SUCCESS, TYPE.WARNING, TYPE.ERROR],
     },
     table: {
       type: {
-        summary: `${PILL_TYPE.SUCCESS} | ${PILL_TYPE.WARNING} | ${PILL_TYPE.ERROR}`,
+        summary: `${TYPE.SUCCESS} | ${TYPE.WARNING} | ${TYPE.ERROR}`,
       },
       category: CATEGORIES.ATTRIBUTES,
       defaultValue: { summary: '' },

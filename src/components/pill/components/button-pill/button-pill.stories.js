@@ -11,6 +11,7 @@ export default {
     docs: {
       description: {
         component: docsIntro({
+          stylesheets: ['pill'],
           root: 'pill',
           intro: 'Use the button-pill component to create buttons with the styling of pills.',
         }),

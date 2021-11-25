@@ -28,12 +28,8 @@ const Template = ({ closable, checkable, type, disabled, close, check }) =>
       ?data-vl-checkable=${checkable}
       data-vl-type=${type}
       ?data-vl-disabled=${disabled}
-      @close=${(event) => {
-      close(event.detail);
-    }}
-      @check=${(event) => {
-      check(event.detail);
-    }}
+      @close=${(event) => close(event)}
+      @check=${(event) => check(event.detail)}
     >
       Optie 1
     </vl-pill>
