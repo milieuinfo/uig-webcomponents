@@ -1,5 +1,5 @@
 import { html, LitElement } from 'lit';
-import { MEDIA } from '../../enums';
+import { MEDIA, MEDIUM_NAMES } from '../../enums';
 
 export class VlShareButton extends LitElement {
   static get properties() {
@@ -9,19 +9,8 @@ export class VlShareButton extends LitElement {
     };
   }
 
-  constructor() {
-    super();
-    this.media = {
-      [MEDIA.FACEBOOK]: 'Facebook',
-      [MEDIA.TWITTER]: 'Twitter',
-      [MEDIA.LINKED_IN]: 'LinkedIn',
-      [MEDIA.GOOGLE_PLUS]: 'Google Plus',
-      [MEDIA.MAIL]: 'mail',
-    };
-  }
-
   render() {
-    const name = this.media[this.medium];
+    const name = MEDIUM_NAMES[this.medium];
     return html`<a href=${this.href} class="vl-share-button vl-share-button--${this.medium}" title="Deel op ${name}">
       <i class="vl-vi vl-vi-${this.medium}" aria-hidden="true"></i>
       ${name}
