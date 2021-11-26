@@ -1,24 +1,22 @@
-const { VlElement } = require("../../../../../test/index.js").Test;
-const { By } = require("../../../../../test/index.js").Test.Setup;
-
-class VlDocument extends VlElement {
+import { VlElement, By } from '../../../../utils/test';
+export class VlDocument extends VlElement {
   async download() {
     const link = await this._getLink();
     await link.click();
   }
 
   async getType() {
-    const element = await this._getSlotElement("type");
+    const element = await this._getSlotElement('type');
     return element.getText();
   }
 
   async getTitle() {
-    const element = await this._getSlotElement("title");
+    const element = await this._getSlotElement('title');
     return element.getText();
   }
 
   async getMetadata() {
-    const element = await this._getSlotElement("metadata");
+    const element = await this._getSlotElement('metadata');
     return element.getText();
   }
 
@@ -32,5 +30,3 @@ class VlDocument extends VlElement {
     return this.shadowRoot;
   }
 }
-
-module.exports = VlDocument;

@@ -1,36 +1,32 @@
-// const {
-//   assert,
-//   getDriver,
-// } = require("../../../../../test/index.js").Test.Setup;
-// const VlDocumentPage = require("./document.page.js");
+import { assert, getDriver, config } from '../../../../utils/test';
+import { VlDocument } from './document';
 
-// describe("vl-document", async () => {
-//   let vlDocumentPage;
+const { sbUrl } = config;
+const defaultUrl = `${sbUrl}?id=custom-elements-vl-document--default`;
 
-//   before(() => {
-//     vlDocumentPage = new VlDocumentPage(getDriver());
-//     return vlDocumentPage.load();
-//   });
+describe('vl-document', async () => {
+  let driver;
 
-//   // it("WCAG", async () => {
-//   //   await assert.eventually.isFalse(vlDocumentPage.hasWcagIssues());
-//   // });
+  beforeEach(() => {
+    driver = getDriver();
+    driver.manage().window().maximize();
+  });
 
-//   it("Als gebruiker kan ik het document type bekijken", async () => {
-//     const document = await vlDocumentPage.getDocument();
-//     await assert.eventually.equal(document.getType(), "PDF");
-//   });
+  it('as a user, I can view the document type', async () => {
+    await driver.get(defaultUrl);
+    const document = await new VlDocument(driver, 'vl-document');
+    await assert.eventually.equal(document.getType(), 'PDF');
+  });
 
-//   it("Als gebruiker kan ik de document titel bekijken", async () => {
-//     const document = await vlDocumentPage.getDocument();
-//     await assert.eventually.equal(
-//       document.getTitle(),
-//       "Hubert en Jan van Eyck, Vlaamse Primitieven"
-//     );
-//   });
+  it('as a user, I can view the document title', async () => {
+    await driver.get(defaultUrl);
+    const document = await new VlDocument(driver, 'vl-document');
+    await assert.eventually.equal(document.getTitle(), 'Hubert en Jan van Eyck, Vlaamse Primitieven');
+  });
 
-//   it("Als gebruiker kan ik de document metadata bekijken", async () => {
-//     const document = await vlDocumentPage.getDocument();
-//     await assert.eventually.equal(document.getMetadata(), "PDF - 580 kB");
-//   });
-// });
+  it('as a user, I can view the document metadata', async () => {
+    await driver.get(defaultUrl);
+    const document = await new VlDocument(driver, 'vl-document');
+    await assert.eventually.equal(document.getMetadata(), 'PDF - 580 kB');
+  });
+});
