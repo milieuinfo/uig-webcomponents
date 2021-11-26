@@ -23,4 +23,5 @@ export class VlShareButtons extends LitElement {
     </div>`;
   }
 }
+
 customElements.define('vl-share-buttons', VlShareButtons);

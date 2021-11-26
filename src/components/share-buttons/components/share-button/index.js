@@ -1,7 +1,16 @@
-import { html, LitElement } from 'lit';
+import { html, LitElement, css, unsafeCSS } from 'lit';
 import { MEDIA_NAMES } from '../../enums';
+import styles from './styles.scss';
 
 export class VlShareButton extends LitElement {
+  static get styles() {
+    return [
+      css`
+        ${unsafeCSS(styles)}
+      `,
+    ];
+  }
+
   static get properties() {
     return {
       medium: { type: String, attribute: 'data-vl-medium', reflect: true },
@@ -15,10 +24,6 @@ export class VlShareButton extends LitElement {
       <i class="vl-vi vl-vi-${this.medium}" aria-hidden="true"></i>
       ${name}
     </a>`;
-  }
-
-  createRenderRoot() {
-    return this;
   }
 }
 customElements.define('vl-share-button', VlShareButton);
