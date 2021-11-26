@@ -13,6 +13,22 @@ import { removeStorybooksDefaultStyling } from '../../../.storybook/utils';
 
 const changes = [
   {
+    version: '2.1.0',
+    date: '18/11/2021',
+    children: html`<ul>
+      <li>
+        <p><code>vl-share-buttons</code></p>
+        <p>
+          A new component is introduced.
+        </p>
+      </li>
+      <li>
+        <p><code>vl-input-field</code></p>
+        <p>Removed a confusing attribute from the docs. Use the native disabled attribute to disable an input-field.</p>
+      </li>
+    </ul>`,
+  },
+  {
     version: '2.0.3',
     date: '18/11/2021',
     children: html`<ul>
@@ -176,12 +192,12 @@ export class Changelog extends LitElement {
           <div is="vl-layout">
             <div is="vl-grid" data-vl-is-stacked>
               ${changes.map(({ version, date, children }) =>
-        change({
-          version,
-          date,
-          children,
-        }),
-      )}
+                change({
+                  version,
+                  date,
+                  children,
+                }),
+              )}
             </div>
           </div>
         </section>
