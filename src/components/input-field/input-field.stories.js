@@ -28,7 +28,6 @@ export default {
   },
   args: {
     block: false,
-    disabled: false,
     error: false,
     small: false,
     success: false,
@@ -38,15 +37,6 @@ export default {
     block: {
       name: 'data-vl-block',
       description: 'The input field will take the width of its parent.',
-      table: {
-        category: CATEGORIES.ATTRIBUTES,
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    disabled: {
-      name: 'data-vl-disabled',
-      description: 'Disables user interaction.',
       table: {
         category: CATEGORIES.ATTRIBUTES,
         type: { summary: 'boolean' },
@@ -84,13 +74,12 @@ export default {
   },
 };
 
-export const Default = ({ block, error, success, disabled, small }) => html`
+export const Default = ({ block, error, success, small }) => html`
   <input
     is="vl-input-field"
     ?data-vl-block=${block}
     ?data-vl-error=${error}
     ?data-vl-success=${success}
-    ?data-vl-disabled=${disabled}
     ?data-vl-small=${small}
   />
 `;
