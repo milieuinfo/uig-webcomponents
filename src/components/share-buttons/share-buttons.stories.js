@@ -1,11 +1,9 @@
 import { html } from 'lit-html';
-import { docsIntro, CATEGORIES, stylesheet } from '../../../.storybook/utils';
-import styles from './styles.scss';
+import { docsIntro, CATEGORIES } from '../../../.storybook/utils';
 import '../share-buttons';
 
 export default {
   title: 'custom-elements/vl-share-buttons',
-  // decorators: [(story) => html`${stylesheet(styles)}${story()}`],
   parameters: {
     docs: {
       description: {
