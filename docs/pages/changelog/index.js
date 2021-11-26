@@ -14,7 +14,7 @@ import { removeStorybooksDefaultStyling } from '../../../.storybook/utils';
 const changes = [
   {
     version: '2.1.0',
-    date: '18/11/2021',
+    date: '26/11/2021',
     children: html`<ul>
       <li>
         <p><code>vl-share-buttons</code></p>
