@@ -84,6 +84,17 @@ export const Default = ({ block, error, success, small }) => html`
   />
 `;
 
+export const Disabled = ({ block, error, success, small }) => html`
+  <input
+    is="vl-input-field"
+    disabled
+    ?data-vl-block=${block}
+    ?data-vl-error=${error}
+    ?data-vl-success=${success}
+    ?data-vl-small=${small}
+    />
+`;
+
 // const Template = ({
 //   validationType,
 //   required,

@@ -3,6 +3,7 @@ import { VlInputField } from './input-field';
 
 const { sbUrl } = config;
 const defaultUrl = `${sbUrl}?id=native-elements-vl-input-field--default`;
+const disabledUrl = `${sbUrl}?id=native-elements-vl-input-field--disabled`;
 const selector = 'input[is="vl-input-field"]';
 
 describe('vl-input-field', async () => {
@@ -61,23 +62,29 @@ describe('vl-input-field', async () => {
     await assert.eventually.isTrue(inputFieldSuccess.isSuccess());
   });
 
-  it('Als gebruiker zie ik het onderscheid tussen een gewoon inputfield en een disabled inputfield', async () => {
+  it('as a user, I can see the difference between a normal input field and a disabled one', async () => {
     await driver.get(defaultUrl);
     const inputField = await new VlInputField(driver, selector);
     await assert.eventually.isTrue(inputField.isEnabled());
-    inputField.setAttribute('disabled', true);
-    await assert.eventually.isFalse(inputField.isEnabled());
+
+    await driver.get(disabledUrl);
+    const inputFieldDisabled = await new VlInputField(driver, selector);
+    await assert.eventually.isFalse(inputFieldDisabled.isEnabled());
   });
 
-  // it('Als gebruiker kan ik geen waarde zetten in een disabled input veld', async () => {
-  //   const inputFieldDisabled = await vlInputFieldPage.getInputFieldDisabled();
-  //   await assert.isRejected(inputFieldDisabled.setValue('foobar'));
-  // });
+  it("as a user, I can't place a value in a disabled input field", async () => {
+    await driver.get(disabledUrl);
+    const inputField = await new VlInputField(driver, selector);
+    await assert.isRejected(inputField.setValue('foobar'));
+  });
 
-  // it('Als gebruiker zie ik het onderscheid tussen een gewoon inputfield en een small inputfield', async () => {
-  //   const inputFieldNotSmall = await vlInputFieldPage.getInputField();
-  //   await assert.eventually.isFalse(inputFieldNotSmall.isSmall());
-  //   const inputFieldSmall = await vlInputFieldPage.getInputFieldSmall();
-  //   await assert.eventually.isTrue(inputFieldSmall.isSmall());
-  // });
+  it('as a dev, I can use the input-field wrapper small functionality', async () => {
+    await driver.get(defaultUrl);
+    const inputField = await new VlInputField(driver, selector);
+    await assert.eventually.isFalse(inputField.isSmall());
+
+    await driver.get(`${defaultUrl}&args=small:true`);
+    const inputFieldSmall = await new VlInputField(driver, selector);
+    await assert.eventually.isTrue(inputFieldSmall.isSmall());
+  });
 });
