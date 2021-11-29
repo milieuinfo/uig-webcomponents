@@ -64,11 +64,9 @@ describe('vl-input-field', async () => {
   it('Als gebruiker zie ik het onderscheid tussen een gewoon inputfield en een disabled inputfield', async () => {
     await driver.get(defaultUrl);
     const inputField = await new VlInputField(driver, selector);
+    await assert.eventually.isTrue(inputField.isEnabled());
+    inputField.setAttribute('disabled', true);
     await assert.eventually.isFalse(inputField.isEnabled());
-
-    await driver.get(`${defaultUrl}&args=disabled:true`);
-    const inputFieldDisabled = await new VlInputField(driver, selector);
-    await assert.eventually.isTrue(inputFieldDisabled.isEnabled());
   });
 
   // it('Als gebruiker kan ik geen waarde zetten in een disabled input veld', async () => {
