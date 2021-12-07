@@ -5,22 +5,28 @@ import titleStyles from '../../../src/components/titles/styles.scss';
 import introStyles from '../../../src/components/introduction/styles.scss';
 import { removeStorybooksDefaultStyling } from '../../../.storybook/utils';
 
-// const unreleased = change({
-//   version: 'Unreleased',
-//   date: '?',
-//   children: html``,
-// });
+const unreleased = [
+  {
+    version: 'Unreleased',
+    date: '?',
+    children: html`<ul>
+      <li>
+        <p><code>vl-action-group</code></p>
+        <p>The stylesheet of the component was not included. Now, it is.</p>
+      </li>
+    </ul>`,
+  },
+];
 
 const changes = [
+  ...unreleased,
   {
     version: '2.1.0',
     date: '26/11/2021',
     children: html`<ul>
       <li>
         <p><code>vl-share-buttons</code></p>
-        <p>
-          A new component is introduced.
-        </p>
+        <p>A new component is introduced.</p>
       </li>
       <li>
         <p><code>vl-input-field</code></p>
