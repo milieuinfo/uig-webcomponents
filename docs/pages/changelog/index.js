@@ -5,7 +5,29 @@ import titleStyles from '../../../src/components/titles/styles.scss';
 import introStyles from '../../../src/components/introduction/styles.scss';
 import { removeStorybooksDefaultStyling } from '../../../.storybook/utils';
 
+// const unreleased = change({
+//   version: 'Unreleased',
+//   date: '?',
+//   children: html``,
+// });
+
 const changes = [
+  {
+    version: '2.1.0',
+    date: '26/11/2021',
+    children: html`<ul>
+      <li>
+        <p><code>vl-share-buttons</code></p>
+        <p>
+          A new component is introduced.
+        </p>
+      </li>
+      <li>
+        <p><code>vl-input-field</code></p>
+        <p>Removed a confusing attribute from the docs. Use the native disabled attribute to disable an input-field.</p>
+      </li>
+    </ul>`,
+  },
   {
     version: '2.0.3',
     date: '18/11/2021',
@@ -21,6 +43,13 @@ const changes = [
       <li>
         <p><code>vl-progress-bar</code></p>
         <p>Introduced a new dependency, called @govflanders/vl-ui-progress-bar.</p>
+      </li>
+      <li>
+        <p><code>vl-data-table</code> &#x1F4A5;</p>
+        <p>
+          The data-table contained a wrong attribute. The <code>data-vl-lined</code> attribute has been changed to
+          <code>data-vl-grid</code>.
+        </p>
       </li>
     </ul>`,
   },
@@ -154,12 +183,6 @@ export class Changelog extends LitElement {
     super.connectedCallback();
     removeStorybooksDefaultStyling();
   }
-
-  // ${change({
-  //   version: 'Unreleased',
-  //   date: '?',
-  //   children: html``,
-  // })}
 
   render() {
     return wrap({

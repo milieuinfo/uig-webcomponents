@@ -86,3 +86,4 @@ export { VlFormColumn } from './components/form-grid/components/form-column';
 export { VlSearchResults } from './components/search-results';
 export { VlSearchResult } from './components/search-results/components/search-result';
 export { VlInfotext } from './components/infotext';
+export { VlLoader } from './components/loader';
