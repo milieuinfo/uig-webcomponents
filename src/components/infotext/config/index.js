@@ -21,7 +21,7 @@ export const argTypes = {
     table: {
       type: { summary: 'boolean' },
       category: CATEGORIES.CHILD_ATTRIBUTES,
-      defaultValue: { summary: 'true' },
+      defaultValue: { summary: 'false' },
     },
     control: {
       disable: true,
@@ -34,7 +34,7 @@ export const argTypes = {
     table: {
       type: { summary: 'boolean' },
       category: CATEGORIES.CHILD_ATTRIBUTES,
-      defaultValue: { summary: 'true' },
+      defaultValue: { summary: 'false' },
     },
     control: {
       disable: true,
