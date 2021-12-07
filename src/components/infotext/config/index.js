@@ -17,7 +17,7 @@ export const argTypes = {
   value: {
     name: 'data-vl-value',
     description:
-      'Apply this attribute on a child of the vl-infotext component to apply the correct big text styling to an element.',
+      'Apply this attribute on a child of the vl-infotext component to apply the correct infotext value styling to an element.',
     table: {
       type: { summary: 'boolean' },
       category: CATEGORIES.CHILD_ATTRIBUTES,
@@ -30,7 +30,7 @@ export const argTypes = {
   text: {
     name: 'data-vl-text',
     description:
-      'Apply this attribute on a child of the vl-infotext component to apply the correct small text styling to an element.',
+      'Apply this attribute on a child of the vl-infotext component to apply the correct infotext text styling to an element.',
     table: {
       type: { summary: 'boolean' },
       category: CATEGORIES.CHILD_ATTRIBUTES,

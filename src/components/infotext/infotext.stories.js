@@ -40,16 +40,16 @@ export const WithLink = ({ badge }) => html`
   </div>
 `;
 
-export const WithComplexContent = ({ badge }) => html`
+export const WithCustomStyling = ({ badge }) => html`
   <div is="vl-infotext" ?data-vl-badge=${badge}>
     <div>
       <div data-vl-value>
-        <span class="lengte-waarde" style="font-size: 1.25em;">150</span>
-        <span class="eenheid-waarde" style="font-size: 1em;">cm</span>
+        <span style="font-size: 1.25em;">150</span>
+        <span style="font-size: 1em;">cm</span>
       </div>
       <div data-vl-text>
-        <span class="lengte" style="font-size: 1.25em;">Lengte</span>
-        <span class="eenheid" style="font-size: 1em;">(eenheid)</span>
+        <span style="font-size: 1.25em;">Lengte</span>
+        <span style="font-size: 1em;">(eenheid)</span>
       </div>
     </div>
   </div>
