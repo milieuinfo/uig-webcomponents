@@ -14,14 +14,13 @@ describe('vl-form', async () => {
     driver.manage().window().maximize();
   });
 
-  it('als gebruiker kan ik een formulier submitten zonder dat de URL aangepast wordt', async () => {
+  it('as a user, I can submit a form without the url getting changed', async () => {
     await driver.get(defaultUrl);
     const form = await new VlForm(driver, selector);
     const input = await new VlInputField(driver, await form.findElement(By.css('input[name="name"]')));
     await input.setValue('foo');
     await form.submit();
     const url = await driver.getCurrentUrl();
-    console.log({ url });
     assert.isTrue(url.endsWith('&viewMode=story'));
   });
 });
