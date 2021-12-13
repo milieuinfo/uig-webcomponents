@@ -1,5 +1,5 @@
 import { VlElement, By } from '../../../../utils/test';
-const { VlLink } = require('vl-ui-link').Test.VlLink;
+import { VlLink } from '../../../link/test/e2e/link';
 
 export class VlFunctionalHeader extends VlElement {
   async getTitle() {
