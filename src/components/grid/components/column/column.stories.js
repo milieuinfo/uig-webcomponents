@@ -1,22 +1,18 @@
-import { html } from "lit-html";
-import "../../../grid";
-import styles from "../../styles.scss";
-import {
-  stylesheet,
-  docsIntro,
-  CATEGORIES,
-} from "../../../../../.storybook/utils.js";
-import { args, argTypes } from "./config";
+import { html } from 'lit-html';
+import '../../../grid';
+import styles from '../../styles.scss';
+import { stylesheet, docsIntro, CATEGORIES } from '../../../../../.storybook/utils.js';
+import { args, argTypes } from './config';
 
 export default {
-  title: "native-elements/vl-grid/vl-column",
+  title: 'native-elements/vl-grid/vl-column',
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
   parameters: {
     docs: {
       description: {
         component: docsIntro({
-          root: "grid",
-          intro: "De parent van een VlColumn is altijd een VlGrid.",
+          root: 'grid',
+          intro: 'De parent van een VlColumn is altijd een VlGrid.',
         }),
       },
     },
@@ -24,22 +20,38 @@ export default {
   args: {
     ...args,
     content:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores assumenda dignissimos doloremque eos est eveniet fugiat illo illum impedit, libero nam, omnis optio praesentium qui quod ratione vel voluptas voluptatibus?",
+      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores assumenda dignissimos doloremque eos est eveniet fugiat illo illum impedit, libero nam, omnis optio praesentium qui quod ratione vel voluptas voluptatibus?',
   },
   argTypes: {
     ...argTypes,
     content: {
-      name: "content (for demo purposes)",
-      table: {
-        type: { summary: "string" },
-        category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: "" },
-      },
+      name: 'content (for demo purposes)',
     },
   },
 };
 
-export const Default = ({
+export const Default = ({ push, content }) => html`<section is="vl-region">
+  <div is="vl-layout">
+    <div is="vl-grid">
+      <div is="vl-column" data-vl-push=${push}>${content}</div>
+    </div>
+  </div>
+</section>`;
+
+const disableArgTypes = () =>
+  Object.keys(argTypes).reduce(
+    (previous, current) => ({
+      ...previous,
+      [current]: { control: { disable: current !== 'push' } },
+    }),
+    {},
+  );
+
+Default.argTypes = {
+  ...disableArgTypes(),
+};
+
+export const WithCustomSizes = ({
   size,
   maxSize,
   mediumSize,
