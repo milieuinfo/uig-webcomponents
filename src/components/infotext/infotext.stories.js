@@ -44,12 +44,10 @@ export const WithCustomStyling = ({ badge }) => html`
   <div is="vl-infotext" ?data-vl-badge=${badge}>
     <div>
       <div data-vl-value>
-        <span style="font-size: 1.25em;">150</span>
-        <span style="font-size: 1em;">cm</span>
+        <span>150 cm</span>
       </div>
       <div data-vl-text>
-        <span style="font-size: 1.25em;">Lengte</span>
-        <span style="font-size: 1em;">(eenheid)</span>
+        <span>Lengte (eenheid)</span>
       </div>
     </div>
   </div>
