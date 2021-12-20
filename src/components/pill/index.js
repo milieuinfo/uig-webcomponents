@@ -41,6 +41,23 @@ export class VlPill extends LitElement {
     };
   }
 
+  static get styles() {
+    return [
+      css`
+        ${unsafeCSS(styles)}
+      `,
+    ];
+  }
+
+  static get properties() {
+    return {
+      [disabled]: { type: Boolean },
+      [type]: { type: String },
+      [closable]: { type: Boolean },
+      [checkable]: { type: Boolean },
+    };
+  }
+
   constructor() {
     super();
     this.disabled = false;
