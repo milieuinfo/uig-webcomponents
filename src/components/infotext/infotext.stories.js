@@ -39,16 +39,3 @@ export const WithLink = ({ badge }) => html`
     </a>
   </div>
 `;
-
-export const WithCustomStyling = ({ badge }) => html`
-  <div is="vl-infotext" ?data-vl-badge=${badge}>
-    <div>
-      <div data-vl-value>
-        <span>150 cm</span>
-      </div>
-      <div data-vl-text>
-        <span>Lengte (eenheid)</span>
-      </div>
-    </div>
-  </div>
-`;
