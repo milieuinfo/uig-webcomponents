@@ -26,6 +26,7 @@ const buildConfig = {
     'form-grid',
     'search-filter',
     'search-results',
+    'action-group',
   ],
   componentsWithStylesheetAndInlineStyling: ['tooltip'],
 };
