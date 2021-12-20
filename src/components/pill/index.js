@@ -1,34 +1,16 @@
-import { define } from '../../utils/core';
+import { html, css, LitElement, unsafeCSS } from 'lit';
 import styles from './styles.scss';
-import { vlPillElement } from './mixin';
 
-/**
- * Pill gesloten event
- * @event VlPill#close
- */
+const props = {
+  disabled: 'data-vl-disabled',
+  type: 'data-vl-type',
+  closable: 'data-vl-closable',
+  checkable: 'data-vl-checkable',
+};
 
-/**
- * Pill checked event
- * @event VlPill#check
- * @property {boolean} checked - Of de pill checked of unchecked werd.
- */
+const { disabled, type, closable, checkable } = props;
 
-/**
- * VlPill
- * @class
- * @classdesc Gebruik de pill om keywoorden (filters of tags) te visualiseren.
- *
- * @extends HTMLElement
- * @mixes vlPillElement
- *
- * @property {boolean} data-vl-closable - Attribuut bepaalt of de pill kan worden verwijderd (kan niet in combinatie met checkable gebruikt worden).
- * @property {boolean} data-vl-checkable - Attribuut bepaalt of de pill kan worden aangevinkt (kan niet in combinatie met closable gebruikt worden).
- *
- * @see {@link http://www.github.com/milieuinfo/webcomponent-vl-ui-pill/releases/latest|Release notes}
- * @see {@link http://www.github.com/milieuinfo/webcomponent-vl-ui-pill/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-pill.html|Demo}
- */
-export class VlPill extends vlPillElement(HTMLElement) {
+export class VlPill extends LitElement {
   static get EVENTS() {
     return {
       close: 'close',
@@ -36,33 +18,39 @@ export class VlPill extends vlPillElement(HTMLElement) {
     };
   }
 
-  constructor() {
-    super(`
-      <style>
-      ${styles}
-      </style>
-      ${VlPill._standardPillTemplate}
-    `);
+  static get styles() {
+    return [
+      css`
+        ${unsafeCSS(styles)}
+      `,
+    ];
   }
 
-  /**
-   * Is de pill aangevinkt?
-   *
-   * @return {boolean} Geeft terug of de pill aangevinkt is. Als de pill niet checkable is, wordt undefined teruggegeven.
-   */
-  get checked() {
+  static get properties() {
+    return {
+      [disabled]: { type: Boolean },
+      [type]: { type: String },
+      [closable]: { type: Boolean },
+      [checkable]: { type: Boolean },
+    };
+  }
+
+  constructor() {
+    super();
+    this[type] = '';
+    this[disabled] = false;
+    this[closable] = false;
+    this[checkable] = false;
+  }
+
+  checked() {
     const checkbox = this._checkbox;
     if (checkbox) {
       return !!checkbox.checked;
     }
   }
 
-  /**
-   * Vinkt de pill aan of uit. Als de pill niet checkable is, gebeurt er niets.
-   *
-   * @param {boolean} checked - Of de pill aangevinkt moet zijn of niet.
-   */
-  set checked(checked) {
+  setChecked() {
     const checkbox = this._checkbox;
     if (checkbox) {
       checkbox.checked = checked;
@@ -70,125 +58,66 @@ export class VlPill extends vlPillElement(HTMLElement) {
     }
   }
 
-  get _classPrefix() {
-    return 'vl-pill--';
+  _checkbox() {
+    return this.shadowRoot.querySelector('#checkbox');
   }
 
-  static get _observedAttributes() {
-    return super._observedAttributes.concat(['closable', 'checkable']);
+  _closeButton() {
+    return this.shadowRoot.querySelector('#close');
   }
 
-  get _pillTemplate() {
-    if (this.getAttribute('checkable') != undefined) {
-      return VlPill._checkablePillTemplate;
-    } else if (this.getAttribute('closable') != undefined) {
-      return VlPill._closablePillTemplate;
-    } else {
-      return VlPill._standardPillTemplate;
+  _isDisabled() {
+    return this.hasAttribute('data-vl-disabled');
+  }
+
+  render() {
+    const disabledClasses = this[disabled] ? 'vl-pill--disabled vl-pill--data-vl-disabled' : '';
+    const typeClasses = this[type] !== '' ? `vl-pill--${this[type]}` : '';
+
+    if (this[closable]) {
+      return html`
+        <div class="vl-pill vl-pill--closable ${disabledClasses} ${typeClasses}">
+          <slot></slot>
+          <button
+            id="close"
+            class="vl-pill__close"
+            type="button"
+            @click=${() => this.dispatchEvent(new CustomEvent(VlPill.EVENTS.close))}
+          >
+            <span class="vl-u-visually-hidden">Optie verwijderen</span>
+          </button>
+        </div>
+      `;
     }
-  }
 
-  static get _standardPillTemplate() {
-    return `
-      <span class="vl-pill">
+    if (this[checkable]) {
+      return html`
+        <label class="vl-pill vl-pill--checkable ${disabledClasses} ${typeClasses}" for="checkbox">
+          <input
+            class="vl-pill--checkable__checkbox"
+            type="checkbox"
+            id="checkbox"
+            name="checkbox"
+            value="checked"
+            @click=${() =>
+          this.dispatchEvent(
+            new CustomEvent('check', {
+              bubbles: true,
+              composed: true,
+            }),
+          )}
+          />
+          <span></span> <slot></slot>
+        </label>
+      `;
+    }
+
+    return html`
+      <span class="vl-pill ${disabledClasses} ${typeClasses}">
         <slot></slot>
       </span>
     `;
   }
-
-  static get _closablePillTemplate() {
-    return `
-      <div class="vl-pill vl-pill--closable">
-        <slot></slot>
-        <button id="close" class="vl-pill__close" type="button">
-          <span class="vl-u-visually-hidden">Optie verwijderen</span>
-        </button>
-      </div>
-    `;
-  }
-
-  static get _checkablePillTemplate() {
-    return `
-      <label class="vl-pill vl-pill--checkable" for="checkbox">
-        <input class="vl-pill--checkable__checkbox" type="checkbox" id="checkbox" name="checkbox" value="checked"/>
-        <span></span> <slot></slot>
-      </label>
-    `;
-  }
-
-  get _checkbox() {
-    return this.shadowRoot.querySelector('#checkbox');
-  }
-
-  get _closeButton() {
-    return this.shadowRoot.querySelector('#close');
-  }
-
-  __removeClosableEventListeners() {
-    const closeButton = this._closeButton;
-    if (closeButton) {
-      closeButton.removeEventListener('click', this._closeClicked.bind(this));
-    }
-  }
-
-  __removeCheckableEventListeners() {
-    const checkbox = this._checkbox;
-    if (checkbox) {
-      checkbox.removeEventListener('click', this._checked.bind(this));
-    }
-  }
-
-  __removeEventListeners() {
-    this.__removeClosableEventListeners();
-    this.__removeCheckableEventListeners();
-  }
-
-  __addClosableEventListeners() {
-    const closeButton = this._closeButton;
-    if (closeButton) {
-      closeButton.addEventListener('click', this._closeClicked.bind(this));
-    }
-  }
-
-  __addCheckableEventListeners() {
-    const checkbox = this._checkbox;
-    if (checkbox) {
-      checkbox.addEventListener('click', this._checked.bind(this));
-    }
-  }
-
-  __addEventListeners() {
-    this.__addClosableEventListeners();
-    this.__addCheckableEventListeners();
-  }
-
-  _redraw() {
-    this.__removeEventListeners();
-    this._shadow.lastElementChild.replaceWith(this._template(this._pillTemplate));
-    this.__addEventListeners();
-  }
-
-  _closeClicked() {
-    this.dispatchEvent(new CustomEvent(VlPill.EVENTS.close));
-  }
-
-  _checked() {
-    this.dispatchEvent(
-      new CustomEvent(VlPill.EVENTS.check, {
-        detail: {
-          checked: this.checked,
-        },
-      }),
-    );
-  }
-
-  _closableChangedCallback() {
-    this._redraw();
-  }
-
-  _checkableChangedCallback() {
-    this._redraw();
-  }
 }
 
-define('vl-pill', VlPill);
+customElements.define('vl-pill', VlPill);

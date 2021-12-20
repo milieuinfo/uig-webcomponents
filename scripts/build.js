@@ -28,7 +28,7 @@ const buildConfig = {
     'action-group',
     'pill',
   ],
-  componentsWithStylesheetAndInlineStyling: ['tooltip'],
+  componentsWithStylesheetAndInlineStyling: ['tooltip', 'pill'],
 };
 
 const { src, dist, componentsWithStylesheet, componentsWithStylesheetAndInlineStyling } = buildConfig;
