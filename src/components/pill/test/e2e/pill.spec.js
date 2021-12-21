@@ -45,6 +45,7 @@ describe('vl-pill', async () => {
 
     await driver.get(`${defaultUrl}&args=type:error`);
     const errorPill = await new VlPill(driver, selector);
+    S;
     await assert.eventually.isFalse(errorPill.isSuccess());
     await assert.eventually.isFalse(errorPill.isWarning());
     await assert.eventually.isTrue(errorPill.isError());
