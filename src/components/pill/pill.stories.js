@@ -21,18 +21,16 @@ export default {
   argTypes,
 };
 
-const Template = ({ closable, checkable, type, disabled, close, check }) =>
-  html`
-    <vl-pill
-      ?data-vl-closable=${closable}
-      ?data-vl-checkable=${checkable}
-      data-vl-type=${type}
-      ?data-vl-disabled=${disabled}
-      @close=${(event) => close(event)}
-      @check=${(event) => check(event.detail)}
-    >
-      Optie 1
-    </vl-pill>
-  `;
-
-export const Default = Template.bind({});
+export const Default = ({ closable, checkable, checked, type, disabled, close, check }) => html`
+  <vl-pill
+    ?data-vl-closable=${closable}
+    ?data-vl-checkable=${checkable}
+    data-vl-type=${type}
+    ?data-vl-disabled=${disabled}
+    ?data-vl-checked=${checked}
+    @close=${(event) => close(event)}
+    @check=${(event) => check(event.detail)}
+  >
+    Optie 1
+  </vl-pill>
+`;

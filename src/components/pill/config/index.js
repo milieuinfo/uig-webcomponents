@@ -5,6 +5,7 @@ import { CATEGORIES } from '../../../../.storybook/utils.js';
 export const args = {
   closable: false,
   checkable: false,
+  checked: false,
   type: '',
   disabled: false,
   close: action('close'),
@@ -24,6 +25,15 @@ export const argTypes = {
   checkable: {
     name: 'data-vl-checkable',
     description: 'Attribute determines whether the pill can be checked (cannot be used in combination with closable).',
+    table: {
+      type: { summary: 'boolean' },
+      category: CATEGORIES.ATTRIBUTES,
+      defaultValue: { summary: 'false' },
+    },
+  },
+  checked: {
+    name: 'data-vl-checked',
+    description: 'Attribute determines whether the pill is checked or not.',
     table: {
       type: { summary: 'boolean' },
       category: CATEGORIES.ATTRIBUTES,

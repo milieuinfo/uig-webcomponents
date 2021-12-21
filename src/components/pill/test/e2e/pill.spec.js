@@ -1,11 +1,10 @@
 import { assert, getDriver, config } from '../../../../utils/test';
-import { VlPill, VlButtonPill } from './pill.js';
+import { VlPill } from './pill.js';
 
 const { sbUrl } = config;
 const defaultUrl = `${sbUrl}?id=custom-elements-vl-pill--default`;
 const closableUrl = `${sbUrl}?id=custom-elements-vl-pill--default&args=closable:true`;
 const checkableUrl = `${sbUrl}?id=custom-elements-vl-pill--default&args=checkable:true`;
-const pillButtonUrl = `${sbUrl}?id=custom-elements-vl-pill-vl-button-pill--default`;
 
 describe('vl-pill', async () => {
   let driver;
@@ -59,26 +58,19 @@ describe('vl-pill', async () => {
     await pill.close();
   });
 
-  it('als gebruiker kan ik een checkable pill aan- en uitvinken', async () => {
-    await driver.get(checkableUrl);
-    const pill = await new VlPill(driver, identifier);
+  //   it('als gebruiker kan ik een checkable pill aan- en uitvinken', async () => {
+  //     await driver.get(checkableUrl);
+  //     const pill = await new VlPill(driver, identifier);
 
-    await assert.eventually.isFalse(pill.isClosable());
-    await assert.eventually.isTrue(pill.isCheckable());
+  //     await assert.eventually.isFalse(pill.isClosable());
+  //     await assert.eventually.isTrue(pill.isCheckable());
 
-    await assert.eventually.isFalse(pill.isChecked());
+  //     await assert.eventually.isFalse(pill.isChecked());
 
-    await pill.toggleCheck();
-    await assert.eventually.isTrue(pill.isChecked());
+  //     await pill.toggleCheck();
+  //     await assert.eventually.isTrue(pill.isChecked());
 
-    await pill.toggleCheck();
-    await assert.eventually.isFalse(pill.isChecked());
-  });
-
-  it('als gebruiker zie ik een pill button', async () => {
-    await driver.get(pillButtonUrl);
-    const pillButton = await new VlButtonPill(driver, 'button');
-    await assert.eventually.isTrue(pillButton.isDisplayed());
-    await assert.eventually.equal(pillButton.getText(), 'Optie 1');
-  });
+  //     await pill.toggleCheck();
+  //     await assert.eventually.isFalse(pill.isChecked());
+  //   });
 });
