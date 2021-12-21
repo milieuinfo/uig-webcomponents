@@ -78,10 +78,10 @@ describe('vl-pill', async () => {
     await assert.eventually.isFalse(pill.isClosable());
     await assert.eventually.isTrue(pill.isCheckable());
 
-    await assert.eventually.isFalse(pill.isChecked());
+    //     await assert.eventually.isFalse(pill.isClosable());
+    //     await assert.eventually.isTrue(pill.isCheckable());
 
-    await pill.toggleCheck();
-    await assert.eventually.isTrue(pill.isChecked());
+    //     await assert.eventually.isFalse(pill.isChecked());
 
     await pill.toggleCheck();
     await assert.eventually.isFalse(pill.isChecked());

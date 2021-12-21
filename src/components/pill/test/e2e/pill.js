@@ -61,5 +61,3 @@ export class VlPill extends VlPillElement {
     return this.shadowRoot.findElement(By.css('#close'));
   }
 }
-
-export class VlButtonPill extends VlPillElement { }

@@ -51,10 +51,32 @@ export class VlPill extends LitElement {
 
   static get properties() {
     return {
-      [disabled]: { type: Boolean },
-      [type]: { type: String },
-      [closable]: { type: Boolean },
-      [checkable]: { type: Boolean },
+      classes: {},
+      disabled: {
+        type: Boolean,
+        attribute: 'data-vl-disabled',
+        reflect: true,
+      },
+      type: {
+        type: String,
+        attribute: 'data-vl-type',
+        reflect: true,
+      },
+      closable: {
+        type: Boolean,
+        attribute: 'data-vl-closable',
+        reflect: true,
+      },
+      checkable: {
+        type: Boolean,
+        attribute: 'data-vl-checkable',
+        reflect: true,
+      },
+      checked: {
+        type: Boolean,
+        attribute: 'data-vl-checked',
+        reflect: true,
+      },
     };
   }
 
