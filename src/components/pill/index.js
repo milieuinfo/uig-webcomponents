@@ -51,7 +51,6 @@ export class VlPill extends LitElement {
 
   static get properties() {
     return {
-      classes: {},
       disabled: {
         type: Boolean,
         attribute: 'data-vl-disabled',
