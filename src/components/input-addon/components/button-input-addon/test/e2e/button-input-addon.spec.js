@@ -12,7 +12,7 @@ describe('vl-input-addon', async () => {
     driver.manage().window().maximize();
   });
 
-  it('als gebruiker zie ik een input addon', async () => {
+  it('as a user, I can see a button input addon', async () => {
     await driver.get(defaultUrl);
     const inputAddonButton = await new VlButtonInputAddon(driver, 'button[is="vl-button-input-addon"]');
     await assert.eventually.isTrue(inputAddonButton.isDisplayed());
