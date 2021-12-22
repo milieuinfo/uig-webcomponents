@@ -12,7 +12,7 @@ describe('vl-privacy', async () => {
     driver.manage().window().maximize();
   });
 
-  it('als gebruiker kan in de privacy pagina zien', async () => {
+  it('as a user, I can see the privacy page', async () => {
     await driver.get(defaultUrl);
     const privacy = await new VlPrivacy(driver, 'vl-privacy');
     await assert.eventually.isTrue(privacy.isDisplayed());
