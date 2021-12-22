@@ -5,13 +5,6 @@ import { classMap } from 'lit/directives/class-map.js';
 import { TYPE } from './enums';
 
 export class VlPill extends LitElement {
-  static get EVENTS() {
-    return {
-      close: 'close',
-      check: 'check',
-    };
-  }
-
   static get styles() {
     return [
       css`
@@ -22,7 +15,6 @@ export class VlPill extends LitElement {
 
   static get properties() {
     return {
-      classes: {},
       disabled: {
         type: Boolean,
         attribute: 'data-vl-disabled',
@@ -53,21 +45,19 @@ export class VlPill extends LitElement {
 
   constructor() {
     super();
-    this.type = '';
     this.disabled = false;
     this.closable = false;
     this.checkable = false;
     this.checked = false;
     this.checkboxRef = createRef();
     this.closeRef = createRef();
-    this.classes = {};
   }
 
   setChecked() {
     this.checked = !this.checked;
 
     this.dispatchEvent(
-      new CustomEvent(VlPill.EVENTS.check, {
+      new CustomEvent('check', {
         bubbles: true,
         composed: true,
         detail: { checked: this.checked },
@@ -75,40 +65,35 @@ export class VlPill extends LitElement {
     );
   }
 
-  _checkbox() {
-    return this.checkboxRef;
-  }
-
-  _closeButton() {
-    return this.closeRef;
-  }
-
-  _isDisabled() {
-    return this.hasAttribute('data-vl-disabled');
-  }
-
   render() {
-    this.classes = {
+    const classes = {
       'vl-pill': true,
       'vl-pill--disabled': this.disabled,
       'vl-pill--data-vl-disabled': this.disabled,
       'vl-pill--success': this.type === TYPE.SUCCESS,
       'vl-pill--warning': this.type === TYPE.WARNING,
       'vl-pill--error': this.type === TYPE.ERROR,
+    };
+
+    const closableClasses = {
+      ...classes,
       'vl-pill--closable': this.closable,
+    };
+
+    const checkableClasses = {
+      ...classes,
       'vl-pill--checkable': this.checkable,
     };
 
     if (this.closable) {
       return html`
-        <div class="${classMap(this.classes)}">
+        <div class="${classMap(closableClasses)}">
             <slot></slot>
             <button
-              id="close"
               ${ref(this.closeRef)}
               class="vl-pill__close"
               type="button"
-              @click=${() => this.dispatchEvent(new CustomEvent(VlPill.EVENTS.close))}
+              @click=${() => this.dispatchEvent(new CustomEvent('close'))}
             >
               <span class="vl-u-visually-hidden">Optie verwijderen</span>
             </button>
@@ -119,7 +104,7 @@ export class VlPill extends LitElement {
 
     if (this.checkable) {
       return html`
-        <label class="${classMap(this.classes)}" for="checkbox">
+        <label class="${classMap(checkableClasses)}" for="checkbox">
           <input
             class="vl-pill--checkable__checkbox"
             type="checkbox"
@@ -128,7 +113,7 @@ export class VlPill extends LitElement {
             ?checked=${this.checked}
             ${ref(this.checkboxRef)}
             value="checked"
-            @click=${() => this.setChecked()}
+            @change=${() => this.setChecked()}
           />
           <span></span> <slot></slot>
         </label>
@@ -136,7 +121,7 @@ export class VlPill extends LitElement {
     }
 
     return html`
-      <span class="${classMap(this.classes)}">
+      <span class="${classMap(classes)}">
         <slot></slot>
       </span>
     `;
