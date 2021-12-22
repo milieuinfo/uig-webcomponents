@@ -12,7 +12,7 @@ describe('vl-introduction', async () => {
     driver.manage().window().maximize();
   });
 
-  it('als gebruiker kan in de introductie lezen', async () => {
+  it('as a user, I can see the introduction', async () => {
     await driver.get(defaultUrl);
     const introduction = await new VlIntroduction(driver, 'p[is="vl-introduction"]');
     await assert.eventually.equal(
