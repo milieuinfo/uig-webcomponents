@@ -1,4 +1,4 @@
-import { assert, getDriver, config, VlElement } from '../../../../utils/test';
+import { assert, getDriver, config } from '../../../../utils/test';
 import { VlH2, VlH3 } from '../../../titles/test/e2e/titles';
 import { VlSideNavigation } from './side-navigation';
 
@@ -90,8 +90,6 @@ describe('vl-side-navigation', async () => {
 
   it('as a user, I can use the navigation menu to navigate to a section on the page', async () => {
     await driver.get(defaultUrl);
-    const body = await new VlElement(driver, 'body');
-    await body.scrollToTop();
     const navigation = await new VlSideNavigation(driver, selector);
     const content1 = await new VlH2(driver, '#content-1 [is="vl-h2"]');
     const content2 = await new VlH2(driver, '#content-2 [is="vl-h2"]');

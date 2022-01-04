@@ -2,7 +2,7 @@ import { assert, getDriver, config } from '../../../../utils/test';
 import { VlAccessibility } from './accessibility';
 
 const { sbUrl } = config;
-const defaultUrl = `${sbUrl}?id=custom-elements-vl-accessibility--default&args=&viewMode=story`;
+const defaultUrl = `${sbUrl}?id=custom-elements-vl-accessibility--default`;
 
 describe('vl-accessibility', async () => {
   let driver;

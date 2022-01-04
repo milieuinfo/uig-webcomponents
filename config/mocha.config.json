@@ -4,7 +4,7 @@
   "reporterOptions": {
     "configFile": "./config/reporter.config.json"
   },
-  "spec": ["./src/**/**/test/e2e/**/*.spec.js"],
+  "spec": ["./src/**/side-navigation/test/e2e/**/*.spec.js"],
   "timeout": "300000",
   "requires": ["babel-register"]
 }
