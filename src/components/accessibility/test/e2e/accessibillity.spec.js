@@ -1,9 +1,8 @@
-import { assert, getDriver, config, VlElement } from '../../../../utils/test';
+import { assert, getDriver, config } from '../../../../utils/test';
+import { VlAccessibility } from './accessibility';
 
 const { sbUrl } = config;
 const defaultUrl = `${sbUrl}?id=custom-elements-vl-accessibility--default&args=&viewMode=story`;
-
-class VlAccessibility extends VlElement {}
 
 describe('vl-accessibility', async () => {
   let driver;
