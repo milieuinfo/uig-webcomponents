@@ -1,18 +1,20 @@
-import { html } from "lit-html";
-import { version } from "../../../package.json";
-import { bodySimulation, docsIntro } from "../../../.storybook/utils.js";
-import "../content-header";
+import { html } from 'lit-html';
+import { version } from '../../../package.json';
+import { bodySimulation, docsIntro, stylesheet } from '../../../.storybook/utils.js';
+import '../content-header';
+import '../titles';
+import styles from '../titles/styles.scss';
 
 export default {
-  title: "custom-elements/vl-template",
+  title: 'custom-elements/vl-template',
+  decorators: [(story) => html`${stylesheet(styles)}${story()}`],
   parameters: {
-    layout: "fullscreen",
+    layout: 'fullscreen',
     docs: {
       description: {
         component: docsIntro({
-          root: "template",
-          intro:
-            "De standaard template voor websites en applicaties van de Vlaamse overheid.",
+          root: 'template',
+          intro: 'De standaard template voor websites en applicaties van de Vlaamse overheid.',
         }),
       },
     },
@@ -20,21 +22,19 @@ export default {
   args: { center: false, stretch: false },
   argTypes: {
     center: {
-      name: "data-vl-v-center",
-      type: { summary: "boolean" },
-      description:
-        "Attribuut wordt gebruikt om ervoor te zorgen dat de content verticaal gecentreerd wordt.",
+      name: 'data-vl-v-center',
+      type: { summary: 'boolean' },
+      description: 'Attribuut wordt gebruikt om ervoor te zorgen dat de content verticaal gecentreerd wordt.',
       table: {
-        defaultValue: { summary: "false" },
+        defaultValue: { summary: 'false' },
       },
     },
     stretch: {
-      name: "data-vl-v-stretch",
-      type: { summary: "boolean" },
-      description:
-        "Attribuut wordt gebruikt om ervoor te zorgen dat de content 100% zal innemen.",
+      name: 'data-vl-v-stretch',
+      type: { summary: 'boolean' },
+      description: 'Attribuut wordt gebruikt om ervoor te zorgen dat de content 100% zal innemen.',
       table: {
-        defaultValue: { summary: "false" },
+        defaultValue: { summary: 'false' },
       },
     },
   },
@@ -58,21 +58,13 @@ const main = html`
         https://images.unsplash.com/photo-1561070791-2526d30994b5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80 2000w
       "
     />
-    <a
-      slot="context-link"
-      href="https://uig-webcomponents.omgeving.vlaanderen.be/"
-      >uig-webcomponents</a
-    >
-    <a
-      slot="title-link"
-      href="https://uig-webcomponents.omgeving.vlaanderen.be/"
-      >${version}</a
-    >
+    <a slot="context-link" href="https://uig-webcomponents.omgeving.vlaanderen.be/">uig-webcomponents</a>
+    <a slot="title-link" href="https://uig-webcomponents.omgeving.vlaanderen.be/">${version}</a>
   </vl-content-header>
   <section is="vl-region">
     <div is="vl-layout">
       <div id="grid" is="vl-grid" is-stacked slot="main">
-        <vl-typography><h1 is="vl-h1">vl-template</h1></vl-typography>
+        <h1 is="vl-h1">vl-template</h1>
       </div>
     </div>
   </section>
@@ -95,5 +87,5 @@ export const Default = ({ center, stretch }) =>
         ></vl-footer>
       </vl-template>
     `,
-    true
+    true,
   );
