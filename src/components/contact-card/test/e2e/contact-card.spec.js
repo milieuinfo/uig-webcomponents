@@ -1,6 +1,6 @@
 import { assert, getDriver } from '../../../../utils/test';
 import { VlContactCardPage } from './contact-card.page.js';
-import { VlPropertiesList } from '../../../properties/test/e2e/properties.js';
+import { VlPropertiesList } from '../../../properties/components/list/test/e2e/list';
 
 describe('vl-contact-card', async () => {
   let driver;

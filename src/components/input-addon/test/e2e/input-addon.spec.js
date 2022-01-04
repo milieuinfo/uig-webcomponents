@@ -24,12 +24,4 @@ describe('vl-input-addon', async () => {
     const tooltip = await new VlTooltip(driver, 'vl-tooltip');
     await assert.eventually.equal(tooltip.getText(), 'Euro');
   });
-
-  it('als gebruiker zie ik een input addon', async () => {
-    const inputAddonButton = await vlInputAddonPage.getInputAddonButton();
-    await assert.eventually.isTrue(inputAddonButton.isDisplayed());
-    const inputAddonButtonIcon = await inputAddonButton.getIcon();
-    await assert.eventually.isTrue(inputAddonButtonIcon.isDisplayed());
-    await assert.eventually.equal(inputAddonButtonIcon.getType(), 'location');
-  });
 });
