@@ -1,27 +1,18 @@
-import { html } from "lit-html";
-import actionGroupStyles from "./styles.scss";
-import "../action-group";
-import "../button";
-import buttonStyles from "../button/styles.scss";
-import "../link";
-import linkStyles from "../button/styles.scss";
-import "../icon";
-import {
-  stylesheet,
-  docsIntro,
-  CATEGORIES,
-} from "../../../.storybook/utils.js";
+import { html } from 'lit-html';
+import actionGroupStyles from './styles.scss';
+import '../action-group';
+import '../button';
+import buttonStyles from '../button/styles.scss';
+import '../link';
+import linkStyles from '../button/styles.scss';
+import '../icon';
+import { stylesheet, docsIntro, CATEGORIES } from '../../../.storybook/utils.js';
 
 export default {
-  title: "native-elements/vl-action-group",
-  decorators: [
-    (story) =>
-      html`${stylesheet(
-        `${actionGroupStyles}${buttonStyles}${linkStyles}`
-      )}${story()}`,
-  ],
+  title: 'native-elements/vl-action-group',
+  decorators: [(story) => html`${stylesheet(`${actionGroupStyles}${buttonStyles}${linkStyles}`)}${story()}`],
   args: {
-    align: "",
+    align: '',
     spaceBetween: false,
     bordered: false,
     collapseL: false,
@@ -31,104 +22,96 @@ export default {
   },
   argTypes: {
     align: {
-      name: "data-vl-align",
+      name: 'data-vl-align',
       type: {
-        summary: "string",
+        summary: 'string',
       },
       control: {
-        type: "select",
-        options: ["left", "center", "right"],
+        type: 'select',
+        options: ['left', 'center', 'right'],
       },
       table: {
         category: CATEGORIES.ATTRIBUTES,
       },
-      description: "Sets the alignment of the action group",
+      description: 'Sets the alignment of the action group',
     },
     spaceBetween: {
-      name: "data-vl-space-between",
+      name: 'data-vl-space-between',
       table: {
         category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: "false" },
+        defaultValue: { summary: 'false' },
       },
-      type: { summary: "boolean" },
-      description: "Sets an equal space between its children.",
+      type: { summary: 'boolean' },
+      description: 'Sets an equal space between its children.',
     },
     bordered: {
-      name: "data-vl-bordered",
+      name: 'data-vl-bordered',
       table: {
         category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: "false" },
+        defaultValue: { summary: 'false' },
       },
-      type: { summary: "boolean" },
+      type: { summary: 'boolean' },
       control: {
         disable: true,
       },
-      description: "Adds a line between each link in the action group.",
+      description: 'Adds a line between each link in the action group.',
     },
     collapseL: {
-      name: "data-vl-collapse-l",
+      name: 'data-vl-collapse-l',
       table: {
         category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: "false" },
+        defaultValue: { summary: 'false' },
       },
-      type: { summary: "boolean" },
+      type: { summary: 'boolean' },
       description:
-        "Makes the action group collapse on a certain breakpoint. This will put the actions underneath each other.",
+        'Makes the action group collapse on a certain breakpoint. This will put the actions underneath each other.',
     },
     collapseM: {
-      name: "data-vl-collapse-m",
+      name: 'data-vl-collapse-m',
       table: {
         category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: "false" },
+        defaultValue: { summary: 'false' },
       },
-      type: { summary: "boolean" },
+      type: { summary: 'boolean' },
       description:
-        "Makes the action group collapse on a certain breakpoint. This will put the actions underneath each other.",
+        'Makes the action group collapse on a certain breakpoint. This will put the actions underneath each other.',
     },
     collapseS: {
-      name: "data-vl-collapse-s",
+      name: 'data-vl-collapse-s',
       table: {
         category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: "false" },
+        defaultValue: { summary: 'false' },
       },
-      type: { summary: "boolean" },
+      type: { summary: 'boolean' },
       description:
-        "Makes the action group collapse on a certain breakpoint. This will put the actions underneath each other.",
+        'Makes the action group collapse on a certain breakpoint. This will put the actions underneath each other.',
     },
     collapseXs: {
-      name: "data-vl-collapse-xs",
+      name: 'data-vl-collapse-xs',
       table: {
         category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: "false" },
+        defaultValue: { summary: 'false' },
       },
-      type: { summary: "boolean" },
+      type: { summary: 'boolean' },
       description:
-        "Makes the action group collapse on a certain breakpoint. This will put the actions underneath each other.",
+        'Makes the action group collapse on a certain breakpoint. This will put the actions underneath each other.',
     },
   },
   parameters: {
     docs: {
       description: {
         component: docsIntro({
-          stylesheets: ["action-group"],
-          root: "action-group",
+          stylesheets: ['action-group'],
+          root: 'action-group',
           intro:
-            "Display several buttons or links consecutively. The group ensures that the buttons or links are aligned correctly.",
+            'Display several buttons or links consecutively. The group ensures that the buttons or links are aligned correctly.',
         }),
       },
     },
   },
 };
 
-export const Default = ({
-  align,
-  spaceBetween,
-  bordered,
-  collapseL,
-  collapseM,
-  collapseS,
-  collapseXs,
-}) => html`<div
+export const Default = ({ align, spaceBetween, bordered, collapseL, collapseM, collapseS, collapseXs }) => html`<div
   is="vl-action-group"
   data-vl-align=${align}
   ?data-vl-space-between=${spaceBetween}
@@ -142,15 +125,7 @@ export const Default = ({
   <button is="vl-button" data-vl-secondary>Annuleren</button>
 </div>`;
 
-export const WithLinks = ({
-  align,
-  spaceBetween,
-  bordered,
-  collapseL,
-  collapseM,
-  collapseS,
-  collapseXs,
-}) => html`<div
+export const WithLinks = ({ align, spaceBetween, bordered, collapseL, collapseM, collapseS, collapseXs }) => html`<div
   is="vl-action-group"
   data-vl-align=${align}
   ?data-vl-space-between=${spaceBetween}

@@ -5,6 +5,7 @@ const { sbUrl } = config;
 const defaultUrl = `${sbUrl}?id=custom-elements-vl-accordion--default`;
 const dynamicToggleUrl = `${sbUrl}?id=custom-elements-vl-accordion--dynamic-toggle`;
 const titleSlotUrl = `${sbUrl}?id=custom-elements-vl-accordion--with-title-slot`;
+const selector = 'vl-accordion';
 
 const assertAccordionCanBeOpenedAndClosed = async (accordion) => {
   await assert.eventually.isTrue(accordion.isClosed());
@@ -27,19 +28,19 @@ describe('vl-accordion', async () => {
 
   it('as a user, I can open and close a standard accordion', async () => {
     await driver.get(defaultUrl);
-    const accordion = await new VlAccordion(driver, 'vl-accordion');
+    const accordion = await new VlAccordion(driver, selector);
     await assertAccordionCanBeOpenedAndClosed(accordion);
   });
 
   it('as a user, I can open and close a dynamic accordion', async () => {
     await driver.get(dynamicToggleUrl);
-    const accordion = await new VlAccordion(driver, 'vl-accordion');
+    const accordion = await new VlAccordion(driver, selector);
     await assertAccordionCanBeOpenedAndClosed(accordion);
   });
 
-  it('als gebruiker kan ik een accordion via Javascript openen en sluiten', async () => {
+  it('as a dev, I can open and close an accordion programmatically', async () => {
     await driver.get(defaultUrl);
-    const accordion = await new VlAccordion(driver, 'vl-accordion');
+    const accordion = await new VlAccordion(driver, selector);
 
     await accordion.open();
     await assert.eventually.isTrue(accordion.isOpen());
@@ -58,22 +59,22 @@ describe('vl-accordion', async () => {
     await assert.eventually.isFalse(accordion.isContentDisplayed());
   });
 
-  it('als gebruiker kan ik een accordion met title slot openen en sluiten', async () => {
+  it('as a user, I can open and close a accordion with a title slot', async () => {
     await driver.get(titleSlotUrl);
-    const accordion = await new VlAccordion(driver, 'vl-accordion');
+    const accordion = await new VlAccordion(driver, selector);
     await assertAccordionCanBeOpenedAndClosed(accordion);
   });
 
-  it('als gebruiker kan ik de titel zien van een standaard accordion', async () => {
+  it('as a user, I can see the title of a standard accordion', async () => {
     await driver.get(defaultUrl);
-    const accordion = await new VlAccordion(driver, 'vl-accordion');
+    const accordion = await new VlAccordion(driver, selector);
     await assert.eventually.equal(accordion.titleText(), 'Lees meer over de onderwijsdoelstelling');
     assert.equal((await accordion.getTitleSlotElements()).length, 0);
   });
 
-  it('als gebruiker kan ik de titel zien van een accordion met title slot', async () => {
+  it('as a user, I can see the title of a standard accordion with a title slot', async () => {
     await driver.get(titleSlotUrl);
-    const accordion = await new VlAccordion(driver, 'vl-accordion');
+    const accordion = await new VlAccordion(driver, selector);
     await assert.eventually.equal(accordion.titleText(), 'Lees meer over de onderwijsdoelstelling');
     assert.eventually.equal(
       (await accordion.getTitleSlotElements())[0].getText(),
@@ -81,18 +82,18 @@ describe('vl-accordion', async () => {
     );
   });
 
-  it('als gebruiker kan ik aan de tekst zien wanneer een dynamische accordion open of gesloten is', async () => {
+  it('as a user, I can see from the text whether a dynamic accordion is open or closed', async () => {
     await driver.get(dynamicToggleUrl);
-    const accordion = await new VlAccordion(driver, 'vl-accordion');
+    const accordion = await new VlAccordion(driver, selector);
     await assert.eventually.equal(accordion.titleText(), 'Open de onderwijsdoelstelling');
     await accordion.open();
     await assert.eventually.equal(accordion.titleText(), 'Sluit de onderwijsdoelstelling');
     await accordion.close();
   });
 
-  it('als gebruiker kan ik de inhoud van een accordion bekijken', async () => {
+  it('as a user, I can see the content of an accordion', async () => {
     await driver.get(defaultUrl);
-    const accordion = await new VlAccordion(driver, 'vl-accordion');
+    const accordion = await new VlAccordion(driver, selector);
     const slotElement = (await accordion.contentSlotElements())[0];
     await assert.eventually.equal(
       slotElement.getText(),

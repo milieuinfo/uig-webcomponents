@@ -1,14 +1,14 @@
-import { VlElement, By } from "../../../../utils/test";
-import { VlIcon } from "../../../icon/test/e2e/icon.js";
+import { VlElement, By } from '../../../../utils/test';
+import { VlIcon } from '../../../icon/test/e2e/icon.js';
 export class VlInfoblock extends VlElement {
   async getTitleSlotElements() {
     const titleSlot = await this._getTitleSlot();
     return this.getAssignedElements(titleSlot);
   }
 
-  async getContentSlotNodes() {
+  async getContentSlotText() {
     const contentSlot = await this._getContentSlot();
-    return this.getAssignedNodes(contentSlot);
+    return await this.driver.executeScript('return arguments[0].assignedNodes()[1].textContent', contentSlot);
   }
 
   async getIcon() {
@@ -16,31 +16,31 @@ export class VlInfoblock extends VlElement {
   }
 
   async getType() {
-    return this.getAttribute("type");
+    return this.getAttribute('type');
   }
 
   async isContact() {
-    return (await this.getType()) == "contact";
+    return (await this.getType()) == 'contact';
   }
 
   async isPublication() {
-    return (await this.getType()) == "publications";
+    return (await this.getType()) == 'publications';
   }
 
   async isFaq() {
-    return (await this.getType()) == "faq";
+    return (await this.getType()) == 'faq';
   }
 
   async isNews() {
-    return (await this.getType()) == "news";
+    return (await this.getType()) == 'news';
   }
 
   async isTimeline() {
-    return (await this.getType()) == "timeline";
+    return (await this.getType()) == 'timeline';
   }
 
   async isQuestion() {
-    return (await this.getType()) == "question";
+    return (await this.getType()) == 'question';
   }
 
   async _getTitleSlot() {
@@ -48,7 +48,7 @@ export class VlInfoblock extends VlElement {
   }
 
   async _getContentSlot() {
-    return this.shadowRoot.findElement(By.css("#infoblock_content slot"));
+    return this.shadowRoot.findElement(By.css('#infoblock_content slot'));
   }
 
   async _getIcon() {
