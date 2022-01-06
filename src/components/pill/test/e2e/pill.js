@@ -1,26 +1,5 @@
-import { VlElement, By } from '../../../../utils/test';
-
-export class VlPillElement extends VlElement {
-  async getType() {
-    return this.getAttribute('data-vl-type');
-  }
-
-  async isSuccess() {
-    return (await this.getType()) === 'success';
-  }
-
-  async isWarning() {
-    return (await this.getType()) === 'warning';
-  }
-
-  async isError() {
-    return (await this.getType()) === 'error';
-  }
-
-  async isDisabled() {
-    return await this.hasAttribute('disabled');
-  }
-}
+import { By } from '../../../../utils/test';
+import { VlPillElement } from './pill-element';
 
 export class VlPill extends VlPillElement {
   async isClosable() {
@@ -43,6 +22,7 @@ export class VlPill extends VlPillElement {
 
   async close() {
     if (await this.isClosable()) {
+      this.driver.executeScript('arguments[0].addEventListener("close", function(){closeIsFired = true})', this);
       const closeButton = await this._getCloseButton();
       await closeButton.click();
     }
@@ -58,6 +38,6 @@ export class VlPill extends VlPillElement {
   }
 
   async _getCloseButton() {
-    return this.shadowRoot.findElement(By.css('#close'));
+    return this.shadowRoot.findElement(By.css('button'));
   }
 }
