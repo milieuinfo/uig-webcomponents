@@ -27,7 +27,6 @@ const buildConfig = {
     'search-filter',
     'search-results',
     'action-group',
-    'pill',
   ],
   componentsWithStylesheetAndInlineStyling: ['tooltip', 'pill'],
 };
