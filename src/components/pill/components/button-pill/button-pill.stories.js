@@ -1,8 +1,9 @@
 import { html } from 'lit-html';
 import '../button-pill';
+import { ifDefined } from 'lit-html/directives/if-defined';
 import styles from '../../styles.scss';
 import { stylesheet, docsIntro } from '../../../../../.storybook/utils.js';
-import { args, argTypes } from './config';
+import { argTypes } from './config';
 
 export default {
   title: 'custom-elements/vl-pill/vl-button-pill',
@@ -18,9 +19,8 @@ export default {
       },
     },
   },
-  args,
   argTypes,
 };
 
 export const Default = ({ type }) =>
-  html` <button is="vl-button-pill" type="button" data-vl-type=${type}>Optie 1</button> `;
+  html` <button is="vl-button-pill" type="button" data-vl-type=${ifDefined(type)}>Optie 1</button> `;

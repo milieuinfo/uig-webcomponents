@@ -1,4 +1,4 @@
-import { vlElement, nativeVlElement, define } from '../../../../utils/core';
+import { nativeVlElement, define } from '../../../../utils/core';
 
 /**
  * VlPillElement
@@ -14,35 +14,32 @@ import { vlElement, nativeVlElement, define } from '../../../../utils/core';
  * @see {@link http://www.github.com/milieuinfo/webcomponent-vl-ui-pill/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-pill.html|Demo}
  */
-export const vlPillElement = (SuperClass) => {
-  return class extends vlElement(SuperClass) {
-    static get _observedAttributes() {
-      return ['type'];
-    }
 
-    static get _observedChildClassAttributes() {
-      return ['disabled'];
-    }
+export class VlButtonPill extends nativeVlElement(HTMLButtonElement) {
+  static get _observedAttributes() {
+    return ['type'];
+  }
 
-    get _classPrefix() {
-      return 'vl-pill--';
-    }
+  static get _observedChildClassAttributes() {
+    return ['disabled'];
+  }
 
-    _typeChangedCallback(oldValue, newValue) {
-      if (['success', 'warning', 'error'].indexOf(newValue) >= 0) {
-        this._changeClass(this._element, oldValue, newValue);
-      } else {
-        this._element.classList.remove(this._classPrefix + oldValue);
-      }
-    }
-  };
-};
+  get _classPrefix() {
+    return 'vl-pill--';
+  }
 
-export class VlButtonPill extends vlPillElement(nativeVlElement(HTMLButtonElement)) {
+  _typeChangedCallback(oldValue, newValue) {
+    if (['success', 'warning', 'error'].indexOf(newValue) >= 0) {
+      this._changeClass(this._element, oldValue, newValue);
+    } else {
+      this._element.classList.remove(this._classPrefix + oldValue);
+    }
+  }
+
   constructor() {
     super();
     this.classList.add('vl-pill');
-    this.classList.add(this._classPrefix + 'clickable');
+    this.classList.add(`${this._classPrefix}clickable`);
   }
 }
 
