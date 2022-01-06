@@ -5,7 +5,21 @@ import titleStyles from '../../../src/components/titles/styles.scss';
 import introStyles from '../../../src/components/introduction/styles.scss';
 import { removeStorybooksDefaultStyling } from '../../../.storybook/utils';
 
-const unreleased = [];
+const unreleased = [
+  {
+    version: 'Unreleased',
+    date: '?',
+    children: html`<ul>
+      <li>
+        <p><code>vl-pill</code></p>
+        <p>
+          If a type was set and you added another attribute, the type styling was removed. We took this opportunity to
+          refactor the component using Lit, and fix the bug.
+        </p>
+      </li>
+    </ul>`,
+  },
+];
 
 const changes = [
   ...unreleased,
