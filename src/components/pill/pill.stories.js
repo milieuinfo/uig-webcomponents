@@ -1,12 +1,11 @@
 import { html } from 'lit-html';
 import '../pill';
-import styles from './styles.scss';
-import { stylesheet, docsIntro } from '../../../.storybook/utils.js';
+import { ifDefined } from 'lit-html/directives/if-defined';
+import { docsIntro } from '../../../.storybook/utils.js';
 import { args, argTypes } from './config';
 
 export default {
   title: 'custom-elements/vl-pill',
-  decorators: [(story) => html`${stylesheet(styles)}${story()}`],
   parameters: {
     docs: {
       description: {
@@ -25,12 +24,11 @@ export const Default = ({ closable, checkable, checked, type, disabled, close, c
   <vl-pill
     ?data-vl-closable=${closable}
     ?data-vl-checkable=${checkable}
-    data-vl-type=${type}
+    data-vl-type=${ifDefined(type)}
     ?data-vl-disabled=${disabled}
-    ?data-vl-checked=${checked}
+    .checked=${checked}
     @close=${(event) => close(event)}
     @check=${(event) => check(event.detail)}
+    >Optie 1</vl-pill
   >
-    Optie 1
-  </vl-pill>
 `;

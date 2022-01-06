@@ -14,7 +14,8 @@ export const args = {
 export const argTypes = {
   closable: {
     name: 'data-vl-closable',
-    description: 'Attribute determines whether the pill can be removed (cannot be used in combination with checkable).',
+    description:
+      'The attribute that determines whether the pill can be removed or not (cannot be used in combination with checkable).',
     table: {
       type: { summary: 'boolean' },
       category: CATEGORIES.ATTRIBUTES,
@@ -23,7 +24,8 @@ export const argTypes = {
   },
   checkable: {
     name: 'data-vl-checkable',
-    description: 'Attribute determines whether the pill can be checked (cannot be used in combination with closable).',
+    description:
+      'the attribute that determines whether the pill can be checked or not (cannot be used in combination with closable).',
     table: {
       type: { summary: 'boolean' },
       category: CATEGORIES.ATTRIBUTES,
@@ -31,17 +33,17 @@ export const argTypes = {
     },
   },
   checked: {
-    name: 'data-vl-checked',
-    description: 'Attribute determines whether the pill is checked or not.',
+    name: 'checked',
+    description: 'The property that determines whether the pill is checked or not.',
     table: {
       type: { summary: 'boolean' },
-      category: CATEGORIES.ATTRIBUTES,
+      category: CATEGORIES.PROPERTIES,
       defaultValue: { summary: 'false' },
     },
   },
   type: {
     name: 'data-vl-type',
-    description: 'Attribute determines the type of warning, error message or success message. ',
+    description: 'The attribute that determines the type. ',
     control: {
       type: 'select',
       options: [TYPE.SUCCESS, TYPE.WARNING, TYPE.ERROR],
@@ -56,7 +58,7 @@ export const argTypes = {
   },
   disabled: {
     name: 'data-vl-disabled',
-    description: 'Attribute determines whether the pill can be disabled.',
+    description: 'The attribute that determines whether the pill is disabled or not.',
     table: {
       type: { summary: 'boolean' },
       category: CATEGORIES.ATTRIBUTES,
@@ -65,13 +67,13 @@ export const argTypes = {
   },
   close: {
     name: 'close',
-    description: 'The custom event fired on click of the close button of the pill component.',
+    description: "The custom event that is triggered on click of the pill's close button.",
     table: { category: CATEGORIES.EVENTS },
   },
   check: {
     name: 'check',
     description:
-      'The custom event fired when checking or unchecking the pill component. In the detail of the event you can find wether the pill is getting checked or unchecked',
+      "The custom event that is triggered on input of the pill's checkbox. In the detail of the event you can find whether the pill is getting checked or unchecked.",
     table: { category: CATEGORIES.EVENTS },
   },
 };

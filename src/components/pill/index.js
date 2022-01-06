@@ -37,8 +37,6 @@ export class VlPill extends LitElement {
       },
       checked: {
         type: Boolean,
-        attribute: 'data-vl-checked',
-        reflect: true,
       },
     };
   }
