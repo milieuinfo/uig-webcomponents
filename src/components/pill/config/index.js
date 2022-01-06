@@ -6,7 +6,6 @@ export const args = {
   closable: false,
   checkable: false,
   checked: false,
-  type: '',
   disabled: false,
   close: action('close'),
   check: action('check'),

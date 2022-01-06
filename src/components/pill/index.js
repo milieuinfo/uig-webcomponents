@@ -1,7 +1,7 @@
 import { html, css, LitElement, unsafeCSS } from 'lit';
 import { createRef, ref } from 'lit/directives/ref.js';
-import styles from './styles.scss';
 import { classMap } from 'lit/directives/class-map.js';
+import styles from './styles.scss';
 import { TYPE } from './enums';
 
 export class VlPill extends LitElement {
@@ -50,19 +50,20 @@ export class VlPill extends LitElement {
     this.checkable = false;
     this.checked = false;
     this.checkboxRef = createRef();
-    this.closeRef = createRef();
   }
 
-  setChecked() {
-    this.checked = !this.checked;
-
-    this.dispatchEvent(
-      new CustomEvent('check', {
-        bubbles: true,
-        composed: true,
-        detail: { checked: this.checked },
-      }),
-    );
+  updated(changedProperties) {
+    changedProperties.forEach((oldValue, propName) => {
+      switch (propName) {
+        case 'checked':
+          if (this.checkboxRef.value) {
+            this.checkboxRef.value.checked = this.checked;
+          }
+          break;
+        default:
+          break;
+      }
+    });
   }
 
   render() {
@@ -90,7 +91,6 @@ export class VlPill extends LitElement {
         <div class="${classMap(closableClasses)}">
             <slot></slot>
             <button
-              ${ref(this.closeRef)}
               class="vl-pill__close"
               type="button"
               @click=${() => this.dispatchEvent(new CustomEvent('close'))}
@@ -113,7 +113,16 @@ export class VlPill extends LitElement {
             ?checked=${this.checked}
             ${ref(this.checkboxRef)}
             value="checked"
-            @change=${() => this.setChecked()}
+            @input=${(event) => {
+              this.checked = event.target.checked;
+              this.dispatchEvent(
+                new CustomEvent('check', {
+                  bubbles: true,
+                  composed: true,
+                  detail: { checked: this.checked },
+                }),
+              );
+            }}
           />
           <span></span> <slot></slot>
         </label>
