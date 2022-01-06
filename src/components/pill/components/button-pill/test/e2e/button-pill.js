@@ -1,3 +1,3 @@
-import { VlPillElement } from '../../../../test/e2e/pill';
+import { VlPillElement } from '../../../../test/e2e/pill-element';
 
-export class VlButtonPill extends VlPillElement { }
+export class VlButtonPill extends VlPillElement {}

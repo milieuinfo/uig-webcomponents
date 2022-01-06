@@ -4,19 +4,18 @@ import { VlButtonPill } from './button-pill.js';
 const { sbUrl } = config;
 const defaultUrl = `${sbUrl}?id=custom-elements-vl-pill-vl-button-pill--default`;
 
-describe('vl-pill', async () => {
+describe('vl-button-pill', async () => {
   let driver;
-  let identifier = 'button';
 
   beforeEach(() => {
     driver = getDriver();
     driver.manage().window().maximize();
   });
 
-  it('als gebruiker zie ik een pill button', async () => {
+  it('as a user, I can see a button pill', async () => {
     await driver.get(defaultUrl);
-    const pillButton = await new VlButtonPill(driver, identifier);
-    await assert.eventually.isTrue(pillButton.isDisplayed());
-    await assert.eventually.equal(pillButton.getText(), 'Optie 1');
+    const buttonPill = await new VlButtonPill(driver, 'button[is="vl-button-pill"]');
+    await assert.eventually.isTrue(buttonPill.isDisplayed());
+    await assert.eventually.equal(buttonPill.getText(), 'Optie 1');
   });
 });
