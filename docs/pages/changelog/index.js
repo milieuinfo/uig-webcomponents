@@ -10,6 +10,19 @@ const unreleased = [];
 const changes = [
   ...unreleased,
   {
+    version: '2.1.2',
+    date: '6/1/2022',
+    children: html`<ul>
+      <li>
+        <p><code>Test wrappers</code></p>
+        <p>
+          From now on, you can find a test wrapper in the folder of the component to use in your tests. Some customers
+          depended on it, that's why we included it.
+        </p>
+      </li>
+    </ul>`,
+  },
+  {
     version: '2.1.1',
     date: '15/12/2021',
     children: html`<ul>
