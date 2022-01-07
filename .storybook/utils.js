@@ -33,11 +33,5 @@ export const CATEGORIES = {
   ATTRIBUTES: 'Attributes',
   PROPERTIES: 'Properties',
   EVENTS: 'Events',
-};
-
-export const CATEGORIES = {
-  ATTRIBUTES: "Attributes",
-  PROPERTIES: "Properties",
-  EVENTS: "Events",
-  SLOTS: "Slots",
+  SLOTS: 'Slots',
 };

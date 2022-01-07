@@ -1,8 +1,8 @@
 import { html } from 'lit-html';
 import '../cookie-consent';
 import '../cookie-consent/new';
-import { CATEGORIES } from '../../../.storybook/utils.js';
 import { action } from '@storybook/addon-actions';
+import { CATEGORIES } from '../../../.storybook/utils.js';
 
 export default {
   title: 'custom-elements/vl-cookie-consent',
@@ -52,17 +52,23 @@ export default {
   },
 };
 
-export const Default = ({ functionalOptinDisabled, owner, autoOpenDisabled, link, submitted, reset, analytics }) => {
-  return html`<vl-cookie-consent-new
-    ?data-vl-auto-opt-in-functional-disabled=${functionalOptinDisabled}
-    data-vl-owner=${owner}
-    ?data-vl-auto-open-disabled=${autoOpenDisabled}
-    ?data-vl-analytics=${analytics}
-    data-vl-link=${link}
-    @vl-submitted=${(event) => submitted(event.detail)}
-    @vl-reset=${(event) => reset(event.detail)}
-  ></vl-cookie-consent-new>`;
-};
+export const Default = ({
+  functionalOptinDisabled,
+  owner,
+  autoOpenDisabled,
+  link,
+  submitted,
+  reset,
+  analytics,
+}) => html`<vl-cookie-consent-new
+  ?data-vl-auto-opt-in-functional-disabled=${functionalOptinDisabled}
+  data-vl-owner=${owner}
+  ?data-vl-auto-open-disabled=${autoOpenDisabled}
+  ?data-vl-analytics=${analytics}
+  data-vl-link=${link}
+  @vl-submitted=${(event) => submitted(event.detail)}
+  @vl-reset=${(event) => reset(event.detail)}
+></vl-cookie-consent-new>`;
 
 export const WithExtraOptIns = ({
   functionalOptinDisabled,
@@ -83,7 +89,22 @@ export const WithExtraOptIns = ({
     @vl-reset=${(event) => reset(event.detail)}
   ></vl-cookie-consent-new>`;
 
-export const Old = ({ open, functionalOptinDisabled, owner, autoOpenDisabled }) =>
+export const WithoutFuntionalOptIn = ({
+  owner,
+  autoOpenDisabled,
+  link,
+  submitted,
+  reset,
+}) => html`<vl-cookie-consent-new
+  data-vl-auto-opt-in-functional-disabled
+  data-vl-owner=${owner}
+  ?data-vl-auto-open-disabled=${autoOpenDisabled}
+  data-vl-link=${link}
+  @vl-submitted=${(event) => submitted(event.detail)}
+  @vl-reset=${(event) => reset(event.detail)}
+></vl-cookie-consent-new>`;
+
+export const Old = () =>
   html`<vl-cookie-consent id="cookie-consent" data-vl-auto-open-disabled="" data-vl-auto-opt-in-functional-disabled>
       <vl-cookie-consent-opt-in
         id="socialmedia"

@@ -1,21 +1,10 @@
+/* eslint-disable consistent-return */
 import { LitElement, css, html, unsafeCSS, nothing } from 'lit';
 import { ref, createRef } from 'lit/directives/ref.js';
 import styles from './styles.scss';
 import '../form-grid';
 import { analytics } from './analytics.js';
-
-const attributes = {
-  vlAnalytics: 'data-vl-analytics',
-  autoOpenDisabled: 'data-vl-auto-open-disabled',
-  functionalOptInDisabled: 'data-vl-auto-opt-in-functional-disabled',
-  owner: 'data-vl-owner',
-  link: 'data-vl-link',
-};
-
-const events = { submitted: 'vl-submitted', reset: 'vl-reset' };
-
-const { vlAnalytics, autoOpenDisabled, functionalOptInDisabled, owner, link } = attributes;
-const { submitted, reset } = events;
+import { defaultOptIns, canModalOpen, functionalOptIn, submitCookies, resetCookies, getNewOptIns } from './utils';
 
 export class VlCookieConsentNew extends LitElement {
   static get styles() {
@@ -28,11 +17,11 @@ export class VlCookieConsentNew extends LitElement {
 
   static get properties() {
     return {
-      [vlAnalytics]: { type: Boolean },
-      [autoOpenDisabled]: { type: Boolean },
-      [functionalOptInDisabled]: { type: Boolean },
-      [owner]: { type: String },
-      [link]: { type: String },
+      vlAnalytics: { type: Boolean, attribute: 'data-vl-analytics', reflect: true },
+      autoOpenDisabled: { type: Boolean, attribute: 'data-vl-auto-open-disabled', reflect: true },
+      functionalOptInDisabled: { type: Boolean, attribute: 'data-vl-auto-opt-in-functional-disabled', reflect: true },
+      owner: { type: String, attribute: 'data-vl-owner', reflect: true },
+      link: { type: String, attribute: 'data-vl-link', reflect: true },
       submit: { type: Function },
       open: { type: Function },
       reset: { type: Function },
@@ -43,37 +32,18 @@ export class VlCookieConsentNew extends LitElement {
     };
   }
 
-  _defaultOptIns() {
-    return [
-      {
-        name: 'functional',
-        label: 'Noodzakelijke cookies toestaan (verplicht)',
-        checked: true,
-        mandatory: true,
-        description:
-          'Noodzakelijke cookies helpen een website bruikbaarder te maken, door basisfuncties als paginanavigatie en toegang tot beveiligde gedeelten van de website mogelijk te maken. Zonder deze cookies kan de website niet naar behoren werken.',
-      },
-      { name: 'cookie-consent', checked: true, mandatory: true },
-      { name: 'cookie-consent-date', checked: true, mandatory: true, value: new Date().getTime() },
-    ];
-  }
-
   constructor() {
     super();
-    this.optIns = this._defaultOptIns();
-    this[vlAnalytics] = false;
-    this[functionalOptInDisabled] = false;
-    this[autoOpenDisabled] = false;
+    this.modalRef = createRef();
+    this.vlAnalytics = false;
+    this.functionalOptInDisabled = false;
+    this.autoOpenDisabled = false;
+    this.optIns = defaultOptIns;
     this.open = () => this.modalRef.value.open();
     this.submit = () => {
-      const submittedCookies = this.optIns.map(({ checked, name, value }) => {
-        const cookieName = this._getCookieName(name);
-        const cookieValue = value || checked || false;
-        document.cookie = `${cookieName}=${cookieValue};Max-Age=2147483647;path=/;SameSite=Strict;`;
-        return { name: cookieName, value: cookieValue };
-      });
+      const submittedCookies = submitCookies(this.optIns);
       this.dispatchEvent(
-        new CustomEvent(submitted, {
+        new CustomEvent('vl-submitted', {
           bubbles: true,
           composed: true,
           detail: submittedCookies,
@@ -82,100 +52,50 @@ export class VlCookieConsentNew extends LitElement {
       this.modalRef.value.close();
     };
     this.reset = () => {
-      const resetCookies = this.optIns.map(({ name }) => {
-        const cookieName = this._getCookieName(name);
-        document.cookie = `${cookieName}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;`;
-        return { name: cookieName };
-      });
+      const resettedCookies = resetCookies(this.optIns);
       this.dispatchEvent(
-        new CustomEvent(reset, {
+        new CustomEvent('vl-reset', {
           bubbles: true,
           composed: true,
-          detail: resetCookies,
+          detail: resettedCookies,
         }),
       );
     };
-    this.isOptInChecked = (name) => {
-      const optIn = this.optIns.find((optIn) => optIn.name === name);
-      return optIn ? optIn.checked : false;
+    this._addFunctionalOptIn = () => {
+      if (!this.optIns.find((optIn) => optIn.name === functionalOptIn.name)) {
+        this.optIns = [functionalOptIn, ...this.optIns];
+      }
     };
-  }
-
-  modalRef = createRef();
-
-  _getCookieName(name) {
-    return `vl-cookie-consent-${name}`;
-  }
-
-  _getCookie(name) {
-    name = `${this._getCookieName(name)}=`;
-    const cookies = document.cookie.split(';');
-    for (let i = 0; i < cookies.length; i++) {
-      let cookie = cookies[i];
-      while (cookie.charAt(0) == ' ') {
-        cookie = cookie.substring(1);
+    this._filterFunctionalOptIn = () => {
+      this.optIns = this.optIns.filter((optIn) => optIn.name !== functionalOptIn.name);
+    };
+    this._handleFunctionalOptIn = () => {
+      if (this.functionalOptInDisabled) {
+        this._filterFunctionalOptIn();
+      } else {
+        this._addFunctionalOptIn();
       }
-      if (cookie.indexOf(name) == 0) {
-        try {
-          return JSON.parse(cookie.substring(name.length, cookie.length));
-        } catch (error) {
-          return cookie.substring(name.length, cookie.length);
-        }
-      }
-    }
-  }
-
-  _addFunctionalOptIn() {
-    if (!this.optIns.find((optIn) => optIn.name === 'functional')) {
-      this.optIns = [
-        {
-          name: 'functional',
-          label: 'Noodzakelijke cookies toestaan (verplicht)',
-          checked: true,
-          mandatory: true,
-          description:
-            'Noodzakelijke cookies helpen een website bruikbaarder te maken, door basisfuncties als paginanavigatie en toegang tot beveiligde gedeelten van de website mogelijk te maken. Zonder deze cookies kan de website niet naar behoren werken.',
-        },
-        ...this.optIns,
-      ];
-    }
-  }
-
-  _filterFunctionalOptIn() {
-    this.optIns = this.optIns.filter((optIn) => optIn.name !== 'functional');
-  }
-
-  _handleFunctionalOptIn() {
-    this[functionalOptInDisabled] ? this._filterFunctionalOptIn() : this._addFunctionalOptIn();
+    };
   }
 
   updated(changedProperties) {
     changedProperties.forEach((oldValue, propName) => {
       switch (propName) {
         case 'extraOptIns':
-          const newOptIns = this.extraOptIns.map((optIn) => {
-            return { ...optIn, checked: optIn.defaultChecked || optIn.mandatory || false };
-          });
-          this.optIns = [...this._defaultOptIns(), ...newOptIns];
+          this.optIns = [...defaultOptIns, ...getNewOptIns(this.extraOptIns)];
           this._handleFunctionalOptIn();
           break;
-        case functionalOptInDisabled:
+        case 'functionalOptInDisabled':
           this._handleFunctionalOptIn();
           break;
-        case autoOpenDisabled:
-          const hasConsentCookie = this._getCookie('cookie-consent');
-          const consentDateCookie = this._getCookie('cookie-consent-date');
-          const isConsentDateCookieValid =
-            !isNaN(consentDateCookie) && new Date(consentDateCookie) > new Date('2019/05/14');
-          if (
-            !this[autoOpenDisabled] &&
-            (!hasConsentCookie || consentDateCookie === undefined || !isConsentDateCookieValid)
-          ) {
+        case 'autoOpenDisabled':
+          if (canModalOpen(this.autoOpenDisabled)) {
             this.modalRef.value.open();
           }
-        case vlAnalytics:
-          if (this[vlAnalytics]) {
-            if (!this[functionalOptInDisabled]) {
+          break;
+        case 'vlAnalytics':
+          if (this.vlAnalytics) {
+            if (!this.functionalOptInDisabled) {
               if (!document.getElementById(analytics.scriptId)) {
                 console.log(analytics.script);
                 document.head.appendChild(analytics.script);
@@ -197,7 +117,7 @@ export class VlCookieConsentNew extends LitElement {
     return html`<vl-modal data-vl-title="Cookie-toestemming" data-vl-not-cancellable ${ref(this.modalRef)}>
       <div is="vl-form-grid" data-vl-is-stacked slot="content">
         <div is="vl-form-column">
-          ${this[owner]} maakt op de websites waarvoor zij verantwoordelijk is gebruik van "cookies" en vergelijkbare
+          ${this.owner} maakt op de websites waarvoor zij verantwoordelijk is gebruik van "cookies" en vergelijkbare
           internettechnieken. Cookies zijn kleine "tekstbestanden" die worden gebruikt om onze websites en apps beter te
           laten werken en jouw surfervaring te verbeteren. Zij kunnen worden opgeslagen in de context van de
           webbrowser(s) die je gebruikt bij het bezoeken van onze website(s).
@@ -209,8 +129,8 @@ export class VlCookieConsentNew extends LitElement {
         </div>
         <div is="vl-form-column">
           Op
-          <a id="link" href=${this[link]} target="_blank">${this[link]}</a>
-          vind je meer informatie over de manier waarop ${this[owner]} omgaat met uw privacy:
+          <a id="link" href=${this.link} target="_blank">${this.link}</a>
+          vind je meer informatie over de manier waarop ${this.owner} omgaat met uw privacy:
           <ul>
             <li>ons privacybeleid, vertaald in de Privacyverklaring</li>
             <li>algemene informatie over de nieuwe Privacywet</li>
@@ -218,10 +138,17 @@ export class VlCookieConsentNew extends LitElement {
           </ul>
         </div>
         <div is="vl-form-column">
-          De cookie-toestemming die je geeft is van toepassing op meerdere websites, subsites en apps van
-          ${this[owner]}. Welke dit zijn, vind je via de Privacyverklaring. Je kunt naderhand een eerdere toestemming
-          intrekken of wijzigen.
+          De cookie-toestemming die je geeft is van toepassing op meerdere websites, subsites en apps van ${this.owner}.
+          Welke dit zijn, vind je via de Privacyverklaring. Je kunt naderhand een eerdere toestemming intrekken of
+          wijzigen.
         </div>
+        <div is="vl-form-column">
+          Naast noodzakelijke cookies gebruikt deze website Matomo voor analyse en om uw gebruikerservaring te
+          verbeteren. We verwerken daarvoor uw IP-adres. Deze gegevens worden enkel verwerkt door het Departement
+          Omgeving en onze verwerkers. Meer informatie vind u in onze privacyverklaring
+          (https://omgeving.vlaanderen.be/privacy).
+        </div>
+
         ${this.optIns.map(({ label, checked, mandatory, description, name }) =>
           label
             ? html`<div is="vl-form-column" style="width: 100%">
@@ -229,10 +156,11 @@ export class VlCookieConsentNew extends LitElement {
                   data-vl-label=${label}
                   ?data-vl-checked=${checked}
                   ?data-vl-disabled=${mandatory}
-                  @change=${({ currentTarget }) =>
-                    (this.optIns = this.optIns.map((optIn) =>
+                  @change=${({ currentTarget }) => {
+                    this.optIns = this.optIns.map((optIn) =>
                       optIn.name === name ? { ...optIn, checked: currentTarget.checked } : optIn,
-                    ))}
+                    );
+                  }}
                 ></vl-checkbox>
                 ${description ? html`<p is="vl-form-annotation" data-vl-block>${description}</p>` : nothing}
               </div>`
@@ -240,7 +168,7 @@ export class VlCookieConsentNew extends LitElement {
         )}
       </div>
       <button @click=${() => this.submit()} is="vl-button" slot="button">
-        ${this.optIns.length ? 'Bewaar keuze' : 'Ik begrijp het'}
+        ${this.optIns.length > defaultOptIns.length ? 'Bewaar keuze' : 'Ik begrijp het'}
       </button>
     </vl-modal>`;
   }
