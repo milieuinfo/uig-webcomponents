@@ -3,7 +3,7 @@ import { LitElement, css, html, unsafeCSS, nothing } from 'lit';
 import { ref, createRef } from 'lit/directives/ref.js';
 import styles from './styles.scss';
 import '../form-grid';
-import { analytics } from './analytics.js';
+import { analytics as matomo } from './analytics.js';
 import { defaultOptIns, canModalOpen, functionalOptIn, submitCookies, resetCookies, getNewOptIns } from './utils';
 
 export class VlCookieConsentNew extends LitElement {
@@ -17,7 +17,7 @@ export class VlCookieConsentNew extends LitElement {
 
   static get properties() {
     return {
-      vlAnalytics: { type: Boolean, attribute: 'data-vl-analytics', reflect: true },
+      analytics: { type: Boolean, attribute: 'data-vl-analytics', reflect: true },
       autoOpenDisabled: { type: Boolean, attribute: 'data-vl-auto-open-disabled', reflect: true },
       functionalOptInDisabled: { type: Boolean, attribute: 'data-vl-auto-opt-in-functional-disabled', reflect: true },
       owner: { type: String, attribute: 'data-vl-owner', reflect: true },
@@ -35,7 +35,7 @@ export class VlCookieConsentNew extends LitElement {
   constructor() {
     super();
     this.modalRef = createRef();
-    this.vlAnalytics = false;
+    this.analytics = false;
     this.functionalOptInDisabled = false;
     this.autoOpenDisabled = false;
     this.optIns = defaultOptIns;
@@ -93,12 +93,12 @@ export class VlCookieConsentNew extends LitElement {
             this.modalRef.value.open();
           }
           break;
-        case 'vlAnalytics':
-          if (this.vlAnalytics) {
+        case 'analytics':
+          if (this.analytics) {
             if (!this.functionalOptInDisabled) {
-              if (!document.getElementById(analytics.scriptId)) {
-                console.log(analytics.script);
-                document.head.appendChild(analytics.script);
+              if (!document.getElementById(matomo.scriptId)) {
+                console.log(matomo.script);
+                document.head.appendChild(matomo.script);
               }
             } else {
               console.error(
