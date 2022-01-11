@@ -3,8 +3,7 @@ import { LitElement, css, html, unsafeCSS, nothing } from 'lit';
 import { ref, createRef } from 'lit/directives/ref.js';
 import styles from './styles.scss';
 import '../form-grid';
-import { analytics as matomo } from './analytics.js';
-import { defaultOptIns, canModalOpen, functionalOptIn, submitCookies, resetCookies, getNewOptIns } from './utils';
+import { defaultOptIns, canModalOpen, getNewOptIns, submit, reset, handleFuntionalOptIn } from './utils';
 
 export class VlCookieConsentNew extends LitElement {
   static get styles() {
@@ -23,7 +22,6 @@ export class VlCookieConsentNew extends LitElement {
       owner: { type: String, attribute: 'data-vl-owner', reflect: true },
       link: { type: String, attribute: 'data-vl-link', reflect: true },
       submit: { type: Function },
-      open: { type: Function },
       reset: { type: Function },
       optIns: { type: Array },
       extraOptIns: {
@@ -35,47 +33,11 @@ export class VlCookieConsentNew extends LitElement {
   constructor() {
     super();
     this.modalRef = createRef();
-    this.analytics = false;
-    this.functionalOptInDisabled = false;
-    this.autoOpenDisabled = false;
     this.optIns = defaultOptIns;
-    this.open = () => this.modalRef.value.open();
-    this.submit = () => {
-      const submittedCookies = submitCookies(this.optIns);
-      this.dispatchEvent(
-        new CustomEvent('vl-submitted', {
-          bubbles: true,
-          composed: true,
-          detail: submittedCookies,
-        }),
-      );
-      this.modalRef.value.close();
-    };
-    this.reset = () => {
-      const resettedCookies = resetCookies(this.optIns);
-      this.dispatchEvent(
-        new CustomEvent('vl-reset', {
-          bubbles: true,
-          composed: true,
-          detail: resettedCookies,
-        }),
-      );
-    };
-    this._addFunctionalOptIn = () => {
-      if (!this.optIns.find((optIn) => optIn.name === functionalOptIn.name)) {
-        this.optIns = [functionalOptIn, ...this.optIns];
-      }
-    };
-    this._filterFunctionalOptIn = () => {
-      this.optIns = this.optIns.filter((optIn) => optIn.name !== functionalOptIn.name);
-    };
-    this._handleFunctionalOptIn = () => {
-      if (this.functionalOptInDisabled) {
-        this._filterFunctionalOptIn();
-      } else {
-        this._addFunctionalOptIn();
-      }
-    };
+    this.autoOpenDisabled = false;
+    this.functionalOptInDisabled = false;
+    this.submit = () => submit(this);
+    this.reset = () => reset(this);
   }
 
   updated(changedProperties) {
@@ -83,28 +45,14 @@ export class VlCookieConsentNew extends LitElement {
       switch (propName) {
         case 'extraOptIns':
           this.optIns = [...defaultOptIns, ...getNewOptIns(this.extraOptIns)];
-          this._handleFunctionalOptIn();
+          handleFuntionalOptIn(this);
           break;
         case 'functionalOptInDisabled':
-          this._handleFunctionalOptIn();
+          handleFuntionalOptIn(this);
           break;
         case 'autoOpenDisabled':
           if (canModalOpen(this.autoOpenDisabled)) {
             this.modalRef.value.open();
-          }
-          break;
-        case 'analytics':
-          if (this.analytics) {
-            if (!this.functionalOptInDisabled) {
-              if (!document.getElementById(matomo.scriptId)) {
-                console.log(matomo.script);
-                document.head.appendChild(matomo.script);
-              }
-            } else {
-              console.error(
-                'analytics kunnen alleen toegevoegd worden wanneer de functionele cookies opt-in geactiveerd werd!',
-              );
-            }
           }
           break;
         default:
