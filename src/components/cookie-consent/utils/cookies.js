@@ -1,13 +1,19 @@
 /* eslint-disable consistent-return */
-const getCookieName = (name) => `vl-cookie-consent-${name}`;
+import { removeAnalytics } from './analytics';
 
-export const getCookie = (name) => {
+export const cookiePrefix = 'vl-cookie-consent-';
+
+const getCookieName = (name) => `${cookiePrefix}${name}`;
+
+export const getAllCookies = () => document.cookie.split(';').map((cookie) => cookie.replace(/\s/g, ''));
+
+export const getCookieValue = (name) => {
   const cookieName = `${getCookieName(name)}=`;
-  const cookies = document.cookie.split(';');
+  const cookies = getAllCookies();
   for (let index = 0; index < cookies.length; index += 1) {
-    const x = cookies[index].replace(/\s/g, '');
-    if (x.includes(cookieName)) {
-      const value = x.substring(cookieName.length, x.length);
+    const currentCookie = cookies[index];
+    if (currentCookie.includes(cookieName)) {
+      const value = currentCookie.substring(cookieName.length, currentCookie.length);
       try {
         return JSON.parse(value);
       } catch (error) {
@@ -25,9 +31,13 @@ export const submitCookies = (optIns) =>
     return { name: cookieName, value: cookieValue };
   });
 
-export const resetCookies = (optIns) =>
-  optIns.map(({ name }) => {
-    const cookieName = getCookieName(name);
-    document.cookie = `${cookieName}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;`;
-    return { name: cookieName };
+export const resetCookieConsent = () => {
+  removeAnalytics();
+  const cookies = getAllCookies();
+  const vlCookies = cookies.filter((cookie) => cookie.includes(cookiePrefix));
+  const removedCookies = vlCookies.map((cookie) => {
+    document.cookie = `${cookie};expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;`;
+    return cookie;
   });
+  return removedCookies;
+};

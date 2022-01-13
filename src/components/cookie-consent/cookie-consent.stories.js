@@ -1,36 +1,12 @@
 import { html } from 'lit-html';
 import '../cookie-consent';
-import '../cookie-consent/new';
-import { action } from '@storybook/addon-actions';
-import { CATEGORIES } from '../../../.storybook/utils.js';
+// import { resetCookieConsent } from '../cookie-consent/utils';
+import { args, argTypes } from './config';
 
 export default {
   title: 'custom-elements/vl-cookie-consent',
-  args: {
-    functionalOptinDisabled: false,
-    owner: 'Departement Omgeving',
-    autoOpenDisabled: false,
-    link: 'https://www.omgevingvlaanderen.be/privacy',
-    analytics: false,
-    extraOptIns: [],
-    submitted: action('vl-submitted'),
-    reset: action('vl-reset'),
-  },
-  argTypes: {
-    functionalOptinDisabled: {
-      name: 'data-vl-auto-opt-in-functional-disabled',
-      table: {
-        category: CATEGORIES.ATTRIBUTES,
-      },
-    },
-    analytics: { table: { category: CATEGORIES.ATTRIBUTES } },
-    owner: { table: { category: CATEGORIES.ATTRIBUTES } },
-    autoOpenDisabled: { table: { category: CATEGORIES.ATTRIBUTES } },
-    link: { table: { category: CATEGORIES.ATTRIBUTES } },
-    extraOptIns: { table: { category: CATEGORIES.PROPERTIES } },
-    submitted: { name: 'vl-submitted', table: { category: CATEGORIES.EVENTS } },
-    reset: { name: 'vl-reset', table: { category: CATEGORIES.EVENTS } },
-  },
+  args,
+  argTypes,
 };
 
 const Template = ({
@@ -39,10 +15,9 @@ const Template = ({
   autoOpenDisabled,
   link,
   submitted,
-  reset,
   analytics,
   extraOptIns,
-}) => html`<vl-cookie-consent-new
+}) => html`<vl-cookie-consent
   ?data-vl-auto-opt-in-functional-disabled=${functionalOptinDisabled}
   data-vl-owner=${owner}
   ?data-vl-auto-open-disabled=${autoOpenDisabled}
@@ -50,8 +25,7 @@ const Template = ({
   data-vl-link=${link}
   .extraOptIns=${extraOptIns}
   @vl-submitted=${(event) => submitted(event.detail)}
-  @vl-reset=${(event) => reset(event.detail)}
-></vl-cookie-consent-new>`;
+></vl-cookie-consent>`;
 
 export const Default = Template.bind({});
 
@@ -82,12 +56,33 @@ WithExtraOptIns.args = {
 export const WithoutFuntionalOptIn = Template.bind({});
 WithoutFuntionalOptIn.args = { functionalOptinDisabled: true };
 
-export const Old = () =>
-  html`<vl-cookie-consent data-vl-auto-open-disabled>
-    <vl-cookie-consent-opt-in
-      id="socialmedia"
-      data-vl-label="Sociale media"
-      data-vl-description="Beschrijving van de sociale media cookies."
-      data-vl-checked
-    ></vl-cookie-consent-opt-in
-  ></vl-cookie-consent>`;
+const getConsent = () => {
+  const [lastItem] = [...document.querySelectorAll('vl-cookie-consent')].slice(-1);
+  return lastItem;
+};
+
+export const Controlled = ({
+  functionalOptinDisabled,
+  owner,
+  autoOpenDisabled,
+  link,
+  submitted,
+  analytics,
+  extraOptIns,
+  open,
+}) => html`<vl-cookie-consent
+  .open=${open}
+  ?data-vl-auto-opt-in-functional-disabled=${functionalOptinDisabled}
+  data-vl-owner=${owner}
+  ?data-vl-auto-open-disabled=${autoOpenDisabled}
+  ?data-vl-analytics=${analytics}
+  data-vl-link=${link}
+  .extraOptIns=${extraOptIns}
+  @vl-submitted=${(event) => {
+    submitted(event.detail);
+    getConsent().open = false;
+  }}
+>
+</vl-cookie-consent> `;
+
+// resetCookieConsent() nog in docs
