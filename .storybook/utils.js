@@ -18,15 +18,19 @@ export const removeStorybooksDefaultStyling = () => {
   document.querySelector('.sbdocs-wrapper').style.padding = '0';
 };
 
-export const docsIntro = ({ stylesheets, root, intro }) => {
-  const componentImport = `${'`'}import "uig-webcomponents/lib/components/${root}"${'`'}`;
-  const styleImports =
-    stylesheets &&
-    stylesheets.map(
-      (stylesheet) => `<br/>${'`'}import "uig-webcomponents/lib/components/${stylesheet}/styles.css"${'`'}`,
-    );
+export const docsIntro = ({ stylesheets, root, intro, utils }) => {
+  const basePath = 'uig-webcomponents/lib/components/';
+  const componentImport = `${'`'}import "${basePath}${root}"${'`'}`;
+  const styleImports = stylesheets?.map(
+    (stylesheet) => `<br/>${'`'}import "${basePath}${stylesheet}/styles.css"${'`'}`,
+  );
+  const utilsImports = utils?.map(
+    (util) =>
+      `<br/><br/>${'`'}import ${'{'} ${util.name} ${'}'} "${basePath}${root}/utils"${'`'}<br/><br/>${util.description}`,
+  );
+
   const brIntro = `<br/><br/>${intro}`;
-  return stylesheets ? `${componentImport}${styleImports}${brIntro}` : `${componentImport}${brIntro}`;
+  return `${componentImport}${styleImports || ''}${brIntro}${utilsImports || ''}`;
 };
 
 export const CATEGORIES = {

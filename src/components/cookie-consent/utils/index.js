@@ -4,13 +4,16 @@ import { addAnalytics } from './analytics';
 export { defaultOptIns, mapExtraOptIns } from './optins';
 export { resetCookieConsent } from './cookies';
 
-export const canModalOpen = (autoOpenDisabled) => {
+const isUncontrolled = (open) => open === undefined;
+
+export const canModalOpen = (open) => {
   const hasConsentCookie = getCookieValue('cookie-consent');
   const consentDateCookie = getCookieValue('cookie-consent-date');
   const isConsentDateCookieValid =
     !Number.isNaN(consentDateCookie) && new Date(consentDateCookie) > new Date('2019/05/14');
   const needsCookiesConsent = !hasConsentCookie || consentDateCookie === undefined || !isConsentDateCookieValid;
-  return !autoOpenDisabled && needsCookiesConsent;
+
+  return isUncontrolled(open) && needsCookiesConsent;
 };
 
 export const submit = (reference) => {
@@ -25,9 +28,8 @@ export const submit = (reference) => {
       detail: submittedCookies,
     }),
   );
-  const uncontrolled = reference.open === undefined;
 
-  if (uncontrolled) {
+  if (isUncontrolled(reference.open)) {
     reference.modalRef.value.close();
   }
 };

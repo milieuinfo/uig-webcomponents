@@ -20,8 +20,7 @@ export class VlCookieConsent extends LitElement {
   static get properties() {
     return {
       analytics: { type: Boolean, attribute: 'data-vl-analytics', reflect: true },
-      autoOpenDisabled: { type: Boolean, attribute: 'data-vl-auto-open-disabled', reflect: true },
-      open: { type: Boolean, attribute: 'data-vl-open', reflect: true },
+      open: { type: Boolean },
       optIns: { type: Array },
       extraOptIns: {
         type: Array,
@@ -33,8 +32,13 @@ export class VlCookieConsent extends LitElement {
     super();
     this.modalRef = createRef();
     this.optIns = defaultOptIns;
-    this.autoOpenDisabled = false;
     this.analytics = false;
+  }
+
+  firstUpdated() {
+    if (canModalOpen(this.open)) {
+      this.modalRef.value.open();
+    }
   }
 
   updated(changedProperties) {
@@ -42,11 +46,6 @@ export class VlCookieConsent extends LitElement {
       switch (propName) {
         case 'extraOptIns':
           this.optIns = [...defaultOptIns, ...mapExtraOptIns(this.extraOptIns)];
-          break;
-        case 'autoOpenDisabled':
-          if (canModalOpen(this.autoOpenDisabled)) {
-            this.modalRef.value.open();
-          }
           break;
         case 'open':
           if (this.open) {
