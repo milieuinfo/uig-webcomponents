@@ -1,7 +1,7 @@
 import { getCookieValue, submitCookies } from './cookies';
-import { handleAnalytics } from './analytics';
+import { addAnalytics } from './analytics';
 
-export { defaultOptIns, getNewOptIns, handleFuntionalOptIn } from './optins';
+export { defaultOptIns, mapExtraOptIns } from './optins';
 export { resetCookieConsent } from './cookies';
 
 export const canModalOpen = (autoOpenDisabled) => {
@@ -14,7 +14,9 @@ export const canModalOpen = (autoOpenDisabled) => {
 };
 
 export const submit = (reference) => {
-  handleAnalytics(reference.analytics, reference.functionalOptInDisabled);
+  if (reference.analytics) {
+    addAnalytics();
+  }
   const submittedCookies = submitCookies(reference.optIns);
   reference.dispatchEvent(
     new CustomEvent('vl-submitted', {

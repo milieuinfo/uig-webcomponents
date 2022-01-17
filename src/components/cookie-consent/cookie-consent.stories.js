@@ -9,20 +9,9 @@ export default {
   argTypes,
 };
 
-const Template = ({
-  functionalOptinDisabled,
-  owner,
-  autoOpenDisabled,
-  link,
-  submitted,
-  analytics,
-  extraOptIns,
-}) => html`<vl-cookie-consent
-  ?data-vl-auto-opt-in-functional-disabled=${functionalOptinDisabled}
-  data-vl-owner=${owner}
+const Template = ({ autoOpenDisabled, submitted, analytics, extraOptIns }) => html`<vl-cookie-consent
   ?data-vl-auto-open-disabled=${autoOpenDisabled}
   ?data-vl-analytics=${analytics}
-  data-vl-link=${link}
   .extraOptIns=${extraOptIns}
   @vl-submitted=${(event) => submitted(event.detail)}
 ></vl-cookie-consent>`;
@@ -53,30 +42,15 @@ WithExtraOptIns.args = {
   ],
 };
 
-export const WithoutFuntionalOptIn = Template.bind({});
-WithoutFuntionalOptIn.args = { functionalOptinDisabled: true };
-
 const getConsent = () => {
   const [lastItem] = [...document.querySelectorAll('vl-cookie-consent')].slice(-1);
   return lastItem;
 };
 
-export const Controlled = ({
-  functionalOptinDisabled,
-  owner,
-  autoOpenDisabled,
-  link,
-  submitted,
-  analytics,
-  extraOptIns,
-  open,
-}) => html`<vl-cookie-consent
+export const Controlled = ({ autoOpenDisabled, submitted, analytics, extraOptIns, open }) => html`<vl-cookie-consent
   .open=${open}
-  ?data-vl-auto-opt-in-functional-disabled=${functionalOptinDisabled}
-  data-vl-owner=${owner}
   ?data-vl-auto-open-disabled=${autoOpenDisabled}
   ?data-vl-analytics=${analytics}
-  data-vl-link=${link}
   .extraOptIns=${extraOptIns}
   @vl-submitted=${(event) => {
     submitted(event.detail);
