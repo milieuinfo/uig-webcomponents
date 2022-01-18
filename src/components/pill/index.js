@@ -41,44 +41,6 @@ export class VlPill extends LitElement {
     };
   }
 
-  static get styles() {
-    return [
-      css`
-        ${unsafeCSS(styles)}
-      `,
-    ];
-  }
-
-  static get properties() {
-    return {
-      disabled: {
-        type: Boolean,
-        attribute: 'data-vl-disabled',
-        reflect: true,
-      },
-      type: {
-        type: String,
-        attribute: 'data-vl-type',
-        reflect: true,
-      },
-      closable: {
-        type: Boolean,
-        attribute: 'data-vl-closable',
-        reflect: true,
-      },
-      checkable: {
-        type: Boolean,
-        attribute: 'data-vl-checkable',
-        reflect: true,
-      },
-      checked: {
-        type: Boolean,
-        attribute: 'data-vl-checked',
-        reflect: true,
-      },
-    };
-  }
-
   constructor() {
     super();
     this.disabled = false;

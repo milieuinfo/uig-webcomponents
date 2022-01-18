@@ -8,7 +8,6 @@ const selector = 'vl-pill';
 
 describe('vl-pill', async () => {
   let driver;
-  const identifier = 'vl-pill';
 
   beforeEach(() => {
     driver = getDriver();
@@ -45,7 +44,6 @@ describe('vl-pill', async () => {
 
     await driver.get(`${defaultUrl}&args=type:error`);
     const errorPill = await new VlPill(driver, selector);
-    S;
     await assert.eventually.isFalse(errorPill.isSuccess());
     await assert.eventually.isFalse(errorPill.isWarning());
     await assert.eventually.isTrue(errorPill.isError());
@@ -79,10 +77,10 @@ describe('vl-pill', async () => {
     await assert.eventually.isFalse(pill.isClosable());
     await assert.eventually.isTrue(pill.isCheckable());
 
-    //     await assert.eventually.isFalse(pill.isClosable());
-    //     await assert.eventually.isTrue(pill.isCheckable());
+    await assert.eventually.isFalse(pill.isChecked());
 
-    //     await assert.eventually.isFalse(pill.isChecked());
+    await pill.toggleCheck();
+    await assert.eventually.isTrue(pill.isChecked());
 
     await pill.toggleCheck();
     await assert.eventually.isFalse(pill.isChecked());
