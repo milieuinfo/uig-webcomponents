@@ -25,7 +25,7 @@ export const argTypes = {
   checkable: {
     name: 'data-vl-checkable',
     description:
-      'the attribute that determines whether the pill can be checked or not (cannot be used in combination with closable).',
+      'The attribute that determines whether the pill can be checked or not (cannot be used in combination with closable).',
     table: {
       type: { summary: 'boolean' },
       category: CATEGORIES.ATTRIBUTES,
