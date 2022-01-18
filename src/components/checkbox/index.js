@@ -1,5 +1,5 @@
-import { vlElement, define } from "../../utils/core";
-import styles from "./styles.scss";
+import { vlElement, define } from '../../utils/core';
+import styles from './styles.scss';
 
 /**
  * VlCheckbox
@@ -28,11 +28,11 @@ export class VlCheckbox extends vlElement(HTMLElement) {
   }
 
   static get _observedAttributes() {
-    return ["label", "name", "value", "checked", "switch"];
+    return ['label', 'name', 'value', 'checked', 'switch'];
   }
 
   static get _observedChildClassAttributes() {
-    return ["block", "single", "disabled", "error"];
+    return ['block', 'single', 'disabled', 'error'];
   }
 
   constructor() {
@@ -56,7 +56,7 @@ export class VlCheckbox extends vlElement(HTMLElement) {
             </span>
           </label>
         </div>
-      `)
+      `),
       );
     } else {
       this._shadow.append(
@@ -70,7 +70,7 @@ export class VlCheckbox extends vlElement(HTMLElement) {
             </span>
           </div>
         </label>
-      `)
+      `),
       );
     }
 
@@ -91,7 +91,7 @@ export class VlCheckbox extends vlElement(HTMLElement) {
    * Callback called when the form is reset.
    */
   formResetCallback() {
-    this.checked = this.hasAttribute("checked");
+    this.checked = this.hasAttribute('checked');
   }
 
   /**
@@ -158,25 +158,23 @@ export class VlCheckbox extends vlElement(HTMLElement) {
   }
 
   get _isSingle() {
-    return this.hasAttribute("single");
+    return this.hasAttribute('single');
   }
 
   get _classPrefix() {
-    return "vl-checkbox--";
+    return 'vl-checkbox--';
   }
 
   get _inputElement() {
-    return this._element.querySelector("input");
+    return this._element.querySelector('input');
   }
 
   get _labelElement() {
-    return this._element.querySelector(
-      ".vl-checkbox__label > span:not(.vl-checkbox--switch__label)"
-    );
+    return this._element.querySelector('.vl-checkbox__label > span:not(.vl-checkbox--switch__label)');
   }
 
   get _labelSlotElement() {
-    return this._element.querySelector("slot");
+    return this._element.querySelector('slot');
   }
 
   _toggle() {
@@ -190,28 +188,27 @@ export class VlCheckbox extends vlElement(HTMLElement) {
         parent._checked.push(value);
       }
       checked = parent._checked;
-      parent.setAttribute("data-vl-checked", JSON.stringify(checked));
+      parent.setAttribute('data-vl-checked', JSON.stringify(checked));
     } else {
       checked = this.checked;
     }
     parent.dispatchEvent(
-      new CustomEvent("input", {
+      new CustomEvent('input', {
         detail: this.checked,
         bubbles: true,
         composed: true,
-      })
+      }),
     );
   }
 
   _labelChangedCallback(oldValue, newValue) {
-    this._labelSlotElement.remove();
     this._labelElement.textContent = newValue;
   }
 
   _nameChangedCallback(oldValue, newValue) {
     if (this._inputElement.name != newValue) {
       this._inputElement.name = newValue;
-      this.setAttribute("name", newValue);
+      this.setAttribute('name', newValue);
     }
   }
 
@@ -228,9 +225,7 @@ export class VlCheckbox extends vlElement(HTMLElement) {
 
     if (!Array.isArray(this._checked)) {
       this._inputElement.checked = this._checked;
-    } else if (
-      this._checked.indexOf(JSON.parse(this._inputElement.value)) > -1
-    ) {
+    } else if (this._checked.indexOf(JSON.parse(this._inputElement.value)) > -1) {
       this._inputElement.checked = true;
     }
   }
@@ -240,7 +235,7 @@ export class VlCheckbox extends vlElement(HTMLElement) {
   }
 
   _singleChangedCallback(oldValue, newValue) {
-    this._toggleClass(this._labelElement, newValue, "vl-u-visually-hidden");
+    this._toggleClass(this._labelElement, newValue, 'vl-u-visually-hidden');
   }
 
   _isTextNode(node) {
@@ -252,10 +247,8 @@ export class VlCheckbox extends vlElement(HTMLElement) {
   }
 
   _registerChangeEvent() {
-    this._inputElement.addEventListener("change", () =>
-      this.dispatchEvent(new Event("change"))
-    );
+    this._inputElement.addEventListener('change', () => this.dispatchEvent(new Event('change')));
   }
 }
 
-define("vl-checkbox", VlCheckbox);
+define('vl-checkbox', VlCheckbox);

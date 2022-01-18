@@ -20,13 +20,13 @@ awaitScript(
 export class VlHeader extends LitElement {
   static get properties() {
     return {
-      identifier: {type: String, attribute: 'data-vl-identifier', reflect: true},
-      development: {type: Boolean, attribute: 'data-vl-development', reflect: true},
-      loginUrl: {type: String, attribute: 'data-vl-login-url', reflect: true},
-      loginRedirectUrl: {type: String, attribute: 'data-vl-login-redirect-url', reflect: true},
-      logoutUrl: {type: String, attribute: 'data-vl-logout-url', reflect: true},
-      switchCapacityUrl: {type: String, attribute: 'data-vl-switch-capacity-url', reflect: true},
-      authenticatedUserUrl: {type: String, attribute: 'data-vl-authenticated-user-url', reflect: true}
+      identifier: { type: String, attribute: 'data-vl-identifier', reflect: true },
+      development: { type: Boolean, attribute: 'data-vl-development', reflect: true },
+      loginUrl: { type: String, attribute: 'data-vl-login-url', reflect: true },
+      loginRedirectUrl: { type: String, attribute: 'data-vl-login-redirect-url', reflect: true },
+      logoutUrl: { type: String, attribute: 'data-vl-logout-url', reflect: true },
+      switchCapacityUrl: { type: String, attribute: 'data-vl-switch-capacity-url', reflect: true },
+      authenticatedUserUrl: { type: String, attribute: 'data-vl-authenticated-user-url', reflect: true },
     };
   }
 
