@@ -3,13 +3,6 @@ import browserstack from 'browserstack-local';
 import { config } from './config.js';
 import { name } from '../../../package.json';
 
-// let packagejson;
-// try {
-//   packagejson = require("../../../package.json");
-// } catch (e) {
-//   packagejson = require("../../package.json");
-// }
-
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 
