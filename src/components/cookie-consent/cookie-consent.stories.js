@@ -91,5 +91,3 @@ Controlled.argTypes = {
     },
   },
 };
-
-// resetCookieConsent() nog in docs

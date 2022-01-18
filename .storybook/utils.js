@@ -39,3 +39,9 @@ export const CATEGORIES = {
   EVENTS: 'Events',
   SLOTS: 'Slots',
 };
+
+export const TYPES = {
+  BOOLEAN: 'boolean',
+  ARRAY: 'array',
+  STRING: 'string',
+};
