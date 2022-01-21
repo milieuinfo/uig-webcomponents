@@ -2,6 +2,7 @@
   "name": "uig-webcomponents",
   "version": "2.2.0-alpha.1",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "npm run build && npm run test:unit && npm run test:e2e",
