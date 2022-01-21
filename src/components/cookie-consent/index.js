@@ -6,7 +6,7 @@ import '../form-grid';
 import '../modal';
 import '../checkbox';
 import '../form-message';
-import { defaultOptIns, canModalOpen, mapExtraOptIns, submit } from './utils';
+import { defaultOptIns, canModalOpen, submit, handleOptIns } from './utils';
 
 export class VlCookieConsent extends LitElement {
   static get styles() {
@@ -45,7 +45,7 @@ export class VlCookieConsent extends LitElement {
     changedProperties.forEach((oldValue, propName) => {
       switch (propName) {
         case 'extraOptIns':
-          this.optIns = [...defaultOptIns, ...mapExtraOptIns(this.extraOptIns)];
+          handleOptIns(this);
           break;
         case 'open':
           if (this.open) {
@@ -54,6 +54,9 @@ export class VlCookieConsent extends LitElement {
             this.modalRef.value.close();
           }
           break;
+        case 'analytics':
+          handleOptIns(this);
+          break;
         default:
           break;
       }
@@ -61,6 +64,7 @@ export class VlCookieConsent extends LitElement {
   }
 
   render() {
+    console.log(this.optIns);
     return html`<vl-modal
       data-vl-title="Cookie-toestemming"
       data-vl-not-auto-closable
@@ -126,7 +130,7 @@ export class VlCookieConsent extends LitElement {
         )}
       </div>
       <button @click=${() => submit(this)} is="vl-button" slot="button">
-        ${this.optIns.length > defaultOptIns.length ? 'Bewaar keuze' : 'Ik begrijp het'}
+        ${this.optIns.filter((optIn) => optIn.label).length > 0 ? 'Bewaar keuze' : 'Ik begrijp het'}
       </button>
     </vl-modal>`;
   }
