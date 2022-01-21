@@ -1,7 +1,7 @@
 import { getCookieValue, submitCookies } from './cookies';
 import { addAnalytics } from './analytics';
 
-export { defaultOptIns, mapExtraOptIns } from './optins';
+export { defaultOptIns, handleOptIns } from './optins';
 export { resetCookieConsent } from './cookies';
 
 const isUncontrolled = (open) => open === undefined;
