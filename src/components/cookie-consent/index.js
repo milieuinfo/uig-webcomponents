@@ -64,7 +64,6 @@ export class VlCookieConsent extends LitElement {
   }
 
   render() {
-    console.log(this.optIns);
     return html`<vl-modal
       data-vl-title="Cookie-toestemming"
       data-vl-not-auto-closable
