@@ -1,6 +1,6 @@
 export const defaultOptIns = [
   { name: 'cookie-consent', checked: true, mandatory: true },
-  { name: 'cookie-consent-date', checked: true, mandatory: true, value: new Date().getTime() },
+  { name: 'cookie-consent-date', checked: true, mandatory: true },
 ];
 
 const functionalOptIn = {

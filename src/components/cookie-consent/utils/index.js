@@ -20,7 +20,10 @@ export const submit = (reference) => {
   if (reference.analytics) {
     addAnalytics();
   }
-  const submittedCookies = submitCookies(reference.optIns);
+  const optInsWithDate = reference.optIns.map((optIn) =>
+    optIn.name === 'cookie-consent-date' ? { ...optIn, value: new Date().getTime() } : optIn,
+  );
+  const submittedCookies = submitCookies(optInsWithDate);
   reference.dispatchEvent(
     new CustomEvent('vl-submitted', {
       bubbles: true,
