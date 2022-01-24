@@ -9,6 +9,10 @@ export class VlCookieConsent extends VlElement {
     return element;
   }
 
+  async clickOnElement(element) {
+    await this.driver.executeScript('arguments[0].click()', element);
+  }
+
   async getConsent() {
     const consent = await this.driver.findElement(By.css('vl-cookie-consent'));
     return consent;
@@ -49,12 +53,12 @@ export class VlCookieConsent extends VlElement {
 
   async clickResetButton() {
     const resetButton = await this.getResetButton();
-    await resetButton.click();
+    await this.clickOnElement(resetButton);
   }
 
   async clickSubmitButton() {
     const submitButton = await this.getSubmitButton();
-    await submitButton.click();
+    await this.clickOnElement(submitButton);
   }
 
   async setExtraOptIn(name) {
@@ -76,14 +80,14 @@ export class VlCookieConsent extends VlElement {
 
   async clickOpenButton() {
     const openButton = await this.getOpenButton();
-    await openButton.click();
+    await this.clickOnElement(openButton);
   }
 
   async toggleExtraOptIn() {
     const modal = await this.getModal();
     const checkbox = await modal.findElement(By.css('vl-checkbox'));
     const input = await this.getElementInShadow(checkbox, 'input');
-    await this.driver.executeScript('arguments[0].click()', input);
+    await this.clickOnElement(input);
   }
 
   async getCookieValue(name) {
