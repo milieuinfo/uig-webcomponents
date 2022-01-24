@@ -54,6 +54,7 @@ export class VlCookieConsent extends VlElement {
 
   async clickSubmitButton() {
     const submitButton = await this.getSubmitButton();
+    await this.driver.executeScript('arguments[0].scrollIntoView()', submitButton);
     await submitButton.click();
   }
 
