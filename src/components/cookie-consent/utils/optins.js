@@ -9,11 +9,15 @@ const functionalOptIn = {
   mandatory: true,
 };
 
-const mapExtraOptIns = (extraOptIns) =>
-  extraOptIns.map((optIn) => ({
-    ...optIn,
-    checked: optIn.defaultChecked || optIn.mandatory || false,
-  }));
+const mapExtraOptIns = (extraOptIns) => {
+  if (extraOptIns) {
+    return extraOptIns.map((optIn) => ({
+      ...optIn,
+      checked: optIn.defaultChecked || optIn.mandatory || false,
+    }));
+  }
+  return [];
+};
 
 export const handleOptIns = (reference) => {
   const newOptIns = [...defaultOptIns, ...mapExtraOptIns(reference.extraOptIns)];
