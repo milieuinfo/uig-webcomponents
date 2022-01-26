@@ -38,6 +38,7 @@ export const CATEGORIES = {
   PROPERTIES: 'Properties',
   EVENTS: 'Events',
   SLOTS: 'Slots',
+  CHILD_ATTRIBUTES: 'Child attributes',
 };
 
 export const TYPES = {

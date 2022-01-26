@@ -29,6 +29,7 @@ const buildConfig = {
     'search-filter',
     'search-results',
     'action-group',
+    'description-data',
   ],
   componentsWithStylesheetAndInlineStyling: ['tooltip', 'pill'],
 };
