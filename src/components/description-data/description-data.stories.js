@@ -24,6 +24,7 @@ export default {
   },
   args: {
     label: true,
+    labelText: '',
     value: true,
     toggleBlock: true,
     items: [
@@ -67,29 +68,18 @@ export const Legacy = ({ label, value, toggleBlock }) => html`<div is="vl-descri
   </div>
 </div>`;
 
-export const ViaProps = ({ items, itemsSize }) =>
+export const ViaProps = ({ items, itemsSize, toggleBlock }) =>
   html`<vl-via-props data-vl-items-size=${itemsSize} .items=${items}></vl-via-props>`;
 
-export const viaChildren = () =>
+export const viaChildren = ({ toggleBlock, labelText }) =>
   html`<vl-via-children>
-    <div is="vl-grid">
-      <div is="vl-column" data-vl-size="3">
-        <vl-description-data-item data-vl-label="Uitgever" data-vl-value="Kind en Gezin"></vl-description-data-item>
-      </div>
-      <div is="vl-column" data-vl-size="3">
-        <vl-description-data-item
-          data-vl-label="Publicatiedatum"
-          data-vl-value="Augustus 2018"
-        ></vl-description-data-item>
-      </div>
-      <div is="vl-column" data-vl-size="3">
-        <vl-description-data-item data-vl-label="Publicatietype" data-vl-value="Brochure"></vl-description-data-item>
-      </div>
-      <div is="vl-column" data-vl-size="3">
-        <vl-description-data-item
-          data-vl-label="Categorie"
-          data-vl-value="Kinderen en jongeren"
-        ></vl-description-data-item>
-      </div>
-    </div>
+    ${toggleBlock
+      ? html`<vl-description-data-item
+          data-vl-label=${labelText}
+          data-vl-value="Kind en Gezin"
+        ></vl-description-data-item>`
+      : null}
+    <vl-description-data-item data-vl-label="Publicatiedatum" data-vl-value="Augustus 2018"></vl-description-data-item>
+    <vl-description-data-item data-vl-label="Publicatietype" data-vl-value="Brochure"></vl-description-data-item>
+    <vl-description-data-item data-vl-label="Categorie" data-vl-value="Kinderen en jongeren"></vl-description-data-item>
   </vl-via-children>`;
