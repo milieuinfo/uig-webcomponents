@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import '../description-data';
 import styles from './styles.scss';
-import { stylesheet, docsIntro, CATEGORIES, TYPES } from '../../../.storybook/utils.js';
+import { stylesheet, docsIntro } from '../../../.storybook/utils.js';
 import '../grid';
 import './via-props';
 import './via-children';
@@ -24,7 +24,7 @@ export default {
   },
   args: {
     label: true,
-    labelText: '',
+    labelText: 'Uitgever',
     value: true,
     toggleBlock: true,
     items: [
