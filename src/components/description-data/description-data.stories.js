@@ -68,7 +68,7 @@ export const Legacy = ({ label, value, toggleBlock }) => html`<div is="vl-descri
   </div>
 </div>`;
 
-export const ViaProps = ({ items, itemsSize, toggleBlock }) =>
+export const ViaProps = ({ items, itemsSize }) =>
   html`<vl-via-props data-vl-items-size=${itemsSize} .items=${items}></vl-via-props>`;
 
 export const viaChildren = ({ toggleBlock, labelText }) =>

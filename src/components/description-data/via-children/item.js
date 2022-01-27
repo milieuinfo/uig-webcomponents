@@ -1,15 +1,15 @@
 import { html, css, LitElement, unsafeCSS } from 'lit';
 import '../../grid';
-// import styles from '../styles.scss';
+import styles from '../styles.scss';
 
 export class VlDescriptionDataItem extends LitElement {
-  // static get styles() {
-  //   return [
-  //     css`
-  //       ${unsafeCSS(styles)}
-  //     `,
-  //   ];
-  // }
+  static get styles() {
+    return [
+      css`
+        ${unsafeCSS(styles)}
+      `,
+    ];
+  }
 
   static get properties() {
     return {
@@ -23,10 +23,6 @@ export class VlDescriptionDataItem extends LitElement {
       <span class="vl-description-data__label">${this.label}</span>
       <span class="vl-description-data__value">${this.value}</span>
     `;
-  }
-
-  createRenderRoot() {
-    return this;
   }
 }
 
