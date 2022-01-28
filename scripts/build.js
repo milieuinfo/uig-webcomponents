@@ -1,8 +1,6 @@
-import path from 'path';
-import fs from 'fs-extra';
-import sass from 'sass';
-
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+const fs = require('fs-extra');
+const path = require('path');
+const sass = require('sass');
 
 const buildConfig = {
   src: 'src',
