@@ -1,10 +1,12 @@
-const path = require("path");
+import path from 'path';
 
-module.exports = {
-  mode: "development",
-  entry: "./lib/index.js",
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
+
+export default {
+  mode: 'development',
+  entry: './lib/index.js',
   output: {
-    path: path.resolve(__dirname, "../build"),
-    filename: "index.js",
+    path: path.resolve(__dirname, '../build'),
+    filename: 'index.js',
   },
 };
