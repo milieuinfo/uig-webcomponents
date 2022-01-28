@@ -3,7 +3,6 @@
   "version": "2.2.0-alpha.3",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "npm run build && npm run test:unit && npm run test:e2e",
     "test:bamboo": "npm run build && npm run test:e2e:bamboo && npm run test:unit:bamboo",
