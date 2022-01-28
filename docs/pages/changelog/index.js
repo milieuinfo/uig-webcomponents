@@ -11,7 +11,7 @@ const changes = [
   ...unreleased,
   {
     version: '2.2.0',
-    date: '18/1/2022',
+    date: '28/1/2022',
     children: html`<ul>
       <li>
         <p><code>vl-pill</code></p>
