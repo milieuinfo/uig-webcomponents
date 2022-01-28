@@ -30,6 +30,13 @@ const unreleased = [
         <p><code>vl-modal</code></p>
         <p>Added as a legacy component.</p>
       </li>
+      <li>
+        <p><code>vl-cookie-consent</code> &#x1F4A5;</p>
+        <p>
+          When migrating from the legacy package to this new package, we mentioned a bug in the analytics attribute.
+          This is fixed, along with some other issues. We took the opportunity to refactor the component.
+        </p>
+      </li>
     </ul>`,
   },
 ];
