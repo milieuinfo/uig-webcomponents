@@ -7,29 +7,12 @@ import './via-children';
 export default {
   title: 'native-elements/vl-breadcrumb',
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
-  args: { renderItem: false },
+  args: { toggleBlock: false },
 };
 
-export const Default = () => html`<nav is="vl-breadcrumb" aria-label="U bent hier:">
+export const Default = ({ toggleBlock }) => html`<nav is="vl-breadcrumb" aria-label="U bent hier:">
   <ol>
-    <li>
-      <a href="#">Vlaanderen Intern</a>
-    </li>
-    <li>
-      <a href="#">Regelgeving</a>
-    </li>
-    <li>
-      <a href="#">Webuniversum</a>
-    </li>
-    <li>
-      <a href="#">Componenten</a>
-    </li>
-  </ol>
-</nav>`;
-
-export const ConditionalRender = ({ renderItem }) => html`<nav is="vl-breadcrumb" aria-label="U bent hier:">
-  <ol>
-    ${renderItem
+    ${toggleBlock
       ? html` <li>
           <a href="#">Vlaanderen Intern</a>
         </li>`
@@ -47,8 +30,8 @@ export const ConditionalRender = ({ renderItem }) => html`<nav is="vl-breadcrumb
   </ol>
 </nav>`;
 
-export const ViaChildren = ({ renderItem }) => html`<vl-breadcrumb-test>
-  ${renderItem ? html`<vl-breadcrumb-item data-vl-href="#">Vlaanderen Intern</vl-breadcrumb-item>` : null}
+export const ViaChildren = ({ toggleBlock }) => html`<vl-breadcrumb-test>
+  ${toggleBlock ? html`<vl-breadcrumb-item data-vl-href="#">Vlaanderen Intern</vl-breadcrumb-item>` : null}
   <vl-breadcrumb-item data-vl-href="#">Regelgeving</vl-breadcrumb-item>
   <vl-breadcrumb-item data-vl-href="https://google.be">Webuniversum</vl-breadcrumb-item>
   <vl-breadcrumb-item data-vl-href="#">Componenten</vl-breadcrumb-item>

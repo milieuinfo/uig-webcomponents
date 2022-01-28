@@ -11,17 +11,25 @@ export class VlTest extends LitElement {
     ];
   }
 
-  onSlotChange() {
-    const items = [...this.querySelectorAll('vl-breadcrumb-item')];
-    items.forEach((item, index) => {
-      item.isLastItem = items.length === index + 1;
+  firstUpdated() {
+    const observer = new MutationObserver(() => {
+      this.requestUpdate();
     });
+
+    observer.observe(this, { subtree: true, childList: true });
   }
 
   render() {
     return html`<nav aria-label="U bent hier: " class="vl-breadcrumb">
       <ol class="vl-breadcrumb__list">
-        <slot @slotchange=${this.onSlotChange}></slot>
+        ${[...this.children].map((child, index) => {
+          const name = `item-${index}`;
+          child.setAttribute('slot', name);
+          return html` <li class="vl-breadcrumb__list__item">
+            <span class="vl-breadcrumb__list__item__separator" aria-hidden="true"></span>
+            <slot name=${name}></slot>
+          </li>`;
+        })}
       </ol>
     </nav>`;
   }
