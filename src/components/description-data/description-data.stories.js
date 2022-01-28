@@ -3,11 +3,10 @@ import '../description-data';
 import styles from './styles.scss';
 import { stylesheet, docsIntro } from '../../../.storybook/utils.js';
 import '../grid';
-import './via-props';
 import './via-children';
 
 export default {
-  title: 'native-elements/vl-description-data',
+  title: 'custom-elements/vl-description-data',
   decorators: [(story) => html` ${stylesheet(`${styles}`)}${story()} `],
   parameters: {
     controls: { hideNoControlsWarning: true },
@@ -24,16 +23,9 @@ export default {
   },
   args: {
     label: true,
-    labelText: 'Uitgever',
     value: true,
+    labelText: 'Uitgever',
     toggleBlock: true,
-    items: [
-      { label: 'Uitgever', value: 'Kind en Gezin' },
-      { label: 'Publicatiedatum', value: 'Augustus 2018' },
-      { label: 'Publicatietype', value: 'Brochure' },
-      { label: 'Categorie', value: 'Kinderen en jongeren' },
-    ],
-    itemsSize: 3,
   },
   argTypes: {
     label: {
@@ -67,9 +59,6 @@ export const Legacy = ({ label, value, toggleBlock }) => html`<div is="vl-descri
     </div>
   </div>
 </div>`;
-
-export const ViaProps = ({ items, itemsSize }) =>
-  html`<vl-via-props data-vl-items-size=${itemsSize} .items=${items}></vl-via-props>`;
 
 export const viaChildren = ({ toggleBlock, labelText }) =>
   html`<vl-via-children>
