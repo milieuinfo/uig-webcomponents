@@ -1,4 +1,4 @@
-const yargs = require('yargs').argv;
+import yargs from 'yargs';
 
 const macOS = 'OS X';
 const windows = 'Windows';

@@ -1,14 +1,14 @@
 import { By, Key, Builder } from 'selenium-webdriver';
 import browserstack from 'browserstack-local';
 import { config } from './config.js';
-import { name } from '../../../package.json';
+import pkg from '../../../package.json';
 
-const chai = require('chai');
-const chaiAsPromised = require('chai-as-promised');
+import chai from 'chai';
+import chaiAsPromised from 'chai-as-promised';
 
 chai.use(chaiAsPromised);
-export const { assert } = chai;
-const identifier = `${name}-${config.browserName}-browserstack-identifier`;
+export const {assert} = chai;
+const identifier = `${pkg.name}-${config.browserName}-browserstack-identifier`;
 
 const capabilities = {
   resolution: '1920x1080',
@@ -16,7 +16,7 @@ const capabilities = {
   os_version: config.osVersion,
   browserName: config.browserName,
   browser_version: config.browserVersion,
-  name,
+  name: pkg.name,
   build: 'Webcomponenten',
   'browserstack.user': process.env.browserstack_username,
   'browserstack.key': process.env.browserstack_password,
