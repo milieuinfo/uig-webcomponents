@@ -16,7 +16,7 @@ const capabilities = {
   os_version: config.osVersion,
   browserName: config.browserName,
   browser_version: config.browserVersion,
-  name: name,
+  name,
   build: 'Webcomponenten',
   'browserstack.user': process.env.browserstack_username,
   'browserstack.key': process.env.browserstack_password,
