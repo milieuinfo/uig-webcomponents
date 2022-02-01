@@ -1,4 +1,5 @@
 import yargs from 'yargs';
+const argv = yargs(process.argv).argv;
 
 const macOS = 'OS X';
 const windows = 'Windows';
@@ -31,20 +32,20 @@ const osVersion = () => {
 };
 
 const browserName = () => {
-  if (process.argv || yargs) {
-    if (process.argv.includes(chrome) || yargs.chrome) {
+  if (argv) {
+    if (argv.chrome) {
       return chrome;
     }
-    if (process.argv.includes(firefox) || yargs.firefox) {
+    if (argv.firefox) {
       return firefox;
     }
-    if (process.argv.includes(edge) || yargs.edge) {
+    if (argv.edge) {
       return edge;
     }
-    if (process.argv.includes(safari) || yargs.safari) {
+    if (argv.safari) {
       return safari;
     }
-    if (process.argv.includes(opera) || yargs.opera) {
+    if (argv.opera) {
       return opera;
     }
     console.warn('Geen geldige browser gevonden, default Chrome browser!');
@@ -65,9 +66,9 @@ const browserVersion = () => {
   }
 };
 
-const browserstack = () => process.argv.includes('browserstack') || yargs.browserstack;
-const sbRoot = yargs.local ? '' : 'storybook-static/';
-const basePort = yargs.local ? '8081' : '8080';
+const browserstack = () => argv.browserstack;
+const sbRoot = argv.local ? '' : 'storybook-static/';
+const basePort = argv.local ? '8081' : '8080';
 
 export const config = {
   osName: osName(),
