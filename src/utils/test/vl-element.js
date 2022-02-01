@@ -1,4 +1,5 @@
-import { WebElement, By } from 'selenium-webdriver';
+import seleniumWebdriverPkg from 'selenium-webdriver';
+const { WebElement, By } = seleniumWebdriverPkg;
 
 export class VlElement extends WebElement {
   constructor(driver, identifier, mixins) {
