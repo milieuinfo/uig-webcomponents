@@ -1,5 +1,6 @@
-import seleniumWebdriverPkg from 'selenium-webdriver';
-const { WebElement, By } = seleniumWebdriverPkg;
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const { WebElement, By } = require('selenium-webdriver');
 
 export class VlElement extends WebElement {
   constructor(driver, identifier, mixins) {

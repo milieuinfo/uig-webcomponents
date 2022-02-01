@@ -1,5 +1,6 @@
-import seleniumWebdriverPkg from 'selenium-webdriver';
-const { By, Key, Builder } = seleniumWebdriverPkg;
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const { By, Key, Builder } = require('selenium-webdriver');
 import browserstack from 'browserstack-local';
 import { config } from './config.js';
 import pkg from '../../../package.json';
