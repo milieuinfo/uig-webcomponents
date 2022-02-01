@@ -1,4 +1,5 @@
-import { By, Key, Builder } from 'selenium-webdriver';
+import seleniumWebdriverPkg from 'selenium-webdriver';
+const { By, Key, Builder } = seleniumWebdriverPkg;
 import browserstack from 'browserstack-local';
 import { config } from './config.js';
 import pkg from '../../../package.json';
