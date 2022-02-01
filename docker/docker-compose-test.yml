@@ -29,7 +29,7 @@ services:
       - no_proxy=${no_proxy},selenium-hub,tests
     shm_size: 2g
   tests:
-    image: ${DOCKER_REGISTRY}milieuinfo/ubuntu-node:14
+    image: ${DOCKER_REGISTRY}milieuinfo/ubuntu-node:14.18.3
     command: bash -c "npm run test:bamboo"
     depends_on:
       - selenium-hub
