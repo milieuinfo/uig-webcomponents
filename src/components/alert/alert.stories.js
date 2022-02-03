@@ -1,10 +1,11 @@
 import { html } from 'lit-html';
-import { action } from '@storybook/addon-actions';
 import '../button';
 import '../alert';
+import { ifDefined } from 'lit-html/directives/if-defined';
 import styles from '../button/styles.scss';
-import { stylesheet, docsIntro } from '../../../.storybook/utils.js';
-import { ALERT_SIZE, ALERT_TYPE, ALERT_ICON } from './enums';
+import { stylesheet, docsIntro, getElement } from '../../../.storybook/utils';
+import { ALERT_TYPE, ALERT_ICON } from './enums';
+import { args, argTypes } from './config';
 import './new';
 
 export default {
@@ -20,108 +21,18 @@ export default {
       },
     },
   },
-  args: {
-    title: 'Lorem ipsum',
-    icon: ALERT_ICON.WARNING,
-    size: '',
-    type: '',
-    closable: false,
-    buttonSlotText: 'Button',
-    titleSlotText: 'Title via slot',
-    content:
-      'Phasellus congue ipsum ut felis auctor, eget maximus justo dapibus. Nam sit amet pulvinar odio. Maecenas rhoncus quam eget neque porttitor, et faucibus nisl elementum.',
-    open: true,
-    onClose: action('vl-close'),
-  },
-  argTypes: {
-    title: {
-      name: 'data-vl-title',
-      type: { summary: 'string' },
-      description: 'Attribuut wordt gebruikt om de titel te bepalen.',
-      table: {
-        defaultValue: { summary: '' },
-      },
-    },
-    icon: {
-      name: 'data-vl-icon',
-      type: {
-        summary: 'string',
-      },
-      description:
-        'Attribuut wordt gebruikt om het icoon type te bepalen. Het icoon kan gekozen worden uit de lijst op https://overheid.vlaanderen.be/webuniversum/v3/documentation/atoms/vl-ui-icon.',
-      control: {
-        type: 'select',
-        options: [ALERT_ICON.WARNING, ALERT_ICON.CHECK, ALERT_ICON.INFO_CIRCLE],
-      },
-      table: {
-        defaultValue: { summary: '' },
-      },
-    },
-    size: {
-      name: 'data-vl-size',
-      type: {
-        summary: `${ALERT_SIZE.SMALL} | ${ALERT_SIZE.LARGE}`,
-      },
-      description: 'Attribuut activeert een variant van de waarschuwing maar kleiner.',
-      control: {
-        type: 'select',
-        options: [ALERT_SIZE.SMALL, ALERT_SIZE.LARGE],
-      },
-      table: {
-        defaultValue: { summary: `` },
-      },
-    },
-    type: {
-      name: 'data-vl-type',
-      type: {
-        summary: `${ALERT_TYPE.INFO} | ${ALERT_TYPE.SUCCESS} | ${ALERT_TYPE.WARNING} | ${ALERT_TYPE.ERROR}`,
-      },
-      description: 'Attribuut bepaalt de soort van waarschuwing, foutmelding, probleemmelding of succesmelding.',
-      control: {
-        type: 'select',
-        options: [ALERT_TYPE.INFO, ALERT_TYPE.SUCCESS, ALERT_TYPE.WARNING, ALERT_TYPE.ERROR],
-      },
-      table: {
-        defaultValue: { summary: '' },
-      },
-    },
-    closable: {
-      name: 'data-vl-closable',
-      type: { summary: 'boolean' },
-      description:
-        'Attribuut wordt gebruikt om de optie toe te voegen om de waarschuwing te sluiten door op het sluit icoon te klikken in de rechterbovenhoek.',
-      table: {
-        defaultValue: { summary: 'false' },
-      },
-    },
-    titleSlotText: {
-      name: 'title (slot)',
-      description: '',
-      control: {
-        disable: true,
-      },
-    },
-    buttonSlotText: {
-      name: 'actions (slot)',
-      description: '',
-      control: {
-        disable: true,
-      },
-    },
-    content: {
-      name: 'content (for demo purposes)',
-      description: '',
-    },
-  },
+  args,
+  argTypes,
 };
 
-const Template = ({ closable, icon, title, size, type, content }) => html`
+const Template = ({ closable, icon, title, size, type, content, onClose }) => html`
   <new-alert
     ?data-vl-closable=${closable}
-    data-vl-icon=${icon}
+    data-vl-icon=${ifDefined(icon)}
     data-vl-title=${title}
-    data-vl-size=${size}
-    data-vl-type=${type}
+    data-vl-size=${ifDefined(size)}
+    data-vl-type=${ifDefined(type)}
+    @vl-close=${(event) => onClose(event)}
   >
     <p>${content}</p>
   </new-alert>
@@ -162,52 +73,56 @@ Warning.args = {
   content: 'Door een technische storing is dit loket tijdelijk niet beschikbaar.',
 };
 
-export const WithButton = ({ closable, icon, title, size, type, buttonSlotText, content }) => html`
+export const WithButton = ({ closable, icon, title, size, type, buttonSlotText, content, onClose }) => html`
   <new-alert
     ?data-vl-closable=${closable}
-    data-vl-icon=${icon}
+    data-vl-icon=${ifDefined(icon)}
     data-vl-title=${title}
-    data-vl-size=${size}
-    data-vl-type=${type}
+    data-vl-size=${ifDefined(size)}
+    data-vl-type=${ifDefined(type)}
+    @vl-close=${(event) => onClose(event)}
   >
     <p>${content}</p>
     <button slot="actions" is="vl-button">${buttonSlotText}</button>
   </new-alert>
 `;
 
-WithButton.argTypes = {
-  buttonSlotText: {
-    control: {
-      disable: false,
-    },
-  },
+WithButton.args = {
+  buttonSlotText: 'Button',
 };
 
-export const WithTitleSlot = ({ closable, icon, size, type, titleSlotText, content }) => html`
-  <vl-alert ?data-vl-closable=${closable} data-vl-icon=${icon} data-vl-size=${size} data-vl-type=${type}>
+export const WithTitleSlot = ({ closable, icon, size, type, titleSlotText, content, onClose }) => html`
+  <vl-alert
+    ?data-vl-closable=${closable}
+    data-vl-icon=${ifDefined(icon)}
+    data-vl-size=${ifDefined(size)}
+    data-vl-type=${ifDefined(type)}
+    @vl-close=${(event) => onClose(event)}
+  >
     <span slot="title">${titleSlotText}</span>
     <p>${content}</p>
   </vl-alert>
 `;
 
-WithTitleSlot.argTypes = {
-  titleSlotText: {
-    control: {
-      disable: false,
-    },
-  },
+WithTitleSlot.args = {
+  titleSlotText: 'Title via slot',
 };
 
 export const Controlled = ({ closable, icon, title, size, type, content, open, onClose }) => html`
   <new-alert
     ?data-vl-closable=${closable}
-    data-vl-icon=${icon}
+    data-vl-icon=${ifDefined(icon)}
     data-vl-title=${title}
-    data-vl-size=${size}
-    data-vl-type=${type}
+    data-vl-size=${ifDefined(size)}
+    data-vl-type=${ifDefined(type)}
     .open=${open}
-    @vl-close=${(event) => onClose(event)}
+    @vl-close=${(event) => {
+      onClose(event);
+      getElement('new-alert').open = false;
+    }}
   >
     <p>${content}</p>
   </new-alert>
 `;
+
+Controlled.args = { open: true };

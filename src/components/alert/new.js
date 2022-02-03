@@ -48,6 +48,9 @@ export const renderAlert = (ref) => {
           <div class="vl-alert__message">
             <slot></slot>
           </div>
+          <!-- <div class="vl-alert__actions">
+            <slot name="actions"></slot>
+          </div> -->
         </div>
       </div>`
     : nothing;
@@ -69,6 +72,8 @@ export class NewAlert extends LitElement {
   constructor() {
     super();
     this.canRender = true;
+    // to do
+    this.closeButtonRef = createRef();
   }
 
   onClose() {

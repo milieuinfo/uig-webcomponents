@@ -45,3 +45,8 @@ export const TYPES = {
   ARRAY: 'array',
   STRING: 'string',
 };
+
+export const getElement = (selector) => {
+  const [lastItem] = [...document.querySelectorAll(selector)].slice(-1);
+  return lastItem;
+};

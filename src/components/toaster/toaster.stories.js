@@ -1,21 +1,20 @@
 import { html } from 'lit-html';
-import '../alert';
-import '../button';
+import { ifDefined } from 'lit-html/directives/if-defined';
 import '../toaster';
 import { POSITIONS } from './enums';
-// import buttonStyles from '../button/styles.scss';
-
-// import { stylesheet } from '../../../.storybook/utils.js';
+import { sharedArgs, sharedArgTypes } from '../alert/config';
 
 export default {
   title: 'custom-elements/vl-toaster',
-  // decorators: [(story) => html`${stylesheet(buttonStyles)}${story()}`],
   args: {
+    ...sharedArgs,
     closable: true,
     open: true,
     position: 'top-right',
+    content: 'Phasellus congue ipsum ut felis auctor, eget maximus justo dapibus.',
   },
   argTypes: {
+    ...sharedArgTypes,
     position: {
       control: {
         type: 'select',
@@ -25,25 +24,14 @@ export default {
   },
 };
 
-// const getToaster = () => {
-//   //   <button
-//   //   is="vl-button"
-//   //   @click=${() => {
-//   //     const toaster = getToaster();
-//   //     toaster.open = !toaster.open;
-//   //   }}
-//   // >
-//   //   Fire toaster
-//   // </button>
-//   const [lastItem] = [...document.querySelectorAll('vl-toaster')].slice(-1);
-//   return lastItem;
-// };
-
-export const Default = ({ closable, open, position }) => html` <vl-toaster
+export const Default = ({ closable, open, position, icon, title, size, type, content }) => html` <vl-toaster
   .open=${open}
   ?data-vl-closable=${closable}
-  data-vl-title="Test title"
+  data-vl-icon=${ifDefined(icon)}
+  data-vl-title=${title}
+  data-vl-size=${ifDefined(size)}
+  data-vl-type=${ifDefined(type)}
   @vl-closed=${() => console.log('closed')}
   data-vl-position=${position}
-  ><p>Test message</p></vl-toaster
+  ><p>${content}</p></vl-toaster
 >`;
