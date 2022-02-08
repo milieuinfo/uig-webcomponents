@@ -1,81 +1,31 @@
 import yargs from 'yargs';
-const argv = yargs(process.argv).argv;
 
-const macOS = 'OS X';
-const windows = 'Windows';
+const { argv } = yargs(process.argv);
 
-const macOsVersion = 'Catalina';
-const windowsVersion = '10';
-
-const chrome = 'chrome';
-const firefox = 'firefox';
-const edge = 'edge';
-const safari = 'safari';
-const opera = 'opera';
-
-const osName = () => {
-  switch (browserName()) {
-    case safari:
-      return macOS;
-    default:
-      return windows;
-  }
+const operatingSystems = {
+  mac: { name: 'OS X', version: 'Catalina' },
+  windows: { name: 'Windows', version: '10' },
 };
 
-const osVersion = () => {
-  switch (osName()) {
-    case macOS:
-      return macOsVersion;
-    default:
-      return windowsVersion;
-  }
-};
+const browsers = [
+  { name: 'chrome', isActive: argv.chrome, version: '85.0', os: operatingSystems.windows },
+  { name: 'firefox', isActive: argv.firefox, version: '83.0', os: operatingSystems.windows },
+  { name: 'edge', isActive: argv.edge, version: '86.0', os: operatingSystems.windows },
+  { name: 'safari', isActive: argv.safari, version: 'latest', os: operatingSystems.mac },
+  { name: 'opera', isActive: argv.opera, version: 'latest', os: operatingSystems.windows },
+];
 
-const browserName = () => {
-  if (argv) {
-    if (argv.chrome) {
-      return chrome;
-    }
-    if (argv.firefox) {
-      return firefox;
-    }
-    if (argv.edge) {
-      return edge;
-    }
-    if (argv.safari) {
-      return safari;
-    }
-    if (argv.opera) {
-      return opera;
-    }
-    console.warn('Geen geldige browser gevonden, default Chrome browser!');
-    return chrome;
-  }
-};
+const activeBrowser = browsers.find((browser) => browser.isActive);
 
-const browserVersion = () => {
-  switch (browserName()) {
-    case chrome:
-      return '85.0';
-    case firefox:
-      return '83.0';
-    case edge:
-      return '86.0';
-    default:
-      'latest';
-  }
-};
-
-const browserstack = () => argv.browserstack;
 const sbRoot = argv.local ? '' : 'storybook-static/';
 const basePort = argv.local ? '8081' : '8080';
 
 export const config = {
-  osName: osName(),
-  osVersion: osVersion(),
-  browserName: browserName(),
-  browserVersion: browserVersion(),
-  browserstack: browserstack(),
+  osName: activeBrowser.os.name,
+  osVersion: activeBrowser.os.version,
+  browserName: activeBrowser.name,
+  browserVersion: activeBrowser.version,
+  browserstack: argv.browserstack,
   gridUrl: 'http://selenium-hub:4444/wd/hub',
   baseUrl: `http://localhost:${basePort}/src/`,
   sbUrl: `http://localhost:8080/${sbRoot}iframe.html`,
