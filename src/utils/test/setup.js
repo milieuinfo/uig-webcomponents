@@ -3,11 +3,11 @@ import browserstack from 'browserstack-local';
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import { config } from './config.js';
-import { name } from '../../../package.json';
+import pkg from '../../../package.json';
 
 chai.use(chaiAsPromised);
 const { assert } = chai;
-const identifier = `${name}-${config.browserName}-browserstack-identifier`;
+const identifier = `${pkg.name}-${config.browserName}-browserstack-identifier`;
 
 const capabilities = {
   resolution: '1920x1080',
@@ -15,7 +15,7 @@ const capabilities = {
   os_version: config.osVersion,
   browserName: config.browserName,
   browser_version: config.browserVersion,
-  name,
+  name: pkg.name,
   build: 'Webcomponenten',
   'browserstack.user': process.env.browserstack_username,
   'browserstack.key': process.env.browserstack_password,
