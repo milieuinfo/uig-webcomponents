@@ -15,7 +15,8 @@ const browsers = [
   { name: 'opera', isActive: argv.opera, version: 'latest', os: operatingSystems.windows },
 ];
 
-const activeBrowser = browsers.find((browser) => browser.isActive);
+const activeBrowser =
+  browsers.find((browser) => browser.isActive) || browsers.find((browser) => browser.name === 'chrome');
 
 const sbRoot = argv.local ? '' : 'storybook-static/';
 const basePort = argv.local ? '8081' : '8080';
