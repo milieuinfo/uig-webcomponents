@@ -1,6 +1,12 @@
 export const defaultOptIns = [
   { name: 'cookie-consent', checked: true, mandatory: true },
   { name: 'cookie-consent-date', checked: true, mandatory: true },
+  {
+    name: 'functional',
+    label: 'Essentiële cookies',
+    checked: true,
+    mandatory: true,
+  },
 ];
 
 const functionalOptIn = {
@@ -22,9 +28,9 @@ const mapExtraOptIns = (extraOptIns) => {
 export const handleOptIns = (reference) => {
   const newOptIns = [...defaultOptIns, ...mapExtraOptIns(reference.extraOptIns)];
 
-  if (reference.analytics) {
-    reference.optIns = [...newOptIns, functionalOptIn];
-  } else {
-    reference.optIns = newOptIns;
-  }
+  // if (reference.analytics) {
+  //   reference.optIns = [...newOptIns, functionalOptIn];
+  // } else {
+  reference.optIns = newOptIns;
+  // }
 };

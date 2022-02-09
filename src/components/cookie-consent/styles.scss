@@ -1,3 +1,9 @@
 @import '../button/styles.scss';
-@import '../form-message/styles.scss';
 @import '../modal/styles.scss';
+
+// form-message
+@import "../../../node_modules/@govflanders/vl-ui-form-message/src/scss/form-message";
+
+// link
+@import "../button/styles.scss";
+@import "../../../node_modules/@govflanders/vl-ui-link/src/scss/link";
