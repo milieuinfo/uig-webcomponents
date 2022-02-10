@@ -10,6 +10,15 @@ const unreleased = [];
 const changes = [
   ...unreleased,
   {
+    version: '2.2.2',
+    date: '11/2/2022',
+    children: html`<ul>
+      <li>
+        <p>An icon mismatch bug is fixed.</p>
+      </li>
+    </ul>`,
+  },
+  {
     version: '2.2.1',
     date: '9/2/2022',
     children: html`<ul>
