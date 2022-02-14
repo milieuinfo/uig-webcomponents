@@ -7,10 +7,14 @@ import './new';
 export default {
   title: 'custom-elements/vl-modal',
   decorators: [(story) => html`${stylesheet(buttonStyles)}${story()}`],
-  args: { open: true },
+  args: { open: true, closable: true },
 };
 
-export const Default = ({ open }) => html`<new-modal data-vl-title="Title test" .open=${open}>
+export const Default = ({ open, closable }) => html`<new-modal
+  ?data-vl-closable=${closable}
+  data-vl-title="Title test"
+  .open=${open}
+>
   <span slot="content">Content test!</span>
   <button is="vl-button" slot="button">Start aanvraag</button>
 </new-modal>`;

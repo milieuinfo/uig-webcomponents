@@ -3,7 +3,7 @@ import { LitElement, css, html, unsafeCSS, nothing } from 'lit';
 import { ref, createRef } from 'lit/directives/ref.js';
 import styles from './styles.scss';
 import '../form-grid';
-import '../modal';
+import '../modal/new';
 import '../checkbox';
 import '../form-message';
 import '../link';
@@ -42,7 +42,7 @@ export class VlCookieConsent extends LitElement {
 
   firstUpdated() {
     if (canModalOpen(this.open)) {
-      this.modalRef.value.open();
+      this.modalRef.value.open = true;
     }
   }
 
@@ -54,9 +54,9 @@ export class VlCookieConsent extends LitElement {
           break;
         case 'open':
           if (this.open) {
-            this.modalRef.value.open();
+            this.modalRef.value.open = true;
           } else {
-            this.modalRef.value.close();
+            this.modalRef.value.open = false;
           }
           break;
         case 'analytics':
@@ -69,10 +69,11 @@ export class VlCookieConsent extends LitElement {
   }
 
   render() {
-    return html`<vl-modal
+    return html`<new-modal
       data-vl-title="Cookie-informatie"
       data-vl-not-auto-closable
       data-vl-not-cancellable
+      .hideAll=${this.phase === 2}
       ${ref(this.modalRef)}
     >
       ${this.phase === 1 &&
@@ -146,11 +147,18 @@ export class VlCookieConsent extends LitElement {
         <button @click=${() => submit(this)} is="vl-button" slot="button">
           ${this.optIns.filter((optIn) => optIn.label).length > 0 ? 'Bewaar keuze' : 'Ik begrijp het'}
         </button>`}
-      ${this.phase === 2 ? html`<vl-privacy slot="content"></vl-privacy>` : nothing}
-    </vl-modal>`;
+      ${this.phase === 2
+        ? html`<vl-privacy
+            @vl-back=${() => {
+              this.phase = 1;
+            }}
+            slot="content"
+          ></vl-privacy>`
+        : nothing}
+    </new-modal>`;
   }
 }
 
-customElements.whenDefined('vl-modal').then(() => {
-  customElements.define('vl-cookie-consent', VlCookieConsent);
-});
+// customElements.whenDefined('vl-modal').then(() => {
+customElements.define('vl-cookie-consent', VlCookieConsent);
+// });
