@@ -1,4 +1,5 @@
 import { LitElement, css, html, unsafeCSS } from 'lit';
+import { classMap } from 'lit/directives/class-map.js';
 import '../functional-header';
 import '../grid';
 import '../titles';
@@ -30,8 +31,9 @@ export class VlCookieStatement extends LitElement {
 
   static get properties() {
     return {
-      version: { type: String },
-      date: { type: String },
+      version: { type: String, attribute: 'data-vl-version', reflect: true },
+      date: { type: String, attribute: 'data-vl-date', reflect: true },
+      inline: { type: Boolean, attribute: 'data-vl-inline', reflect: true },
     };
   }
 
@@ -39,16 +41,29 @@ export class VlCookieStatement extends LitElement {
     super();
     this.version = '1.0.0';
     this.date = '3 maart 2021';
+    this.inline = false;
   }
 
   render() {
+    const inlineClass = { inline: this.inline };
+    const columnSize = this.inline ? '12' : '8';
+
     return html`<vl-functional-header
+        .backLinkEventListener=${(event) => {
+          event.preventDefault();
+          this.dispatchEvent(
+            new CustomEvent('vl-back', {
+              bubbles: true,
+              composed: true,
+            }),
+          );
+        }}
         data-vl-title="Departement Omgeving"
         data-vl-sub-title="Cookieverklaring"
         data-vl-link="https://omgeving.vlaanderen.be"
       ></vl-functional-header>
       <section is="vl-region">
-        <div is="vl-layout">
+        <div is="vl-layout" class=${classMap(inlineClass)}>
           <div is="vl-grid" data-vl-is-stacked>
             <div is="vl-column" data-vl-size="10">
               <h1 is="vl-h1" data-vl-no-space-bottom>Cookieverklaring</h1>
@@ -56,7 +71,7 @@ export class VlCookieStatement extends LitElement {
             <div is="vl-column" data-vl-size="10">
               <p is="vl-introduction">
                 <span>Versie</span> <span id="introduction-version">${this.version}</span> -
-                <span id="introduction-date">${this.date}</span>
+                <span>${this.date}</span>
               </p>
             </div>
 
@@ -70,13 +85,13 @@ export class VlCookieStatement extends LitElement {
       </section>
 
       <section is="vl-region">
-        <div is="vl-layout">
+        <div is="vl-layout" class=${classMap(inlineClass)}>
           <div is="vl-grid" data-vl-is-stacked>
             <div
               is="vl-column"
-              data-vl-size="8"
-              data-vl-medium-size="8"
-              data-vl-small-size="8"
+              data-vl-size=${columnSize}
+              data-vl-medium-size=${columnSize}
+              data-vl-small-size=${columnSize}
               data-vl-extra-small-size="12"
             >
               <div is="vl-side-navigation-reference" data-vl--scrollspy-content>
@@ -200,7 +215,7 @@ export class VlCookieStatement extends LitElement {
               data-vl-small-size="4"
               data-vl-extra-small-size="0"
             >
-              <nav is="vl-side-navigation" aria-label="inhoudsopgave">
+              <nav is="vl-side-navigation" aria-label="inhoudsopgave" class=${classMap({ hide: this.inline })}>
                 <h2 is="vl-side-navigation-h2">Op deze pagina</h2>
                 <div is="vl-side-navigation-content">
                   <ul is="vl-side-navigation-group">
@@ -237,7 +252,7 @@ export class VlCookieStatement extends LitElement {
       </section>
 
       <section is="vl-region" data-vl-overlap>
-        <div is="vl-layout">
+        <div is="vl-layout" class=${classMap(inlineClass)}>
           <div is="vl-grid" data-vl-is-stacked>
             <div is="vl-column" data-vl-size="12" data-vl-medium-size="12">
               <vl-contact-card>

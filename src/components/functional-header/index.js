@@ -1,7 +1,7 @@
-import { vlElement, define } from "../../utils/core";
-import "../link";
-import "../icon";
-import styles from "./styles.scss";
+import { vlElement, define } from '../../utils/core';
+import '../link';
+import '../icon';
+import styles from './styles.scss';
 
 /**
  * VlFunctionalHeader
@@ -24,7 +24,7 @@ import styles from "./styles.scss";
  */
 export class VlFunctionalHeader extends vlElement(HTMLElement) {
   static get _observedAttributes() {
-    return ["back", "back-link", "title", "sub-title", "link"];
+    return ['back', 'back-link', 'title', 'sub-title', 'link'];
   }
 
   constructor() {
@@ -32,8 +32,8 @@ export class VlFunctionalHeader extends vlElement(HTMLElement) {
       <style>
         ${styles}
       </style>
-      <header class="vl-functional-header">
-        <div class="vl-layout">
+      <header class="vl-functional-header" style="min-width: initial">
+        <div class="vl-layout" style="min-width: initial">
           <div class="vl-functional-header__row">
             <div class="vl-functional-header__content">
               <div class="vl-title">
@@ -64,9 +64,7 @@ export class VlFunctionalHeader extends vlElement(HTMLElement) {
   }
 
   connectedCallback() {
-    this._observer = this.__observeSlotElements(() =>
-      this.__processSlotElements()
-    );
+    this._observer = this.__observeSlotElements(() => this.__processSlotElements());
     this.__processSlotElements();
   }
 
@@ -75,27 +73,27 @@ export class VlFunctionalHeader extends vlElement(HTMLElement) {
   }
 
   get _titleElement() {
-    return this._shadow.querySelector("#title");
+    return this._shadow.querySelector('#title');
   }
 
   get _subTitleElement() {
-    return this._shadow.querySelector("#sub-title");
+    return this._shadow.querySelector('#sub-title');
   }
 
   get _backLinkElement() {
-    return this._shadow.querySelector("#back-link");
+    return this._shadow.querySelector('#back-link');
   }
 
   get _backLinkTextElement() {
-    return this._backLinkElement.querySelector("#back-link-text");
+    return this._backLinkElement.querySelector('#back-link-text');
   }
 
   get _actionsElement() {
-    return this._shadow.querySelector("#actions");
+    return this._shadow.querySelector('#actions');
   }
 
   get _actionsListElement() {
-    return this._actionsElement.querySelector("ul");
+    return this._actionsElement.querySelector('ul');
   }
 
   _getActionTemplate(element) {
@@ -135,16 +133,10 @@ export class VlFunctionalHeader extends vlElement(HTMLElement) {
    */
   set backLinkEventListener(eventListener) {
     if (this._backLinkEventListener) {
-      this._backLinkElement.removeEventListener(
-        "click",
-        this._backLinkEventListener
-      );
+      this._backLinkElement.removeEventListener('click', this._backLinkEventListener);
     }
     this._backLinkEventListener = eventListener;
-    this._backLinkElement.addEventListener(
-      "click",
-      this._backLinkEventListener
-    );
+    this._backLinkElement.addEventListener('click', this._backLinkEventListener);
   }
 
   __processSlotElements() {
@@ -152,7 +144,7 @@ export class VlFunctionalHeader extends vlElement(HTMLElement) {
   }
 
   __processSlotActions() {
-    this._actionsListElement.innerHTML = "";
+    this._actionsListElement.innerHTML = '';
     const actions = this.querySelector('[slot="actions"]');
     if (actions) {
       [...actions.children]
@@ -175,4 +167,4 @@ export class VlFunctionalHeader extends vlElement(HTMLElement) {
   }
 }
 
-define("vl-functional-header", VlFunctionalHeader);
+define('vl-functional-header', VlFunctionalHeader);

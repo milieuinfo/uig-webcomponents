@@ -1,6 +1,6 @@
-import { vlElement, define } from "../../utils/core";
-import "../icon";
-import styles from "./styles.scss";
+import { vlElement, define } from '../../utils/core';
+import '../icon';
+import styles from './styles.scss';
 
 /**
  * VlInfoblock
@@ -21,7 +21,7 @@ import styles from "./styles.scss";
  */
 export class VlInfoblock extends vlElement(HTMLElement) {
   static get _observedAttributes() {
-    return ["title", "icon", "type"];
+    return ['title', 'icon', 'type'];
   }
 
   constructor() {
@@ -50,11 +50,11 @@ export class VlInfoblock extends vlElement(HTMLElement) {
   }
 
   _iconChangedCallback(oldValue, newValue) {
-    this._iconElement.setAttribute("data-vl-icon", newValue);
+    this._iconElement.setAttribute('data-vl-icon', newValue);
   }
 
   _typeChangedCallback(oldValue, newValue) {
-    const classPrefix = "vl-infoblock--";
+    const classPrefix = 'vl-infoblock--';
     if (oldValue) {
       this._element.classList.remove(classPrefix + oldValue);
     }
@@ -64,8 +64,8 @@ export class VlInfoblock extends vlElement(HTMLElement) {
   }
 
   get _iconElement() {
-    return this._element.querySelector("#infoblock_icon");
+    return this._element.querySelector('#infoblock_icon');
   }
 }
 
-define("vl-infoblock", VlInfoblock);
+define('vl-infoblock', VlInfoblock);

@@ -9,6 +9,7 @@ import '../form-message';
 import '../link';
 import '../button';
 import '../privacy';
+import '../cookie-statement';
 import { defaultOptIns, canModalOpen, submit, handleOptIns } from './utils';
 
 export class VlCookieConsent extends LitElement {
@@ -37,7 +38,7 @@ export class VlCookieConsent extends LitElement {
     this.modalRef = createRef();
     this.optIns = defaultOptIns;
     this.analytics = false;
-    this.phase = 1;
+    this.phase = 2;
   }
 
   firstUpdated() {
@@ -148,12 +149,13 @@ export class VlCookieConsent extends LitElement {
           ${this.optIns.filter((optIn) => optIn.label).length > 0 ? 'Bewaar keuze' : 'Ik begrijp het'}
         </button>`}
       ${this.phase === 2
-        ? html`<vl-privacy
+        ? html`<vl-cookie-statement
+            data-vl-inline
             @vl-back=${() => {
               this.phase = 1;
             }}
             slot="content"
-          ></vl-privacy>`
+          ></vl-cookie-statement>`
         : nothing}
     </new-modal>`;
   }
