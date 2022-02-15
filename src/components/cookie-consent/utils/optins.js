@@ -9,12 +9,6 @@ export const defaultOptIns = [
   },
 ];
 
-const functionalOptIn = {
-  name: 'functional',
-  checked: true,
-  mandatory: true,
-};
-
 const mapExtraOptIns = (extraOptIns) => {
   if (extraOptIns) {
     return extraOptIns.map((optIn) => ({
@@ -28,9 +22,16 @@ const mapExtraOptIns = (extraOptIns) => {
 export const handleOptIns = (reference) => {
   const newOptIns = [...defaultOptIns, ...mapExtraOptIns(reference.extraOptIns)];
 
-  // if (reference.analytics) {
-  //   reference.optIns = [...newOptIns, functionalOptIn];
-  // } else {
-  reference.optIns = newOptIns;
-  // }
+  if (reference.analytics) {
+    reference.optIns = [
+      ...newOptIns,
+      {
+        name: 'analytics',
+        checked: true,
+        mandatory: true,
+      },
+    ];
+  } else {
+    reference.optIns = newOptIns;
+  }
 };

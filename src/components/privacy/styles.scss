@@ -1,27 +1,19 @@
-
-// ==========================================================================
-// Vlaanderen UI -- Privacy
-// ==========================================================================
 @charset "utf-8";
-
-// ==========================================================================
-// Core
-// ==========================================================================
 @import "../../../node_modules/@govflanders/vl-ui-core/src/scss/core";
-
-// ==========================================================================
-// Components
-// ==========================================================================
-@import '../grid/styles.scss';
-@import '../titles/styles.scss';
-@import '../introduction/styles.scss';
-@import '../link/styles.scss';
-@import '../icon/styles.scss';
-@import '../properties/styles.scss';
-@import '../side-navigation/styles.scss';
-
-// ==========================================================================
-// Util
-// ==========================================================================
+@import "../../../node_modules/@govflanders/vl-ui-titles/src/scss/titles";
+@import "../../../node_modules/@govflanders/vl-ui-introduction/src/scss/introduction";
+@import "../../../node_modules/@govflanders/vl-ui-properties/src/scss/properties";
+@import "../../../node_modules/@govflanders/vl-ui-side-navigation/src/scss/side-navigation";
 @import "../../../node_modules/@govflanders/vl-ui-util/src/scss/util";
 
+.vl-region--overlap .inline {
+  margin: 15px;
+}
+
+.inline {
+  min-width: initial;
+}
+
+.hide {
+  display: none;
+}

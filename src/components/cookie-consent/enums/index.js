@@ -1,0 +1,5 @@
+export const VIEWS = {
+  COOKIE_CONSENT: 0,
+  COOKIE_STATEMENT: 1,
+  PRIVACY_STATEMENT: 2,
+};

@@ -1,4 +1,5 @@
 import { html, LitElement, css, unsafeCSS } from 'lit';
+import { classMap } from 'lit/directives/class-map.js';
 import '../functional-header';
 import '../grid';
 import '../titles';
@@ -13,13 +14,6 @@ import '../properties';
 import '../side-navigation';
 import styles from './styles.scss';
 
-const props = {
-  version: 'data-vl-version',
-  date: 'data-vl-date',
-};
-
-const { version, date } = props;
-
 export class VlPrivacy extends LitElement {
   static get styles() {
     return [
@@ -31,18 +25,22 @@ export class VlPrivacy extends LitElement {
 
   static get properties() {
     return {
-      [version]: { type: String },
-      [date]: { type: String },
+      version: { type: String, attribute: 'data-vl-version', reflect: true },
+      date: { type: String, attribute: 'data-vl-date', reflect: true },
+      inline: { type: Boolean, attribute: 'data-vl-inline', reflect: true },
     };
   }
 
   constructor() {
     super();
-    this[version] = '1.0.0';
-    this[date] = '3 maart 2021';
+    this.version = '1.0.0';
+    this.date = '3 maart 2021';
   }
 
   render() {
+    const inlineClass = { inline: this.inline };
+    const columnSize = this.inline ? '12' : '8';
+
     return html`
       <vl-functional-header
         .backLinkEventListener=${(event) => {
@@ -59,7 +57,7 @@ export class VlPrivacy extends LitElement {
         data-vl-link="https://omgeving.vlaanderen.be"
       ></vl-functional-header>
       <section is="vl-region">
-        <div is="vl-layout">
+        <div is="vl-layout" class=${classMap(inlineClass)}>
           <div is="vl-grid" data-vl-is-stacked>
             <div is="vl-column" data-vl-size="10">
               <h1 is="vl-h1" data-vl-no-space-bottom>Privacy</h1>
@@ -67,8 +65,8 @@ export class VlPrivacy extends LitElement {
             <div is="vl-column" data-vl-size="10">
               <p is="vl-introduction">
                 <span>Versie</span>
-                <span id="introduction-version">${this[version]}</span> -
-                <span id="introduction-date">${this[date]}</span>
+                <span>${this.version}</span> -
+                <span>${this.date}</span>
               </p>
             </div>
             <div is="vl-column" data-vl-size="12" data-vl-medium-size="12">
@@ -80,13 +78,13 @@ export class VlPrivacy extends LitElement {
         </div>
       </section>
       <section id="content" is="vl-region">
-        <div is="vl-layout">
+        <div is="vl-layout" class=${classMap(inlineClass)}>
           <div is="vl-grid" data-vl-is-stacked>
             <div
               is="vl-column"
-              data-vl-size="8"
-              data-vl-medium-size="8"
-              data-vl-small-size="8"
+              data-vl-size=${columnSize}
+              data-vl-medium-size=${columnSize}
+              data-vl-small-size=${columnSize}
               data-vl-extra-small-size="12"
             >
               <div is="vl-side-navigation-reference" data-vl--scrollspy-content>
@@ -656,7 +654,7 @@ export class VlPrivacy extends LitElement {
                               </p>
                             </vl-typography>
                           </div>
-                          <div is="vl-column" data-vl-size="4" data-vl-medium-size="6">
+                          <div is="vl-column" data-vl-size=${this.inline ? '6' : '4'} data-vl-medium-size="6">
                             <vl-document
                               data-vl-href="https://cdn.milieuinfo.be/footer-assets/LATEST/docx/privacybeleid-v0.2.docx"
                             >
@@ -679,7 +677,7 @@ export class VlPrivacy extends LitElement {
               data-vl-small-size="4"
               data-vl-extra-small-size="0"
             >
-              <nav is="vl-side-navigation" aria-label="inhoudsopgave">
+              <nav is="vl-side-navigation" aria-label="inhoudsopgave" class=${classMap({ hide: this.inline })}>
                 <h5 is="vl-side-navigation-h5">Op deze pagina</h5>
                 <div is="vl-side-navigation-content">
                   <ul is="vl-side-navigation-group">
@@ -763,7 +761,7 @@ export class VlPrivacy extends LitElement {
         </div>
       </section>
       <section is="vl-region" data-vl-overlap>
-        <div is="vl-layout">
+        <div is="vl-layout" class=${classMap(inlineClass)}>
           <div is="vl-grid" data-vl-is-stacked>
             <div is="vl-column" data-vl-size="12" data-vl-medium-size="12">
               <vl-contact-card id="contact-card">
