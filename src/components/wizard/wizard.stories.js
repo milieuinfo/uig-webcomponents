@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
 import { action } from '@storybook/addon-actions';
-import { stylesheet, docsIntro, CATEGORIES } from '../../../.storybook/utils.js';
+import { stylesheet, docsIntro, CATEGORIES, wrapWidth } from '../../../.storybook/utils.js';
 import '.';
 import '../titles';
 import '../grid';
@@ -97,7 +97,7 @@ const getWizard = () => {
   return lastItem;
 };
 
-export const Default = ({ activeStepSlider, title, header, onClickStep }) => html`<div style="max-width: 780px">
+export const Default = ({ activeStepSlider, title, header, onClickStep }) => html`<div style="max-width: ${wrapWidth}">
   <vl-wizard
     data-vl-active-step=${activeStepSlider}
     @vl-click-step=${(event) => {
