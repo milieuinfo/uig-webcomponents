@@ -1,5 +1,5 @@
 import { html } from 'lit-html';
-import { docsIntro, CATEGORIES } from '../../../.storybook/utils';
+import { docsIntro, CATEGORIES, TYPES } from '../../../.storybook/utils';
 import '../share-buttons';
 
 export default {
@@ -21,7 +21,7 @@ export default {
       description: 'Removes the gray border top.',
       table: {
         category: CATEGORIES.ATTRIBUTES,
-        type: { summary: 'boolean' },
+        type: { summary: TYPES.BOOLEAN },
         defaultValue: { summary: 'false' },
       },
     },
