@@ -1,20 +1,5 @@
 import { nativeVlElement, define } from '../../../../utils/core';
 
-/**
- * VlDoormatImage
- * @class
- * @classdesc De doormat image kan gebruikt worden in combinatie met de vl-doormat component.
- *
- * @extends HTMLImageElement
- *
- * @property {boolean} graphic - Attribuut zorgt ervoor dat de afbeelding in het groot boven de doormat gevisualiseerd wordt.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-doormat/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-doormat/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-doormat.html|Demo}
- *
- */
-
 export class VlDoormatImage extends nativeVlElement(HTMLImageElement) {
   static get _observedClassAttributes() {
     return ['image', 'graphic'];
