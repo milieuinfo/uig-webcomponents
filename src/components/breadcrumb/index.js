@@ -1,4 +1,4 @@
-import { html, css, LitElement, unsafeCSS } from 'lit';
+import { html, css, LitElement, unsafeCSS, nothing } from 'lit';
 import styles from './styles.scss';
 import './components/breadcrumb-item';
 
@@ -26,7 +26,9 @@ export class VlBreadcrumb extends LitElement {
           const name = `item-${index}`;
           child.setAttribute('slot', name);
           return html` <li class="vl-breadcrumb__list__item">
-            <span class="vl-breadcrumb__list__item__separator" aria-hidden="true"></span>
+            ${index === 0
+              ? nothing
+              : html`<span class="vl-breadcrumb__list__item__separator" aria-hidden="true"></span>`}
             <slot name=${name}></slot>
           </li>`;
         })}
