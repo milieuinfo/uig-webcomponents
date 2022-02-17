@@ -11,8 +11,11 @@ const unreleased = [
     date: '?',
     children: html`<ul>
       <li>
-        <p><code>vl-breadcrumb</code></p>
-        <p>When migrating the breadcrumb, we fixed a bug where new breadcrumb items did not get the correct styling.</p>
+        <p><code>vl-breadcrumb</code> &#x1F4A5;</p>
+        <p>
+          When migrating the breadcrumb, we mentioned that the right styles where only applied on load. When the
+          components children changed, the styled did not change correspondingly.
+        </p>
       </li>
       <li>
         <p><code>vl-doormat</code></p>
