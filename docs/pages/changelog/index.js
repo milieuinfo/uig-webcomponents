@@ -12,7 +12,10 @@ const unreleased = [
     children: html`<ul>
       <li>
         <p><code>vl-doormat</code></p>
-        <p>When migrating the doormat, we fixed a bug with the data-vl-graphic attribute.</p>
+        <p>
+          When migrating the doormat, we fixed a bug with the <code>data-vl-graphic</code> attribute that was not
+          rendering the component correctly on load.
+        </p>
       </li>
     </ul>`,
   },

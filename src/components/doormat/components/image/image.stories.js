@@ -1,11 +1,22 @@
 import { html } from 'lit-html';
 import '../..';
 import styles from '../../styles.scss';
-import { stylesheet, wrapWidth, TYPES } from '../../../../../.storybook/utils';
+import { stylesheet, wrapWidth, TYPES, docsIntro } from '../../../../../.storybook/utils';
 
 export default {
   title: 'native-elements/vl-doormat/vl-doormat-image',
   decorators: [(story) => html`${stylesheet(styles)} ${story()}`],
+  parameters: {
+    docs: {
+      description: {
+        component: docsIntro({
+          root: 'doormat',
+          stylesheets: ['doormat'],
+          intro: 'Add an extra image to the doormat to visually support the connected content.',
+        }),
+      },
+    },
+  },
   args: { graphic: false },
   argTypes: {
     graphic: {

@@ -29,7 +29,7 @@ export const docsIntro = ({ stylesheets, root, intro, utils }) => {
       `<br/><br/>${'`'}import ${'{'} ${util.name} ${'}'} "${basePath}${root}/utils"${'`'}<br/><br/>${util.description}`,
   );
 
-  const brIntro = `<br/><br/>${intro}`;
+  const brIntro = intro ? `<br/><br/>${intro}` : '';
   return `${componentImport}${styleImports || ''}${brIntro}${utilsImports || ''}`;
 };
 
