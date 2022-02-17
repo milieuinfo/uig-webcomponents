@@ -10,8 +10,7 @@ export default {
       description: {
         component: docsIntro({
           root: 'breadcrumb',
-          intro:
-            'Use breadcrumbs to show the location of the current page within a navigational hierarchy. Breadcrumbs get arrow separators automatically via CSS.',
+          intro: 'Use breadcrumbs to show the location of the current page within a navigational hierarchy.',
         }),
       },
     },

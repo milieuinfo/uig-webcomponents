@@ -14,7 +14,7 @@ const unreleased = [
         <p><code>vl-breadcrumb</code> &#x1F4A5;</p>
         <p>
           When migrating the breadcrumb, we mentioned that the right styles where only applied on load. When the
-          components children changed, the styled did not change correspondingly.
+          components children changed, the styles did not change correspondingly.
         </p>
       </li>
       <li>
