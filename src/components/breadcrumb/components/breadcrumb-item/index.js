@@ -1,7 +1,7 @@
 import { html, css, LitElement, unsafeCSS } from 'lit';
 import styles from '../../styles.scss';
 
-export class VlTestItem extends LitElement {
+export class VlBreadcrumbItem extends LitElement {
   static get styles() {
     return [
       css`
@@ -21,4 +21,4 @@ export class VlTestItem extends LitElement {
   }
 }
 
-customElements.define('vl-breadcrumb-item', VlTestItem);
+customElements.define('vl-breadcrumb-item', VlBreadcrumbItem);

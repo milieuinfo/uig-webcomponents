@@ -1,11 +1,9 @@
 import { html } from 'lit-html';
-import styles from './styles.scss';
-import { stylesheet, docsIntro } from '../../../.storybook/utils.js';
+import { docsIntro, wrapWidth } from '../../../.storybook/utils.js';
 import '.';
 
 export default {
-  title: 'native-elements/vl-breadcrumb',
-  decorators: [(story) => html`${stylesheet(styles)}${story()}`],
+  title: 'custom-elements/vl-breadcrumb',
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
@@ -21,9 +19,11 @@ export default {
   },
 };
 
-export const Default = () => html`<vl-breadcrumb>
-  <vl-breadcrumb-item data-vl-href="#">Vlaanderen Intern</vl-breadcrumb-item>
-  <vl-breadcrumb-item data-vl-href="#">Regelgeving</vl-breadcrumb-item>
-  <vl-breadcrumb-item data-vl-href="#">Webuniversum</vl-breadcrumb-item>
-  <vl-breadcrumb-item data-vl-href="#">Componenten</vl-breadcrumb-item>
-</vl-breadcrumb>`;
+export const Default = () => html`<div style="max-width: ${wrapWidth}">
+  <vl-breadcrumb>
+    <vl-breadcrumb-item data-vl-href="#">Vlaanderen Intern</vl-breadcrumb-item>
+    <vl-breadcrumb-item data-vl-href="#">Regelgeving</vl-breadcrumb-item>
+    <vl-breadcrumb-item data-vl-href="#">Webuniversum</vl-breadcrumb-item>
+    <vl-breadcrumb-item data-vl-href="#">Componenten</vl-breadcrumb-item>
+  </vl-breadcrumb>
+</div>`;

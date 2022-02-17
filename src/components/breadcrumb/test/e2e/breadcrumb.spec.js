@@ -2,7 +2,7 @@ import { assert, getDriver, config } from '../../../../utils/test';
 import { VlBreadcrumb } from './breadcrumb';
 
 const { sbUrl } = config;
-const defaultUrl = `${sbUrl}?id=native-elements-vl-breadcrumb--default`;
+const defaultUrl = `${sbUrl}?id=custom-elements-vl-breadcrumb--default`;
 
 describe('vl-breadcrumb', async () => {
   let driver;

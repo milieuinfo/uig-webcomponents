@@ -1,6 +1,6 @@
 import { html, css, LitElement, unsafeCSS } from 'lit';
 import styles from './styles.scss';
-import './components/item';
+import './components/breadcrumb-item';
 
 export class VlBreadcrumb extends LitElement {
   static get styles() {
