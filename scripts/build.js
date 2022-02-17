@@ -29,6 +29,7 @@ const buildConfig = {
     'search-filter',
     'search-results',
     'action-group',
+    'doormat',
   ],
   componentsWithStylesheetAndInlineStyling: ['tooltip', 'pill'],
 };

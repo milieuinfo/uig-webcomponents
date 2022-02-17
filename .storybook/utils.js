@@ -45,3 +45,5 @@ export const TYPES = {
   ARRAY: 'array',
   STRING: 'string',
 };
+
+export const wrapWidth = '780px';

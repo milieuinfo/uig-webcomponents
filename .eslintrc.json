@@ -5,6 +5,7 @@
     "import/extensions": "off",
     "import/no-useless-path-segments": "off",
     "import/no-extraneous-dependencies": "off",
-    "no-param-reassign": ["error", { "props": false }]
+    "no-param-reassign": ["error", { "props": false }],
+    "class-methods-use-this": "off"
   }
 }

@@ -14,12 +14,17 @@ const unreleased = [
         <p><code>vl-breadcrumb</code></p>
         <p>When migrating the breadcrumb, we fixed a bug where new breadcrumb items did not get the correct styling.</p>
       </li>
+      <li>
+        <p><code>vl-doormat</code></p>
+        <p>When migrating the doormat, we fixed a bug with the data-vl-graphic attribute.</p>
+      </li>
     </ul>`,
   },
 ];
 
 const changes = [
   ...unreleased,
+
   {
     version: '2.2.2',
     date: '11/2/2022',
