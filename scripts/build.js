@@ -30,6 +30,7 @@ const buildConfig = {
     'search-results',
     'action-group',
     'description-data',
+    'doormat',
   ],
   componentsWithStylesheetAndInlineStyling: ['tooltip', 'pill'],
 };

@@ -5,10 +5,25 @@ import titleStyles from '../../../src/components/titles/styles.scss';
 import introStyles from '../../../src/components/introduction/styles.scss';
 import { removeStorybooksDefaultStyling } from '../../../.storybook/utils';
 
-const unreleased = [];
+const unreleased = [
+  {
+    version: 'Unreleased',
+    date: '?',
+    children: html`<ul>
+      <li>
+        <p><code>vl-doormat</code></p>
+        <p>
+          When migrating the doormat, we fixed a bug with the <code>data-vl-graphic</code> attribute that was not
+          rendering the component correctly on load.
+        </p>
+      </li>
+    </ul>`,
+  },
+];
 
 const changes = [
   ...unreleased,
+
   {
     version: '2.2.2',
     date: '11/2/2022',

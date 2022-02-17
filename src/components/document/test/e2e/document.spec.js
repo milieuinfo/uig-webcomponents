@@ -3,6 +3,7 @@ import { VlDocument } from './document';
 
 const { sbUrl } = config;
 const defaultUrl = `${sbUrl}?id=custom-elements-vl-document--default`;
+const selector = 'vl-document';
 
 describe('vl-document', async () => {
   let driver;
@@ -14,19 +15,19 @@ describe('vl-document', async () => {
 
   it('as a user, I can view the document type', async () => {
     await driver.get(defaultUrl);
-    const document = await new VlDocument(driver, 'vl-document');
+    const document = await new VlDocument(driver, selector);
     await assert.eventually.equal(document.getType(), 'PDF');
   });
 
   it('as a user, I can view the document title', async () => {
     await driver.get(defaultUrl);
-    const document = await new VlDocument(driver, 'vl-document');
+    const document = await new VlDocument(driver, selector);
     await assert.eventually.equal(document.getTitle(), 'Hubert en Jan van Eyck, Vlaamse Primitieven');
   });
 
   it('as a user, I can view the document metadata', async () => {
     await driver.get(defaultUrl);
-    const document = await new VlDocument(driver, 'vl-document');
+    const document = await new VlDocument(driver, selector);
     await assert.eventually.equal(document.getMetadata(), 'PDF - 580 kB');
   });
 });
