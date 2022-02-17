@@ -1,5 +1,5 @@
 import { html, css, LitElement, unsafeCSS } from 'lit';
-import styles from '../styles.scss';
+import styles from '../../styles.scss';
 
 export class VlTestItem extends LitElement {
   static get styles() {

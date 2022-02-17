@@ -1,38 +1,29 @@
 import { html } from 'lit-html';
 import styles from './styles.scss';
-import { stylesheet } from '../../../.storybook/utils.js';
-import '../breadcrumb';
-import './via-children';
+import { stylesheet, docsIntro } from '../../../.storybook/utils.js';
+import '.';
 
 export default {
   title: 'native-elements/vl-breadcrumb',
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
-  args: { toggleBlock: false },
+  parameters: {
+    controls: { hideNoControlsWarning: true },
+    docs: {
+      description: {
+        component: docsIntro({
+          root: 'breadcrumb',
+          stylesheets: ['breadcrumb'],
+          intro:
+            'Use breadcrumbs to show the location of the current page within a navigational hierarchy. Breadcrumbs get arrow separators automatically via CSS.',
+        }),
+      },
+    },
+  },
 };
 
-export const Default = ({ toggleBlock }) => html`<nav is="vl-breadcrumb" aria-label="U bent hier:">
-  <ol>
-    ${toggleBlock
-      ? html` <li>
-          <a href="#">Vlaanderen Intern</a>
-        </li>`
-      : null}
-
-    <li>
-      <a href="#">Regelgeving</a>
-    </li>
-    <li>
-      <a href="#">Webuniversum</a>
-    </li>
-    <li>
-      <a href="#">Componenten</a>
-    </li>
-  </ol>
-</nav>`;
-
-export const ViaChildren = ({ toggleBlock }) => html`<vl-breadcrumb-test>
-  ${toggleBlock ? html`<vl-breadcrumb-item data-vl-href="#">Vlaanderen Intern</vl-breadcrumb-item>` : null}
+export const Default = () => html`<vl-breadcrumb>
+  <vl-breadcrumb-item data-vl-href="#">Vlaanderen Intern</vl-breadcrumb-item>
   <vl-breadcrumb-item data-vl-href="#">Regelgeving</vl-breadcrumb-item>
-  <vl-breadcrumb-item data-vl-href="https://google.be">Webuniversum</vl-breadcrumb-item>
+  <vl-breadcrumb-item data-vl-href="#">Webuniversum</vl-breadcrumb-item>
   <vl-breadcrumb-item data-vl-href="#">Componenten</vl-breadcrumb-item>
-</vl-breadcrumb-test>`;
+</vl-breadcrumb>`;

@@ -1,49 +1,38 @@
-import { nativeVlElement, define } from '../../utils/core';
+import { html, css, LitElement, unsafeCSS } from 'lit';
+import styles from './styles.scss';
+import './components/item';
 
-export class VlBreadcrumb extends nativeVlElement(HTMLElement) {
-  connectedCallback() {
-    this._processStyle();
-    this._processAriaLabel();
+export class VlBreadcrumb extends LitElement {
+  static get styles() {
+    return [
+      css`
+        ${unsafeCSS(styles)}
+      `,
+    ];
   }
 
-  get _olElements() {
-    return [...this.querySelectorAll('ol')];
+  firstUpdated() {
+    const observer = new MutationObserver(() => {
+      this.requestUpdate();
+    });
+
+    observer.observe(this, { subtree: true, childList: true });
   }
 
-  get _liElements() {
-    return this._olElements.flatMap((ol) => [...ol.querySelectorAll('li')]);
-  }
-
-  get _aElements() {
-    return this._liElements.flatMap((li) => [...li.querySelectorAll('a')]);
-  }
-
-  get _separatorTemplate() {
-    return this._template(`<span class="vl-breadcrumb__list__item__separator" aria-hidden="true"></span>`);
-  }
-
-  _processStyle() {
-    this._addClasses();
-    this._addSeparators();
-  }
-
-  _processAriaLabel() {
-    if (!this.getAttribute('aria-label')) {
-      this.setAttribute('aria-label', 'U bent hier: ');
-    }
-  }
-
-  _addClasses() {
-    this.classList.add('vl-breadcrumb');
-    this._olElements.forEach((ol) => ol.classList.add('vl-breadcrumb__list'));
-    this._liElements.forEach((li) => li.classList.add('vl-breadcrumb__list__item'));
-    this._aElements.forEach((a) => a.classList.add('vl-breadcrumb__list__item__cta'));
-  }
-
-  _addSeparators() {
-    // changed 1 to 0
-    this._liElements.slice(0, this._liElements.length).forEach((li) => li.prepend(this._separatorTemplate));
+  render() {
+    return html`<nav aria-label="U bent hier: " class="vl-breadcrumb">
+      <ol class="vl-breadcrumb__list">
+        ${[...this.children].map((child, index) => {
+          const name = `item-${index}`;
+          child.setAttribute('slot', name);
+          return html` <li class="vl-breadcrumb__list__item">
+            <span class="vl-breadcrumb__list__item__separator" aria-hidden="true"></span>
+            <slot name=${name}></slot>
+          </li>`;
+        })}
+      </ol>
+    </nav>`;
   }
 }
 
-define('vl-breadcrumb', VlBreadcrumb, { extends: 'nav' });
+customElements.define('vl-breadcrumb', VlBreadcrumb);
