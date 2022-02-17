@@ -1,42 +1,38 @@
-import { nativeVlElement, define } from '../../utils/core';
+import { html, css, LitElement, unsafeCSS } from 'lit';
+import '../grid';
+import styles from './styles.scss';
+import './components/description-data-item';
 
-/**
- * VlDescriptionData
- * @class
- * @classdesc Gebruik de description data component om meer informatie te geven over de inhoud op de pagina, bvb over een contactpersoon, een entiteit of een publicatie.
- *
- * @extends HTMLDivElement
- * @mixes nativeVlElement
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-description-data/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-description-data/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-description-data.html|Demo}
- *
- */
-export class VlDescriptionData extends nativeVlElement(HTMLDivElement) {
-  connectedCallback() {
-    this.classList.add('vl-description-data');
-    this.__labels.forEach((label) => {
-      label.classList.add('vl-description-data__label');
-      label.parentElement.classList.add('vl-description-data-block');
+export class VlDescriptionData extends LitElement {
+  static get styles() {
+    return [
+      css`
+        ${unsafeCSS(styles)}
+      `,
+    ];
+  }
+
+  firstUpdated() {
+    const observer = new MutationObserver(() => {
+      this.requestUpdate();
     });
-    this.__values.forEach((label) => {
-      label.classList.add('vl-description-data__value');
-      label.parentElement.classList.add('vl-description-data-block');
-    });
+
+    observer.observe(this, { subtree: true, childList: true });
   }
 
-  get __descriptionDataBlocks() {
-    return this.querySelectorAll('.vl-description-data-block');
-  }
-
-  get __labels() {
-    return this.querySelectorAll('[data-vl-label]');
-  }
-
-  get __values() {
-    return this.querySelectorAll('[data-vl-value]');
+  render() {
+    return html`<div class="vl-description-data">
+      <div is="vl-grid">
+        ${[...this.children].map((child, index) => {
+          const name = `item-${index}`;
+          child.setAttribute('slot', name);
+          return html`<div is="vl-column" data-vl-size=${12 / this.children.length}>
+            <slot name=${name}></slot>
+          </div>`;
+        })}
+      </div>
+    </div>`;
   }
 }
 
-define('vl-description-data', VlDescriptionData, { extends: 'div' });
+customElements.define('vl-description-data', VlDescriptionData);
