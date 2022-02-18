@@ -45,6 +45,7 @@ export const TYPES = {
   BOOLEAN: 'boolean',
   ARRAY: 'array',
   STRING: 'string',
+  NUMBER: 'number',
 };
 
 export const wrapWidth = '780px';

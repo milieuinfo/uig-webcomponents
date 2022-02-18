@@ -11,6 +11,10 @@ const unreleased = [
     date: '?',
     children: html`<ul>
       <li>
+        <p><code>vl-description-data</code> &#x1F4A5;</p>
+        <p>Migrated this component to a custom component.</p>
+      </li>
+      <li>
         <p><code>vl-doormat</code></p>
         <p>
           When migrating the doormat, we fixed a bug with the <code>data-vl-graphic</code> attribute that was not
