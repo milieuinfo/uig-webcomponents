@@ -9,10 +9,27 @@ const unreleased = [
   {
     version: 'Unreleased',
     date: '?',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-description-data</code> &#x1F4A5;</p>
         <p>Migrated this component to a custom component.</p>
+      </li>
+    </ul>`,
+  },
+];
+
+const changes = [
+  ...unreleased,
+  {
+    version: '2.2.3',
+    date: '18/2/2020',
+    children: html`<ul>
+      <li>
+        <p><code>vl-breadcrumb</code> &#x1F4A5;</p>
+        <p>
+          When migrating the breadcrumb, we mentioned that the right styles where only applied on load. When the
+          components children changed, the styles did not change correspondingly.
+        </p>
       </li>
       <li>
         <p><code>vl-doormat</code></p>
@@ -23,11 +40,6 @@ const unreleased = [
       </li>
     </ul>`,
   },
-];
-
-const changes = [
-  ...unreleased,
-
   {
     version: '2.2.2',
     date: '11/2/2022',
