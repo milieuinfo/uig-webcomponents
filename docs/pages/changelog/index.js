@@ -5,10 +5,13 @@ import titleStyles from '../../../src/components/titles/styles.scss';
 import introStyles from '../../../src/components/introduction/styles.scss';
 import { removeStorybooksDefaultStyling } from '../../../.storybook/utils';
 
-const unreleased = [
+const unreleased = [];
+
+const changes = [
+  ...unreleased,
   {
-    version: 'Unreleased',
-    date: '?',
+    version: '2.2.3',
+    date: '18/2/2020',
     children: html`<ul>
       <li>
         <p><code>vl-breadcrumb</code> &#x1F4A5;</p>
@@ -26,11 +29,6 @@ const unreleased = [
       </li>
     </ul>`,
   },
-];
-
-const changes = [
-  ...unreleased,
-
   {
     version: '2.2.2',
     date: '11/2/2022',
