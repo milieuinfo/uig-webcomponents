@@ -39,22 +39,14 @@ export const WithExtraOptIns = Template.bind({});
 WithExtraOptIns.args = {
   extraOptIns: [
     {
-      name: 'defaultChecked',
-      label: 'Default checked',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      defaultChecked: true,
-    },
-    {
       name: 'withoutDescription',
       label: 'Without description',
     },
     {
-      name: 'mandatory',
-      label: 'Mandatory one',
+      name: 'withDescription',
+      label: 'With description',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      mandatory: true,
     },
   ],
 };
