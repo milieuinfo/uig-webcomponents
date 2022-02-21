@@ -1,5 +1,5 @@
 import { html } from 'lit-html';
-import { docsIntro, TYPES } from '../../../../../.storybook/utils.js';
+import { docsIntro, TYPES, CATEGORIES } from '../../../../../.storybook/utils.js';
 import '.';
 
 export default {
@@ -16,30 +16,60 @@ export default {
       },
     },
   },
+  args: {
+    label: 'Uitgever',
+    value: 'Kind en Gezin',
+    labelSlotText: 'Uitgever',
+    valueSlotText: 'Kind en Gezin',
+  },
+  argTypes: {
+    label: {
+      name: 'data-vl-label',
+      description: 'Changes the label of the data item.',
+      table: {
+        type: { summary: TYPES.STRING },
+        category: CATEGORIES.ATTRIBUTES,
+        defaultValue: { summary: '' },
+      },
+    },
+    value: {
+      name: 'data-vl-value',
+      description: 'Changes the value of the data item.',
+      table: {
+        type: { summary: TYPES.STRING },
+        category: CATEGORIES.ATTRIBUTES,
+        defaultValue: { summary: '' },
+      },
+    },
+    labelSlotText: {
+      name: 'label (slot)',
+      description: 'Changes the label of the data item.',
+      table: {
+        type: { summary: TYPES.STRING },
+        category: CATEGORIES.SLOTS,
+        defaultValue: { summary: '' },
+      },
+      control: {
+        disable: true,
+      },
+    },
+    valueSlotText: {
+      name: 'value (slot)',
+      description: 'Changes the value of the data item.',
+      table: {
+        type: { summary: TYPES.STRING },
+        category: CATEGORIES.SLOTS,
+        defaultValue: { summary: '' },
+      },
+      control: {
+        disable: true,
+      },
+    },
+  },
 };
 
-export const WithAttributes = ({ label, value }) =>
+export const Default = ({ label, value }) =>
   html`<vl-description-data-item data-vl-label=${label} data-vl-value=${value}></vl-description-data-item>`;
-
-WithAttributes.args = {
-  label: 'Uitgever',
-  value: 'Kind en Gezin',
-};
-
-WithAttributes.argTypes = {
-  label: {
-    name: 'data-vl-label',
-    description: 'Changes the label of the data item.',
-    type: { summary: TYPES.STRING },
-    defaultValue: { summary: '' },
-  },
-  value: {
-    name: 'data-vl-value',
-    description: 'Changes the value of the data item.',
-    type: { summary: TYPES.STRING },
-    defaultValue: { summary: '' },
-  },
-};
 
 export const WithSlotElements = ({ label, value }) =>
   html`<vl-description-data-item>
@@ -47,16 +77,25 @@ export const WithSlotElements = ({ label, value }) =>
     <span slot="value">${value}</span>
   </vl-description-data-item>`;
 
-WithSlotElements.args = {
-  label: 'Uitgever',
-  value: 'Kind en Gezin',
-};
-
 WithSlotElements.argTypes = {
   label: {
-    name: 'label (for demo purposes)',
+    control: {
+      disable: true,
+    },
   },
   value: {
-    name: 'value (for demo purposes)',
+    control: {
+      disable: true,
+    },
+  },
+  labelSlotText: {
+    control: {
+      disable: false,
+    },
+  },
+  valueSlotText: {
+    control: {
+      disable: false,
+    },
   },
 };

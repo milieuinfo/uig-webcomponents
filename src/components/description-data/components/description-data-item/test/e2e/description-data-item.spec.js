@@ -1,4 +1,4 @@
-import { assert, getDriver, config } from '../../../../utils/test';
+import { assert, getDriver, config } from '../../../../../../utils/test';
 import { VlDescriptionDataItem } from './description-data-item';
 
 const { sbUrl } = config;

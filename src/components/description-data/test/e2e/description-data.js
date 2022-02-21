@@ -1,5 +1,5 @@
 import { VlElement, By } from '../../../../utils/test';
-import { VlDescriptionDataItem } from './description-data-item';
+import { VlDescriptionDataItem } from '../../components/description-data-item/test/e2e/description-data-item';
 
 export class VlDescriptionData extends VlElement {
   async getDescriptionDataBlocks() {

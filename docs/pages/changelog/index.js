@@ -12,7 +12,10 @@ const unreleased = [
     children: html` <ul>
       <li>
         <p><code>vl-description-data</code> &#x1F4A5;</p>
-        <p>Migrated this component to a custom component.</p>
+        <p>
+          When migrating the description data, we mentioned that the right styles where only applied on load. When the
+          components children changed, the styles did not change correspondingly.
+        </p>
       </li>
     </ul>`,
   },

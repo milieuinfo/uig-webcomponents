@@ -1,4 +1,4 @@
-import { VlElement, By } from '../../../../utils/test';
+import { VlElement, By } from '../../../../../../utils/test';
 
 export class VlDescriptionDataItem extends VlElement {
   async getElementInShadow(parent, selector) {
