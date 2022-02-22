@@ -2,7 +2,7 @@ import { assert, getDriver, config } from '../../../../../../utils/test';
 import VlHttpErrorMessage from '../../../../test/e2e/http-error-message';
 
 const { sbUrl } = config;
-const defaultUrl = `${sbUrl}?id=native-elements-vl-http-error-message--error-404`;
+const defaultUrl = `${sbUrl}?id=native-elements-vl-http-error-message-vl-http-404-message--default`;
 const selector = 'vl-http-404-message';
 
 describe('vl-http-404-message', async () => {

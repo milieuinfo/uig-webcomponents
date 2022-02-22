@@ -36,7 +36,7 @@ describe('vl-http-error-message', async () => {
     await driver.get(defaultUrl);
     const message = await new VlHttpErrorMessage(driver, selector);
     const image = await message.getImage();
-    assert.isTrue((await image.getAttribute('src')).endsWith('demo/error-404.png'));
+    assert.isTrue((await image.getAttribute('src')).endsWith('unexpected-error.svg'));
     await assert.eventually.equal(image.getAttribute('alt'), 'Niets gevonden');
   });
 

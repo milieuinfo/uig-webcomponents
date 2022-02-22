@@ -2,7 +2,7 @@ import { assert, getDriver, config } from '../../../../../../utils/test';
 import VlHttpErrorMessage from '../../../../test/e2e/http-error-message';
 
 const { sbUrl } = config;
-const defaultUrl = `${sbUrl}?id=native-elements-vl-http-error-message--error-500`;
+const defaultUrl = `${sbUrl}?id=native-elements-vl-http-error-message-vl-http-500-message--default`;
 const selector = 'vl-http-500-message';
 
 describe('vl-http-500-message', async () => {
@@ -51,6 +51,8 @@ describe('vl-http-500-message', async () => {
     const message = await new VlHttpErrorMessage(driver, selector);
     await message.clickOnAction();
     const urlAfterClick = await driver.getCurrentUrl();
-    assert.isTrue(urlAfterClick.endsWith('?id=native-elements-vl-http-error-message--error-500&viewMode=story'));
+    assert.isTrue(
+      urlAfterClick.endsWith('?id=native-elements-vl-http-error-message-vl-http-500-message--default&viewMode=story'),
+    );
   });
 });

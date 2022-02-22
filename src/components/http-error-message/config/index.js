@@ -2,8 +2,7 @@ import { docsIntro, TYPES, CATEGORIES } from '../../../../.storybook/utils';
 
 export const args = {
   title: 'Niets gevonden hiervoor.',
-  // TODO: Change to other url
-  image: 'https://webcomponenten.omgeving.vlaanderen.be/demo/error-404.png',
+  image: 'https://cdn.milieuinfo.be/http-error-message-assets/LATEST/img/unexpected-error.svg',
   alt: 'Niets gevonden',
   textSlotText: 'Sorry, er liep iets onverwachts mis.',
   actionsSlotText: 'Opnieuw opstarten',
