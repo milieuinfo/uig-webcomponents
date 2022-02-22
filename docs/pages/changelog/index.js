@@ -5,7 +5,18 @@ import titleStyles from '../../../src/components/titles/styles.scss';
 import introStyles from '../../../src/components/introduction/styles.scss';
 import { removeStorybooksDefaultStyling } from '../../../.storybook/utils';
 
-const unreleased = [];
+const unreleased = [
+  {
+    version: 'Unreleased',
+    date: '?',
+    children: html`<ul>
+      <li>
+        <p><code>vl-http-error-message</code></p>
+        <p>The components and its presets were migrated.</p>
+      </li>
+    </ul>`,
+  },
+];
 
 const changes = [
   ...unreleased,
