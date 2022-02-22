@@ -1,0 +1,59 @@
+import { assert, getDriver, config } from '../../../../../../utils/test';
+import VlHttpErrorMessage from '../../../../test/e2e/http-error-message';
+
+const { sbUrl } = config;
+const defaultUrl = `${sbUrl}?id=native-elements-vl-http-error-message--error-404`;
+const selector = 'vl-http-404-message';
+
+describe('vl-http-404-message', async () => {
+  let driver;
+
+  beforeEach(() => {
+    driver = getDriver();
+    driver.manage().window().maximize();
+  });
+
+  it('als gebruiker kan ik de foutmelding titel lezen', async () => {
+    await driver.get(defaultUrl);
+    const message = await new VlHttpErrorMessage(driver, selector);
+    await assert.eventually.equal(message.getTitle(), 'Pagina niet gevonden');
+  });
+
+  it('als gebruiker kan ik de foutmelding content lezen', async () => {
+    await driver.get(defaultUrl);
+    const message = await new VlHttpErrorMessage(driver, selector);
+    await assert.eventually.equal(
+      message.getContent(),
+      'We vonden de pagina niet terug. Controleer even of u een tikfout heeft gemaakt. Bent u via een link of website op deze pagina gekomen. Mail dan de helpdesk en vermeld daarbij de URL hierboven en de foutcode 404.',
+    );
+  });
+
+  it('als gebruiker kan ik de foutmelding link zien', async () => {
+    await driver.get(defaultUrl);
+    const message = await new VlHttpErrorMessage(driver, selector);
+    const link = await message._getAction();
+    await assert.eventually.equal(link.getText(), 'Terug naar de startpagina');
+  });
+
+  it('als gebruiker kan ik de foutmelding afbeelding zien', async () => {
+    await driver.get(defaultUrl);
+    const message = await new VlHttpErrorMessage(driver, selector);
+    const image = await message.getImage();
+    await assert.eventually.equal(
+      image.getAttribute('src'),
+      'https://cdn.milieuinfo.be/http-error-message-assets/LATEST/img/page-not-found.svg',
+    );
+    await assert.eventually.equal(image.getAttribute('alt'), 'Pagina niet gevonden');
+  });
+
+  it('als gebruiker kan ik op de actieknop van een foutmelding klikken', async () => {
+    const originalUrl = await driver.getCurrentUrl();
+    assert.isFalse(originalUrl.endsWith('/'));
+
+    await driver.get(defaultUrl);
+    const message = await new VlHttpErrorMessage(driver, selector);
+    await message.clickOnAction();
+    const urlAfterClick = await driver.getCurrentUrl();
+    assert.isTrue(urlAfterClick.endsWith('/'));
+  });
+});
