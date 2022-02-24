@@ -2,7 +2,7 @@ import { awaitUntil, define, vlElement } from '../../utils/core';
 import { VlTabsPane } from './components/vl-tabs-pane';
 import './components/vl-tab';
 import './components/vl-tab-section';
-import '../../../node_modules/@govflanders/vl-ui-tabs';
+import './lib';
 
 import styles from './styles.scss';
 
@@ -94,9 +94,15 @@ export class VlTabs extends vlElement(HTMLElement) {
     `);
   }
 
-  _addTab({ tabPane, index }) {
+  _addTab({ tabPane, index }, tabIndex) {
     const { id, title } = tabPane;
     const element = this.__getTabTemplate({ id, title });
+
+    // Set first tab as active on loading the component if no active tab attribute is given and there is no active tab hash in the url
+    if (tabIndex === 0 && !this.hasAttribute('data-vl-active-tab') && !this.__hasTabHash()) {
+      this.setAttribute('data-vl-active-tab', id);
+    }
+
     if (index && index >= 0) {
       this.__tabList.insertBefore(element, this.__tabList.children[index]);
     } else {
@@ -130,8 +136,8 @@ export class VlTabs extends vlElement(HTMLElement) {
 
   _renderTabs() {
     this.__tabList.innerHTML = '';
-    this.__tabPanes.forEach((tabPane) => {
-      this._addTab({ tabPane });
+    this.__tabPanes.forEach((tabPane, tabIndex) => {
+      this._addTab({ tabPane }, tabIndex);
     });
   }
 
@@ -166,11 +172,22 @@ export class VlTabs extends vlElement(HTMLElement) {
   }
 
   get __href() {
-    return this.getAttribute('data-vl-href') || window.location.pathname + window.location.search;
+    const windowObject = window.location !== window.parent.location ? window.parent : window;
+    return this.getAttribute('data-vl-href') || windowObject.location.pathname + windowObject.location.search;
   }
 
   __updateHrefs() {
     [...this.__tabList.children].forEach((tab) => tab.setAttribute('data-vl-href', `${this.__href}#${tab.id}`));
+  }
+
+  __hasTabHash() {
+    const tabIds = this.__tabPanes.map((pane) => {
+      const { id } = pane;
+      return id;
+    });
+
+    const windowObject = window.location !== window.parent.location ? window.parent : window;
+    return tabIds.some((tabId) => windowObject.location.hash === `#${tabId}`);
   }
 
   __observeTabPanes(callback) {
