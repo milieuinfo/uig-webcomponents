@@ -22,7 +22,7 @@ export default {
   args: {
     activeTab: undefined,
     responsiveLabel: undefined,
-    alt: false,
+    alt: true,
   },
   argTypes: {
     activeTab: {
