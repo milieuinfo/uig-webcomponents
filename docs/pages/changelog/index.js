@@ -11,7 +11,7 @@ const unreleased = [
     date: '?',
     children: html`<ul>
       <li>
-        <p><code>vl-tabs</code> &#x1F4A5;</p>
+        <p><code>vl-tabs</code></p>
         <p>When migrating the tabs, we fixed a bug which didn't open the first tab automatically on load.</p>
       </li>
     </ul>`,
