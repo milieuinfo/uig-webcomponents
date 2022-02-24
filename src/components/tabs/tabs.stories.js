@@ -22,7 +22,7 @@ export default {
   args: {
     activeTab: undefined,
     responsiveLabel: undefined,
-    alt: true,
+    alt: false,
   },
   argTypes: {
     activeTab: {
@@ -55,6 +55,7 @@ export default {
         defaultValue: { summary: 'false' },
         category: CATEGORIES.ATTRIBUTES,
       },
+      control: { disable: true },
     },
   },
 };
@@ -99,10 +100,6 @@ export const WithActiveTab = ({ responsiveLabel }) => html`<div style="max-width
   </vl-tabs>
 </div>`;
 
-Default.argTypes = {
-  alt: { control: { disable: true } },
-};
-
 export const AltVariant = ({ alt, responsiveLabel }) => html`<div style="max-width: ${wrapWidth}">
   <section is="vl-grid" class="vl-u-no-overflow">
     <vl-tabs id="tabs-alt" data-vl-responsive-label=${ifDefined(responsiveLabel)} ?data-vl-alt=${alt}>
@@ -124,6 +121,10 @@ export const AltVariant = ({ alt, responsiveLabel }) => html`<div style="max-wid
     </vl-tabs>
   </section>
 </div>`;
+
+AltVariant.args = {
+  alt: true,
+};
 
 AltVariant.argTypes = {
   alt: {
