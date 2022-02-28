@@ -42,7 +42,7 @@ export default {
       },
     },
     labelSlotText: {
-      name: 'label (slot)',
+      name: 'label',
       description: 'Changes the label of the data item.',
       table: {
         type: { summary: TYPES.STRING },
@@ -54,7 +54,7 @@ export default {
       },
     },
     valueSlotText: {
-      name: 'value (slot)',
+      name: 'value',
       description: 'Changes the value of the data item.',
       table: {
         type: { summary: TYPES.STRING },
@@ -71,10 +71,10 @@ export default {
 export const Default = ({ label, value }) =>
   html`<vl-description-data-item data-vl-label=${label} data-vl-value=${value}></vl-description-data-item>`;
 
-export const WithSlotElements = ({ label, value }) =>
+export const WithSlotElements = ({ labelSlotText, valueSlotText }) =>
   html`<vl-description-data-item>
-    <span slot="label">${label}</span>
-    <span slot="value">${value}</span>
+    <span slot="label">${labelSlotText}</span>
+    <span slot="value">${valueSlotText}</span>
   </vl-description-data-item>`;
 
 WithSlotElements.argTypes = {
