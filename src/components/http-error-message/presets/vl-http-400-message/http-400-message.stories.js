@@ -3,7 +3,7 @@ import { parameters, args, argTypes } from '../../config';
 import './index';
 
 export default {
-  title: 'native-elements/vl-http-error-message/vl-http-400-message',
+  title: 'custom-elements/vl-http-error-message/vl-http-400-message',
   parameters: parameters('400'),
   args,
   argTypes,

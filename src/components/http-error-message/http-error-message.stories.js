@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import { stylesheet } from '../../../.storybook/utils';
 import { parameters, args, argTypes } from './config';
-import './index';
+import '../http-error-message';
 import styles from './styles.scss';
 
 export default {
