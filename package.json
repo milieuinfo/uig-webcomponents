@@ -38,12 +38,13 @@
   "dependencies": {
     "@govflanders/vl-ui-accordion": "^3.12.17",
     "@govflanders/vl-ui-core": "^4.1.24",
+    "@govflanders/vl-ui-progress-bar": "^3.12.3",
     "@govflanders/vl-ui-side-navigation": "^3.12.3",
     "@govflanders/vl-ui-util": "^3.12.24",
-    "@govflanders/vl-ui-progress-bar": "^3.12.3",
     "@ungap/custom-elements": "^0.1.15",
     "lit": "^2.0.0-rc.2",
     "swipe-detect": "^1.0.1",
+    "tinymce": "^5.10.3",
     "vl-mapactions": "^4.0.1"
   },
   "devDependencies": {
@@ -78,6 +79,7 @@
     "@govflanders/vl-ui-properties": "^3.12.24",
     "@govflanders/vl-ui-search-filter": "^3.12.17",
     "@govflanders/vl-ui-search-results": "^3.12.3",
+    "@govflanders/vl-ui-textarea": "^3.12.3",
     "@govflanders/vl-ui-titles": "^3.12.3",
     "@govflanders/vl-ui-toggle": "^3.12.17",
     "@govflanders/vl-ui-tooltip": "^3.12.3",
