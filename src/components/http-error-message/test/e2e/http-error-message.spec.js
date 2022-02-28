@@ -2,7 +2,7 @@ import { assert, getDriver, config } from '../../../../utils/test';
 import VlHttpErrorMessage from './http-error-message.js';
 
 const { sbUrl } = config;
-const defaultUrl = `${sbUrl}?id=native-elements-vl-http-error-message--custom`;
+const defaultUrl = `${sbUrl}?id=custom-elements-vl-http-error-message--custom`;
 const selector = 'vl-http-error-message';
 
 describe('vl-http-error-message', async () => {

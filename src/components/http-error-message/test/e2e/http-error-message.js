@@ -16,7 +16,6 @@ export default class VlHttpErrorMessage extends VlElement {
   }
 
   async _getTitle() {
-    console.log(this.shadowRoot);
     return this.shadowRoot.findElement(By.css('#title'));
   }
 
@@ -38,10 +37,10 @@ export default class VlHttpErrorMessage extends VlElement {
     const smallImageAlt = await smallImage.getAttribute('alt');
     const normalImageAlt = await normalImage.getAttribute('alt');
     if (smallImageSrc !== normalImageSrc) {
-      throw new Error('Small en normal image src moeten gelijk zijn');
+      throw new Error('Small and normal image src have to be the same');
     }
     if (smallImageAlt !== normalImageAlt) {
-      throw new Error('Small en normal image alt moeten gelijk zijn');
+      throw new Error('Small and normal image alt have to be the same');
     }
     return smallImage;
   }

@@ -1,4 +1,6 @@
 import { html } from 'lit-html';
+import { nothing } from 'lit';
+import { ifDefined } from 'lit-html/directives/if-defined';
 import { stylesheet, wrapWidth } from '../../../../../.storybook/utils';
 import { parameters, args, argTypes } from '../../config';
 import './index';
@@ -6,13 +8,26 @@ import './index';
 import styles from '../../styles.scss';
 
 export default {
-  title: 'native-elements/vl-http-error-message/vl-http-500-message',
+  title: 'custom-elements/vl-http-error-message/vl-http-500-message',
   decorators: [(story) => html`${stylesheet(styles)} ${story()}`],
   parameters: parameters('500'),
   args,
   argTypes,
 };
 
-export const Default = () => html` <div style="max-width: ${wrapWidth}">
-  <vl-http-500-message id="error-500"></vl-http-500-message>
+export const Default = ({ title, image, alt, textSlotText, actionsSlotText }) => html`<div
+  style="max-width: ${wrapWidth}"
+>
+  <vl-http-500-message
+    data-vl-title="${ifDefined(title)}"
+    data-vl-image="${ifDefined(image)}"
+    data-vl-image-alt="${ifDefined(alt)}"
+  >
+    ${textSlotText ? html`<p slot="text">${textSlotText}</p>` : nothing}
+    ${actionsSlotText
+      ? html`<div slot="actions">
+          <a is="vl-link-button" href="#">${actionsSlotText}</a>
+        </div>`
+      : nothing}
+  </vl-http-500-message>
 </div>`;
