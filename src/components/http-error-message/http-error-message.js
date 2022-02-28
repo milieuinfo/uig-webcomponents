@@ -6,7 +6,7 @@ export class VlHttpErrorMessage extends vlElement(HTMLElement) {
     return ['title', 'image', 'image-alt'];
   }
 
-  constructor(defaults) {
+  constructor() {
     super(`
       <style>
         ${styles}
@@ -21,9 +21,9 @@ export class VlHttpErrorMessage extends vlElement(HTMLElement) {
           <div is="vl-grid" data-vl-is-stacked>
             <div is="vl-column" data-vl-size="12">
               <h2 id="title" is="vl-h2"></h2>
-              <vl-typography id="text"></vl-typography>
+              <vl-typography id="text"><slot slot="text" name="text"></slot></vl-typography>
             </div>
-            <div id="actions" is="vl-column" data-vl-size="12"></div>
+            <div id="actions" is="vl-column" data-vl-size="12"><slot name="actions"></slot></div>
           </div>
         </div>
         <div is="vl-column" data-vl-size="6" data-vl-medium-size="6" data-vl-small-size="6" class="vl-u-hidden--s">
@@ -33,18 +33,10 @@ export class VlHttpErrorMessage extends vlElement(HTMLElement) {
         </div>
       </div>
     `);
-
-    this._defaults = defaults || {};
   }
 
   connectedCallback() {
     this.__processAttributes();
-    this.__processSlotElements();
-    this._observer = this.__observeSlotElements(() => this.__processSlotElements());
-  }
-
-  disconnectedCallback() {
-    this._observer.disconnect();
   }
 
   get _title() {
@@ -57,14 +49,6 @@ export class VlHttpErrorMessage extends vlElement(HTMLElement) {
 
   get _imageAlt() {
     return this.dataset.vlImageAlt || this._defaults.imageAlt;
-  }
-
-  get _textSlotElement() {
-    return this.querySelector('[slot="text"]') || VlHttpErrorMessage.__createDivWithContent(this._defaults.text);
-  }
-
-  get _actionsSlotElement() {
-    return this.querySelector('[slot="actions"]') || VlHttpErrorMessage.__createDivWithContent(this._defaults.actions);
   }
 
   _titleChangedCallback() {
@@ -124,44 +108,5 @@ export class VlHttpErrorMessage extends vlElement(HTMLElement) {
     this.__processTitle();
     this.__processImage();
     this.__processImageAlt();
-  }
-
-  __processSlotElements() {
-    this.__processTextSlot();
-    this.__processActionsSlot();
-  }
-
-  __observeSlotElements(callback) {
-    const observer = new MutationObserver(callback);
-    observer.observe(this, { attributes: true, childList: true, characterData: true, subtree: true });
-    return observer;
-  }
-
-  __processTextSlot() {
-    VlHttpErrorMessage.__clearChildren(this.__textElement);
-
-    if (this._textSlotElement) {
-      this.__textElement.appendChild(this._textSlotElement.cloneNode(true));
-    }
-  }
-
-  __processActionsSlot() {
-    VlHttpErrorMessage.__clearChildren(this.__actionsElement);
-
-    if (this._actionsSlotElement) {
-      this.__actionsElement.appendChild(this._actionsSlotElement.cloneNode(true));
-    }
-  }
-
-  static __clearChildren(element) {
-    while (element.hasChildNodes()) {
-      element.firstChild.remove();
-    }
-  }
-
-  static __createDivWithContent(content) {
-    const element = document.createElement('div');
-    element.innerHTML = content;
-    return element;
   }
 }

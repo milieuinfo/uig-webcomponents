@@ -1,5 +1,5 @@
 import { html } from 'lit-html';
-import { stylesheet, wrapWidth } from '../../../.storybook/utils';
+import { stylesheet } from '../../../.storybook/utils';
 import { parameters, args, argTypes } from './config';
 import './index';
 import styles from './styles.scss';
@@ -12,21 +12,14 @@ export default {
   argTypes,
 };
 
-export const Custom = ({ title, image, alt, textSlotText, actionsSlotText }) => html` <div
-  style="max-width: ${wrapWidth}"
->
-  <vl-http-error-message
-    id="custom-message"
-    data-vl-title="${title}"
-    data-vl-image="${image}"
-    data-vl-image-alt="${alt}"
-  >
+export const Custom = ({ title, image, alt, textSlotText, actionsSlotText }) => html`
+  <vl-http-error-message data-vl-title="${title}" data-vl-image="${image}" data-vl-image-alt="${alt}">
     <p slot="text">${textSlotText}</p>
     <div slot="actions">
       <a is="vl-link-button" href="#">${actionsSlotText}</a>
     </div>
   </vl-http-error-message>
-</div>`;
+`;
 
 Custom.argTypes = {
   textSlotText: {
