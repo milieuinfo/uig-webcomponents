@@ -5,7 +5,21 @@ import titleStyles from '../../../src/components/titles/styles.scss';
 import introStyles from '../../../src/components/introduction/styles.scss';
 import { removeStorybooksDefaultStyling } from '../../../.storybook/utils';
 
-const unreleased = [];
+const unreleased = [
+  {
+    version: 'Unreleased',
+    date: '?',
+    children: html` <ul>
+      <li>
+        <p><code>vl-description-data</code> &#x1F4A5;</p>
+        <p>
+          When migrating the description data, we mentioned that the right styles where only applied on load. When the
+          components children changed, the styles did not change correspondingly.
+        </p>
+      </li>
+    </ul>`,
+  },
+];
 
 const changes = [
   ...unreleased,
