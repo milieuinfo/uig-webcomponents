@@ -1,13 +1,30 @@
-import { VlHttpErrorMessage } from '../../http-error-message';
+import { html, LitElement, css, unsafeCSS } from 'lit';
+import styles from '../../../button/styles.scss';
 
-export class VlHttp413Message extends VlHttpErrorMessage {
-  constructor() {
-    super({
-      title: 'Limiet overschreden',
-      image: 'https://cdn.milieuinfo.be/http-error-message-assets/LATEST/img/unexpected-error.svg',
-      imageAlt: 'Verzoek te groot',
-      text: `<p>Er ging iets fout. <a href="mailto:help@omgevingvlaanderen.be?subject=HTTP-code 413">Mail de helpdesk</a> en vermeld daarbij de URL hierboven en de foutcode 413.</p>`,
-      actions: `<a is="vl-link-button" href="/">Terug naar de startpagina</a>`,
-    });
+export class VlHttp413Message extends LitElement {
+  static get styles() {
+    return [
+      css`
+        ${unsafeCSS(styles)}
+      `,
+    ];
+  }
+
+  render() {
+    return html`
+      <vl-http-error-message
+        data-vl-title="Limiet overschreden"
+        data-vl-image="https://cdn.milieuinfo.be/http-error-message-assets/LATEST/img/unexpected-error.svg"
+        data-vl-image-alt="Verzoek te groot"
+      >
+        <p slot="text">
+          Er ging iets fout. <a href="mailto:help@omgevingvlaanderen.be?subject=HTTP-code 413">Mail de helpdesk</a> en
+          vermeld daarbij de URL hierboven en de foutcode 413.
+        </p>
+        <div slot="actions">
+          <a is="vl-link-button" href="/">Terug naar de startpagina</a>
+        </div>
+      </vl-http-error-message>
+    `;
   }
 }
