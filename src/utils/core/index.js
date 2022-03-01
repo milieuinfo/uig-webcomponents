@@ -1,6 +1,6 @@
-import "@ungap/custom-elements/min.js";
-import "@govflanders/vl-ui-util/dist/js/util.js";
-import "@govflanders/vl-ui-core/dist/js/core.js";
+import '@ungap/custom-elements/min.js';
+import '@govflanders/vl-ui-util/dist/js/util.js';
+import '@govflanders/vl-ui-core/dist/js/core.js';
 
 export const vlElement = (SuperClass) => {
   /**
@@ -33,23 +33,17 @@ export const vlElement = (SuperClass) => {
      * @return {String} attribuut prefix
      */
     static get attributePrefix() {
-      return "data-vl-";
+      return 'data-vl-';
     }
 
     static get observedAttributes() {
       const spacer = [`${VlElement.attributePrefix}spacer-none`];
-      const observedAttributes = [spacer].concat(
-        this._observedAttributes.concat(this._observedPrefixAttributes)
-      );
-      const observedClassAttributes = this._observedClassAttributes.concat(
-        this._observedPrefixClassAttributes
-      );
+      const observedAttributes = [spacer].concat(this._observedAttributes.concat(this._observedPrefixAttributes));
+      const observedClassAttributes = this._observedClassAttributes.concat(this._observedPrefixClassAttributes);
       const observedChildClassAttributes = this._observedChildClassAttributes.concat(
-        this._observedPrefixChildClassAttributes
+        this._observedPrefixChildClassAttributes,
       );
-      return observedAttributes
-        .concat(observedClassAttributes)
-        .concat(observedChildClassAttributes);
+      return observedAttributes.concat(observedClassAttributes).concat(observedChildClassAttributes);
     }
 
     /**
@@ -83,62 +77,43 @@ export const vlElement = (SuperClass) => {
     }
 
     static get _observedPrefixAttributes() {
-      return this._observedAttributes.map(
-        (attribute) => VlElement.attributePrefix + attribute
-      );
+      return this._observedAttributes.map((attribute) => VlElement.attributePrefix + attribute);
     }
 
     static get _observedPrefixClassAttributes() {
-      return this._observedClassAttributes.map(
-        (attribute) => VlElement.attributePrefix + attribute
-      );
+      return this._observedClassAttributes.map((attribute) => VlElement.attributePrefix + attribute);
     }
 
     static get _observedPrefixChildClassAttributes() {
-      return this._observedChildClassAttributes.map(
-        (attribute) => VlElement.attributePrefix + attribute
-      );
+      return this._observedChildClassAttributes.map((attribute) => VlElement.attributePrefix + attribute);
     }
 
     attributeChangedCallback(attr, oldValue, newValue) {
       if (attr.startsWith(VlElement.attributePrefix)) {
-        attr = attr.replace(VlElement.attributePrefix, "");
+        attr = attr.replace(VlElement.attributePrefix, '');
       }
 
       this.constructor._observedClassAttributes
         .concat(this.constructor._observedPrefixClassAttributes)
-        .filter((attribute) => {
-          return (
-            attribute == attr || attribute == VlElement.attributePrefix + attr
-          );
-        })
+        .filter((attribute) => attribute == attr || attribute == VlElement.attributePrefix + attr)
         .forEach((attribute) => {
           this.__changeAttribute(this, oldValue, newValue, attribute);
         });
 
       this.constructor._observedChildClassAttributes
         .concat(this.constructor._observedPrefixChildClassAttributes)
-        .filter((attribute) => {
-          return (
-            attribute == attr || attribute == VlElement.attributePrefix + attr
-          );
-        })
+        .filter((attribute) => attribute == attr || attribute == VlElement.attributePrefix + attr)
         .forEach((attribute) => {
           this.__changeAttribute(this._element, oldValue, newValue, attribute);
         });
 
-      const getDeprecatedCallbackFunction = (attribute) => {
-        return this["_" + attribute.split("-").join("_") + "ChangedCallback"];
-      };
+      const getDeprecatedCallbackFunction = (attribute) => this[`_${attribute.split('-').join('_')}ChangedCallback`];
 
       const getCallbackFunction = (attribute) => {
-        const splittedAttribute = attribute.split("-");
-        const changeFirstLetterToUpperCase = (item) =>
-          `${item.charAt(0).toUpperCase()}${item.slice(1)}`;
+        const splittedAttribute = attribute.split('-');
+        const changeFirstLetterToUpperCase = (item) => `${item.charAt(0).toUpperCase()}${item.slice(1)}`;
         return this[
-          `_${splittedAttribute.shift()}${splittedAttribute
-            .map(changeFirstLetterToUpperCase)
-            .join("")}ChangedCallback`
+          `_${splittedAttribute.shift()}${splittedAttribute.map(changeFirstLetterToUpperCase).join('')}ChangedCallback`
         ];
       };
 
@@ -158,7 +133,7 @@ export const vlElement = (SuperClass) => {
      * @return {string}
      */
     get name() {
-      return this.getAttribute("name");
+      return this.getAttribute('name');
     }
 
     /**
@@ -176,7 +151,7 @@ export const vlElement = (SuperClass) => {
      * @return {HTMLFormElement}
      */
     get form() {
-      return this.closest("form");
+      return this.closest('form');
     }
 
     /**
@@ -186,7 +161,7 @@ export const vlElement = (SuperClass) => {
      * @return {void}
      */
     get _classPrefix() {
-      console.error("class prefix is undefined");
+      console.error('class prefix is undefined');
     }
 
     /**
@@ -198,9 +173,8 @@ export const vlElement = (SuperClass) => {
     get _element() {
       if (this._shadow) {
         return this._shadow.lastElementChild;
-      } else {
-        return this;
       }
+      return this;
     }
 
     /**
@@ -212,9 +186,8 @@ export const vlElement = (SuperClass) => {
     getAttribute(attribute) {
       if (super.hasAttribute(VlElement.attributePrefix + attribute)) {
         return super.getAttribute(VlElement.attributePrefix + attribute);
-      } else {
-        return super.getAttribute(attribute);
       }
+      return super.getAttribute(attribute);
     }
 
     /**
@@ -245,7 +218,7 @@ export const vlElement = (SuperClass) => {
      * @return {void}
      */
     shadow(html) {
-      this._shadow = this.attachShadow({ mode: "open" });
+      this._shadow = this.attachShadow({ mode: 'open' });
       this._shadow.innerHTML = html;
     }
 
@@ -257,7 +230,7 @@ export const vlElement = (SuperClass) => {
      * @return {HTMLTemplateElement}
      */
     _template(html) {
-      const template = document.createElement("template");
+      const template = document.createElement('template');
       template.innerHTML = html;
       return template.content;
     }
@@ -273,11 +246,7 @@ export const vlElement = (SuperClass) => {
      * @return {void}
      */
     _changeClass(element, oldValue, newValue, classPrefix) {
-      if (
-        element.classList.contains(
-          (classPrefix || this._classPrefix) + oldValue
-        )
-      ) {
+      if (element.classList.contains((classPrefix || this._classPrefix) + oldValue)) {
         element.classList.remove((classPrefix || this._classPrefix) + oldValue);
       }
 
@@ -304,7 +273,7 @@ export const vlElement = (SuperClass) => {
     }
 
     _spacerNoneChangedCallback(oldValue, newValue) {
-      this._toggleClass(this._element, newValue, "vl-u-spacer--none");
+      this._toggleClass(this._element, newValue, 'vl-u-spacer--none');
     }
 
     /**
@@ -322,9 +291,7 @@ export const vlElement = (SuperClass) => {
         if (this.getAttribute(attribute) != undefined) {
           element.classList.add((classPrefix || this._classPrefix) + attribute);
         } else {
-          element.classList.remove(
-            (classPrefix || this._classPrefix) + attribute
-          );
+          element.classList.remove((classPrefix || this._classPrefix) + attribute);
         }
       }
     }
@@ -387,12 +354,12 @@ export const define = (name, constructor, options) => {
  * @return {void}
  */
 export const awaitScript = (id, src) => {
-  if (document.head.querySelector("script#" + id)) {
+  if (document.head.querySelector(`script#${id}`)) {
     console.log(`script with id '${id}' is already loaded`);
     return Promise.resolve();
   }
 
-  const script = document.createElement("script");
+  const script = document.createElement('script');
   script.id = id;
   script.src = src;
   script.async = false;
@@ -402,11 +369,7 @@ export const awaitScript = (id, src) => {
       resolve();
     };
     script.onerror = () => {
-      reject(
-        new Error(
-          `error when script with src attribute '${script.src}' was loaded`
-        )
-      );
+      reject(new Error(`error when script with src attribute '${script.src}' was loaded`));
     };
   });
 
@@ -430,14 +393,13 @@ function sleep(ms) {
  * @param {Function} condition - conditionele functie
  * @return {Promise}
  */
-export const awaitUntil = (condition) => {
-  return new Promise(async (resolve, reject) => {
+export const awaitUntil = (condition) =>
+  new Promise(async (resolve, reject) => {
     while (!condition()) {
       await sleep(50);
     }
     resolve();
   });
-};
 
 export const VlElement = vlElement;
 export const NativeVlElement = nativeVlElement;
