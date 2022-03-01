@@ -17,6 +17,10 @@ const unreleased = [
           components children changed, the styles did not change correspondingly.
         </p>
       </li>
+      <li>
+        <p><code>vl-video-player</code></p>
+        <p>The component has been migrated.</p>
+      </li>
     </ul>`,
   },
 ];
