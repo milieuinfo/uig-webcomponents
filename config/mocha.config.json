@@ -4,7 +4,7 @@
   "reporterOptions": {
     "configFile": "./config/reporter.config.json"
   },
-  "spec": ["src/**/*.spec.js"],
+  "spec": ["src/components/http-error-message/**/*.spec.js"],
   "timeout": "300000",
   "requires": ["babel-register"]
 }
