@@ -2,7 +2,7 @@ import { awaitUntil, define, vlElement } from '../../utils/core';
 import { VlTabsPane } from './components/vl-tabs-pane';
 import './components/vl-tab';
 import './components/vl-tab-section';
-import './lib';
+import '@govflanders/vl-ui-tabs/dist/js/tabs';
 
 import styles from './styles.scss';
 
@@ -51,6 +51,7 @@ export class VlTabs extends vlElement(HTMLElement) {
 
   async __dress(forced) {
     if (!this._dressed || forced) {
+      console.log('dress!');
       await customElements.whenDefined('vl-tab');
       await customElements.whenDefined('vl-tab-section');
       window.vl.tabs.dress(this.shadowRoot);
@@ -94,14 +95,14 @@ export class VlTabs extends vlElement(HTMLElement) {
     `);
   }
 
-  _addTab({ tabPane, index }, tabIndex) {
+  _addTab({ tabPane, index }) {
     const { id, title } = tabPane;
     const element = this.__getTabTemplate({ id, title });
 
     // Set first tab as active on loading the component if no active tab attribute is given and there is no active tab hash in the url
-    if (tabIndex === 0 && !this.hasAttribute('data-vl-active-tab') && !this.__hasTabHash()) {
-      this.setAttribute('data-vl-active-tab', id);
-    }
+    // if (tabIndex === 0 && !this.hasAttribute('data-vl-active-tab') && !this.__hasTabHash()) {
+    //   this.setAttribute('data-vl-active-tab', id);
+    // }
 
     if (index && index >= 0) {
       this.__tabList.insertBefore(element, this.__tabList.children[index]);
@@ -136,8 +137,8 @@ export class VlTabs extends vlElement(HTMLElement) {
 
   _renderTabs() {
     this.__tabList.innerHTML = '';
-    this.__tabPanes.forEach((tabPane, tabIndex) => {
-      this._addTab({ tabPane }, tabIndex);
+    this.__tabPanes.forEach((tabPane) => {
+      this._addTab({ tabPane });
     });
   }
 
@@ -180,15 +181,15 @@ export class VlTabs extends vlElement(HTMLElement) {
     [...this.__tabList.children].forEach((tab) => tab.setAttribute('data-vl-href', `${this.__href}#${tab.id}`));
   }
 
-  __hasTabHash() {
-    const tabIds = this.__tabPanes.map((pane) => {
-      const { id } = pane;
-      return id;
-    });
+  // __hasTabHash() {
+  //   const tabIds = this.__tabPanes.map((pane) => {
+  //     const { id } = pane;
+  //     return id;
+  //   });
 
-    const windowObject = window.location !== window.parent.location ? window.parent : window;
-    return tabIds.some((tabId) => windowObject.location.hash === `#${tabId}`);
-  }
+  //   const windowObject = window.location !== window.parent.location ? window.parent : window;
+  //   return tabIds.some((tabId) => windowObject.location.hash === `#${tabId}`);
+  // }
 
   __observeTabPanes(callback) {
     const observer = new MutationObserver(callback);
@@ -207,7 +208,8 @@ export class VlTabs extends vlElement(HTMLElement) {
       .filter((node) => node instanceof VlTabsPane);
     tabPanesToDelete.forEach((tabPane) => this.__removeTabAndSection(tabPane));
 
-    this.__dress();
+    console.log({ tabPanesToAdd, tabPanesToDelete });
+    this.__dress(true);
   }
 
   __addTabAndSection(tabPane) {
