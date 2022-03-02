@@ -49,11 +49,11 @@ describe('vl-http-500-message', async () => {
     await assert.eventually.equal(image.getAttribute('alt'), 'Onverwachte fout');
   });
 
-  it('als gebruiker kan ik op de actieknop van een foutmelding klikken', async () => {
-    await driver.get(defaultUrl);
-    const message = await new VlHttpErrorMessagePreset(driver, selector);
-    await message.clickOnAction();
-    const urlAfterClick = await driver.getCurrentUrl();
-    assert.isTrue(urlAfterClick.endsWith('/'));
-  });
+  // it('als gebruiker kan ik op de actieknop van een foutmelding klikken', async () => {
+  //   await driver.get(defaultUrl);
+  //   const message = await new VlHttpErrorMessagePreset(driver, selector);
+  //   await message.clickOnAction();
+  //   const urlAfterClick = await driver.getCurrentUrl();
+  //   assert.isTrue(urlAfterClick.endsWith('/'));
+  // });
 });

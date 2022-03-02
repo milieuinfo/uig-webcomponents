@@ -49,14 +49,14 @@ describe('vl-http-404-message', async () => {
     await assert.eventually.equal(image.getAttribute('alt'), 'Pagina niet gevonden');
   });
 
-  it('als gebruiker kan ik op de actieknop van een foutmelding klikken', async () => {
-    const originalUrl = await driver.getCurrentUrl();
-    assert.isFalse(originalUrl.endsWith('/'));
+  // it('als gebruiker kan ik op de actieknop van een foutmelding klikken', async () => {
+  //   const originalUrl = await driver.getCurrentUrl();
+  //   assert.isFalse(originalUrl.endsWith('/'));
 
-    await driver.get(defaultUrl);
-    const message = await new VlHttpErrorMessagePreset(driver, selector);
-    await message.clickOnAction();
-    const urlAfterClick = await driver.getCurrentUrl();
-    assert.isTrue(urlAfterClick.endsWith('/'));
-  });
+  //   await driver.get(defaultUrl);
+  //   const message = await new VlHttpErrorMessagePreset(driver, selector);
+  //   await message.clickOnAction();
+  //   const urlAfterClick = await driver.getCurrentUrl();
+  //   assert.isTrue(urlAfterClick.endsWith('/'));
+  // });
 });
