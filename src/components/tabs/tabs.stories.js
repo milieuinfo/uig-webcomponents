@@ -1,5 +1,6 @@
 import { html } from 'lit-html';
 import { ifDefined } from 'lit-html/directives/if-defined';
+import { action } from '@storybook/addon-actions';
 import { stylesheet, wrapWidth, docsIntro, TYPES, CATEGORIES } from '../../../.storybook/utils';
 // import '../tabs';
 import './new';
@@ -21,10 +22,10 @@ export default {
     },
   },
   args: {
-    activeTab: undefined,
+    activeTab: 'trein',
     responsiveLabel: undefined,
     alt: false,
-    toggle: false,
+    onClickTab: action('change'),
   },
   argTypes: {
     activeTab: {
@@ -33,9 +34,6 @@ export default {
       table: {
         type: { summary: TYPES.STRING },
         category: CATEGORIES.ATTRIBUTES,
-      },
-      control: {
-        disable: true,
       },
     },
     responsiveLabel: {
@@ -59,11 +57,17 @@ export default {
       },
       control: { disable: true },
     },
+    onClickTab: {
+      name: 'change',
+      // description:
+      //   'The custom event fired on click of a step. In the detail of the event, you can find the number and name of the clicked step.',
+      table: { category: CATEGORIES.EVENTS },
+    },
   },
 };
 
-export const Default = ({ responsiveLabel }) => html`
-  <vl-tabs-new>
+export const Default = ({ responsiveLabel, onClickTab, activeTab }) => html`
+  <vl-tabs-new @change=${(event) => onClickTab(event.detail)} data-vl-active-tab=${activeTab}>
     <vl-tabs-pane-new data-vl-id="trein" data-vl-title="Trein">
       Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor
       ligula, eget lacinia odio sem nec elit. Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere
