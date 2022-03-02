@@ -63,6 +63,7 @@ export const parameters = (errorCode) => {
   const errorCodeText = errorCode ? `${errorCode} ` : '';
 
   return {
+    controls: { hideNoControlsWarning: true },
     docs: {
       description: {
         component: docsIntro({

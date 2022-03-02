@@ -25,7 +25,7 @@ export default class VlHttpErrorMessage extends VlElement {
   }
 
   async _getAction() {
-    const element = await this.shadowRoot.findElement(By.css('[is="vl-link-button"]'));
+    const element = await this.findElement(By.css('[is="vl-link-button"]'));
     return new VlButton(this.driver, element);
   }
 
