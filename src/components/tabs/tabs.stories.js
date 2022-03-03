@@ -22,9 +22,10 @@ export default {
     },
   },
   args: {
-    activeTab: 'trein',
+    activeTab: undefined,
     responsiveLabel: undefined,
     alt: false,
+    useHash: false,
     onClickTab: action('change'),
   },
   argTypes: {
@@ -57,6 +58,14 @@ export default {
       },
       control: { disable: true },
     },
+    useHash: {
+      name: 'data-vl-use-hash',
+      table: {
+        type: { summary: TYPES.BOOLEAN },
+        defaultValue: { summary: 'false' },
+        category: CATEGORIES.ATTRIBUTES,
+      },
+    },
     onClickTab: {
       name: 'change',
       // description:
@@ -66,8 +75,12 @@ export default {
   },
 };
 
-export const Default = ({ responsiveLabel, onClickTab, activeTab }) => html`
-  <vl-tabs-new @change=${(event) => onClickTab(event.detail)} data-vl-active-tab=${activeTab}>
+export const Default = ({ responsiveLabel, onClickTab, activeTab, useHash }) => html`
+  <vl-tabs-new
+    @change=${(event) => onClickTab(event.detail)}
+    data-vl-active-tab=${activeTab}
+    ?data-vl-use-hash=${useHash}
+  >
     <vl-tabs-pane-new data-vl-id="trein" data-vl-title="Trein">
       Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor
       ligula, eget lacinia odio sem nec elit. Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere
