@@ -8,9 +8,11 @@ export default class VlHttpErrorMessage extends VlElement {
   }
 
   async getContent() {
-    console.log('vlTypography: ', await this._getTypography());
-    console.log('content: ', (await this._getTypography()).getText());
-    return (await this._getTypography()).getText();
+    const typography = await this._getTypography();
+    const slot = await typography.shadowRoot.findElement(By.css(`slot[name="text"]`));
+    const elements = await typography.getAssignedElements(slot);
+    const secondSlotElements = await this.getAssignedElements(elements[0]);
+    return secondSlotElements[0];
   }
 
   async clickOnAction() {
