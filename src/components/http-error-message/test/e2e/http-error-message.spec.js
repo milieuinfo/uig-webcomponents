@@ -13,11 +13,11 @@ describe('vl-http-error-message', async () => {
     driver.manage().window().maximize();
   });
 
-  it('als gebruiker kan ik de foutmelding titel lezen', async () => {
-    await driver.get(defaultUrl);
-    const message = await new VlHttpErrorMessage(driver, selector);
-    await assert.eventually.equal(message.getTitle(), 'Niets gevonden hiervoor.');
-  });
+  // it('als gebruiker kan ik de foutmelding titel lezen', async () => {
+  //   await driver.get(defaultUrl);
+  //   const message = await new VlHttpErrorMessage(driver, selector);
+  //   await assert.eventually.equal(message.getTitle(), 'Niets gevonden hiervoor.');
+  // });
 
   it('als gebruiker kan ik de foutmelding content lezen', async () => {
     await driver.get(defaultUrl);
