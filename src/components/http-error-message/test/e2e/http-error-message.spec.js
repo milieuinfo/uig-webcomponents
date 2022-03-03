@@ -13,13 +13,14 @@ describe('vl-http-error-message', async () => {
     driver.manage().window().maximize();
   });
 
-  it('als gebruiker kan ik de foutmelding titel lezen', async () => {
+  it('as a user I can read the title of the error message', async () => {
     await driver.get(defaultUrl);
     const message = await new VlHttpErrorMessage(driver, selector);
+
     await assert.eventually.equal(message.getTitle(), 'Niets gevonden hiervoor.');
   });
 
-  it('als gebruiker kan ik de foutmelding content lezen', async () => {
+  it('as a user I can read the content of the erorr message', async () => {
     await driver.get(defaultUrl);
     const message = await new VlHttpErrorMessage(driver, selector);
     const content = await message.getContent();
@@ -27,26 +28,29 @@ describe('vl-http-error-message', async () => {
     await assert.eventually.equal(content.getText(), 'Sorry, er liep iets onverwachts mis.');
   });
 
-  it('als gebruiker kan ik de foutmelding link zien', async () => {
+  it('as a user I can see the error message link', async () => {
     await driver.get(defaultUrl);
     const message = await new VlHttpErrorMessage(driver, selector);
     const link = await message._getAction();
+
     await assert.eventually.equal(link.getText(), 'Opnieuw opstarten');
   });
 
-  it('als gebruiker kan ik de foutmelding afbeelding zien', async () => {
+  it('as a user I can see the error message image', async () => {
     await driver.get(defaultUrl);
     const message = await new VlHttpErrorMessage(driver, selector);
     const image = await message.getImage();
+
     assert.isTrue((await image.getAttribute('src')).endsWith('unexpected-error.svg'));
     await assert.eventually.equal(image.getAttribute('alt'), 'Niets gevonden');
   });
 
-  it('als gebruiker kan ik op de actieknop van een foutmelding klikken', async () => {
+  it('as a user I can click on the action button of an error message', async () => {
     await driver.get(defaultUrl);
     const message = await new VlHttpErrorMessage(driver, selector);
     await message.clickOnAction();
     const urlAfterClick = await driver.getCurrentUrl();
+
     assert.isTrue(urlAfterClick.endsWith('#'));
   });
 });

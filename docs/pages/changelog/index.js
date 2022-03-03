@@ -12,7 +12,10 @@ const unreleased = [
     children: html`<ul>
       <li>
         <p><code>vl-http-error-message</code></p>
-        <p>The components and its presets were migrated.</p>
+        <p>
+          The components and its presets were migrated. Using actual slots now instead of copying and pasting the
+          content of components with the slot attribute.
+        </p>
       </li>
     </ul>`,
   },
