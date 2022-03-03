@@ -3,25 +3,6 @@ import '../link';
 import '../icon';
 import styles from './styles.scss';
 
-/**
- * VlFunctionalHeader
- * @class
- * @classdesc Toont bovenaan de pagina generieke informatie zonder af te leiden zoals bijvoorgeeld titel, acties, tab navigatie of zoek input.
- *
- * @property {String} data-vl-back - Attribuut wordt gebruikt om de terug link tekst te bepalen.
- * @property {String} data-vl-back-link - Attribuut wordt gebruikt om de terug link te bepalen.
- * @property {String} data-vl-link - Attribuut wordt gebruikt om de link van de titel te bepalen.
- * @property {String} data-vl-title - Attribuut wordt gebruikt om de tekst van de titel te bepalen.
- * @property {String} data-vl-sub-title - Attribuut wordt gebruikt om de tekst van de sub titel te bepalen.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-functional-header/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-functional-header/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-functional-header.html|Demo}
- *
- */
 export class VlFunctionalHeader extends vlElement(HTMLElement) {
   static get _observedAttributes() {
     return ['back', 'back-link', 'title', 'sub-title', 'link'];
@@ -32,8 +13,8 @@ export class VlFunctionalHeader extends vlElement(HTMLElement) {
       <style>
         ${styles}
       </style>
-      <header class="vl-functional-header" style="min-width: initial">
-        <div class="vl-layout" style="min-width: initial">
+      <header class="vl-functional-header">
+        <div class="vl-layout">
           <div class="vl-functional-header__row">
             <div class="vl-functional-header__content">
               <div class="vl-title">
@@ -137,6 +118,15 @@ export class VlFunctionalHeader extends vlElement(HTMLElement) {
     }
     this._backLinkEventListener = eventListener;
     this._backLinkElement.addEventListener('click', this._backLinkEventListener);
+  }
+
+  set inModal(value) {
+    const header = this.shadowRoot.querySelector('header');
+    if (value) {
+      header.classList.add('in-modal');
+    } else {
+      header.classList.remove('in-modal');
+    }
   }
 
   __processSlotElements() {

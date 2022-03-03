@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
 import { LitElement, css, html, unsafeCSS } from 'lit';
 import { ref, createRef } from 'lit/directives/ref.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import styles from './styles.scss';
 import '../form-grid';
 import '../modal/new';
@@ -10,6 +11,7 @@ import '../link';
 import '../button';
 import '../privacy';
 import '../functional-header';
+import '../action-group';
 import { defaultOptIns, canModalOpen, handleOptIns } from './utils';
 import { VIEWS } from './enums';
 import { consent, preferences, privacy, statement } from './templates';
@@ -88,10 +90,9 @@ export class VlCookieConsent extends LitElement {
     };
 
     return html`<new-modal
-      data-vl-title="Cookie-informatie"
+      data-vl-title=${ifDefined(this.view === VIEWS.COOKIE_CONSENT ? 'Cookie-informatie' : null)}
       data-vl-not-auto-closable
       data-vl-not-cancellable
-      .hideAll=${this.view !== VIEWS.COOKIE_CONSENT}
       ${ref(this.modalRef)}
     >
       ${getContent()}
@@ -100,17 +101,3 @@ export class VlCookieConsent extends LitElement {
 }
 
 customElements.define('vl-cookie-consent', VlCookieConsent);
-
-// @change=${({ currentTarget }) => {
-//   this.optIns = this.optIns.map((optIn) =>
-//     optIn.name === name ? { ...optIn, checked: currentTarget.checked } : optIn,
-//   );
-// }}
-
-// ${description ? html`<p is="vl-form-annotation" data-vl-block>${description}</p>` : nothing}
-
-// <div is="vl-form-column">
-// <button @click=${() => submit(this)} is="vl-button">
-//   ${this.optIns.filter((optIn) => optIn.label).length > 0 ? 'Bewaar keuze' : 'Ik begrijp het'}
-// </button>
-// </div>

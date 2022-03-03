@@ -4,16 +4,5 @@
 @import "../../../node_modules/@govflanders/vl-ui-introduction/src/scss/introduction";
 @import "../../../node_modules/@govflanders/vl-ui-properties/src/scss/properties";
 @import "../../../node_modules/@govflanders/vl-ui-side-navigation/src/scss/side-navigation";
+@import "../modal/in-modal";
 @import "../../../node_modules/@govflanders/vl-ui-util/src/scss/util";
-
-.vl-region--overlap .inline {
-  margin: 15px;
-}
-
-.inline {
-  min-width: initial;
-}
-
-.hide {
-  display: none;
-}

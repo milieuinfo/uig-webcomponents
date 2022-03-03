@@ -1,0 +1,16 @@
+@import "../../../node_modules/@govflanders/vl-ui-modal/src/scss/modal";
+
+.in-modal {
+  margin: -$vl-modal-padding;
+  @include respond-to(small) {
+      margin: -$vl-modal-padding-small;
+  }
+
+  .vl-layout {
+      min-width: initial;
+  }
+
+  nav {
+      display: none;
+  }
+}
