@@ -8,6 +8,8 @@ export default class VlHttpErrorMessage extends VlElement {
   }
 
   async getContent() {
+    console.log('vlTypography: ', await this._getTypography());
+    console.log('content: ', (await this._getTypography()).getText());
     return (await this._getTypography()).getText();
   }
 
@@ -21,6 +23,7 @@ export default class VlHttpErrorMessage extends VlElement {
 
   async _getTypography() {
     const element = await this.shadowRoot.findElement(By.css('#text'));
+    console.log('#text element: ', element);
     return new VlTypography(this.driver, element);
   }
 

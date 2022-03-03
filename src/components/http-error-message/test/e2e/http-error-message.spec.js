@@ -22,6 +22,8 @@ describe('vl-http-error-message', async () => {
   it('als gebruiker kan ik de foutmelding content lezen', async () => {
     await driver.get(defaultUrl);
     const message = await new VlHttpErrorMessage(driver, selector);
+    console.log('message: ', message);
+
     await assert.eventually.equal(message.getContent(), 'Sorry, er liep iets onverwachts mis.');
   });
 
