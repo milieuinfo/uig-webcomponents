@@ -9,13 +9,24 @@ const unreleased = [
   {
     version: 'Unreleased',
     date: '?',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-http-error-message</code></p>
         <p>
           The components and its presets were migrated. Using actual slots now instead of copying and pasting the
           content of components with the slot attribute.
         </p>
+      </li>
+      <li>
+        <p><code>vl-description-data</code> &#x1F4A5;</p>
+        <p>
+          When migrating the description data, we mentioned that the right styles where only applied on load. When the
+          components children changed, the styles did not change correspondingly.
+        </p>
+      </li>
+      <li>
+        <p><code>vl-video-player</code></p>
+        <p>The component has been migrated.</p>
       </li>
     </ul>`,
   },
