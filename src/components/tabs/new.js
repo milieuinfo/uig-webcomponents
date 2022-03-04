@@ -35,7 +35,7 @@ export class VlTabsNew extends LitElement {
     }
   }
 
-  _activeTab(tabId, index) {
+  _activateTab(tabId, index) {
     if (this.currentTabIndex !== index) {
       this.activeTab = tabId;
       this.currentTabIndex = index;
@@ -45,9 +45,7 @@ export class VlTabsNew extends LitElement {
   _handleClick(event, tabId, index) {
     event.preventDefault();
 
-    this._activeTab(tabId, index);
-
-    // if (this.currentTabIndex !== index) {
+    this._activateTab(tabId, index);
 
     //   // this.updateResponsiveBtnLabelForTabsContainerWithTab(tabsContainer, tab);
 
@@ -61,7 +59,7 @@ export class VlTabsNew extends LitElement {
       event.preventDefault();
     }
 
-    this._activeTab(tabId, index);
+    this._activateTab(tabId, index);
   }
 
   _handleKeyDown(event) {
