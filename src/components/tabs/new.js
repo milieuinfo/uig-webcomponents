@@ -35,35 +35,33 @@ export class VlTabsNew extends LitElement {
     }
   }
 
-  _handleClick(event, tabId, index) {
-    if (!this.useHash) {
-      // Don't show hash in url
-      event.preventDefault();
-    }
-
+  _activeTab(tabId, index) {
     if (this.currentTabIndex !== index) {
       this.activeTab = tabId;
       this.currentTabIndex = index;
-
-      // this.updateResponsiveBtnLabelForTabsContainerWithTab(tabsContainer, tab);
-
-      // const toggleBtnEl = tabsContainer.querySelector(`[${tabToggleAtt}]`);
-      // toggleBtnEl.click();
     }
   }
 
+  _handleClick(event, tabId, index) {
+    event.preventDefault();
+
+    this._activeTab(tabId, index);
+
+    // if (this.currentTabIndex !== index) {
+
+    //   // this.updateResponsiveBtnLabelForTabsContainerWithTab(tabsContainer, tab);
+
+    //   // const toggleBtnEl = tabsContainer.querySelector(`[${tabToggleAtt}]`);
+    //   // toggleBtnEl.click();
+    // }
+  }
+
   _handleFocus(event, tabId, index) {
-    if (this.currentTabIndex !== index) {
-      if (this.useHash) {
-        const tabs = this.shadowRoot.querySelectorAll('[data-vl-tab]');
-        // Update hash in URL
-        tabs[index].click();
-      } else {
-        event.preventDefault();
-        this.activeTab = tabId;
-        this.currentTabIndex = index;
-      }
+    if (!this.useHash) {
+      event.preventDefault();
     }
+
+    this._activeTab(tabId, index);
   }
 
   _handleKeyDown(event) {
@@ -86,7 +84,6 @@ export class VlTabsNew extends LitElement {
   }
 
   _handleLeftArrow(tabs) {
-    console.log('left arrow');
     let i = this.currentTabIndex - 1;
 
     if (i < 0) {
@@ -101,7 +98,6 @@ export class VlTabsNew extends LitElement {
   }
 
   _handleRightArrow(tabs) {
-    console.log('right arrow');
     let _i = this.currentTabIndex + 1;
 
     if (_i >= tabs.length) {
@@ -146,16 +142,25 @@ export class VlTabsNew extends LitElement {
 
   static get properties() {
     return {
+      responsiveLabel: { type: String, attribute: 'data-vl-responsive-label', reflect: true },
       activeTab: { type: String, attribute: 'data-vl-active-tab', reflect: true },
       useHash: { type: Boolean, attribute: 'data-vl-use-hash', reflect: true },
+      alt: { type: Boolean, attribute: 'data-vl-alt', reflect: true },
     };
   }
 
   updated(changedProperties) {
     changedProperties.forEach((oldValue, propName) => {
+      const windowObject = window.location !== window.parent.location ? window.parent : window;
+
       switch (propName) {
         case 'activeTab':
           this.dispatchEvent(new CustomEvent('change', { detail: { activeTab: this.activeTab }, composed: true }));
+
+          if (this.useHash) {
+            windowObject.location.hash = this.activeTab;
+          }
+
           break;
 
         default:
@@ -168,9 +173,9 @@ export class VlTabsNew extends LitElement {
     const children = [...this.children];
     const noDefaultActiveTab = !this.activeTab || this.activeTab === 'undefined';
 
-    return html`<div data-vl-tabs data-vl-tabs-responsive-label="Navigatie">
+    return html`<div data-vl-tabs data-vl-tabs-responsive-label="${this.responsiveLabel}">
       <div class="vl-tabs__wrapper">
-        <ul class="vl-tabs" data-vl-tabs-list role="tablist">
+        <ul class="vl-tabs ${this.alt ? 'vl-tabs--alt' : ''}" data-vl-tabs-list role="tablist">
           ${children.map(
             (child, index) =>
               html`
@@ -186,14 +191,14 @@ export class VlTabsNew extends LitElement {
                     @click=${(e) => this._handleClick(e, child.tabId, index)}
                     @focus=${(e) => this._handleFocus(e, child.tabId, index)}
                     @keydown=${(e) => this._handleKeyDown(e)}
-                    >${child.title}</a
+                    >${child.title ? child.title : html`<slot name="title"></slot>`}</a
                   >
                 </li>
               `,
           )}
         </ul>
         <button type="button" data-vl-tabs-toggle aria-expanded="false" class="vl-tabs__toggle" data-vl-close="false">
-          <span>Navigatie</span>
+          <span>${this.responsiveLabel || 'Navigatie'}</span>
         </button>
       </div>
 
@@ -210,7 +215,6 @@ export class VlTabsNew extends LitElement {
             hidden="${child.tabId === this.activeTab ? '' : 'hidden'}"
             data-vl-show="${child.tabId === this.activeTab}"
             aria-labelledby=${`${child.tabId}-pane-tab`}
-            data-vl-show="true"
           >
             <div class="vl-typography">
               <slot name=${name}></slot>

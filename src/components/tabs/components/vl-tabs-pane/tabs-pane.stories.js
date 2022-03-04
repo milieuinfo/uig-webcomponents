@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
-import { stylesheet, wrapWidth, docsIntro, TYPES, CATEGORIES } from '../../../../../.storybook/utils';
-import './index';
+import { stylesheet, docsIntro, TYPES, CATEGORIES } from '../../../../../.storybook/utils';
+import './new';
 import styles from '../../styles.scss';
 
 export default {
@@ -54,15 +54,13 @@ export default {
   },
 };
 
-export const Default = ({ id, title }) => html` <div style="max-width: ${wrapWidth}">
-  <vl-tabs id="tabs">
-    <vl-tabs-pane data-vl-id=${id} data-vl-title=${title}>
-      Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor
-      ligula, eget lacinia odio sem nec elit. Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere
-      velit aliquet.
-    </vl-tabs-pane>
-  </vl-tabs>
-</div>`;
+export const Default = ({ id, title }) => html` <vl-tabs-new>
+  <vl-tabs-pane-new data-vl-id=${id} data-vl-title=${title}>
+    Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor
+    ligula, eget lacinia odio sem nec elit. Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere
+    velit aliquet.
+  </vl-tabs-pane-new>
+</vl-tabs-new>`;
 
 Default.argTypes = {
   titleSlotText: {
@@ -72,14 +70,12 @@ Default.argTypes = {
   },
 };
 
-export const WithTitleSlot = ({ id, titleSlotText }) => html` <div style="max-width: ${wrapWidth}">
-  <vl-tabs id="tabs-slotted">
-    <vl-tabs-pane data-vl-id=${id}>
-      <span slot="title">${titleSlotText}</span>
-      Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-    </vl-tabs-pane>
-  </vl-tabs>
-</div>`;
+export const WithTitleSlot = ({ id, titleSlotText }) => html` <vl-tabs-new>
+  <vl-tabs-pane-new data-vl-id=${id}>
+    <span slot="title">${titleSlotText}</span>
+    Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+  </vl-tabs-pane-new>
+</vl-tabs-new>`;
 
 WithTitleSlot.argTypes = {
   title: {

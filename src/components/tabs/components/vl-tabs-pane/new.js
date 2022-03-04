@@ -1,4 +1,4 @@
-import { html, css, LitElement, unsafeCSS } from 'lit';
+import { LitElement } from 'lit';
 
 export class VlTabsPaneNew extends LitElement {
   static get properties() {
