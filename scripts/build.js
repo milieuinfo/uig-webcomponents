@@ -31,6 +31,7 @@ const buildConfig = {
     'action-group',
     'doormat',
     'tabs',
+    'video-player',
   ],
   componentsWithStylesheetAndInlineStyling: ['tooltip', 'pill'],
 };

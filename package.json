@@ -1,6 +1,6 @@
 {
   "name": "uig-webcomponents",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -38,11 +38,11 @@
   "dependencies": {
     "@govflanders/vl-ui-accordion": "^3.12.17",
     "@govflanders/vl-ui-core": "^4.1.24",
+    "@govflanders/vl-ui-progress-bar": "^3.12.3",
     "@govflanders/vl-ui-side-navigation": "^3.12.3",
     "@govflanders/vl-ui-util": "^3.12.24",
-    "@govflanders/vl-ui-progress-bar": "^3.12.3",
     "@ungap/custom-elements": "^0.1.15",
-    "lit": "^2.0.0-rc.2",
+    "lit": "^2.1.2",
     "swipe-detect": "^1.0.1",
     "vl-mapactions": "^4.0.1"
   },
@@ -58,6 +58,7 @@
     "@govflanders/vl-ui-contact-card": "^3.12.17",
     "@govflanders/vl-ui-content-header": "^3.12.3",
     "@govflanders/vl-ui-data-table": "^3.12.17",
+    "@govflanders/vl-ui-description-data": "^3.12.3",
     "@govflanders/vl-ui-document": "^3.12.3",
     "@govflanders/vl-ui-form-message": "^3.12.24",
     "@govflanders/vl-ui-functional-header": "^3.12.3",
@@ -83,6 +84,7 @@
     "@govflanders/vl-ui-toggle": "^3.12.17",
     "@govflanders/vl-ui-tooltip": "^3.12.3",
     "@govflanders/vl-ui-typography": "^3.12.17",
+    "@govflanders/vl-ui-video-player": "^3.12.3",
     "@govflanders/vl-ui-wizard": "^3.12.3",
     "@open-wc/eslint-config": "^7.0.0",
     "@storybook/addon-essentials": "6.3.10",
