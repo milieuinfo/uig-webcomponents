@@ -59,18 +59,14 @@ export const argTypes = {
   },
 };
 
-export const parameters = (errorCode) => {
-  const errorCodeText = errorCode ? `${errorCode} ` : '';
-
-  return {
-    controls: { hideNoControlsWarning: true },
-    docs: {
-      description: {
-        component: docsIntro({
-          root: 'http-error-message',
-          intro: `Use the HTTP ${errorCodeText}error message to show an explanatory message for a HTTP ${errorCodeText}error.`,
-        }),
-      },
+export const parameters = (errorCode = '') => ({
+  controls: { hideNoControlsWarning: true },
+  docs: {
+    description: {
+      component: docsIntro({
+        root: 'http-error-message',
+        intro: `Use the HTTP ${`${errorCode} `}error message to show an explanatory message for a HTTP ${`${errorCode} `}error.`,
+      }),
     },
-  };
-};
+  },
+});

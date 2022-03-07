@@ -1,8 +1,8 @@
-import { VlElement, By } from '../../../../../utils/test';
-import VlHttpErrorMessage from '../../../test/e2e/http-error-message';
-import { VlButton } from '../../../../button/test/e2e/button';
+import { VlElement, By } from '../../../../utils/test';
+import VlHttpErrorMessage from './http-error-message';
+import { VlButton } from '../../../button/test/e2e/button';
 
-export default class VlHttpErrorMessagePreset extends VlElement {
+export default class VlHttpErrorMessageComponent extends VlElement {
   async getChild() {
     return new VlHttpErrorMessage(this.driver, await this.getElementInShadow(this, 'vl-http-error-message'));
   }

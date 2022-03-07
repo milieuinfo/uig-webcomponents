@@ -2,7 +2,7 @@ import { assert, getDriver, config } from '../../../../utils/test';
 import VlHttpErrorMessage from './http-error-message.js';
 
 const { sbUrl } = config;
-const defaultUrl = `${sbUrl}?id=custom-elements-vl-http-error-message--custom`;
+const defaultUrl = `${sbUrl}?id=custom-elements-vl-http-error-message--default`;
 const selector = 'vl-http-error-message';
 
 describe('vl-http-error-message', async () => {
@@ -20,7 +20,7 @@ describe('vl-http-error-message', async () => {
     await assert.eventually.equal(message.getTitle(), 'Niets gevonden hiervoor.');
   });
 
-  it('as a user I can read the content of the erorr message', async () => {
+  it('as a user I can read the content of the error message', async () => {
     await driver.get(defaultUrl);
     const message = await new VlHttpErrorMessage(driver, selector);
     const content = await message.getContent();

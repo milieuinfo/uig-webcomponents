@@ -1,4 +1,5 @@
 import { html, LitElement, css, unsafeCSS } from 'lit';
+import { define } from '../../../../utils/core';
 import styles from '../../../button/styles.scss';
 
 export class VlHttp504Message extends LitElement {
@@ -29,3 +30,5 @@ export class VlHttp504Message extends LitElement {
     `;
   }
 }
+
+define('vl-http-504-message', VlHttp504Message);

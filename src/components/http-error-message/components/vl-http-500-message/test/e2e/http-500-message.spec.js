@@ -1,5 +1,5 @@
 import { assert, getDriver, config } from '../../../../../../utils/test';
-import VlHttpErrorMessagePreset from '../../../test/e2e/http-error-message-preset';
+import VlHttpErrorMessageComponent from '../../../../test/e2e/http-error-message-component';
 
 const { sbUrl } = config;
 const defaultUrl = `${sbUrl}?id=custom-elements-vl-http-error-message-vl-http-500-message--default`;
@@ -15,7 +15,7 @@ describe('vl-http-500-message', async () => {
 
   it('as a user I can read the title of the error message', async () => {
     await driver.get(defaultUrl);
-    const message = await new VlHttpErrorMessagePreset(driver, selector);
+    const message = await new VlHttpErrorMessageComponent(driver, selector);
     const child = await message.getChild();
 
     await assert.eventually.equal(child.getTitle(), 'Interne fout');
@@ -23,7 +23,7 @@ describe('vl-http-500-message', async () => {
 
   it('as a user I can read the content of the erorr message', async () => {
     await driver.get(defaultUrl);
-    const message = await new VlHttpErrorMessagePreset(driver, selector);
+    const message = await new VlHttpErrorMessageComponent(driver, selector);
     const child = await message.getChild();
     const content = await child.getContent();
 
@@ -35,7 +35,7 @@ describe('vl-http-500-message', async () => {
 
   it('as a user I can see the error message link', async () => {
     await driver.get(defaultUrl);
-    const message = await new VlHttpErrorMessagePreset(driver, selector);
+    const message = await new VlHttpErrorMessageComponent(driver, selector);
     const child = await message.getChild();
     const link = await child._getAction();
 
@@ -44,7 +44,7 @@ describe('vl-http-500-message', async () => {
 
   it('as a user I can see the error message image', async () => {
     await driver.get(defaultUrl);
-    const message = await new VlHttpErrorMessagePreset(driver, selector);
+    const message = await new VlHttpErrorMessageComponent(driver, selector);
     const child = await message.getChild();
     const image = await child.getImage();
 
@@ -57,7 +57,7 @@ describe('vl-http-500-message', async () => {
 
   it('as a user I can click on the action button of an error message', async () => {
     await driver.get(defaultUrl);
-    const message = await new VlHttpErrorMessagePreset(driver, selector);
+    const message = await new VlHttpErrorMessageComponent(driver, selector);
     const child = await message.getChild();
     await child.clickOnAction();
     const urlAfterClick = await driver.getCurrentUrl();

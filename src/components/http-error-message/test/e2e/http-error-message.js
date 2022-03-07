@@ -10,9 +10,9 @@ export default class VlHttpErrorMessage extends VlElement {
   async getContent() {
     const typography = await this._getTypography();
     const slot = await typography.shadowRoot.findElement(By.css(`slot[name="text"]`));
-    const elements = await typography.getAssignedElements(slot);
-    const secondSlotElements = await this.getAssignedElements(elements[0]);
-    return secondSlotElements[0];
+    const [firstElementFirstSlot] = await typography.getAssignedElements(slot);
+    const [firstElementSecondSlot] = await this.getAssignedElements(firstElementFirstSlot);
+    return firstElementSecondSlot;
   }
 
   async clickOnAction() {
