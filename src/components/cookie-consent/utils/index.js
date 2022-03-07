@@ -1,9 +1,6 @@
 import { getCookieValue, submitCookies } from './cookies';
 import { addAnalytics } from './analytics';
 
-export { defaultOptIns, handleOptIns } from './optins';
-export { resetCookieConsent } from './cookies';
-
 const isUncontrolled = (open) => open === undefined;
 
 export const canModalOpen = (open) => {
@@ -20,6 +17,7 @@ export const submit = (reference) => {
   if (reference.analytics) {
     addAnalytics();
   }
+
   const optInsWithDate = reference.optIns.map((optIn) =>
     optIn.name === 'cookie-consent-date' ? { ...optIn, value: new Date().getTime() } : optIn,
   );
@@ -36,3 +34,6 @@ export const submit = (reference) => {
     reference.modalRef.value.close();
   }
 };
+
+export { defaultOptIns, handleOptIns } from './optins';
+export { resetCookieConsent } from './cookies';

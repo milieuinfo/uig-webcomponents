@@ -6,6 +6,7 @@ export const args = {
   extraOptIns: [],
   submitted: action('vl-submitted'),
   open: false,
+  projectName: 'Voortoets',
 };
 
 // to do, better generic description method for more complex properties

@@ -46,13 +46,15 @@ export class VlPrivacy extends LitElement {
       <vl-functional-header
         .inModal=${this.inModal}
         .backLinkEventListener=${(event) => {
-          event.preventDefault();
-          this.dispatchEvent(
-            new CustomEvent('vl-back', {
-              bubbles: true,
-              composed: true,
-            }),
-          );
+          if (this.inModal) {
+            event.preventDefault();
+            this.dispatchEvent(
+              new CustomEvent('vl-back', {
+                bubbles: true,
+                composed: true,
+              }),
+            );
+          }
         }}
         data-vl-title="Departement Omgeving"
         data-vl-sub-title="Privacy"

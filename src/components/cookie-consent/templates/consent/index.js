@@ -78,8 +78,30 @@ export const consent = (reference) => {
       data-vl-collapse-xs
     >
       ${reference.optIns.filter((optIn) => optIn.label).length > 1
-        ? html`<button is="vl-button">Alle cookies aanvaarden</button>
-            <button is="vl-button" data-vl-secondary>Enkel noodzakelijke cookies aanvaarden</button>`
-        : html`<button is="vl-button">Ik begrijp het</button>`}
+        ? html`<button
+              @click=${() => {
+                reference.optIns = reference.optIns.map((optIn) => ({ ...optIn, checked: true }));
+                submit(reference);
+              }}
+              is="vl-button"
+            >
+              Alle cookies aanvaarden
+            </button>
+            <button
+              @click=${() => {
+                const optionalOptIns = reference.optIns.filter((optIn) => optIn.mandatory !== true);
+                reference.optIns = reference.optIns.map((optIn) =>
+                  optionalOptIns.find((optionalOptIn) => optionalOptIn.name === optIn.name)
+                    ? { ...optIn, checked: false }
+                    : optIn,
+                );
+                submit(reference);
+              }}
+              is="vl-button"
+              data-vl-secondary
+            >
+              Enkel noodzakelijke cookies aanvaarden
+            </button>`
+        : html`<button @click=${() => submit(reference)} is="vl-button">Ik begrijp het</button>`}
     </div>`;
 };

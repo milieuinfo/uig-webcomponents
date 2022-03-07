@@ -34,6 +34,7 @@ export class VlCookieConsent extends LitElement {
         type: Array,
       },
       view: { type: Number },
+      projectName: { type: String, attribute: 'data-vl-project-name', reflect: true },
     };
   }
 
