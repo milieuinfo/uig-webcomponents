@@ -1,13 +1,12 @@
 import { html, nothing } from 'lit';
 import { VIEWS } from '../../enums';
 import { fwColumn } from '../fullWidthColumn';
-import { handleOptIns, submit } from '../../utils';
+import { submit } from '../../utils';
 
 export const preferences = (reference) => html`<div slot="content">
     <vl-functional-header
       .backLinkEventListener=${(event) => {
         event.preventDefault();
-        handleOptIns(reference);
         reference.view = VIEWS.COOKIE_CONSENT;
       }}
       data-vl-title=${reference.projectName}

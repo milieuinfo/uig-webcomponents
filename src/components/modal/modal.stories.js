@@ -1,12 +1,13 @@
 import { html } from 'lit-html';
 import { stylesheet } from '../../../.storybook/utils.js';
 import '../button';
+import styles from './styles.scss';
 import buttonStyles from '../button/styles.scss';
 import './new';
 
 export default {
   title: 'custom-elements/vl-modal',
-  decorators: [(story) => html`${stylesheet(buttonStyles)}${story()}`],
+  decorators: [(story) => html`${stylesheet(styles)}${story()}`],
   args: { open: true, closable: true },
 };
 

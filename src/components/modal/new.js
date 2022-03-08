@@ -3,6 +3,7 @@
 import { html, css, LitElement, unsafeCSS, nothing } from 'lit';
 import { ref, createRef } from 'lit/directives/ref.js';
 import styles from '../modal/styles.scss';
+// import './lib';
 import '@govflanders/vl-ui-modal';
 
 export class NewModal extends LitElement {
@@ -28,10 +29,15 @@ export class NewModal extends LitElement {
   }
 
   updated(changedProperties) {
+    const isOpen = this.modalRef.value.classList.contains('vl-modal-dialog--opened');
     changedProperties.forEach((oldValue, propName) => {
       switch (propName) {
         case 'open':
-          if (this.modalRef.value) {
+          if (this.open) {
+            if (!isOpen) {
+              vl.modal.toggle(this.modalRef.value);
+            }
+          } else if (isOpen) {
             vl.modal.toggle(this.modalRef.value);
           }
           break;
@@ -50,7 +56,7 @@ export class NewModal extends LitElement {
 
   render() {
     const hasFooterSlot = [...this.children].find((child) => child.getAttribute('slot') === 'footer-content');
-    return html` <div class="vl-modal vl-modal-dialog--large">
+    return html` <div class="vl-modal">
       <dialog
         ${ref(this.modalRef)}
         class="vl-modal-dialog"

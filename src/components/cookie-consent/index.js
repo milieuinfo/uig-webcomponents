@@ -3,8 +3,8 @@ import { LitElement, css, html, unsafeCSS } from 'lit';
 import { ref, createRef } from 'lit/directives/ref.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import styles from './styles.scss';
+import './components/cookie-modal';
 import '../form-grid';
-import '../modal/new';
 import '../checkbox';
 import '../form-message';
 import '../link';
@@ -48,7 +48,7 @@ export class VlCookieConsent extends LitElement {
 
   firstUpdated() {
     if (canModalOpen(this.open)) {
-      this.modalRef.value.open = true;
+      this.open = true;
     }
   }
 
@@ -60,9 +60,9 @@ export class VlCookieConsent extends LitElement {
           break;
         case 'open':
           if (this.open) {
-            this.modalRef.value.open = true;
+            this.modalRef.value.open();
           } else {
-            this.modalRef.value.open = false;
+            this.modalRef.value.close();
           }
           break;
         case 'analytics':
@@ -90,14 +90,13 @@ export class VlCookieConsent extends LitElement {
       }
     };
 
-    return html`<new-modal
+    return html`<vl-cookie-modal
       data-vl-title=${ifDefined(this.view === VIEWS.COOKIE_CONSENT ? 'Cookie-informatie' : null)}
-      data-vl-not-auto-closable
       data-vl-not-cancellable
       ${ref(this.modalRef)}
     >
       ${getContent()}
-    </new-modal>`;
+    </vl-cookie-modal>`;
   }
 }
 
