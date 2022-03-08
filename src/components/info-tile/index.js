@@ -100,11 +100,19 @@ export class VlInfoTile extends vlElement(HTMLElement) {
   }
 
   _toggleableChangedCallback(oldValue, newValue) {
-    if (newValue !== null) {
+    if (newValue === null) {
+      this.__removeAccordionElements();
+      this.__removePreventContentClickPropagation();
+    } else {
       this.__prepareAccordionElements();
       vl.accordion.dress(this._buttonElement);
       this.__preventContentClickPropagation();
+      this.__processAutoOpen();
     }
+  }
+
+  _autoOpenChangedCallback() {
+    this.__processAutoOpen();
   }
 
   __prepareAccordionElements() {
@@ -118,14 +126,28 @@ export class VlInfoTile extends vlElement(HTMLElement) {
     this._headerWrapperElement.prepend(button);
   }
 
+  __removeAccordionElements() {
+    this._element.classList.remove('js-vl-accordion');
+    this._headerWrapperElement.replaceChild(this._titleElement, this._buttonElement);
+  }
+
   __preventContentClickPropagation() {
     this._subtitleElement.addEventListener('click', (e) => e.stopPropagation());
     this._contentElement.addEventListener('click', (e) => e.stopPropagation());
   }
 
+  __removePreventContentClickPropagation() {
+    this._subtitleElement.removeEventListener('click', (e) => e.stopPropagation());
+    this._contentElement.removeEventListener('click', (e) => e.stopPropagation());
+  }
+
   __processAutoOpen() {
-    if (this.isToggleable && this.dataset.vlAutoOpen !== null) {
-      this.open();
+    if (this.isToggleable) {
+      if (this.dataset.vlAutoOpen === undefined) {
+        this.close();
+      } else {
+        this.open();
+      }
     }
   }
 
