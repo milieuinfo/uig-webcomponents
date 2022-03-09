@@ -33,6 +33,7 @@ const Template = ({ submitted, analytics, extraOptIns, projectName }) => html`<b
   <vl-cookie-consent
     ?data-vl-analytics=${analytics}
     .extraOptIns=${extraOptIns}
+    .cookies=${[{ name: 'test' }]}
     @vl-submitted=${(event) => submitted(event.detail)}
     data-vl-project-name=${projectName}
   ></vl-cookie-consent>`;

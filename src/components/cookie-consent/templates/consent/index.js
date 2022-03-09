@@ -68,14 +68,7 @@ export const consent = (reference) => {
             </button>
           `)}
         `}
-    <div
-      is="vl-action-group"
-      slot="footer-content"
-      data-vl-collapse-l
-      data-vl-collapse-m
-      data-vl-collapse-s
-      data-vl-collapse-xs
-    >
+    <div is="vl-action-group" data-vl-collapse-l data-vl-collapse-m data-vl-collapse-s data-vl-collapse-xs>
       ${reference.optIns.filter((optIn) => optIn.label).length > 1
         ? html`<button
               @click=${() => {

@@ -11,12 +11,12 @@ import '../properties';
 import '../link';
 import '../icon';
 import '../side-navigation';
-
-// import '/src/vl-header-cookie.js';
-// import '/src/vl-header-authentication-cookie.js';
-// import '/src/vl-authentication-cookie.js';
-// import '/src/vl-sticky-session-cookie.js';
-// import '/src/vl-jsessionid-cookie.js';
+import './components/cookie';
+import './components/header-authentication-cookie';
+import './components/header-cookie';
+import './components/authentication-cookie';
+import './components/sticky-session-cookie';
+import './components/jsessionid-cookie';
 
 import styles from './styles.scss';
 
@@ -34,11 +34,13 @@ export class VlCookieStatement extends LitElement {
       version: { type: String, attribute: 'data-vl-version', reflect: true },
       date: { type: String, attribute: 'data-vl-date', reflect: true },
       inModal: { type: Boolean },
+      cookies: { type: Array },
     };
   }
 
   constructor() {
     super();
+    this.cookies = [];
     this.version = '1.0.0';
     this.date = '3 maart 2021';
     this.inModal = false;
@@ -47,6 +49,8 @@ export class VlCookieStatement extends LitElement {
   render() {
     const inModal = { 'in-modal': this.inModal };
     const columnSize = this.inModal ? '12' : '8';
+
+    console.log({ cookies: this.cookies });
 
     return html` <vl-functional-header
         .inModal=${this.inModal}
@@ -207,11 +211,22 @@ export class VlCookieStatement extends LitElement {
 
                     <div id="cookie-usage" is="vl-column" data-vl-size="12" data-vl-medium-size="12">
                       <h2 is="vl-h2">Gebruikte cookies</h2>
-                      <!-- <vl-header-cookie></vl-header-cookie>
-                    <vl-header-authentication-cookie></vl-header-authentication-cookie>
-                    <vl-authentication-cookie></vl-authentication-cookie>
-                    <vl-jsessionid-cookie></vl-jsessionid-cookie>
-                    <vl-sticky-session-cookie></vl-sticky-session-cookie> -->
+                      <vl-header-cookie></vl-header-cookie>
+                      <vl-header-authentication-cookie></vl-header-authentication-cookie>
+                      <vl-authentication-cookie></vl-authentication-cookie>
+                      <vl-jsessionid-cookie></vl-jsessionid-cookie>
+                      <vl-sticky-session-cookie></vl-sticky-session-cookie>
+                      ${this.cookies.map(
+                        (cookie) =>
+                          html`<vl-cookie
+                            data-vl-name=${cookie.name}
+                            data-vl-domain=${cookie.domain}
+                            data-vl-processor=${cookie.processor}
+                            data-vl-purpose=${cookie.purpose}
+                            data-vl-title=${cookie.title}
+                            data-vl-validity=${cookie.validity}
+                          ></vl-cookie>`,
+                      )}
                       <slot></slot>
                     </div>
                   </div>

@@ -6,6 +6,18 @@ export default {
   parameters: {
     layout: 'fullscreen',
   },
+  args: {
+    cookies: [
+      {
+        title: 'title',
+        name: 'name',
+        purpose: 'purpose',
+        domain: 'domain',
+        processor: 'processor',
+        validity: 'validity',
+      },
+    ],
+  },
 };
 
-export const Default = () => html`<vl-cookie-statement></vl-cookie-statement>`;
+export const Default = ({ cookies }) => html`<vl-cookie-statement .cookies=${cookies}></vl-cookie-statement>`;

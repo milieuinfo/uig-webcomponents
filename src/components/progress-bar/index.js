@@ -1,9 +1,9 @@
-import { html, css, LitElement, unsafeCSS } from "lit";
-import { classMap } from "lit/directives/class-map.js";
-import styles from "./styles.scss";
-import "@govflanders/vl-ui-util/dist/js/util.js";
-import ProgressBar from "@govflanders/vl-ui-progress-bar/dist/js/progress-bar.js";
-import "../tooltip";
+import { html, css, LitElement, unsafeCSS } from 'lit';
+import { classMap } from 'lit/directives/class-map.js';
+import styles from './styles.scss';
+import '@govflanders/vl-ui-util/dist/js/util.js';
+import ProgressBar from '@govflanders/vl-ui-progress-bar/dist/js/progress-bar.js';
+import '../tooltip';
 
 export class VlProgressBar extends LitElement {
   static get styles() {
@@ -16,15 +16,15 @@ export class VlProgressBar extends LitElement {
 
   static get properties() {
     return {
-      numeric: { type: Boolean, attribute: "data-vl-numeric", reflect: true },
+      numeric: { type: Boolean, attribute: 'data-vl-numeric', reflect: true },
       activeStep: {
         type: Number,
-        attribute: "data-vl-active-step",
+        attribute: 'data-vl-active-step',
         reflect: true,
       },
       focusOnChange: {
         type: Boolean,
-        attribute: "data-vl-focus-on-change",
+        attribute: 'data-vl-focus-on-change',
         reflect: true,
       },
       steps: { type: Array },
@@ -41,18 +41,14 @@ export class VlProgressBar extends LitElement {
   }
 
   updated() {
-    this.progressBar.updateStep(
-      this.shadowRoot,
-      this.activeStep,
-      this.focusOnChange
-    );
+    this.progressBar.updateStep(this.shadowRoot, this.activeStep, this.focusOnChange);
   }
 
   render() {
     const classes = {
-      "vl-progress-bar": true,
-      "vl-progress-bar--numeric": this.numeric,
-      "vl-progress-bar--data-vl-numeric": this.numeric,
+      'vl-progress-bar': true,
+      'vl-progress-bar--numeric': this.numeric,
+      'vl-progress-bar--data-vl-numeric': this.numeric,
     };
     return html`<div class=${classMap(classes)}>
       ${this.steps.map(
@@ -60,11 +56,11 @@ export class VlProgressBar extends LitElement {
           <button
             @click=${() =>
               this.dispatchEvent(
-                new CustomEvent("vl-click-step", {
+                new CustomEvent('vl-click-step', {
                   bubbles: true,
                   composed: true,
                   detail: { step, number: index + 1 },
-                })
+                }),
               )}
             class="vl-progress-bar__bullet"
             aria-label=${step}
@@ -72,9 +68,9 @@ export class VlProgressBar extends LitElement {
             <vl-tooltip placement="top">${step}</vl-tooltip>
             <span class="vl-u-visually-hidden">${step}</span>
           </button>
-        </div>`
+        </div>`,
       )}
     </div>`;
   }
 }
-customElements.define("vl-progress-bar", VlProgressBar);
+customElements.define('vl-progress-bar', VlProgressBar);

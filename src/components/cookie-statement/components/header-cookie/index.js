@@ -1,18 +1,6 @@
-import { define } from '/node_modules/vl-ui-core/dist/vl-core.js';
-import { VlCookie } from '/src/vl-cookie.js';
+import { define } from '../../../../utils/core';
+import { VlCookie } from '../cookie';
 
-/**
- * VlHeaderCookie
- * @class
- * @classdesc Header cookie beschrijving
- *
- * @extends VlCookie
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-cookie-statement/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-cookie-statement/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-cookie.html|Demo}
- *
- */
 export class VlHeaderCookie extends VlCookie {
   constructor() {
     super({
