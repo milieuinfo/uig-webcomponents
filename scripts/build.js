@@ -23,6 +23,7 @@ const buildConfig = {
     'titles',
     'image',
     'properties',
+    'radio',
     'select',
     'form',
     'form-grid',
