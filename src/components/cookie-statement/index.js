@@ -31,6 +31,7 @@ export class VlCookieStatement extends LitElement {
 
   static get properties() {
     return {
+      extraCookies: { type: Array },
       version: { type: String, attribute: 'data-vl-version', reflect: true },
       date: { type: String, attribute: 'data-vl-date', reflect: true },
       inModal: { type: Boolean },
@@ -40,7 +41,7 @@ export class VlCookieStatement extends LitElement {
 
   constructor() {
     super();
-    this.cookies = [];
+    this.extraCookies = [];
     this.version = '1.0.0';
     this.date = '3 maart 2021';
     this.inModal = false;
@@ -49,8 +50,6 @@ export class VlCookieStatement extends LitElement {
   render() {
     const inModal = { 'in-modal': this.inModal };
     const columnSize = this.inModal ? '12' : '8';
-
-    console.log({ cookies: this.cookies });
 
     return html` <vl-functional-header
         .inModal=${this.inModal}
@@ -216,15 +215,15 @@ export class VlCookieStatement extends LitElement {
                       <vl-authentication-cookie></vl-authentication-cookie>
                       <vl-jsessionid-cookie></vl-jsessionid-cookie>
                       <vl-sticky-session-cookie></vl-sticky-session-cookie>
-                      ${this.cookies.map(
+                      ${this.extraCookies.map(
                         (cookie) =>
                           html`<vl-cookie
-                            data-vl-name=${cookie.name}
-                            data-vl-domain=${cookie.domain}
-                            data-vl-processor=${cookie.processor}
-                            data-vl-purpose=${cookie.purpose}
-                            data-vl-title=${cookie.title}
-                            data-vl-validity=${cookie.validity}
+                            .names=${cookie.names}
+                            .domain=${cookie.domain}
+                            .processor=${cookie.processor}
+                            .purpose=${cookie.purpose}
+                            .title=${cookie.title}
+                            .validity=${cookie.validity}
                           ></vl-cookie>`,
                       )}
                       <slot></slot>

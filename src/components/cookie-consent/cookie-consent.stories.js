@@ -24,7 +24,7 @@ export default {
   },
 };
 
-const Template = ({ submitted, analytics, extraOptIns, projectName }) => html`<button
+const Template = ({ submitted, analytics, extraOptIns, projectName, extraCookies }) => html`<button
     is="vl-button"
     @click=${resetCookieConsent}
   >
@@ -33,7 +33,7 @@ const Template = ({ submitted, analytics, extraOptIns, projectName }) => html`<b
   <vl-cookie-consent
     ?data-vl-analytics=${analytics}
     .extraOptIns=${extraOptIns}
-    .cookies=${[{ name: 'test' }]}
+    .extraCookies=${extraCookies}
     @vl-submitted=${(event) => submitted(event.detail)}
     data-vl-project-name=${projectName}
   ></vl-cookie-consent>`;

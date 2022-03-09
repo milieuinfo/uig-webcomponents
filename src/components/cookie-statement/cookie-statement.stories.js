@@ -1,5 +1,6 @@
 import { html } from 'lit-html';
 import '../cookie-statement';
+import './components/cookie';
 
 export default {
   title: 'custom-elements/vl-cookie-statement',
@@ -7,10 +8,10 @@ export default {
     layout: 'fullscreen',
   },
   args: {
-    cookies: [
+    extraCookies: [
       {
         title: 'title',
-        name: 'name',
+        names: ['name one', 'name two'],
         purpose: 'purpose',
         domain: 'domain',
         processor: 'processor',
@@ -20,4 +21,7 @@ export default {
   },
 };
 
-export const Default = ({ cookies }) => html`<vl-cookie-statement .cookies=${cookies}></vl-cookie-statement>`;
+export const Default = ({ extraCookies }) =>
+  html`<vl-cookie-statement .extraCookies=${extraCookies}
+    ><vl-cookie .title=${'test'}></vl-cookie
+  ></vl-cookie-statement>`;

@@ -33,6 +33,9 @@ export class VlCookieConsent extends LitElement {
       extraOptIns: {
         type: Array,
       },
+      extraCookies: {
+        type: Array,
+      },
       view: { type: Number },
       projectName: { type: String, attribute: 'data-vl-project-name', reflect: true },
     };
@@ -40,6 +43,7 @@ export class VlCookieConsent extends LitElement {
 
   constructor() {
     super();
+    this.extraCookies = [];
     this.modalRef = createRef();
     this.optIns = defaultOptIns;
     this.analytics = false;
@@ -48,7 +52,7 @@ export class VlCookieConsent extends LitElement {
 
   firstUpdated() {
     if (canModalOpen(this.open)) {
-      this.open = true;
+      this.modalRef.value.open();
     }
   }
 

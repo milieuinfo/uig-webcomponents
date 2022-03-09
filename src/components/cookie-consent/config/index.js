@@ -7,6 +7,16 @@ export const args = {
   submitted: action('vl-submitted'),
   open: false,
   projectName: 'Voortoets',
+  extraCookies: [
+    {
+      title: 'title',
+      names: ['name one', 'name two'],
+      purpose: 'purpose',
+      domain: 'domain',
+      processor: 'processor',
+      validity: 'validity',
+    },
+  ],
 };
 
 // to do, better generic description method for more complex properties

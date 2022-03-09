@@ -3,7 +3,7 @@ import { VIEWS } from '../../enums';
 import '../../../cookie-statement';
 
 export const statement = (reference) => html`<vl-cookie-statement
-  .cookies=${reference.cookies}
+  .extraCookies=${reference.extraCookies}
   .inModal=${true}
   @vl-back=${() => {
     reference.view = VIEWS.COOKIE_CONSENT;
