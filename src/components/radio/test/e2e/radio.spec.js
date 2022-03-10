@@ -101,8 +101,10 @@ describe('vl-radio', async () => {
   it('as a user I can check a radio by using the arrow keys', async () => {
     await driver.get(baseUrl);
     const html = await driver.findElement(By.css('html'));
+
     const radio1 = await new VlRadio(driver, fistRadioSelector);
     const radio2 = await new VlRadio(driver, secondRadioSelector);
+
     await assert.eventually.isFalse(radio1.isChecked());
     await assert.eventually.isFalse(radio2.isChecked());
 
@@ -135,8 +137,10 @@ describe('vl-radio', async () => {
   it('as a user I can go from the last radio to the first one and the other way around by using the arrow keys', async () => {
     await driver.get(baseUrl);
     const html = await driver.findElement(By.css('html'));
+
     const radio1 = await new VlRadio(driver, fistRadioSelector);
     const radio2 = await new VlRadio(driver, secondRadioSelector);
+
     await assert.eventually.isFalse(radio1.isChecked());
     await assert.eventually.isFalse(radio2.isChecked());
 
@@ -169,6 +173,7 @@ describe('vl-radio', async () => {
   it('as a user I can see the already selected radio gets a focus when using tab', async () => {
     await driver.get(baseUrl);
     const html = await driver.findElement(By.css('html'));
+
     const radio1 = await new VlRadio(driver, fistRadioSelector);
     const radio2 = await new VlRadio(driver, secondRadioSelector);
 
