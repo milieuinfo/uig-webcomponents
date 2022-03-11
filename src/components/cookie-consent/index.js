@@ -44,6 +44,7 @@ export class VlCookieConsent extends LitElement {
   constructor() {
     super();
     this.extraCookies = [];
+    this.extraOptIns = [];
     this.modalRef = createRef();
     this.optIns = defaultOptIns;
     this.analytics = false;

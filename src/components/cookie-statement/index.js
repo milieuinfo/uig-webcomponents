@@ -207,6 +207,20 @@ export class VlCookieStatement extends LitElement {
                         </p>
                       </vl-typography>
                     </div>
+                    <div is="vl-column" data-vl-size="12" data-vl-medium-size="12">
+                      <button
+                        is="vl-button"
+                        @click=${() => {
+                          this.dispatchEvent(
+                            new CustomEvent('vl-click-preferences-button', {
+                              bubbles: true,
+                            }),
+                          );
+                        }}
+                      >
+                        Beheer uw voorkeuren
+                      </button>
+                    </div>
 
                     <div id="cookie-usage" is="vl-column" data-vl-size="12" data-vl-medium-size="12">
                       <h2 is="vl-h2">Gebruikte cookies</h2>
