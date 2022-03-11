@@ -1,5 +1,5 @@
 import { vlElement, define } from '../../utils/core';
-import { vlRadioGroup } from '../radio-group';
+import { vlRadioGroup } from './components/vl-radio-group';
 
 import styles from './styles.scss';
 
