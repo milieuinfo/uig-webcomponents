@@ -9,7 +9,6 @@ const buildConfig = {
   dist: 'lib',
   componentsWithStylesheet: [
     'body',
-    'button',
     'data-table',
     'grid',
     'icon',
@@ -30,9 +29,10 @@ const buildConfig = {
     'search-results',
     'action-group',
     'doormat',
+    'upload',
     'video-player',
   ],
-  componentsWithStylesheetAndInlineStyling: ['tooltip', 'pill'],
+  componentsWithStylesheetAndInlineStyling: ['tooltip', 'pill', 'button'],
 };
 
 const { src, dist, componentsWithStylesheet, componentsWithStylesheetAndInlineStyling } = buildConfig;
