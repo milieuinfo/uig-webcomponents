@@ -34,8 +34,12 @@ const buildConfig = {
     'side-navigation',
     'titles',
     'video-player',
+    'action-group',
+    'doormat',
+    'upload',
+    'video-player',
   ],
-  componentsWithStylesheetAndInlineStyling: ['button', 'pill', 'tooltip'],
+  componentsWithStylesheetAndInlineStyling: ['tooltip', 'pill', 'button'],
 };
 
 const { src, dist, componentsWithStylesheet, componentsWithStylesheetAndInlineStyling } = buildConfig;
