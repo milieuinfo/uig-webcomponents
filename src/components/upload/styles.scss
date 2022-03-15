@@ -1,0 +1,30 @@
+@charset "utf-8";
+@import '../../../node_modules/@govflanders/vl-ui-core/src/scss/core';
+@import '../../../node_modules/@govflanders/vl-ui-upload/src/scss/upload';
+@import '../../../node_modules/@govflanders/vl-ui-icon/src/scss/icon';
+@import '../../../node_modules/@govflanders/vl-ui-link/src/scss/link';
+@import '../../../node_modules/@govflanders/vl-ui-util/src/scss/util';
+
+.vl-upload {
+  margin-bottom: 0rem;
+
+  // Show overlay
+  &.dz-drag-hover {
+    .vl-upload__overlay {
+      opacity: 1;
+      display: block;
+    }
+  }
+}
+
+// Make last CSS block of upload work in shadow dom
+:host-context(body.vl-upload--dragging) [data-vl-upload-full-body-drop] {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  min-height: 100vh;
+  z-index: z('upload');
+  margin: 0;
+}
