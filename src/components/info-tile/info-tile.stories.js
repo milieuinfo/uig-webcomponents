@@ -3,7 +3,7 @@ import '../info-tile';
 import { docsIntro, CATEGORIES, TYPES } from '../../../.storybook/utils.js';
 
 export default {
-  title: 'native-elements/vl-info-tile',
+  title: 'custom-elements/vl-info-tile',
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {

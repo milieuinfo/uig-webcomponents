@@ -2,9 +2,9 @@ import { assert, getDriver, config } from '../../../../utils/test';
 import { VlInfoTile } from './info-tile';
 
 const { sbUrl } = config;
-const defaultUrl = `${sbUrl}?id=native-elements-vl-info-tile--default`;
-const toggleableUrl = `${sbUrl}?id=native-elements-vl-info-tile--default&args=toggleable:true`;
-const toggleableAutoOpenUrl = `${sbUrl}?id=native-elements-vl-info-tile--default&args=autoOpen:true;toggleable:true`;
+const defaultUrl = `${sbUrl}?id=custom-elements-vl-info-tile--default`;
+const toggleableUrl = `${sbUrl}?id=custom-elements-vl-info-tile--default&args=toggleable:true`;
+const toggleableAutoOpenUrl = `${sbUrl}?id=custom-elements-vl-info-tile--default&args=autoOpen:true;toggleable:true`;
 const selector = 'vl-info-tile';
 
 describe('vl-info-tile', async () => {
