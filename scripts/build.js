@@ -17,7 +17,6 @@ const buildConfig = {
     'grid',
     'icon',
     'image',
-    'info-tile',
     'input-addon',
     'input-field',
     'input-group',
