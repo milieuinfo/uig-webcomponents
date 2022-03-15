@@ -3949,17 +3949,11 @@
         key: 'updateFileList',
         value: function updateFileList(dz, el, file) {
           const fileList = el.querySelector('.'.concat(filesClass));
-          console.log('updateFileList');
+
           if (dz.files.length) {
             vl.util.addClass(fileList, hasFilesClass);
 
-            console.log('el.hasAttribute(dataDisallowedDuplicates)', el.hasAttribute(dataDisallowedDuplicates));
-            console.log(
-              "el.getAttribute(dataDisallowedDuplicates) === 'true'",
-              el.getAttribute(dataDisallowedDuplicates) === 'true',
-            );
             if (el.hasAttribute(dataDisallowedDuplicates) && el.getAttribute(dataDisallowedDuplicates) === 'true') {
-              console.log('remove duplicate');
               this.removeDuplicate(dz, file);
             }
           } else {
@@ -3975,7 +3969,6 @@
           const self = this;
 
           if (vl.util.hasClass(element, filesBasicUploadClass)) {
-            console.log('filesBasicUploadClass');
             element.addEventListener('dragover', () => {
               vl.util.addClass(element, draggingClass);
             });
@@ -3986,7 +3979,6 @@
               vl.util.removeClass(element, draggingClass);
             });
           } else {
-            console.log('dropzone');
             let id = null;
             vl.util.addClass(element, 'dropzone'); // Add id if no id exists, else use existing id
 
@@ -4010,24 +4002,15 @@
               vl.util.addClass(element, 'vl-upload--full-body');
               document.body.addEventListener('dragover', (event) => {
                 event.stopPropagation();
-                if (!document.body.classList.contains(draggingClass)) {
-                  vl.util.addClass(document.body, draggingClass);
-                }
+                vl.util.addClass(document.body, draggingClass);
               });
               element.addEventListener('dragover', (event) => {
                 event.stopPropagation();
-                if (!document.body.classList.contains(draggingClass)) {
-                  vl.util.addClass(document.body, draggingClass);
-                }
+                vl.util.addClass(document.body, draggingClass);
               });
-              // When body dragover gets triggered the element gets the size of the page and element dragover/dragleave will be triggered instead of body from then on
               element.addEventListener('dragleave', (event) => {
-                vl.util.debounce(() => {
-                  event.stopPropagation();
-                  if (document.body.classList.contains(draggingClass)) {
-                    vl.util.removeClass(document.body, draggingClass);
-                  }
-                }, 50);
+                event.stopPropagation();
+                vl.util.removeClass(document.body, draggingClass);
               });
               element.addEventListener('drop', (event) => {
                 event.stopPropagation();

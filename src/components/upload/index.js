@@ -22,7 +22,6 @@ export class VlUpload extends vlFormValidationElement(vlElement(HTMLElement)) {
         'sub-title',
         'title',
         'url',
-        'full-body-drop',
       ]);
   }
 
@@ -47,8 +46,6 @@ export class VlUpload extends vlFormValidationElement(vlElement(HTMLElement)) {
     this._appendTemplates();
     this.dress();
     this._processSlots();
-
-    console.log(vl.upload.dropzoneInstances);
   }
 
   /**
@@ -61,6 +58,10 @@ export class VlUpload extends vlFormValidationElement(vlElement(HTMLElement)) {
     }
   }
 
+  /**
+   * Geeft het upload element.
+   * @return {HTMLElement}
+   */
   get uploadElement() {
     return this.shadowRoot.querySelector('.vl-upload__element');
   }
@@ -373,14 +374,6 @@ export class VlUpload extends vlFormValidationElement(vlElement(HTMLElement)) {
     this._element.setAttribute(`${this._prefix}url`, newValue);
     if (this._dropzone && this._dropzone.options) {
       this._dropzone.options.url = newValue;
-    }
-  }
-
-  _fullBodyDropChangedCallback(oldValue, newValue) {
-    if (newValue === null) {
-      this._element.removeAttribute(`${this._prefix}full-body-drop`);
-    } else {
-      this._element.setAttribute(`${this._prefix}full-body-drop`, newValue);
     }
   }
 
