@@ -4,7 +4,7 @@ import { VlRadio } from './radio';
 const { sbUrl } = config;
 const baseUrl = `${sbUrl}?id=native-elements-vl-radio--default`;
 const slotUrl = `${sbUrl}?id=native-elements-vl-radio--with-label-slot&args=checked:true`;
-const blockUrl = `${sbUrl}?id=native-elements-vl-radio--default&args=block:true`;
+const multipleAndBlockUrl = `${sbUrl}?id=native-elements-vl-radio--with-block-layout`;
 const errorUrl = `${sbUrl}?id=native-elements-vl-radio--default&args=error:true`;
 const disabledUrl = `${sbUrl}?id=native-elements-vl-radio--default&args=disabled:true`;
 const singleUrl = `${sbUrl}?id=native-elements-vl-radio--default&args=single:true`;
@@ -34,7 +34,7 @@ describe('vl-radio', async () => {
   });
 
   it('as a user I can only select one radio button at a time', async () => {
-    await driver.get(baseUrl);
+    await driver.get(multipleAndBlockUrl);
     const radio1 = await new VlRadio(driver, fistRadioSelector);
     const radio2 = await new VlRadio(driver, secondRadioSelector);
 
@@ -53,7 +53,7 @@ describe('vl-radio', async () => {
     const radio = await new VlRadio(driver, selector);
     await assert.eventually.isFalse(radio.isBlock());
 
-    await driver.get(blockUrl);
+    await driver.get(multipleAndBlockUrl);
     const blockRadio = await new VlRadio(driver, selector);
     await assert.eventually.isTrue(blockRadio.isBlock());
   });
@@ -99,7 +99,7 @@ describe('vl-radio', async () => {
   });
 
   it('as a user I can check a radio by using the arrow keys', async () => {
-    await driver.get(baseUrl);
+    await driver.get(multipleAndBlockUrl);
     const html = await driver.findElement(By.css('html'));
 
     const radio1 = await new VlRadio(driver, fistRadioSelector);
@@ -135,7 +135,7 @@ describe('vl-radio', async () => {
   });
 
   it('as a user I can go from the last radio to the first one and the other way around by using the arrow keys', async () => {
-    await driver.get(baseUrl);
+    await driver.get(multipleAndBlockUrl);
     const html = await driver.findElement(By.css('html'));
 
     const radio1 = await new VlRadio(driver, fistRadioSelector);
@@ -171,7 +171,7 @@ describe('vl-radio', async () => {
   });
 
   it('as a user I can see the already selected radio gets a focus when using tab', async () => {
-    await driver.get(baseUrl);
+    await driver.get(multipleAndBlockUrl);
     const html = await driver.findElement(By.css('html'));
 
     const radio1 = await new VlRadio(driver, fistRadioSelector);

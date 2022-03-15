@@ -112,32 +112,48 @@ export default {
   },
 };
 
-export const Default = ({ label, value, name, block, checked, disabled, error, single }) => html`<vl-radio
-    data-vl-label=${label}
-    data-vl-value=${value}
-    data-vl-name=${name}
+export const Default = ({ label, value, name, checked, disabled, error, single }) => html`<vl-radio
+  data-vl-label=${label}
+  data-vl-value=${value}
+  data-vl-name=${name}
+  ?data-vl-checked=${checked}
+  ?data-vl-disabled=${disabled}
+  ?data-vl-error=${error}
+  ?data-vl-single=${single}
+></vl-radio>`;
+
+export const WithBlockLayout = ({ block }) => html`<vl-radio
+    data-vl-label="Ja"
+    data-vl-value="yes"
+    data-vl-name="radio"
     ?data-vl-block=${block}
-    ?data-vl-checked=${checked}
-    ?data-vl-disabled=${disabled}
-    ?data-vl-error=${error}
-    ?data-vl-single=${single}
   ></vl-radio>
-  <vl-radio data-vl-label="Nee" data-vl-value="no" data-vl-name=${name} ?data-vl-block=${block}></vl-radio>`;
+  <vl-radio data-vl-label="Nee" data-vl-value="no" data-vl-name="radio" ?data-vl-block=${block}></vl-radio>`;
+
+WithBlockLayout.args = {
+  block: true,
+};
+WithBlockLayout.argTypes = {
+  label: { control: { disable: true } },
+  value: { control: { disable: true } },
+  name: { control: { disable: true } },
+  checked: { control: { disable: true } },
+  disabled: { control: { disable: true } },
+  error: { control: { disable: true } },
+  single: { control: { disable: true } },
+};
 
 export const WithLabelSlot = ({ value, name, block, checked, disabled, error, single, labelSlotText }) => html`<vl-radio
-    data-vl-value=${value}
-    data-vl-name=${name}
-    ?data-vl-block=${block}
-    ?data-vl-checked=${checked}
-    ?data-vl-disabled=${disabled}
-    ?data-vl-error=${error}
-    ?data-vl-single=${single}
-  >
-    <span>${labelSlotText}</span>
-  </vl-radio>
-  <vl-radio data-vl-label="Nee" data-vl-value="no" data-vl-name=${name} ?data-vl-block=${block}
-    ><span>Nee</span></vl-radio
-  >`;
+  data-vl-value=${value}
+  data-vl-name=${name}
+  ?data-vl-block=${block}
+  ?data-vl-checked=${checked}
+  ?data-vl-disabled=${disabled}
+  ?data-vl-error=${error}
+  ?data-vl-single=${single}
+>
+  <span>${labelSlotText}</span>
+</vl-radio>`;
 
 WithLabelSlot.args = { labelSlotText: 'Ja' };
 WithLabelSlot.argTypes = {
