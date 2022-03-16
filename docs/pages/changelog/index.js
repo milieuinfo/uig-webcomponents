@@ -10,6 +10,15 @@ const unreleased = [];
 const changes = [
   ...unreleased,
   {
+    version: '2.2.5',
+    date: '16/3/2022',
+    children: html`<ul>
+      <li>
+        <p>An issue in the build config for <code>vl-http-error-message</code> was fixed.</p>
+      </li>
+    </ul>`,
+  },
+  {
     version: '2.2.4',
     date: '7/3/2022',
     children: html`<ul>
