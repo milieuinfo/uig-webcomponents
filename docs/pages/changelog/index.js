@@ -14,7 +14,8 @@ const changes = [
     date: '16/3/2022',
     children: html`<ul>
       <li>
-        <p>An issue in the build config for <code>vl-http-error-message</code> was fixed.</p>
+        <p><code>vl-http-error-message</code></p>
+        <p>Fixed an import error for the styling of the button that is used in the components.</p>
       </li>
     </ul>`,
   },
