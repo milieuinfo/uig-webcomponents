@@ -12,6 +12,7 @@ describe('vl-upload', async () => {
   const uploadServerPath = '/post';
   const PDF_FILE = 'file.pdf';
   const TXT_FILE = 'file.txt';
+  const LARGE_FILE = 'file.bin';
 
   before(async () => {
     driver = getDriver();
@@ -38,6 +39,8 @@ describe('vl-upload', async () => {
           return 'C:\\Users\\hello\\Documents\\documents\\pdf-sample1.pdf';
         case TXT_FILE:
           return 'C:\\Users\\hello\\Documents\\documents\\text-sample1.txt';
+        case LARGE_FILE:
+          return 'C:\\Users\\hello\\Documents\\1MBzipFile.zip';
         default:
           break;
       }
@@ -47,7 +50,7 @@ describe('vl-upload', async () => {
     }
   };
 
-  it('as a user I can select a file to upload without immediately uploading', async () => {
+  it('als gebruiker kan ik een bestand selecteren om op te laden, maar het nog niet onmiddellijk opladen', async () => {
     const upload = await vlUploadPage.getUpload();
     await upload.uploadFile(file(PDF_FILE));
     await assert.eventually.lengthOf(upload.getFiles(), 1);
@@ -58,7 +61,7 @@ describe('vl-upload', async () => {
     await assert.eventually.isFalse(files[0].isError());
   });
 
-  it('as a user I can select multiple files to upload en programmatically upload them', async () => {
+  it('als gebruiker kan ik verschillende bestanden selecteren om op te laden en ze dan programmatorisch opladen', async () => {
     const upload = await vlUploadPage.getUpload();
     await upload.uploadFile(file(PDF_FILE));
     await vlUploadPage.uploadFiles();
@@ -70,7 +73,7 @@ describe('vl-upload', async () => {
     await assert.eventually.isFalse(files[0].isError());
   });
 
-  it('as a user I can immediately upload a file when selecting', async () => {
+  it('als gebruiker kan ik een bestand direct laten opladen bij het selecteren', async () => {
     const upload = await vlUploadPage.getUploadAutoProcess();
     await upload.uploadFile(file(PDF_FILE));
     await driver.wait(async () => {
@@ -79,21 +82,21 @@ describe('vl-upload', async () => {
     });
   });
 
-  it('as a user I can see the difference between a normal upload and an upload with an error state', async () => {
+  it('als gebruiker zie ik het onderscheid tussen een gewone upload en een upload in error state', async () => {
     const upload = await vlUploadPage.getUpload();
     const uploadError = await vlUploadPage.getUploadError();
     await assert.eventually.isFalse(upload.isError());
     await assert.eventually.isTrue(uploadError.isError());
   });
 
-  it('as a user I can see the difference between a normal upload and an upload with a success state', async () => {
+  it('als gebruiker zie ik het onderscheid tussen een gewone upload en een upload in succes state', async () => {
     const upload = await vlUploadPage.getUpload();
     const uploadSuccess = await vlUploadPage.getUploadSuccess();
     await assert.eventually.isFalse(upload.isSuccess());
     await assert.eventually.isTrue(uploadSuccess.isSuccess());
   });
 
-  it('as a user I can see an error message when uploading a file fails', async () => {
+  it('als gebruiker zie ik een foutboodschap bij een bestand als het opladen mislukt', async () => {
     const upload = await vlUploadPage.getUploadAutoProcess();
     fileUploadServer.failUploads();
     await upload.uploadFile(file(PDF_FILE));
@@ -108,7 +111,7 @@ describe('vl-upload', async () => {
     await assert.eventually.isTrue(files[0].isError());
   });
 
-  it('as a user I can programmatically empty the list of selected files', async () => {
+  it('als gebruiker kan ik de lijst gekozen files programmatorisch leeg maken', async () => {
     const upload = await vlUploadPage.getUploadClear();
     await upload.uploadFile(file(PDF_FILE));
     await assert.eventually.lengthOf(upload.getFiles(), 1);
@@ -117,19 +120,19 @@ describe('vl-upload', async () => {
     await assert.eventually.lengthOf(upload.getFiles(), 0);
   });
 
-  it('as a user i can define the maximum file size', async () => {
+  it('als gebruiker kan ik de maximum bestandsgrootte bepalen', async () => {
     const upload = await vlUploadPage.getUploadMaxSize();
-    await assert.eventually.equal(upload.getMaximumFilesize(), 10000);
-    const largeFile = file(PDF_FILE);
+    await assert.eventually.equal(upload.getMaximumFilesize(), 204800);
+    const largeFile = file(LARGE_FILE);
     await upload.uploadFile(largeFile);
     const filesTooBig = await upload.getFiles();
     await assert.eventually.equal(
       filesTooBig[0].getErrorMessage(),
-      'De grootte van het bestand mag maximaal 10 KB zijn.',
+      'De grootte van het bestand mag maximaal 200 KB zijn.',
     );
   });
 
-  it('as a user I can disallow uploading the same file multiple times', async () => {
+  it('als gebruiker kan ik er voor zorgen dat hetzelfde bestand geen 2 keer kan opgeladen worden', async () => {
     const upload = await vlUploadPage.getUploadUnique();
     await assert.eventually.isTrue(upload.isDuplicatesDisallowed());
     await upload.uploadFile(file(TXT_FILE));
@@ -139,7 +142,7 @@ describe('vl-upload', async () => {
     await assert.eventually.lengthOf(upload.getFiles(), 2);
   });
 
-  it('as a user I can allow certain filetypes', async () => {
+  it('als gebruiker kan ik enkel bepaalde filetypes toelaten om opgeladen te worden', async () => {
     const upload = await vlUploadPage.getUploadFileTypes();
     await assert.eventually.equal(upload.getAcceptedFileTypes(), 'application/pdf, .png');
     await upload.uploadFile(file(TXT_FILE));
@@ -148,14 +151,14 @@ describe('vl-upload', async () => {
     await assert.eventually.equal(files[0].getErrorMessage(), 'Je kan enkel application/pdf, .png bestanden opladen');
   });
 
-  it('as a user I can receive events when files are uploaded', async () => {
+  it('als gebruiker kan ik events ontvangen wanneer er bestanden worden opgeladen', async () => {
     const upload = await vlUploadPage.getUpload();
     await vlUploadPage.listenForEventsOnUpload();
     await upload.uploadFile(file(TXT_FILE));
     await assert.eventually.include(vlUploadPage.getVlUploadLogText(), 'Bestanden in vl-upload: ');
   });
 
-  it('as a user I can remove a selected file', async () => {
+  it('als gebruiker kan ik een gekozen bestand verwijderen', async () => {
     const upload = await vlUploadPage.getUpload();
     await upload.uploadFile(file(PDF_FILE));
     await assert.eventually.lengthOf(upload.getFiles(), 1);
@@ -164,7 +167,7 @@ describe('vl-upload', async () => {
     await assert.eventually.lengthOf(upload.getFiles(), 0);
   });
 
-  it('as a user I can cancel the upload when the file is uploading', async () => {
+  it('als gebruiker kan ik het opladen van een bestand ook annuleren tijdens dat het aan het opladen is', async () => {
     const upload = await vlUploadPage.getUploadAutoProcess();
     fileUploadServer.haltUploads();
     await upload.uploadFile(file(PDF_FILE));
@@ -174,7 +177,7 @@ describe('vl-upload', async () => {
     await assert.eventually.lengthOf(upload.getFiles(), 0);
   });
 
-  it('as a user I can define the number of files that can be uploaded', async () => {
+  it('als gebruiker kan ik het aantal files dat mag gekozen worden beperken', async () => {
     const upload = await vlUploadPage.getUploadMax5();
     await assert.eventually.equal(upload.getMaximumNumberOfAllowedFiles(), 5);
     for (let i = 1; i <= 6; i += 1) {
@@ -187,7 +190,7 @@ describe('vl-upload', async () => {
     await assert.eventually.equal(files[5].getErrorMessage(), 'Je kan maximaal 5 file(s) uploaden.');
   });
 
-  it('as a user I can programmatically add a file', async () => {
+  it('als gebruiker kan ik een bestand programmatisch toevoegen aan de lijst van opgeladen bestanden', async () => {
     const upload = await vlUploadPage.getUploadProgrammatically();
     await assert.eventually.lengthOf(upload.getFiles(), 0);
     await vlUploadPage.addFileProgrammatically();
@@ -195,7 +198,7 @@ describe('vl-upload', async () => {
     await assert.lengthOf(files, 1);
   });
 
-  it('as a user I can see the difference between an upload with a personalized title and subtitle and a standard upload', async () => {
+  it('als gebruiker kan ik het verschil zien tussen een upload met gepersonaliseerde titel en subtitel o.b.v. attributen en een gewone variant', async () => {
     let upload = await vlUploadPage.getUpload();
     await assert.eventually.equal(upload.getTitle(), 'Bijlage toevoegen');
     await assert.eventually.equal(upload.getSubTitle(), 'Sleep de bijlage naar hier om toe te voegen');
@@ -204,7 +207,7 @@ describe('vl-upload', async () => {
     await assert.eventually.equal(upload.getSubTitle(), 'Sleep de afbeelding naar hier om toe te voegen');
   });
 
-  it('as a user I can see the difference between an upload with a personalized title and subtitle using slots and a standard upload', async () => {
+  it('als gebruiker kan ik het verschil zien tussen een upload met gepersonaliseerde titel en subtitel o.b.v. slots en een gewone variant', async () => {
     let upload = await vlUploadPage.getUpload();
     await assert.eventually.equal(upload.getTitle(), 'Bijlage toevoegen');
     await assert.eventually.equal(upload.getSubTitle(), 'Sleep de bijlage naar hier om toe te voegen');
@@ -213,7 +216,7 @@ describe('vl-upload', async () => {
     await assert.eventually.equal(upload.getSubTitle(), 'Sub-titel');
   });
 
-  it(`as a user I can't upload a file when the element is disabled`, async () => {
+  it('als gebruiker kan ik geen bestand opladen wanneer het upload element disabled is', async () => {
     const upload = await vlUploadPage.getUploadDisabled();
     await upload.uploadFile(file(PDF_FILE));
     assert.equal(fileUploadServer.uploadedFiles.length, 0);

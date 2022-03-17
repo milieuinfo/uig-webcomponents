@@ -1,26 +1,32 @@
 import { html } from 'lit-html';
-import { docsIntro } from '../../../.storybook/utils.js';
+import '../upload';
+import styles from '../../components/button/styles.scss';
+import { stylesheet, docsIntro } from '../../../.storybook/utils.js';
 
 export default {
-  title: 'legacy/vl-upload',
+  title: 'legacy-elements/vl-upload',
+  decorators: [(story) => html`${stylesheet(styles)}${story()}`],
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
       description: {
-        component: docsIntro({
-          root: 'upload',
-          isLegacy: true,
-        }),
+        component: docsIntro(
+          {
+            root: 'upload',
+            intro:
+              'Use the upload component to select or drag and drop one or more files in the upload field. Alternatively, the user can upload one or more files by clicking the link in the upload field and selecting the file(s) in the File menu.',
+          },
+          true,
+        ),
       },
     },
   },
 };
 
-export const Default = () => html`<a
-  is="vl-link"
-  target="_blank"
-  data-vl-inline
-  href="https://webcomponenten.omgeving.vlaanderen.be/doc/VlUpload.html"
->
-  Legacy docs <span is="vl-icon" data-vl-icon="external" data-vl-after data-vl-link></span
-></a>`;
+export const Default = () =>
+  html`<p>
+    Documentatie:
+    <a href="https://webcomponenten.omgeving.vlaanderen.be/doc/VlUpload.html"
+      >https://webcomponenten.omgeving.vlaanderen.be/doc/VlUpload.html</a
+    >
+  </p>`;

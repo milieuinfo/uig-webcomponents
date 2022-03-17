@@ -27,7 +27,7 @@ export class VlUploadPage extends Page {
   }
 
   async getUploadMaxSize() {
-    return this._getUpload('#vl-upload-max-10-kb');
+    return this._getUpload('#vl-upload-max-5');
   }
 
   async getUploadUnique() {
@@ -88,7 +88,7 @@ export class VlUploadPage extends Page {
   }
 
   async load() {
-    await super.load(`${config.baseUrl}legacy/upload/test/e2e/index.html`);
+    await super.load(`${config.baseUrl}components/upload/test/e2e`);
   }
 
   async _getUpload(selector) {
