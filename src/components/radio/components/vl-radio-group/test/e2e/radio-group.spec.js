@@ -2,8 +2,8 @@ import { assert, getDriver, config, By, Key } from '../../../../../../utils/test
 import { VlRadioGroup } from './radio-group';
 
 const { sbUrl } = config;
-const baseUrl = `${sbUrl}?id=native-elements-vl-radio-vl-radio-group--default`;
-const disabledUrl = `${sbUrl}?id=native-elements-vl-radio-vl-radio-group--with-disabled-radio`;
+const baseUrl = `${sbUrl}?id=custom-elements-vl-radio-vl-radio-group--default`;
+const disabledUrl = `${sbUrl}?id=custom-elements-vl-radio-vl-radio-group--with-disabled-radio`;
 const selector = 'vl-radio-group';
 
 describe('vl-radio-group', async () => {

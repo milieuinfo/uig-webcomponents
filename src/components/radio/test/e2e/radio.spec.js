@@ -2,13 +2,13 @@ import { assert, getDriver, config, By, Key } from '../../../../utils/test';
 import { VlRadio } from './radio';
 
 const { sbUrl } = config;
-const baseUrl = `${sbUrl}?id=native-elements-vl-radio--default`;
-const slotUrl = `${sbUrl}?id=native-elements-vl-radio--with-label-slot&args=checked:true`;
-const multipleAndBlockUrl = `${sbUrl}?id=native-elements-vl-radio--with-block-layout`;
-const errorUrl = `${sbUrl}?id=native-elements-vl-radio--default&args=error:true`;
-const disabledUrl = `${sbUrl}?id=native-elements-vl-radio--default&args=disabled:true`;
-const singleUrl = `${sbUrl}?id=native-elements-vl-radio--default&args=single:true`;
-const checkedUrl = `${sbUrl}?id=native-elements-vl-radio--default&args=checked:true`;
+const baseUrl = `${sbUrl}?id=custom-elements-vl-radio--default`;
+const slotUrl = `${sbUrl}?id=custom-elements-vl-radio--with-label-slot&args=checked:true`;
+const multipleAndBlockUrl = `${sbUrl}?id=custom-elements-vl-radio--with-block-layout`;
+const errorUrl = `${sbUrl}?id=custom-elements-vl-radio--default&args=error:true`;
+const disabledUrl = `${sbUrl}?id=custom-elements-vl-radio--default&args=disabled:true`;
+const singleUrl = `${sbUrl}?id=custom-elements-vl-radio--default&args=single:true`;
+const checkedUrl = `${sbUrl}?id=custom-elements-vl-radio--default&args=checked:true`;
 
 const selector = 'vl-radio';
 const fistRadioSelector = 'vl-radio:first-of-type';
