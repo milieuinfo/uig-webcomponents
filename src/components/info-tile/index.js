@@ -38,6 +38,7 @@ export class VlInfoTile extends vlElement(HTMLElement) {
   connectedCallback() {
     this.__processAutoOpen();
     this.__processSlots();
+    this.__processAutoOpen();
   }
 
   get isToggleable() {
@@ -109,10 +110,6 @@ export class VlInfoTile extends vlElement(HTMLElement) {
       this.__preventContentClickPropagation();
       this.__processAutoOpen();
     }
-  }
-
-  _autoOpenChangedCallback() {
-    this.__processAutoOpen();
   }
 
   __prepareAccordionElements() {
