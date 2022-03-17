@@ -21,6 +21,16 @@ const unreleased = [
 const changes = [
   ...unreleased,
   {
+    version: '2.2.5',
+    date: '17/3/2022',
+    children: html`<ul>
+      <li>
+        <p><code>vl-http-error-message</code></p>
+        <p>Fixed an import error for the styling of the button that is used in the components.</p>
+      </li>
+    </ul>`,
+  },
+  {
     version: '2.2.4',
     date: '7/3/2022',
     children: html`<ul>
