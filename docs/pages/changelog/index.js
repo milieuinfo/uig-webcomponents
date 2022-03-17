@@ -5,7 +5,18 @@ import titleStyles from '../../../src/components/titles/styles.scss';
 import introStyles from '../../../src/components/introduction/styles.scss';
 import { removeStorybooksDefaultStyling } from '../../../.storybook/utils';
 
-const unreleased = [];
+const unreleased = [
+  {
+    version: '?',
+    date: 'Unreleased',
+    children: html`<ul>
+      <li>
+        <p><code>vl-info-tile</code></p>
+        <p>When migrating the info tile, we made the toggleable feature reactive.</p>
+      </li>
+    </ul>`,
+  },
+];
 
 const changes = [
   ...unreleased,
