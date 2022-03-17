@@ -12,7 +12,7 @@ const unreleased = [
     children: html`<ul>
       <li>
         <p><code>vl-upload</code></p>
-        <p>Migrated the component.</p>
+        <p>Added as a legacy component.</p>
       </li>
     </ul>`,
   },
