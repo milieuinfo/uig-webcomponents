@@ -1,7 +1,7 @@
-import { version } from "../package.json";
+import { version } from '../package.json';
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {
       color: /(background|color)$/i,
@@ -12,9 +12,10 @@ export const parameters = {
     storySort: {
       order: [
         `UIG-${version}`,
-        ["Introduction", "Changelog", "Contribute"],
-        "custom-elements",
-        "native-elements",
+        ['Introduction', 'Changelog', 'Contribute'],
+        'custom-elements',
+        'native-elements',
+        'legacy-elements',
       ],
     },
   },
