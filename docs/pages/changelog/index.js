@@ -7,12 +7,12 @@ import { removeStorybooksDefaultStyling } from '../../../.storybook/utils';
 
 const unreleased = [
   {
-    version: 'Unreleased',
-    date: '?',
+    version: '?',
+    date: 'Unreleased',
     children: html`<ul>
       <li>
-        <p><code>vl-radio</code></p>
-        <p>The component was migrated.</p>
+        <p><code>vl-info-tile</code></p>
+        <p>When migrating the info tile, we made the toggleable feature reactive.</p>
       </li>
     </ul>`,
   },
