@@ -18,8 +18,8 @@ export const removeStorybooksDefaultStyling = () => {
   document.querySelector('.sbdocs-wrapper').style.padding = '0';
 };
 
-export const docsIntro = ({ stylesheets, root, intro, utils }) => {
-  const basePath = 'uig-webcomponents/lib/components/';
+export const docsIntro = ({ stylesheets, root, intro, utils }, legacy) => {
+  const basePath = `uig-webcomponents/lib/${legacy ? 'legacy' : 'components'}/`;
   const componentImport = `${'`'}import "${basePath}${root}"${'`'}`;
   const styleImports = stylesheets?.map(
     (stylesheet) => `<br/>${'`'}import "${basePath}${stylesheet}/styles.css"${'`'}`,

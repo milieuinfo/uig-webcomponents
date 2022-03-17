@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import '../upload';
-import styles from '../button/styles.scss';
-import { stylesheet } from '../../../.storybook/utils.js';
+import styles from '../../components/button/styles.scss';
+import { stylesheet, docsIntro } from '../../../.storybook/utils.js';
 
 export default {
   title: 'legacy-elements/vl-upload',
@@ -10,8 +10,14 @@ export default {
     controls: { hideNoControlsWarning: true },
     docs: {
       description: {
-        component:
-          'Use the upload component to select or drag and drop one or more files in the upload field. Alternatively, the user can upload one or more files by clicking the link in the upload field and selecting the file(s) in the File menu.',
+        component: docsIntro(
+          {
+            root: 'upload',
+            intro:
+              'Use the upload component to select or drag and drop one or more files in the upload field. Alternatively, the user can upload one or more files by clicking the link in the upload field and selecting the file(s) in the File menu.',
+          },
+          true,
+        ),
       },
     },
   },

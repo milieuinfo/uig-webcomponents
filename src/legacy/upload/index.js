@@ -1,5 +1,5 @@
 import { define, vlElement } from '../../utils/core';
-import { vlFormValidation, vlFormValidationElement } from '../form-validation';
+import { vlFormValidation, vlFormValidationElement } from '../../components/form-validation';
 import './lib';
 
 import styles from './styles.scss';
