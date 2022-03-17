@@ -24,7 +24,6 @@ const buildConfig = {
     'link',
     'link-list',
     'properties',
-    'radio',
     'select',
     'form',
     'form-grid',
