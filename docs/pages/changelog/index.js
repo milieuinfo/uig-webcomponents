@@ -5,10 +5,31 @@ import titleStyles from '../../../src/components/titles/styles.scss';
 import introStyles from '../../../src/components/introduction/styles.scss';
 import { removeStorybooksDefaultStyling } from '../../../.storybook/utils';
 
-const unreleased = [];
+const unreleased = [
+  {
+    version: '?',
+    date: 'Unreleased',
+    children: html`<ul>
+      <li>
+        <p><code>vl-upload</code></p>
+        <p>Migrated the component.</p>
+      </li>
+    </ul>`,
+  },
+];
 
 const changes = [
   ...unreleased,
+  {
+    version: '2.2.5',
+    date: '17/3/2022',
+    children: html`<ul>
+      <li>
+        <p><code>vl-http-error-message</code></p>
+        <p>Fixed an import error for the styling of the button that is used in the components.</p>
+      </li>
+    </ul>`,
+  },
   {
     version: '2.2.4',
     date: '7/3/2022',
