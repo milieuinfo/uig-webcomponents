@@ -112,10 +112,6 @@ export class VlInfoTile extends vlElement(HTMLElement) {
     }
   }
 
-  _autoOpenChangedCallback() {
-    this.__processAutoOpen();
-  }
-
   __prepareAccordionElements() {
     this._element.classList.add('js-vl-accordion');
     const button = this._template(`
