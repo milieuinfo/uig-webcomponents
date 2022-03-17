@@ -88,3 +88,4 @@ export { VlSearchResult } from './components/search-results/components/search-re
 export { VlLoader } from './components/loader';
 export { VlPill } from './components/pill';
 export { VlButtonPill } from './components/pill/components/button-pill';
+export { VlUpload } from './components/upload';

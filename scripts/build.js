@@ -36,7 +36,6 @@ const buildConfig = {
     'video-player',
     'action-group',
     'doormat',
-    'upload',
     'video-player',
   ],
   componentsWithStylesheetAndInlineStyling: ['tooltip', 'pill', 'button'],
