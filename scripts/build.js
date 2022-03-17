@@ -29,7 +29,6 @@ const buildConfig = {
     'search-results',
     'action-group',
     'doormat',
-    'upload',
     'video-player',
   ],
   componentsWithStylesheetAndInlineStyling: ['tooltip', 'pill', 'button'],
