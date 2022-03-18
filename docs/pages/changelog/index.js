@@ -12,7 +12,7 @@ const unreleased = [
     children: html`<ul>
       <li>
         <p><code>vl-radio</code></p>
-        <p>The component was migrated.</p>
+        <p>Added as a legacy component.</p>
       </li>
     </ul>`,
   },

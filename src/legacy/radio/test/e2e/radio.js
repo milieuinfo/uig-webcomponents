@@ -11,14 +11,6 @@ export class VlRadio extends VlElement {
     return this.driver.executeScript('return arguments[0].checked', input);
   }
 
-  async isActive() {
-    return this.isChecked() && this.hasFocus();
-  }
-
-  async isInactive() {
-    return !(await this.isChecked()) && !(await this.hasFocus());
-  }
-
   async isBlock() {
     return this.hasAttribute('data-vl-block');
   }
