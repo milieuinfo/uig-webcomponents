@@ -6,8 +6,8 @@ import linkStyles from '../../components/link/styles.scss';
 export default {
   title: 'legacy/vl-radio',
   decorators: [(story) => html`${stylesheet(linkStyles)}${story()}`],
-  controls: { hideNoControlsWarning: true },
   parameters: {
+    controls: { hideNoControlsWarning: true },
     docs: {
       description: {
         component: docsIntro({
