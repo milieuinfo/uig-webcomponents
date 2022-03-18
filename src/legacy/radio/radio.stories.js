@@ -1,9 +1,11 @@
 import { html } from 'lit-html';
 import '.';
-import { docsIntro } from '../../../.storybook/utils.js';
+import { stylesheet, docsIntro } from '../../../.storybook/utils.js';
+import linkStyles from '../../components/link/styles.scss';
 
 export default {
   title: 'legacy-elements/vl-radio',
+  decorators: [(story) => html`${stylesheet(linkStyles)}${story()}`],
   parameters: {
     docs: {
       description: {
