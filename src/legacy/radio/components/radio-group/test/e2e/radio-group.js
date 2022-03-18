@@ -18,7 +18,8 @@ export class VlRadioGroup extends VlElement {
   }
 
   async _getRadio(number) {
-    const element = await this.findElement(By.css(`vl-radio:nth-of-type(${number})`));
+    const id = await this.getAttribute('id');
+    const element = await this.findElement(By.css(`#${id}-radio-${number}`));
     return new VlRadio(this.driver, element);
   }
 }

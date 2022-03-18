@@ -11,7 +11,7 @@ const unreleased = [
     date: 'Unreleased',
     children: html`<ul>
       <li>
-        <p><code>vl-upload</code></p>
+        <p><code>vl-radio</code></p>
         <p>Added as a legacy component.</p>
       </li>
     </ul>`,

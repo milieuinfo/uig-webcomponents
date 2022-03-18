@@ -89,3 +89,5 @@ export { VlLoader } from './components/loader';
 export { VlPill } from './components/pill';
 export { VlButtonPill } from './components/pill/components/button-pill';
 export { VlUpload } from './legacy/upload';
+export { VlRadio } from './legacy/radio';
+export { VlRadioGroup } from './legacy/radio/components/radio-group';
