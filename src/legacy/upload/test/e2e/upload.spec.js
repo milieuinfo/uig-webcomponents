@@ -12,7 +12,6 @@ describe('vl-upload', async () => {
   const uploadServerPath = '/post';
   const PDF_FILE = 'file.pdf';
   const TXT_FILE = 'file.txt';
-  const LARGE_FILE = 'file.bin';
 
   before(async () => {
     driver = getDriver();
@@ -39,8 +38,6 @@ describe('vl-upload', async () => {
           return 'C:\\Users\\hello\\Documents\\documents\\pdf-sample1.pdf';
         case TXT_FILE:
           return 'C:\\Users\\hello\\Documents\\documents\\text-sample1.txt';
-        case LARGE_FILE:
-          return 'C:\\Users\\hello\\Documents\\1MBzipFile.zip';
         default:
           break;
       }
@@ -122,13 +119,13 @@ describe('vl-upload', async () => {
 
   it('als gebruiker kan ik de maximum bestandsgrootte bepalen', async () => {
     const upload = await vlUploadPage.getUploadMaxSize();
-    await assert.eventually.equal(upload.getMaximumFilesize(), 204800);
-    const largeFile = file(LARGE_FILE);
+    await assert.eventually.equal(upload.getMaximumFilesize(), 10000);
+    const largeFile = file(PDF_FILE);
     await upload.uploadFile(largeFile);
     const filesTooBig = await upload.getFiles();
     await assert.eventually.equal(
       filesTooBig[0].getErrorMessage(),
-      'De grootte van het bestand mag maximaal 200 KB zijn.',
+      'De grootte van het bestand mag maximaal 10 KB zijn.',
     );
   });
 
