@@ -15,7 +15,7 @@ export const parameters = {
         ['Introduction', 'Changelog', 'Contribute'],
         'custom-elements',
         'native-elements',
-        'legacy-elements',
+        'legacy',
       ],
     },
   },
