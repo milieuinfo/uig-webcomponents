@@ -2,7 +2,7 @@ import { html } from 'lit-html';
 import '../upload';
 import styles from '../../components/button/styles.scss';
 import { stylesheet, docsIntro } from '../../../.storybook/utils.js';
-import linkStyles from '../../components/link';
+import linkStyles from '../../components/link/styles.scss';
 
 export default {
   title: 'legacy/vl-upload',
