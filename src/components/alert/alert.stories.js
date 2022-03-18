@@ -1,120 +1,121 @@
-import { html } from "lit-html";
-import "../button";
-import "../alert";
-import styles from "../button/styles.scss";
-import { stylesheet, docsIntro } from "../../../.storybook/utils.js";
-import { ALERT_SIZE, ALERT_TYPE, ALERT_ICON } from "./enums";
+import { html } from 'lit-html';
+import '../button';
+import '../alert';
+import styles from '../button/styles.scss';
+import { stylesheet, docsIntro, CATEGORIES, TYPES } from '../../../.storybook/utils.js';
+import { ALERT_SIZE, ALERT_TYPE, ALERT_ICON } from './enums';
 
 export default {
-  title: "custom-elements/vl-alert",
+  title: 'custom-elements/vl-alert',
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
   parameters: {
     docs: {
       description: {
         component: docsIntro({
-          root: "alert",
-          intro:
-            "Use the alert (or notice) component to keep the user updated about important information.",
+          root: 'alert',
+          intro: 'Use the alert (or notice) component to keep the user updated about important information.',
         }),
       },
     },
   },
   args: {
-    title: "Lorem ipsum",
+    title: 'Lorem ipsum',
     icon: ALERT_ICON.WARNING,
-    size: "",
-    type: "",
+    size: '',
+    type: '',
     closable: false,
-    buttonSlotText: "Button",
-    titleSlotText: "Title via slot",
+    buttonSlotText: 'Button',
+    titleSlotText: 'Title via slot',
     content:
-      "Phasellus congue ipsum ut felis auctor, eget maximus justo dapibus. Nam sit amet pulvinar odio. Maecenas rhoncus quam eget neque porttitor, et faucibus nisl elementum.",
+      'Phasellus congue ipsum ut felis auctor, eget maximus justo dapibus. Nam sit amet pulvinar odio. Maecenas rhoncus quam eget neque porttitor, et faucibus nisl elementum.',
   },
   argTypes: {
     title: {
-      name: "data-vl-title",
-      type: { summary: "string" },
-      description: "Attribuut wordt gebruikt om de titel te bepalen.",
+      name: 'data-vl-title',
+      type: { summary: TYPES.STRING },
+      description: 'Attribuut wordt gebruikt om de titel te bepalen.',
       table: {
-        defaultValue: { summary: "" },
+        defaultValue: { summary: '' },
+        category: CATEGORIES.ATTRIBUTES,
       },
     },
     icon: {
-      name: "data-vl-icon",
-      type: {
-        summary: "string",
-      },
+      name: 'data-vl-icon',
+      type: { summary: TYPES.STRING },
       description:
-        "Attribuut wordt gebruikt om het icoon type te bepalen. Het icoon kan gekozen worden uit de lijst op https://overheid.vlaanderen.be/webuniversum/v3/documentation/atoms/vl-ui-icon.",
+        'Attribuut wordt gebruikt om het icoon type te bepalen. Het icoon kan gekozen worden uit de lijst op https://overheid.vlaanderen.be/webuniversum/v3/documentation/atoms/vl-ui-icon.',
       control: {
-        type: "select",
+        type: 'select',
         options: [ALERT_ICON.WARNING, ALERT_ICON.CHECK, ALERT_ICON.INFO_CIRCLE],
       },
       table: {
-        defaultValue: { summary: "" },
+        defaultValue: { summary: '' },
+        category: CATEGORIES.ATTRIBUTES,
       },
     },
     size: {
-      name: "data-vl-size",
+      name: 'data-vl-size',
       type: {
         summary: `${ALERT_SIZE.SMALL}`,
       },
-      description:
-        "Attribuut activeert een variant van de waarschuwing maar kleiner.",
+      description: 'Attribuut activeert een variant van de waarschuwing maar kleiner.',
       control: {
-        type: "select",
+        type: 'select',
         options: [ALERT_SIZE.SMALL],
       },
       table: {
         defaultValue: { summary: `` },
+        category: CATEGORIES.ATTRIBUTES,
       },
     },
     type: {
-      name: "data-vl-type",
+      name: 'data-vl-type',
       type: {
         summary: `${ALERT_TYPE.INFO} | ${ALERT_TYPE.SUCCESS} | ${ALERT_TYPE.WARNING} | ${ALERT_TYPE.ERROR}`,
       },
-      description:
-        "Attribuut bepaalt de soort van waarschuwing, foutmelding, probleemmelding of succesmelding.",
+      description: 'Attribuut bepaalt de soort van waarschuwing, foutmelding, probleemmelding of succesmelding.',
       control: {
-        type: "select",
-        options: [
-          ALERT_TYPE.INFO,
-          ALERT_TYPE.SUCCESS,
-          ALERT_TYPE.WARNING,
-          ALERT_TYPE.ERROR,
-        ],
+        type: 'select',
+        options: [ALERT_TYPE.INFO, ALERT_TYPE.SUCCESS, ALERT_TYPE.WARNING, ALERT_TYPE.ERROR],
       },
       table: {
-        defaultValue: { summary: "" },
+        defaultValue: { summary: '' },
+        category: CATEGORIES.ATTRIBUTES,
       },
     },
     closable: {
-      name: "data-vl-closable",
-      type: { summary: "boolean" },
+      name: 'data-vl-closable',
+      type: { summary: TYPES.BOOLEAN },
       description:
-        "Attribuut wordt gebruikt om de optie toe te voegen om de waarschuwing te sluiten door op het sluit icoon te klikken in de rechterbovenhoek.",
+        'Attribuut wordt gebruikt om de optie toe te voegen om de waarschuwing te sluiten door op het sluit icoon te klikken in de rechterbovenhoek.',
       table: {
-        defaultValue: { summary: "false" },
+        defaultValue: { summary: 'false' },
+        category: CATEGORIES.ATTRIBUTES,
       },
     },
     titleSlotText: {
-      name: "title (slot)",
-      description: "",
+      name: 'title',
+      description: '',
+      table: {
+        category: CATEGORIES.SLOTS,
+      },
       control: {
         disable: true,
       },
     },
     buttonSlotText: {
-      name: "actions (slot)",
-      description: "",
+      name: 'actions',
+      description: '',
+      table: {
+        category: CATEGORIES.SLOTS,
+      },
       control: {
         disable: true,
       },
     },
     content: {
-      name: "content (for demo purposes)",
-      description: "",
+      name: 'content (for demo purposes)',
+      description: '',
     },
   },
 };
@@ -138,45 +139,35 @@ export const Success = Template.bind({});
 export const Warning = Template.bind({});
 
 Error.args = {
-  title: "Opgelet!",
+  title: 'Opgelet!',
   type: ALERT_TYPE.ERROR,
   icon: ALERT_ICON.WARNING,
-  content: "U heeft geen rechten om deze actie uit te voeren.",
+  content: 'U heeft geen rechten om deze actie uit te voeren.',
 };
 
 Info.args = {
-  title: "Info",
+  title: 'Info',
   type: ALERT_TYPE.INFO,
   icon: ALERT_ICON.INFO_CIRCLE,
   content:
-    "Als u vaststelt dat er foute informatie over u in het bestand van de Centrale voor Kredieten aan Particulieren staat, dan kunt u een rechtzetting aanvragen.",
+    'Als u vaststelt dat er foute informatie over u in het bestand van de Centrale voor Kredieten aan Particulieren staat, dan kunt u een rechtzetting aanvragen.',
 };
 
 Success.args = {
-  title: "Gelukt!",
+  title: 'Gelukt!',
   type: ALERT_TYPE.SUCCESS,
   icon: ALERT_ICON.CHECK,
-  content:
-    "We hebben uw melding goed ontvangen en nemen deze spoedig in behandeling.",
+  content: 'We hebben uw melding goed ontvangen en nemen deze spoedig in behandeling.',
 };
 
 Warning.args = {
-  title: "Technische storing",
+  title: 'Technische storing',
   type: ALERT_TYPE.WARNING,
   icon: ALERT_ICON.WARNING,
-  content:
-    "Door een technische storing is dit loket tijdelijk niet beschikbaar.",
+  content: 'Door een technische storing is dit loket tijdelijk niet beschikbaar.',
 };
 
-export const WithButton = ({
-  closable,
-  icon,
-  title,
-  size,
-  type,
-  buttonSlotText,
-  content,
-}) => html`
+export const WithButton = ({ closable, icon, title, size, type, buttonSlotText, content }) => html`
   <vl-alert
     ?data-vl-closable=${closable}
     data-vl-icon=${icon}
@@ -197,20 +188,8 @@ WithButton.argTypes = {
   },
 };
 
-export const WithTitleSlot = ({
-  closable,
-  icon,
-  size,
-  type,
-  titleSlotText,
-  content,
-}) => html`
-  <vl-alert
-    ?data-vl-closable=${closable}
-    data-vl-icon=${icon}
-    data-vl-size=${size}
-    data-vl-type=${type}
-  >
+export const WithTitleSlot = ({ closable, icon, size, type, titleSlotText, content }) => html`
+  <vl-alert ?data-vl-closable=${closable} data-vl-icon=${icon} data-vl-size=${size} data-vl-type=${type}>
     <span slot="title">${titleSlotText}</span>
     <p>${content}</p>
   </vl-alert>

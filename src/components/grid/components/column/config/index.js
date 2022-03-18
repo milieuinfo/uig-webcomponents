@@ -1,4 +1,4 @@
-import { CATEGORIES } from "../../../../../../.storybook/utils.js";
+import { CATEGORIES, TYPES } from '../../../../../../.storybook/utils.js';
 
 export const args = {
   size: 8,
@@ -14,90 +14,85 @@ export const args = {
 
 export const argTypes = {
   size: {
-    name: "data-vl-size",
+    name: 'data-vl-size',
     description:
-      "The number (numerator) of the maximum (denominator) that will be taken on large screens, typically desktop.",
+      'The number (numerator) of the maximum (denominator) that will be taken on large screens, typically desktop.',
     table: {
-      type: { summary: "number" },
+      type: { summary: TYPES.NUMBER },
       category: CATEGORIES.ATTRIBUTES,
       defaultValue: { summary: 8 },
     },
   },
   maxSize: {
-    name: "data-vl-max-size",
-    description:
-      "The maximum (denominator) that will be evaluated against on large screens, typically desktop.",
+    name: 'data-vl-max-size',
+    description: 'The maximum (denominator) that will be evaluated against on large screens, typically desktop.',
     table: {
-      type: { summary: "number" },
+      type: { summary: TYPES.NUMBER },
       category: CATEGORIES.ATTRIBUTES,
       defaultValue: { summary: 12 },
     },
   },
   mediumSize: {
-    name: "data-vl-medium-size",
+    name: 'data-vl-medium-size',
     description:
-      "The number (numerator) of the maximum (denominator) that will be taken on medium screens, typically tablet.",
+      'The number (numerator) of the maximum (denominator) that will be taken on medium screens, typically tablet.',
     table: {
-      type: { summary: "number" },
+      type: { summary: TYPES.NUMBER },
       category: CATEGORIES.ATTRIBUTES,
       defaultValue: { summary: 10 },
     },
   },
   mediumMaxSize: {
-    name: "data-vl-medium-max-size",
-    description:
-      "The maximum (denominator) that will be evaluated against on medium screens, typically tablet.",
+    name: 'data-vl-medium-max-size',
+    description: 'The maximum (denominator) that will be evaluated against on medium screens, typically tablet.',
     table: {
-      type: { summary: "number" },
+      type: { summary: TYPES.NUMBER },
       category: CATEGORIES.ATTRIBUTES,
       defaultValue: { summary: 12 },
     },
   },
   smallSize: {
-    name: "data-vl-small-size",
+    name: 'data-vl-small-size',
     description:
-      "The number (numerator) of the maximum (denominator) that will be taken on small screens, typically mobile.",
+      'The number (numerator) of the maximum (denominator) that will be taken on small screens, typically mobile.',
     table: {
-      type: { summary: "number" },
+      type: { summary: TYPES.NUMBER },
       category: CATEGORIES.ATTRIBUTES,
       defaultValue: { summary: 12 },
     },
   },
   smallMaxSize: {
-    name: "data-vl-small-max-size",
-    description:
-      "The maximum (denominator) that will be evaluated against on small screens, typically mobile. ",
+    name: 'data-vl-small-max-size',
+    description: 'The maximum (denominator) that will be evaluated against on small screens, typically mobile. ',
     table: {
-      type: { summary: "number" },
+      type: { summary: TYPES.NUMBER },
       category: CATEGORIES.ATTRIBUTES,
       defaultValue: { summary: 12 },
     },
   },
   extraSmallSize: {
-    name: "data-vl-extra-small-size",
-    description:
-      "The number (numerator) of the maximum (denominator) that will be taken on very small screens.",
+    name: 'data-vl-extra-small-size',
+    description: 'The number (numerator) of the maximum (denominator) that will be taken on very small screens.',
     table: {
-      type: { summary: "number" },
+      type: { summary: TYPES.NUMBER },
       category: CATEGORIES.ATTRIBUTES,
       defaultValue: { summary: 12 },
     },
   },
   extraSmallMaxSize: {
-    name: "data-vl-extra-small-max-size",
-    description:
-      "The maximum (denominator) against which to evaluate for very small screens.",
+    name: 'data-vl-extra-small-max-size',
+    description: 'The maximum (denominator) against which to evaluate for very small screens.',
     table: {
-      type: { summary: "number" },
+      type: { summary: TYPES.NUMBER },
       category: CATEGORIES.ATTRIBUTES,
       defaultValue: { summary: 12 },
     },
   },
   push: {
-    name: "data-vl-push",
-    description: "Number of partitions to move.",
+    name: 'data-vl-push',
+    description: 'Number of partitions to move.',
     table: {
-      type: { summary: "number" },
+      type: { summary: TYPES.NUMBER },
       category: CATEGORIES.ATTRIBUTES,
     },
   },

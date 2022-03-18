@@ -21,6 +21,40 @@ const unreleased = [
 const changes = [
   ...unreleased,
   {
+    version: '2.2.5',
+    date: '17/3/2022',
+    children: html`<ul>
+      <li>
+        <p><code>vl-http-error-message</code></p>
+        <p>Fixed an import error for the styling of the button that is used in the components.</p>
+      </li>
+    </ul>`,
+  },
+  {
+    version: '2.2.4',
+    date: '7/3/2022',
+    children: html`<ul>
+      <li>
+        <p><code>vl-http-error-message</code></p>
+        <p>
+          The components and its presets were migrated. Using actual slots now instead of copying and pasting the
+          content of components with the slot attribute.
+        </p>
+      </li>
+      <li>
+        <p><code>vl-description-data</code> &#x1F4A5;</p>
+        <p>
+          When migrating the description data, we mentioned that the right styles where only applied on load. When the
+          components children changed, the styles did not change correspondingly.
+        </p>
+      </li>
+      <li>
+        <p><code>vl-video-player</code></p>
+        <p>The component has been migrated.</p>
+      </li>
+    </ul>`,
+  },
+  {
     version: '2.2.3',
     date: '18/2/2022',
     children: html`<ul>
