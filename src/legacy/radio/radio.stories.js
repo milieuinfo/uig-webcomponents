@@ -24,7 +24,7 @@ export const Default = () => html`<a
   is="vl-link"
   target="_blank"
   data-vl-inline
-  href="https://webcomponenten.omgeving.vlaanderen.be/demo/vl-radio.html"
+  href="https://webcomponenten.omgeving.vlaanderen.be/doc/VlRadio.html"
 >
   Legacy docs <span is="vl-icon" data-vl-icon="external" data-vl-after data-vl-link></span
 ></a>`;
