@@ -7,6 +7,7 @@ import linkStyles from '../../components/link/styles.scss';
 export default {
   title: 'legacy/vl-upload',
   decorators: [(story) => html`${stylesheet(`${styles}${linkStyles}`)}${story()}`],
+  controls: { hideNoControlsWarning: true },
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
