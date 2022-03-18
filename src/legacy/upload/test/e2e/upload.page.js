@@ -27,7 +27,7 @@ export class VlUploadPage extends Page {
   }
 
   async getUploadMaxSize() {
-    return this._getUpload('#vl-upload-max-5');
+    return this._getUpload('#vl-upload-max-10-kb');
   }
 
   async getUploadUnique() {
