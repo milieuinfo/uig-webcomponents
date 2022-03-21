@@ -12,8 +12,6 @@ export default {
       description: {
         component: docsIntro({
           root: 'radio',
-          intro:
-            'A radio button allows a user to select a single option from a list. Avoid preselecting a radio button because it is important for the user to make a conscious selection.',
           isLegacy: true,
         }),
       },
