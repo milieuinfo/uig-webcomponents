@@ -51,6 +51,18 @@ export class VlMapDeleteAction extends VlMapLayerAction {
     this.__callback = callback;
   }
 
+  /**
+   * Geeft terug of de action uitgevoerd mag worden op een feature en/of layer. Default true.
+   *
+   * @param {Object} feature Openlayers feature
+   * @param {Object} layer Openlayers layer
+   *
+   * @Return {boolean} true als de action uitgevoerd mag worden, false als de action niet mag uitgevoerd worden voor de meegegeven feature en/of layer
+   */
+  appliesTo(feature, layer) {
+    return true;
+  }
+
   get _callback() {
     return (features, resolve, reject) => {
       if (this.__callback) {
@@ -64,6 +76,7 @@ export class VlMapDeleteAction extends VlMapLayerAction {
   _createAction(layer) {
     const options = {
       style: this._style,
+      filter: this.appliesTo.bind(this)
     };
     return new VlDeleteAction(layer, this._callback, options);
   }

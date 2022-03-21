@@ -5,10 +5,9 @@
     <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
     <script src="/node_modules/web-component-tester/browser.js"></script>
 
-    <script
-      type="module"
-      src="../../../../../../../../../lib/components/map/index.js"
-    ></script>
+    <script type="module" src="../../../../../../../../../lib/components/map/index.js"></script>
+    <script type="module" src="../../../../../../../../../lib/components/map/components/action/layer-action/select-action/test/unit/custom-select-action.js"></script>
+
     <script src="/node_modules/sinon/pkg/sinon.js"></script>
   </head>
 
@@ -29,13 +28,29 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="vl-custom-map-select-action-fixture">
+        <template>
+            <vl-map>
+                <vl-map-features-layer>
+                    <vl-custom-map-select-action>
+                        <vl-map-layer-style
+                                data-vl-text-color="#000"
+                                data-vl-color="#FFE615"
+                                data-vl-border-color="#FFE615"
+                        ></vl-map-layer-style>
+                    </vl-custom-map-select-action>
+                </vl-map-features-layer>
+            </vl-map>
+        </template>
+    </test-fixture>
+
     <script type="module">
       import {
         OlFeature,
         OlPoint,
-      } from "../../../../../lib/components/map/mapactions/index.js";
-      import { VlMapSelectAction } from "../../../../../lib/components/map/components/action/layer-action/select-action";
-      import { awaitUntil } from "../../../../utils/core/index.js";
+      } from "vl-mapactions/dist/vl-mapactions";
+      import { VlMapSelectAction } from "../../../../../../../../../lib";
+      import { awaitUntil } from "../../../../../../../../utils/core";
 
       suite("vl-map-select-action", () => {
         const sandbox = sinon.createSandbox();
@@ -48,7 +63,7 @@
           sandbox.restore();
         });
 
-        test("een selecteer actie is een map actie", () => {
+        test("een selecteer actie is een map actie", async () => {
           assert.isTrue(VlMapSelectAction.isVlMapAction());
         });
 
@@ -133,6 +148,28 @@
             const action = map.map.actions[0];
             assert.equal(action.cluster, true);
             done();
+          });
+        });
+
+        test("de filter van de select actie geeft by default altijd true terug", (done) => {
+          const map = fixture("vl-map-select-action-fixture");
+
+          map.ready.then(() => {
+            const action = map.map.actions[0];
+            assert.isTrue(action.filter());
+            done();
+          });
+        });
+
+        test("de filter van de select actie kan overschreven worden", (done) => {
+          const map = fixture("vl-custom-map-select-action-fixture");
+
+          map.ready.then(() => {
+              const action = map.map.actions[0];
+              assert.isTrue(action.filter({id: '12'}, {id: '12'}));
+              assert.isFalse(action.filter({id: '2'}, {id: '12'}));
+              assert.isFalse(action.filter({id: '12'}, {id: '2'}));
+              done();
           });
         });
       });
