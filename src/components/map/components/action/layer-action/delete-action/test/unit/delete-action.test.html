@@ -5,10 +5,8 @@
     <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
     <script src="/node_modules/web-component-tester/browser.js"></script>
 
-    <script
-      type="module"
-      src="../../../../../../../../../lib/components/map"
-    ></script>
+    <script type="module" src="../../../../../../../../../lib/components/map"></script>
+    <script type="module" src="../../../../../../../../../lib/components/map/components/action/layer-action/delete-action/test/unit/custom-delete-action.js"></script>
   </head>
 
   <body>
@@ -38,10 +36,20 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="vl-custom-map-delete-action-fixture">
+        <template>
+            <vl-map>
+                <vl-map-features-layer>
+                    <vl-custom-map-delete-action></vl-custom-map-delete-action>
+                </vl-map-features-layer>
+            </vl-map>
+        </template>
+    </test-fixture>
+
     <script type="module">
-      import { VlMapDeleteAction } from "../../../../../lib/components/map/components/action/layer-action/delete-action";
-      import { OlFeature } from "../../../../../lib/components/map/mapactions/index.js";
-      import { awaitUntil } from "../../../../utils/core/index.js";
+      import { VlMapDeleteAction } from "../../../../../../../../../lib";
+      import { OlFeature } from "vl-mapactions/dist/vl-mapactions";
+      import { awaitUntil } from "../../../../../../../../utils/core";
 
       suite("vl-map-delete-action", () => {
         setup(async () => {
@@ -166,6 +174,28 @@
           );
           assert.isTrue(removeFeatureStub.calledOnce);
           assert.deepEqual(removeFeatureStub.args[0][0], teVerwijderenFeature);
+        });
+
+        test("de filter van de delete actie geeft by default altijd true terug", (done) => {
+          const map = fixture("vl-map-delete-action-fixture");
+
+          map.ready.then(() => {
+              const action = map.map.actions[0];
+              assert.isTrue(action.filter());
+              done();
+          });
+        });
+
+        test("de filter van de delete actie kan overschreven worden", (done) => {
+              const map = fixture("vl-custom-map-delete-action-fixture");
+
+              map.ready.then(() => {
+                  const action = map.map.actions[0];
+                  assert.isTrue(action.filter({id: '12'}, {id: '12'}));
+                  assert.isFalse(action.filter({id: '2'}, {id: '12'}));
+                  assert.isFalse(action.filter({id: '12'}, {id: '2'}));
+                  done();
+              });
         });
       });
     </script>
