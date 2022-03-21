@@ -12,8 +12,6 @@ export default {
       description: {
         component: docsIntro({
           root: 'tabs',
-          intro:
-            "Use tab navigation to break related information into smaller chuncks of content. When working with tabs, some content is hidden. Therefore it's important to label the tabs wisely, allowing the user to know exactly what to expect in a tab. On mobile, tab navigation is transformed into a dropdown menu.",
           isLegacy: true,
         }),
       },
