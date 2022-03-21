@@ -1,6 +1,6 @@
 import { VlElement, By } from '../../../../utils/test';
 
-export default class VlTab extends VlElement {
+export class VlTab extends VlElement {
   async click() {
     const nodes = await this.getTitleSlotNodes();
     if (nodes && nodes.length > 0) {

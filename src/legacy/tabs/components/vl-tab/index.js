@@ -28,9 +28,12 @@ export class VlTab extends nativeVlElement(HTMLLIElement) {
   }
 
   get isActive() {
-    return this.classList.contains('vl-tab--active');
+    this.classList.contains('vl-tab--active');
   }
 
+  /**
+   * Activeer de tab.
+   */
   activate() {
     this.__linkElement.click();
   }
