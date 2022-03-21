@@ -1,5 +1,4 @@
 import { html } from 'lit-html';
-import '../upload';
 import { docsIntro } from '../../../.storybook/utils.js';
 
 export default {
