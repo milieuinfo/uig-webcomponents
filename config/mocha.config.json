@@ -4,7 +4,7 @@
   "reporterOptions": {
     "configFile": "./config/reporter.config.json"
   },
-  "spec": ["src/legacy/**/*.spec.js"],
+  "spec": ["src/**/*.spec.js"],
   "timeout": "300000",
   "requires": ["babel-register"]
 }
