@@ -9,7 +9,6 @@ export default {
     docs: {
       description: {
         component: docsIntro({
-          stylesheets: ['info-tile'],
           root: 'info-tile',
           intro: 'Use the info tile in informative and interactive dashboards.',
         }),
