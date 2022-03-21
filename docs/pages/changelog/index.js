@@ -5,7 +5,30 @@ import titleStyles from '../../../src/components/titles/styles.scss';
 import introStyles from '../../../src/components/introduction/styles.scss';
 import { removeStorybooksDefaultStyling } from '../../../.storybook/utils';
 
-const unreleased = [];
+const unreleased = [
+  {
+    version: '2.2.6',
+    date: '?',
+    children: html`<ul>
+      <li>
+        <p><code>vl-action-group</code></p>
+        <p>Adjusted the stylesheet in order to work with the implementation of the legacy <code>vl-modal</code>.</p>
+      </li>
+      <li>
+        <p><code>vl-button</code></p>
+        <p>Removed the <code>vl-button-link</code> extension workaround in the stylesheet.</p>
+      </li>
+      <li>
+        <p><code>vl-link</code></p>
+        <p>Removed the <code>vl-button</code> styles from the stylesheet.</p>
+      </li>
+      <li>
+        <p><code>vl-modal</code></p>
+        <p>Added as a legacy component.</p>
+      </li>
+    </ul>`,
+  },
+];
 
 const changes = [
   ...unreleased,
