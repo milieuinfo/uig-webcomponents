@@ -59,16 +59,18 @@ export class Introduction extends LitElement {
             ${block({
               title: 'Migrating from legacy packages',
               children: html`
-                <p>
-                  If you are migrating from the legacy packages to this package, we recommend to carefully read the docs
-                  and the changelog. Every breaking change across from the legacy package is mentioned in the changelog
-                  with a '&#x1F4A5;'. We use semantic versioning for our own changes.
-                </p>
-                <br />
-                <p>
-                  Components that are categorized under legacy were migrated as is from the legacy packages to make them
-                  available in this package. Not all functionality may be reactive and legacy bugs may still be present.
-                </p>
+                <vl-typography>
+                  <p>
+                    If you are migrating from the legacy packages to this package, we recommend to carefully read the
+                    docs and the changelog. Every breaking change across from the legacy package is mentioned in the
+                    changelog with a '&#x1F4A5;'. We use semantic versioning for our own changes.
+                  </p>
+                  <p>
+                    Components that are categorized under legacy were migrated as is from the legacy packages to make
+                    them available in this package. Not all functionality may be reactive and legacy bugs may still be
+                    present.
+                  </p>
+                </vl-typography>
               `,
             })}
             ${block({
