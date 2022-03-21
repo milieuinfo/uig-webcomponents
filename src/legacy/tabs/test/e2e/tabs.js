@@ -1,8 +1,7 @@
 import { VlElement, By } from '../../../../utils/test';
+import { VlTab } from './tab';
 
-import VlTab from './tab';
-
-export default class VlTabs extends VlElement {
+export class VlTabs extends VlElement {
   async getTabs() {
     const elements = await this._getTabElements();
     return Promise.all(elements.map((element) => new VlTab(this.driver, element)));
