@@ -94,7 +94,7 @@ export class VlModalPage extends Page {
   }
 
   async load() {
-    await super.load(`${config.baseUrl}/demo/vl-modal.html`);
+    await super.load(`${config.baseUrl}legacy/modal/test/e2e`);
   }
 
   async _getModal(identifier) {
