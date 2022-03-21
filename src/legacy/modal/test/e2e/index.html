@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>vl-modal voorbeeld</title>
+    <!-- <script type="module" src="/node_modules/vl-ui-datepicker/dist/vl-datepicker.js"></script> -->
+
+    <script type="module" src="../../../../../build/index.js"></script>
+    <!-- <script type="module" src="vl-modal-test.js"></script> -->
+
+    <link rel="stylesheet" type="text/css" href="../../../../../lib/components/body/styles.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="../../../../../lib/components/action-group/styles.css" /> -->
+    <link rel="stylesheet" type="text/css" href="../../../../../lib/components/button/styles.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="../../../../../lib/components/icon/styles.css" /> -->
+  </head>
+
+  <body is="vl-body">
+    <button id="button-open-modal" is="vl-button" data-vl-modal-open="modal">Open</button>
+    <vl-modal id="modal" data-vl-title="Modal">
+      <span slot="content">Lorem ipsum dolor sit amet.</span>
+      <button is="vl-button" slot="button">Start aanvraag</button>
+    </vl-modal>
+
+    <button id="button-open-modal-cl" is="vl-button" data-vl-modal-open="modal-cl">Open</button>
+    <vl-modal id="modal-cl" data-vl-title="Modal" data-vl-closable>
+      <span slot="content">Lorem ipsum dolor sit amet.</span>
+      <button is="vl-button" slot="button">Start aanvraag</button>
+    </vl-modal>
+
+    <button id="button-open-modal-cl-na" is="vl-button" data-vl-modal-open="modal-cl-na">Open</button>
+    <vl-modal id="modal-cl-na" data-vl-title="Modal" data-vl-closable data-vl-not-auto-closable>
+      <span slot="content">Lorem ipsum dolor sit amet.</span>
+      <button is="vl-button" slot="button">Start aanvraag</button>
+    </vl-modal>
+
+    <button id="button-open-modal-cl-nc" is="vl-button" data-vl-modal-open="modal-cl-nc">Open</button>
+    <vl-modal id="modal-cl-nc" data-vl-title="Modal" data-vl-closable data-vl-not-cancellable>
+      <span slot="content">Lorem ipsum dolor sit amet.</span>
+      <button is="vl-button" slot="button">Start aanvraag</button>
+    </vl-modal>
+
+    <button id="button-open-modal-cl-nc-li" is="vl-button" data-vl-modal-open="modal-cl-nc-li">Open</button>
+    <vl-modal id="modal-cl-nc-li" data-vl-title="Modal" data-vl-closable data-vl-not-cancellable>
+      <span slot="content">Lorem ipsum dolor sit amet.</span>
+      <button is="vl-button-link" slot="button">
+        <span is="vl-icon" data-vl-icon="cross" before data-vl-modal-close></span>
+        Andere actie
+      </button>
+    </vl-modal>
+
+    <script type="text/javascript">
+      // eslint-disable-next-line no-unused-vars
+      const openModal = (id) => {
+        document.querySelector(`#${id}`).open();
+      };
+    </script>
+
+    <button id="button-open-modal-ma" is="vl-button" onclick="openModal('modal-ma')">Open</button>
+    <vl-modal id="modal-ma" data-vl-title="Modal" data-vl-closable>
+      <span slot="content">Lorem ipsum dolor sit amet.</span>
+      <button is="vl-button" slot="button">Aanvraag starten</button>
+    </vl-modal>
+
+    <div is="vl-action-group">
+      <button id="button-open-modal-lis" is="vl-button" data-vl-modal-open="modal-lis">Open</button>
+      <button id="add-listener" is="vl-button" onclick="voegCloseListenerToe()">Voeg listener toe</button>
+    </div>
+
+    <vl-modal id="modal-lis" data-vl-title="Modal" data-vl-closable>
+      <span slot="content">Lorem ipsum dolor sit amet.</span>
+      <button is="vl-button" slot="button">Aanvraag starten</button>
+    </vl-modal>
+
+    <script type="text/javascript">
+      // eslint-disable-next-line no-unused-vars
+      const voegCloseListenerToe = () => {
+        document.querySelector('vl-modal[id="modal-lis"]').on('close', () => {
+          document.querySelector('#button-open-modal-lis').innerText = 'Lach de lach der dwazen';
+        });
+      };
+    </script>
+
+    <script type="text/javascript">
+      // eslint-disable-next-line no-unused-vars
+      const openModalTest = (id) => {
+        document.querySelector(`#${id}`).open();
+      };
+    </script>
+
+    <div is="vl-action-group">
+      <button id="button-open-modal-safari" is="vl-button" onclick="openModalTest('modal-safari')">Open</button>
+    </div>
+
+    <vl-modal-container-test id="modal-safari"></vl-modal-container-test>
+
+    <button id="button-open-modal-datepicker" is="vl-button" data-vl-modal-open="modal-datepicker">Open</button>
+    <vl-modal id="modal-datepicker" data-vl-title="Modal" data-vl-allow-overflow>
+      <div slot="content">
+        <vl-datepicker></vl-datepicker>
+      </div>
+    </vl-modal>
+
+    <button id="button-open-modal-vt" is="vl-button" data-vl-modal-open="modal-vt">Open</button>
+    <vl-modal id="modal-vt" data-vl-title="Modal">
+      <span slot="content">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+        laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+        laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit proident, sunt in culpa qui officia deserunt mollit
+        anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+        aliquip ex ea commodo consequat. Duis aute in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        Excepteur sint occaecat cupidatat non irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+        anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+        anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+        anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+        anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+        anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+        anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+        anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+        anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+        anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+        anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+        anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+        anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+        anim id est laborum.
+      </span>
+    </vl-modal>
+  </body>
+</html>

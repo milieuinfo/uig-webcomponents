@@ -19,7 +19,18 @@
 // ==========================================================================
 @import "../../../node_modules/@govflanders/vl-ui-util/src/scss/util";
 
-.vl-action-group > *,
+// .vl-action-group > *{
+//   ::slotted(*) {
+//     margin-right: 1.4rem;  
+//   }
+    
+  
+//   &:last-child {
+//     margin-right: 0;
+//   }
+// }
+
+
 .vl-action-group > ::slotted(*) {
   @extend .vl-button
 }
