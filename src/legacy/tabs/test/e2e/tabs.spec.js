@@ -18,7 +18,7 @@ describe('vl-tabs', async () => {
     return vlTabsPage.load();
   });
 
-  it('als gebruiker kan ik de verschillende tabs bekijken', async () => {
+  it('as a user I can see the different tabs', async () => {
     const tabs = await vlTabsPage.getTabs();
     const tabElements = await tabs.getTabs();
     assert.lengthOf(tabElements, 3);
@@ -28,7 +28,7 @@ describe('vl-tabs', async () => {
     await assert.eventually.equal(tabElements[2].getText(), 'Fiets');
   });
 
-  it('als gebruiker kan ik een tab met title slot en content bekijken', async () => {
+  it('as a user I can see a tab with title slot and content', async () => {
     let tabs = await vlTabsPage.getSlottedTabs();
     await assert.eventually.isFalse(tabs.hasContent());
 
@@ -47,7 +47,7 @@ describe('vl-tabs', async () => {
     await assert.isTrue(tabContentText.startsWith(content4));
   });
 
-  it('als gebruiker kan ik na het selecteren van een tab de tab specifieke content zien', async () => {
+  it('as a user I can select a tab and see the specific tab content', async () => {
     await vlTabsPage.load();
 
     let tabs = await vlTabsPage.getTabs();
@@ -76,7 +76,7 @@ describe('vl-tabs', async () => {
     await assert.isTrue(tabContentText.startsWith(content3));
   });
 
-  it('als gebruiker kan ik rechtstreeks naar een URL surfen van een tab en zal deze geactiveerd worden', async () => {
+  it('as a user I can directly surf to a URL of a tab and the tab will be activated', async () => {
     let tabs = await vlTabsPage.getTabs();
     await assert.eventually.isFalse(tabs.hasContent());
 
@@ -88,7 +88,7 @@ describe('vl-tabs', async () => {
     await assert.isTrue(tabContentText.startsWith(content1));
   });
 
-  it('als gebruiker zie ik het verschil tussen een alt tabs en een gewone tabs', async () => {
+  it('as a user I can see the difference of alt tabs and normal tabs', async () => {
     const tabs = await vlTabsPage.getTabs();
     const altTabs = await vlTabsPage.getAltTabs();
 
@@ -96,7 +96,7 @@ describe('vl-tabs', async () => {
     await assert.eventually.isTrue(altTabs.isAlt());
   });
 
-  it('als gebruiker zie ik onmiddellijk de default actieve tab zijn content zonder zelf actie te moeten ondernemen', async () => {
+  it('as a user I can immediately see the default active tab and its content without having to do anything', async () => {
     let tabs = await vlTabsPage.getTabs();
     let tabElements = await tabs.getTabs();
     await assert.eventually.isFalse(tabElements[0].isActive());
