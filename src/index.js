@@ -91,6 +91,8 @@ export { VlButtonPill } from './components/pill/components/button-pill';
 export { VlUpload } from './legacy/upload';
 export { VlRadio } from './legacy/radio';
 export { VlRadioGroup } from './legacy/radio/components/radio-group';
+export { VlModal } from './legacy/modal';
+export { VlActionGroup } from './components/action-group';
 export { VlTabs } from './legacy/tabs';
 export { VlTabsPane } from './legacy/tabs/components/vl-tabs-pane';
 export { VlTabSection } from './legacy/tabs/components/vl-tab-section';
