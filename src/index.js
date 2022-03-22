@@ -90,3 +90,8 @@ export { VlPill } from './components/pill';
 export { VlButtonPill } from './components/pill/components/button-pill';
 export { VlModal } from './legacy/modal';
 export { VlActionGroup } from './components/action-group';
+export { VlTabs } from './legacy/tabs';
+export { VlTabsPane } from './legacy/tabs/components/vl-tabs-pane';
+export { VlTabSection } from './legacy/tabs/components/vl-tab-section';
+export { VlTab } from './legacy/tabs/components/vl-tab';
+export { VlUpload } from './legacy/upload';
