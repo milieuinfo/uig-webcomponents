@@ -44,7 +44,7 @@ export class VlRadioPage extends Page {
   }
 
   async load() {
-    await super.load(`${config.baseUrl}legacy/radio/test/e2e`);
+    await super.load(`${config.baseUrl}legacy/radio/test/e2e/index.html`);
   }
 
   async _getRadio(selector) {

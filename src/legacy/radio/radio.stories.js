@@ -1,5 +1,4 @@
 import { html } from 'lit-html';
-import '.';
 import { stylesheet, docsIntro } from '../../../.storybook/utils.js';
 import linkStyles from '../../components/link/styles.scss';
 
