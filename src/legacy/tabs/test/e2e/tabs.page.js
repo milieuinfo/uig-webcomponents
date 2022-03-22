@@ -19,7 +19,7 @@ export class VlTabsPage extends Page {
   }
 
   async load(url) {
-    await super.load(url || `${config.baseUrl}legacy/tabs/test/e2e/vl-tabs`);
+    await super.load(url || `${config.baseUrl}legacy/tabs/test/e2e/tabs.html`);
   }
 
   async loadHash(hash) {

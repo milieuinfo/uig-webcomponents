@@ -11,6 +11,14 @@ const unreleased = [
     date: '?',
     children: html`<ul>
       <li>
+        <p><code>vl-info-tile</code></p>
+        <p>When migrating the info tile, we made the toggleable feature reactive.</p>
+      </li>
+      <li>
+        <p><code>vl-upload</code></p>
+        <p>Added as a legacy component.</p>
+      </li>
+      <li>
         <p><code>vl-tabs</code></p>
         <p>Added as a legacy component.</p>
       </li>

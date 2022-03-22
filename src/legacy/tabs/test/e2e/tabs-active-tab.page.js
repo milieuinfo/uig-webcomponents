@@ -7,7 +7,7 @@ export class VlTabsActiveTabPage extends Page {
   }
 
   async load() {
-    await super.load(`${config.baseUrl}legacy/tabs/test/e2e/vl-tabs-active-tab`);
+    await super.load(`${config.baseUrl}legacy/tabs/test/e2e/tabs-active-tab.html`);
   }
 
   async _getTabs(selector) {
