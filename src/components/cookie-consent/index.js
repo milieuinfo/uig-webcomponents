@@ -3,7 +3,8 @@ import { LitElement, css, html, unsafeCSS } from 'lit';
 import { ref, createRef } from 'lit/directives/ref.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import styles from './styles.scss';
-import './components/cookie-modal';
+// import './components/cookie-modal';
+import '../modal';
 import '../form-grid';
 import '../checkbox';
 import '../form-message';
@@ -95,13 +96,13 @@ export class VlCookieConsent extends LitElement {
       }
     };
 
-    return html`<vl-cookie-modal
+    return html`<vl-modal
       data-vl-title=${ifDefined(this.view === VIEWS.COOKIE_CONSENT ? 'Cookie-informatie' : null)}
       data-vl-not-cancellable
       ${ref(this.modalRef)}
     >
       ${getContent()}
-    </vl-cookie-modal>`;
+    </vl-modal>`;
   }
 }
 
