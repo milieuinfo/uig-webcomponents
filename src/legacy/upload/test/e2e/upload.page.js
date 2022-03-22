@@ -88,7 +88,7 @@ export class VlUploadPage extends Page {
   }
 
   async load() {
-    await super.load(`${config.baseUrl}legacy/upload/test/e2e`);
+    await super.load(`${config.baseUrl}legacy/upload/test/e2e/index.html`);
   }
 
   async _getUpload(selector) {
