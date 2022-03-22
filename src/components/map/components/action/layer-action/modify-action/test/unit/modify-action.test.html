@@ -82,17 +82,17 @@
             await map.ready;
             const modifyAction = map.querySelector("vl-map-modify-action");
             await awaitUntil(() => modifyAction.action != null);
-            let featureModified = false;
-            modifyAction.onModify((feature) => {
-                assert.equal(feature, "gewijzigdeFeature");
-                featureModified = true;
-            });
-            modifyAction.action.modifyInteraction.dispatchEvent({
-                type: "modifyend",
-                features: ["gewijzigdeFeature"],
-            });
 
-            await awaitUntil(() => featureModified === true);
+            await new Promise((resolve) => {
+                modifyAction.onModify((feature) => {
+                    assert.equal(feature, "gewijzigdeFeature");
+                    resolve();
+                });
+                modifyAction.action.modifyInteraction.dispatchEvent({
+                    type: "modifyend",
+                    features: ["gewijzigdeFeature"],
+                });
+            });
         });
 
         test("snapping staat aan als er geen lagen onder de actie hangen", async () => {
