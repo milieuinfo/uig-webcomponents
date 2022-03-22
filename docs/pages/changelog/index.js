@@ -7,8 +7,8 @@ import { removeStorybooksDefaultStyling } from '../../../.storybook/utils';
 
 const unreleased = [
   {
-    version: '?',
-    date: 'Unreleased',
+    version: 'Unreleased',
+    date: '?',
     children: html`<ul>
       <li>
         <p><code>vl-info-tile</code></p>
@@ -16,6 +16,10 @@ const unreleased = [
       </li>
       <li>
         <p><code>vl-upload</code></p>
+        <p>Added as a legacy component.</p>
+      </li>
+      <li>
+        <p><code>vl-tabs</code></p>
         <p>Added as a legacy component.</p>
       </li>
     </ul>`,
