@@ -1,12 +1,12 @@
-import { vlElement, define, awaitUntil } from "../../utils/core";
-import "../grid";
-import "../icon";
-import "../button";
-import "../action-group";
-import "@govflanders/vl-ui-util/dist/js/util.js";
-import "@govflanders/vl-ui-core/dist/js/core.js";
-import "./lib";
-import styles from "./styles.scss";
+import { vlElement, define, awaitUntil } from '../../utils/core';
+import '../../components/grid';
+import '../../components/icon';
+import '../../components/button';
+import '../../components/action-group';
+import '@govflanders/vl-ui-util/dist/js/util.js';
+import '@govflanders/vl-ui-core/dist/js/core.js';
+import './lib';
+import styles from './styles.scss';
 
 /**
  * VlModal
@@ -29,23 +29,15 @@ import styles from "./styles.scss";
  */
 export class VlModal extends vlElement(HTMLElement) {
   static get _observedAttributes() {
-    return [
-      "id",
-      "title",
-      "closable",
-      "not-cancellable",
-      "open",
-      "not-auto-closable",
-      "allow-overflow",
-    ];
+    return ['id', 'title', 'closable', 'not-cancellable', 'open', 'not-auto-closable', 'allow-overflow'];
   }
 
   static get _closableAttribute() {
-    return "data-vl-modal-closable";
+    return 'data-vl-modal-closable';
   }
 
   static get _closeAttribute() {
-    return "data-vl-modal-close";
+    return 'data-vl-modal-close';
   }
 
   constructor() {
@@ -78,19 +70,19 @@ export class VlModal extends vlElement(HTMLElement) {
   }
 
   get _dialogElement() {
-    return this._element.querySelector("dialog");
+    return this._element.querySelector('dialog');
   }
 
   get _titleElement() {
-    return this._element.querySelector("#modal-toggle-title");
+    return this._element.querySelector('#modal-toggle-title');
   }
 
   get _actionGroupElement() {
-    return this._element.querySelector("#modal-action-group");
+    return this._element.querySelector('#modal-action-group');
   }
 
   get _cancelElement() {
-    return this._element.querySelector("#modal-toggle-cancellable");
+    return this._element.querySelector('#modal-toggle-cancellable');
   }
 
   get _slotButtonElement() {
@@ -98,7 +90,7 @@ export class VlModal extends vlElement(HTMLElement) {
   }
 
   get _dressed() {
-    return !!this.getAttribute("data-vl-modal-dressed");
+    return !!this.getAttribute('data-vl-modal-dressed');
   }
 
   /**
@@ -115,7 +107,7 @@ export class VlModal extends vlElement(HTMLElement) {
    */
   open() {
     vl.modal.lastClickedToggle = this._dialogElement;
-    if (!this._dialogElement.hasAttribute("open")) {
+    if (!this._dialogElement.hasAttribute('open')) {
       awaitUntil(() => this._dialogElement.isConnected).then(() => {
         vl.modal.toggle(this._dialogElement);
       });
@@ -126,7 +118,7 @@ export class VlModal extends vlElement(HTMLElement) {
    * Handmatig sluiten van modal.
    */
   close() {
-    if (this._dialogElement.hasAttribute("open")) {
+    if (this._dialogElement.hasAttribute('open')) {
       vl.modal.toggle(this._dialogElement);
     }
   }
@@ -172,10 +164,8 @@ export class VlModal extends vlElement(HTMLElement) {
       } else {
         this._dialogElement.prepend(this._getTitleTemplate(newValue));
       }
-    } else {
-      if (this._titleElement) {
-        this._titleElement.remove();
-      }
+    } else if (this._titleElement) {
+      this._titleElement.remove();
     }
   }
 
@@ -188,35 +178,27 @@ export class VlModal extends vlElement(HTMLElement) {
   }
 
   _openChangedCallback(oldValue, newValue) {
-    this._dialogElement.setAttribute("open", newValue);
+    this._dialogElement.setAttribute('open', newValue);
   }
 
   _closableChangedCallback(oldValue, newValue) {
     if (newValue != undefined) {
       this._closeButtonElement = this._getCloseButtonTemplate();
-      this._dialogElement.setAttribute(VlModal._closableAttribute, "");
+      this._dialogElement.setAttribute(VlModal._closableAttribute, '');
       this._dialogElement.appendChild(this._closeButtonElement);
-    } else {
-      if (this._closeButtonElement) {
-        this._closeButtonElement.remove();
-        this._dialogElement.removeAttribute(VlModal._closableAttribute);
-      }
+    } else if (this._closeButtonElement) {
+      this._closeButtonElement.remove();
+      this._dialogElement.removeAttribute(VlModal._closableAttribute);
     }
   }
 
   _notAutoClosableChangedCallback(oldValue, newValue) {
-    if (
-      newValue == undefined &&
-      !this._slotButtonElement.hasAttribute(VlModal._closeAttribute)
-    ) {
-      this._slotButtonElement.setAttribute(VlModal._closeAttribute, "");
-    } else if (
-      newValue != undefined &&
-      this._slotButtonElement.hasAttribute(VlModal._closeAttribute)
-    ) {
+    if (newValue == undefined && !this._slotButtonElement.hasAttribute(VlModal._closeAttribute)) {
+      this._slotButtonElement.setAttribute(VlModal._closeAttribute, '');
+    } else if (newValue != undefined && this._slotButtonElement.hasAttribute(VlModal._closeAttribute)) {
       this._slotButtonElement.removeAttribute(VlModal._closeAttribute);
     }
   }
 }
 
-define("vl-modal", VlModal);
+define('vl-modal', VlModal);
