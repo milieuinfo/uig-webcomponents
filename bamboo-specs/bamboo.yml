@@ -8,6 +8,9 @@ plan:
 variables:
   release_version: patch
 
+triggers:
+  - cron: 0 0 0 ? * *
+
 stages:
   - Build:
       jobs:
