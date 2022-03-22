@@ -88,6 +88,8 @@ export { VlSearchResult } from './components/search-results/components/search-re
 export { VlLoader } from './components/loader';
 export { VlPill } from './components/pill';
 export { VlButtonPill } from './components/pill/components/button-pill';
+export { VlRadio } from './legacy/radio';
+export { VlRadioGroup } from './legacy/radio/components/radio-group';
 export { VlModal } from './legacy/modal';
 export { VlActionGroup } from './components/action-group';
 export { VlTabs } from './legacy/tabs';
