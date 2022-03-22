@@ -7,7 +7,7 @@ export class VlRadioGroupPage extends Page {
   }
 
   async load() {
-    await super.load(`${config.baseUrl}legacy/radio/components/radio-group/test/e2e`);
+    await super.load(`${config.baseUrl}legacy/radio/components/radio-group/test/e2e/index.html`);
   }
 
   async _getRadioGroup(selector) {
