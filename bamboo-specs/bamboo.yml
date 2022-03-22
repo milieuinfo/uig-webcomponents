@@ -5,9 +5,6 @@ plan:
   key: UIGWEBCOMPONENTS
   name: uig-webcomponents
 
-triggers:
-  - polling: 130
-
 variables:
   release_version: patch
 
