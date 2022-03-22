@@ -3,6 +3,7 @@
 @import "../../../node_modules/@govflanders/vl-ui-action-group/src/scss/action-group";
 @import "../../../node_modules/@govflanders/vl-ui-util/src/scss/util";
 
+// extra styling for the action-group in the current setup of the legacy vl-modal component
 .vl-action-group > ::slotted(*) {
   margin-right: 1.4rem;
 }

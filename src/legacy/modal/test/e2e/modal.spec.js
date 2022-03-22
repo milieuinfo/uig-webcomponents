@@ -11,7 +11,7 @@ describe('vl-modal', async () => {
     return vlModalPage.load();
   });
 
-  it('als gebruiker kan ik de modal openen en sluiten via de annuleer knop', async () => {
+  it('as a user, I can open and close the modal via a cancel button', async () => {
     const modal = await vlModalPage.getModal();
     await assert.eventually.isFalse(modal.isDisplayed());
     await vlModalPage.openModal();
@@ -23,7 +23,7 @@ describe('vl-modal', async () => {
     await assert.eventually.isFalse(modal.isDisplayed());
   });
 
-  it('als gebruiker kan ik de closable modal openen en sluiten via de sluiten knop', async () => {
+  it('as a user, I can open and close a closable modal via a close button', async () => {
     const modal = await vlModalPage.getModalClosable();
     await assert.eventually.isFalse(modal.isDisplayed());
     await vlModalPage.openModalClosable();
@@ -34,7 +34,7 @@ describe('vl-modal', async () => {
     await modal.close();
   });
 
-  it('als gebruiker kan ik de niet automatisch closable modal niet sluiten door op de actie knop te klikken', async () => {
+  it('as a user, I cannot close the not automatically closable modal by clicking on the action button', async () => {
     const modal = await vlModalPage.getModalClosableNietAutomatisch();
     await assert.eventually.isFalse(modal.isDisplayed());
     await vlModalPage.openModalClosableNietAutomatisch();
@@ -48,7 +48,7 @@ describe('vl-modal', async () => {
     await assert.eventually.isFalse(modal.isDisplayed());
   });
 
-  it('als gebruiker kan ik de closable, niet cancellable modal niet sluiten via de annuleer knop', async () => {
+  it('as a user, I cannot close the closable, not cancellable modal via the cancel button', async () => {
     const modal = await vlModalPage.getModalClosableNietCancellable();
     await assert.eventually.isFalse(modal.isDisplayed());
     await vlModalPage.openModalClosableNietCancellable();
@@ -59,7 +59,7 @@ describe('vl-modal', async () => {
     await modal.close();
   });
 
-  it('als gebruiker kan ik de automatisch closable modal sluiten door op de actie knop te klikken', async () => {
+  it('as a user, I can close the automatically closable modal by clicking the action button', async () => {
     const modal = await vlModalPage.getModal();
     await assert.eventually.isFalse(modal.isDisplayed());
     await vlModalPage.openModal();
@@ -71,7 +71,7 @@ describe('vl-modal', async () => {
     await assert.eventually.isFalse(modal.isDisplayed());
   });
 
-  it('als gebruiker kan ik de automatisch closable modal sluiten door op de actie link te klikken', async () => {
+  it('as a user, I can close the automatically closable modal by clicking the action link', async () => {
     const modal = await vlModalPage.getModalClosableNietCancellableMetLinkEnIcon();
     await assert.eventually.isFalse(modal.isDisplayed());
     await vlModalPage.openModalClosableNietCancellableMetLinkEnIcon();
@@ -83,7 +83,7 @@ describe('vl-modal', async () => {
     await assert.eventually.isFalse(modal.isDisplayed());
   });
 
-  it('als gebruiker kan ik de manuele modal openen en sluiten', async () => {
+  it('as a user, I can open and close the modal manually', async () => {
     const modal = await vlModalPage.getModalManual();
     await assert.eventually.isFalse(modal.isDisplayed());
     await vlModalPage.openModalManual();
@@ -92,7 +92,7 @@ describe('vl-modal', async () => {
     await assert.eventually.isFalse(modal.isDisplayed());
   });
 
-  it('als gebruiker kan ik iets uitvoeren door in de modal op de actie knop te klikken', async () => {
+  it('as a user, I can execute something by clicking the action button in the modal', async () => {
     const modal = await vlModalPage.getModalListener();
     await vlModalPage.klikVoegListenerToe();
     await vlModalPage.openModalListener();
@@ -110,7 +110,7 @@ describe('vl-modal', async () => {
   //   await modal.close();
   // });
 
-  it('als gebruiker kan ik verticaal scrollen als er te veel tekst in de modal staat', async () => {
+  it('as a user, I can scrol vertical if there is an overflow', async () => {
     await vlModalPage.openModalMetVeelTekst();
     const modal = await vlModalPage.getModalMetVeelTekst();
     await modal.scrollToTop();
@@ -128,7 +128,7 @@ describe('vl-modal', async () => {
   //   await modal.cancel();
   // });
 
-  it('als gebruiker kan ik een niet closable modal niet sluiten door op escape te klikken', async () => {
+  it('as a user, I cannot close a not closable modal by pressing escape', async () => {
     if (config.browserName !== 'edge') {
       let modal = await vlModalPage.getModal();
       await assert.eventually.isFalse(modal.isDisplayed());
