@@ -167,7 +167,7 @@
             await awaitUntil(() => processActionSpy.called);
         });
 
-        test("de filter van de modify actie geeft by default altijd true terug", (done) => {
+        test("the filter for the modify action returns true by default", (done) => {
           const map = fixture("vl-map-modify-action-fixture");
 
           map.ready.then(() => {
@@ -177,7 +177,7 @@
           });
         });
 
-        test("de filter van de modify actie kan overschreven worden", (done) => {
+        test("the filter for the modify action can be overridden", (done) => {
           const map = fixture("vl-custom-map-modify-action-fixture");
 
           map.ready.then(() => {
