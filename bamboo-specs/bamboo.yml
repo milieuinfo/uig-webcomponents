@@ -9,7 +9,13 @@ variables:
   release_version: patch
 
 triggers:
-  - cron: 0 0 0 ? * *
+- cron:
+    expression: 0 0 0 ? * *
+branches:
+  create: for-new-branch
+  delete:
+    after-deleted-days: 1
+    after-inactive-days: 30
 
 stages:
   - Build:
