@@ -1,8 +1,7 @@
+import { VlModifyAction, VlCompositeVectorLayer } from "vl-mapactions/dist/vl-mapactions.js";
 import { define } from "../../../../../../utils/core";
 import { VlMapLayerAction } from "../../layer-action";
-import { VlModifyAction } from "vl-mapactions/dist/vl-mapactions.js";
 import { VlMapVectorLayer } from "../../../layer/vector-layer";
-import { VlCompositeVectorLayer } from "vl-mapactions/dist/vl-mapactions.js";
 
 /**
  * VlMapModifyAction
@@ -11,7 +10,7 @@ import { VlCompositeVectorLayer } from "vl-mapactions/dist/vl-mapactions.js";
  *
  * @extends VlMapLayerAction
  *
- * @property {string} [data-vl-snapping] - Attribute enables snapping on the vl-map-wfs-layers that are added to this action.
+ * @property {boolean} [data-vl-snapping] - Attribute enables snapping on the vl-map-wfs-layers that are added to this action.
  * @property {number} [data-vl-snapping-pixel-tolerance=10] - Attribute configures the maximum distance (in pixels) between a feature and your pointing device before snapping occurs.
  *
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
@@ -45,25 +44,24 @@ export class VlMapModifyAction extends VlMapLayerAction {
         node: false,
         vertex: false,
       };
-    } else {
-      return true;
     }
+
+    return true;
   }
 
   __createSnappingLayer() {
-    const snappingLayer = new VlCompositeVectorLayer(
+    this.__snappingLayer = new VlCompositeVectorLayer(
         this.__snappingLayers.map((layer) => layer._layer),
         {}
     );
     const firstVectorLayer = this.__snappingLayers[0];
-    snappingLayer.setStyle(firstVectorLayer.style);
-    firstVectorLayer.addEventListener(
-        VlMapVectorLayer.EVENTS.styleChanged,
-        (event) => {
-          snappingLayer.setStyle(event.target.style);
-        }
-    );
-    return snappingLayer;
+    this.__snappingLayer.setStyle(firstVectorLayer.style);
+    firstVectorLayer.addEventListener(VlMapVectorLayer.EVENTS.styleChanged, this.__onSnappingLayerStyleChanged.bind(this));
+    return this.__snappingLayer;
+  }
+
+  __onSnappingLayerStyleChanged(event) {
+    this.__snappingLayer.setStyle(event.target.style);
   }
 
   get __snappingLayers() {
