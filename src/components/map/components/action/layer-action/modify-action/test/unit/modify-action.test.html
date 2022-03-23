@@ -73,11 +73,11 @@
             sandbox.restore();
         });
 
-        test("een modify actie is een map actie", () => {
+        test("a modify action is a map action", () => {
             assert.isTrue(VlMapModifyAction.isVlMapAction());
         });
 
-        test("nadat de modify actie voltooid is, zal de onModify worden opgeroepen", async () => {
+        test("after the modify action is finished, the onModify callback will be called", async () => {
             const map = fixture("vl-map-modify-action-fixture");
             await map.ready;
             const modifyAction = map.querySelector("vl-map-modify-action");
@@ -95,7 +95,7 @@
             });
         });
 
-        test("snapping staat aan als er geen lagen onder de actie hangen", async () => {
+        test("snapping is enabled even when there are no specific snapping layers", async () => {
             const map = fixture("vl-map-modify-action-fixture");
             const modifyAction = map.querySelector("vl-map-modify-action");
             await awaitUntil(() => modifyAction.action != null);
@@ -104,7 +104,7 @@
             expect(modifyActionOptions.snapping).to.equal(true);
         });
 
-        test("snapping wordt goed geconfigureerd als er lagen zijn en pixel tolerantie", async () => {
+        test("snapping is properly configured when there are layers and a pixel tolerance was configured", async () => {
             const mapMetSnapping = fixture("vl-map-modify-action-snapping-met-wfs-layers-fixture");
             const modifyMetSnappingOpWfsLagenAction = mapMetSnapping.querySelector("vl-map-modify-action");
             await awaitUntil(() => modifyMetSnappingOpWfsLagenAction.action != null);
