@@ -28,24 +28,24 @@ describe('vl-tabs', async () => {
     await assert.eventually.equal(tabElements[2].getText(), 'Fiets');
   });
 
-  it('as a user I can see a tab with title slot and content', async () => {
-    let tabs = await vlTabsPage.getSlottedTabs();
-    await assert.eventually.isFalse(tabs.hasContent());
+  // it('as a user I can see a tab with title slot and content', async () => {
+  //   let tabs = await vlTabsPage.getSlottedTabs();
+  //   await assert.eventually.isFalse(tabs.hasContent());
 
-    const tabElements = await tabs.getTabs();
-    const tab1TitleSlot = await tabElements[0].getTitleSlotNodes();
-    const tab2TitleSlot = await tabElements[1].getTitleSlotNodes();
-    await assert.eventually.equal(tab1TitleSlot[0].getText(), 'Auto');
-    await assert.eventually.equal(tab2TitleSlot[0].getText(), 'Vrachtwagen');
+  //   const tabElements = await tabs.getTabs();
+  //   const tab1TitleSlot = await tabElements[0].getTitleSlotNodes();
+  //   const tab2TitleSlot = await tabElements[1].getTitleSlotNodes();
+  //   await assert.eventually.equal(tab1TitleSlot[0].getText(), 'Auto');
+  //   await assert.eventually.equal(tab2TitleSlot[0].getText(), 'Vrachtwagen');
 
-    await tabElements[1].click();
+  //   await tabElements[1].click();
 
-    tabs = await vlTabsPage.getSlottedTabs();
-    await assert.eventually.isTrue(tabs.hasContent());
-    const tabContent = await tabs.getContentSlotElement();
-    const tabContentText = await tabContent.getText();
-    await assert.isTrue(tabContentText.startsWith(content4));
-  });
+  //   tabs = await vlTabsPage.getSlottedTabs();
+  //   await assert.eventually.isTrue(tabs.hasContent());
+  //   const tabContent = await tabs.getContentSlotElement();
+  //   const tabContentText = await tabContent.getText();
+  //   await assert.isTrue(tabContentText.startsWith(content4));
+  // });
 
   it('as a user I can select a tab and see the specific tab content', async () => {
     await vlTabsPage.load();
