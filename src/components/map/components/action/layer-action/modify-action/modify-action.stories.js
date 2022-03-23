@@ -17,7 +17,27 @@ export default {
     },
   },
   args,
-  argTypes,
+  argTypes: {
+    ...argTypes,
+    snapping: {
+      name: "data-vl-snapping",
+      type: {summary: "boolean"},
+      description: "Attribute enables snapping on the vl-map-wfs-layers that are added to this action.",
+      control: {disable: true},
+      table: {
+        defaultValue: { summary: "false" },
+      },
+    },
+    snappingPixelTolerance: {
+      name: "data-vl-snapping-pixel-tolerance",
+      type: {summary: "number"},
+      description: "Attribute configures the maximum distance (in pixels) between a feature and your pointing device before snapping occurs.",
+      control: {disable: true},
+      table: {
+        defaultValue: { summary: "10" },
+      },
+    }
+  }
 };
 
 export const MapWithPointModify = () => {
@@ -105,6 +125,38 @@ export const MapWithPolygonModify = () => {
       <vl-map-features-layer data-vl-features=${JSON.stringify(features)}>
         <vl-map-layer-style></vl-map-layer-style>
         <vl-map-modify-action data-vl-default-active></vl-map-modify-action>
+      </vl-map-features-layer>
+    </vl-map>
+  `;
+};
+
+export const MapWithSnappingModify = () => {
+  const features = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        id: 1,
+        geometry: { type: "Point", coordinates: [ 151285.5138477709, 211586.43498009123 ] },
+      },
+    ],
+  };
+
+  return html`
+    <vl-map id="map">
+      <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+      <vl-map-features-layer data-vl-features=${JSON.stringify(features)}>
+        <vl-map-layer-circle-style></vl-map-layer-circle-style>
+        <vl-map-modify-action 
+            data-vl-default-active
+            data-vl-snapping
+            data-vl-snapping-pixel-tolerance="1000">
+          <vl-map-wfs-layer
+              data-vl-name="Stromend waterlichamen"
+              data-vl-url="https://geoserver.vmm.be/geoserver/vmm/wfs"
+              data-vl-layers="owl_l"
+              data-vl-max-resolution="4">
+        </vl-map-modify-action>
       </vl-map-features-layer>
     </vl-map>
   `;
