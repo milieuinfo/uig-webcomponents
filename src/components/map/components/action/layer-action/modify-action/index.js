@@ -7,12 +7,12 @@ import { VlCompositeVectorLayer } from "vl-mapactions/dist/vl-mapactions.js";
 /**
  * VlMapModifyAction
  * @class
- * @classdesc De kaart aanpas actie component.
+ * @classdesc The map modify action component.
  *
  * @extends VlMapLayerAction
  *
- * @property {string} [data-vl-snapping] - Attribuut wordt gebruikt om aan te geven dat er bij het bewerken snapping mag gebeuren op de meegegeven vl-map-wfs-layers.
- * @property {number} [data-vl-snapping-pixel-tolerance=10] - Attribuut om aan te geven binnen de hoeveel pixel van een feature er gesnapped mag worden.
+ * @property {string} [data-vl-snapping] - Attribute enables snapping on the vl-map-wfs-layers that are added to this action.
+ * @property {number} [data-vl-snapping-pixel-tolerance=10] - Attribute configures the maximum distance (in pixels) between a feature and your pointing device before snapping occurs.
  *
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
@@ -20,11 +20,11 @@ import { VlCompositeVectorLayer } from "vl-mapactions/dist/vl-mapactions.js";
  */
 export class VlMapModifyAction extends VlMapLayerAction {
   /**
-   * Zet de functie die wordt uitgevoerd na het uitvoeren van de aanpas actie
+   * Configure the function that will be called after processing an action.
    *
-   * @param {Function} callback functie met volgende argumenten:
-   *                            - {ol.Feature} de aangepaste feature
-   *                            - {Function} reject callback met argument de aangepaste feature waarbij de feature terug op zijn oorspronkelijke staat wordt gezet
+   * @param {Function} callback function with the following arguments:
+   *                            - {ol.Feature} the modified feature
+   *                            - {Function} reject callback with the modified feature as argument, which will revert the feature back to its original state
    */
   onModify(callback) {
     this.__callback = callback;
