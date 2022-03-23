@@ -38,12 +38,12 @@ export class VlMapModifyAction extends VlMapLayerAction {
   }
 
   /**
-   * Geeft terug of de action uitgevoerd mag worden op een feature en/of layer. Default true.
+   * Specifies if the action is allowed to be performed on a feature and/or a layer. Returns true by default.
    *
    * @param {Object} feature Openlayers feature
    * @param {Object} layer Openlayers layer
    *
-   * @Return {boolean} true als de action uitgevoerd mag worden, false als de action niet mag uitgevoerd worden voor de meegegeven feature en/of layer
+   * @Return {boolean} true if the action is allowed to be performed, false if the action may not be performed for the supplied feature and/or layer
    */
   appliesTo(feature, layer) {
     return true;
