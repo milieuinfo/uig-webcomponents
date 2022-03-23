@@ -9,7 +9,6 @@ describe('vl-tabs', async () => {
   const content1 = 'Nullam quis';
   const content2 = 'Donec sed';
   const content3 = 'Duis mollis';
-  const content4 = 'Duis vitae';
 
   beforeEach(() => {
     const driver = getDriver();
@@ -45,11 +44,7 @@ describe('vl-tabs', async () => {
     const tabContent = await tabs.getContentSlotElement();
     const tabContentText = await tabContent.getText();
 
-    if (config.browserName === 'chrome') {
-      await assert.isTrue(tabContentText.startsWith(content4));
-    } else {
-      await assert.isTrue(tabContentText.startsWith(`Vrachtwagen ${content4}`));
-    }
+    await assert.isTrue(tabContentText.includes('Vrachtwagen content'));
   });
 
   it('as a user I can select a tab and see the specific tab content', async () => {
