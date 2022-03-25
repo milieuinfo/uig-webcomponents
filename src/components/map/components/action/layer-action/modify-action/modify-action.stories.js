@@ -176,6 +176,7 @@ export const MapWithFilteredModify = () => {
               [85000, 200000],
               [90000, 200000],
               [90000, 193972],
+              [85000, 193972],
             ],
           ],
         },
@@ -185,7 +186,7 @@ export const MapWithFilteredModify = () => {
 
   class VlMapFilteredModifyAction extends VlMapModifyAction {
     appliesTo(feature) {
-      return feature.getId() === 3;
+      return feature.getId() === 4;
     }
   }
 
