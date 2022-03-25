@@ -1,7 +1,8 @@
 import { html } from "lit-html";
-import "../../../../../map";
+import { VlMapDeleteAction } from "../../../../../map";
 import { args, argTypes } from "../config";
 import { docsIntro } from "../../../../../../../.storybook/utils.js";
+import { define } from "../../../../../../utils/core";
 
 export default {
   title: "custom-elements/vl-map/vl-map-delete-action",
@@ -118,6 +119,79 @@ export const DeleteWithCustomStyle = () => {
             data-vl-border-color="#FFE615"
           ></vl-map-layer-style>
         </vl-map-delete-action>
+      </vl-map-features-layer>
+    </vl-map>
+  `;
+};
+
+export const FilteredDelete = () => {
+  const features = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        id: 1,
+        geometry: { type: "Point", coordinates: [150000, 195000] },
+      },
+      {
+        type: "Feature",
+        id: 2,
+        geometry: {
+          type: "LineString",
+          coordinates: [
+            [140815, 210000],
+            [150000, 225000],
+          ],
+        },
+      },
+      {
+        type: "Feature",
+        id: 3,
+        geometry: {
+          type: "Polygon",
+          coordinates: [
+            [
+              [104896.56, 193972.22],
+              [157836.54, 190879.51],
+              [152161.53, 212358.26],
+              [173780.97, 174292.43],
+            ],
+          ],
+        },
+      },
+      {
+        type: "Feature",
+        id: 4,
+        geometry: {
+          type: "Polygon",
+          coordinates: [
+            [
+              [85000, 193972],
+              [85000, 200000],
+              [90000, 200000],
+              [90000, 193972],
+            ],
+          ],
+        },
+      },
+    ],
+  };
+
+  class VlMapFilteredDeleteAction extends VlMapDeleteAction {
+    appliesTo(feature) {
+      return feature.getId() === 3;
+    }
+  }
+
+  define("vl-map-filtered-delete-action", VlMapFilteredDeleteAction);
+
+  return html`
+    <vl-map id="map">
+      <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+      <vl-map-features-layer data-vl-features=${JSON.stringify(features)}>
+        <vl-map-layer-style></vl-map-layer-style>
+        <vl-map-layer-circle-style></vl-map-layer-circle-style>
+        <vl-map-filtered-delete-action data-vl-default-active></vl-map-filtered-delete-action>
       </vl-map-features-layer>
     </vl-map>
   `;
