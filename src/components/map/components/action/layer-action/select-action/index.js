@@ -6,9 +6,9 @@ import { VlSelectAction } from "vl-mapactions/dist/vl-mapactions.js";
 /**
  * VlMapSelectAction
  * @class
- * @classdesc De kaart selecteer actie component.
+ * @classdesc The map select action component.
  *
- * @property {boolean} data-vl-cluster - Attribuut geeft aan of de features geclusterd zijn of niet.
+ * @property {boolean} data-vl-cluster - Attribute indicates if the features are clustered or not.
  *
  * @extends VlMapLayerAction
  *
@@ -18,18 +18,18 @@ import { VlSelectAction } from "vl-mapactions/dist/vl-mapactions.js";
  */
 export class VlMapSelectAction extends VlMapLayerAction {
   /**
-   * Geeft de stijl die een geselecteerd feature zal krijgen.
+   * Returns the style that a selected feature will be given.
    *
-   * @return {Object} de stijl
+   * @return {Object} the style
    */
   get style() {
     return this._style;
   }
 
   /**
-   * Zet de stijl die een geselecteerde feature zal krijgen.
+   * Configures the style that a selected feature will be given.
    *
-   * @param {VlMapLayerStyle|Object} style - de stijl: een VlMapLayerStyle of een OpenLayers StyleLikeF
+   * @param {VlMapLayerStyle|Object} style - the style: a VlMapLayerStyle or an OpenLayers Style
    */
   set style(style) {
     if (style instanceof VlMapLayerStyle) {
@@ -73,12 +73,12 @@ export class VlMapSelectAction extends VlMapLayerAction {
   }
 
   /**
-   * Geeft terug of de action uitgevoerd mag worden op een feature en/of layer. Default true.
+   * Specifies if the action is allowed to be performed on a feature and/or a layer. Returns true by default.
    *
    * @param {Object} feature Openlayers feature
    * @param {Object} layer Openlayers layer
    *
-   * @Return {boolean} true als de action uitgevoerd mag worden, false als de action niet mag uitgevoerd worden voor de meegegeven feature en/of layer
+   * @Return {boolean} true if the action is allowed to be performed, false if the action may not be performed for the supplied feature and/or layer
    */
   appliesTo(feature, layer) {
     return true;
