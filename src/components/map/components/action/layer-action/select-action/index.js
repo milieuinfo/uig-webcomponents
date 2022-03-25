@@ -1,7 +1,7 @@
+import { VlSelectAction } from "vl-mapactions/dist/vl-mapactions.js";
 import { define } from "../../../../../../utils/core";
 import { VlMapLayerAction } from "../../layer-action";
 import { VlMapLayerStyle } from "../../../layer-style";
-import { VlSelectAction } from "vl-mapactions/dist/vl-mapactions.js";
 
 /**
  * VlMapSelectAction
@@ -87,7 +87,7 @@ export class VlMapSelectAction extends VlMapLayerAction {
   _createAction(layer) {
     const options = {
       style: this.style,
-      cluster: this._cluster != undefined,
+      cluster: this._cluster !== undefined,
       filter: this.appliesTo.bind(this)
     };
     return new VlSelectAction(layer, this._callback, options);

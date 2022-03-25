@@ -67,9 +67,8 @@ export class VlMapDeleteAction extends VlMapLayerAction {
     return (features, resolve, reject) => {
       if (this.__callback) {
         return this.__callback(features, resolve, reject);
-      } else {
-        features.forEach((feature) => resolve(feature));
       }
+      features.forEach((feature) => resolve(feature));
     };
   }
 
