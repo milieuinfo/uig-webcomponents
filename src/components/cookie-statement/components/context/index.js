@@ -1,8 +1,7 @@
-import { html, css, LitElement } from 'lit';
+import { html, LitElement } from 'lit';
+import { VIEWS } from '../../../cookie-consent/enums';
 
-import { VIEWS } from '../cookie-consent/enums';
-
-export class VlCookieContext extends LitElement {
+export class VlCookieStatementContext extends LitElement {
   static get properties() {
     return {
       consent: {},
@@ -42,4 +41,4 @@ export class VlCookieContext extends LitElement {
     ></slot>`;
   }
 }
-customElements.define('vl-cookie-context', VlCookieContext);
+customElements.define('vl-cookie-statement-context', VlCookieStatementContext);

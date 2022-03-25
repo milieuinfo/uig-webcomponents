@@ -3,7 +3,7 @@ import '../cookie-statement';
 import './components/cookie';
 import '../cookie-consent';
 import { CATEGORIES } from '../../../.storybook/utils';
-import './cookie-context';
+import './components/context';
 
 export default {
   title: 'custom-elements/vl-cookie-statement',
@@ -37,25 +37,7 @@ export default {
   },
 };
 
-export const Default = ({ extraCookies }) =>
-  html`<vl-cookie-context>
-    <vl-cookie-consent
-      .extraOptIns=${[
-        {
-          name: 'withoutDescription',
-          label: 'Without description',
-        },
-        {
-          name: 'withDescription',
-          label: 'With description',
-          description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-        },
-      ]}
-      .projectName=${'Voortoets'}
-    ></vl-cookie-consent>
-    <vl-cookie-statement></vl-cookie-statement>
-  </vl-cookie-context>`;
+export const Default = ({ extraCookies }) => html` <vl-cookie-statement></vl-cookie-statement>`;
 
 export const WithExtraCookies = ({ extraCookies }) =>
   html`<vl-cookie-statement .extraCookies=${extraCookies}></vl-cookie-statement>`;
