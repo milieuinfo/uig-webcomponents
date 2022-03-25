@@ -18,6 +18,10 @@ import { VlMapVectorLayer } from "../../../layer/vector-layer";
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-modify-actions.html|Demo}
  */
 export class VlMapModifyAction extends VlMapLayerAction {
+  disconnectedCallback() {
+    this.__removeSnappingLayerStyleChangedEventListener();
+  }
+
   /**
    * Configure the function that will be called after processing an action.
    *
@@ -50,18 +54,24 @@ export class VlMapModifyAction extends VlMapLayerAction {
   }
 
   __createSnappingLayer() {
-    this.__snappingLayer = new VlCompositeVectorLayer(
-        this.__snappingLayers.map((layer) => layer._layer),
-        {}
-    );
-    const firstVectorLayer = this.__snappingLayers[0];
-    this.__snappingLayer.setStyle(firstVectorLayer.style);
-    firstVectorLayer.addEventListener(VlMapVectorLayer.EVENTS.styleChanged, this.__onSnappingLayerStyleChanged.bind(this));
+    this.__snappingLayer = new VlCompositeVectorLayer(this.__snappingLayers.map((layer) => layer._layer), {});
+    this.__addSnappingLayerStyleChangedEventListener();
     return this.__snappingLayer;
   }
 
-  __onSnappingLayerStyleChanged(event) {
-    this.__snappingLayer.setStyle(event.target.style);
+  __addSnappingLayerStyleChangedEventListener() {
+    if (this.__snappingLayers && this.__snappingLayers.length > 0) {
+      const firstVectorLayer = this.__snappingLayers[0];
+      this.__snappingLayer.setStyle(firstVectorLayer.style);
+      this.__onSnappingLayerStyleChanged = (event) => this.__snappingLayer.setStyle(event.target.style);
+      firstVectorLayer.addEventListener(VlMapVectorLayer.EVENTS.styleChanged, this.__onSnappingLayerStyleChanged);
+    }
+  }
+
+  __removeSnappingLayerStyleChangedEventListener() {
+    if (this.__snappingLayers && this.__snappingLayers.length > 0) {
+      this.__snappingLayers[0].removeEventListener(VlMapVectorLayer.EVENTS.styleChanged, this.__onSnappingLayerStyleChanged);
+    }
   }
 
   get __snappingLayers() {
