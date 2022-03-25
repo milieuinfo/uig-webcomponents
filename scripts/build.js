@@ -31,7 +31,7 @@ const buildConfig = {
     'titles',
     'video-player',
   ],
-  componentsWithStylesheetAndInlineStyling: ['button', 'pill', 'tooltip'],
+  componentsWithStylesheetAndInlineStyling: ['button', 'pill', 'tooltip', 'proza-message'],
 };
 
 const { src, dist, componentsWithStylesheet, componentsWithStylesheetAndInlineStyling } = buildConfig;

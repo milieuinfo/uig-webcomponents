@@ -44,7 +44,9 @@
     "@ungap/custom-elements": "^0.1.15",
     "lit": "^2.1.2",
     "swipe-detect": "^1.0.1",
-    "vl-mapactions": "^4.0.1"
+    "tinymce": "^5.10.3",
+    "vl-mapactions": "^4.0.1",
+    "vl-ui-toaster": "^3.0.9"
   },
   "devDependencies": {
     "@govflanders/vl-ui-icon-list": "^3.12.3",
@@ -122,6 +124,7 @@
     "web-component-tester": "^6.9.2",
     "webpack": "^4.8.0",
     "webpack-cli": "^4.8.0",
-    "yargs": "^16.0.3"
+    "yargs": "^16.0.3",
+    "fetch-mock": "^9.11.0"
   }
 }
