@@ -28,7 +28,10 @@ const unreleased = [
       </li>
       <li>
         <p><code>vl-button</code></p>
-        <p>Removed the <code>vl-button-link</code> extension workaround in the stylesheet.</p>
+        <p>
+          Removed the <code>vl-button-link</code> extension from the stylesheet. Moved it to the right component, the
+          <code>vl-link</code>.
+        </p>
       </li>
       <li>
         <p><code>vl-link</code></p>

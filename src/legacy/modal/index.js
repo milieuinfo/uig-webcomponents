@@ -1,8 +1,8 @@
 import { vlElement, define, awaitUntil } from '../../utils/core';
 import '../../components/grid';
 import '../../components/icon';
-import '../../components/button';
 import '../../components/action-group';
+import '../../components/link';
 import '@govflanders/vl-ui-util/dist/js/util.js';
 import '@govflanders/vl-ui-core/dist/js/core.js';
 import './lib';
