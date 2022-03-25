@@ -121,6 +121,18 @@
                 .to.equal(mapMetSnapping.querySelector("#stilstaandwater")._layer.getSource());
             await awaitUntil(() => modifyActionOptions.snapping.layer.getStyle() == mapMetSnapping.querySelector("#stromendwater").style);
         });
+
+        test("the event listener that listens to style changes on snapping layers will be removed when the action gets disconnected", async () => {
+            const mapMetSnapping = fixture("vl-map-modify-action-snapping-met-wfs-layers-fixture");
+            const modifyMetSnappingOpWfsLagenAction = mapMetSnapping.querySelector("vl-map-modify-action");
+            await awaitUntil(() => modifyMetSnappingOpWfsLagenAction.action != null);
+            const stromendWaterSnappingLayer = mapMetSnapping.querySelector("#stromendwater");
+            const removeEventListenerSpy = sandbox.spy(stromendWaterSnappingLayer, 'removeEventListener');
+
+            modifyMetSnappingOpWfsLagenAction.remove();
+
+            await awaitUntil(() => removeEventListenerSpy.called);
+        });
     });
 </script>
 </body>
