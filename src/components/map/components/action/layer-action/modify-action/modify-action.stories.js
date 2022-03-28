@@ -145,7 +145,7 @@ export const MapWithSnappingModify = () => {
   return html`
     <vl-map id="map">
       <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-      <vl-map-features-layer data-vl-features=${JSON.stringify(features)}>
+      <vl-map-features-layer data-vl-features=${JSON.stringify(features)} data-vl-auto-extent>
         <vl-map-layer-circle-style></vl-map-layer-circle-style>
         <vl-map-modify-action 
             data-vl-default-active
