@@ -2,44 +2,28 @@
 <html>
   <head>
     <title>vl-map-select-action voorbeeld</title>
-    <script
-      type="module"
-      src="../../../../../../../../../build/index.js"
-    ></script>
+    <script type="module" src="../../../../../../../../../build/index.js"></script>
     <script>
       window.onload = () => {
-        const showLogOnSelect = (
-          layerSelector,
-          selectActionSelector,
-          logSelector
-        ) => {
+        const showLogOnSelect = (layerSelector, selectActionSelector, logSelector) => {
           const layer = document.querySelector(layerSelector);
           const selectAction = document.querySelector(selectActionSelector);
 
           selectAction.layer = layer.layer;
           selectAction.onSelect((feature) => {
             if (feature) {
-              document.querySelector(logSelector).innerText =
-                "Feature" +
-                (feature.getId() != null ? " met id " + feature.getId() : "") +
-                " werd geselecteerd!";
+              document.querySelector(logSelector).innerText = `Feature${
+                feature.getId() != null ? ` met id ${feature.getId()}` : ''
+              } werd geselecteerd!`;
             }
           });
         };
-        showLogOnSelect("#map-layer", "#select-action", "#select-action-log");
-        showLogOnSelect(
-          "#map-layer-cluster",
-          "#select-action-cluster",
-          "#select-action-cluster-log"
-        );
+        showLogOnSelect('#map-layer', '#select-action', '#select-action-log');
+        showLogOnSelect('#map-layer-cluster', '#select-action-cluster', '#select-action-cluster-log');
       };
     </script>
 
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../../../../../../lib/components/body/styles.css"
-    />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../../lib/components/body/styles.css" />
   </head>
 
   <body is="vl-body">
@@ -129,11 +113,7 @@
         >
           <vl-map-layer-circle-style></vl-map-layer-circle-style>
         </vl-map-features-layer>
-        <vl-map-select-action
-          id="select-action-cluster"
-          data-vl-cluster
-          data-vl-default-active
-        >
+        <vl-map-select-action id="select-action-cluster" data-vl-cluster data-vl-default-active>
           <vl-map-layer-circle-style
             data-vl-text-color="#000"
             data-vl-color="#FFE615"
