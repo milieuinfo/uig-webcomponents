@@ -19,6 +19,10 @@ const unreleased = [
         <p>Added as a legacy component.</p>
       </li>
       <li>
+        <p><code>vl-radio</code></p>
+        <p>Added as a legacy component.</p>
+      </li>
+      <li>
         <p><code>vl-tabs</code></p>
         <p>Added as a legacy component.</p>
       </li>
