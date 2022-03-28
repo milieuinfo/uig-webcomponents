@@ -7,35 +7,33 @@ import { removeStorybooksDefaultStyling } from '../../../.storybook/utils';
 
 const unreleased = [
   {
-    version: '2.2.6',
-    date: '?',
+    version: '?',
+    date: 'unreleased',
     children: html`<ul>
-      <li>
-        <p><code>vl-tabs</code></p>
-        <p>Added as a legacy component.</p>
-      </li>
-      <li>
-        <p><code>vl-action-group</code></p>
-        <p>Adjusted the stylesheet in order to work with the implementation of the legacy <code>vl-modal</code>.</p>
-      </li>
-      <li>
-        <p><code>vl-button</code></p>
-        <p>Removed the <code>vl-button-link</code> extension workaround in the stylesheet.</p>
-      </li>
-      <li>
-        <p><code>vl-link</code></p>
-        <p>Removed the <code>vl-button</code> styles from the stylesheet.</p>
-      </li>
-      <li>
-        <p><code>vl-modal</code></p>
-        <p>Added as a legacy component.</p>
-      </li>
       <li>
         <p><code>vl-cookie-consent</code> &#x1F4A5;</p>
         <p>
           When migrating from the legacy package to this new package, we mentioned a bug in the analytics attribute.
           This is fixed, along with some other issues. We took the opportunity to refactor the component.
         </p>
+      </li>
+      <li>
+        <p><code>vl-cookie-statement</code></p>
+        <p>TO DO</p>
+        <ul>
+          <li>
+            <p><code>vl-cookie</code> &#x1F4A5;</p>
+            <p>
+              We made the attributes behave in a reactive way. We changed the <code>data-vl-name</code> attribute to a
+              <code>names</code> property, since a cookie can have multiple names. Names can be set via an array as
+              mentioned in the docs.
+            </p>
+          </li>
+          <li>
+            <p><code>vl-cookie-statement-context</code></p>
+            <p>Introduction</p>
+          </li>
+        </ul>
       </li>
     </ul>`,
   },

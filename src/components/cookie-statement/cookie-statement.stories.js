@@ -12,20 +12,7 @@ export default {
     controls: { hideNoControlsWarning: true },
   },
   args: {
-    extraCookies: [
-      {
-        title: 'Bestellen publicaties Vlaamse overheid',
-        names: [
-          'SSESS* (vb. “SSESS8d910012bf7d5f60012be2880f590bf0”)',
-          'DDASS* (vb. “SSESS8d910012bf0d5f60012be2880f590bf0”)',
-        ],
-        purpose:
-          'Bijhouden van het winkelmandje met bestelde publicaties en succesvol afhandelen van het bestel- en betalingsproces.',
-        domain: 'publicaties.vlaanderen.be',
-        processor: 'Vlaamse overheid',
-        validity: 'Permanente cookie met een geldigheid van 3 weken',
-      },
-    ],
+    extraCookies: [],
   },
   argTypes: {
     extraCookies: {
@@ -37,7 +24,8 @@ export default {
   },
 };
 
-export const Default = ({ extraCookies }) => html` <vl-cookie-statement></vl-cookie-statement>`;
+export const Default = ({ extraCookies }) =>
+  html` <vl-cookie-statement .extraCookies=${extraCookies}></vl-cookie-statement>`;
 
 export const WithExtraCookies = ({ extraCookies }) =>
   html`<vl-cookie-statement .extraCookies=${extraCookies}></vl-cookie-statement>`;
