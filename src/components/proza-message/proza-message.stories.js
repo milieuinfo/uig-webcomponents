@@ -86,26 +86,26 @@ InButton.args = {
   code: 'bar',
 };
 
-export const WithUploadError = ({ domain, code, block }) =>
+export const WithUpdateError = ({ domain, code, block }) =>
   html`<vl-proza-message data-vl-domain=${domain} data-vl-code=${code} ?data-vl-block=${block}></vl-proza-message> `;
 
-WithUploadError.args = {
+WithUpdateError.args = {
   domain: 'foo',
   code: 'fout',
 };
 
-export const Parameters = ({ domain, code, block, parameters }) => html`<vl-proza-message
+export const WithParameters = ({ domain, code, block, parameters }) => html`<vl-proza-message
   data-vl-domain=${domain}
   data-vl-code=${code}
   ?data-vl-block=${block}
   data-vl-parameters=${parameters}
 ></vl-proza-message>`;
 
-Parameters.args = {
+WithParameters.args = {
   domain: 'foo',
   code: 'parameters',
 };
 
-Parameters.argTypes = {
+WithParameters.argTypes = {
   parameters: { control: { disable: false } },
 };

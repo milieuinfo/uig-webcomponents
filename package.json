@@ -46,7 +46,8 @@
     "swipe-detect": "^1.0.1",
     "tinymce": "^5.10.3",
     "vl-mapactions": "^4.0.1",
-    "vl-ui-toaster": "^3.0.9"
+    "vl-ui-toaster": "^3.0.9",
+    "vl-ui-alert": "^4.1.1"
   },
   "devDependencies": {
     "@govflanders/vl-ui-icon-list": "^3.12.3",
