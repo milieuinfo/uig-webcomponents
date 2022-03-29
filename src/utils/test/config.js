@@ -8,7 +8,7 @@ const operatingSystems = {
 };
 
 const browsers = [
-  { name: 'chrome', isActive: argv.chrome, version: '85.0', os: operatingSystems.windows },
+  { name: 'chrome', isActive: argv.chrome, version: '98.0', os: operatingSystems.windows },
   { name: 'firefox', isActive: argv.firefox, version: '83.0', os: operatingSystems.windows },
   { name: 'edge', isActive: argv.edge, version: '86.0', os: operatingSystems.windows },
   { name: 'safari', isActive: argv.safari, version: 'latest', os: operatingSystems.mac },

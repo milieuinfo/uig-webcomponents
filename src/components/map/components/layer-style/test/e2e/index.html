@@ -3,11 +3,7 @@
   <head>
     <title>vl-map-layer-style voorbeeld</title>
     <script type="module" src="../../../../../../../../build/index.js"></script>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../../../../../../../../lib/components/body/styles.css"
-    />
+    <link rel="stylesheet" type="text/css" href="../../../../../../../lib/components/body/styles.css" />
   </head>
 
   <body is="vl-body">
@@ -61,10 +57,7 @@
         }]
           }'
         >
-          <vl-map-layer-style
-            id="map-label-style"
-            data-vl-text-feature-attribute-name="label"
-          ></vl-map-layer-style>
+          <vl-map-layer-style id="map-label-style" data-vl-text-feature-attribute-name="label"></vl-map-layer-style>
         </vl-map-features-layer>
       </vl-map>
 
@@ -145,23 +138,13 @@
         }]
           }'
         >
-          <vl-map-layer-style
-            id="map-layer-style-red"
-            data-vl-color="rgba(255,0,0,0.8)"
-          ></vl-map-layer-style>
+          <vl-map-layer-style id="map-layer-style-red" data-vl-color="rgba(255,0,0,0.8)"></vl-map-layer-style>
           <script>
-            document.querySelector("#map-layer-style-red").appliesTo = (
-              feature
-            ) => feature.get("status") === "red";
+            document.querySelector('#map-layer-style-red').appliesTo = (feature) => feature.get('status') === 'red';
           </script>
-          <vl-map-layer-style
-            id="map-layer-style-green"
-            data-vl-color="rgba(0,255,0,0.8)"
-          ></vl-map-layer-style>
+          <vl-map-layer-style id="map-layer-style-green" data-vl-color="rgba(0,255,0,0.8)"></vl-map-layer-style>
           <script>
-            document.querySelector("#map-layer-style-green").appliesTo = (
-              feature
-            ) => feature.get("status") === "green";
+            document.querySelector('#map-layer-style-green').appliesTo = (feature) => feature.get('status') === 'green';
           </script>
         </vl-map-features-layer>
       </vl-map>

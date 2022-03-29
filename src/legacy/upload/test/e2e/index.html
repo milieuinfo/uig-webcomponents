@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>vl-upload voorbeeld</title>
+    <script type="module" src="../../../../../build/index.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../../../../../lib/components/body/styles.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../lib/components/button/styles.css" />
+  </head>
+
+  <body is="vl-body">
+    <p>
+      Om de bestanden effectief op te laden, moet je
+      <strong>vl.upload.dropzoneInstances[i].processQueue()</strong> oproepen. Elke methode van
+      <a href="https://www.dropzonejs.com/#dropzone-methods" target="_blank">Dropzone</a> kan je zo oproepen.
+    </p>
+
+    <vl-upload url="http://httpbin.org/post" data-vl-input-name="files" id="vl-upload"></vl-upload>
+
+    <vl-upload
+      id="vl-upload-auto-process"
+      url="http://httpbin.org/post"
+      data-vl-input-name="files"
+      data-vl-autoprocess="true"
+    ></vl-upload>
+
+    <vl-upload id="vl-upload-clear" data-vl-url="http://httpbin.org/post" data-vl-input-name="files"></vl-upload>
+    <div slot="actions">
+      <button id="vl-upload-clear-button" is="vl-button" onclick="clearList()">Clear</button>
+    </div>
+    <script type="text/javascript">
+      // eslint-disable-next-line no-unused-vars
+      const clearList = () => {
+        document.querySelector('#vl-upload-clear').clear();
+      };
+    </script>
+
+    <vl-upload
+      id="vl-upload-max-5"
+      data-vl-url="http://httpbin.org/post"
+      data-vl-input-name="files"
+      data-vl-error-message-filesize="De grootte van het bestand mag maximaal :maxFsz zijn."
+      data-vl-error-message-maxfiles="Je kan maximaal :maxfl file(s) uploaden."
+      data-vl-max-files="5"
+      data-vl-max-size="204800"
+    ></vl-upload>
+
+    <vl-upload
+      id="vl-upload-max-10-kb"
+      data-vl-url="http://httpbin.org/post"
+      data-vl-input-name="files"
+      data-vl-error-message-filesize="De grootte van het bestand mag maximaal :maxFsz zijn."
+      data-vl-max-size="10000"
+    ></vl-upload>
+
+    <vl-upload
+      id="vl-upload-unique"
+      data-vl-url="http://httpbin.org/post"
+      data-vl-input-name="files"
+      error-message-filesize="De grootte van het bestand mag maximaal :maxFsz zijn."
+      error-message-maxfiles="Je kan maximaal :maxfl file(s) uploaden."
+      data-vl-max-files="2"
+      data-vl-max-size="10000000"
+      disallow-duplicates="true"
+    ></vl-upload>
+
+    <vl-upload
+      id="vl-upload-file-types"
+      data-vl-url="http://httpbin.org/post"
+      data-vl-input-name="files"
+      data-vl-max-files="10"
+      data-vl-max-size="10000000"
+      data-vl-accepted-files="application/pdf, .png"
+      data-vl-error-message-accepted-files="Je kan enkel :filetype bestanden opladen"
+    ></vl-upload>
+
+    <vl-upload
+      id="vl-upload-full-body-drop"
+      data-vl-url="http://httpbin.org/post"
+      data-vl-input-name="files"
+      data-vl-full-body-drop
+    ></vl-upload>
+
+    <button id="vl-upload-listener-button" is="vl-button" onclick="addListener()">Voeg listener toe</button>
+    <script>
+      // eslint-disable-next-line no-unused-vars
+      const addListener = () => {
+        document.querySelector('vl-upload[id="vl-upload"]').on('vl.upload.hook.fileChange', (event) => {
+          console.log(event);
+          console.log(vl.upload.dropzoneInstances[0].files);
+          document.querySelector(
+            '#vl-upload-log',
+          ).innerText = `Bestanden in vl-upload: ${vl.upload.dropzoneInstances[0].files.map((f) => f.name)}`;
+        });
+      };
+    </script>
+    <span id="vl-upload-log"></span>
+
+    <vl-upload id="vl-upload-programmatically" data-vl-input-name="files"></vl-upload>
+    <button
+      is="vl-button"
+      id="add-file"
+      slot="actions"
+      onclick="document.querySelector('#vl-upload-programmatically').addFile({name: 'bestand.pdf', size: '1000'});"
+    >
+      Voeg programmatisch bestand toe
+    </button>
+
+    <button
+      is="vl-button"
+      id="clear-all"
+      onclick="document.querySelectorAll('vl-upload').forEach(upload => upload.clear());"
+    >
+      Verwijder bestanden uit alle uploads
+    </button>
+
+    <vl-upload id="vl-upload-error" url="http://httpbin.org/post" data-vl-input-name="files" data-vl-error></vl-upload>
+
+    <vl-upload
+      id="vl-upload-success"
+      url="http://httpbin.org/post"
+      data-vl-input-name="files"
+      data-vl-success
+    ></vl-upload>
+
+    <vl-upload
+      id="vl-upload-custom-text"
+      url="http://httpbin.org/post"
+      data-vl-input-name="files"
+      id="vl-upload"
+      data-vl-title="Afbeelding toevoegen"
+      data-vl-sub-title="Sleep de afbeelding naar hier om toe te voegen"
+    ></vl-upload>
+
+    <vl-upload id="vl-title-sub-title-slot" url="http://httpbin.org/post" data-vl-input-name="files">
+      <span slot="title">Titel</span>
+      <span slot="sub-title">Sub-titel</span>
+    </vl-upload>
+
+    <vl-upload url="http://httpbin.org/post" data-vl-input-name="files" id="vl-upload-focus"></vl-upload>
+    <button is="vl-button" onclick="document.getElementById('vl-upload-focus').focus();" slot="actions">Focus</button>
+
+    <vl-upload
+      url="http://httpbin.org/post"
+      data-vl-input-name="files"
+      id="vl-upload-disabled"
+      data-vl-disabled
+    ></vl-upload>
+  </body>
+</html>

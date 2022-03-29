@@ -13,16 +13,18 @@
 // Components
 // ==========================================================================
 @import "../../../node_modules/@govflanders/vl-ui-modal/src/scss/modal";
-@import "../icon/styles.scss";
-@import "../link/styles.scss";
-@import "../action-group/styles.scss";
-@import "../button/styles.scss";
 
 // ==========================================================================
 // Util
 // ==========================================================================
 @import "../../../node_modules/@govflanders/vl-ui-util/src/scss/util";
 
+@import "../../components/grid/styles.scss";
+@import "../../components/icon/styles.scss";
+@import "../../components/link/styles.scss";
+@import "../../components/action-group/styles.scss";
+
 :host([data-vl-allow-overflow]) dialog {
   overflow: visible;
 }
+

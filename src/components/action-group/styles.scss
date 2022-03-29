@@ -1,25 +1,15 @@
-
-// ==========================================================================
-// Vlaanderen UI -- ActionGroup
-// ==========================================================================
 @charset "utf-8";
-
-// ==========================================================================
-// Core
-// ==========================================================================
 @import "../../../node_modules/@govflanders/vl-ui-core/src/scss/core";
-
-// ==========================================================================
-// Components
-// ==========================================================================
 @import "../../../node_modules/@govflanders/vl-ui-action-group/src/scss/action-group";
-
-// ==========================================================================
-// Util
-// ==========================================================================
 @import "../../../node_modules/@govflanders/vl-ui-util/src/scss/util";
 
-.vl-action-group > *,
+// extra styling for the action-group in the current setup of the legacy vl-modal component
 .vl-action-group > ::slotted(*) {
-  @extend .vl-button
+  margin-right: 1.4rem;
+}
+
+slot[name="button"]:only-child {
+  &::slotted(*:last-child){
+    margin-right: 0;
+  }
 }
