@@ -21,9 +21,10 @@ const capabilities = {
   'browserstack.key': process.env.browserstack_password,
   'browserstack.local': true,
   'browserstack.localIdentifier': identifier,
-  'browserstack.selenium_version': '4.0.0-alpha-6',
+  'browserstack.selenium_version': '4.1.2',
   'browserstack.idleTimeout': 300,
   'browserstack.SO_TIMEOUT': 300,
+  'browserstack.networkLogs': true,
 };
 
 const startConfig = {
