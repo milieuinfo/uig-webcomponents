@@ -1,4 +1,4 @@
-import { LitElement, css, html, unsafeCSS } from 'lit';
+import { LitElement, css, html, unsafeCSS, nothing } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import '../functional-header';
 import '../grid';
@@ -36,6 +36,7 @@ export class VlCookieStatement extends LitElement {
       date: { type: String, attribute: 'data-vl-date', reflect: true },
       inModal: { type: Boolean },
       cookies: { type: Array },
+      isInContext: { type: Boolean },
     };
   }
 
@@ -206,20 +207,23 @@ export class VlCookieStatement extends LitElement {
                           gebruikt.
                         </p>
                       </vl-typography>
-                    </div>
-                    <div is="vl-column" data-vl-size="12" data-vl-medium-size="12">
-                      <button
-                        is="vl-button"
-                        @click=${() => {
-                          this.dispatchEvent(
-                            new CustomEvent('vl-click-preferences-button', {
-                              bubbles: true,
-                            }),
-                          );
-                        }}
-                      >
-                        Beheer uw voorkeuren
-                      </button>
+                      ${this.isInContext
+                        ? html`
+                            <br />
+                            <button
+                              is="vl-button"
+                              @click=${() => {
+                                this.dispatchEvent(
+                                  new CustomEvent('vl-click-preferences-button', {
+                                    bubbles: true,
+                                  }),
+                                );
+                              }}
+                            >
+                              Beheer uw cookievoorkeuren
+                            </button>
+                          `
+                        : nothing}
                     </div>
 
                     <div id="cookie-usage" is="vl-column" data-vl-size="12" data-vl-medium-size="12">

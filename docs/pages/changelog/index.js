@@ -16,6 +16,7 @@ const unreleased = [
           When migrating from the legacy package to this new package, we mentioned a bug in the analytics attribute.
           This is fixed, along with some other issues. We took the opportunity to refactor the component.
         </p>
+        <p>TO DO projectName</p>
       </li>
       <li>
         <p><code>vl-cookie-statement</code></p>

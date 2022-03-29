@@ -17,10 +17,14 @@ export class VlCookieStatementContext extends LitElement {
     changedProperties.forEach((oldValue, propName) => {
       switch (propName) {
         case 'consent':
-          // this.consent.extraCookies = this.extraCookies;
+          if (this.consent) {
+            this.consent.isInContext = true;
+          }
           break;
         case 'statement':
-          // this.statement.extraCookies = this.extraCookies;
+          if (this.statement) {
+            this.statement.isInContext = true;
+          }
           break;
         default:
           break;
@@ -37,6 +41,9 @@ export class VlCookieStatementContext extends LitElement {
       @vl-click-preferences-button=${() => {
         this.consent.open = true;
         this.consent.view = VIEWS.PREFERENCES;
+      }}
+      @vl-submitted=${() => {
+        this.consent.open = false;
       }}
     ></slot>`;
   }

@@ -36,4 +36,4 @@ export const submit = (reference) => {
 };
 
 export { defaultOptIns, handleOptIns } from './optins';
-export { resetCookieConsent } from './cookies';
+export { resetCookieConsent, getAllCookies } from './cookies';

@@ -38,6 +38,7 @@ export class VlCookieConsent extends LitElement {
       },
       view: { type: Number },
       projectName: { type: String, attribute: 'data-vl-project-name', reflect: true },
+      isInContext: { type: Boolean },
     };
   }
 
@@ -95,8 +96,18 @@ export class VlCookieConsent extends LitElement {
       }
     };
 
+    const getTitle = () => {
+      if (this.view === VIEWS.COOKIE_CONSENT) {
+        return 'cookie-informatie';
+      }
+      if (this.view === VIEWS.PREFERENCES && this.isInContext) {
+        return `Cookievoorkeuren - ${this.projectName}`;
+      }
+      return null;
+    };
+
     return html`<vl-modal
-      data-vl-title=${ifDefined(this.view === VIEWS.COOKIE_CONSENT ? 'Cookie-informatie' : null)}
+      data-vl-title=${ifDefined(getTitle())}
       data-vl-not-cancellable
       data-vl-not-auto-closable
       ${ref(this.modalRef)}
