@@ -18,6 +18,10 @@ import { VlMapVectorLayer } from "../../../layer/vector-layer";
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-modify-actions.html|Demo}
  */
 export class VlMapModifyAction extends VlMapLayerAction {
+  static get _observedAttributes() {
+    return ["snapping", "snapping-pixel-tolerance"];
+  }
+
   disconnectedCallback() {
     this.__removeSnappingLayerStyleChangedEventListener();
   }
@@ -38,6 +42,14 @@ export class VlMapModifyAction extends VlMapLayerAction {
       snapping: this.__snappingOptions,
     };
     return new VlModifyAction(layer, this._callback, options);
+  }
+
+  _snappingChangedCallback() {
+    this._processAction();
+  }
+
+  _snappingPixelToleranceChangedCallback() {
+    this._processAction();
   }
 
   get __snappingOptions() {

@@ -55,12 +55,12 @@
 </test-fixture>
 
 <script type="module">
+    import {
+      VlCompositeVectorLayer,
+      VlCompositeVectorSource,
+    } from "vl-mapactions/dist/vl-mapactions";
     import {VlMapModifyAction} from "../../../../../../../../../lib";
     import {awaitUntil} from "../../../../../../../../utils/core";
-    import {
-        VlCompositeVectorLayer,
-        VlCompositeVectorSource,
-    } from "vl-mapactions/dist/vl-mapactions";
 
     suite("vl-map-modify-action", () => {
         const sandbox = sinon.createSandbox();
@@ -132,6 +132,28 @@
             modifyMetSnappingOpWfsLagenAction.remove();
 
             await awaitUntil(() => removeEventListenerSpy.called);
+        });
+
+        test("snapping aanzetten zorgt dat de action opnieuw processed wordt", async () => {
+            const map = fixture("vl-map-modify-action-fixture");
+            const modifyAction = map.querySelector("vl-map-modify-action");
+            await awaitUntil(() => modifyAction.action != null);
+            const processActionSpy = sandbox.spy(modifyAction, '_processAction');
+
+            modifyAction.setAttribute('data-vl-snapping', '');
+
+            await awaitUntil(() => processActionSpy.called);
+        });
+
+        test("snapping pixel tolerance wijzigen zorgt dat de action opnieuw processed wordt", async () => {
+            const map = fixture("vl-map-modify-action-fixture");
+            const modifyAction = map.querySelector("vl-map-modify-action");
+            await awaitUntil(() => modifyAction.action != null);
+            const processActionSpy = sandbox.spy(modifyAction, '_processAction');
+
+            modifyAction.setAttribute('data-vl-snapping-pixel-tolerance', '100');
+
+            await awaitUntil(() => processActionSpy.called);
         });
     });
 </script>
