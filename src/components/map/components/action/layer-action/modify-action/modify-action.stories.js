@@ -1,7 +1,7 @@
 import { html } from "lit-html";
 import "../../../../../map";
 import { args, argTypes } from "../config";
-import { docsIntro } from "../../../../../../../.storybook/utils.js";
+import { docsIntro, TYPES } from "../../../../../../../.storybook/utils.js";
 
 export default {
   title: "custom-elements/vl-map/vl-map-modify-action",
@@ -21,7 +21,7 @@ export default {
     ...argTypes,
     snapping: {
       name: "data-vl-snapping",
-      type: {summary: "boolean"},
+      type: TYPES.BOOLEAN,
       description: "Attribute enables snapping on the vl-map-wfs-layers that are added to this action.",
       control: {disable: true},
       table: {
@@ -30,7 +30,7 @@ export default {
     },
     snappingPixelTolerance: {
       name: "data-vl-snapping-pixel-tolerance",
-      type: {summary: "number"},
+      type: TYPES.NUMBER,
       description: "Attribute configures the maximum distance (in pixels) between a feature and your pointing device before snapping occurs.",
       control: {disable: true},
       table: {
