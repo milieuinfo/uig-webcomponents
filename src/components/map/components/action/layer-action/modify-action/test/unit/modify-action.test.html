@@ -134,7 +134,7 @@
             await awaitUntil(() => removeEventListenerSpy.called);
         });
 
-        test("snapping aanzetten zorgt dat de action opnieuw processed wordt", async () => {
+        test("changes to the snapping attribute reprocesses the action", async () => {
             const map = fixture("vl-map-modify-action-fixture");
             const modifyAction = map.querySelector("vl-map-modify-action");
             await awaitUntil(() => modifyAction.action != null);
@@ -145,7 +145,7 @@
             await awaitUntil(() => processActionSpy.called);
         });
 
-        test("snapping pixel tolerance wijzigen zorgt dat de action opnieuw processed wordt", async () => {
+        test("changes to the snapping pixel tolerance attribute reprocesses the action", async () => {
             const map = fixture("vl-map-modify-action-fixture");
             const modifyAction = map.querySelector("vl-map-modify-action");
             await awaitUntil(() => modifyAction.action != null);
