@@ -7,42 +7,11 @@ import { removeStorybooksDefaultStyling } from '../../../.storybook/utils';
 
 const unreleased = [
   {
-    version: '2.2.6',
+    version: 'Unreleased',
     date: '?',
     children: html`<ul>
       <li>
-        <p><code>vl-info-tile</code></p>
-        <p>When migrating the info tile, we made the toggleable feature reactive.</p>
-      </li>
-      <li>
-        <p><code>vl-upload</code></p>
-        <p>Added as a legacy component.</p>
-      </li>
-      <li>
-        <p><code>vl-radio</code></p>
-        <p>Added as a legacy component.</p>
-      </li>
-      <li>
-        <p><code>vl-tabs</code></p>
-        <p>Added as a legacy component.</p>
-      </li>
-      <li>
-        <p><code>vl-action-group</code></p>
-        <p>Adjusted the stylesheet in order to work with the implementation of the legacy <code>vl-modal</code>.</p>
-      </li>
-      <li>
-        <p><code>vl-button</code></p>
-        <p>
-          Removed the <code>vl-button-link</code> extension from the stylesheet. Moved it to the right component, the
-          <code>vl-link</code>.
-        </p>
-      </li>
-      <li>
-        <p><code>vl-link</code></p>
-        <p>Removed the <code>vl-button</code> styles from the stylesheet.</p>
-      </li>
-      <li>
-        <p><code>vl-modal</code></p>
+        <p><code>vl-toaster-legacy</code></p>
         <p>Added as a legacy component.</p>
       </li>
     </ul>`,
