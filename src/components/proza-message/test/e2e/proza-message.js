@@ -1,7 +1,7 @@
 import { VlElement, By, Key } from '../../../../utils/test';
 import { VlButton } from '../../../../components/button/test/e2e/button';
 import { VlTypography } from '../../../../components/typography/test/e2e/typography';
-import VlToaster from '../../../../../node_modules/vl-ui-toaster/test/e2e/components/vl-toaster';
+import { VlToaster } from '../../../../legacy/toaster/test/e2e/toaster';
 
 export class VlProzaMessage extends VlElement {
   async getEditButton() {

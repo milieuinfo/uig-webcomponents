@@ -18,6 +18,10 @@ const unreleased = [
           the monorepo.</p>
         </p>
       </li>
+      <li>
+        <p><code>vl-toaster-legacy</code></p>
+        <p>Added as a legacy component.</p>
+      </li>
     </ul>`,
   },
 ];

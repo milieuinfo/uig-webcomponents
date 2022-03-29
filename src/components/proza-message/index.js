@@ -7,8 +7,8 @@ import { ProzaRestClient } from './proza-rest-client';
 import { VlTypography } from '../typography';
 import '../button';
 import '../icon';
-import '../../../node_modules/vl-ui-toaster/dist/vl-toaster';
-import toasterStyles from '../../../node_modules/vl-ui-toaster/dist/style.css';
+import '../../legacy/toaster';
+import toasterStyles from '../../legacy/toaster/styles.scss';
 
 import '@govflanders/vl-ui-alert/dist/js/alert.js';
 

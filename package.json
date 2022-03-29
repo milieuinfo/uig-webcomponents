@@ -1,6 +1,6 @@
 {
   "name": "uig-webcomponents",
-  "version": "2.2.5",
+  "version": "2.2.6-alpha-02",
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -45,9 +45,7 @@
     "lit": "^2.1.2",
     "swipe-detect": "^1.0.1",
     "tinymce": "^5.10.3",
-    "vl-mapactions": "^4.0.1",
-    "vl-ui-toaster": "^3.0.9",
-    "vl-ui-alert": "^4.1.1"
+    "vl-mapactions": "^4.0.1"
   },
   "devDependencies": {
     "@govflanders/vl-ui-icon-list": "^3.12.3",
@@ -86,6 +84,7 @@
     "@govflanders/vl-ui-search-results": "^3.12.3",
     "@govflanders/vl-ui-tabs": "^3.12.17",
     "@govflanders/vl-ui-titles": "^3.12.3",
+    "@govflanders/vl-ui-toaster": "^3.12.3",
     "@govflanders/vl-ui-toggle": "^3.12.17",
     "@govflanders/vl-ui-tooltip": "^3.12.3",
     "@govflanders/vl-ui-typography": "^3.12.17",
