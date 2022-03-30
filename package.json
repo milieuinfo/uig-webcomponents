@@ -74,6 +74,7 @@
     "@govflanders/vl-ui-link-list": "^3.12.17",
     "@govflanders/vl-ui-loader": "^3.12.3",
     "@govflanders/vl-ui-modal": "^3.12.7",
+    "@govflanders/vl-ui-multiselect": "^3.11.5",
     "@govflanders/vl-ui-pager": "^3.12.24",
     "@govflanders/vl-ui-pill": "^3.12.17",
     "@govflanders/vl-ui-popover": "^3.12.17",

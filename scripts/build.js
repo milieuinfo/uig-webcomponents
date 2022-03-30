@@ -30,6 +30,7 @@ const buildConfig = {
     'side-navigation',
     'titles',
     'video-player',
+    'multiselect',
   ],
   componentsWithStylesheetAndInlineStyling: ['button', 'pill', 'tooltip'],
 };
