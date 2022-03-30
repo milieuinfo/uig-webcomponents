@@ -1,5 +1,5 @@
 import { Key, By, Page, config } from '../../../../utils/test';
-import { VlMultiSelect } from '../..';
+import { VlMultiSelect } from './multiselect';
 // const { VlDatepicker } = require('vl-ui-datepicker').Test;
 
 export class VlMultiSelectPage extends Page {
