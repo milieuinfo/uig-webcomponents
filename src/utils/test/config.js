@@ -27,6 +27,7 @@ export const config = {
   browserName: activeBrowser.name,
   browserVersion: activeBrowser.version,
   browserstack: argv.browserstack,
+  gridEnabled: argv.grid,
   gridUrl: 'http://selenium-hub:4444/wd/hub',
   baseUrl: `http://localhost:${basePort}/src/`,
   sbUrl: `http://localhost:8080/${sbRoot}iframe.html`,
