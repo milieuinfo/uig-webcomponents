@@ -20,6 +20,7 @@ const activeBrowser =
 
 const sbRoot = argv.local ? '' : 'storybook-static/';
 const basePort = argv.local ? '8081' : '8080';
+const host = argv.grid ? 'tests' : 'localhost';
 
 export const config = {
   osName: activeBrowser.os.name,
@@ -29,6 +30,6 @@ export const config = {
   browserstack: argv.browserstack,
   gridEnabled: argv.grid,
   gridUrl: 'http://selenium-hub:4444/wd/hub',
-  baseUrl: `http://localhost:${basePort}/src/`,
-  sbUrl: `http://localhost:8080/${sbRoot}iframe.html`,
+  baseUrl: `http://${host}:${basePort}/src/`,
+  sbUrl: `http://${host}:8080/${sbRoot}iframe.html`,
 };
