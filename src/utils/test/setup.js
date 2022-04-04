@@ -17,15 +17,9 @@ before((done) => {
 
 after((done) => {
   try {
-    if (driver) {
-      driver.close().then(() => {
-        driver.quit().then(() => {
-          done();
-        });
-      });
-    } else {
+    driver.close().then(() => {
       done();
-    }
+    });
   } catch (e) {
     process.exit();
   }
