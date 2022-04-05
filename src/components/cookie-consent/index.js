@@ -12,7 +12,7 @@ import '../button';
 import '../privacy';
 import '../functional-header';
 import '../action-group';
-import { defaultOptIns, canModalOpen, handleOptIns } from './utils';
+import { defaultOptIns, canModalOpen, handleOptIns, getActiveCookies } from './utils';
 import { VIEWS } from './enums';
 import { consent, preferences, privacy, statement } from './templates';
 
@@ -38,7 +38,7 @@ export class VlCookieConsent extends LitElement {
       },
       view: { type: Number },
       projectName: { type: String, attribute: 'data-vl-project-name', reflect: true },
-      isInContext: { type: Boolean },
+      fromPreferencesButton: { type: Boolean },
     };
   }
 
@@ -54,7 +54,12 @@ export class VlCookieConsent extends LitElement {
 
   firstUpdated() {
     if (canModalOpen(this.open)) {
-      this.modalRef.value.open();
+      this.dispatchEvent(
+        new CustomEvent('vl-auto-opened', {
+          bubbles: true,
+        }),
+      );
+      this.open = true;
     }
   }
 
@@ -66,9 +71,24 @@ export class VlCookieConsent extends LitElement {
           break;
         case 'open':
           if (this.open) {
+            // compare current cookies from browser everytime the consent opens
+            this.optIns = this.optIns.map((optIn) => {
+              const matchedOptIn = getActiveCookies().find((activeCookie) => activeCookie.name === optIn.name);
+              return matchedOptIn ? { ...optIn, checked: matchedOptIn.value === 'true' } : optIn;
+            });
             this.modalRef.value.open();
-          } else {
+            this.dispatchEvent(
+              new CustomEvent('vl-opened', {
+                bubbles: true,
+              }),
+            );
+          } else if (oldValue === true) {
             this.modalRef.value.close();
+            this.dispatchEvent(
+              new CustomEvent('vl-closed', {
+                bubbles: true,
+              }),
+            );
           }
           break;
         case 'analytics':
@@ -100,7 +120,7 @@ export class VlCookieConsent extends LitElement {
       if (this.view === VIEWS.COOKIE_CONSENT) {
         return 'cookie-informatie';
       }
-      if (this.view === VIEWS.PREFERENCES && this.isInContext) {
+      if (this.view === VIEWS.PREFERENCES && this.fromPreferencesButton) {
         return `Cookievoorkeuren - ${this.projectName}`;
       }
       return null;

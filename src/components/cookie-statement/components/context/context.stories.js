@@ -3,10 +3,24 @@ import '../context';
 
 export default {
   title: 'custom-elements/vl-cookie-statement/vl-cookie-statement-context',
+  args: {
+    extraCookies: [],
+  },
 };
 
 export const Default = () =>
-  html`<vl-cookie-statement-context>
+  html`<vl-cookie-statement-context
+    .extraCookies=${[
+      {
+        title: 'This is a extra cookie',
+        names: ['name one', 'name two'],
+        purpose: 'purpose',
+        domain: 'domain',
+        processor: 'processor',
+        validity: 'validity',
+      },
+    ]}
+  >
     <vl-cookie-consent
       .extraOptIns=${[
         {

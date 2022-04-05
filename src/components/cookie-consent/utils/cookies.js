@@ -7,6 +7,13 @@ const getCookieName = (name) => `${cookiePrefix}${name}`;
 
 export const getAllCookies = () => document.cookie.split(';').map((cookie) => cookie.replace(/\s/g, ''));
 
+export const getActiveCookies = () =>
+  getAllCookies().map((cookie) => {
+    const cookieWithoutPrefix = cookie.split('vl-cookie-consent-').pop();
+    const [name, value] = cookieWithoutPrefix.split('=');
+    return { name, value };
+  });
+
 export const getCookieValue = (name) => {
   const cookieName = `${getCookieName(name)}=`;
   const cookies = getAllCookies();

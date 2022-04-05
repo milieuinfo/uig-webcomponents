@@ -31,9 +31,9 @@ export const submit = (reference) => {
   );
 
   if (isUncontrolled(reference.open)) {
-    // reference.modalRef.value.close();
+    reference.modalRef.value.close();
   }
 };
 
 export { defaultOptIns, handleOptIns } from './optins';
-export { resetCookieConsent, getAllCookies } from './cookies';
+export { resetCookieConsent, getAllCookies, getActiveCookies } from './cookies';

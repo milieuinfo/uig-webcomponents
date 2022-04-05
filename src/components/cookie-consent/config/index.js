@@ -5,6 +5,9 @@ export const args = {
   analytics: false,
   extraOptIns: [],
   submitted: action('vl-submitted'),
+  autoOpened: action('vl-auto-opened'),
+  opened: action('vl-opened'),
+  closed: action('vl-closed'),
   open: false,
   projectName: 'Voortoets',
   extraCookies: [
@@ -45,6 +48,11 @@ export const argTypes = {
     table: { category: CATEGORIES.EVENTS },
     description:
       'The custom event fired on submit of the consent. In the detail of the event, you can find an array with the cookies that are set, and the values.',
+  },
+  autoOpened: {
+    name: 'vl-auto-opened',
+    table: { category: CATEGORIES.EVENTS },
+    description: '',
   },
   open: {
     table: { category: CATEGORIES.PROPERTIES },

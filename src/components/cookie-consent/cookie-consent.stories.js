@@ -31,7 +31,7 @@ const getConsent = () => {
   return lastItem;
 };
 
-const Template = ({ submitted, analytics, extraOptIns, projectName, extraCookies, open }) => html` <div
+const Template = ({ submitted, analytics, extraOptIns, projectName, extraCookies, open, opened, closed }) => html` <div
     is="vl-action-group"
   >
     <button
@@ -52,6 +52,8 @@ const Template = ({ submitted, analytics, extraOptIns, projectName, extraCookies
       submitted(event.detail);
       getConsent().open = false;
     }}
+    @vl-opened=${(event) => opened(event)}
+    @vl-closed=${(event) => closed(event)}
     data-vl-project-name=${projectName}
   ></vl-cookie-consent>`;
 
