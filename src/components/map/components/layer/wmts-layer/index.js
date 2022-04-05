@@ -1,11 +1,6 @@
-import { define } from "../../../../../utils/core";
-import { VlMapLayer } from "../../layer";
-import {
-  OlWMTSSource,
-  OlWMTSTileGrid,
-  OlTileLayer,
-  OlExtent,
-} from "vl-mapactions/dist/vl-mapactions.js";
+import { define } from '../../../../../utils/core';
+import { VlMapLayer } from '../../layer';
+import { OlWMTSSource, OlWMTSTileGrid, OlTileLayer, OlExtent } from '../../../actions';
 /**
  * VlMapWmtsLayer
  *
@@ -32,17 +27,17 @@ export class VlMapWmtsLayer extends VlMapLayer {
   }
 
   get url() {
-    const url = this.getAttribute("data-vl-url");
+    const url = this.getAttribute('data-vl-url');
     if (!url) {
-      throw new Error("URL not defined");
+      throw new Error('URL not defined');
     }
     return url;
   }
 
   get _wmtsLayer() {
-    const layer = this.getAttribute("data-vl-layer");
+    const layer = this.getAttribute('data-vl-layer');
     if (!layer) {
-      throw new Error("Layer not defined");
+      throw new Error('Layer not defined');
     }
     return layer;
   }
@@ -55,7 +50,7 @@ export class VlMapWmtsLayer extends VlMapLayer {
       maxResolution: this._maxResolution,
       visible: this._visible,
     });
-    layer.set("id", VlMapLayer._counter);
+    layer.set('id', VlMapLayer._counter);
     return layer;
   }
 
@@ -73,16 +68,16 @@ export class VlMapWmtsLayer extends VlMapLayer {
         resolutions: tileLimits.resolutions,
         matrixIds: tileLimits.matrixIds,
       }),
-      style: "",
+      style: '',
     });
   }
 
   get __wmtsFormat() {
-    return "image/png";
+    return 'image/png';
   }
 
   get __grbMatrixSet() {
-    return "BPL72VL";
+    return 'BPL72VL';
   }
 
   get __grbTileLimits() {
@@ -97,4 +92,4 @@ export class VlMapWmtsLayer extends VlMapLayer {
   }
 }
 
-define("vl-map-wmts-layer", VlMapWmtsLayer);
+define('vl-map-wmts-layer', VlMapWmtsLayer);

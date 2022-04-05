@@ -1,19 +1,19 @@
-import { html } from "lit-html";
-import "../../../../../map";
-import { argTypes as wmsLayerArgTypes } from "../config.js";
-import { argTypes as layerArgTypes } from "../../config.js";
-import { docsIntro } from "../../../../../../../.storybook/utils.js";
+import { html } from 'lit-html';
+import '../../../../../map';
+import { argTypes as wmsLayerArgTypes } from '../config.js';
+import { argTypes as layerArgTypes } from '../../config.js';
+import { docsIntro } from '../../../../../../../.storybook/utils.js';
 
 export default {
-  title: "custom-elements/vl-map/vl-map-image-wms-layer",
+  title: 'custom-elements/vl-map/vl-map-image-wms-layer',
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
       description: {
         component: docsIntro({
-          root: "map",
+          root: 'map',
           intro:
-            "Deze kaartlaag staat toe om een WMS laag aan te maken waarbij de bevraging telkens met één afbeelding gebeurt.",
+            'Deze kaartlaag staat toe om een WMS laag aan te maken waarbij de bevraging telkens met één afbeelding gebeurt.',
         }),
       },
     },

@@ -1,7 +1,7 @@
-import { define } from "../../../../../../utils/core";
-import { VlMapLayerAction } from "../../layer-action";
-import { VlMapLayerStyle } from "../../../layer-style";
-import { VlSelectAction } from "vl-mapactions/dist/vl-mapactions.js";
+import { define } from '../../../../../../utils/core';
+import { VlMapLayerAction } from '../../layer-action';
+import { VlMapLayerStyle } from '../../../layer-style';
+import { VlSelectAction } from '../../../../actions';
 
 /**
  * VlMapSelectAction
@@ -41,7 +41,7 @@ export class VlMapSelectAction extends VlMapLayerAction {
   }
 
   get _cluster() {
-    return this.getAttribute("cluster");
+    return this.getAttribute('cluster');
   }
 
   mark(id) {
@@ -81,4 +81,4 @@ export class VlMapSelectAction extends VlMapLayerAction {
   }
 }
 
-define("vl-map-select-action", VlMapSelectAction);
+define('vl-map-select-action', VlMapSelectAction);

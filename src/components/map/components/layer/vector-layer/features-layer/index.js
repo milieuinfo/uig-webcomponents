@@ -1,11 +1,6 @@
-import { define } from "../../../../../../utils/core";
-import { VlMapVectorLayer } from "../../vector-layer";
-import {
-  OlVectorSource,
-  OlGeoJSON,
-  OlClusterSource,
-  OlPoint,
-} from "vl-mapactions/dist/vl-mapactions.js";
+import { define } from '../../../../../../utils/core';
+import { VlMapVectorLayer } from '../../vector-layer';
+import { OlVectorSource, OlGeoJSON, OlClusterSource, OlPoint } from '../../../../actions';
 
 /**
  * VlMapFeaturesLayer
@@ -26,10 +21,7 @@ import {
  */
 export class VlMapFeaturesLayer extends VlMapVectorLayer {
   static get _observedAttributes() {
-    return VlMapVectorLayer._observedAttributes.concat([
-      "auto-extent",
-      "features",
-    ]);
+    return VlMapVectorLayer._observedAttributes.concat(['auto-extent', 'features']);
   }
 
   constructor() {
@@ -50,13 +42,11 @@ export class VlMapFeaturesLayer extends VlMapVectorLayer {
    * @return {object}
    */
   get features() {
-    return this.__featuresSource
-      ? this.__featuresSource.getFeatures()
-      : this._featuresFromAttribute;
+    return this.__featuresSource ? this.__featuresSource.getFeatures() : this._featuresFromAttribute;
   }
 
   get _featuresFromAttribute() {
-    const features = this.getAttribute("features");
+    const features = this.getAttribute('features');
     return features ? this.__readGeoJsonFeatures(features) : [];
   }
 
@@ -66,23 +56,23 @@ export class VlMapFeaturesLayer extends VlMapVectorLayer {
    * @param {object} features
    */
   set features(features) {
-    this.setAttribute("features", JSON.stringify(features));
+    this.setAttribute('features', JSON.stringify(features));
   }
 
   get _autoExtent() {
-    return this.getAttribute("auto-extent") != undefined;
+    return this.getAttribute('auto-extent') != undefined;
   }
 
   get _autoExtentMaxZoom() {
-    return this.getAttribute("auto-extent-max-zoom");
+    return this.getAttribute('auto-extent-max-zoom');
   }
 
   get cluster() {
-    return this.getAttribute("cluster") != undefined;
+    return this.getAttribute('cluster') != undefined;
   }
 
   get _clusterDistance() {
-    return this.getAttribute("cluster-distance");
+    return this.getAttribute('cluster-distance');
   }
 
   /**
@@ -104,9 +94,7 @@ export class VlMapFeaturesLayer extends VlMapVectorLayer {
    */
   getFeature(id) {
     if (this.__featuresSource && this.__featuresSource.getFeatures()) {
-      return this.__featuresSource.getFeatures().filter((feature) => {
-        return feature.getId() === id;
-      })[0];
+      return this.__featuresSource.getFeatures().filter((feature) => feature.getId() === id)[0];
     }
   }
 
@@ -122,14 +110,11 @@ export class VlMapFeaturesLayer extends VlMapVectorLayer {
         .getSource()
         .getFeatures()
         .filter((cluster) => {
-          const features = cluster.get("features");
+          const features = cluster.get('features');
           if (features) {
-            return features.some((feature) => {
-              return feature.getId() === id;
-            });
-          } else {
-            return false;
+            return features.some((feature) => feature.getId() === id);
           }
+          return false;
         })[0];
     }
   }
@@ -174,9 +159,7 @@ export class VlMapFeaturesLayer extends VlMapVectorLayer {
    */
   addFeatureCollection(featureCollection) {
     if (this.__featuresSource) {
-      this.__featuresSource.addFeatures(
-        this._geoJSON.readFeatures(featureCollection)
-      );
+      this.__featuresSource.addFeatures(this._geoJSON.readFeatures(featureCollection));
       this._featuresChanged();
     }
   }
@@ -205,10 +188,7 @@ export class VlMapFeaturesLayer extends VlMapVectorLayer {
   }
 
   get boundingBox() {
-    if (
-      this.__featuresSource &&
-      this.__featuresSource.getFeatures().length > 0
-    ) {
+    if (this.__featuresSource && this.__featuresSource.getFeatures().length > 0) {
       return this.__featuresSource.getExtent();
     }
   }
@@ -223,14 +203,13 @@ export class VlMapFeaturesLayer extends VlMapVectorLayer {
   __createClusterSource(source) {
     return new OlClusterSource({
       distance: this._clusterDistance,
-      source: source,
+      source,
       geometryFunction: (feature) => {
         const geometry = feature.getGeometry();
         if (geometry instanceof OlPoint) {
           return geometry;
-        } else {
-          return this.__ignoreClustering();
         }
+        return this.__ignoreClustering();
       },
     });
   }
@@ -251,4 +230,4 @@ export class VlMapFeaturesLayer extends VlMapVectorLayer {
   }
 }
 
-define("vl-map-features-layer", VlMapFeaturesLayer);
+define('vl-map-features-layer', VlMapFeaturesLayer);

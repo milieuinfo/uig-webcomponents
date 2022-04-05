@@ -1,6 +1,6 @@
-import { define } from "../../../../../../utils/core";
-import { VlMapLayerAction } from "../../layer-action";
-import { VlModifyAction } from "vl-mapactions/dist/vl-mapactions.js";
+import { define } from '../../../../../../utils/core';
+import { VlMapLayerAction } from '../../layer-action';
+import { VlModifyAction } from '../../../../actions';
 
 /**
  * VlMapModifyAction
@@ -33,4 +33,4 @@ export class VlMapModifyAction extends VlMapLayerAction {
   }
 }
 
-define("vl-map-modify-action", VlMapModifyAction);
+define('vl-map-modify-action', VlMapModifyAction);

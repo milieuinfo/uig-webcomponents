@@ -1,6 +1,6 @@
-import { define } from "../../../../../../utils/core";
-import { VlMapDrawAction } from "../../draw-action";
-import { VlDrawPolygonAction } from "vl-mapactions/dist/vl-mapactions.js";
+import { define } from '../../../../../../utils/core';
+import { VlMapDrawAction } from '../../draw-action';
+import { VlDrawPolygonAction } from '../../../../actions';
 
 /**
  * VlMapDrawPolygonAction
@@ -19,4 +19,4 @@ export class VlMapDrawPolygonAction extends VlMapDrawAction {
   }
 }
 
-define("vl-map-draw-polygon-action", VlMapDrawPolygonAction);
+define('vl-map-draw-polygon-action', VlMapDrawPolygonAction);

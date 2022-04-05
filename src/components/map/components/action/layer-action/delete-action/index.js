@@ -1,7 +1,7 @@
-import { define } from "../../../../../../utils/core";
-import { VlDeleteAction } from "vl-mapactions/dist/vl-mapactions.js";
-import { VlMapLayerAction } from "../../layer-action";
-import { VlMapLayerStyle } from "../../../layer-style";
+import { define } from '../../../../../../utils/core';
+import { VlDeleteAction } from '../../../../actions';
+import { VlMapLayerAction } from '../../layer-action';
+import { VlMapLayerStyle } from '../../../layer-style';
 
 /**
  * VlMapDeleteAction
@@ -55,9 +55,8 @@ export class VlMapDeleteAction extends VlMapLayerAction {
     return (features, resolve, reject) => {
       if (this.__callback) {
         return this.__callback(features, resolve, reject);
-      } else {
-        features.forEach((feature) => resolve(feature));
       }
+      features.forEach((feature) => resolve(feature));
     };
   }
 
@@ -69,4 +68,4 @@ export class VlMapDeleteAction extends VlMapLayerAction {
   }
 }
 
-define("vl-map-delete-action", VlMapDeleteAction);
+define('vl-map-delete-action', VlMapDeleteAction);

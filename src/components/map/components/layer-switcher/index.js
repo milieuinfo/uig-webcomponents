@@ -1,7 +1,7 @@
-import { vlElement, define, awaitUntil } from "../../../../utils/core";
-import "../../../form-message";
-import "../../../checkbox";
-import formMessageStyles from "../../../form-message/styles.scss";
+import { vlElement, define, awaitUntil } from '../../../../utils/core';
+import '../../../form-message';
+import '../../../checkbox';
+import formMessageStyles from '../../../form-message/styles.scss';
 
 /**
  * VlMapLayerSwitcher
@@ -48,7 +48,7 @@ export class VlMapLayerSwitcher extends vlElement(HTMLElement) {
   }
 
   get _slot() {
-    return this._element.querySelector("slot");
+    return this._element.querySelector('slot');
   }
 
   get _hasLayerInputs() {
@@ -56,13 +56,11 @@ export class VlMapLayerSwitcher extends vlElement(HTMLElement) {
   }
 
   get _layerInputs() {
-    return this._slot
-      .assignedElements()
-      .filter((input) => input.hasAttribute("data-vl-layer"));
+    return this._slot.assignedElements().filter((input) => input.hasAttribute('data-vl-layer'));
   }
 
   get _mapElement() {
-    return this.closest("vl-map");
+    return this.closest('vl-map');
   }
 
   get _nonBaseLayers() {
@@ -70,45 +68,35 @@ export class VlMapLayerSwitcher extends vlElement(HTMLElement) {
   }
 
   _getLayer(input) {
-    return this._nonBaseLayers.find(
-      (layer) => layer.title == input.dataset.vlLayer
-    );
+    return this._nonBaseLayers.find((layer) => layer.title == input.dataset.vlLayer);
   }
 
   _getInputTemplate(title) {
-    return this._template(
-      `<vl-checkbox data-vl-label="${title}" data-vl-layer="${title}"></vl-checkbox>`
-    );
+    return this._template(`<vl-checkbox data-vl-label="${title}" data-vl-layer="${title}"></vl-checkbox>`);
   }
 
   async _processInputs() {
     if (!this._hasLayerInputs && this._nonBaseLayers) {
       await this._nonBaseLayersReady();
-      this._nonBaseLayers.forEach((layer) =>
-        this.append(this._getInputTemplate(layer.title))
-      );
+      this._nonBaseLayers.forEach((layer) => this.append(this._getInputTemplate(layer.title)));
     }
     this._addChangeListeners();
     this._addMapListener();
   }
 
   _nonBaseLayersReady() {
-    return Promise.all(
-      this._nonBaseLayers.map((layer) => awaitUntil(() => layer.ready))
-    );
+    return Promise.all(this._nonBaseLayers.map((layer) => awaitUntil(() => layer.ready)));
   }
 
   _addChangeListeners() {
     this._layerInputs.forEach((input) => {
       this._initializeInput(input);
-      input.addEventListener("change", () => this._setLayerVisibility(input));
+      input.addEventListener('change', () => this._setLayerVisibility(input));
     });
   }
 
   _addMapListener() {
-    this._mapElement.on("moveend", () =>
-      this._computeInputsDisabledAttribute()
-    );
+    this._mapElement.on('moveend', () => this._computeInputsDisabledAttribute());
   }
 
   _initializeInput(input) {
@@ -127,21 +115,19 @@ export class VlMapLayerSwitcher extends vlElement(HTMLElement) {
   }
 
   _computeInputsDisabledAttribute() {
-    this._layerInputs.forEach((input) =>
-      this._computeInputDisabledAttribute(input, this._mapElement.resolution)
-    );
+    this._layerInputs.forEach((input) => this._computeInputDisabledAttribute(input, this._mapElement.resolution));
   }
 
   _computeInputDisabledAttribute(input, resolution) {
     const layer = this._getLayer(input);
     if (layer) {
       if (layer.isVisibleAtResolution(resolution)) {
-        input.removeAttribute("disabled");
+        input.removeAttribute('disabled');
       } else {
-        input.setAttribute("disabled", "");
+        input.setAttribute('disabled', '');
       }
     }
   }
 }
 
-define("vl-map-layer-switcher", VlMapLayerSwitcher);
+define('vl-map-layer-switcher', VlMapLayerSwitcher);
