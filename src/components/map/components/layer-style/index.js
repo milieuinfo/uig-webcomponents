@@ -1,10 +1,5 @@
-import { vlElement, define } from "../../../../utils/core";
-import {
-  OlStyle,
-  OlStyleFill,
-  OlStyleStroke,
-  OlStyleText,
-} from "vl-mapactions/dist/vl-mapactions.js";
+import { vlElement, define } from '../../../../utils/core';
+import { OlStyle, OlStyleFill, OlStyleStroke, OlStyleText } from '../../actions';
 
 /**
  * VlMapLayerStyle
@@ -41,7 +36,7 @@ export class VlMapLayerStyle extends vlElement(HTMLElement) {
    * @Return {string}
    */
   get color() {
-    return this.getAttribute("color") || "rgba(2, 85, 204, 0.8)";
+    return this.getAttribute('color') || 'rgba(2, 85, 204, 0.8)';
   }
 
   /**
@@ -50,7 +45,7 @@ export class VlMapLayerStyle extends vlElement(HTMLElement) {
    * @Return {string}
    */
   get borderColor() {
-    return this.getAttribute("border-color") || "rgba(2, 85, 204, 1)";
+    return this.getAttribute('border-color') || 'rgba(2, 85, 204, 1)';
   }
 
   /**
@@ -59,7 +54,7 @@ export class VlMapLayerStyle extends vlElement(HTMLElement) {
    * @Return {number}
    */
   get borderSize() {
-    return this.getAttribute("border-size") || 1;
+    return this.getAttribute('border-size') || 1;
   }
 
   /**
@@ -68,7 +63,7 @@ export class VlMapLayerStyle extends vlElement(HTMLElement) {
    * @Return {string}
    */
   get textColor() {
-    return this.getAttribute("text-color") || "#FFF";
+    return this.getAttribute('text-color') || '#FFF';
   }
 
   /**
@@ -77,7 +72,7 @@ export class VlMapLayerStyle extends vlElement(HTMLElement) {
    * @Return {string}
    */
   get textBackgroundColor() {
-    return this.getAttribute("text-background-color") || "rgba(0, 0, 0, 0)";
+    return this.getAttribute('text-background-color') || 'rgba(0, 0, 0, 0)';
   }
 
   /**
@@ -86,7 +81,7 @@ export class VlMapLayerStyle extends vlElement(HTMLElement) {
    * @Return {string}
    */
   get textBorderColor() {
-    return this.getAttribute("text-border-color") || "rgba(255, 255, 255, 0)";
+    return this.getAttribute('text-border-color') || 'rgba(255, 255, 255, 0)';
   }
 
   /**
@@ -95,7 +90,7 @@ export class VlMapLayerStyle extends vlElement(HTMLElement) {
    * @Return {number}
    */
   get textBorderSize() {
-    return Number(this.getAttribute("text-border-size") || 1);
+    return Number(this.getAttribute('text-border-size') || 1);
   }
 
   /**
@@ -104,7 +99,7 @@ export class VlMapLayerStyle extends vlElement(HTMLElement) {
    * @Return {string}
    */
   get textSize() {
-    return this.getAttribute("text-size") || "10px";
+    return this.getAttribute('text-size') || '10px';
   }
 
   /**
@@ -113,7 +108,7 @@ export class VlMapLayerStyle extends vlElement(HTMLElement) {
    * @Return {string}
    */
   get textFeatureAttributeName() {
-    return this.getAttribute("text-feature-attribute-name") || null;
+    return this.getAttribute('text-feature-attribute-name') || null;
   }
 
   /**
@@ -122,7 +117,7 @@ export class VlMapLayerStyle extends vlElement(HTMLElement) {
    * @Return {number}
    */
   get textOffsetX() {
-    return this.getAttribute("text-offset-x") || 0;
+    return this.getAttribute('text-offset-x') || 0;
   }
 
   /**
@@ -131,7 +126,7 @@ export class VlMapLayerStyle extends vlElement(HTMLElement) {
    * @Return {number}
    */
   get textOffsetY() {
-    return this.getAttribute("text-offset-y") || 0;
+    return this.getAttribute('text-offset-y') || 0;
   }
 
   /**
@@ -169,7 +164,7 @@ export class VlMapLayerStyle extends vlElement(HTMLElement) {
       font: `${this.textSize} "Flanders Art Sans",sans-serif`,
       text: this.featureLabelFunction(feature),
       fill: new OlStyleFill({
-        color: textColor ? textColor : this.textColor,
+        color: textColor || this.textColor,
       }),
       stroke: new OlStyleStroke({
         color: this.textBorderColor,
@@ -200,9 +195,7 @@ export class VlMapLayerStyle extends vlElement(HTMLElement) {
    * @Return {Function|null} de functie die gebruikt wordt om de label te maken op basis van een feature
    */
   get featureLabelFunction() {
-    return this.textFeatureAttributeName
-      ? (feature) => feature.get(this.textFeatureAttributeName)
-      : () => "";
+    return this.textFeatureAttributeName ? (feature) => feature.get(this.textFeatureAttributeName) : () => '';
   }
 
   _hasUniqueStyles(features) {
@@ -215,31 +208,23 @@ export class VlMapLayerStyle extends vlElement(HTMLElement) {
   }
 
   _getStyles(features) {
-    return features.map((feature) => {
-      return feature.getStyle();
-    });
+    return features.map((feature) => feature.getStyle());
   }
 
   _containsObject(objects) {
-    return objects.some((object) => {
-      return !!object;
-    });
+    return objects.some((object) => !!object);
   }
 
   _areIdentical(objects) {
-    return objects.every((object, i, objects) => {
-      return object == objects[0];
-    });
+    return objects.every((object, i, objects) => object == objects[0]);
   }
 
   _setStyleOnParent() {
     if (this.parentElement) {
-      customElements
-        .whenDefined(this.parentElement.tagName.toLowerCase())
-        .then(() => {
-          this.parentElement.style = this;
-        });
+      customElements.whenDefined(this.parentElement.tagName.toLowerCase()).then(() => {
+        this.parentElement.style = this;
+      });
     }
   }
 }
-define("vl-map-layer-style", VlMapLayerStyle);
+define('vl-map-layer-style', VlMapLayerStyle);

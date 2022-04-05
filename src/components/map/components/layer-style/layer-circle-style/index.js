@@ -1,11 +1,6 @@
-import { define } from "../../../../../utils/core";
-import { VlMapLayerStyle } from "../../layer-style";
-import {
-  OlStyle,
-  OlStyleCircle,
-  OlStyleStroke,
-  OlStyleFill,
-} from "vl-mapactions/dist/vl-mapactions.js";
+import { define } from '../../../../../utils/core';
+import { VlMapLayerStyle } from '../../layer-style';
+import { OlStyle, OlStyleCircle, OlStyleStroke, OlStyleFill } from '../../../actions';
 
 /**
  * VlMapLayerCircleStyle
@@ -31,7 +26,7 @@ export class VlMapLayerCircleStyle extends VlMapLayerStyle {
    * @Return {number}
    */
   get size() {
-    return this.getAttribute("size") || 5;
+    return this.getAttribute('size') || 5;
   }
 
   /**
@@ -40,7 +35,7 @@ export class VlMapLayerCircleStyle extends VlMapLayerStyle {
    * @Return {string}
    */
   get borderColor() {
-    return this.getAttribute("border-color") || "rgba(0, 0, 0, 0)";
+    return this.getAttribute('border-color') || 'rgba(0, 0, 0, 0)';
   }
 
   /**
@@ -49,7 +44,7 @@ export class VlMapLayerCircleStyle extends VlMapLayerStyle {
    * @Return {number}
    */
   get borderSize() {
-    return this.getAttribute("border-size") || 1;
+    return this.getAttribute('border-size') || 1;
   }
 
   /**
@@ -58,7 +53,7 @@ export class VlMapLayerCircleStyle extends VlMapLayerStyle {
    * @Return {string}
    */
   get clusterTextColor() {
-    return this.getAttribute("cluster-text-color") || "#FFF";
+    return this.getAttribute('cluster-text-color') || '#FFF';
   }
 
   /**
@@ -67,20 +62,18 @@ export class VlMapLayerCircleStyle extends VlMapLayerStyle {
    * @Return {string}
    */
   get clusterColor() {
-    return this.getAttribute("cluster-color") || "rgba(2, 85, 204, 1)";
+    return this.getAttribute('cluster-color') || 'rgba(2, 85, 204, 1)';
   }
 
   get _styleFunction() {
     return (feature, resolution) => {
-      const features =
-        feature && feature.get ? feature.get("features") || [] : [];
+      const features = feature && feature.get ? feature.get('features') || [] : [];
       const size = features.length || 1;
-      const clusterMultiplier =
-        size == 1 ? 1 : Math.max(1.5, size.toString().length);
-      let textColor = this.textColor;
-      let color = this.color;
-      let borderColor = this.borderColor;
-      let borderSize = this.borderSize;
+      const clusterMultiplier = size == 1 ? 1 : Math.max(1.5, size.toString().length);
+      let { textColor } = this;
+      let { color } = this;
+      let { borderColor } = this;
+      let { borderSize } = this;
       let radius = size > 1 ? this.size * clusterMultiplier : this.size;
 
       if (this.parentElement && this.parentElement.cluster) {
@@ -93,10 +86,7 @@ export class VlMapLayerCircleStyle extends VlMapLayerStyle {
           color = styleImage.getFill().getColor();
           borderColor = styleImage.getStroke().getColor();
           borderSize = styleImage.getStroke().getWidth();
-          radius =
-            size > 1
-              ? styleImage.getRadius() * clusterMultiplier
-              : styleImage.getRadius();
+          radius = size > 1 ? styleImage.getRadius() * clusterMultiplier : styleImage.getRadius();
         } else if (this._containsStyle(features)) {
           color = this.clusterColor;
           textColor = this.clusterTextColor;
@@ -108,13 +98,13 @@ export class VlMapLayerCircleStyle extends VlMapLayerStyle {
       return new OlStyle({
         image: new OlStyleCircle({
           fill: new OlStyleFill({
-            color: color,
+            color,
           }),
           stroke: new OlStyleStroke({
             color: borderColor,
             width: borderSize,
           }),
-          radius: radius,
+          radius,
         }),
         text: this._getTextStyle(feature, textColor),
       });
@@ -123,12 +113,11 @@ export class VlMapLayerCircleStyle extends VlMapLayerStyle {
 
   get featureLabelFunction() {
     return (feature) => {
-      const features =
-        feature && feature.get ? feature.get("features") || [] : [];
+      const features = feature && feature.get ? feature.get('features') || [] : [];
       const size = features.length || 1;
-      return size > 1 ? size.toString() : "";
+      return size > 1 ? size.toString() : '';
     };
   }
 }
 
-define("vl-map-layer-circle-style", VlMapLayerCircleStyle);
+define('vl-map-layer-circle-style', VlMapLayerCircleStyle);
