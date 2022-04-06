@@ -1,22 +1,18 @@
 export class OpenLayersUtil {
   static createDummyLayer(id, source) {
     return {
-      id: id,
+      id,
       addEventListener: () => {},
-      getSource: () => {
-        return source || OpenLayersUtil.createDummySource();
-      },
+      getSource: () => source || OpenLayersUtil.createDummySource(),
     };
   }
 
   static createDummyLayerGroup(id) {
     return {
-      id: id,
-      getLayers: () => {
-        return {
-          getArray: () => {},
-        };
-      },
+      id,
+      getLayers: () => ({
+        getArray: () => {},
+      }),
       addEventListener: () => {},
     };
   }
@@ -25,9 +21,7 @@ export class OpenLayersUtil {
     return {
       addEventListener: () => {},
       getExtent: () => {},
-      getFeatures: () =>{
-        return features;
-      },
+      getFeatures: () => features,
       clear: () => {},
       addFeatures: () => {},
     };

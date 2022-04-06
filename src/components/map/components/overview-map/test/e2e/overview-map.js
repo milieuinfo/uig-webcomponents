@@ -1,4 +1,4 @@
-import { VlElement } from "../../../../../../utils/test";
+import { VlElement } from '../../../../../../utils/test';
 
 export class VlMapOverviewMap extends VlElement {
   async toggleBaseLayer() {

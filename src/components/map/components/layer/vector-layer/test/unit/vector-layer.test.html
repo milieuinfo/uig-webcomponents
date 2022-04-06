@@ -5,10 +5,7 @@
     <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
     <script src="/node_modules/web-component-tester/browser.js"></script>
 
-    <script
-      type="module"
-      src="../../../../../../../../lib/components/map/index.js"
-    ></script>
+    <script type="module" src="../../../../../../../../lib/components/map/index.js"></script>
   </head>
 
   <body>
@@ -22,9 +19,7 @@
             data-vl-features='{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[147055,197908]},"properties":null,"id":1}]}'
           >
           </vl-map-features-layer>
-          <vl-map-layer-style
-            data-vl-color="rgba(255,0,0,1)"
-          ></vl-map-layer-style>
+          <vl-map-layer-style data-vl-color="rgba(255,0,0,1)"></vl-map-layer-style>
         </vl-map>
       </template>
     </test-fixture>
@@ -32,15 +27,9 @@
     <test-fixture id="vl-map-wfs-layer-fixture">
       <template>
         <vl-map>
-          <vl-map-wfs-layer
-            data-vl-name="foobar"
-            data-vl-url="http://dummy/wfs"
-            data-vl-layers="layer1,layer2"
-          >
+          <vl-map-wfs-layer data-vl-name="foobar" data-vl-url="http://dummy/wfs" data-vl-layers="layer1,layer2">
           </vl-map-wfs-layer>
-          <vl-map-layer-style
-            data-vl-color="rgba(255,0,0,1)"
-          ></vl-map-layer-style>
+          <vl-map-layer-style data-vl-color="rgba(255,0,0,1)"></vl-map-layer-style>
         </vl-map>
       </template>
     </test-fixture>
@@ -60,12 +49,5 @@
         </vl-map>
       </template>
     </test-fixture>
-
-    <script type="module">
-      import {
-        OlStyle,
-        OlStyleFill,
-      } from "../../../../../lib/components/map/mapactions/index.js";
-    </script>
   </body>
 </html>

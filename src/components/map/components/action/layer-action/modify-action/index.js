@@ -1,25 +1,14 @@
 import { define } from '../../../../../../utils/core';
 import { VlMapLayerAction } from '../../layer-action';
-import { VlModifyAction } from '../../../../actions';
+import { VlModifyAction } from './modify-action';
 
-/**
- * VlMapModifyAction
- * @class
- * @classdesc De kaart aanpas actie component.
- *
- * @extends VlMapLayerAction
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-modify-actions.html|Demo}
- */
 export class VlMapModifyAction extends VlMapLayerAction {
   /**
-   * Zet de functie die wordt uitgevoerd na het uitvoeren van de aanpas actie
+   * Set the function to be executed after executing the edit action
    *
-   * @param {Function} callback functie met volgende argumenten:
-   *                            - {ol.Feature} de aangepaste feature
-   *                            - {Function} reject callback met argument de aangepaste feature waarbij de feature terug op zijn oorspronkelijke staat wordt gezet
+   * @param {Function} callback function with the following arguments:
+   *                            - {ol.Feature} the edited feature
+   *                            - {Function} reject callback with argument the modified feature where the feature is returned to its original state
    */
   onModify(callback) {
     this.__callback = callback;

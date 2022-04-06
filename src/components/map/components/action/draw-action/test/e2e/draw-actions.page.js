@@ -2,7 +2,7 @@ import { VlMapDrawPointAction } from './draw-point-action';
 import { VlMapDrawLineAction } from './draw-line-action';
 import { VlMapDrawPolygonAction } from './draw-polygon-action';
 import { config } from '../../../../../../../utils/test';
-import { VlMapPage } from '../../../../map/test/e2e/map.page.js';
+import { VlMapPage } from '../../../../../test/e2e/map.page';
 
 export class VlMapDrawActionsPage extends VlMapPage {
   async getMapWithDrawPointAction() {

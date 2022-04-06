@@ -11,7 +11,7 @@ export default {
       description: {
         component: docsIntro({
           root: 'map',
-          intro: 'De kaart basis laag component voor GRB ortho.',
+          intro: 'The map base layer component for GRB ortho.',
         }),
       },
     },

@@ -13,7 +13,7 @@ describe('vl-map-draw-action', async () => {
     return vlMapPage.load();
   });
 
-  it('als gebruiker kan ik punten tekenen op een kaart', async () => {
+  it('as a user I can draw points on a map', async () => {
     const map = await vlMapPage.getMapWithDrawPointAction();
     const action = await vlMapPage.getDrawPointAction();
     const layers = await map.getLayers();
@@ -32,7 +32,7 @@ describe('vl-map-draw-action', async () => {
     assert.lengthOf(features, 2);
   });
 
-  it('als gebruiker kan ik lijnen tekenen op een kaart', async () => {
+  it('as a user I can draw lines on a map', async () => {
     const map = await vlMapPage.getMapWithDrawLineAction();
     const action = await vlMapPage.getDrawLineAction();
     const layers = await map.getLayers();
@@ -51,7 +51,7 @@ describe('vl-map-draw-action', async () => {
     assert.lengthOf(features, 2);
   });
 
-  it('als gebruiker kan ik polygonen tekenen op een kaart', async () => {
+  it('as a user I can draw polygons on a map', async () => {
     const map = await vlMapPage.getMapWithDrawPolygonAction();
     const action = await vlMapPage.getDrawPolygonAction();
     const layers = await map.getLayers();
@@ -75,7 +75,7 @@ describe('vl-map-draw-action', async () => {
     assert.lengthOf(features, 2);
   });
 
-  // it("als gebruiker kan ik punten tekenen op een kaart waarbij er bij het tekenen gesnapped wordt op bepaalde lagen", async () => {
+  // it("as a user I can draw points on a map and when drawing the points are snapped on certain layers", async () => {
   //   const map = await vlMapPage.getMapWithDrawPointSnapAction();
   //   const action = await vlMapPage.getDrawPointSnapAction();
   //   const layers = await map.getLayers();

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+
+    <script type="module" src="../../../../../../../lib/components/map/index.js"></script>
+    <script src="/node_modules/sinon/pkg/sinon.js"></script>
+  </head>
+
+  <body>
+    <script type="module">
+      import LambertCoordinaat from '../../../../../../../lib/components/map/utils/lambert-coordinaat/lambert-coordinaat';
+
+      suite('lambert-coördinaat', () => {
+        const expectLambertCoordinaat = function (lambertCoordinaat, expectedX, expectedY) {
+          expect(lambertCoordinaat).not.to.be.undefined;
+          expect(lambertCoordinaat.x).to.be.equal(expectedX);
+          expect(lambertCoordinaat.y).to.be.equal(expectedY);
+          expect(lambertCoordinaat.toString()).to.be.equal(`${expectedX}, ${expectedY}`);
+        };
+
+        test('a Lambert coordinate based on a free text, returns "undefined"', () => {
+          expect(LambertCoordinaat.of('test')).to.be.undefined;
+          expect(LambertCoordinaat.of('Gent')).to.be.undefined;
+        });
+
+        test('a Lambert coordinate based on "null", returns "undefined"', () => {
+          expect(LambertCoordinaat.of(null)).to.be.undefined;
+        });
+
+        test('a Lambert coordinate based on "undefined", returns "undefined"', () => {
+          expect(LambertCoordinaat.of(undefined)).to.be.undefined;
+        });
+
+        test('a Lambert coordinate based on an empty string, returns "undefined"', () => {
+          expect(LambertCoordinaat.of('')).to.be.undefined;
+        });
+
+        test('a Lambert coordinate based on a space, returns "undefined"', () => {
+          expect(LambertCoordinaat.of(' ')).to.be.undefined;
+        });
+
+        test('a Lambert coordinate based on a valid coordinate, returns a LambertCoordinate', () => {
+          const lambertCoordinaat = LambertCoordinaat.of('104719.27, 192387.25');
+          expectLambertCoordinaat(lambertCoordinaat, 104719.27, 192387.25);
+        });
+
+        test('a Lambert coordinate based on a valid integer coordinate, returns a LambertCoordinate', () => {
+          const lambertCoordinaat = LambertCoordinaat.of('123456, 34523');
+          expectLambertCoordinaat(lambertCoordinaat, 123456, 34523);
+        });
+
+        test('a Lambert coordinate based on a valid coordinate with parentheses and separated by a semicolon, gives a LambertCoordinate', () => {
+          const lambertCoordinaat = LambertCoordinaat.of('(123456.78; 345232.04)');
+          expectLambertCoordinaat(lambertCoordinaat, 123456.78, 345232.04);
+        });
+
+        test('a Lambert coordinate based on an x-coordinate without a decimal number, gives a LambertCoordinate', () => {
+          const lambertCoordinaat = LambertCoordinaat.of('104719, 192387.25');
+          expectLambertCoordinaat(lambertCoordinaat, 104719, 192387.25);
+        });
+
+        test('a Lambert coordinate based on an x and y coordinate without a decimal number, gives a LambertCoordinate', () => {
+          const lambertCoordinaat = LambertCoordinaat.of('104719, 192387');
+          expectLambertCoordinaat(lambertCoordinaat, 104719, 192387);
+        });
+
+        test('a Lambert coordinate based on a y-coordinate without a decimal number, gives a LambertCoordinate', () => {
+          const lambertCoordinaat = LambertCoordinaat.of('104719.27, 192387');
+          expectLambertCoordinaat(lambertCoordinaat, 104719.27, 192387);
+        });
+
+        test('a Lambert coordinate based on a coordinate with integers, gives a LambertCoordinate', () => {
+          const lambertCoordinaat = LambertCoordinaat.of('104, 19');
+          expectLambertCoordinaat(lambertCoordinaat, 104, 19);
+        });
+
+        test('a Lambert coordinate based on a coordinate separated by a semicolon gives a LambertCoordinate', () => {
+          const lambertCoordinaat = LambertCoordinaat.of('104719.27; 192387.25');
+          expectLambertCoordinaat(lambertCoordinaat, 104719.27, 192387.25);
+        });
+
+        test('a Lambert coordinate based on a coordinate separated by a comma gives a LambertCoordinate', () => {
+          const lambertCoordinaat = LambertCoordinaat.of('104719.27, 192387.25');
+          expectLambertCoordinaat(lambertCoordinaat, 104719.27, 192387.25);
+        });
+
+        test('a Lambert coordinate based on a coordinate with parentheses, gives a LambertCoordinate', () => {
+          const lambertCoordinaat = LambertCoordinaat.of('(104719.27; 192387.25)');
+          expectLambertCoordinaat(lambertCoordinaat, 104719.27, 192387.25);
+        });
+
+        test('a Lambert coordinate based on a coordinate with only a starting parenthesis gives a LambertCoordinate', () => {
+          const lambertCoordinaat = LambertCoordinaat.of('(104719.27; 192387.25');
+          expectLambertCoordinaat(lambertCoordinaat, 104719.27, 192387.25);
+        });
+
+        test('a Lambert coordinate based on a coordinate with only a parenthesis gives a LambertCoordinate', () => {
+          const lambertCoordinaat = LambertCoordinaat.of('104719.27; 192387.25)');
+          expectLambertCoordinaat(lambertCoordinaat, 104719.27, 192387.25);
+        });
+
+        test('a Lambert coordinate based on a coordinate with spaces before it, gives a LambertCoordinate', () => {
+          const lambertCoordinaat = LambertCoordinaat.of('     104719.27; 192387.25)');
+          expectLambertCoordinaat(lambertCoordinaat, 104719.27, 192387.25);
+        });
+
+        test('a Lambert coordinate based on a coordinate without a space after the separator gives a LambertCoordinate', () => {
+          const lambertCoordinaat = LambertCoordinaat.of('     104719.27;192387.25)');
+          expectLambertCoordinaat(lambertCoordinaat, 104719.27, 192387.25);
+        });
+
+        test('a Lambert coordinate based on a coordinate with several spaces after the separator gives a LambertCoordinate', () => {
+          const lambertCoordinaat = LambertCoordinaat.of('104719.27;     192387.25)');
+          expectLambertCoordinaat(lambertCoordinaat, 104719.27, 192387.25);
+        });
+
+        test('a Lambert coordinate based on a coordinate with 3 digits after the decimal point, gives a LambertCoordinate', () => {
+          const lambertCoordinaat = LambertCoordinaat.of('104719.271, 192387.252');
+          expectLambertCoordinaat(lambertCoordinaat, 104719.27, 192387.25);
+        });
+
+        test('a Lambert coordinate based on a coordinate with 5 digits after the decimal point, gives a LambertCoordinate', () => {
+          const lambertCoordinaat = LambertCoordinaat.of('104719.27123, 192387.25456');
+          expectLambertCoordinaat(lambertCoordinaat, 104719.27, 192387.25);
+        });
+
+        test('a Lambert Coordinate, is a valid Lambert Coordinate', () => {
+          const value = LambertCoordinaat.of('104719.27, 192387.25');
+          expect(LambertCoordinaat.isLambertCoordinaat(value)).to.be.true;
+        });
+
+        test('"null", is not a valid LambertCoordinate', () => {
+          expect(LambertCoordinaat.isLambertCoordinaat(null)).to.be.false;
+        });
+
+        test('"undefined", is not a valid LambertCoordinate', () => {
+          expect(LambertCoordinaat.isLambertCoordinaat(undefined)).to.be.false;
+        });
+
+        test('an empty string, is not a valid LambertCoordinate', () => {
+          expect(LambertCoordinaat.isLambertCoordinaat('')).to.be.false;
+        });
+      });
+    </script>
+  </body>
+</html>

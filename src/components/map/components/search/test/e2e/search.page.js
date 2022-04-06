@@ -1,6 +1,6 @@
 import { VlMapSearch } from './search.js';
 import { config, By } from '../../../../../../utils/test';
-import { VlMapPage } from '../../../map/test/e2e/map.page.js';
+import { VlMapPage } from '../../../../test/e2e/map.page';
 
 export class VlMapSearchPage extends VlMapPage {
   async getMap() {

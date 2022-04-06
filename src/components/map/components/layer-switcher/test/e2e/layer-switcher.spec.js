@@ -1,7 +1,7 @@
-import { assert, getDriver } from "../../../../../../utils/test";
-import { VlMapLayerSwitcherPage } from "./layer-switcher.page.js";
+import { assert, getDriver } from '../../../../../../utils/test';
+import { VlMapLayerSwitcherPage } from './layer-switcher.page.js';
 
-describe("vl-map-layer-switcher", async () => {
+describe('vl-map-layer-switcher', async () => {
   let driver;
   let vlMapPage;
 
@@ -11,14 +11,14 @@ describe("vl-map-layer-switcher", async () => {
     return vlMapPage.load();
   });
 
-  it("de kaartlaag checkbox zal standaard aangevinkt zijn als de laag zichtbaar is", async () => {
+  it('the map layer checkbox will be checked by default when the layer is visible', async () => {
     const map = await vlMapPage.getMapWithLayerSwitcher();
     const layerSwitcher = await map.getLayerSwitcher();
-    const checkbox = await layerSwitcher.getCheckboxForLayer("Kaartlaag 1");
+    const checkbox = await layerSwitcher.getCheckboxForLayer('Kaartlaag 1');
     await assert.eventually.isTrue(checkbox.isChecked());
   });
 
-  // it("als gebruiker kan ik een kaartlaag tonen en verbergen", async () => {
+  // it("as a user I can show and hide a map layer", async () => {
   //   const map = await vlMapPage.getMapWithLayerSwitcher();
   //   const sideSheet = await map.getSideSheet();
   //   const layerSwitcher = await map.getLayerSwitcher();
@@ -55,7 +55,7 @@ describe("vl-map-layer-switcher", async () => {
   //   }
   // });
 
-  it("als gebruiker kan ik een kaartlaag tonen en verbergen via een gepersonaliseerde kaartlaag optie", async () => {
+  it('as a user I can show and hide a map layer via a personalized map layer option', async () => {
     const map = await vlMapPage.getMapWithCustomLayerSwitcher();
     const sideSheet = await map.getSideSheet();
     const layerSwitcher = await map.getLayerSwitcher();
@@ -65,7 +65,7 @@ describe("vl-map-layer-switcher", async () => {
     await assert.eventually.isTrue(layer.isVisible());
 
     await sideSheet.open();
-    const checkbox = await layerSwitcher.getCheckboxForLayer("layer-1");
+    const checkbox = await layerSwitcher.getCheckboxForLayer('layer-1');
     await assert.eventually.isTrue(layer.isVisible());
     await checkbox.click();
     await assert.eventually.isFalse(layer.isVisible());
@@ -73,14 +73,12 @@ describe("vl-map-layer-switcher", async () => {
     await assert.eventually.isTrue(layer.isVisible());
   });
 
-  it("als gebruiker kan ik een kaartlaag met resoluties tonen en verbergen op het juiste zoom niveau", async () => {
+  it('as a user I can show and hide a map layer with resolutions at the correct zoom level', async () => {
     const map = await vlMapPage.getMapWithResolutionLayerSwitcher();
     const sideSheet = await map.getSideSheet();
     const layerSwitcher = await map.getLayerSwitcher();
     await sideSheet.open();
-    const checkbox = await layerSwitcher.getCheckboxForLayer(
-      "resolution-layer"
-    );
+    const checkbox = await layerSwitcher.getCheckboxForLayer('resolution-layer');
 
     await driver.wait(async () => await checkbox.isDisabled());
     await map.zoomIn();

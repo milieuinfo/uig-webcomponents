@@ -10,7 +10,7 @@ export default {
       description: {
         component: docsIntro({
           root: 'map',
-          intro: 'De kaart zoek op adres component.',
+          intro: 'The map search by address component.',
         }),
       },
     },

@@ -1,17 +1,17 @@
-import { html } from "lit-html";
-import "../../../../../map";
-import { args, argTypes } from "../config";
-import { docsIntro } from "../../../../../../../.storybook/utils.js";
+import { html } from 'lit-html';
+import '../../../../../map';
+import { args, argTypes } from '../config';
+import { docsIntro } from '../../../../../../../.storybook/utils.js';
 
 export default {
-  title: "custom-elements/vl-map/vl-map-modify-action",
+  title: 'custom-elements/vl-map/vl-map-modify-action',
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
       description: {
         component: docsIntro({
-          root: "map",
-          intro: "De kaart aanpas actie component.",
+          root: 'map',
+          intro: 'The map modify action component.',
         }),
       },
     },
@@ -22,17 +22,17 @@ export default {
 
 export const MapWithPointModify = () => {
   const features = {
-    type: "FeatureCollection",
+    type: 'FeatureCollection',
     features: [
       {
-        type: "Feature",
+        type: 'Feature',
         id: 1,
-        geometry: { type: "Point", coordinates: [157836.54, 190879.51] },
+        geometry: { type: 'Point', coordinates: [157836.54, 190879.51] },
       },
       {
-        type: "Feature",
+        type: 'Feature',
         id: 2,
-        geometry: { type: "Point", coordinates: [152161.53, 212358.26] },
+        geometry: { type: 'Point', coordinates: [152161.53, 212358.26] },
       },
     ],
   };
@@ -50,13 +50,13 @@ export const MapWithPointModify = () => {
 
 export const MapWithLineModify = () => {
   const features = {
-    type: "FeatureCollection",
+    type: 'FeatureCollection',
     features: [
       {
-        type: "Feature",
+        type: 'Feature',
         id: 1,
         geometry: {
-          type: "LineString",
+          type: 'LineString',
           coordinates: [
             [157836.54, 190879.51],
             [152161.53, 212358.26],
@@ -79,13 +79,13 @@ export const MapWithLineModify = () => {
 
 export const MapWithPolygonModify = () => {
   const features = {
-    type: "FeatureCollection",
+    type: 'FeatureCollection',
     features: [
       {
-        type: "Feature",
+        type: 'Feature',
         id: 1,
         geometry: {
-          type: "Polygon",
+          type: 'Polygon',
           coordinates: [
             [
               [104896.56, 193972.22],

@@ -1,24 +1,10 @@
+import OlGeoJSON from 'ol/format/GeoJSON';
+import OlVectorSource from 'ol/source/Vector';
+import OlClusterSource from 'ol/source/Cluster';
+import OlPoint from 'ol/geom/Point';
 import { define } from '../../../../../../utils/core';
 import { VlMapVectorLayer } from '../../vector-layer';
-import { OlVectorSource, OlGeoJSON, OlClusterSource, OlPoint } from '../../../../actions';
 
-/**
- * VlMapFeaturesLayer
- * @class
- * @classdesc Deze kaartlaag staat je toe om een set van te tonen features in te stellen.
- *
- * @extends VlMapVectorLayer
- *
- * @property {boolean} data-vl-auto-extent - Attribuut geeft aan of er automatisch gezoomt wordt op de kaartlaag zodat al de features zichtbaar zijn.
- * @property {number} data-vl-auto-extent-max-zoom - Attribuut geeft aan tot op welk niveau er maximaal automatisch gezoomd wordt bij een extent.
- * @property {boolean} data-vl-cluster - Attribuut geeft aan of de features geclusterd moeten worden of niet.
- * @property {number} data-vl-cluster-distance - Attribuut geeft aan vanaf welke afstand tussen features er geclusterd mag worden.
- * @property {string[]} data-vl-features - Attribuut die de kaartlaag bevat.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-features-layer.html|Demo}
- */
 export class VlMapFeaturesLayer extends VlMapVectorLayer {
   static get _observedAttributes() {
     return VlMapVectorLayer._observedAttributes.concat(['auto-extent', 'features']);
@@ -37,7 +23,7 @@ export class VlMapFeaturesLayer extends VlMapVectorLayer {
   }
 
   /**
-   * Geeft de OpenLayers features collectie van de kaartlaag terug.
+   * Returns the OpenLayers features collection of the map layer.
    *
    * @return {object}
    */
@@ -51,7 +37,7 @@ export class VlMapFeaturesLayer extends VlMapVectorLayer {
   }
 
   /**
-   * Zet de OpenLayers features collectie op de kaartlaag.
+   * Sut the OpenLayers features collection on the map layer.
    *
    * @param {object} features
    */
@@ -76,7 +62,7 @@ export class VlMapFeaturesLayer extends VlMapVectorLayer {
   }
 
   /**
-   * Verwijdert de stijl van al de kaartlaag features.
+   * Removes the style from all map layer features.
    */
   removeFeaturesStyle() {
     if (this.__featuresSource && this.__featuresSource.getFeatures()) {
@@ -87,7 +73,7 @@ export class VlMapFeaturesLayer extends VlMapVectorLayer {
   }
 
   /**
-   * Geeft de feature terug op basis van het id attribuut.
+   * Returns the feature based on the id attribute.
    *
    * @param {number} id
    * @return {Object}
@@ -99,7 +85,7 @@ export class VlMapFeaturesLayer extends VlMapVectorLayer {
   }
 
   /**
-   * Geeft de cluster terug op basis van het id attribuut.
+   * Returns the cluster based on the id attribute.
    *
    * @param {number} id
    * @return {boolean}
@@ -120,9 +106,9 @@ export class VlMapFeaturesLayer extends VlMapVectorLayer {
   }
 
   /**
-   * Zoom naar alle features in deze layer.
+   * Zoom to all features in this layer.
    *
-   * @param {number} maxZoom - Hoe diep er maximaal ingezoomd mag worden.
+   * @param {number} maxZoom - Maximum zoom depth
    */
   async zoomToExtent(maxZoom) {
     if (this.mapElement && this.boundingBox) {
@@ -131,7 +117,7 @@ export class VlMapFeaturesLayer extends VlMapVectorLayer {
   }
 
   /**
-   * Verwijdert alle features van de laag
+   * Removes all features from the layer
    */
   clearFeatures() {
     if (this.__featuresSource) {
@@ -141,7 +127,7 @@ export class VlMapFeaturesLayer extends VlMapVectorLayer {
   }
 
   /**
-   * Voegt een feature toe aan de kaartlaag via geojson
+   * Adds a feature to the map layer via geojson
    *
    * @param {string} feature
    */
@@ -153,7 +139,7 @@ export class VlMapFeaturesLayer extends VlMapVectorLayer {
   }
 
   /**
-   * Voegt een featurecollection toe aan de kaartlaag via geojson
+   * Adds a feature collection to the map layer via geojson
    *
    * @param {string} featureCollection
    */

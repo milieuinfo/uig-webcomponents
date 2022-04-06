@@ -1,5 +1,5 @@
-import { VlElement, By } from "../../../../../../utils/test";
-import { VlCheckbox } from "../../../../../checkbox/test/e2e/checkbox.js";
+import { VlElement, By } from '../../../../../../utils/test';
+import { VlCheckbox } from '../../../../../checkbox/test/e2e/checkbox.js';
 
 export class VlMapLayerSwitcher extends VlElement {
   async getCheckboxForLayer(name) {
@@ -9,8 +9,6 @@ export class VlMapLayerSwitcher extends VlElement {
 
   async getCheckboxes() {
     const elements = await this.findElements(By.css(`[data-vl-layer]`));
-    return Promise.all(
-      elements.map((element) => new VlCheckbox(this.driver, element))
-    );
+    return Promise.all(elements.map((element) => new VlCheckbox(this.driver, element)));
   }
 }

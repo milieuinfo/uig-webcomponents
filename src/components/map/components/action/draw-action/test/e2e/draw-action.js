@@ -1,4 +1,4 @@
-import { VlMapLayerAction } from "../../../layer-action/test/e2e/layer-action";
+import { VlMapLayerAction } from '../../../layer-action/test/e2e/layer-action';
 
 export class VlMapDrawAction extends VlMapLayerAction {
   async draw(action) {
@@ -6,8 +6,6 @@ export class VlMapDrawAction extends VlMapLayerAction {
     const layer = await this.getLayer();
     const numberOfFeatures = await layer.getNumberOfFeatures();
     await action();
-    await this.driver.wait(
-      async () => (await layer.getNumberOfFeatures()) == numberOfFeatures + 1
-    );
+    await this.driver.wait(async () => (await layer.getNumberOfFeatures()) == numberOfFeatures + 1);
   }
 }

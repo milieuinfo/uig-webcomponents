@@ -1,7 +1,7 @@
-import { assert, getDriver } from "../../../../../../../utils/test";
-import { VlMapWmtsLayerPage } from "./wmts-layer.page.js";
+import { assert, getDriver } from '../../../../../../../utils/test';
+import { VlMapWmtsLayerPage } from './wmts-layer.page.js';
 
-describe("vl-map-wmts-layer", async () => {
+describe('vl-map-wmts-layer', async () => {
   let driver;
   let page;
 
@@ -11,15 +11,12 @@ describe("vl-map-wmts-layer", async () => {
     return page.load();
   });
 
-  it("als gebruiker kan ik de details van de wmts opvragen", async () => {
+  it('as a user I can request the details of the wmts', async () => {
     const map = await page.getMapWithStandardLayer();
     const layers = await map.getWmtsLayers();
     await assert.eventually.isTrue(layers[0].isVisible());
-    await assert.eventually.equal(layers[0].getName(), "GRB Wegenkaart");
-    await assert.eventually.equal(layers[0].getLayer(), "grb_sel");
-    await assert.eventually.equal(
-      layers[0].getUrl(),
-      "https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts"
-    );
+    await assert.eventually.equal(layers[0].getName(), 'GRB Wegenkaart');
+    await assert.eventually.equal(layers[0].getLayer(), 'grb_sel');
+    await assert.eventually.equal(layers[0].getUrl(), 'https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts');
   });
 });

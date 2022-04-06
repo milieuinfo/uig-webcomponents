@@ -1,17 +1,17 @@
-import { html } from "lit-html";
-import "../../../map";
-import { argTypes } from "./config.js";
-import { docsIntro } from "../../../../../.storybook/utils.js";
+import { html } from 'lit-html';
+import '../../../map';
+import { argTypes } from './config.js';
+import { docsIntro } from '../../../../../.storybook/utils.js';
 
 export default {
-  title: "custom-elements/vl-map/vl-map-layer-style",
+  title: 'custom-elements/vl-map/vl-map-layer-style',
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
       description: {
         component: docsIntro({
-          root: "map",
-          intro: "De kaart laag style klasse.",
+          root: 'map',
+          intro: 'The map layer style class.',
         }),
       },
     },
@@ -21,12 +21,12 @@ export default {
 
 export const Default = () => {
   const features = {
-    type: "FeatureCollection",
+    type: 'FeatureCollection',
     features: [
       {
-        type: "Feature",
+        type: 'Feature',
         geometry: {
-          type: "Polygon",
+          type: 'Polygon',
           coordinates: [
             [
               [147055.0, 197908.0],
@@ -37,7 +37,7 @@ export const Default = () => {
             ],
           ],
         },
-        properties: { label: "Label1" },
+        properties: { label: 'Label1' },
       },
     ],
   };

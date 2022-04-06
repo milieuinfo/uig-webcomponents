@@ -1,21 +1,5 @@
 import { vlElement } from '../../../../utils/core';
 
-/**
- * VlMapLayer
- * @class
- * @classdesc De abstracte kaart laag klasse.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {string} data-vl-name - Attribuut bepaalt de kaartlaag naam.
- * @property {string} data-vl-hidden - Attribuut bepaalt of de kaartlaag zichtbaar is.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wms-layer.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wmts-layer.html|Demo}
- */
 export class VlMapLayer extends vlElement(HTMLElement) {
   static get _observedAttributes() {
     return ['hidden'];
@@ -46,7 +30,7 @@ export class VlMapLayer extends vlElement(HTMLElement) {
   }
 
   /**
-   * Geeft de OpenLayers kaartlaag.
+   * Returns the OpenLayers map layer.
    *
    * @return {ol.layer.Layer}
    */
@@ -55,7 +39,7 @@ export class VlMapLayer extends vlElement(HTMLElement) {
   }
 
   /**
-   * Geeft de OpenLayers kaartlaag source.
+   * Returns the OpenLayers map layer source.
    *
    * @return {ol.source}
    */
@@ -64,7 +48,7 @@ export class VlMapLayer extends vlElement(HTMLElement) {
   }
 
   /**
-   * Geeft terug ofdat de kaartlaag zichtbaar is of niet.
+   * Returns whether the map layer is visible or not.
    *
    * @return {Boolean}
    */
@@ -73,7 +57,7 @@ export class VlMapLayer extends vlElement(HTMLElement) {
   }
 
   /**
-   * Geeft de kaartlaag titel terug.
+   * Returns the map layer title.
    *
    * @return {String}
    */
@@ -82,7 +66,7 @@ export class VlMapLayer extends vlElement(HTMLElement) {
   }
 
   /**
-   * Zet de zichtbaarheid van de kaartlaag.
+   * Set the visibility of the map layer.
    *
    * @param {Boolean} value
    */
@@ -119,7 +103,7 @@ export class VlMapLayer extends vlElement(HTMLElement) {
   }
 
   /**
-   * Geeft de waarde op basis van een sleutel.
+   * Returns the value based on a key.
    *
    * @param {String} key
    * @return {Object}
@@ -128,9 +112,6 @@ export class VlMapLayer extends vlElement(HTMLElement) {
     return this._layer.get(key);
   }
 
-  /**
-   * Rendert de kaartlaag opnieuw.
-   */
   rerender() {
     if (this.mapElement) {
       this.mapElement.rerender();

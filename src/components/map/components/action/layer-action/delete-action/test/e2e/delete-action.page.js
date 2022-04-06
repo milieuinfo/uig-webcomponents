@@ -1,6 +1,6 @@
 import { VlMapDeleteAction } from './delete-action.js';
 import { config } from '../../../../../../../../utils/test';
-import { VlMapPage } from '../../../../../map/test/e2e/map.page.js';
+import { VlMapPage } from '../../../../../../test/e2e/map.page';
 
 export class VlMapDeleteActionPage extends VlMapPage {
   async getDeleteAction() {

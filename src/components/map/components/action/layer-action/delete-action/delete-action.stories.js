@@ -11,7 +11,7 @@ export default {
       description: {
         component: docsIntro({
           root: 'map',
-          intro: 'Actie om features te deleten van een layer.',
+          intro: 'Action to delete features from a layer.',
         }),
       },
     },

@@ -12,8 +12,7 @@ export default {
       description: {
         component: docsIntro({
           root: 'map',
-          intro:
-            'Deze kaartlaag staat toe om een WMS laag aan te maken waarbij de bevraging telkens met één afbeelding gebeurt.',
+          intro: 'This map layer allows to create a WMS layer where the query is done with one image at a time.',
         }),
       },
     },

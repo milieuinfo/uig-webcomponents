@@ -1,24 +1,11 @@
 import { define } from '../../../../../../utils/core';
 import { VlMapLayerAction } from '../../layer-action';
 import { VlMapLayerStyle } from '../../../layer-style';
-import { VlSelectAction } from '../../../../actions';
+import { VlSelectAction } from './select-action';
 
-/**
- * VlMapSelectAction
- * @class
- * @classdesc De kaart selecteer actie component.
- *
- * @property {boolean} data-vl-cluster - Attribuut geeft aan of de features geclusterd zijn of niet.
- *
- * @extends VlMapLayerAction
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-select-action.html|Demo}
- */
 export class VlMapSelectAction extends VlMapLayerAction {
   /**
-   * Geeft de stijl die een geselecteerd feature zal krijgen.
+   * Returns the style that a selected feature will have.
    *
    * @return {Object} de stijl
    */
@@ -27,9 +14,9 @@ export class VlMapSelectAction extends VlMapLayerAction {
   }
 
   /**
-   * Zet de stijl die een geselecteerde feature zal krijgen.
+   * Set the style that a selected feature will have.
    *
-   * @param {VlMapLayerStyle|Object} style - de stijl: een VlMapLayerStyle of een OpenLayers StyleLikeF
+   * @param {VlMapLayerStyle|Object} style - the style: a VlMapLayerStyle or a OpenLayers StyleLikeF
    */
   set style(style) {
     if (style instanceof VlMapLayerStyle) {
