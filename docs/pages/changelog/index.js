@@ -16,8 +16,8 @@ const changes = [
       <li>
         <p><code>vl-map</code></p>
         <p>
-          Added the ability to configure snapping to one or more layer(s) when using the modify action.<br>
-          Upgraded <code>vl-mapactions</code> to v4.1.3.
+          Added the ability to configure snapping to one or more layer(s) when using the modify action. Upgraded
+          <code>vl-mapactions</code> to v4.1.3.
         </p>
       </li>
     </ul>`,

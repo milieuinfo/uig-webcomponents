@@ -1,6 +1,6 @@
-import { html } from "lit-html";
-import { args, argTypes } from "../config";
-import { docsIntro } from "../../../../../../../.storybook/utils.js";
+import { html } from 'lit-html';
+import { args, argTypes } from '../config';
+import { docsIntro } from '../../../../../../../.storybook/utils.js';
 
 export default {
   title: 'custom-elements/vl-map/vl-map-modify-action',

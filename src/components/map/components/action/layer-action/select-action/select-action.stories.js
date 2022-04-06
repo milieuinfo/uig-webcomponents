@@ -124,3 +124,78 @@ export const SelectWithClustering = () => {
     </vl-map>
   `;
 };
+
+export const FilteredSelect = () => {
+  const features = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        id: 1,
+        geometry: { type: "Point", coordinates: [150000, 195000] },
+      },
+      {
+        type: "Feature",
+        id: 2,
+        geometry: {
+          type: "LineString",
+          coordinates: [
+            [140815, 210000],
+            [150000, 225000],
+          ],
+        },
+      },
+      {
+        type: "Feature",
+        id: 3,
+        geometry: {
+          type: "Polygon",
+          coordinates: [
+            [
+              [135000, 193972],
+              [135000, 200000],
+              [145000, 200000],
+              [145000, 193972],
+              [135000, 193972],
+            ],
+          ],
+        },
+      },
+      {
+        type: "Feature",
+        id: 4,
+        geometry: {
+          type: "Polygon",
+          coordinates: [
+            [
+              [85000, 193972],
+              [85000, 200000],
+              [90000, 200000],
+              [90000, 193972],
+              [85000, 193972],
+            ],
+          ],
+        },
+      },
+    ],
+  };
+
+  class VlMapFilteredSelectAction extends VlMapSelectAction {
+    appliesTo(feature) {
+      return feature.getId() === 4;
+    }
+  }
+
+  define("vl-map-filtered-select-action", VlMapFilteredSelectAction);
+
+  return html`
+    <vl-map id="map">
+      <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+      <vl-map-features-layer data-vl-features=${JSON.stringify(features)}>
+        <vl-map-layer-style></vl-map-layer-style>
+        <vl-map-layer-circle-style></vl-map-layer-circle-style>
+        <vl-map-filtered-select-action data-vl-default-active></vl-map-filtered-select-action>
+      </vl-map-features-layer>
+    </vl-map>
+  `;
+};
