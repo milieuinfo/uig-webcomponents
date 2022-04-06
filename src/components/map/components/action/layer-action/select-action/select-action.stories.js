@@ -57,10 +57,10 @@ export const Default = () => {
       <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
       <vl-map-baselayer-grb></vl-map-baselayer-grb>
       <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
-      <vl-map-features-layer id="map-layer" data-vl-features=${JSON.stringify(features)}>
+      <vl-map-features-layer data-vl-features=${JSON.stringify(features)}>
         <vl-map-layer-circle-style></vl-map-layer-circle-style>
       </vl-map-features-layer>
-      <vl-map-select-action id="select-action" data-vl-default-active>
+      <vl-map-select-action data-vl-default-active>
         <vl-map-layer-circle-style
           data-vl-text-color="#000"
           data-vl-color="#FFE615"
@@ -68,11 +68,6 @@ export const Default = () => {
         ></vl-map-layer-circle-style>
       </vl-map-select-action>
     </vl-map>
-    <script>
-      const layer = document.querySelector('#map-layer');
-      const selectAction = document.querySelector('#select-action');
-      selectAction.layer = layer.layer;
-    </script>
   `;
 };
 
@@ -99,7 +94,7 @@ export const SelectWithClustering = () => {
   };
 
   return html`
-    <vl-map>
+    <vl-map id="map">
       <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
       <vl-map-baselayer-grb></vl-map-baselayer-grb>
       <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
