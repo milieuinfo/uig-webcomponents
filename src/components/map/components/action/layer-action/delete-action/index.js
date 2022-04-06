@@ -59,8 +59,7 @@ export class VlMapDeleteAction extends VlMapLayerAction {
    *
    * @Return {boolean} true if the action is allowed to be performed, false if the action may not be performed for the supplied feature and/or layer
    */
-  // eslint-disable-next-line no-unused-vars
-  appliesTo(feature, layer) {
+  appliesTo() {
     return true;
   }
 

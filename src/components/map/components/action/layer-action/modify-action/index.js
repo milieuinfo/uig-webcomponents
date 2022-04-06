@@ -45,7 +45,7 @@ export class VlMapModifyAction extends VlMapLayerAction {
    *
    * @Return {boolean} true if the action is allowed to be performed, false if the action may not be performed for the supplied feature and/or layer
    */
-  appliesTo(feature, layer) {
+  appliesTo() {
     return true;
   }
 
