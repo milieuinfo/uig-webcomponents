@@ -1,10 +1,10 @@
-import { VlSideSheet } from "../../../../../side-sheet/test/e2e/side-sheet.js";
-import { By } from "../../../../../../utils/test";
-import { VlMapSideSheetMenu } from "../../../side-sheet-menu/test/e2e/side-sheet-menu.js";
+import { VlSideSheet } from '../../../../../side-sheet/test/e2e/side-sheet.js';
+import { By } from '../../../../../../utils/test';
+import { VlMapSideSheetMenu } from '../../side-sheet-menu/test/e2e/side-sheet-menu';
 
 export class VlMapSideSheet extends VlSideSheet {
   async getMenu() {
-    const menu = await this.findElement(By.css("vl-map-side-sheet-menu"));
+    const menu = await this.findElement(By.css('vl-map-side-sheet-menu'));
     return new VlMapSideSheetMenu(this.driver, menu);
   }
 }

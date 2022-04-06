@@ -9,7 +9,7 @@ describe('vl-map-features-layer', async () => {
     return page.load();
   });
 
-  it('als gebruiker zie ik het verschil tussen een clustered layer en niet geclusterde layer', async () => {
+  it('as a user I see the difference between a clustered layer and non-clustered layer', async () => {
     const standardLayer = (await (await page.getMapWithStandardLayer()).getLayers())[0];
     const clusteredLayer = (await (await page.getMapWithClusteredLayer()).getLayers())[0];
     await assert.eventually.isFalse(standardLayer.isClustered());
@@ -18,7 +18,7 @@ describe('vl-map-features-layer', async () => {
     await assert.eventually.equal(clusteredLayer.getClusterDistance(), 100);
   });
 
-  it('als gebruiker zie ik het verschil tussen een auto extent layer en niet auto extent layer', async () => {
+  it('as a user I see the difference between an auto extent layer and not auto extent layer', async () => {
     const standardLayer = (await (await page.getMapWithStandardLayer()).getLayers())[0];
     const autoExtentLayer = (await (await page.getMapWithAutoExtentLayer()).getLayers())[0];
     await assert.eventually.isFalse(standardLayer.hasAutoExtent());
@@ -27,7 +27,7 @@ describe('vl-map-features-layer', async () => {
     await assert.eventually.equal(autoExtentLayer.getAutoExtentMaxZoom(), '3');
   });
 
-  it('als gebruiker kan ik het aantal features opvragen', async () => {
+  it('as a user I can request the number of features', async () => {
     const layer = (await (await page.getMapWithStandardLayer()).getLayers())[0];
     const features = await layer.getFeatures();
     assert.equal(features.length, 3);

@@ -1,25 +1,9 @@
-import { define } from "../../../../../utils/core";
-import { VlMapAction } from "../../action";
+import { define } from '../../../../../utils/core';
+import { VlMapAction } from '../../action';
 
-/**
- * VlMapLayerAction
- * @class
- * @classdesc De abstracte kaart actie component die verbonden is aan een kaartlaag.
- *
- * @extends VlMapAction
- *
- * @property {boolean} data-vl-layer - Attribuut wordt gebruikt om via het naam attribuut de actie te koppelen aan een kaartlaag.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-delete-action.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-draw-actions.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-modify-actions.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-select-action.html|Demo}
- */
 export class VlMapLayerAction extends VlMapAction {
   static get _observedAttributes() {
-    return ["layer"];
+    return ['layer'];
   }
 
   connectedCallback() {
@@ -28,7 +12,7 @@ export class VlMapLayerAction extends VlMapAction {
   }
 
   /**
-   * Geeft de OL6 kaartlaag.
+   * Returns the OL6 map layer.
    *
    * @return {Object}
    */
@@ -37,9 +21,9 @@ export class VlMapLayerAction extends VlMapAction {
   }
 
   /**
-   * Zet de kaartlaag.
+   * Set the map layer.
    *
-   * @param {Object} layer OL6 kaartlaag
+   * @param {Object} layer OL6 map layer
    */
   set layer(layer) {
     this._layer = layer;
@@ -48,9 +32,8 @@ export class VlMapLayerAction extends VlMapAction {
 
   get _layerElement() {
     return (
-      this._mapElement.querySelector(
-        `[data-vl-is-layer][data-vl-name="${this.dataset.vlLayer}"]`
-      ) || this.closest("[data-vl-is-layer]")
+      this._mapElement.querySelector(`[data-vl-is-layer][data-vl-name="${this.dataset.vlLayer}"]`) ||
+      this.closest('[data-vl-is-layer]')
     );
   }
 
@@ -74,4 +57,4 @@ export class VlMapLayerAction extends VlMapAction {
   }
 }
 
-define("vl-map-layer-action", VlMapLayerAction);
+define('vl-map-layer-action', VlMapLayerAction);

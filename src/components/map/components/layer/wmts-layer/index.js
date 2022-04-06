@@ -1,18 +1,10 @@
+import OlTileLayer from 'ol/layer/Tile';
+import OlWMTSSource from 'ol/source/WMTS';
+import OlWMTSTileGrid from 'ol/tilegrid/WMTS';
+import * as OlExtent from 'ol/extent';
 import { define } from '../../../../../utils/core';
 import { VlMapLayer } from '../../layer';
-import { OlWMTSSource, OlWMTSTileGrid, OlTileLayer, OlExtent } from '../../../actions';
-/**
- * VlMapWmtsLayer
- *
- * @class
- * @classdesc Een WMTS (overlay) layer
- *
- * @extends VlMapLayer
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wmts-layer.html|Demo}
- */
+
 export class VlMapWmtsLayer extends VlMapLayer {
   connectedCallback() {
     super.connectedCallback();

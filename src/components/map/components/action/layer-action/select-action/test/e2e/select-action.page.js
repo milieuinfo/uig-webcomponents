@@ -1,6 +1,6 @@
 import { VlMapSelectAction } from './select-action.js';
 import { config, By, assert } from '../../../../../../../../utils/test';
-import { VlMapPage } from '../../../../../map/test/e2e/map.page.js';
+import { VlMapPage } from '../../../../../../test/e2e/map.page';
 
 export class VlMapSelectActionPage extends VlMapPage {
   async getSelectAction() {

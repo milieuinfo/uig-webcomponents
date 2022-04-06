@@ -1,42 +1,23 @@
+import OlGeoJSON from 'ol/format/GeoJSON';
+import OlVectorLayer from 'ol/layer/Vector';
+import OlTileLayer from 'ol/layer/Tile';
+import OlVectorSource from 'ol/source/Vector';
+import OlWMTSSource from 'ol/source/WMTS';
+import OlWMTSTileGrid from 'ol/tilegrid/WMTS';
+import OlStyle from 'ol/style/Style';
+import OlStyleStroke from 'ol/style/Stroke';
+import OlStyleFill from 'ol/style/Fill';
+import * as OlExtent from 'ol/extent';
+import * as OlLoadingstrategy from 'ol/loadingstrategy';
 import { vlElement, define } from '../../../../utils/core';
-import {
-  OlWMTSSource,
-  OlWMTSTileGrid,
-  OlVectorSource,
-  OlVectorLayer,
-  OlTileLayer,
-  OlGeoJSON,
-  OlStyle,
-  OlStyleStroke,
-  OlStyleFill,
-  OlExtent,
-  OlLoadingstrategy,
-} from '../../actions';
 
-/**
- * VlMapBaseLayer
- * @class
- * @classdesc De kaart basis laag component.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {(wmts | wfs )} data-vl-type - Attribuut wordt gebruikt om aan te geven wat het type is van de kaartlaag.
- * @property {string} data-vl-url - Attribuut geeft aan via welke URL gebruikt wordt om de kaartlaag op te halen.
- * @property {string} data-vl-layer - Attribuut geeft aan wat de kaartlaag identifier is.
- * @property {string} data-vl-title - Attribuut bepaalt de titel van de kaartlaag.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map.html|Demo}
- */
 export class VlMapBaseLayer extends vlElement(HTMLElement) {
   connectedCallback() {
     this._configureMap();
   }
 
   /**
-   * Geeft het kaartlaag type terug.
+   * Returns the map layer type.
    *
    * @Return {string}
    */
@@ -45,7 +26,7 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
   }
 
   /**
-   * Geeft de kaartlaag URL terug.
+   * Returns the map layer URL.
    *
    * @Return {string}
    */
@@ -58,7 +39,7 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
   }
 
   /**
-   * Geeft de kaartlaag identifier terug.
+   * Returns the map layer identifier.
    *
    * @Return {string}
    */
@@ -71,7 +52,7 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
   }
 
   /**
-   * Geeft de kaartlaag titel terug.
+   * Returns the map layer title.
    *
    * @Return {string}
    */

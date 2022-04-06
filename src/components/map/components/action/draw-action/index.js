@@ -1,28 +1,14 @@
 import { VlMapLayerAction } from '../layer-action';
 import { VlMapVectorLayer } from '../../layer/vector-layer';
-import { VlCompositeVectorLayer } from '../../../actions';
+import { VlCompositeVectorLayer } from '../../composite-vector-layer/composite-vector-layer';
 
-/**
- * VlMapDrawAction
- * @class
- * @classdesc De abstracte kaart teken actie component.
- *
- * @extends VlMapLayerAction
- *
- * @property {string} [data-vl-snapping] - Attribuut wordt gebruikt om aan te geven dat er bij het tekenen snapping mag gebeuren, hetzij op de laag waarop getekend wordt (indien geen vl-map-wfs-layer(s) als child elementen), hetzij op de meegegeven vl-map-wfs-layers.
- * @property {number} [data-vl-snapping-pixel-tolerance=10] - Attribuut om aan te geven binnen de hoeveel pixel van een feature er gesnapped mag worden.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-draw-actions.html|Demo}
- */
 export class VlMapDrawAction extends VlMapLayerAction {
   /**
-   * Zet de functie die wordt uitgevoerd na het uitvoeren van de teken actie
+   * Set the function to be executed after executing the draw action
    *
-   * @param {Function} callback functie met volgende argumenten:
-   *                            - {ol.Feature} de getekende feature
-   *                            - {Function} reject callback zonder argument waarbij de feature terug wordt verwijderd
+   * @param {Function} callback function with the following arguments:
+   *                            - {ol.Feature} the drawn feature
+   *                            - {Function} reject callback without argument where the feature is removed again
    */
   onDraw(callback) {
     this.__callback = callback;

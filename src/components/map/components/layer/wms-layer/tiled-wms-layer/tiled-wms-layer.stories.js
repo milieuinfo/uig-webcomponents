@@ -12,7 +12,7 @@ export default {
       description: {
         component: docsIntro({
           root: 'map',
-          intro: 'Deze kaartlaag staat toe om een WMS laag aan te maken.',
+          intro: 'This map layer allows to create a WMS layer.',
         }),
       },
     },

@@ -154,7 +154,7 @@
     </test-fixture>
 
     <script type="module">
-      import { awaitUntil } from '../../../../utils/core/index.js';
+      import { awaitUntil } from '../../../../../../utils/core/index.js';
 
       suite('vl-map-layer', () => {
         const sandbox = sinon.createSandbox();
@@ -182,7 +182,7 @@
           sandbox.restore();
         });
 
-        test('kan een attribuut, titel, opvragen van de kaartlaag op basis van zijn sleutel', async () => {
+        test('can request an attribute, title, from the map layer based on its key', async () => {
           await Promise.all(
             tags.map(async (tag, index) => {
               const map = fixture(`${tag}-fixture`);
@@ -195,7 +195,7 @@
           );
         });
 
-        test('kan de zichtbaarheid van de kaartlaag opvragen en wijzigen', async () => {
+        test('can query and change map layer visibility', async () => {
           await Promise.all(
             tags.map(async (tag, index) => {
               const map = fixture(`${tag}-fixture`);
@@ -213,7 +213,7 @@
           );
         });
 
-        test(`er kan gecontroleerd worden of de kaartlaag zichtbaar is op een bepaalde resolutie (minVisibility = , maxVisibility = )`, async () => {
+        test(`it can be checked whether the map layer is visible at a certain resolution (minVisibility = , maxVisibility = )`, async () => {
           await Promise.all(
             tags.map(async (tag, index) => {
               const map = fixture(`${tag}-fixture`);
@@ -239,7 +239,7 @@
           );
         });
 
-        test('elke kaartlaag zal een id krijgen', async () => {
+        test('each map layer will have an id', async () => {
           await Promise.all(
             tags.map(async (tag, index) => {
               const map = fixture(`${tag}s-fixture`);
@@ -252,7 +252,7 @@
           );
         });
 
-        test('de kaartlaag zal toegevoegd worden aan de map', async () => {
+        test('the map layer will be added to the map', async () => {
           await Promise.all(
             tags.map(async (tag, index) => {
               const map = fixture(`${tag}-fixture`);
@@ -271,7 +271,7 @@
           );
         });
 
-        test('wanneer het hidden attribuut wijzigt zal de kaartlaag zichtbaarheid aangepast worden en de map opnieuw gerenderd worden', async () => {
+        test('when the hidden attribute changes the map layer visibility will be adjusted and the map will be rendered again', async () => {
           await Promise.all(
             tags.map(async (tag, index) => {
               const map = fixture(`${tag}-fixture`);

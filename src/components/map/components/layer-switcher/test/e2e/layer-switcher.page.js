@@ -1,5 +1,5 @@
 import { config } from '../../../../../../utils/test';
-import { VlMapPage } from '../../../map/test/e2e/map.page.js';
+import { VlMapPage } from '../../../../test/e2e/map.page';
 
 export class VlMapLayerSwitcherPage extends VlMapPage {
   async getMapWithLayerSwitcher() {

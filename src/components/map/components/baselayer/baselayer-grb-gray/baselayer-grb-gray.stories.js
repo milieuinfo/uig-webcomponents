@@ -11,7 +11,7 @@ export default {
       description: {
         component: docsIntro({
           root: 'map',
-          intro: 'De kaart basis laag component voor GRB grijstinten.',
+          intro: 'The map base layer component for GRB grayscale.',
         }),
       },
     },

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+
+    <script type="module" src="../../../../../../../../../lib/components/map/index.js"></script>
+    <script src="/node_modules/sinon/pkg/sinon.js"></script>
+  </head>
+
+  <body>
+    <test-fixture id="vl-map-features-layer-fixture">
+      <template>
+        <vl-map>
+          <vl-map-features-layer></vl-map-features-layer>
+        </vl-map>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-map-fixture">
+      <template>
+        <vl-map>
+          <vl-map-features-layer
+            data-vl-name="testlaag"
+            data-vl-min-resolution="2"
+            data-vl-max-resolution="4"
+            data-vl-features='{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[147055,197908]},"properties":null,"id":1}]}'
+          >
+          </vl-map-features-layer>
+        </vl-map>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-map-cluster-fixture">
+      <template>
+        <vl-map>
+          <vl-map-features-layer
+            data-vl-name="testlaag"
+            data-vl-cluster="true"
+            data-vl-cluster-distance="20"
+            data-vl-features='{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[147055,197908]},"properties":null,"id":1}]}'
+          >
+          </vl-map-features-layer>
+        </vl-map>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-map-auto-extent-fixture">
+      <template>
+        <vl-map>
+          <vl-map-features-layer
+            data-vl-name="testlaag"
+            data-vl-features='{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[147055,197908]},"properties":null,"id":1}, {"type":"Feature","geometry":{"type":"Point","coordinates":[148055,197908]},"properties":null,"id":2}]}'
+            data-vl-auto-extent
+          >
+          </vl-map-features-layer>
+        </vl-map>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-map-auto-extent-max-zoom-fixture">
+      <template>
+        <vl-map>
+          <vl-map-features-layer
+            data-vl-name="testlaag"
+            data-vl-features='{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[147055,197908]},"properties":null,"id":1}]}'
+            data-vl-auto-extent
+            data-vl-auto-extent-max-zoom="3"
+          >
+          </vl-map-features-layer>
+        </vl-map>
+      </template>
+    </test-fixture>
+
+    <script type="module">
+      import OlGeoJSON from 'ol/format/GeoJSON';
+      import OlFeature from 'ol/Feature';
+      import OlPoint from 'ol/geom/Point';
+      import OlStyle from 'ol/style/Style';
+
+      import { awaitUntil } from '../../../../../../../../utils/core/index.js';
+
+      suite('vl-map-features-layer', () => {
+        const sandbox = sinon.createSandbox();
+        const should = chai.should();
+        const geoJSON = new OlGeoJSON();
+
+        setup((done) => {
+          customElements.whenDefined('vl-map-features-layer').then(() => done());
+        });
+
+        teardown(() => {
+          sandbox.restore();
+        });
+
+        test('the features attribute on the map layer contains the same features as in the source', async () => {
+          const mapElement = fixture('vl-map-fixture');
+          const layerElement = mapElement.querySelector('vl-map-features-layer');
+
+          await mapElement.ready;
+          should.exist(layerElement.layer);
+
+          const layers = mapElement.map.getOverlayLayers();
+          assert.lengthOf(layers, 1);
+
+          const layer = layers[0];
+          assert.equal(geoJSON.writeFeatures(layer.getSource().getFeatures()), layerElement.getAttribute('features'));
+        });
+
+        test('after adding the map layer the map will zoom to the extent of the map layer if the auto-extent is activated', async () => {
+          let map = fixture('vl-map-fixture');
+          assert.deepEqual(map.map.getView().getCenter(), [140860.69299028325, 190532.7165957574]);
+
+          map = fixture('vl-map-auto-extent-fixture');
+          await awaitUntil(() => map.map.getView().getZoom() > 3).then(async () => {
+            assert.deepEqual(map.map.getView().getCenter(), [147555, 197908]);
+
+            map = fixture('vl-map-auto-extent-max-zoom-fixture');
+            await awaitUntil(() => map.map.getView().getZoom() === 3).then(() => {
+              assert.deepEqual(map.map.getView().getCenter(), [147055, 197908]);
+            });
+          });
+        });
+
+        test('calling zoomToExtent will zoom the map into the bounding box', async () => {
+          const map = fixture('vl-map-fixture');
+          const layerElement = map.querySelector('vl-map-features-layer');
+
+          await map.ready;
+          const view = map.map.getView();
+          assert.notDeepEqual(view.getCenter(), [147055, 197908]);
+
+          await layerElement.zoomToExtent();
+          assert.deepEqual(view.getCenter(), [147055, 197908]);
+          assert.isAbove(view.getZoom(), 3);
+
+          await layerElement.zoomToExtent(3);
+          assert.deepEqual(view.getCenter(), [147055, 197908]);
+          assert.equal(view.getZoom(), 3);
+        });
+
+        test('when adding a feature it will be automatically added to the layer and the map will zoom again to the extent of the map layer if the auto-extent is activated', async () => {
+          const map = fixture('vl-map-fixture');
+          const layerElement = map.querySelector('vl-map-features-layer');
+
+          await map.ready;
+          const layer = map.map.getOverlayLayers()[0];
+          assert.lengthOf(layer.getSource().getFeatures(), 1);
+          assert.equal(
+            geoJSON.writeFeatures(layer.getSource().getFeatures()),
+            layerElement.getAttribute('data-vl-features'),
+          );
+          assert.deepEqual(map.map.getView().getCenter(), [140860.69299028325, 190532.7165957574]);
+
+          layerElement.setAttribute(
+            'data-vl-features',
+            '{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[147055,197908]},"properties":null},{"type":"Feature","geometry":{"type":"Point","coordinates":[157055,207908]},"properties":null}]}',
+          );
+          layerElement.setAttribute('data-vl-auto-extent', '');
+          await awaitUntil(() => {
+            const layer = map.map.getOverlayLayers()[0];
+            const feature = geoJSON.writeFeatures(layer.getSource().getFeatures());
+            const hasCorrectFeatureLength = layer.getSource().getFeatures().length === 2;
+            const hasCorrectFeature = feature === layerElement.getAttribute('data-vl-features');
+            const hasCorrectView =
+              map.map.getView().getCenter()[0] == 152055 && map.map.getView().getCenter()[1] == 202908;
+            return hasCorrectFeatureLength && hasCorrectFeature && hasCorrectView;
+          });
+        });
+
+        test('can request the boundingbox of the features on the layer', async () => {
+          const map = fixture('vl-map-features-layer-fixture');
+          const layer = map.querySelector('vl-map-features-layer');
+          await map.ready;
+          should.not.exist(layer.boundingBox);
+          layer.setAttribute(
+            'features',
+            '{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[147055,197908]},"properties":null},{"type":"Feature","geometry":{"type":"Point","coordinates":[157055,207908]},"properties":null}]}',
+          );
+          assert.deepEqual(layer.boundingBox, [147055, 197908, 157055, 207908]);
+        });
+
+        test('can get a feature through id', async () => {
+          const map = fixture('vl-map-fixture');
+          const layer = map.querySelector('vl-map-features-layer');
+          await map.ready;
+          should.exist(layer.getFeature(1));
+          should.not.exist(layer.getFeature(2));
+        });
+
+        test('can get a cluster from a feature id in the cluster', async () => {
+          const map = fixture('vl-map-fixture');
+          const layer = map.querySelector('vl-map-features-layer');
+          await map.ready;
+          const feature1 = new OlFeature({
+            geometry: new OlPoint([109100, 204175]),
+          });
+          const feature2 = new OlFeature({
+            geometry: new OlPoint([109100, 204175]),
+          });
+          const feature3 = new OlFeature({
+            geometry: new OlPoint([109100, 204175]),
+          });
+          feature1.setId(1);
+          feature2.setId(2);
+          feature3.setId(3);
+          const cluster1 = new OlFeature({});
+          const cluster2 = new OlFeature({});
+          cluster1.set('features', [feature1, feature2]);
+          cluster2.set('features', [feature3]);
+          layer.setAttribute('data-vl-cluster', '');
+          layer.layer.getSource().addFeatures([cluster1, cluster2]);
+          assert.deepEqual(layer.getCluster(1), cluster1);
+          assert.deepEqual(layer.getCluster(2), cluster1);
+          assert.deepEqual(layer.getCluster(3), cluster2);
+        });
+
+        test('all feature specific style can be removed', async () => {
+          const map = fixture('vl-map-features-layer-fixture');
+          const layer = map.querySelector('vl-map-features-layer');
+          await map.ready;
+          const feature1 = new OlFeature();
+          const feature2 = new OlFeature();
+          feature1.setStyle(new OlStyle({}));
+          feature2.setStyle(new OlStyle({}));
+          const features = [feature1, feature2];
+          layer.setAttribute('features', geoJSON.writeFeatures(features));
+
+          layer.removeFeaturesStyle();
+          assert.isNull(layer.features[0].getStyle());
+          assert.isNull(layer.features[1].getStyle());
+        });
+
+        test('can programmatically remove features', async () => {
+          const map = fixture('vl-map-fixture');
+          const layer = map.querySelector('vl-map-features-layer');
+          await map.ready;
+          assert.lengthOf(layer.layer.getSource().getFeatures(), 1);
+          layer.clearFeatures();
+          assert.lengthOf(layer.layer.getSource().getFeatures(), 0);
+        });
+
+        test('can add programmatic feature', async () => {
+          const map = fixture('vl-map-fixture');
+          const layer = map.querySelector('vl-map-features-layer');
+          await map.ready;
+          assert.lengthOf(layer.layer.getSource().getFeatures(), 1);
+          layer.addFeature(
+            '{"type":"Feature","geometry":{"type":"Point","coordinates":[148055,197908]},"properties":null,"id":2}',
+          );
+          assert.lengthOf(layer.layer.getSource().getFeatures(), 2);
+        });
+
+        test('can programmatically add feature to layer with cluster', async () => {
+          const map = fixture('vl-map-cluster-fixture');
+          const layer = map.querySelector('vl-map-features-layer');
+          await map.ready;
+          assert.lengthOf(layer.source.getFeatures(), 0);
+          assert.lengthOf(layer.source.getSource().getFeatures(), 1);
+          layer.addFeature(
+            '{"type":"Feature","geometry":{"type":"Point","coordinates":[148055,197908]},"properties":null,"id":2}',
+          );
+          assert.lengthOf(layer.source.getFeatures(), 0);
+          assert.lengthOf(layer.source.getSource().getFeatures(), 2);
+          should.exist(layer.getFeature(1));
+          should.exist(layer.getFeature(2));
+        });
+
+        test('can programmatically change features in layer with cluster', async () => {
+          const map = fixture('vl-map-cluster-fixture');
+          const layer = map.querySelector('vl-map-features-layer');
+          await map.ready;
+          assert.lengthOf(layer.source.getFeatures(), 0);
+          assert.lengthOf(layer.source.getSource().getFeatures(), 1);
+          layer.features = {
+            type: 'FeatureCollection',
+            features: [
+              {
+                type: 'Feature',
+                geometry: { type: 'Point', coordinates: [148055, 197908] },
+                properties: null,
+                id: 2,
+              },
+              {
+                type: 'Feature',
+                geometry: { type: 'Point', coordinates: [148055, 197908] },
+                properties: null,
+                id: 3,
+              },
+            ],
+          };
+          assert.lengthOf(layer.source.getFeatures(), 0);
+          assert.lengthOf(layer.source.getSource().getFeatures(), 2);
+          should.not.exist(layer.getFeature(1));
+          should.exist(layer.getFeature(2));
+          should.exist(layer.getFeature(3));
+        });
+
+        test('can programmatically add feature collection', async () => {
+          const map = fixture('vl-map-fixture');
+          const layer = map.querySelector('vl-map-features-layer');
+          await map.ready;
+          assert.lengthOf(layer.layer.getSource().getFeatures(), 1);
+          layer.addFeatureCollection(
+            '{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[148055,197908]},"properties":null,"id":2}]}',
+          );
+          assert.lengthOf(layer.layer.getSource().getFeatures(), 2);
+        });
+
+        test('when features are programmatically removed from a layer with auto zoom it will not zoom because there is no extent of the features anymore', async () => {
+          const map = fixture('vl-map-auto-extent-fixture');
+          const layer = map.querySelector('vl-map-features-layer');
+          await map.ready;
+          await awaitUntil(() => map.map.getView().getZoom() > 3).then(async () => {
+            assert.deepEqual(map.map.getView().getCenter(), [147555, 197908]);
+          });
+          layer.clearFeatures();
+          assert.deepEqual(map.map.getView().getCenter(), [147555, 197908]);
+        });
+
+        test('when programmatically a feature is added to a layer with auto zoom, the map will zoom to it', async () => {
+          const map = fixture('vl-map-auto-extent-fixture');
+          const layer = map.querySelector('vl-map-features-layer');
+          await map.ready;
+          await awaitUntil(() => map.map.getView().getZoom() > 3).then(async () => {
+            assert.deepEqual(map.map.getView().getCenter(), [147555, 197908]);
+          });
+          layer.addFeature(
+            '{"type":"Feature","geometry":{"type":"Point","coordinates":[146055,197908]},"properties":null,"id":3}',
+          );
+          assert.deepEqual(map.map.getView().getCenter(), [147055, 197908]);
+          layer.clearFeatures();
+          layer.addFeature(
+            '{"type":"Feature","geometry":{"type":"Point","coordinates":[146055,197908]},"properties":null,"id":3}',
+          );
+          assert.deepEqual(map.map.getView().getCenter(), [146055, 197908]);
+        });
+
+        test('when features are added programmatically to a layer with auto zoom, the map will zoom to it', async () => {
+          const map = fixture('vl-map-auto-extent-fixture');
+          const layer = map.querySelector('vl-map-features-layer');
+          await map.ready;
+          await awaitUntil(() => map.map.getView().getZoom() > 3).then(async () => {
+            assert.deepEqual(map.map.getView().getCenter(), [147555, 197908]);
+          });
+          layer.addFeatureCollection(
+            '{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[146055,197908]},"properties":null,"id":3}]}',
+          );
+          assert.deepEqual(map.map.getView().getCenter(), [147055, 197908]);
+          layer.clearFeatures();
+          layer.addFeature(
+            '{"type":"Feature","geometry":{"type":"Point","coordinates":[146055,197908]},"properties":null,"id":3}',
+          );
+          assert.deepEqual(map.map.getView().getCenter(), [146055, 197908]);
+        });
+      });
+    </script>
+  </body>
+</html>

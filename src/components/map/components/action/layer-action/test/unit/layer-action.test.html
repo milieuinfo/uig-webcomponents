@@ -5,10 +5,7 @@
     <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
     <script src="/node_modules/web-component-tester/browser.js"></script>
 
-    <script
-      type="module"
-      src="../../../../../../../../lib/components/map/index.js"
-    ></script>
+    <script type="module" src="../../../../../../../../lib/components/map/index.js"></script>
     <script src="/node_modules/sinon/pkg/sinon.js"></script>
   </head>
 
@@ -52,9 +49,9 @@
     </test-fixture>
 
     <script type="module">
-      import { VlMapWithActions } from "../../../../../lib/components/map/mapactions/index.js";
+      import { VlMapWithActions } from '../../../../../../../../lib/components/map/components/map-with-actions/map-with-actions.js';
 
-      suite("vl-map-layer-action", () => {
+      suite('vl-map-layer-action', () => {
         const sandbox = sinon.createSandbox();
 
         const action = {
@@ -64,21 +61,18 @@
         };
 
         setup((done) => {
-          customElements.whenDefined("vl-map-layer-action").then(() => done());
+          customElements.whenDefined('vl-map-layer-action').then(() => done());
         });
 
         teardown(() => {
           sandbox.restore();
         });
 
-        test("de actie wordt standaard gekoppeld aan de kaartlaag waarin gedeclareerd", (done) => {
-          const map = fixture("vl-map-layer-action-fixture");
-          const actionElement = map.querySelector("vl-map-layer-action");
-          const layerElement = map.querySelector("vl-map-features-layer");
-          sandbox
-            .stub(actionElement, "_createAction")
-            .withArgs(layerElement.layer)
-            .returns(action);
+        test('the action is by default linked to the map layer in which it is declared', (done) => {
+          const map = fixture('vl-map-layer-action-fixture');
+          const actionElement = map.querySelector('vl-map-layer-action');
+          const layerElement = map.querySelector('vl-map-features-layer');
+          sandbox.stub(actionElement, '_createAction').withArgs(layerElement.layer).returns(action);
           map.ready.then(() => {
             assert.lengthOf(map._map.actions, 1);
             assert.deepEqual(map._map.actions[0], action);
@@ -89,7 +83,7 @@
           });
         });
 
-        // test("de actie kan standaard geactiveerd worden via het default active attribuut", (done) => {
+        // test("the action can be activated by default via the default active attribute", (done) => {
         //   const map = fixture("vl-map-layer-action-default-active-fixture");
         //   const actionElement = map.querySelector("vl-map-layer-action");
         //   const layerElement = map.querySelector("vl-map-features-layer");
@@ -107,14 +101,11 @@
         //   });
         // });
 
-        test("de actie kaartlaag koppeling kan gebeuren via een attribuut", (done) => {
-          const map = fixture("vl-map-layer-action-layer-by-name-fixture");
-          const actionElement = map.querySelector("vl-map-layer-action");
-          const layerElement = map.querySelector("vl-map-features-layer");
-          sandbox
-            .stub(actionElement, "_createAction")
-            .withArgs(layerElement.layer)
-            .returns(action);
+        test('the map layer link action can be done via an attribute', (done) => {
+          const map = fixture('vl-map-layer-action-layer-by-name-fixture');
+          const actionElement = map.querySelector('vl-map-layer-action');
+          const layerElement = map.querySelector('vl-map-features-layer');
+          sandbox.stub(actionElement, '_createAction').withArgs(layerElement.layer).returns(action);
           map.ready.then(() => {
             assert.lengthOf(map._map.actions, 1);
             assert.deepEqual(map._map.actions[0], action);
@@ -122,11 +113,11 @@
           });
         });
 
-        test("de actie kaartlaag kan gezet worden zodat één actie voor meerdere kaartlagen gebruikt kan worden", (done) => {
-          const map = fixture("vl-map-layer-action-layer-fixture");
-          const layerElement = map.querySelector("vl-map-features-layer");
-          const actionElement = map.querySelector("vl-map-layer-action");
-          sandbox.stub(actionElement, "_createAction").returns(action);
+        test('the action map layer can be set so that one action can be used for multiple map layers', (done) => {
+          const map = fixture('vl-map-layer-action-layer-fixture');
+          const layerElement = map.querySelector('vl-map-features-layer');
+          const actionElement = map.querySelector('vl-map-layer-action');
+          sandbox.stub(actionElement, '_createAction').returns(action);
           map.ready.then(() => {
             assert.lengthOf(map._map.actions, 0);
             actionElement.layer = layerElement.layer;

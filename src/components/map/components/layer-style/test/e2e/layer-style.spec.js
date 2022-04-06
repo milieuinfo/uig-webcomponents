@@ -1,7 +1,7 @@
-import { assert, getDriver } from "../../../../../../utils/test";
-import { VlMapLayerStylePage } from "./layer-style.page.js";
+import { assert, getDriver } from '../../../../../../utils/test';
+import { VlMapLayerStylePage } from './layer-style.page.js';
 
-describe("vl-map-layer-style", async () => {
+describe('vl-map-layer-style', async () => {
   let vlMapPage;
 
   before(() => {
@@ -9,11 +9,11 @@ describe("vl-map-layer-style", async () => {
     return vlMapPage.load();
   });
 
-  it("als gebruiker kan ik een layer definiëren met standaard stijl", async () => {
+  it('as a user I can define a layer with standard style', async () => {
     const map = await vlMapPage.getStandardMap();
     const style = await vlMapPage.getLayerStyle(map);
 
-    await assert.eventually.equal(style.getColor(), "rgba(2, 85, 204, 0.8)");
+    await assert.eventually.equal(style.getColor(), 'rgba(2, 85, 204, 0.8)');
     await assert.eventually.isNull(style.getBorderColor());
     await assert.eventually.isNull(style.getBorderSize());
     await assert.eventually.isNull(style.getTextColor());
@@ -26,11 +26,11 @@ describe("vl-map-layer-style", async () => {
     await assert.eventually.isNull(style.getTextOffsetY());
   });
 
-  it("als gebruiker kan ik een layer definiëren met een label", async () => {
+  it('as a user I can define a layer with a label', async () => {
     const map = await vlMapPage.getLabelMap();
     const style = await vlMapPage.getLayerStyle(map);
 
-    await assert.eventually.equal(style.getColor(), "rgba(2, 85, 204, 0.8)");
+    await assert.eventually.equal(style.getColor(), 'rgba(2, 85, 204, 0.8)');
     await assert.eventually.isNull(style.getBorderColor());
     await assert.eventually.isNull(style.getBorderSize());
     await assert.eventually.isNull(style.getTextColor());
@@ -38,42 +38,33 @@ describe("vl-map-layer-style", async () => {
     await assert.eventually.isNull(style.getTextBorderColor());
     await assert.eventually.isNull(style.getTextBorderSize());
     await assert.eventually.isNull(style.getTextSize());
-    await assert.eventually.equal(style.getTextFeatureAttributeName(), "label");
+    await assert.eventually.equal(style.getTextFeatureAttributeName(), 'label');
     await assert.eventually.isNull(style.getTextOffsetX());
     await assert.eventually.isNull(style.getTextOffsetY());
   });
 
-  it("als gebruiker kan ik een layer definiëren met aangepaste stijl", async () => {
+  it('as a user i can define a layer with custom style', async () => {
     const map = await vlMapPage.getAdjustedMap();
     const style = await vlMapPage.getLayerStyle(map);
 
-    await assert.eventually.equal(style.getColor(), "rgba(255,0,0,0.5)");
-    await assert.eventually.equal(
-      style.getBorderColor(),
-      "rgba(255,255,100,1)"
-    );
+    await assert.eventually.equal(style.getColor(), 'rgba(255,0,0,0.5)');
+    await assert.eventually.equal(style.getBorderColor(), 'rgba(255,255,100,1)');
     await assert.eventually.equal(style.getBorderSize(), 2);
-    await assert.eventually.equal(style.getTextColor(), "rgba(255,0,0,1)");
-    await assert.eventually.equal(
-      style.getTextBackgroundColor(),
-      "rgba(0,0,255,0.2)"
-    );
-    await assert.eventually.equal(
-      style.getTextBorderColor(),
-      "rgba(0,255,0,1)"
-    );
+    await assert.eventually.equal(style.getTextColor(), 'rgba(255,0,0,1)');
+    await assert.eventually.equal(style.getTextBackgroundColor(), 'rgba(0,0,255,0.2)');
+    await assert.eventually.equal(style.getTextBorderColor(), 'rgba(0,255,0,1)');
     await assert.eventually.equal(style.getTextBorderSize(), 3);
-    await assert.eventually.equal(style.getTextSize(), "13px");
-    await assert.eventually.equal(style.getTextFeatureAttributeName(), "label");
+    await assert.eventually.equal(style.getTextSize(), '13px');
+    await assert.eventually.equal(style.getTextFeatureAttributeName(), 'label');
     await assert.eventually.equal(style.getTextOffsetX(), 10);
     await assert.eventually.equal(style.getTextOffsetY(), -10);
   });
 
-  it("als gebruiker kan ik een layer definiëren met meerdere stijl", async () => {
+  it('as a user I can define a layer with multiple style', async () => {
     const map = await vlMapPage.getMultipleStylesMap();
     const styles = await vlMapPage.getLayerStyles(map);
 
-    await assert.eventually.equal(styles[0].getColor(), "rgba(255,0,0,0.8)");
-    await assert.eventually.equal(styles[1].getColor(), "rgba(0,255,0,0.8)");
+    await assert.eventually.equal(styles[0].getColor(), 'rgba(255,0,0,0.8)');
+    await assert.eventually.equal(styles[1].getColor(), 'rgba(0,255,0,0.8)');
   });
 });

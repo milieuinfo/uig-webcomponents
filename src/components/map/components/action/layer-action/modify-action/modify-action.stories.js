@@ -1,4 +1,5 @@
 import { html } from 'lit-html';
+import '../../../../../map';
 import { args, argTypes } from '../config';
 import { docsIntro } from '../../../../../../../.storybook/utils.js';
 
@@ -10,7 +11,7 @@ export default {
       description: {
         component: docsIntro({
           root: 'map',
-          intro: 'De kaart aanpas actie component.',
+          intro: 'The map modify action component.',
         }),
       },
     },

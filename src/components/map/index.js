@@ -1,4 +1,4 @@
-export { VlMap } from './components/map';
+export { VlMap } from './map';
 export { VlMapOverviewMap } from './components/overview-map';
 export { VlMapLayer } from './components/layer';
 export { VlMapVectorLayer } from './components/layer/vector-layer';
@@ -24,7 +24,7 @@ export { VlMapLayerCircleStyle } from './components/layer-style/layer-circle-sty
 export { VlMapSearch } from './components/search';
 export { VlMapSideSheet } from './components/side-sheet';
 export { VlMapLayerSwitcher } from './components/layer-switcher';
-export { VlMapSideSheetMenu } from './components/side-sheet-menu';
-export { VlMapSideSheetMenuItem } from './components/side-sheet-menu-item';
+export { VlMapSideSheetMenu } from './components/side-sheet/side-sheet-menu';
+export { VlMapSideSheetMenuItem } from './components/side-sheet/side-sheet-menu/side-sheet-menu-item';
 export { VlMapModifyAction } from './components/action/layer-action/modify-action';
 export { VlSelectLocation } from './components/select-location';

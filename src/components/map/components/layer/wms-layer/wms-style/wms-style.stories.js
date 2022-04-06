@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
 import '../../../../../map';
-import { docsIntro } from '../../../../../../../.storybook/utils.js';
+import { docsIntro, TYPES, CATEGORIES } from '../../../../../../../.storybook/utils.js';
 
 export default {
   title: 'custom-elements/vl-map/vl-map-wms-style',
@@ -10,7 +10,7 @@ export default {
       description: {
         component: docsIntro({
           root: 'map',
-          intro: 'Klasse voor een WMS laag te stijlen via een SLD.',
+          intro: 'Class for a WMS layer to be styled via an SLD.',
         }),
       },
     },
@@ -18,10 +18,11 @@ export default {
   argTypes: {
     sld: {
       name: 'data-vl-sld',
-      type: { summary: 'string' },
+      type: { summary: TYPES.STRING },
       control: { disable: true },
       description:
-        'Attribuut bepaalt de body van een WMS laag. Deze XML kan gebruikt worden om de WMS server side te stijlen. (http://schemas.opengis.net/sld/1.1.0/StyledLayerDescriptor.xsd|Styled Layer Descriptor)',
+        'Attribute determines the body of a WMS layer. This XML can be used to style the WMS server side. (http://schemas.opengis.net/sld/1.1.0/StyledLayerDescriptor.xsd|Styled Layer Descriptor)',
+      table: { category: CATEGORIES.ATTRIBUTES },
     },
   },
 };

@@ -1,24 +1,6 @@
-import { vlElement, define } from "../../../../utils/core";
-import { VlMap } from "../map";
+import { vlElement, define } from '../../../../utils/core';
+import { VlMap } from '../../map';
 
-/**
- * VlMapAction
- * @class
- * @classdesc De abstracte kaart actie component.
- *
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {boolean} data-vl-default-active - Attribuut wordt gebruikt om de actie standaard te activeren.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-delete-action.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-draw-actions.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-modify-actions.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-select-action.html|Demo}
- */
 export class VlMapAction extends vlElement(HTMLElement) {
   connectedCallback() {
     this.__defineLayer();
@@ -30,7 +12,7 @@ export class VlMapAction extends vlElement(HTMLElement) {
   }
 
   /**
-   * Geeft de vl-mapactions kaart actie.
+   * Returns the vl-mapactions map action.
    *
    * @return {Object}
    */
@@ -39,11 +21,11 @@ export class VlMapAction extends vlElement(HTMLElement) {
   }
 
   get _mapElement() {
-    return this.closest("vl-map");
+    return this.closest('vl-map');
   }
 
   get _defaultActive() {
-    return this.hasAttribute("default-active");
+    return this.hasAttribute('default-active');
   }
 
   get _callback() {
@@ -51,14 +33,14 @@ export class VlMapAction extends vlElement(HTMLElement) {
   }
 
   /**
-   * Activeer de kaart actie op de kaart.
+   * Activate the map action on the map.
    */
   activate() {
     this._mapElement.activateAction(this.action);
   }
 
   _createAction() {
-    console.warn("implementatie van _createAction ontbreekt");
+    console.warn('implementatie van _createAction ontbreekt');
   }
 
   _processAction() {
@@ -72,10 +54,7 @@ export class VlMapAction extends vlElement(HTMLElement) {
 
   __registerMapActionChangedCallback() {
     this._mapElement.addEventListener(VlMap.EVENTS.action.activated, () => {
-      this.setAttribute(
-        "active",
-        this._mapElement.activeAction === this.action
-      );
+      this.setAttribute('active', this._mapElement.activeAction === this.action);
     });
   }
 
@@ -86,4 +65,4 @@ export class VlMapAction extends vlElement(HTMLElement) {
   }
 }
 
-define("vl-map-action", VlMapAction);
+define('vl-map-action', VlMapAction);

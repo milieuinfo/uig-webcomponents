@@ -1,17 +1,6 @@
 import { define } from '../../../../../utils/core';
 import { VlMapBaseLayer } from '../../baselayer';
 
-/**
- * VlMapBaseLayerGRB
- * @class
- * @classdesc De kaart layer component voor GRB.
- *
- * @extends VlMapBaseLayer
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map.html|Demo}
- */
 export class VlMapBaseLayerGRB extends VlMapBaseLayer {
   constructor() {
     super();

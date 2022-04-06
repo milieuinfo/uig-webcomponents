@@ -1,25 +1,7 @@
-import { OlVectorLayer } from '../../../actions';
+import OlVectorLayer from 'ol/layer/Vector';
 import { VlMapLayer } from '../../layer';
 import { VlMapLayerStyle } from '../../layer-style';
 
-/**
- * VlMapVectorLayer style changed event
- * @event VlMapVectorLayer#styleChanged
- * @property {VlMapLayerStyle|object} style - De nieuwe stijl.
- */
-
-/**
- * VlMapVectorLayer
- * @class
- * @classdesc De abstracte kaart laag klasse voor vectorlagen.
- *
- * @extends VlMapLayer
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-features-layer.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wfs-layer.html|Demo}
- */
 export class VlMapVectorLayer extends VlMapLayer {
   static get EVENTS() {
     return {
@@ -33,7 +15,7 @@ export class VlMapVectorLayer extends VlMapLayer {
   }
 
   /**
-   * Geeft de OpenLayers kaartlaag stijl.
+   * Returns the OpenLayers map layer style.
    *
    * @return {ol.style}
    */
@@ -44,13 +26,13 @@ export class VlMapVectorLayer extends VlMapLayer {
   }
 
   /**
-   * Zet de kaartlaag stijl.
-   * Indien een VlMapLayerStyle gekozen wordt, wordt die toegevoegd aan de reeds bestaande stijlen.
-   * Bij een OpenLayers StyleLike wordt de stijl overschreven.
-   * Bij voorkeur wordt een VlMapLayerStyle gekozen.
+   * Set the map layer style.
+   * If a VlMapLayerStyle is chosen, it will be added to the existing styles.
+   * An OpenLayers StyleLike overwrites the style.
+   * Preferably, a V1MapLayerStyle is chosen.
    *
-   * @param {VlMapLayerStyle|object|null} style een VlMapLayerStyle of een OpenLayers StyleLike, of null om de stijl te verwijderen.
-   * @deprecated Gebruik van een OpenLayers style als argument wordt afgeraden. Gebruik in de plaats daarvan de VlMapLayerStyle component. In een latere versie zal de mogelijkheid om een OpenLayers style te zetten verdwijnen.
+   * @param {VlMapLayerStyle|object|null} style a VlMapLayerStyle or an OpenLayers StyleLike, or null to remove the style.
+   * @deprecated Using an OpenLayers style as an argument is not recommended. Use the VlMapLayerStyle component instead. In a later version, the option to set an OpenLayers style will disappear.
    *
    * @see {@link https://openlayers.org/en/latest/apidoc/module-ol_style_Style.html#~StyleLike|OpenLayers StyleLike}
    */

@@ -1,22 +1,9 @@
-import { VlModifyAction, VlCompositeVectorLayer } from '../../../../actions';
 import { define } from '../../../../../../utils/core';
 import { VlMapLayerAction } from '../../layer-action';
 import { VlMapVectorLayer } from '../../../layer/vector-layer';
+import { VlModifyAction } from './modify-action';
+import { VlCompositeVectorLayer } from '../../../composite-vector-layer/composite-vector-layer';
 
-/**
- * VlMapModifyAction
- * @class
- * @classdesc The map modify action component.
- *
- * @extends VlMapLayerAction
- *
- * @property {boolean} [data-vl-snapping] - Attribute enables snapping on the vl-map-wfs-layers that are added to this action.
- * @property {number} [data-vl-snapping-pixel-tolerance=10] - Attribute configures the maximum distance (in pixels) between a feature and your pointing device before snapping occurs.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-modify-actions.html|Demo}
- */
 export class VlMapModifyAction extends VlMapLayerAction {
   static get _observedAttributes() {
     return ['snapping', 'snapping-pixel-tolerance'];
@@ -27,11 +14,11 @@ export class VlMapModifyAction extends VlMapLayerAction {
   }
 
   /**
-   * Configure the function that will be called after processing an action.
+   * Set the function to be executed after executing the edit action
    *
    * @param {Function} callback function with the following arguments:
-   *                            - {ol.Feature} the modified feature
-   *                            - {Function} reject callback with the modified feature as argument, which will revert the feature back to its original state
+   *                            - {ol.Feature} the edited feature
+   *                            - {Function} reject callback with argument the modified feature where the feature is returned to its original state
    */
   onModify(callback) {
     this.__callback = callback;

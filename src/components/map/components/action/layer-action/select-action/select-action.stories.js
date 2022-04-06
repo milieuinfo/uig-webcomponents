@@ -1,6 +1,7 @@
 import { html } from 'lit-html';
+import '../../../../../map';
 import { args, argTypes } from '../config';
-import { docsIntro } from '../../../../../../../.storybook/utils.js';
+import { docsIntro, TYPES, CATEGORIES } from '../../../../../../../.storybook/utils.js';
 
 export default {
   title: 'custom-elements/vl-map/vl-map-select-action',
@@ -10,7 +11,7 @@ export default {
       description: {
         component: docsIntro({
           root: 'map',
-          intro: 'De kaart selecteer actie component.',
+          intro: 'The map select action component.',
         }),
       },
     },
@@ -20,11 +21,9 @@ export default {
     ...argTypes,
     cluster: {
       name: 'data-vl-cluster',
-      type: { summary: 'boolean' },
-      description: 'Attribuut geeft aan of de features geclusterd zijn of niet.',
-      table: {
-        defaultValue: { summary: 'false' },
-      },
+      type: { summary: TYPES.BOOLEAN },
+      description: 'Indicates whether the features are clustered or not.',
+      table: { category: CATEGORIES.ATTRIBUTES, defaultValue: { summary: 'false' } },
       control: { disable: true },
     },
   },
@@ -61,9 +60,9 @@ export const Default = () => {
         <vl-map-layer-circle-style></vl-map-layer-circle-style>
         <vl-map-select-action data-vl-default-active>
           <vl-map-layer-circle-style
-              data-vl-text-color="#000"
-              data-vl-color="#FFE615"
-              data-vl-border-color="#FFE615"
+            data-vl-text-color="#000"
+            data-vl-color="#FFE615"
+            data-vl-border-color="#FFE615"
           ></vl-map-layer-circle-style>
         </vl-map-select-action>
       </vl-map-features-layer>
@@ -106,9 +105,9 @@ export const SelectWithClustering = () => {
         <vl-map-layer-circle-style></vl-map-layer-circle-style>
         <vl-map-select-action data-vl-cluster data-vl-default-active>
           <vl-map-layer-circle-style
-              data-vl-text-color="#000"
-              data-vl-color="#FFE615"
-              data-vl-border-color="#FFE615"
+            data-vl-text-color="#000"
+            data-vl-color="#FFE615"
+            data-vl-border-color="#FFE615"
           ></vl-map-layer-circle-style>
         </vl-map-select-action>
       </vl-map-features-layer>

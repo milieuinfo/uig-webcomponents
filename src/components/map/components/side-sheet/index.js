@@ -1,17 +1,6 @@
-import { define } from "../../../../utils/core";
-import { VlSideSheet } from "../../../side-sheet";
+import { define } from '../../../../utils/core';
+import { VlSideSheet } from '../../../side-sheet';
 
-/**
- * VlMapSideSheet
- * @class
- * @classdesc Het map zijpaneel.
- *
- * @extends VlSideSheet
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-side-sheet.html|Demo}
- */
 export class VlMapSideSheet extends VlSideSheet {
   constructor() {
     super(`
@@ -44,9 +33,9 @@ export class VlMapSideSheet extends VlSideSheet {
   }
 
   _render() {
-    this.setAttribute("data-vl-left", "");
-    this.setAttribute("data-vl-absolute", "");
+    this.setAttribute('data-vl-left', '');
+    this.setAttribute('data-vl-absolute', '');
   }
 }
 
-define("vl-map-side-sheet", VlMapSideSheet);
+define('vl-map-side-sheet', VlMapSideSheet);

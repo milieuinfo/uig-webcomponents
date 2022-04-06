@@ -3,20 +3,6 @@ import '../../../form-message';
 import '../../../checkbox';
 import formMessageStyles from '../../../form-message/styles.scss';
 
-/**
- * VlMapLayerSwitcher
- * @class
- * @classdesc De kaartlagen wisselaar.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {boolean} [data-vl-title=Kaartlagen] - Attribute wordt gebruikt om de kaartlagen titel te bepalen.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-layer-switcher.html|Demo}
- */
 export class VlMapLayerSwitcher extends vlElement(HTMLElement) {
   constructor() {
     super(`

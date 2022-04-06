@@ -11,7 +11,7 @@ export default {
       description: {
         component: docsIntro({
           root: 'map',
-          intro: 'De kaart teken actie component.',
+          intro: 'The map point drawing action component.',
         }),
       },
     },

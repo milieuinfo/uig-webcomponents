@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import '../../../../../map';
 import { argTypes } from '../../config';
-import { docsIntro } from '../../../../../../../.storybook/utils.js';
+import { docsIntro, TYPES, CATEGORIES } from '../../../../../../../.storybook/utils.js';
 
 export default {
   title: 'custom-elements/vl-map/vl-map-wfs-layer',
@@ -10,7 +10,7 @@ export default {
       description: {
         component: docsIntro({
           root: 'map',
-          intro: 'Deze kaartlaag staat toe om een WFS laag aan te maken.',
+          intro: 'This map layer allows to create a WFS layer.',
         }),
       },
     },
@@ -19,15 +19,17 @@ export default {
     ...argTypes,
     url: {
       name: 'data-vl-url',
-      type: { summary: 'string' },
-      description: 'Attribuut bepaalt de WMS url. Verplicht.',
+      type: { summary: TYPES.STRING },
+      description: 'Determines the WMS url. Obligated.',
       control: { disable: true },
+      table: { category: CATEGORIES.ATTRIBUTES },
     },
     layers: {
       name: 'data-vl-layers',
-      type: { summary: 'string' },
-      description: 'Attribuut bepaalt de layers van de WMS. Verplicht.',
+      type: { summary: TYPES.STRING },
+      description: 'Determines the layers of the WMS. Obligated.',
       control: { disable: true },
+      table: { category: CATEGORIES.ATTRIBUTES },
     },
   },
 };
