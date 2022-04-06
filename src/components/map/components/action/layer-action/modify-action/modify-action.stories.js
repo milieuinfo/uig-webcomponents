@@ -1,5 +1,4 @@
 import { html } from 'lit-html';
-import '../../../../../map';
 import { args, argTypes } from '../config';
 import { docsIntro } from '../../../../../../../.storybook/utils.js';
 

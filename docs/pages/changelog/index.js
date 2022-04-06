@@ -10,6 +10,19 @@ const unreleased = [];
 const changes = [
   ...unreleased,
   {
+    version: '2.3.0',
+    date: '6/4/2022',
+    children: html`<ul>
+      <li>
+        <p><code>vl-map</code></p>
+        <p>
+          Added the ability to configure snapping to one or more layer(s) when using the modify action. Upgraded
+          <code>vl-mapactions</code> to v4.1.3.
+        </p>
+      </li>
+    </ul>`,
+  },
+  {
     version: '2.2.6',
     date: '28/3/2022',
     children: html`<ul>

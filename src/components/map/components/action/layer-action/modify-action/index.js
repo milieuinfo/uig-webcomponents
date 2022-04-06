@@ -37,9 +37,22 @@ export class VlMapModifyAction extends VlMapLayerAction {
     this.__callback = callback;
   }
 
+  /**
+   * Specifies if the action is allowed to be performed on a feature and/or a layer. Returns true by default.
+   *
+   * @param {Object} feature Openlayers feature
+   * @param {Object} layer Openlayers layer
+   *
+   * @Return {boolean} true if the action is allowed to be performed, false if the action may not be performed for the supplied feature and/or layer
+   */
+  appliesTo() {
+    return true;
+  }
+
   _createAction(layer) {
     const options = {
       snapping: this.__snappingOptions,
+      filter: this.appliesTo.bind(this),
     };
     return new VlModifyAction(layer, this._callback, options);
   }
