@@ -1,8 +1,6 @@
 import { html } from "lit-html";
-import { VlMapSelectAction } from "../../../../../map";
 import { args, argTypes } from "../config";
 import { docsIntro } from "../../../../../../../.storybook/utils.js";
-import { define } from "../../../../../../utils/core/index.js";
 
 export default {
   title: "custom-elements/vl-map/vl-map-select-action",
