@@ -59,14 +59,14 @@ export const Default = () => {
       <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
       <vl-map-features-layer data-vl-features=${JSON.stringify(features)}>
         <vl-map-layer-circle-style></vl-map-layer-circle-style>
+        <vl-map-select-action data-vl-default-active>
+          <vl-map-layer-circle-style
+              data-vl-text-color="#000"
+              data-vl-color="#FFE615"
+              data-vl-border-color="#FFE615"
+          ></vl-map-layer-circle-style>
+        </vl-map-select-action>
       </vl-map-features-layer>
-      <vl-map-select-action data-vl-default-active>
-        <vl-map-layer-circle-style
-          data-vl-text-color="#000"
-          data-vl-color="#FFE615"
-          data-vl-border-color="#FFE615"
-        ></vl-map-layer-circle-style>
-      </vl-map-select-action>
     </vl-map>
   `;
 };
@@ -104,14 +104,14 @@ export const SelectWithClustering = () => {
         data-vl-features=${JSON.stringify(features)}
       >
         <vl-map-layer-circle-style></vl-map-layer-circle-style>
+        <vl-map-select-action data-vl-cluster data-vl-default-active>
+          <vl-map-layer-circle-style
+              data-vl-text-color="#000"
+              data-vl-color="#FFE615"
+              data-vl-border-color="#FFE615"
+          ></vl-map-layer-circle-style>
+        </vl-map-select-action>
       </vl-map-features-layer>
-      <vl-map-select-action data-vl-cluster data-vl-default-active>
-        <vl-map-layer-circle-style
-          data-vl-text-color="#000"
-          data-vl-color="#FFE615"
-          data-vl-border-color="#FFE615"
-        ></vl-map-layer-circle-style>
-      </vl-map-select-action>
     </vl-map>
   `;
 };
