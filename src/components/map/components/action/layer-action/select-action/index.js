@@ -5,9 +5,9 @@ import { VlSelectAction } from './select-action';
 
 export class VlMapSelectAction extends VlMapLayerAction {
   /**
-   * Returns the style that a selected feature will have.
+   * Returns the style that a selected feature will be given.
    *
-   * @return {Object} de stijl
+   * @return {Object} the style
    */
   get style() {
     return this._style;
@@ -59,10 +59,23 @@ export class VlMapSelectAction extends VlMapLayerAction {
     }
   }
 
+  /**
+   * Specifies if the action is allowed to be performed on a feature and/or a layer. Returns true by default.
+   *
+   * @param {Object} feature Openlayers feature
+   * @param {Object} layer Openlayers layer
+   *
+   * @Return {boolean} true if the action is allowed to be performed, false if the action may not be performed for the supplied feature and/or layer
+   */
+  appliesTo() {
+    return true;
+  }
+
   _createAction(layer) {
     const options = {
       style: this.style,
-      cluster: this._cluster != undefined,
+      cluster: this._cluster !== undefined,
+      filter: this.appliesTo.bind(this),
     };
     return new VlSelectAction(layer, this._callback, options);
   }
