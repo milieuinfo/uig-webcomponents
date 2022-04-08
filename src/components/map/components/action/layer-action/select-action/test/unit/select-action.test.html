@@ -5,10 +5,9 @@
     <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
     <script src="/node_modules/web-component-tester/browser.js"></script>
 
-    <script
-      type="module"
-      src="../../../../../../../../../lib/components/map/index.js"
-    ></script>
+    <script type="module" src="../../../../../../../../../lib/components/map/index.js"></script>
+    <script type="module" src="../../../../../../../../../lib/components/map/components/action/layer-action/select-action/test/unit/custom-select-action.js"></script>
+
     <script src="/node_modules/sinon/pkg/sinon.js"></script>
   </head>
 
@@ -29,13 +28,29 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="vl-custom-map-select-action-fixture">
+        <template>
+            <vl-map>
+                <vl-map-features-layer>
+                    <vl-custom-map-select-action>
+                        <vl-map-layer-style
+                                data-vl-text-color="#000"
+                                data-vl-color="#FFE615"
+                                data-vl-border-color="#FFE615"
+                        ></vl-map-layer-style>
+                    </vl-custom-map-select-action>
+                </vl-map-features-layer>
+            </vl-map>
+        </template>
+    </test-fixture>
+
     <script type="module">
       import {
         OlFeature,
         OlPoint,
-      } from "../../../../../lib/components/map/mapactions/index.js";
-      import { VlMapSelectAction } from "../../../../../lib/components/map/components/action/layer-action/select-action";
-      import { awaitUntil } from "../../../../utils/core/index.js";
+      } from "vl-mapactions/dist/vl-mapactions";
+      import { VlMapSelectAction } from "../../../../../../../../../lib";
+      import { awaitUntil } from "../../../../../../../../utils/core";
 
       suite("vl-map-select-action", () => {
         const sandbox = sinon.createSandbox();
@@ -48,11 +63,11 @@
           sandbox.restore();
         });
 
-        test("een selecteer actie is een map actie", () => {
+        test("a select action is a map action", async () => {
           assert.isTrue(VlMapSelectAction.isVlMapAction());
         });
 
-        test("controle van de selecteer actie configuratie", async () => {
+        test("select action configuration is possible", async () => {
           const map = fixture("vl-map-select-action-fixture");
           const styleElement = map.querySelector("vl-map-layer-style");
           const layer = map.querySelector("vl-map-features-layer").layer;
@@ -72,7 +87,7 @@
           assert.deepEqual(map.map.actions[0].style(), styleElement.style());
         });
 
-        test("er kunnen features op de kaart gemarkeerd worden", (done) => {
+        test("features on a map can be marked", (done) => {
           const map = fixture("vl-map-select-action-fixture");
           const actionElement = map.querySelector("vl-map-select-action");
           const id = 1;
@@ -85,7 +100,7 @@
           });
         });
 
-        test("de gemarkeerde features op de kaart kunnen gedemarkeerd worden", (done) => {
+        test("marked features on the map can be demarked", (done) => {
           const map = fixture("vl-map-select-action-fixture");
           const actionElement = map.querySelector("vl-map-select-action");
 
@@ -97,7 +112,7 @@
           });
         });
 
-        test("er kan een feature op de kaart geselecteerd worden", (done) => {
+        test("a feature on the map can be selected", (done) => {
           const map = fixture("vl-map-select-action-fixture");
           const actionElement = map.querySelector("vl-map-select-action");
           const feature = new OlFeature({
@@ -112,7 +127,7 @@
           });
         });
 
-        test("alle features kunnen gedeselecteerd en gedehighlight worden", (done) => {
+        test("all features can be deselected and dehighlighted", (done) => {
           const map = fixture("vl-map-select-action-fixture");
           const actionElement = map.querySelector("vl-map-select-action");
 
@@ -124,7 +139,7 @@
           });
         });
 
-        test("het cluster attribuut wordt doorgegeven aan de select actie", (done) => {
+        test("the cluster attribute will be passed to the underlying select action", (done) => {
           const map = fixture("vl-map-select-action-fixture");
           const actionElement = map.querySelector("vl-map-select-action");
           actionElement.setAttribute("cluster", "");
@@ -133,6 +148,28 @@
             const action = map.map.actions[0];
             assert.equal(action.cluster, true);
             done();
+          });
+        });
+
+        test("the filter for the select action returns true by default", (done) => {
+          const map = fixture("vl-map-select-action-fixture");
+
+          map.ready.then(() => {
+            const action = map.map.actions[0];
+            assert.isTrue(action.filter());
+            done();
+          });
+        });
+
+        test("the filter for the select action can be overridden", (done) => {
+          const map = fixture("vl-custom-map-select-action-fixture");
+
+          map.ready.then(() => {
+              const action = map.map.actions[0];
+              assert.isTrue(action.filter({id: '12'}, {id: '12'}));
+              assert.isFalse(action.filter({id: '2'}, {id: '12'}));
+              assert.isFalse(action.filter({id: '12'}, {id: '2'}));
+              done();
           });
         });
       });

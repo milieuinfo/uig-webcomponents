@@ -1,17 +1,16 @@
-import { html } from "lit-html";
-import "../../../../../map";
-import { args, argTypes } from "../config";
-import { docsIntro } from "../../../../../../../.storybook/utils.js";
+import { html } from 'lit-html';
+import { args, argTypes } from '../config';
+import { docsIntro } from '../../../../../../../.storybook/utils.js';
 
 export default {
-  title: "custom-elements/vl-map/vl-map-delete-action",
+  title: 'custom-elements/vl-map/vl-map-delete-action',
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
       description: {
         component: docsIntro({
-          root: "map",
-          intro: "Actie om features te deleten van een layer.",
+          root: 'map',
+          intro: 'Actie om features te deleten van een layer.',
         }),
       },
     },
@@ -22,18 +21,18 @@ export default {
 
 export const Default = () => {
   const features = {
-    type: "FeatureCollection",
+    type: 'FeatureCollection',
     features: [
       {
-        type: "Feature",
+        type: 'Feature',
         id: 1,
-        geometry: { type: "Point", coordinates: [210000, 190000] },
+        geometry: { type: 'Point', coordinates: [210000, 190000] },
       },
       {
-        type: "Feature",
+        type: 'Feature',
         id: 2,
         geometry: {
-          type: "LineString",
+          type: 'LineString',
           coordinates: [
             [170000, 170000],
             [150000, 206000],
@@ -41,10 +40,10 @@ export const Default = () => {
         },
       },
       {
-        type: "Feature",
+        type: 'Feature',
         id: 3,
         geometry: {
-          type: "Polygon",
+          type: 'Polygon',
           coordinates: [
             [
               [44000, 171000],
@@ -71,18 +70,18 @@ export const Default = () => {
 
 export const DeleteWithCustomStyle = () => {
   const features = {
-    type: "FeatureCollection",
+    type: 'FeatureCollection',
     features: [
       {
-        type: "Feature",
+        type: 'Feature',
         id: 1,
-        geometry: { type: "Point", coordinates: [210000, 190000] },
+        geometry: { type: 'Point', coordinates: [210000, 190000] },
       },
       {
-        type: "Feature",
+        type: 'Feature',
         id: 2,
         geometry: {
-          type: "LineString",
+          type: 'LineString',
           coordinates: [
             [150000, 162000],
             [150000, 206000],
@@ -90,10 +89,10 @@ export const DeleteWithCustomStyle = () => {
         },
       },
       {
-        type: "Feature",
+        type: 'Feature',
         id: 3,
         geometry: {
-          type: "Polygon",
+          type: 'Polygon',
           coordinates: [
             [
               [44000, 171000],

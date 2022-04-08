@@ -1,12 +1,12 @@
-import { define } from "../../../../../../utils/core";
 import { VlDeleteAction } from "vl-mapactions/dist/vl-mapactions.js";
+import { define } from "../../../../../../utils/core";
 import { VlMapLayerAction } from "../../layer-action";
 import { VlMapLayerStyle } from "../../../layer-style";
 
 /**
  * VlMapDeleteAction
  * @class
- * @classdesc Actie om features te deleten van een layer
+ * @classdesc The map delete action component.
  *
  * @extends VlMapLayerAction
  *
@@ -16,7 +16,7 @@ import { VlMapLayerStyle } from "../../../layer-style";
  */
 export class VlMapDeleteAction extends VlMapLayerAction {
   /**
-   * Geeft de stijl die een geselecteerd feature zal krijgen.
+   * Returns the style that a selected feature will be given.
    *
    * @return {Object} de stijl
    */
@@ -25,9 +25,9 @@ export class VlMapDeleteAction extends VlMapLayerAction {
   }
 
   /**
-   * Zet de stijl die een geselecteerde feature zal krijgen.
+   * Configures the style that a selected feature will be given.
    *
-   * @param {VlMapLayerStyle|Object} style - de stijl: een VlMapLayerStyle of een OpenLayers Style
+   * @param {VlMapLayerStyle|Object} style - the style: a VlMapLayerStyle or an OpenLayers Style
    */
   set style(style) {
     if (style instanceof VlMapLayerStyle) {
@@ -39,22 +39,34 @@ export class VlMapDeleteAction extends VlMapLayerAction {
   }
 
   /**
-   * Zet de functie die wordt uitgevoerd na het uitvoeren van de verwijder actie.
-   * Voor elke geselecteerde feature wordt de reject callback gebruikt om de feature te verwijderen of de reject callback zodat de feature niet verwijderd wordt.
+   * Configure the function that will be called after processing an action.
+   * For each selected feature, the resolve callback will be used to delete the feature or the reject callback if the feature does not need to be deleted.
    *
-   * @param {Function} callback functie met volgende argumenten:
-   *                            - {[ol.Feature]} de te verwijderen features
-   *                            - {Function} resolve callback met ol.Feature als argument die verwijderd wordt
-   *                            - {Function} reject callback zonder argument waarbij de highlight verwijderd wordt
+   * @param {Function} callback function with the following arguments:
+   *                            - {[ol.Feature]} the features that are requested to be removed
+   *                            - {Function} resolve callback with the to be removed ol.Feature as argument
+   *                            - {Function} reject callback without argument, to remove the highlighted feature(s)
    */
   onDelete(callback) {
     this.__callback = callback;
   }
 
+  /**
+   * Specifies if the action is allowed to be performed on a feature and/or a layer. Returns true by default.
+   *
+   * @param {Object} feature Openlayers feature
+   * @param {Object} layer Openlayers layer
+   *
+   * @Return {boolean} true if the action is allowed to be performed, false if the action may not be performed for the supplied feature and/or layer
+   */
+  appliesTo() {
+    return true;
+  }
+
   get _callback() {
     return (features, resolve, reject) => {
       if (this.__callback) {
-        return this.__callback(features, resolve, reject);
+        this.__callback(features, resolve, reject);
       } else {
         features.forEach((feature) => resolve(feature));
       }
@@ -64,6 +76,7 @@ export class VlMapDeleteAction extends VlMapLayerAction {
   _createAction(layer) {
     const options = {
       style: this._style,
+      filter: this.appliesTo.bind(this)
     };
     return new VlDeleteAction(layer, this._callback, options);
   }
