@@ -11,7 +11,7 @@ const changes = [
   ...unreleased,
   {
     version: '2.3.0',
-    date: '6/4/2022',
+    date: '8/4/2022',
     children: html`<ul>
       <li>
         <p><code>vl-map</code></p>
