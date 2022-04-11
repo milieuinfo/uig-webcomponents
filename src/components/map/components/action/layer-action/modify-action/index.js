@@ -1,8 +1,8 @@
 import { define } from '../../../../../../utils/core';
 import { VlMapLayerAction } from '../../layer-action';
 import { VlMapVectorLayer } from '../../../layer/vector-layer';
-import { VlModifyAction } from './modify-action';
-import { VlCompositeVectorLayer } from '../../../composite-vector-layer/composite-vector-layer';
+import { VlModifyAction } from '../../actions/select-action/modify-action';
+import { VlCompositeVectorLayer } from '../../../composite-vector-layer';
 
 export class VlMapModifyAction extends VlMapLayerAction {
   static get _observedAttributes() {

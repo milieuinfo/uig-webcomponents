@@ -1,4 +1,4 @@
-import { VlMapAction } from '../../../../../action/test/e2e/action.js';
+import { VlMapAction } from '../../../../../action/test/e2e/map-action';
 import { VlMapFeaturesLayer } from '../../../../../layer/vector-layer/features-layer/test/e2e/features-layer.js';
 
 export class VlMapModifyAction extends VlMapAction {

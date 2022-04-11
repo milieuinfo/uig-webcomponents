@@ -1,5 +1,5 @@
 import '../../../../../map';
-import { argTypes } from '../../config.js';
+import { argTypes } from '../../config';
 import { docsIntro, TYPES, CATEGORIES } from '../../../../../../../.storybook/utils.js';
 
 export default {

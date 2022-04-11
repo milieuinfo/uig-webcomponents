@@ -1,4 +1,4 @@
-import '../../../../test/unit/setup.js';
+import '../../../../test/unit/setup';
 import OlVectorSource from 'ol/source/Vector';
 import OlGML2 from 'ol/format/GML2';
 import fetchMock from 'fetch-mock';

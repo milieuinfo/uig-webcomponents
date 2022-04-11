@@ -1,4 +1,4 @@
-import { VlSelectAction } from '../select-action';
+import { VlSelectAction } from '../../../../layer-action/select-action/select-action';
 
 export class VlSelectActions extends VlSelectAction {
   constructor(layerConfiguraties, onSelect, options) {

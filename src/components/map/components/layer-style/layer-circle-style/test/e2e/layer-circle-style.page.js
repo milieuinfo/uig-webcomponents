@@ -1,6 +1,6 @@
 import { VlMapLayerCircleStyle } from './layer-circle-style.js';
 import { config, By } from '../../../../../../../utils/test';
-import { VlMapPage } from '../../../../map/test/e2e/map.page.js';
+import { VlMapPage } from '../../../../map/test/e2e/map.page';
 
 export class VlMapCircleStylePage extends VlMapPage {
   async getStandardMap() {
