@@ -89,31 +89,86 @@ describe('vl-toggle-button', async () => {
     const button = await toggleButton.getButton();
     await assert.eventually.isTrue(button.isTertiary());
 
-    toggleButton.click();
+    await toggleButton.click();
 
     await assert.eventually.isFalse(button.isTertiary());
   });
 
-  it('as a user I can click on a toggle button to change its active state', async () => {
-    await driver.get(controlledUrl);
+  it('as a user I can click on a toggle button and the click event gets fired', async () => {
+    await driver.get(defaultUrl);
 
     const toggleButton = await new VlToggleButton(driver, selector);
 
-    // toggleButton.driver.executeScript(
-    //   'arguments[0].addEventListener("click", function(){clickIsFired = true})',
-    //   toggleButton,
-    // );
+    await toggleButton.driver.executeScript(
+      'arguments[0].addEventListener("click", () => {window.clickIsFired = true})',
+      toggleButton,
+    );
+
+    await toggleButton.click();
+
+    const clickIsFired = await toggleButton.driver.executeScript('return window.clickIsFired');
+    assert.isTrue(clickIsFired);
+
+    await toggleButton.driver.executeScript(
+      'arguments[0].removeEventListener("click", () => {window.clickIsFired = true})',
+      toggleButton,
+    );
+  });
+
+  it('as a user I can click on a toggle button and the change event gets fired', async () => {
+    await driver.get(defaultUrl);
+
+    const toggleButton = await new VlToggleButton(driver, selector);
+
+    await toggleButton.driver.executeScript(
+      'arguments[0].addEventListener("change", () => {window.changeIsFired = true})',
+      toggleButton,
+    );
+
+    await toggleButton.click();
+
+    const changeIsFired = await toggleButton.driver.executeScript('return window.changeIsFired');
+    assert.isTrue(changeIsFired);
+
+    await toggleButton.driver.executeScript(
+      'arguments[0].removeEventListener("change", () => {window.changeIsFired = true})',
+      toggleButton,
+    );
+  });
+
+  it('as a user I can control the active state of the toggle button', async () => {
+    await driver.get(controlledUrl);
+
+    const toggleButton = await new VlToggleButton(driver, selector);
 
     const button = await toggleButton.getButton();
     await assert.eventually.isTrue(button.isTertiary());
     await assert.eventually.isFalse(toggleButton.isActive());
 
-    toggleButton.setActive(true);
+    await toggleButton.setActive(true);
 
     await assert.eventually.isFalse(button.isTertiary());
     await assert.eventually.isTrue(toggleButton.isActive());
+  });
 
-    // const clickIsFired = await driver.executeScript('return window.clickIsFired');
-    // assert.isTrue(clickIsFired);
+  it('as a user I can control the active state of the toggle button and the change event gets fired', async () => {
+    await driver.get(controlledUrl);
+
+    const toggleButton = await new VlToggleButton(driver, selector);
+
+    await toggleButton.driver.executeScript(
+      'arguments[0].addEventListener("change", () => {window.changeIsFired = true})',
+      toggleButton,
+    );
+
+    await toggleButton.setActive(true);
+
+    const changeIsFired = await toggleButton.driver.executeScript('return window.changeIsFired');
+    assert.isTrue(changeIsFired);
+
+    await toggleButton.driver.executeScript(
+      'arguments[0].removeEventListener("change", () => {window.changeIsFired = true})',
+      toggleButton,
+    );
   });
 });

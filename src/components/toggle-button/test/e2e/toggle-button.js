@@ -23,8 +23,7 @@ export class VlToggleButton extends VlElement {
   // Controlled toggle button
 
   async setActive(set) {
-    // this.driver.executeScript('arguments[0].addEventListener("click", function(){clickIsFired = true})', this);
-    this.driver.executeScript(`return arguments[0].active = ${set}`, this);
+    await this.driver.executeScript(`return arguments[0].active = ${set}`, this);
   }
 
   async isActive() {
