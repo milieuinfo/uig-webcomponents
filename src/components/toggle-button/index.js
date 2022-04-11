@@ -76,8 +76,10 @@ export class VlToggleButton extends LitElement {
         case 'active':
           if (this.active !== undefined) {
             this._active = this.active;
-            this._fireChange();
           }
+          break;
+        case '_active':
+          this._fireChange();
           break;
         default:
           break;
@@ -94,7 +96,6 @@ export class VlToggleButton extends LitElement {
         @click=${() => {
           if (this.active === undefined) {
             this._active = !this._active;
-            this._fireChange();
           }
         }}
       >

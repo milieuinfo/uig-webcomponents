@@ -23,6 +23,7 @@ export default {
     text: 'Toggle button',
     textHidden: false,
     disabled: false,
+    click: action('click'),
     change: action('change'),
   },
   argTypes: {
@@ -98,7 +99,7 @@ export default {
   },
 };
 
-export const Default = ({ icon, iconPlacement, text, textHidden, disabled, change }) =>
+export const Default = ({ icon, iconPlacement, text, textHidden, disabled, change, click }) =>
   html`<vl-toggle-button
     data-vl-icon=${ifDefined(icon)}
     data-vl-icon-placement=${ifDefined(iconPlacement)}
@@ -106,6 +107,9 @@ export const Default = ({ icon, iconPlacement, text, textHidden, disabled, chang
     ?data-vl-text-hidden=${textHidden}
     ?data-vl-disabled=${disabled}
     @change=${(event) => change(event.detail)}
+    @click=${() => {
+      click();
+    }}
   >
   </vl-toggle-button>`;
 
@@ -126,22 +130,21 @@ export const Controlled = ({
   click,
 }) => html`<vl-toggle-button
   .active=${active}
-  @click=${() => {
-    click();
-    getToggleButton().active = !getToggleButton().active;
-  }}
   data-vl-icon=${ifDefined(icon)}
   data-vl-icon-placement=${ifDefined(iconPlacement)}
   data-vl-text=${text}
   ?data-vl-text-hidden=${textHidden}
   ?data-vl-disabled=${disabled}
   @change=${(event) => change(event.detail)}
+  @click=${() => {
+    click();
+    getToggleButton().active = !getToggleButton().active;
+  }}
 >
 </vl-toggle-button>`;
 
 Controlled.args = {
   active: false,
-  click: action('click'),
 };
 
 Controlled.argTypes = { active: { control: { disabled: false } } };
