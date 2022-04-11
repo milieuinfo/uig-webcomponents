@@ -87,19 +87,21 @@ export class VlToggleButton extends LitElement {
 
   _buttonWrap(children) {
     return html`
-      <button
-        is="vl-button"
-        ?disabled=${this.disabled}
-        ?data-vl-tertiary=${!this._active}
-        @click=${() => {
-          if (this.active === undefined) {
-            this._active = !this._active;
-            this._fireChange();
-          }
-        }}
-      >
-        ${children}
-      </button>
+      <div>
+        <button
+          is="vl-button"
+          ?disabled=${this.disabled}
+          ?data-vl-tertiary=${!this._active}
+          @click=${() => {
+            if (this.active === undefined) {
+              this._active = !this._active;
+              this._fireChange();
+            }
+          }}
+        >
+          ${children}
+        </button>
+      </div>
     `;
   }
 

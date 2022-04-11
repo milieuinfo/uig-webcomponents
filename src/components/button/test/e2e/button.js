@@ -1,5 +1,6 @@
-import { VlElement, By } from "../../../../utils/test";
-import { VlIcon } from "../../../icon/test/e2e/icon.js";
+import { VlElement, By } from '../../../../utils/test';
+import { VlIcon } from '../../../icon/test/e2e/icon.js';
+
 class VlButtonElement extends VlElement {
   async getIcon() {
     const icon = await this.findElement(By.css('[is="vl-icon"]'));
@@ -9,35 +10,35 @@ class VlButtonElement extends VlElement {
   }
 
   async isError() {
-    return this.hasAttribute("error");
+    return this.hasAttribute('error');
   }
 
   async isBlock() {
-    return this.hasAttribute("block");
+    return this.hasAttribute('block');
   }
 
   async isLarge() {
-    return this.hasAttribute("large");
+    return this.hasAttribute('large');
   }
 
   async isWide() {
-    return this.hasAttribute("wide");
+    return this.hasAttribute('wide');
   }
 
   async isNarrow() {
-    return this.hasAttribute("narrow");
+    return this.hasAttribute('narrow');
   }
 
   async isLoading() {
-    return this.hasAttribute("loading");
+    return this.hasAttribute('loading');
   }
 
   async isSecondary() {
-    return this.hasAttribute("secondary");
+    return this.hasAttribute('secondary');
   }
 
   async isTertiary() {
-    return this.hasAttribute("tertiary");
+    return this.hasAttribute('tertiary');
   }
 
   async hasIcon() {
