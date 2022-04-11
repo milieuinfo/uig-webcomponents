@@ -2,21 +2,12 @@ import { VlElement, By } from '../../../../utils/test';
 import { VlButton } from '../../../button/test/e2e/button.js';
 
 export class VlToggleButton extends VlElement {
-  async _getButtonElement() {
-    console.log(await this.shadowRoot.getInnerHTML());
-    return this.shadowRoot.findElement(By.css('[is="vl-button"]'));
-  }
-
   async getButton() {
-    const button = await this._getButtonElement();
+    const button = await this.getElementInShadow(this, '[is="vl-button"]');
     if (button) {
       return new VlButton(this.driver, button);
     }
-  }
-
-  async click() {
-    const button = await this._getButtonElement();
-    button.click();
+    return undefined;
   }
 
   async hasHiddenText() {
@@ -29,13 +20,14 @@ export class VlToggleButton extends VlElement {
     return this.hasAttribute('data-vl-disabled');
   }
 
-  async isActive() {
-    const button = await this.getButton();
-    return !(await button.isTertiary());
+  // Controlled toggle button
+
+  async setActive(set) {
+    // this.driver.executeScript('arguments[0].addEventListener("click", function(){clickIsFired = true})', this);
+    this.driver.executeScript(`return arguments[0].active = ${set}`, this);
   }
 
-  async isInactive() {
-    const button = await this.getButton();
-    return await button.isTertiary();
+  async isActive() {
+    return !!(await this.driver.executeScript('return arguments[0].active', this));
   }
 }

@@ -1,4 +1,4 @@
-import { assert, getDriver, config, By } from '../../../../utils/test';
+import { assert, getDriver, config } from '../../../../utils/test';
 import { VlToggleButton } from './toggle-button';
 
 const { sbUrl } = config;
@@ -84,14 +84,36 @@ describe('vl-toggle-button', async () => {
   it('as a user I can click on a toggle button to change its active state', async () => {
     await driver.get(defaultUrl);
 
-    let toggleButton = await new VlToggleButton(driver, selector);
+    const toggleButton = await new VlToggleButton(driver, selector);
 
-    await assert.eventually.isTrue(toggleButton.isInactive());
+    const button = await toggleButton.getButton();
+    await assert.eventually.isTrue(button.isTertiary());
 
     toggleButton.click();
 
-    toggleButton = await new VlToggleButton(driver, selector);
+    await assert.eventually.isFalse(button.isTertiary());
+  });
 
+  it('as a user I can click on a toggle button to change its active state', async () => {
+    await driver.get(controlledUrl);
+
+    const toggleButton = await new VlToggleButton(driver, selector);
+
+    // toggleButton.driver.executeScript(
+    //   'arguments[0].addEventListener("click", function(){clickIsFired = true})',
+    //   toggleButton,
+    // );
+
+    const button = await toggleButton.getButton();
+    await assert.eventually.isTrue(button.isTertiary());
+    await assert.eventually.isFalse(toggleButton.isActive());
+
+    toggleButton.setActive(true);
+
+    await assert.eventually.isFalse(button.isTertiary());
     await assert.eventually.isTrue(toggleButton.isActive());
+
+    // const clickIsFired = await driver.executeScript('return window.clickIsFired');
+    // assert.isTrue(clickIsFired);
   });
 });
