@@ -75,7 +75,7 @@ WithExtraOptIns.args = {
   ],
 };
 
-export const Controlled = ({ submitted, analytics, extraOptIns, open }) => html`
+export const Controlled = ({ submitted, analytics, extraOptIns, open, opened, closed }) => html`
   <button
     is="vl-button"
     @click=${() => {
@@ -87,6 +87,8 @@ export const Controlled = ({ submitted, analytics, extraOptIns, open }) => html`
     .open=${open}
     ?data-vl-analytics=${analytics}
     .extraOptIns=${extraOptIns}
+    @vl-opened=${(event) => opened(event)}
+    @vl-closed=${(event) => closed(event)}
     @vl-submitted=${(event) => {
       submitted(event.detail);
       getConsent().open = false;
