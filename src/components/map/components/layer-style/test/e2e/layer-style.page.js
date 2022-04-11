@@ -1,6 +1,6 @@
 import { VlMapLayerStyle } from '../../test/e2e/layer-style.js';
 import { config, By } from '../../../../../../utils/test';
-import { VlMapPage } from '../../../../test/e2e/map.page';
+import { VlMapPage } from '../../../map/test/e2e/map.page';
 
 export class VlMapLayerStylePage extends VlMapPage {
   async getStandardMap() {
