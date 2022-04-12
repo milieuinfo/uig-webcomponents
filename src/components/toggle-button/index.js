@@ -14,17 +14,9 @@ export class VlToggleButton extends LitElement {
 
   constructor() {
     super();
-    this.icon = undefined;
     this.iconPlacement = ICON_PLACEMENT.AFTER;
-    this.text = '';
     this.textHidden = false;
     this.disabled = false;
-
-    // Uncontrolled state
-    this._active = false;
-
-    // Controlled state
-    this.active = undefined;
   }
 
   static get properties() {
@@ -39,19 +31,44 @@ export class VlToggleButton extends LitElement {
         attribute: 'data-vl-icon-placement',
         reflect: true,
       },
-      text: {
-        type: String,
-        attribute: 'data-vl-text',
-        reflect: true,
-      },
       textHidden: {
         type: Boolean,
         attribute: 'data-vl-text-hidden',
         reflect: true,
       },
+      error: {
+        type: Boolean,
+        attribute: 'data-vl-error',
+        reflect: true,
+      },
+      block: {
+        type: Boolean,
+        attribute: 'data-vl-block',
+        reflect: true,
+      },
+      large: {
+        type: Boolean,
+        attribute: 'data-vl-large',
+        reflect: true,
+      },
+      wide: {
+        type: Boolean,
+        attribute: 'data-vl-wide',
+        reflect: true,
+      },
+      narrow: {
+        type: Boolean,
+        attribute: 'data-vl-narrow',
+        reflect: true,
+      },
+      loading: {
+        type: Boolean,
+        attribute: 'data-vl-loading',
+        reflect: true,
+      },
       disabled: {
         type: Boolean,
-        attribute: 'data-vl-disabled',
+        attribute: 'disabled',
         reflect: true,
       },
       _active: {
@@ -61,20 +78,23 @@ export class VlToggleButton extends LitElement {
       active: {
         type: Boolean,
         attribute: 'active',
-        relfect: true,
       },
     };
   }
 
+  _isControlled() {
+    return this.active !== undefined;
+  }
+
   _fireChange() {
-    this.dispatchEvent(new CustomEvent('change', { detail: `${this._active}` }));
+    this.dispatchEvent(new CustomEvent('change', { detail: { isActive: this._active } }));
   }
 
   updated(changedProperties) {
     changedProperties.forEach((oldValue, propName) => {
       switch (propName) {
         case 'active':
-          if (this.active !== undefined) {
+          if (this._isControlled()) {
             this._active = this.active;
           }
           break;
@@ -91,10 +111,16 @@ export class VlToggleButton extends LitElement {
     return html`
       <button
         is="vl-button"
+        ?data-vl-error=${this._active && this.error}
+        ?data-vl-block=${this.block}
+        ?data-vl-large=${this.large}
+        ?data-vl-wide=${this.wide}
+        ?data-vl-narrow=${this.narrow}
+        ?data-vl-loading=${this.loading}
         ?disabled=${this.disabled}
         ?data-vl-tertiary=${!this._active}
         @click=${() => {
-          if (this.active === undefined) {
+          if (!this._isControlled()) {
             this._active = !this._active;
           }
         }}
@@ -104,24 +130,25 @@ export class VlToggleButton extends LitElement {
     `;
   }
 
-  render() {
-    if (this.icon) {
-      if (this.iconPlacement === ICON_PLACEMENT.BEFORE) {
-        return html`
-          ${this._buttonWrap(html`<span is="vl-icon" data-vl-icon=${this.icon} data-vl-before></span>${this.text}`)}
-        `;
-      }
-      if (this.textHidden) {
-        return html`${this._buttonWrap(
-          html`<span is="vl-icon" data-vl-icon=${this.icon}></span>
-            <span is="vl-text" data-vl-visually-hidden="">${this.text}</span>`,
-        )}`;
-      }
-      return html`
-        ${this._buttonWrap(html`${this.text} <span is="vl-icon" data-vl-icon=${this.icon} data-vl-after></span>`)}
-      `;
+  _iconTemplate() {
+    if (this.textHidden) {
+      return html`${this._buttonWrap(
+        html`<span is="vl-icon" data-vl-icon=${this.icon}></span>
+          <span is="vl-text" data-vl-visually-hidden><slot></slot></span>`,
+      )}`;
     }
-    return html`${this._buttonWrap(this.text)}`;
+    if (this.iconPlacement === ICON_PLACEMENT.BEFORE) {
+      return html`${this._buttonWrap(
+        html`<span is="vl-icon" data-vl-icon=${this.icon} data-vl-before></span><slot></slot>`,
+      )}`;
+    }
+    return html`${this._buttonWrap(
+      html`<slot></slot><span is="vl-icon" data-vl-icon=${this.icon} data-vl-after></span>`,
+    )}`;
+  }
+
+  render() {
+    return this.icon ? this._iconTemplate() : html`${this._buttonWrap(html`<slot></slot>`)}`;
   }
 }
 

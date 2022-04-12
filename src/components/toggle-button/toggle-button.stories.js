@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { docsIntro, TYPES, CATEGORIES } from '../../../.storybook/utils.js';
 import { ICON_PLACEMENT } from './enums';
+import { argsShared, argTypesShared } from '../button/config';
 
 export default {
   title: 'custom-elements/vl-toggle-button',
@@ -12,15 +13,16 @@ export default {
       description: {
         component: docsIntro({
           root: 'toggle-button',
-          intro: '',
+          intro: 'The toggle button is a button that can have an active and inactive state.',
         }),
       },
     },
   },
   args: {
-    icon: 'pencil',
+    ...argsShared,
+    icon: undefined,
     iconPlacement: undefined,
-    text: 'Toggle button',
+    content: 'Toggle button',
     textHidden: false,
     disabled: false,
     click: action('click'),
@@ -40,6 +42,7 @@ export default {
     },
     icon: {
       name: 'data-vl-icon',
+      type: { name: TYPES.STRING, required: false },
       description: 'Sets the icon of the toggle button.',
       table: {
         type: { summary: TYPES.STRING },
@@ -59,27 +62,9 @@ export default {
         options: [ICON_PLACEMENT.BEFORE, ICON_PLACEMENT.AFTER],
       },
     },
-    text: {
-      name: 'data-vl-text',
-      description: 'Sets the text of the toggle button.',
-      table: {
-        type: { summary: TYPES.STRING },
-        category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: '' },
-      },
-    },
     textHidden: {
       name: 'data-vl-text-hidden',
       description: 'Determines whether the toggle button text is shown.',
-      table: {
-        type: { summary: TYPES.BOOLEAN },
-        category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: 'false' },
-      },
-    },
-    disabled: {
-      name: 'data-vl-disabled',
-      description: 'Determines whether the toggle button is disabled or not.',
       table: {
         type: { summary: TYPES.BOOLEAN },
         category: CATEGORIES.ATTRIBUTES,
@@ -96,21 +81,46 @@ export default {
       description: 'Custom event fired on click of the toggle button.',
       table: { category: CATEGORIES.EVENTS },
     },
+    ...argTypesShared,
+    error: {
+      ...argTypesShared.error,
+      description:
+        'Used to emphasize the importance or consequences of an action when the toggle button is in an active state.',
+    },
   },
 };
 
-export const Default = ({ icon, iconPlacement, text, textHidden, disabled, change, click }) =>
+export const Default = ({
+  icon,
+  iconPlacement,
+  content,
+  textHidden,
+  error,
+  block,
+  large,
+  wide,
+  narrow,
+  loading,
+  disabled,
+  change,
+  click,
+}) =>
   html`<vl-toggle-button
     data-vl-icon=${ifDefined(icon)}
     data-vl-icon-placement=${ifDefined(iconPlacement)}
-    data-vl-text=${text}
     ?data-vl-text-hidden=${textHidden}
-    ?data-vl-disabled=${disabled}
+    ?data-vl-error=${error}
+    ?data-vl-block=${block}
+    ?data-vl-large=${large}
+    ?data-vl-wide=${wide}
+    ?data-vl-narrow=${narrow}
+    ?data-vl-loading=${loading}
+    ?disabled=${disabled}
     @change=${(event) => change(event.detail)}
-    @click=${() => {
-      click();
+    @click=${(event) => {
+      click(event);
     }}
-  >
+    >${content}
   </vl-toggle-button>`;
 
 // Get last toggle button, because storybook can render multiple stories
@@ -123,8 +133,14 @@ export const Controlled = ({
   active,
   icon,
   iconPlacement,
-  text,
+  content,
   textHidden,
+  error,
+  block,
+  large,
+  wide,
+  narrow,
+  loading,
   disabled,
   change,
   click,
@@ -132,15 +148,21 @@ export const Controlled = ({
   .active=${active}
   data-vl-icon=${ifDefined(icon)}
   data-vl-icon-placement=${ifDefined(iconPlacement)}
-  data-vl-text=${text}
   ?data-vl-text-hidden=${textHidden}
-  ?data-vl-disabled=${disabled}
+  ?data-vl-error=${error}
+  ?data-vl-block=${block}
+  ?data-vl-large=${large}
+  ?data-vl-wide=${wide}
+  ?data-vl-narrow=${narrow}
+  ?data-vl-loading=${loading}
+  ?disabled=${disabled}
   @change=${(event) => change(event.detail)}
-  @click=${() => {
-    click();
-    getToggleButton().active = !getToggleButton().active;
+  @click=${(event) => {
+    click(event);
+    const toggleButton = getToggleButton();
+    toggleButton.active = !toggleButton.active;
   }}
->
+  >${content}
 </vl-toggle-button>`;
 
 Controlled.args = {

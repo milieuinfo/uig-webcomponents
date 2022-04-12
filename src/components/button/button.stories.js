@@ -1,23 +1,22 @@
 import { html } from 'lit-html';
 import '../button';
 import '../text';
-import { args, argTypes } from './config';
+import { argsButton, argsShared, argTypesButton, argTypesShared } from './config';
 import styles from './styles.scss';
 import { stylesheet, docsIntro } from '../../../.storybook/utils.js';
 
 export default {
   title: 'native-elements/vl-button',
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
-  args,
-  argTypes,
+  args: { ...argsButton, ...argsShared },
+  argTypes: { ...argTypesButton, ...argTypesShared },
   parameters: {
     docs: {
       description: {
         component: docsIntro({
           stylesheets: ['button'],
           root: 'button',
-          intro:
-            'Gebruik de vl-button om een CTA toe te voegen. Het type call-to-action wordt bepaald door het label of de pictogram.',
+          intro: 'Use the vl button to add a CTA. The type of call to action is determined by the label or icon.',
         }),
       },
     },
