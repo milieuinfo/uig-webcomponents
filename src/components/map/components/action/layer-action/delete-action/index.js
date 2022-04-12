@@ -1,5 +1,5 @@
 import { define } from '../../../../../../utils/core';
-import { VlDeleteAction } from '../../layer-action/select-action/box-select-action/delete-action/delete-action';
+import { VlDeleteAction } from '../../actions/select-action/box-select-action/delete-action';
 import { VlMapLayerAction } from '../../layer-action';
 import { VlMapLayerStyle } from '../../../layer-style';
 

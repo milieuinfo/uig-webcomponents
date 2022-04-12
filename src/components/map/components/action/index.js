@@ -1,5 +1,5 @@
 import { vlElement, define } from '../../../../utils/core';
-import { VlMap } from '../../map';
+import { VlMap } from '../map';
 
 export class VlMapAction extends vlElement(HTMLElement) {
   connectedCallback() {

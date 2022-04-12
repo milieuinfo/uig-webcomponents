@@ -1,6 +1,6 @@
 import { define } from '../../../../../../utils/core';
 import { VlMapDrawAction } from '../../draw-action';
-import { VlDrawPolygonAction } from './draw-polygon-action';
+import { VlDrawPolygonAction } from '../../actions/draw-action/draw-polygon-action';
 
 export class VlMapDrawPolygonAction extends VlMapDrawAction {
   _createAction(layer) {

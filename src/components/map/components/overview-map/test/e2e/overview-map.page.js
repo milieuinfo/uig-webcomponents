@@ -1,5 +1,5 @@
 import { config } from '../../../../../../utils/test';
-import { VlMapPage } from '../../../../test/e2e/map.page';
+import { VlMapPage } from '../../../map/test/e2e/map.page';
 
 export class VlMapOverviewMapPage extends VlMapPage {
   async getMap() {

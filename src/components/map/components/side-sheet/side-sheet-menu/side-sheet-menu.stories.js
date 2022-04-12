@@ -1,4 +1,4 @@
-import '../../../map';
+import '../../map';
 import { docsIntro } from '../../../../../../.storybook/utils.js';
 
 export default {

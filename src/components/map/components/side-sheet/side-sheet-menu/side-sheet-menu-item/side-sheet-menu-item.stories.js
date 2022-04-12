@@ -1,5 +1,5 @@
 import { html } from 'lit-html';
-import '../../../../map';
+import '../../../map';
 import { docsIntro, TYPES, CATEGORIES } from '../../../../../../../.storybook/utils.js';
 
 export default {

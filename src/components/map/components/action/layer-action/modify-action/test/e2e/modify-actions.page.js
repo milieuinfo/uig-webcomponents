@@ -1,5 +1,5 @@
 import { VlMapModifyAction } from './modify-action.js';
-import { VlMapPage } from '../../../../../../test/e2e/map.page';
+import { VlMapPage } from '../../../../../map/test/e2e/map.page';
 import { config, By } from '../../../../../../../../utils/test';
 
 export class VlMapModifyActionsPage extends VlMapPage {

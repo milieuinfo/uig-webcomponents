@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
 import '../../../../map';
-import { argTypes } from '../config.js';
+import { argTypes } from '../config';
 import { docsIntro } from '../../../../../../.storybook/utils.js';
 
 export default {

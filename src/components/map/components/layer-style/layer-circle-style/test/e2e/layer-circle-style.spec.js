@@ -1,7 +1,7 @@
-import { assert, getDriver } from "../../../../../../../utils/test";
-import { VlMapCircleStylePage } from "./layer-circle-style.page.js";
+import { assert, getDriver } from '../../../../../../../utils/test';
+import { VlMapCircleStylePage } from './layer-circle-style.page.js';
 
-describe("vl-map-circle-style", async () => {
+describe('vl-map-circle-style', async () => {
   let vlMapPage;
 
   before(() => {
@@ -9,12 +9,12 @@ describe("vl-map-circle-style", async () => {
     return vlMapPage.load();
   });
 
-  it("als gebruiker kan ik een layer met circle stijl definiëren met standaard stijl", async () => {
+  it('as a user I can define a layer with circle style with default style', async () => {
     const map = await vlMapPage.getStandardMap();
     const style = await vlMapPage.getLayerCircleStyle(map);
 
-    await assert.eventually.equal(style.getColor(), "rgba(2, 85, 204, 0.8)");
-    await assert.eventually.equal(style.getSize(), "5");
+    await assert.eventually.equal(style.getColor(), 'rgba(2, 85, 204, 0.8)');
+    await assert.eventually.equal(style.getSize(), '5');
     await assert.eventually.isNull(style.getBorderColor());
     await assert.eventually.isNull(style.getBorderSize());
     await assert.eventually.isNull(style.getTextColor());
@@ -22,14 +22,14 @@ describe("vl-map-circle-style", async () => {
     await assert.eventually.isNull(style.getTextOffsetY());
   });
 
-  it("als gebruiker kan ik een layer met circle stijl definiëren met aangepaste stijl", async () => {
+  it('as user i can define circle style layer with custom style', async () => {
     const map = await vlMapPage.getModifiedMap();
     const style = await vlMapPage.getLayerCircleStyle(map);
 
-    await assert.eventually.equal(style.getColor(), "#ffe615");
-    await assert.eventually.equal(style.getSize(), "5");
-    await assert.eventually.equal(style.getBorderColor(), "#000");
-    await assert.eventually.equal(style.getBorderSize(), "1");
+    await assert.eventually.equal(style.getColor(), '#ffe615');
+    await assert.eventually.equal(style.getSize(), '5');
+    await assert.eventually.equal(style.getBorderColor(), '#000');
+    await assert.eventually.equal(style.getBorderSize(), '1');
     await assert.eventually.isNull(style.getTextColor());
     await assert.eventually.isNull(style.getTextOffsetX());
     await assert.eventually.isNull(style.getTextOffsetY());
