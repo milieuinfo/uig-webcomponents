@@ -19,6 +19,7 @@ export { VlMapDeleteAction } from './components/action/layer-action/delete-actio
 export { VlMapDrawPointAction } from './components/action/draw-action/draw-point-action';
 export { VlMapDrawLineAction } from './components/action/draw-action/draw-line-action';
 export { VlMapDrawPolygonAction } from './components/action/draw-action/draw-polygon-action';
+export { VlMapMeasureAction } from './components/action/draw-action/measure-action';
 export { VlMapLayerStyle } from './components/layer-style';
 export { VlMapLayerCircleStyle } from './components/layer-style/layer-circle-style';
 export { VlMapSearch } from './components/search';

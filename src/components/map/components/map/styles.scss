@@ -183,6 +183,13 @@ $icon-font-path: '../../../../../node_modules/bootstrap-sass/assets/fonts/bootst
   pointer-events: none;
 }
 
+.measure-pill {
+  position: absolute;
+  opacity: 0.8;
+  bottom: 20;
+  white-space: nowrap;
+}
+
 .ol-dragbox {
   border-color: rgba(2, 85, 204, 1);
 }
