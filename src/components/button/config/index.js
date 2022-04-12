@@ -1,4 +1,4 @@
-import { CATEGORIES } from '../../../../.storybook/utils';
+import { CATEGORIES, TYPES } from '../../../../.storybook/utils';
 
 export const args = {
   content: 'Button',
@@ -16,7 +16,7 @@ export const args = {
 export const argTypes = {
   secondary: {
     name: 'data-vl-secondary',
-    type: { summary: 'boolean' },
+    type: { summary: TYPES.BOOLEAN },
     description: 'Attribuut wordt gebruikt in combinatie met een gewone knop om alternatieve acties te voorzien.',
     table: {
       defaultValue: { summary: 'false' },
@@ -25,7 +25,7 @@ export const argTypes = {
   },
   tertiary: {
     name: 'data-vl-tertiary',
-    type: { summary: 'boolean' },
+    type: { summary: TYPES.BOOLEAN },
     description:
       'Attribuut wordt gebruikt in combinatie met gewone en secondary knoppen om alternatieve acties te voorzien.',
     table: {
@@ -34,7 +34,7 @@ export const argTypes = {
     },
   },
   disabled: {
-    type: { summary: 'boolean' },
+    type: { summary: TYPES.BOOLEAN },
     description: 'Attribuut wordt gebruikt om aan de gebruiker aan te duiden dat de functionaliteit niet actief is.',
     table: {
       defaultValue: { summary: 'false' },
@@ -43,7 +43,7 @@ export const argTypes = {
   },
   error: {
     name: 'data-vl-error',
-    type: { summary: 'boolean' },
+    type: { summary: TYPES.BOOLEAN },
     description: 'Attribuut wordt gebruikt om het belang of de gevolgen van een actie te benadrukken.',
     table: {
       defaultValue: { summary: 'false' },
@@ -52,7 +52,7 @@ export const argTypes = {
   },
   block: {
     name: 'data-vl-block',
-    type: { summary: 'boolean' },
+    type: { summary: TYPES.BOOLEAN },
     description:
       'Attribuut wordt gebruikt om ervoor te zorgen dat de knop getoond wordt als een block element en bijgevol de breedte van de parent zal aannemen.',
     table: {
@@ -62,7 +62,7 @@ export const argTypes = {
   },
   large: {
     name: 'data-vl-large',
-    type: { summary: 'boolean' },
+    type: { summary: TYPES.BOOLEAN },
     description: 'Attribuut wordt gebruikt om de aandacht van de gebruiker te trekken door de font-size te vergroten.',
     table: {
       defaultValue: { summary: 'false' },
@@ -71,7 +71,7 @@ export const argTypes = {
   },
   wide: {
     name: 'data-vl-wide',
-    type: { summary: 'boolean' },
+    type: { summary: TYPES.BOOLEAN },
     description: 'Attribuut zorgt ervoor dat de knop breder op het scherm zal getoond worden.',
     table: {
       defaultValue: { summary: 'false' },
@@ -80,7 +80,7 @@ export const argTypes = {
   },
   narrow: {
     name: 'data-vl-narrow',
-    type: { summary: 'boolean' },
+    type: { summary: TYPES.BOOLEAN },
     description: 'Attribuut zorgt ervoor dat de knop smaller op het scherm zal getoond worden.',
     table: {
       defaultValue: { summary: 'false' },
@@ -89,7 +89,7 @@ export const argTypes = {
   },
   loading: {
     name: 'data-vl-loading',
-    type: { summary: 'boolean' },
+    type: { summary: TYPES.BOOLEAN },
     description: 'Attribuut wordt gebruikt om aan de gebruiker aan te geven dat zijn actie momenteel verwerkt wordt.',
     table: {
       defaultValue: { summary: 'false' },
@@ -98,6 +98,6 @@ export const argTypes = {
   },
   content: {
     name: 'content (for demo purposes)',
-    type: { summary: 'string' },
+    type: { summary: TYPES.STRING },
   },
 };

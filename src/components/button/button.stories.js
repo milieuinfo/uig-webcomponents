@@ -51,19 +51,19 @@ export const Default = ({
 </button>`;
 
 export const IconButton = (props) => {
-  const buttonWrap = (props, children) =>
+  const buttonWrap = (wrapProps, children) =>
     html`
       <button
         is="vl-button"
-        ?disabled=${props.disabled}
-        ?data-vl-error=${props.error}
-        ?data-vl-block=${props.block}
-        ?data-vl-large=${props.large}
-        ?data-vl-wide=${props.wide}
-        ?data-vl-narrow=${props.narrow}
-        ?data-vl-loading=${props.loading}
-        ?data-vl-secondary=${props.secondary}
-        ?data-vl-tertiary=${props.tertiary}
+        ?disabled=${wrapProps.disabled}
+        ?data-vl-error=${wrapProps.error}
+        ?data-vl-block=${wrapProps.block}
+        ?data-vl-large=${wrapProps.large}
+        ?data-vl-wide=${wrapProps.wide}
+        ?data-vl-narrow=${wrapProps.narrow}
+        ?data-vl-loading=${wrapProps.loading}
+        ?data-vl-secondary=${wrapProps.secondary}
+        ?data-vl-tertiary=${wrapProps.tertiary}
       >
         ${children}
       </button>
