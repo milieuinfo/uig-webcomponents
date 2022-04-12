@@ -6,7 +6,8 @@ import Style from 'ol/style/Style';
 import Feature from 'ol/Feature';
 import { Vector as SourceVector } from 'ol/source';
 import { Vector } from 'ol/layer';
-import { VlSelectAction } from '../../../actions/select-action';
+import { never } from 'ol/events/condition';
+import { VlSelectAction } from '../../select-action';
 
 describe('select action', () => {
   const createVlSelectAction = ({ layer = {}, callback, options } = {}) => {
@@ -345,5 +346,10 @@ describe('select action', () => {
     expect(selectAction.selectInteraction.getFeatures().getLength()).to.equal(0);
     expect(selectAction.markInteraction.getFeatures().getLength()).to.equal(1);
     expect(selectAction.hoverInteraction.getFeatures().getLength()).to.equal(0);
+  });
+
+  it('het markeren kan niet door een gebruiker worden getriggered', () => {
+    const selectAction = createVlSelectAction();
+    expect(selectAction.markInteraction.condition_).to.equal(never);
   });
 });

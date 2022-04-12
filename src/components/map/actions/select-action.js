@@ -1,5 +1,5 @@
 import { Select } from 'ol/interaction';
-import { click, pointerMove } from 'ol/events/condition';
+import { click, pointerMove, never } from 'ol/events/condition';
 import { VlMapAction } from './mapaction';
 
 export class VlSelectAction extends VlMapAction {
@@ -27,6 +27,7 @@ export class VlSelectAction extends VlMapAction {
     });
 
     const markInteraction = new Select({
+      condition: never,
       style,
       layers: [layer],
     });
