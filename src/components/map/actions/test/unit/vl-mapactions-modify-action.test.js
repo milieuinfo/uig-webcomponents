@@ -8,8 +8,7 @@ import Feature from 'ol/Feature';
 import Point from 'ol/geom/Point';
 import Select from 'ol/interaction/Select';
 import Modify from 'ol/interaction/Modify';
-import { VlSnapInteraction } from '../../../actions/snap-interaction';
-import { VlModifyAction } from '../../../actions/modify-action';
+import { VlSnapInteraction, VlModifyAction } from '../../..';
 
 describe('modify action', () => {
   const source = new SourceVector();

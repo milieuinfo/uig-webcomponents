@@ -1,4 +1,6 @@
-import { OlVectorSource, OlLoadingstrategy, OlGML2 } from '../../../../actions';
+import OlVectorSource from 'ol/source/Vector';
+import * as OlLoadingstrategy from 'ol/loadingstrategy';
+import OlGML2 from 'ol/format/GML2';
 import { define } from '../../../../../../utils/core';
 import { VlMapVectorLayer } from '../../vector-layer';
 

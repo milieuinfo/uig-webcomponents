@@ -1,6 +1,9 @@
-import { define } from '../../../../../utils/core';
+import OlStyle from 'ol/style/Style';
+import OlStyleStroke from 'ol/style/Stroke';
+import OlStyleFill from 'ol/style/Fill';
+import OlStyleCircle from 'ol/style/Circle';
 import { VlMapLayerStyle } from '../../layer-style';
-import { OlStyle, OlStyleCircle, OlStyleStroke, OlStyleFill } from '../../../actions';
+import { define } from '../../../../../utils/core';
 
 /**
  * VlMapLayerCircleStyle

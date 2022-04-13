@@ -1,17 +1,15 @@
+import OlWMTSSource from 'ol/source/WMTS';
+import OlWMTSTileGrid from 'ol/tilegrid/WMTS';
+import OlVectorSource from 'ol/source/Vector';
+import OlVectorLayer from 'ol/layer/Vector';
+import OlTileLayer from 'ol/layer/Tile';
+import OlGeoJSON from 'ol/format/GeoJSON';
+import OlStyle from 'ol/style/Style';
+import OlStyleStroke from 'ol/style/Stroke';
+import OlStyleFill from 'ol/style/Fill';
+import * as OlExtent from 'ol/extent';
+import * as OlLoadingstrategy from 'ol/loadingstrategy';
 import { vlElement, define } from '../../../../utils/core';
-import {
-  OlWMTSSource,
-  OlWMTSTileGrid,
-  OlVectorSource,
-  OlVectorLayer,
-  OlTileLayer,
-  OlGeoJSON,
-  OlStyle,
-  OlStyleStroke,
-  OlStyleFill,
-  OlExtent,
-  OlLoadingstrategy,
-} from '../../actions';
 
 /**
  * VlMapBaseLayer

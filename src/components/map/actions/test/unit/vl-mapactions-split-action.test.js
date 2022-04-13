@@ -5,7 +5,7 @@ import MultiPolygon from 'ol/geom/MultiPolygon';
 import Polygon from 'ol/geom/Polygon';
 import LineString from 'ol/geom/LineString';
 import Feature from 'ol/Feature';
-import { VlSplitAction } from '../../../actions/split-action';
+import { VlSplitAction } from '../../..';
 
 describe('split action', () => {
   const callbackSpy = sinon.spy();

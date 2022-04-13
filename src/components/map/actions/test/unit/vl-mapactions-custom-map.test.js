@@ -4,7 +4,7 @@ import { Vector as SourceVector } from 'ol/source';
 import Projection from 'ol/proj/Projection';
 import sinon from 'sinon/pkg/sinon-esm';
 import { expect } from 'chai';
-import { VlCustomMap } from '../../../actions/custom-map';
+import { VlCustomMap } from '../../..';
 
 describe('custom map', () => {
   let map;

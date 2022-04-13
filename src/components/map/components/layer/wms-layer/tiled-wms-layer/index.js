@@ -1,6 +1,7 @@
+import OlTileWMSSource from 'ol/source/TileWMS';
+import OlTileLayer from 'ol/layer/Tile';
 import { define } from '../../../../../../utils/core';
 import { VlMapWmsLayer } from '../../wms-layer';
-import { OlTileWMSSource, OlTileLayer } from '../../../../actions';
 
 /**
  * VlMapTiledWmsLayer

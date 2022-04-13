@@ -5,8 +5,7 @@ import Point from 'ol/geom/Point';
 import Feature from 'ol/Feature';
 import { Vector as SourceVector } from 'ol/source';
 import { Vector } from 'ol/layer';
-import { VlSnapInteraction } from '../../../actions/snap-interaction';
-import { VlModifyAndTranslateAction } from '../../../actions/modify-and-translate-action';
+import { VlSnapInteraction, VlModifyAndTranslateAction } from '../../..';
 
 describe('modify and translate action', () => {
   const source = new SourceVector();

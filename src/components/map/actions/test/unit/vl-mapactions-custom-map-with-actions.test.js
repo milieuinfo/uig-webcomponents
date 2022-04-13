@@ -3,7 +3,7 @@ import { Vector, Tile, Group } from 'ol/layer';
 import Projection from 'ol/proj/Projection';
 import sinon from 'sinon/pkg/sinon-esm';
 import { expect } from 'chai';
-import { VlCustomMap } from '../../../actions/custom-map';
+import { VlCustomMap } from '../../..';
 
 describe('custom map with actions', () => {
   const createVlCustomMapWithActions = () => {

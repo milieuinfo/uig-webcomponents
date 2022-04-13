@@ -7,7 +7,7 @@ import Feature from 'ol/Feature';
 import { Vector as SourceVector } from 'ol/source';
 import { Vector } from 'ol/layer';
 import { never } from 'ol/events/condition';
-import { VlSelectAction } from '../../select-action';
+import { VlSelectAction } from '../../..';
 
 describe('select action', () => {
   const createVlSelectAction = ({ layer = {}, callback, options } = {}) => {

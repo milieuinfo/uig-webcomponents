@@ -5,7 +5,7 @@ import fetchMock from 'fetch-mock';
 import { expect } from 'chai';
 import MultiPolygon from 'ol/geom/MultiPolygon';
 import MultiLineString from 'ol/geom/MultiLineString';
-import { VlCompositeVectorSource } from '../../../actions/composite-vector-source';
+import { VlCompositeVectorSource } from '../../..';
 
 const jsdom = require('jsdom');
 

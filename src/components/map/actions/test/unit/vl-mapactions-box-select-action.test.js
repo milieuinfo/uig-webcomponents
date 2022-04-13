@@ -2,7 +2,7 @@ import sinon from 'sinon/pkg/sinon-esm';
 import Map from 'ol/Map';
 import Feature from 'ol/Feature';
 import { expect } from 'chai';
-import { VlBoxSelectAction } from '../../../actions/box-select-action';
+import { VlBoxSelectAction } from '../../..';
 
 describe('box select action', () => {
   const feature1 = new Feature({ id: 1 });

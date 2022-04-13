@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { VlSelectAction } from '../../../actions';
+import { VlSelectAction } from '../../..';
 
 describe('build', () => {
   it('zal de veriabelen niet wijzigen zodat instanceof mogelijk blijft', () => {

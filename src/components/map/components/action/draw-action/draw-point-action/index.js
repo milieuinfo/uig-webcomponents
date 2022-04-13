@@ -1,6 +1,7 @@
+import { OlGeometryType } from 'ol/geom/GeometryType';
 import { define } from '../../../../../../utils/core';
 import { VlMapDrawAction } from '../../draw-action';
-import { VlDrawAction, OlGeometryType } from '../../../../actions';
+import { VlDrawAction } from '../../../../actions';
 
 /**
  * VlMapDrawPointAction

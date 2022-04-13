@@ -1,7 +1,7 @@
+import OlOverlay from 'ol/Overlay';
 import { vlElement, define } from '../../../../utils/core';
 import '../../../search';
 import '../select-location';
-import { OlOverlay } from '../../actions';
 import LambertCoordinaat from '../../utils/lambert-coordinaat';
 import styles from './styles.scss';
 

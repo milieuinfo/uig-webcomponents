@@ -5,8 +5,7 @@ import { Vector as SourceVector } from 'ol/source';
 import { Vector } from 'ol/layer';
 import Feature from 'ol/Feature';
 import Style from 'ol/style/Style';
-import { VlSelectActions } from '../../../actions/select-actions';
-import { VlSelectAction } from '../../../actions/select-action';
+import { VlSelectActions, VlSelectAction } from '../../..';
 
 describe('select actions', () => {
   it('select actions is een select action', () => {

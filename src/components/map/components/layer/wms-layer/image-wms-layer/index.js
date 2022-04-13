@@ -1,4 +1,5 @@
-import { OlImageLayer, OlImageWMSSource } from '../../../../actions';
+import OlImageLayer from 'ol/layer/Image';
+import OlImageWMSSource from 'ol/source/ImageWMS';
 import { define } from '../../../../../../utils/core';
 import { VlMapWmsLayer } from '../../wms-layer';
 

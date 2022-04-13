@@ -1,6 +1,10 @@
-import { define } from '../../../../../utils/core';
+import OlWMTSSource from 'ol/source/WMTS';
+import OlWMTSTileGrid from 'ol/tilegrid/WMTS';
+import OlTileLayer from 'ol/layer/Tile';
+import * as OlExtent from 'ol/extent';
 import { VlMapLayer } from '../../layer';
-import { OlWMTSSource, OlWMTSTileGrid, OlTileLayer, OlExtent } from '../../../actions';
+import { define } from '../../../../../utils/core';
+
 /**
  * VlMapWmtsLayer
  *

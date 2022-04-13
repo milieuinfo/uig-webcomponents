@@ -6,7 +6,7 @@ import { Vector } from 'ol/layer';
 import Feature from 'ol/Feature';
 import LineString from 'ol/geom/LineString';
 import * as OlObservable from 'ol/Observable';
-import { VlMeasureAction } from '../../../actions/measure-action';
+import { VlMeasureAction } from '../../..';
 
 describe('measure action', () => {
   let measureAction;

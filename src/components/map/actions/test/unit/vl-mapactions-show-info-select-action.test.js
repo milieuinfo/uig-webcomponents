@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import Feature from 'ol/Feature';
 import Point from 'ol/geom/Point';
 import { Vector as SourceVector } from 'ol/source';
-import { VlShowInfoSelectAction } from '../../../actions/show-info-select-action';
+import { VlShowInfoSelectAction } from '../../..';
 
 describe('show info select action', () => {
   let map;

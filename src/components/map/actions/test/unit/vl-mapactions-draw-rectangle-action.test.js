@@ -1,7 +1,7 @@
 import sinon from 'sinon/pkg/sinon-esm';
 import { expect } from 'chai';
 import { Vector as SourceVector } from 'ol/source';
-import { VlDrawRectangleAction } from '../../../actions/draw-rectangle-action';
+import { VlDrawRectangleAction } from '../../..';
 
 describe('draw rectangle action', () => {
   const source = new SourceVector({});

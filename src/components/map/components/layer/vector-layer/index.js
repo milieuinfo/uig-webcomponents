@@ -1,4 +1,4 @@
-import { OlVectorLayer } from '../../../actions';
+import OlVectorLayer from 'ol/layer/Vector';
 import { VlMapLayer } from '../../layer';
 import { VlMapLayerStyle } from '../../layer-style';
 

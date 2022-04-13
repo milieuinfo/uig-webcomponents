@@ -4,7 +4,7 @@ import Feature from 'ol/Feature';
 import Style from 'ol/style/Style';
 import { Vector } from 'ol/layer';
 import { Vector as SourceVector } from 'ol/source';
-import { VlHighlightAction } from '../../../actions/highlight-action';
+import { VlHighlightAction } from '../../..';
 
 describe('highlight action', () => {
   it('kan de highlight stijl definiëren', () => {

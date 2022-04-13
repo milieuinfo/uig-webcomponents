@@ -1,5 +1,8 @@
+import OlStyle from 'ol/style/Style';
+import OlStyleStroke from 'ol/style/Stroke';
+import OlStyleFill from 'ol/style/Fill';
+import OlStyleText from 'ol/style/Text';
 import { vlElement, define } from '../../../../utils/core';
-import { OlStyle, OlStyleFill, OlStyleStroke, OlStyleText } from '../../actions';
 
 /**
  * VlMapLayerStyle

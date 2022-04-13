@@ -1,5 +1,10 @@
+import OlFullScreenControl from 'ol/control/FullScreen';
+import OlLayerGroup from 'ol/layer/Group';
+import OlProjection from 'ol/proj/Projection';
+import proj4 from 'proj4';
 import { vlElement, define } from '../../../../utils/core';
-import { OlFullScreenControl, OlLayerGroup, OlProjection, VlCustomMap, proj4 } from '../../actions';
+import { VlCustomMap } from '../../actions';
+
 import styles from './styles.scss';
 
 /**

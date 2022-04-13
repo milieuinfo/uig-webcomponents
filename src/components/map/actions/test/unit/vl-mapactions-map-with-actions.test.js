@@ -11,8 +11,7 @@ import DragPan from 'ol/interaction/DragPan';
 import DragZoom from 'ol/interaction/DragZoom';
 import Collection from 'ol/Collection';
 import Interaction from 'ol/interaction/Interaction';
-import { VlMapAction } from '../../../actions/mapaction';
-import { VlMapWithActions } from '../../../actions/map-with-actions';
+import { VlMapActionAction, VlMapWithActions } from '../../..';
 
 describe('map with actions', () => {
   let action1;
@@ -21,8 +20,8 @@ describe('map with actions', () => {
   const createMapWithActions = () =>
     new VlMapWithActions({
       actions: [
-        (action1 = new VlMapAction([new Interaction({}), new Interaction({})])),
-        (action2 = new VlMapAction([new Interaction({}), new Interaction({}), new Interaction({})])),
+        (action1 = new VlMapActionAction([new Interaction({}), new Interaction({})])),
+        (action2 = new VlMapActionAction([new Interaction({}), new Interaction({}), new Interaction({})])),
       ],
     });
 
@@ -71,7 +70,7 @@ describe('map with actions', () => {
     expect(map.getInteractions().getLength()).to.equal(14);
     setTimeout(() => {
       expect(map.currentAction).to.equal(action1);
-      const nieuweAction = new VlMapAction([new Interaction({}), new Interaction({})]);
+      const nieuweAction = new VlMapActionAction([new Interaction({}), new Interaction({})]);
       map.addAction(nieuweAction);
       expect(map.actions.length).to.equal(3);
       expect(map.actions[2]).to.equal(nieuweAction);
@@ -84,7 +83,7 @@ describe('map with actions', () => {
   it('kan een actie verwijderen van de map', (done) => {
     const map = createMapWithActions();
     setTimeout(() => {
-      const nieuweAction = new VlMapAction([new Interaction({}), new Interaction({})]);
+      const nieuweAction = new VlMapActionAction([new Interaction({}), new Interaction({})]);
       map.addAction(nieuweAction);
       map.removeAction(nieuweAction);
       expect(map.actions.length).to.equal(2);
@@ -98,7 +97,7 @@ describe('map with actions', () => {
   it('als de te verwijderen actie de current actie wordt de default geactiveerd', (done) => {
     const map = createMapWithActions();
     setTimeout(() => {
-      const nieuweAction = new VlMapAction([new Interaction({}), new Interaction({})]);
+      const nieuweAction = new VlMapActionAction([new Interaction({}), new Interaction({})]);
       map.addAction(nieuweAction);
       map.activateAction(nieuweAction);
       expect(map.currentAction).to.equal(nieuweAction);

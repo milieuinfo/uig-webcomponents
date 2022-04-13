@@ -6,7 +6,7 @@ import { Vector as SourceVector } from 'ol/source';
 import { Vector } from 'ol/layer';
 import Feature from 'ol/Feature';
 import sinon from 'sinon/pkg/sinon-esm';
-import { VlDeleteAction } from '../../../actions/delete-action';
+import { VlDeleteAction } from '../../..';
 
 describe('delete action', () => {
   const createVlDeleteAction = ({ layer, callback, options = {} }) => {

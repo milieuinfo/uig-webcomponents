@@ -1,7 +1,7 @@
 import sinon from 'sinon/pkg/sinon-esm';
 import { expect } from 'chai';
 import Feature from 'ol/Feature';
-import { VlTranslateAction } from '../../../actions/translate-action';
+import { VlTranslateAction } from '../../..';
 
 describe('translate action', () => {
   it('roept de callback functie op nadat er een translate werd uitgevoerd en cleart ook de selectie interactie', () => {

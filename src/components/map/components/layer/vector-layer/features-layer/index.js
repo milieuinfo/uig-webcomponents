@@ -1,6 +1,9 @@
-import { define } from '../../../../../../utils/core';
+import OlVectorSource from 'ol/source/Vector';
+import OlGeoJSON from 'ol/format/GeoJSON';
+import OlClusterSource from 'ol/source/Cluster';
+import OlPoint from 'ol/geom/Point';
 import { VlMapVectorLayer } from '../../vector-layer';
-import { OlVectorSource, OlGeoJSON, OlClusterSource, OlPoint } from '../../../../actions';
+import { define } from '../../../../../../utils/core';
 
 /**
  * VlMapFeaturesLayer
