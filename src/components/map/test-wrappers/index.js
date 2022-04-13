@@ -12,12 +12,15 @@ export { VlMapLayerAction } from '../components/action/layer-action/test/e2e/lay
 
 export { VlMapDeleteActionPage } from '../components/action/layer-action/delete-action/test/e2e/delete-action.page';
 export { VlMapDeleteAction } from '../components/action/layer-action/delete-action/test/e2e/delete-action';
+export { VlCustomMapDeleteAction } from '../components/action/layer-action/delete-action/test/unit/custom-delete-action';
 
 export { VlMapModifyActionsPage } from '../components/action/layer-action/modify-action/test/e2e/modify-actions.page';
 export { VlMapModifyAction } from '../components/action/layer-action/modify-action/test/e2e/modify-action';
+export { VlCustomMapModifyAction } from '../components/action/layer-action/modify-action/test/unit/custom-modify-action';
 
 export { VlMapSelectActionPage } from '../components/action/layer-action/select-action/test/e2e/select-action.page';
 export { VlMapSelectAction } from '../components/action/layer-action/select-action/test/e2e/select-action';
+export { VlCustomMapSelectAction } from '../components/action/layer-action/select-action/test/unit/custom-select-action';
 
 // Layer
 

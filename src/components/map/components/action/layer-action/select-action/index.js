@@ -1,7 +1,7 @@
 import { define } from '../../../../../../utils/core';
 import { VlMapLayerAction } from '../../layer-action';
 import { VlMapLayerStyle } from '../../../layer-style';
-import { VlSelectAction } from '../../../../actions';
+import { VlSelectAction } from '../../../../actions/select-action';
 
 /**
  * VlMapSelectAction

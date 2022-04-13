@@ -3,7 +3,7 @@ import OlLayerGroup from 'ol/layer/Group';
 import OlProjection from 'ol/proj/Projection';
 import proj4 from 'proj4';
 import { vlElement, define } from '../../../../utils/core';
-import { VlCustomMap } from '../../actions';
+import { VlCustomMap } from '../../actions/custom-map';
 
 import styles from './styles.scss';
 

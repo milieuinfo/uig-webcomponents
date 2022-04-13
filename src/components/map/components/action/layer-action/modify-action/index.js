@@ -1,4 +1,5 @@
-import { VlModifyAction, VlCompositeVectorLayer } from '../../../../actions';
+import { VlModifyAction } from '../../../../actions/modify-action';
+import { VlCompositeVectorLayer } from '../../../../actions/composite-vector-layer';
 import { define } from '../../../../../../utils/core';
 import { VlMapLayerAction } from '../../layer-action';
 import { VlMapVectorLayer } from '../../../layer/vector-layer';

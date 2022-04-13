@@ -1,7 +1,7 @@
-import { assert, getDriver } from "../../../../../../utils/test";
-import { VlMapPage } from "./map.page.js";
+import { assert, getDriver } from '../../../../../../utils/test';
+import { VlMapPage } from './map.page.js';
 
-describe("vl-map", async () => {
+describe('vl-map', async () => {
   let vlMapPage;
 
   before(() => {
@@ -9,42 +9,36 @@ describe("vl-map", async () => {
     return vlMapPage.load();
   });
 
-  it("als gebruiker kan ik verschillende basis kaartlagen definieren voor een map", async () => {
+  it('als gebruiker kan ik verschillende basis kaartlagen definieren voor een map', async () => {
     const map = await vlMapPage.getMap();
     await assert.eventually.isTrue(map.isDisplayed());
     const baseLayers = await map.getBaseLayers();
-    await assert.eventually.equal(
-      baseLayers[0].getTitle(),
-      "GRB basis laag grijs"
-    );
-    await assert.eventually.equal(baseLayers[1].getTitle(), "GRB basis laag");
-    await assert.eventually.equal(baseLayers[2].getTitle(), "GRB ortho laag");
+    await assert.eventually.equal(baseLayers[0].getTitle(), 'GRB basis laag grijs');
+    await assert.eventually.equal(baseLayers[1].getTitle(), 'GRB basis laag');
+    await assert.eventually.equal(baseLayers[2].getTitle(), 'GRB ortho laag');
   });
 
-  it("als gebruiker kan ik de url en type van een grb baselayer bevragen", async () => {
+  it('als gebruiker kan ik de url en type van een grb baselayer bevragen', async () => {
     const baseLayerGrb = await vlMapPage.getBaseLayerGrb();
 
     await assert.eventually.equal(
       baseLayerGrb.getUrl(),
-      "https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts"
+      'https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts',
     );
-    await assert.eventually.equal(baseLayerGrb.getType(), "wmts");
+    await assert.eventually.equal(baseLayerGrb.getType(), 'wmts');
   });
 
-  it("als gebruiker zie ik het verschil tussen een grijze grb baselayer en de gewone grb baselayer aan de layer en title", async () => {
+  it('als gebruiker zie ik het verschil tussen een grijze grb baselayer en de gewone grb baselayer aan de layer en title', async () => {
     const baseLayerGrbGray = await vlMapPage.getBaseLayerGrbGray();
     const baseLayerGrb = await vlMapPage.getBaseLayerGrb();
 
-    await assert.eventually.equal(baseLayerGrbGray.getLayer(), "grb_bsk_grijs");
-    await assert.eventually.equal(
-      baseLayerGrbGray.getTitle(),
-      "GRB basis laag grijs"
-    );
-    await assert.eventually.equal(baseLayerGrb.getLayer(), "grb_bsk");
-    await assert.eventually.equal(baseLayerGrb.getTitle(), "GRB basis laag");
+    await assert.eventually.equal(baseLayerGrbGray.getLayer(), 'grb_bsk_grijs');
+    await assert.eventually.equal(baseLayerGrbGray.getTitle(), 'GRB basis laag grijs');
+    await assert.eventually.equal(baseLayerGrb.getLayer(), 'grb_bsk');
+    await assert.eventually.equal(baseLayerGrb.getTitle(), 'GRB basis laag');
   });
 
-  it("als gebruiker zie ik het verschil tussen een map waar de escape key enabled en disabled is", async () => {
+  it('als gebruiker zie ik het verschil tussen een map waar de escape key enabled en disabled is', async () => {
     const mapEscapeEnabled = await vlMapPage.getMap();
     const mapEscapeDisabled = await vlMapPage.getMapWithoutEscape();
 
@@ -52,7 +46,7 @@ describe("vl-map", async () => {
     await assert.eventually.isTrue(mapEscapeDisabled.isEscapeKeyDisabled());
   });
 
-  it("als gebruiker zie ik het verschil tussen een map waar de rotation enabled en disabled is", async () => {
+  it('als gebruiker zie ik het verschil tussen een map waar de rotation enabled en disabled is', async () => {
     const mapRotationEnabled = await vlMapPage.getMap();
     const mapRotationDisabled = await vlMapPage.getMapWithoutRotation();
 
@@ -60,19 +54,15 @@ describe("vl-map", async () => {
     await assert.eventually.isTrue(mapRotationDisabled.isRotationDisabled());
   });
 
-  it("als gebruiker zie ik het verschil tussen een map waar de mouse wheel zoom enabled en disabled is", async () => {
+  it('als gebruiker zie ik het verschil tussen een map waar de mouse wheel zoom enabled en disabled is', async () => {
     const mapMouseWheelZoomEnabled = await vlMapPage.getMap();
     const mapMouseWheelZoomDisabled = await vlMapPage.getMapWithoutMouseZoom();
 
-    await assert.eventually.isFalse(
-      mapMouseWheelZoomEnabled.isMouseWheelZoomDisabled()
-    );
-    await assert.eventually.isTrue(
-      mapMouseWheelZoomDisabled.isMouseWheelZoomDisabled()
-    );
+    await assert.eventually.isFalse(mapMouseWheelZoomEnabled.isMouseWheelZoomDisabled());
+    await assert.eventually.isTrue(mapMouseWheelZoomDisabled.isMouseWheelZoomDisabled());
   });
 
-  it("als gebruiker kan ik de kaart zoomen", async () => {
+  it('als gebruiker kan ik de kaart zoomen', async () => {
     const map = await vlMapPage.getMap();
     await assert.eventually.isTrue(map.hasZoom(2));
 
@@ -83,18 +73,16 @@ describe("vl-map", async () => {
     await assert.eventually.isTrue(map.hasZoom(2));
   });
 
-  it("als gebruiker kan ik een schaal raadplegen", async () => {
+  it('als gebruiker kan ik een schaal raadplegen', async () => {
     const map = await vlMapPage.getMap();
     await assert.eventually.isDefined(map.getScale());
   });
 
-  it("als gebruiker kan ik een kaart fullscreen aan- en uitzetten", async () => {
+  it('als gebruiker kan ik een kaart fullscreen aan- en uitzetten', async () => {
     const map = await vlMapPage.getMap();
     const mapWithFullscreenAllowed = await vlMapPage.getMapWithFullscreenAllowed();
     await assert.eventually.isFalse(map.isFullscreenAllowed());
-    await assert.eventually.isTrue(
-      mapWithFullscreenAllowed.isFullscreenAllowed()
-    );
+    await assert.eventually.isTrue(mapWithFullscreenAllowed.isFullscreenAllowed());
     await assert.eventually.isFalse(map.isFullScreen());
     await mapWithFullscreenAllowed.toggleFullscreen();
     await assert.eventually.isTrue(map.isFullScreen());
