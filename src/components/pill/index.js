@@ -25,6 +25,11 @@ export class VlPill extends LitElement {
         attribute: 'data-vl-type',
         reflect: true,
       },
+      opacity: {
+        type: Number,
+        attribute: 'data-vl-opacity',
+        reflect: true,
+      },
       closable: {
         type: Boolean,
         attribute: 'data-vl-closable',
@@ -128,7 +133,7 @@ export class VlPill extends LitElement {
     }
 
     return html`
-      <span class="${classMap(classes)}">
+      <span class="${classMap(classes)}" style=${`opacity: ${this.opacity}`}>
         <slot></slot>
       </span>
     `;

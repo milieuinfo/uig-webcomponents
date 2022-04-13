@@ -12,12 +12,12 @@ export class VlMeasureAction extends VlDrawAction {
       () => {
         unByKey(this.measurePointermoveHandler);
       },
-      options,
+      { ...options, maxPoints: 2 },
     );
 
     this.featureCounter = 0;
     this.layer = layer;
-    this.measurePills = [];
+    this.measurementTooltips = [];
     this.measurePointermoveHandler = undefined;
 
     this.drawInteraction.on('drawstart', (event) => {
@@ -31,84 +31,106 @@ export class VlMeasureAction extends VlDrawAction {
     this.measureOptions = options;
   }
 
-  // _getPillFor(id) {
-  //   return this.measurePills[id];
-  // }
+  _setMeasurementTooltipsClosable(closable) {
+    this.measurementTooltips.forEach((tooltip, index) => {
+      // Check if tooltip still exists
+      if (tooltip) {
+        if (closable) {
+          tooltip.getElement().setAttribute('data-vl-closable', closable);
+        } else {
+          tooltip.getElement().removeAttribute('data-vl-closable');
+        }
+      }
+    });
+  }
 
-  _showMeasurePill(measureFeature, pill, pillElement) {
-    const length = measureFeature.getGeometry().getLength().toFixed(2);
-    pillElement.textContent = `${length} m`;
-    pill.setElement(pillElement);
-    pill.setPosition(measureFeature.getGeometry().getLastCoordinate());
+  _showMeasurementTooltip(feature, tooltipOverlay, tooltipElement) {
+    const length = feature.getGeometry().getLength().toFixed(2);
+    tooltipElement.textContent = `${length} m`;
+    tooltipOverlay.setElement(tooltipElement);
+    tooltipOverlay.setPosition(feature.getGeometry().getLastCoordinate());
   }
 
   _handleDrawStart(event) {
+    // Add measurement line (feature) and tooltip (overlay)
+
     const id = this.featureCounter;
     this.featureCounter += 1;
 
-    // Set feature
+    this._setMeasurementTooltipsClosable(false);
 
-    const measureFeature = event.feature;
-    measureFeature.setId(id);
+    const feature = event.feature;
+    feature.setId(id);
 
-    // Set pill
+    const tooltipElement = document.createElement('vl-pill');
+    tooltipElement.setAttribute('data-vl-opacity', '0.8');
 
-    const pillElement = document.createElement('vl-pill');
-    pillElement.setAttribute('class', 'measure-pill');
-    pillElement.setAttribute('data-vl-closable', 'true');
+    tooltipElement.addEventListener('close', (closePillEvent) => {
+      this._handleRemoveMeasurement(closePillEvent, feature);
+    });
 
-    const pill = new Overlay({
-      offset: [-15, 10],
+    const tooltipOverlay = new Overlay({
+      offset: [0, 40],
       positioning: 'bottom-center',
       stopEvent: true,
       insertFirst: true,
     });
 
-    pillElement.addEventListener('close', (closePillEvent) => {
-      this._handleDeleteMeasurement(closePillEvent, measureFeature);
-    });
+    this.map.addOverlay(tooltipOverlay);
 
-    this.map.addOverlay(pill);
-
-    this.measurePills[id] = pill;
+    this.measurementTooltips[id] = tooltipOverlay;
 
     this.measurePointermoveHandler = this.map.on('pointermove', () => {
-      this._showMeasurePill(measureFeature, pill, pillElement);
+      this._showMeasurementTooltip(feature, tooltipOverlay, tooltipElement);
+    });
+
+    this.drawInteraction.on('drawend', () => {
+      this._setMeasurementTooltipsClosable(true);
     });
   }
 
-  _removeMeasureFeature(measureFeature) {
+  _removeMeasureFeature(feature) {
     const source = this.layer.getSource();
-    if (
-      measureFeature &&
-      (measureFeature.getId() == null || source.getFeatureById(measureFeature.getId()) === measureFeature)
-    ) {
-      source.removeFeature(measureFeature);
+    if (feature && (feature.getId() == null || source.getFeatureById(feature.getId()) === feature)) {
+      source.removeFeature(feature);
       this.map.render();
     }
   }
 
-  _removePill(id) {
-    this.map.removeOverlay(this.measurePills[id]);
-    this.measurePills[id] = null;
+  _removeMeasurementTooltip(id) {
+    this.map.removeOverlay(this.measurementTooltips[id]);
+    this.measurementTooltips[id] = null; // Not removing the item from the list because id corresponds with list index
   }
 
-  _handleDeleteMeasurement(event, measureFeature) {
+  _handleRemoveMeasurement(event, feature) {
     event.stopPropagation();
-    this._removePill(measureFeature.getId());
-    this._removeMeasureFeature(measureFeature);
+    this._removeMeasurementTooltip(feature.getId());
+    this._removeMeasureFeature(feature);
   }
 
   _handleRemoveFeature(event) {
-    this._removePill(event.feature.getId());
+    this._removeMeasurementTooltip(event.feature.getId());
   }
 
-  _cleanUp() {
+  _cleanUp(removeUnlinkedTooltips) {
     unByKey(this.measurePointermoveHandler);
+
+    if (removeUnlinkedTooltips) {
+      // When deactivated (layer gets deactivated or measure drawing gets interrupted) the tooltips that are not linked to a feature need to be removed
+      const tooltipsToRemove = [];
+      this.measurementTooltips.forEach((value, index) => {
+        if (this.layer.getSource().getFeatureById(index) == null) {
+          tooltipsToRemove.push(index);
+        }
+      });
+      tooltipsToRemove.forEach((id) => {
+        this._removeMeasurementTooltip(id);
+      });
+    }
   }
 
   deactivate() {
-    this._cleanUp();
+    this._cleanUp(true);
     super.deactivate(this);
   }
 }
