@@ -1,6 +1,4 @@
-import yargs from 'yargs';
-
-const { argv } = yargs(process.argv);
+const { argv } = require('yargs');
 
 const operatingSystems = {
   mac: { name: 'OS X', version: 'Catalina' },
