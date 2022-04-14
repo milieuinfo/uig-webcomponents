@@ -1,5 +1,5 @@
 import { assert, getDriver, config } from '../../../../utils/test';
-import { VlToggleButton } from './toggle-button';
+import { VlTestToggleButton } from './toggle-button';
 
 const { sbUrl } = config;
 const defaultUrl = `${sbUrl}?id=custom-elements-vl-toggle-button--default`;
@@ -16,21 +16,21 @@ describe('vl-toggle-button', async () => {
 
   it('as a user, I can see the toggle button text', async () => {
     await driver.get(defaultUrl);
-    const toggleButton = await new VlToggleButton(driver, selector);
+    const toggleButton = await new VlTestToggleButton(driver, selector);
 
     await assert.eventually.equal(toggleButton.getText(), 'Toggle button');
   });
 
   it('as a user, I can hide the toggle button text', async () => {
     await driver.get(`${defaultUrl}&args=textHidden:true`);
-    const toggleButton = await new VlToggleButton(driver, selector);
+    const toggleButton = await new VlTestToggleButton(driver, selector);
 
     await assert.eventually.isTrue(toggleButton.hasHiddenText());
   });
 
   it('as a user, I can see the toggle button icon', async () => {
     await driver.get(defaultUrl);
-    const toggleButton = await new VlToggleButton(driver, selector);
+    const toggleButton = await new VlTestToggleButton(driver, selector);
 
     const button = await toggleButton.getButton();
     const icon = await button.getIcon();
@@ -39,7 +39,7 @@ describe('vl-toggle-button', async () => {
 
   it('as a user, I can see the toggle button icon on the left of the text', async () => {
     await driver.get(`${defaultUrl}&args=iconPlacement:before`);
-    const toggleButton = await new VlToggleButton(driver, selector);
+    const toggleButton = await new VlTestToggleButton(driver, selector);
 
     const button = await toggleButton.getButton();
     const icon = await button.getIcon();
@@ -49,7 +49,7 @@ describe('vl-toggle-button', async () => {
 
   it('as a user, I can see the toggle button icon on the right of the text', async () => {
     await driver.get(defaultUrl);
-    const toggleButton = await new VlToggleButton(driver, selector);
+    const toggleButton = await new VlTestToggleButton(driver, selector);
 
     const button = await toggleButton.getButton();
     const icon = await button.getIcon();
@@ -57,7 +57,7 @@ describe('vl-toggle-button', async () => {
     await assert.eventually.isTrue(icon.isAfter());
 
     await driver.get(`${defaultUrl}&args=iconPlacement:after`);
-    const toggleButtonAfter = await new VlToggleButton(driver, selector);
+    const toggleButtonAfter = await new VlTestToggleButton(driver, selector);
 
     const buttonAfter = await toggleButtonAfter.getButton();
     const iconAfter = await buttonAfter.getIcon();
@@ -67,12 +67,12 @@ describe('vl-toggle-button', async () => {
 
   it('as a user I can see the difference between a disabled toggle button and a normal toggle button', async () => {
     await driver.get(defaultUrl);
-    const toggleButton = await new VlToggleButton(driver, selector);
+    const toggleButton = await new VlTestToggleButton(driver, selector);
 
     await assert.eventually.isFalse(toggleButton.isDisabled());
 
     await driver.get(`${defaultUrl}&args=disabled:true`);
-    const toggleButtonDisabled = await new VlToggleButton(driver, selector);
+    const toggleButtonDisabled = await new VlTestToggleButton(driver, selector);
 
     await assert.eventually.isTrue(toggleButtonDisabled.isDisabled());
   });
@@ -80,7 +80,7 @@ describe('vl-toggle-button', async () => {
   it('as a user I can click on a toggle button to change its active state', async () => {
     await driver.get(defaultUrl);
 
-    const toggleButton = await new VlToggleButton(driver, selector);
+    const toggleButton = await new VlTestToggleButton(driver, selector);
 
     const button = await toggleButton.getButton();
     await assert.eventually.isTrue(button.isTertiary());
@@ -93,7 +93,7 @@ describe('vl-toggle-button', async () => {
   it('as a user I can click on a toggle button and the click event gets fired', async () => {
     await driver.get(defaultUrl);
 
-    const toggleButton = await new VlToggleButton(driver, selector);
+    const toggleButton = await new VlTestToggleButton(driver, selector);
 
     await toggleButton.driver.executeScript(
       'arguments[0].addEventListener("click", () => {window.clickIsFired = true})',
@@ -114,7 +114,7 @@ describe('vl-toggle-button', async () => {
   it('as a user I can click on a toggle button and the change event gets fired', async () => {
     await driver.get(defaultUrl);
 
-    const toggleButton = await new VlToggleButton(driver, selector);
+    const toggleButton = await new VlTestToggleButton(driver, selector);
 
     await toggleButton.driver.executeScript(
       'arguments[0].addEventListener("change", () => {window.changeIsFired = true})',
@@ -135,7 +135,7 @@ describe('vl-toggle-button', async () => {
   it('as a user I can control the active state of the toggle button', async () => {
     await driver.get(controlledUrl);
 
-    const toggleButton = await new VlToggleButton(driver, selector);
+    const toggleButton = await new VlTestToggleButton(driver, selector);
 
     const button = await toggleButton.getButton();
     await assert.eventually.isTrue(button.isTertiary());
@@ -150,7 +150,7 @@ describe('vl-toggle-button', async () => {
   it('as a user I can control the active state of the toggle button and the change event gets fired', async () => {
     await driver.get(controlledUrl);
 
-    const toggleButton = await new VlToggleButton(driver, selector);
+    const toggleButton = await new VlTestToggleButton(driver, selector);
 
     await toggleButton.driver.executeScript(
       'arguments[0].addEventListener("change", () => {window.changeIsFired = true})',

@@ -1,7 +1,7 @@
 import { VlElement, By } from '../../../../utils/test';
 import { VlButton } from '../../../button/test/e2e/button.js';
 
-export class VlToggleButton extends VlElement {
+export class VlTestToggleButton extends VlElement {
   async getButton() {
     const button = await this.getElementInShadow(this, '[is="vl-button"]');
     if (button) {
