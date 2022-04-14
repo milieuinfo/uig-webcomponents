@@ -1,8 +1,8 @@
-import { VlMapDeleteAction } from './delete-action.js';
+import { VlTestMapDeleteAction } from './delete-action.js';
 import { config } from '../../../../../../../../utils/test';
-import { VlMapPage } from '../../../../../map/test/e2e/map.page.js';
+import { VlTestMapPage } from '../../../../../map/test/e2e/map.page.js';
 
-export class VlMapDeleteActionPage extends VlMapPage {
+export class VlTestMapDeleteActionPage extends VlTestMapPage {
   async getDeleteAction() {
     return this._getDeleteAction('#delete-action');
   }
@@ -12,10 +12,12 @@ export class VlMapDeleteActionPage extends VlMapPage {
   }
 
   async load() {
-    await super.load(`${config.baseUrl}components/map/components/action/layer-action/delete-action/test/e2e`);
+    await super.load(
+      `${config.baseUrl}components/map/components/action/layer-action/delete-action/test/e2e/index.html`,
+    );
   }
 
   async _getDeleteAction(selector) {
-    return new VlMapDeleteAction(this.driver, selector);
+    return new VlTestMapDeleteAction(this.driver, selector);
   }
 }

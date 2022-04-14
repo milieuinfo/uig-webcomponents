@@ -1,11 +1,11 @@
 import { assert, getDriver } from '../../../../../../utils/test';
-import { VlMapPage } from './map.page.js';
+import { VlTestMapPage } from './map.page.js';
 
 describe('vl-map', async () => {
   let vlMapPage;
 
   before(() => {
-    vlMapPage = new VlMapPage(getDriver());
+    vlMapPage = new VlTestMapPage(getDriver());
     return vlMapPage.load();
   });
 

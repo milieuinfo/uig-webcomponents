@@ -1,7 +1,7 @@
 import { config } from '../../../../../../../../utils/test';
-import { VlMapPage } from '../../../../../map/test/e2e/map.page.js';
+import { VlTestMapPage } from '../../../../../map/test/e2e/map.page.js';
 
-export class VlMapFeaturesLayerPage extends VlMapPage {
+export class VlTestMapFeaturesLayerPage extends VlTestMapPage {
   async getMapWithStandardLayer() {
     return this._getMap('#map-with-standard-layer');
   }
@@ -15,6 +15,8 @@ export class VlMapFeaturesLayerPage extends VlMapPage {
   }
 
   async load() {
-    await super.load(`${config.baseUrl}components/map/components/layer/vector-layer/features-layer/test/e2e`);
+    await super.load(
+      `${config.baseUrl}components/map/components/layer/vector-layer/features-layer/test/e2e/index.html`,
+    );
   }
 }

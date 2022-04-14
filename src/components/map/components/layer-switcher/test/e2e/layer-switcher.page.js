@@ -1,7 +1,7 @@
 import { config } from '../../../../../../utils/test';
-import { VlMapPage } from '../../../map/test/e2e/map.page.js';
+import { VlTestMapPage } from '../../../map/test/e2e/map.page.js';
 
-export class VlMapLayerSwitcherPage extends VlMapPage {
+export class VlTestMapLayerSwitcherPage extends VlTestMapPage {
   async getMapWithLayerSwitcher() {
     return this._getMap('#map-with-layer-switcher');
   }
@@ -15,6 +15,6 @@ export class VlMapLayerSwitcherPage extends VlMapPage {
   }
 
   async load() {
-    await super.load(`${config.baseUrl}components/map/components/layer-switcher/test/e2e`);
+    await super.load(`${config.baseUrl}components/map/components/layer-switcher/test/e2e/index.html`);
   }
 }

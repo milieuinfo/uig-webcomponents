@@ -1,8 +1,8 @@
-import { VlMapLayerCircleStyle } from './layer-circle-style.js';
+import { VlTestMapLayerCircleStyle } from './layer-circle-style.js';
 import { config, By } from '../../../../../../../utils/test';
-import { VlMapPage } from '../../../../map/test/e2e/map.page.js';
+import { VlTestMapPage } from '../../../../map/test/e2e/map.page.js';
 
-export class VlMapCircleStylePage extends VlMapPage {
+export class VlTestMapCircleStylePage extends VlTestMapPage {
   async getStandardMap() {
     return this._getMap('#map-standard');
   }
@@ -18,10 +18,10 @@ export class VlMapCircleStylePage extends VlMapPage {
 
   async getLayerCircleStyles(map) {
     const styles = await map.findElements(By.css('vl-map-layer-circle-style'));
-    return Promise.all(styles.map((style) => new VlMapLayerCircleStyle(this.driver, style)));
+    return Promise.all(styles.map((style) => new VlTestMapLayerCircleStyle(this.driver, style)));
   }
 
   async load() {
-    await super.load(`${config.baseUrl}components/map/components/layer-style/layer-circle-style/test/e2e`);
+    await super.load(`${config.baseUrl}components/map/components/layer-style/layer-circle-style/test/e2e/index.html`);
   }
 }

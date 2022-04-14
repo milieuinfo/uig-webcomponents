@@ -1,11 +1,11 @@
 import { assert, getDriver } from '../../../../../../../../utils/test';
-import { VlMapFeaturesLayerPage } from './features-layer.page.js';
+import { VlTestMapFeaturesLayerPage } from './features-layer.page.js';
 
 describe('vl-map-features-layer', async () => {
   let page;
 
   before(() => {
-    page = new VlMapFeaturesLayerPage(getDriver());
+    page = new VlTestMapFeaturesLayerPage(getDriver());
     return page.load();
   });
 

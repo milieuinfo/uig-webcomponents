@@ -1,8 +1,8 @@
-import { VlMap } from './map.js';
-import { VlMapBaseLayer } from '../../../baselayer/test/e2e/baselayer.js';
+import { VlTestMap } from './map.js';
+import { VlTestMapBaseLayer } from '../../../baselayer/test/e2e/baselayer.js';
 import { Page, config } from '../../../../../../utils/test';
 
-export class VlMapPage extends Page {
+export class VlTestMapPage extends Page {
   async getBaseLayerGrbGray() {
     return this._getBaseLayer('#baselayer-grb-gray');
   }
@@ -32,17 +32,17 @@ export class VlMapPage extends Page {
   }
 
   async load(url) {
-    await super.load(url || `${config.baseUrl}components/map/components/map/test/e2e`);
+    await super.load(url || `${config.baseUrl}components/map/components/map/test/e2e/index.html`);
   }
 
   async _getMap(selector) {
-    const map = await new VlMap(this.driver, selector);
+    const map = await new VlTestMap(this.driver, selector);
     await map.isReady();
     await map.scrollIntoView();
     return map;
   }
 
   async _getBaseLayer(selector) {
-    return new VlMapBaseLayer(this.driver, selector);
+    return new VlTestMapBaseLayer(this.driver, selector);
   }
 }

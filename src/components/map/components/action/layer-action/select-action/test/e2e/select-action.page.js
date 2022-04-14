@@ -1,8 +1,8 @@
-import { VlMapSelectAction } from './select-action.js';
+import { VlTestMapSelectAction } from './select-action.js';
 import { config, By, assert } from '../../../../../../../../utils/test';
-import { VlMapPage } from '../../../../../map/test/e2e/map.page.js';
+import { VlTestMapPage } from '../../../../../map/test/e2e/map.page.js';
 
-export class VlMapSelectActionPage extends VlMapPage {
+export class VlTestMapSelectActionPage extends VlTestMapPage {
   async getSelectAction() {
     return this._getSelectAction('#select-action');
   }
@@ -39,10 +39,12 @@ export class VlMapSelectActionPage extends VlMapPage {
   }
 
   async load() {
-    await super.load(`${config.baseUrl}components/map/components/action/layer-action/select-action/test/e2e`);
+    await super.load(
+      `${config.baseUrl}components/map/components/action/layer-action/select-action/test/e2e/index.html`,
+    );
   }
 
   async _getSelectAction(selector) {
-    return new VlMapSelectAction(this.driver, selector);
+    return new VlTestMapSelectAction(this.driver, selector);
   }
 }

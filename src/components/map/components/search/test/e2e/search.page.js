@@ -1,8 +1,8 @@
-import { VlMapSearch } from './search.js';
+import { VlTestMapSearch } from './search.js';
 import { config, By } from '../../../../../../utils/test';
-import { VlMapPage } from '../../../map/test/e2e/map.page.js';
+import { VlTestMapPage } from '../../../map/test/e2e/map.page.js';
 
-export class VlMapSearchPage extends VlMapPage {
+export class VlTestMapSearchPage extends VlTestMapPage {
   async getMap() {
     return this._getMap('#map-with-search');
   }
@@ -21,10 +21,10 @@ export class VlMapSearchPage extends VlMapPage {
   }
 
   async load() {
-    await super.load(`${config.baseUrl}components/map/components/search/test/e2e`);
+    await super.load(`${config.baseUrl}components/map/components/search/test/e2e/index.html`);
   }
 
   async _getSearch(selector) {
-    return new VlMapSearch(this.driver, selector);
+    return new VlTestMapSearch(this.driver, selector);
   }
 }

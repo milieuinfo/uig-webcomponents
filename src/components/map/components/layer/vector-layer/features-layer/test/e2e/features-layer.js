@@ -1,6 +1,6 @@
-import { VlMapLayer } from '../../../../test/e2e/layer.js';
+import { VlTestMapLayer } from '../../../../test/e2e/layer.js';
 
-export class VlMapFeaturesLayer extends VlMapLayer {
+export class VlTestMapFeaturesLayer extends VlTestMapLayer {
   async getFeatures() {
     return this.driver.executeScript(`return arguments[0].features;`, this);
   }
