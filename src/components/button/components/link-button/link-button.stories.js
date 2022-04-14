@@ -1,21 +1,21 @@
-import { html } from "lit-html";
-import "../../../button";
-import { args, argTypes } from "../../config";
-import styles from "../../styles.scss";
-import { stylesheet, docsIntro } from "../../../../../.storybook/utils.js";
+import { html } from 'lit-html';
+import '../../../button';
+import { buttonArgs, buttonArgTypes } from '../../config';
+import styles from '../../styles.scss';
+import { stylesheet, docsIntro } from '../../../../../.storybook/utils.js';
 
 export default {
-  title: "native-elements/vl-button/vl-link-button",
+  title: 'native-elements/vl-button/vl-link-button',
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
-  args,
-  argTypes,
+  buttonArgs,
+  buttonArgTypes,
   parameters: {
     docs: {
       description: {
         component: docsIntro({
-          stylesheets: ["button"],
-          root: "button",
-          intro: "Gebruik de vl-link-button om een CTA toe te voegen.",
+          stylesheets: ['button'],
+          root: 'button',
+          intro: 'Gebruik de vl-link-button om een CTA toe te voegen.',
         }),
       },
     },
@@ -38,4 +38,4 @@ export const Default = (props) =>
     >${props.content}</a
   >`;
 
-Default.args = { content: "Link button" };
+Default.args = { content: 'Link button' };

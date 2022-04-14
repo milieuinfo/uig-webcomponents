@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { docsIntro, TYPES, CATEGORIES } from '../../../.storybook/utils.js';
 import { ICON_PLACEMENT } from './enums';
-import { argsShared, argTypesShared } from '../button/config';
+import { sharedButtonArgs, sharedButtonArgTypes } from '../button/config';
 
 export default {
   title: 'custom-elements/vl-toggle-button',
@@ -19,7 +19,7 @@ export default {
     },
   },
   args: {
-    ...argsShared,
+    ...sharedButtonArgs,
     icon: undefined,
     iconPlacement: undefined,
     content: 'Toggle button',
@@ -53,7 +53,7 @@ export default {
       name: 'data-vl-icon-placement',
       description: 'Determines where the icon should be rendered before or after the text.',
       table: {
-        type: { summary: TYPES.STRING },
+        type: { summary: `${ICON_PLACEMENT.BEFORE} | ${ICON_PLACEMENT.AFTER}` },
         category: CATEGORIES.ATTRIBUTES,
         defaultValue: { summary: ICON_PLACEMENT.AFTER },
       },
@@ -78,50 +78,58 @@ export default {
     },
     click: {
       name: 'click',
-      description: 'Custom event fired on click of the toggle button.',
+      description: 'Event fired on click of the toggle button.',
+
       table: { category: CATEGORIES.EVENTS },
     },
-    ...argTypesShared,
+    ...sharedButtonArgTypes,
     error: {
-      ...argTypesShared.error,
+      ...sharedButtonArgTypes.error,
       description:
         'Used to emphasize the importance or consequences of an action when the toggle button is in an active state.',
     },
   },
 };
 
-export const Default = ({
-  icon,
-  iconPlacement,
-  content,
-  textHidden,
-  error,
-  block,
-  large,
-  wide,
-  narrow,
-  loading,
-  disabled,
-  change,
-  click,
-}) =>
+export const Default = (props) =>
   html`<vl-toggle-button
-    data-vl-icon=${ifDefined(icon)}
-    data-vl-icon-placement=${ifDefined(iconPlacement)}
-    ?data-vl-text-hidden=${textHidden}
-    ?data-vl-error=${error}
-    ?data-vl-block=${block}
-    ?data-vl-large=${large}
-    ?data-vl-wide=${wide}
-    ?data-vl-narrow=${narrow}
-    ?data-vl-loading=${loading}
-    ?disabled=${disabled}
-    @change=${(event) => change(event.detail)}
+    data-vl-icon=${ifDefined(props.icon)}
+    data-vl-icon-placement=${ifDefined(props.iconPlacement)}
+    ?data-vl-text-hidden=${props.textHidden}
+    ?data-vl-error=${props.error}
+    ?data-vl-block=${props.block}
+    ?data-vl-large=${props.large}
+    ?data-vl-wide=${props.wide}
+    ?data-vl-narrow=${props.narrow}
+    ?data-vl-loading=${props.loading}
+    ?disabled=${props.disabled}
+    @change=${(event) => props.change(event.detail)}
     @click=${(event) => {
-      click(event);
+      props.click(event);
     }}
-    >${content}
+    >${props.content}
   </vl-toggle-button>`;
+
+export const WithIcon = (props) =>
+  html`<vl-toggle-button
+    data-vl-icon=${ifDefined(props.icon)}
+    data-vl-icon-placement=${ifDefined(props.iconPlacement)}
+    ?data-vl-text-hidden=${props.textHidden}
+    ?data-vl-error=${props.error}
+    ?data-vl-block=${props.block}
+    ?data-vl-large=${props.large}
+    ?data-vl-wide=${props.wide}
+    ?data-vl-narrow=${props.narrow}
+    ?data-vl-loading=${props.loading}
+    ?disabled=${props.disabled}
+    @change=${(event) => props.change(event.detail)}
+    @click=${(event) => {
+      props.click(event);
+    }}
+    >${props.content}
+  </vl-toggle-button>`;
+
+WithIcon.args = { icon: 'pencil', iconPlacement: ICON_PLACEMENT.AFTER };
 
 // Get last toggle button, because storybook can render multiple stories
 const getToggleButton = () => {
@@ -129,40 +137,25 @@ const getToggleButton = () => {
   return lastItem;
 };
 
-export const Controlled = ({
-  active,
-  icon,
-  iconPlacement,
-  content,
-  textHidden,
-  error,
-  block,
-  large,
-  wide,
-  narrow,
-  loading,
-  disabled,
-  change,
-  click,
-}) => html`<vl-toggle-button
-  .active=${active}
-  data-vl-icon=${ifDefined(icon)}
-  data-vl-icon-placement=${ifDefined(iconPlacement)}
-  ?data-vl-text-hidden=${textHidden}
-  ?data-vl-error=${error}
-  ?data-vl-block=${block}
-  ?data-vl-large=${large}
-  ?data-vl-wide=${wide}
-  ?data-vl-narrow=${narrow}
-  ?data-vl-loading=${loading}
-  ?disabled=${disabled}
-  @change=${(event) => change(event.detail)}
+export const Controlled = (props) => html`<vl-toggle-button
+  .active=${props.active}
+  data-vl-icon=${ifDefined(props.icon)}
+  data-vl-icon-placement=${ifDefined(props.iconPlacement)}
+  ?data-vl-text-hidden=${props.textHidden}
+  ?data-vl-error=${props.error}
+  ?data-vl-block=${props.block}
+  ?data-vl-large=${props.large}
+  ?data-vl-wide=${props.wide}
+  ?data-vl-narrow=${props.narrow}
+  ?data-vl-loading=${props.loading}
+  ?disabled=${props.disabled}
+  @change=${(event) => props.change(event.detail)}
   @click=${(event) => {
-    click(event);
+    props.click(event);
     const toggleButton = getToggleButton();
     toggleButton.active = !toggleButton.active;
   }}
-  >${content}
+  >${props.content}
 </vl-toggle-button>`;
 
 Controlled.args = {

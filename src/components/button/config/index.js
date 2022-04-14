@@ -1,6 +1,6 @@
 import { CATEGORIES, TYPES } from '../../../../.storybook/utils';
 
-export const argsShared = {
+export const sharedButtonArgs = {
   loading: false,
   disabled: false,
   error: false,
@@ -10,13 +10,14 @@ export const argsShared = {
   narrow: false,
 };
 
-export const argsButton = {
+export const buttonArgs = {
   content: 'Button',
   secondary: false,
   tertiary: false,
+  ...sharedButtonArgs,
 };
 
-export const argTypesShared = {
+export const sharedButtonArgTypes = {
   disabled: {
     type: { summary: TYPES.BOOLEAN },
     description: 'Used to indicate to the user that the functionality is not active.',
@@ -86,7 +87,7 @@ export const argTypesShared = {
   },
 };
 
-export const argTypesButton = {
+export const buttonArgTypes = {
   secondary: {
     name: 'data-vl-secondary',
     type: { summary: TYPES.BOOLEAN },
@@ -105,4 +106,5 @@ export const argTypesButton = {
       category: CATEGORIES.ATTRIBUTES,
     },
   },
+  ...sharedButtonArgTypes,
 };

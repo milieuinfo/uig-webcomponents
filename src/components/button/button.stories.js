@@ -1,15 +1,15 @@
 import { html } from 'lit-html';
 import '../button';
 import '../text';
-import { argsButton, argsShared, argTypesButton, argTypesShared } from './config';
+import { buttonArgs, buttonArgTypes } from './config';
 import styles from './styles.scss';
 import { stylesheet, docsIntro } from '../../../.storybook/utils.js';
 
 export default {
   title: 'native-elements/vl-button',
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
-  args: { ...argsButton, ...argsShared },
-  argTypes: { ...argTypesButton, ...argTypesShared },
+  args: buttonArgs,
+  argTypes: buttonArgTypes,
   parameters: {
     docs: {
       description: {
