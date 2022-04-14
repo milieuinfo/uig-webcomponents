@@ -30,6 +30,12 @@ export const argTypes = {
     table: { category: CATEGORIES.ATTRIBUTES },
     type: { summary: TYPES.BOOLEAN },
   },
+  projectName: {
+    name: 'data-vl-project-name',
+    description: '',
+    table: { category: CATEGORIES.ATTRIBUTES },
+    type: { summary: TYPES.STRING },
+  },
   extraOptIns: {
     table: { category: CATEGORIES.PROPERTIES },
     description:
@@ -41,6 +47,11 @@ export const argTypes = {
       '<br/>`defaultChecked:` `boolean` Determines wheter the checkbox of the opt in is checked by default or not.' +
       `<br/>},]`,
 
+    type: { summary: TYPES.ARRAY },
+  },
+  extraCookies: {
+    table: { category: CATEGORIES.PROPERTIES },
+    description: '',
     type: { summary: TYPES.ARRAY },
   },
   submitted: {
@@ -56,11 +67,18 @@ export const argTypes = {
   },
   open: {
     table: { category: CATEGORIES.PROPERTIES },
-    control: {
-      disable: true,
-    },
     type: { summary: TYPES.BOOLEAN },
     description:
       'If not set, the cookie consent opens when there is no consent given in the past according to the cookies and it closes on consent. To overwrite this default behaviour, the open state can be manipulated via this property.',
+  },
+  opened: {
+    name: 'vl-opened',
+    table: { category: CATEGORIES.EVENTS },
+    description: 'The custom event fired when the consent opens.',
+  },
+  closed: {
+    name: 'vl-closed',
+    table: { category: CATEGORIES.EVENTS },
+    description: 'The custom event fired when the consent closes.',
   },
 };

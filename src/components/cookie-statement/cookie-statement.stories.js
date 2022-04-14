@@ -13,6 +13,8 @@ export default {
   },
   args: {
     extraCookies: [],
+    version: undefined,
+    date: undefined,
   },
   argTypes: {
     extraCookies: {

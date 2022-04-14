@@ -38,4 +38,6 @@ export const preferences = (reference) => html`<div slot="content">
       )}
     </div>
   </div>
-  <button is="vl-button" slot="button" @click=${() => submit(reference)}>Bewaar mijn keuze</button> `;
+  <button style="margin-top: 1rem" is="vl-button" slot="button" @click=${() => submit(reference)}>
+    Bewaar mijn keuze
+  </button> `;

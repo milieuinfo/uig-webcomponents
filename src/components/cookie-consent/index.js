@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 import { LitElement, css, html, unsafeCSS } from 'lit';
 import { ref, createRef } from 'lit/directives/ref.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -61,6 +60,11 @@ export class VlCookieConsent extends LitElement {
       );
       this.open = true;
     }
+
+    // workarounds until modal is migrated iso legacy component
+    const dialog = this.shadowRoot.querySelector('vl-modal').shadowRoot.querySelector('dialog');
+    dialog.classList.add('vl-modal-dialog--large');
+    dialog.querySelector('#modal-action-group').style = 'margin-top: -1rem';
   }
 
   updated(changedProperties) {
@@ -112,15 +116,16 @@ export class VlCookieConsent extends LitElement {
         case VIEWS.PREFERENCES:
           return preferences(this);
         default:
-          break;
+          return null;
       }
     };
 
     const getTitle = () => {
       if (this.view === VIEWS.COOKIE_CONSENT) {
-        return 'cookie-informatie';
+        return 'Cookie-informatie';
       }
       if (this.view === VIEWS.PREFERENCES && this.fromPreferencesButton) {
+        // Moeten we wel een projectnaam voorzien nu het departement generiek is?
         return `Cookievoorkeuren - ${this.projectName}`;
       }
       return null;

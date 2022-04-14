@@ -1,6 +1,5 @@
 import { html } from 'lit-html';
 import '../cookie-consent';
-import { resetCookieConsent } from '../cookie-consent/utils';
 import { args, argTypes } from './config';
 import '../button';
 import buttonStyles from '../button/styles.scss';
@@ -19,7 +18,7 @@ export default {
         component: docsIntro({
           root: 'cookie-consent',
           intro: 'The cookie consent can be used to inform the user about all the cookies that are used.',
-          utils: [{ name: 'resetCookieConsent', description: 'Fire the function to reset the cookie consent.' }],
+          // utils: [{ name: 'resetCookieConsent', description: 'Fire the function to reset the cookie consent.' }],
         }),
       },
     },
@@ -40,8 +39,8 @@ const Template = ({ submitted, analytics, extraOptIns, projectName, extraCookies
         getConsent().open = true;
       }}
     >
-      Open consent</button
-    ><button data-vl-secondary is="vl-button" @click=${resetCookieConsent}>Reset consent</button>
+      Open consent
+    </button>
   </div>
   <vl-cookie-consent
     ?data-vl-analytics=${analytics}
@@ -73,34 +72,4 @@ WithExtraOptIns.args = {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     },
   ],
-};
-
-export const Controlled = ({ submitted, analytics, extraOptIns, open, opened, closed }) => html`
-  <button
-    is="vl-button"
-    @click=${() => {
-      getConsent().open = true;
-    }}
-  >
-    Open consent</button
-  ><vl-cookie-consent
-    .open=${open}
-    ?data-vl-analytics=${analytics}
-    .extraOptIns=${extraOptIns}
-    @vl-opened=${(event) => opened(event)}
-    @vl-closed=${(event) => closed(event)}
-    @vl-submitted=${(event) => {
-      submitted(event.detail);
-      getConsent().open = false;
-    }}
-  >
-  </vl-cookie-consent>
-`;
-
-Controlled.argTypes = {
-  open: {
-    control: {
-      disable: false,
-    },
-  },
 };

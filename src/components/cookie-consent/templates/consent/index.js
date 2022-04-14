@@ -69,9 +69,9 @@ export const consent = (reference) => {
             `)}
           `}
     </div>
-    <!-- <div is="vl-action-group" data-vl-collapse-l data-vl-collapse-m data-vl-collapse-s data-vl-collapse-xs> -->
     ${reference.optIns.filter((optIn) => optIn.label).length > 1
       ? html`<button
+            style="margin-top: 1rem"
             slot="button"
             @click=${() => {
               reference.optIns = reference.optIns.map((optIn) => ({ ...optIn, checked: true }));
@@ -82,6 +82,7 @@ export const consent = (reference) => {
             Alle cookies aanvaarden
           </button>
           <button
+            style="margin-top: 1rem"
             slot="button"
             @click=${() => {
               const optionalOptIns = reference.optIns.filter((optIn) => optIn.mandatory !== true);

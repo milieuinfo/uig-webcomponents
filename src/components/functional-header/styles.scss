@@ -3,9 +3,10 @@
 @import "../../../node_modules/@govflanders/vl-ui-functional-header/src/scss/functional-header";
 @import "../../../node_modules/@govflanders/vl-ui-modal/src/scss/modal";
 
+// workarounds until modal is migrated iso legacy component
 .in-modal {
   min-width: initial;
-  margin: (-$vl-modal-padding) (-$vl-modal-padding) $vl-modal-content-padding;
+  margin: (-calc($vl-modal-padding - 3px)) (-$vl-modal-padding) $vl-modal-content-padding;
   @include respond-to(small) {
     margin: (-$vl-modal-padding-small) (-$vl-modal-padding-small) $vl-modal-content-padding;
   }
