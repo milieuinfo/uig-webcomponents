@@ -121,6 +121,7 @@
           const removeFeatureStub = sinon.stub();
           sinon.stub(deleteAction.layer, 'getSource').returns({
             removeFeature: removeFeatureStub,
+            hasFeature: sinon.stub(),
           });
           const feature = new OlFeature({});
           deleteAction.action.hoverInteraction.getFeatures().push(feature);
@@ -140,6 +141,7 @@
           const removeFeatureStub = sinon.stub();
           sinon.stub(deleteAction.layer, 'getSource').returns({
             removeFeature: removeFeatureStub,
+            hasFeature: sinon.stub(),
           });
           const teVerwijderenFeature = new OlFeature({});
           const featureDieNietVerwijderdMagWorden = new OlFeature({});
