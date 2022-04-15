@@ -2,7 +2,6 @@ import { awaitUntil, define, vlElement } from '../../utils/core';
 import { VlTabsPane } from './components/vl-tabs-pane';
 import './components/vl-tab';
 import './components/vl-tab-section';
-
 import '@govflanders/vl-ui-tabs/dist/js/tabs.js';
 
 import styles from './styles.scss';
