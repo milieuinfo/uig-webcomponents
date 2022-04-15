@@ -9,6 +9,7 @@ export { VlTestMapDrawAction } from '../components/action/draw-action/test/e2e/d
 export { VlTestMapDrawLineAction } from '../components/action/draw-action/test/e2e/draw-line-action';
 export { VlTestMapDrawPointAction } from '../components/action/draw-action/test/e2e/draw-point-action';
 export { VlTestMapDrawPolygonAction } from '../components/action/draw-action/test/e2e/draw-polygon-action';
+export { VlTestMapMeasureAction } from '../components/action/draw-action/test/e2e/measure-action';
 
 export { VlTestMapLayerAction } from '../components/action/layer-action/test/e2e/layer-action';
 

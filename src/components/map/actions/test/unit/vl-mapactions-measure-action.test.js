@@ -28,7 +28,7 @@ describe('measure action', () => {
     };
   });
 
-  it('geeft de snapping configuratie door aan de draw action', () => {
+  it('passes the snapping configuration to the draw action', () => {
     const snappingLayer = sinon.spy();
     const snapping = {
       layer: snappingLayer,
@@ -37,7 +37,7 @@ describe('measure action', () => {
     expect(action.measureOptions.layer).to.deep.equal(snappingLayer);
   });
 
-  it('Als het tekenen gestart en er met de muis verschoven wordt zal er een tooltip verschijnen', () => {
+  it('when the drawing starts and the mouse is moved, a tooltip will appear', () => {
     const sketchFeature = new Feature({
       geometry: new LineString([
         [0, 0],
@@ -51,7 +51,7 @@ describe('measure action', () => {
     expect(addOverlay.called).to.be.true;
   });
 
-  it('bij het deactiveren worden de tooltips niet verwijderd, maar de listener wordt wel weggegooid', () => {
+  it('when deactivated, the tooltips are not removed, but the listener is discarded', () => {
     const unByKey = sinon.spy(OlObservable, 'unByKey');
     const sketchFeature = new Feature({
       geometry: new LineString([
@@ -73,7 +73,7 @@ describe('measure action', () => {
     expect(removeOverlay.called).to.be.false;
   });
 
-  it('bij het deactiveren worden de tooltips van features die nog niet volledig getekend waren wel van de kaart verwijderd', () => {
+  it('when deactivated, the tooltips of features that were not yet fully drawn are removed from the map', () => {
     const sketchFeature = new Feature({
       geometry: new LineString([
         [0, 0],
@@ -93,7 +93,7 @@ describe('measure action', () => {
     expect(removeOverlay.calledWith(tooltip)).to.be.true;
   });
 
-  it('wanneer een feature wordt verwijderd van de layer zal de bijhorende tooltip ook verwijderd worden', () => {
+  it('when a feature is removed from the layer, the associated tooltip will also be removed', () => {
     const sketchFeature = new Feature({
       id: 1,
       geometry: new LineString([
