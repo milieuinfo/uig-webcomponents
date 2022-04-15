@@ -12,6 +12,17 @@ export class VlToggleButton extends LitElement {
     ];
   }
 
+  createRenderRoot() {
+    const root = super.createRenderRoot();
+    root.addEventListener('click', (event) => {
+      const { disabled } = this;
+      if (disabled) {
+        event.stopPropagation();
+      }
+    });
+    return root;
+  }
+
   constructor() {
     super();
     this.iconPlacement = ICON_PLACEMENT.AFTER;
