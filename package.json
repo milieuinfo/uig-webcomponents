@@ -1,6 +1,6 @@
 {
   "name": "uig-webcomponents",
-  "version": "2.3.0",
+  "version": "2.3.1-alpha",
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -40,6 +40,7 @@
     "@govflanders/vl-ui-progress-bar": "^3.12.3",
     "@govflanders/vl-ui-side-navigation": "^3.12.3",
     "@govflanders/vl-ui-util": "^3.12.24",
+    "@govflanders/vl-ui-tabs": "^3.12.17",
     "@ungap/custom-elements": "^0.1.15",
     "lit": "^2.1.2",
     "swipe-detect": "^1.0.1",
@@ -80,7 +81,6 @@
     "@govflanders/vl-ui-radio": "^3.12.3",
     "@govflanders/vl-ui-search-filter": "^3.12.17",
     "@govflanders/vl-ui-search-results": "^3.12.3",
-    "@govflanders/vl-ui-tabs": "^3.12.17",
     "@govflanders/vl-ui-titles": "^3.12.3",
     "@govflanders/vl-ui-toggle": "^3.12.17",
     "@govflanders/vl-ui-tooltip": "^3.12.3",
