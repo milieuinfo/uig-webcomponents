@@ -1,11 +1,12 @@
 import './setup.js';
-import sinon from 'sinon/pkg/sinon-esm';
+import sinon from 'sinon/pkg/sinon';
 import { expect } from 'chai';
 import Point from 'ol/geom/Point';
 import Feature from 'ol/Feature';
 import { Vector as SourceVector } from 'ol/source';
 import { Vector } from 'ol/layer';
-import { VlSnapInteraction, VlModifyAndTranslateAction } from '../../..';
+import { VlSnapInteraction } from '../../snap-interaction';
+import { VlModifyAndTranslateAction } from '../../modify-and-translate-action';
 
 describe('modify and translate action', () => {
   const source = new SourceVector();

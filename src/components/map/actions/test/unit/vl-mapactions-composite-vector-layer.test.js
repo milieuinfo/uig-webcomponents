@@ -3,7 +3,8 @@ import { Vector } from 'ol/layer';
 import OlVectorSource from 'ol/source/Vector';
 import OlGML2 from 'ol/format/GML2';
 import { expect } from 'chai';
-import { VlCompositeVectorSource, VlCompositeVectorLayer } from '../../..';
+import { VlCompositeVectorLayer } from '../../composite-vector-layer';
+import { VlCompositeVectorSource } from '../../composite-vector-source';
 
 describe('composite wfs layer', () => {
   const source1 = new OlVectorSource({

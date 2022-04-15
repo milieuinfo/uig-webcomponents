@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import Interaction from 'ol/interaction/Interaction';
-import { VlMapActionAction } from '../../..';
+import { VlMapAction as VlMapActionAction } from '../../mapaction';
 
 describe('map action', () => {
   it('kan een interactie toevoegen die niet actief staat', () => {

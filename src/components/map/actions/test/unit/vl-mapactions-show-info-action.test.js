@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { Vector as SourceVector } from 'ol/source';
 import Feature from 'ol/Feature';
 import Point from 'ol/geom/Point';
-import { VlShowInfoAction } from '../../..';
+import { VlShowInfoAction } from '../../show-info-action';
 
 describe('show info action', () => {
   let map;

@@ -1,4 +1,4 @@
-import sinon from 'sinon/pkg/sinon-esm';
+import sinon from 'sinon/pkg/sinon';
 import { expect } from 'chai';
 import DragRotate from 'ol/interaction/DragRotate';
 import DoubleClickZoom from 'ol/interaction/DoubleClickZoom';
@@ -11,7 +11,8 @@ import DragPan from 'ol/interaction/DragPan';
 import DragZoom from 'ol/interaction/DragZoom';
 import Collection from 'ol/Collection';
 import Interaction from 'ol/interaction/Interaction';
-import { VlMapActionAction, VlMapWithActions } from '../../..';
+import { VlMapAction as VlMapActionAction } from '../../mapaction';
+import { VlMapWithActions } from '../../map-with-actions';
 
 describe('map with actions', () => {
   let action1;

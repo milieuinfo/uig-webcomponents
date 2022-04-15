@@ -1,5 +1,5 @@
 import './setup.js';
-import sinon from 'sinon/pkg/sinon-esm';
+import sinon from 'sinon/pkg/sinon';
 import { expect } from 'chai';
 import Map from 'ol/Map';
 import { Vector as SourceVector } from 'ol/source';
@@ -8,7 +8,8 @@ import Feature from 'ol/Feature';
 import Point from 'ol/geom/Point';
 import Select from 'ol/interaction/Select';
 import Modify from 'ol/interaction/Modify';
-import { VlSnapInteraction, VlModifyAction } from '../../..';
+import { VlSnapInteraction } from '../../snap-interaction';
+import { VlModifyAction } from '../../modify-action';
 
 describe('modify action', () => {
   const source = new SourceVector();

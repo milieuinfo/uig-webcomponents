@@ -1,5 +1,5 @@
 import './setup.js';
-import sinon from 'sinon/pkg/sinon-esm';
+import sinon from 'sinon/pkg/sinon';
 import { expect } from 'chai';
 import Map from 'ol/Map';
 import Style from 'ol/style/Style';
@@ -7,7 +7,7 @@ import Feature from 'ol/Feature';
 import { Vector as SourceVector } from 'ol/source';
 import { Vector } from 'ol/layer';
 import { never } from 'ol/events/condition';
-import { VlSelectAction } from '../../..';
+import { VlSelectAction } from '../../select-action';
 
 describe('select action', () => {
   const createVlSelectAction = ({ layer = {}, callback, options } = {}) => {

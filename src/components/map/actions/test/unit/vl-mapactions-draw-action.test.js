@@ -1,5 +1,5 @@
 import './setup.js';
-import sinon from 'sinon/pkg/sinon-esm';
+import sinon from 'sinon/pkg/sinon';
 import { expect } from 'chai';
 import { Vector as SourceVector } from 'ol/source';
 import { Vector } from 'ol/layer';
@@ -7,7 +7,8 @@ import Feature from 'ol/Feature';
 import Draw from 'ol/interaction/Draw';
 import Polygon from 'ol/geom/Polygon';
 import LineString from 'ol/geom/LineString';
-import { VlSnapInteraction, VlDrawAction } from '../../..';
+import { VlSnapInteraction } from '../../snap-interaction';
+import { VlDrawAction } from '../../draw-action';
 
 describe('draw action', () => {
   const source = new SourceVector({ features: [] });

@@ -1,11 +1,11 @@
-import sinon from 'sinon/pkg/sinon-esm';
+import sinon from 'sinon/pkg/sinon';
 import { expect } from 'chai';
 import Map from 'ol/Map';
 import MultiPolygon from 'ol/geom/MultiPolygon';
 import Polygon from 'ol/geom/Polygon';
 import LineString from 'ol/geom/LineString';
 import Feature from 'ol/Feature';
-import { VlSplitAction } from '../../..';
+import { VlSplitAction } from '../../split-action';
 
 describe('split action', () => {
   const callbackSpy = sinon.spy();

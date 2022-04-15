@@ -1,7 +1,7 @@
 import './setup.js';
 import { expect } from 'chai';
 import { Vector as SourceVector } from 'ol/source';
-import { VlSnapInteraction } from '../../..';
+import { VlSnapInteraction } from '../../snap-interaction';
 
 describe('snapinteraction interaction', () => {
   it('bij het aanmaken van een snap interactie zullen de options correct worden gezet', () => {

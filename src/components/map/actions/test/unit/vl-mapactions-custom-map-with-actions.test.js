@@ -1,9 +1,9 @@
 import './setup.js';
 import { Vector, Tile, Group } from 'ol/layer';
 import Projection from 'ol/proj/Projection';
-import sinon from 'sinon/pkg/sinon-esm';
+import sinon from 'sinon/pkg/sinon';
 import { expect } from 'chai';
-import { VlCustomMap } from '../../..';
+import { VlCustomMap } from '../../custom-map';
 
 describe('custom map with actions', () => {
   const createVlCustomMapWithActions = () => {

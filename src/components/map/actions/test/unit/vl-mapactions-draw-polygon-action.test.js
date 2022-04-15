@@ -1,7 +1,7 @@
-import sinon from 'sinon/pkg/sinon-esm';
+import sinon from 'sinon/pkg/sinon';
 import { expect } from 'chai';
 import { Vector as SourceVector } from 'ol/source';
-import { VlDrawPolygonAction } from '../../..';
+import { VlDrawPolygonAction } from '../../draw-polygon-action';
 
 describe('draw polygon action', () => {
   const source = new SourceVector({});

@@ -5,18 +5,15 @@ import fetchMock from 'fetch-mock';
 import { expect } from 'chai';
 import MultiPolygon from 'ol/geom/MultiPolygon';
 import MultiLineString from 'ol/geom/MultiLineString';
-import { VlCompositeVectorSource } from '../../..';
-
-const jsdom = require('jsdom');
-
-const { JSDOM } = jsdom;
-const fetch = require('node-fetch');
+import { JSDOM } from 'jsdom';
+import { VlCompositeVectorSource } from '../../composite-vector-source';
+import 'node-fetch';
 
 describe('composite wfs source', () => {
   // node heeft geen fetch dus die polyfillen we
-  if (!globalThis.fetch) {
-    globalThis.fetch = fetch;
-  }
+  // if (!globalThis.fetch) {
+  //   globalThis.fetch = fetch;
+  // }
   // node heeft geen DOMParser dus die polyfillen we
   // voor het kunnen parsen van de GML antwoorden
   global.DOMParser = new JSDOM().window.DOMParser;
