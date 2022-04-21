@@ -98,6 +98,5 @@ export const consent = (reference) => {
           >
             Enkel noodzakelijke cookies aanvaarden
           </button>`
-      : html`<button slot="button" @click=${() => submit(reference)} is="vl-button">Ik begrijp het</button>`}
-    <!-- </div> --> `;
+      : html`<button slot="button" @click=${() => submit(reference)} is="vl-button">Ik begrijp het</button>`} `;
 };
