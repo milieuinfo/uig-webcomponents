@@ -7,7 +7,7 @@ export const statement = (reference) => html`
     ${backButton(reference)}
     <vl-cookie-statement
       .extraCookies=${reference.extraCookies}
-      .inModal=${true}
+      .isInConsent=${true}
       .withoutFunctionalHeader=${true}
     ></vl-cookie-statement>
   </div>

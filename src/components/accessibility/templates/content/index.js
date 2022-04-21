@@ -1,6 +1,6 @@
-import { html } from "lit";
-import { complianceStatus, inaccessibleContent, sideNavigation } from "..";
-import { setupStatement } from "../setupStatement";
+import { html } from 'lit';
+import { complianceStatus, inaccessibleContent, sideNavigation } from '..';
+import { setupStatement } from '../setupStatement';
 
 export const content = (props) => {
   const { application, compliance } = props;
@@ -19,8 +19,8 @@ export const content = (props) => {
             <div is="vl-grid" data-vl-is-stacked-large>
               <div is="vl-column" data-vl-size="12" data-vl-medium-size="12">
                 <p>
-                  De Vlaamse overheid streeft ernaar haar websites en mobiele
-                  applicaties toegankelijk te maken, overeenkomstig het
+                  De Vlaamse overheid streeft ernaar haar websites en mobiele applicaties toegankelijk te maken,
+                  overeenkomstig het
                   <a
                     is="vl-link"
                     href="http://www.ejustice.just.fgov.be/cgi_loi/loi_a1.pl?language=nl&cn=2018120705&table_name=wet&caller=list&fromtab=wet#LNK0011"
@@ -49,26 +49,15 @@ export const content = (props) => {
                   is omgezet.
                 </p>
                 <br />
-                <p>
-                  Deze toegankelijkheidsverklaring is van toepassing op
-                  ${application}.
-                </p>
+                <p>Deze toegankelijkheidsverklaring is van toepassing op ${application}.</p>
               </div>
-              ${complianceStatus(props)} ${inaccessibleContent(props)}
-              ${setupStatement(props)}
-              <div
-                id="feedback-contact"
-                is="vl-column"
-                data-vl-size="12"
-                data-vl-medium-size="12"
-              >
+              ${complianceStatus(props)} ${inaccessibleContent(props)} ${setupStatement(props)}
+              <div id="feedback-contact" is="vl-column" data-vl-size="12" data-vl-medium-size="12">
                 <h2 is="vl-h2">Feedback en contactgegevens</h2>
                 <p>
-                  Ondervindt u problemen en wenst u hulp bij het vinden van
-                  informatie of het uitvoeren van een actie? Hebt u een vraag of
-                  opmerking over de toegankelijkheid van deze website of
-                  toepassing, of over deze toegankelijkheidsverklaring? Neem
-                  contact op met Departement Omgeving.
+                  Ondervindt u problemen en wenst u hulp bij het vinden van informatie of het uitvoeren van een actie?
+                  Hebt u een vraag of opmerking over de toegankelijkheid van deze website of toepassing, of over deze
+                  toegankelijkheidsverklaring? Neem contact op met Departement Omgeving.
                 </p>
                 <br />
                 <vl-contact-card id="contact-card">
@@ -78,46 +67,30 @@ export const content = (props) => {
                   <vl-properties slot="properties">
                     <dl is="vl-properties-list">
                       <dt is="vl-property-term">Adres</dt>
-                      <dd is="vl-property-value">
-                        Koning Albert II-laan 20 bus 8<br />1000 Brussel<br />België
-                      </dd>
+                      <dd is="vl-property-value">Koning Albert II-laan 20 bus 8<br />1000 Brussel<br />België</dd>
                       <dt is="vl-property-term">Telefoon</dt>
                       <dd is="vl-property-value">
                         <p>
                           <a is="vl-link" href="tel:02 553 80 11"
-                            >02 553 80 11<span
-                              is="vl-icon"
-                              data-vl-icon="phone"
-                              data-vl-after
-                            ></span
+                            >02 553 80 11<span is="vl-icon" data-vl-icon="phone" data-vl-after></span
                           ></a>
                         </p>
                       </dd>
                       <dt is="vl-property-term">E-mail</dt>
                       <dd is="vl-property-value">
                         <a is="vl-link" href="mailto:omgeving@vlaanderen.be"
-                          >omgeving@vlaanderen.be<span
-                            is="vl-icon"
-                            data-vl-icon="mail"
-                            data-vl-after
-                          ></span
+                          >omgeving@vlaanderen.be<span is="vl-icon" data-vl-icon="mail" data-vl-after></span
                         ></a>
                       </dd>
                     </dl>
                   </vl-properties>
                 </vl-contact-card>
               </div>
-              <div
-                id="enforcement-procedure"
-                is="vl-column"
-                data-vl-size="12"
-                data-vl-medium-size="12"
-              >
+              <div id="enforcement-procedure" is="vl-column" data-vl-size="12" data-vl-medium-size="12">
                 <h2 is="vl-h2">Handhavingsprocedure</h2>
                 <p>
-                  Heeft u contact opgenomen via omgeving@vlaanderen.be maar bent
-                  u niet tevreden met het antwoord? Stuur dan uw klacht naar de
-                  klachtenbehandelaar van Departement Omgeving.
+                  Heeft u contact opgenomen via omgeving@vlaanderen.be maar bent u niet tevreden met het antwoord? Stuur
+                  dan uw klacht naar de klachtenbehandelaar van Departement Omgeving.
                 </p>
                 <br />
                 <vl-contact-card id="contact-card">
@@ -127,19 +100,11 @@ export const content = (props) => {
                   <vl-properties slot="properties">
                     <dl is="vl-properties-list">
                       <dt is="vl-property-term">Adres</dt>
-                      <dd is="vl-property-value">
-                        Koning Albert II-laan 20 bus 8<br />1000 Brussel<br />België
-                      </dd>
+                      <dd is="vl-property-value">Koning Albert II-laan 20 bus 8<br />1000 Brussel<br />België</dd>
                       <dt is="vl-property-term">E-mail</dt>
                       <dd is="vl-property-value">
-                        <a
-                          is="vl-link"
-                          href="mailto:klachten.omgeving@vlaanderen.be"
-                          >klachten.omgeving@vlaanderen.be<span
-                            is="vl-icon"
-                            data-vl-icon="mail"
-                            data-vl-after
-                          ></span
+                        <a is="vl-link" href="mailto:klachten.omgeving@vlaanderen.be"
+                          >klachten.omgeving@vlaanderen.be<span is="vl-icon" data-vl-icon="mail" data-vl-after></span
                         ></a>
                       </dd>
                     </dl>
@@ -147,9 +112,8 @@ export const content = (props) => {
                 </vl-contact-card>
                 <br />
                 <p>
-                  Heeft u contact opgenomen met de klachtenbehandelaar van het
-                  Departement Omgeving, maar bent u niet tevreden met het
-                  antwoord? Stuur dan uw klacht naar de Vlaamse Ombudsdienst.
+                  Heeft u contact opgenomen met de klachtenbehandelaar van het Departement Omgeving, maar bent u niet
+                  tevreden met het antwoord? Stuur dan uw klacht naar de Vlaamse Ombudsdienst.
                 </p>
                 <br />
                 <vl-contact-card id="contact-card">
@@ -159,39 +123,24 @@ export const content = (props) => {
                   <vl-properties slot="properties">
                     <dl is="vl-properties-list">
                       <dt is="vl-property-term">Adres</dt>
-                      <dd is="vl-property-value">
-                        Leuvenseweg 86<br />1000 Brussel<br />België
-                      </dd>
+                      <dd is="vl-property-value">Leuvenseweg 86<br />1000 Brussel<br />België</dd>
                       <dt is="vl-property-term">Telefoon</dt>
                       <dd is="vl-property-value">
                         <p>
                           <a is="vl-link" href="tel:08 002 40 50"
-                            >08 002 40 50<span
-                              is="vl-icon"
-                              data-vl-icon="phone"
-                              data-vl-after=""
-                            ></span
+                            >08 002 40 50<span is="vl-icon" data-vl-icon="phone" data-vl-after=""></span
                           ></a>
                         </p>
                       </dd>
                       <dt is="vl-property-term">E-mail</dt>
                       <dd is="vl-property-value">
-                        <a
-                          is="vl-link"
-                          href="mailto:klachten@vlaamseombudsdienst.be"
-                          >klachten@vlaamseombudsdienst.be<span
-                            is="vl-icon"
-                            data-vl-icon="mail"
-                            data-vl-after
-                          ></span
+                        <a is="vl-link" href="mailto:klachten@vlaamseombudsdienst.be"
+                          >klachten@vlaamseombudsdienst.be<span is="vl-icon" data-vl-icon="mail" data-vl-after></span
                         ></a>
                       </dd>
                       <dt is="vl-property-term">Website</dt>
                       <dd is="vl-property-value">
-                        <a
-                          is="vl-link"
-                          href="http://www.vlaamseombudsdienst.be"
-                          target="_blank"
+                        <a is="vl-link" href="http://www.vlaamseombudsdienst.be" target="_blank"
                           >http://www.vlaamseombudsdienst.be<span
                             is="vl-icon"
                             data-vl-icon="external"

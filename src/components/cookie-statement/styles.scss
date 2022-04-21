@@ -5,5 +5,12 @@
 @import "../../../node_modules/@govflanders/vl-ui-properties/src/scss/properties";
 @import "../../../node_modules/@govflanders/vl-ui-side-navigation/src/scss/side-navigation";
 @import "../../../node_modules/@govflanders/vl-ui-button/src/scss/button";
-@import "../modal/in-modal";
 @import "../../../node_modules/@govflanders/vl-ui-util/src/scss/util";
+
+// workaround for DV layout min-width when the statement is in a modal
+.in-modal {
+  .vl-layout {
+    min-width: initial;
+  }
+}
+
