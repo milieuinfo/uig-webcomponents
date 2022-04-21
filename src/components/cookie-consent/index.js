@@ -46,6 +46,7 @@ export class VlCookieConsent extends LitElement {
     this.extraCookies = [];
     this.extraOptIns = [];
     this.modalRef = createRef();
+    this.dialogRef = createRef();
     this.optIns = defaultOptIns;
     this.analytics = false;
     this.view = VIEWS.COOKIE_CONSENT;
@@ -62,9 +63,9 @@ export class VlCookieConsent extends LitElement {
     }
 
     // workarounds until modal is migrated iso legacy component
-    const dialog = this.shadowRoot.querySelector('vl-modal').shadowRoot.querySelector('dialog');
-    dialog.classList.add('vl-modal-dialog--large');
-    dialog.querySelector('#modal-action-group').style = 'margin-top: -1rem';
+    this.dialogRef.value = this.modalRef.value.shadowRoot.querySelector('dialog');
+    this.dialogRef.value.classList.add('vl-modal-dialog--large');
+    this.dialogRef.value.querySelector('#modal-action-group').style = 'margin-top: -1rem';
   }
 
   updated(changedProperties) {
@@ -98,6 +99,15 @@ export class VlCookieConsent extends LitElement {
         case 'analytics':
           handleOptIns(this);
           break;
+        case 'view':
+          // workarounds until modal is migrated iso legacy component
+          if (this.view === VIEWS.COOKIE_STATEMENT || this.view === VIEWS.PRIVACY_STATEMENT) {
+            this.dialogRef.value.style = 'padding: 0';
+          } else {
+            this.dialogRef.value.style.removeProperty('padding');
+          }
+
+          break;
         default:
           break;
       }
@@ -123,10 +133,6 @@ export class VlCookieConsent extends LitElement {
     const getTitle = () => {
       if (this.view === VIEWS.COOKIE_CONSENT) {
         return 'Cookie-informatie';
-      }
-      if (this.view === VIEWS.PREFERENCES && this.fromPreferencesButton) {
-        // Moeten we wel een projectnaam voorzien nu het departement generiek is?
-        return `Cookievoorkeuren - ${this.projectName}`;
       }
       return null;
     };

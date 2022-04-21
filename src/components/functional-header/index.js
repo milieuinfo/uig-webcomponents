@@ -120,15 +120,6 @@ export class VlFunctionalHeader extends vlElement(HTMLElement) {
     this._backLinkElement.addEventListener('click', this._backLinkEventListener);
   }
 
-  set inModal(value) {
-    const header = this.shadowRoot.querySelector('header');
-    if (value) {
-      header.classList.add('in-modal');
-    } else {
-      header.classList.remove('in-modal');
-    }
-  }
-
   __processSlotElements() {
     this.__processSlotActions();
   }

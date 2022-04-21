@@ -1,4 +1,4 @@
-import { html, LitElement, css, unsafeCSS } from 'lit';
+import { html, LitElement, css, unsafeCSS, nothing } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import '../functional-header';
 import '../grid';
@@ -28,6 +28,7 @@ export class VlPrivacy extends LitElement {
       version: { type: String, attribute: 'data-vl-version', reflect: true },
       date: { type: String, attribute: 'data-vl-date', reflect: true },
       inModal: { type: Boolean },
+      withoutFunctionalHeader: { type: Boolean },
     };
   }
 
@@ -39,27 +40,18 @@ export class VlPrivacy extends LitElement {
   }
 
   render() {
-    const inModal = { 'in-modal': this.inModal };
+    const inModal = { 'in-modal': this.inModal, 'vl-privacy': true };
     const columnSize = this.inModal ? '12' : '8';
 
     return html`
-      <vl-functional-header
-        .inModal=${this.inModal}
-        .backLinkEventListener=${(event) => {
-          if (this.inModal) {
-            event.preventDefault();
-            this.dispatchEvent(
-              new CustomEvent('vl-back', {
-                bubbles: true,
-                composed: true,
-              }),
-            );
-          }
-        }}
-        data-vl-title="Departement Omgeving"
-        data-vl-sub-title="Privacy"
-        data-vl-link="https://omgeving.vlaanderen.be"
-      ></vl-functional-header>
+      ${this.withoutFunctionalHeader
+        ? nothing
+        : html` <vl-functional-header
+            data-vl-title="Departement Omgeving"
+            data-vl-sub-title="Privacy"
+            data-vl-link="https://omgeving.vlaanderen.be"
+          ></vl-functional-header>`}
+
       <div class=${classMap(inModal)}>
         <section is="vl-region">
           <div is="vl-layout">

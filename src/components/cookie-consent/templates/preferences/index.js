@@ -1,24 +1,16 @@
 import { html, nothing } from 'lit';
-import { VIEWS } from '../../enums';
 import { fwColumn } from '../fullWidthColumn';
 import { submit } from '../../utils';
+import { backButton } from '../backButton';
 
 export const preferences = (reference) => html`<div slot="content">
-    ${reference.fromPreferencesButton
-      ? nothing
-      : html` <vl-functional-header
-          .backLinkEventListener=${(event) => {
-            event.preventDefault();
-            reference.view = VIEWS.COOKIE_CONSENT;
-          }}
-          data-vl-title=${reference.projectName}
-          data-vl-sub-title="Cookievoorkeuren"
-          data-vl-link="https://omgeving.vlaanderen.be"
-          .inModal=${true}
-        ></vl-functional-header>`}
     <div is="vl-grid" data-vl-is-stacked-small>
-      ${fwColumn(html` De cookie-toestemming die je geeft is van toepassing op meerdere websites, subsites en apps van
-      Departement Omgeving. Je kunt op elk moment een eerdere toestemming intrekken of wijzigen.`)}
+      ${reference.fromPreferencesButton ? nothing : fwColumn(backButton(reference))}
+      <h2 is="vl-h2">Cookievoorkeuren</h2>
+      ${fwColumn(html`<p>
+        De cookie-toestemming die je geeft is van toepassing op meerdere websites, subsites en apps van Departement
+        Omgeving. Je kunt op elk moment een eerdere toestemming intrekken of wijzigen.
+      </p>`)}
       ${reference.optIns.map(({ label, checked, mandatory, description, name }) =>
         label
           ? html`${fwColumn(html`
