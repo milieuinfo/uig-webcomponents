@@ -7,9 +7,4 @@
 @import "../../../node_modules/@govflanders/vl-ui-button/src/scss/button";
 @import "../../../node_modules/@govflanders/vl-ui-util/src/scss/util";
 
-// workaround for DV layout min-width when the statement is in a modal
-.in-modal .vl-layout {
-  min-width: initial;
-}
-
 

@@ -1,5 +1,4 @@
 import { LitElement, css, html, unsafeCSS } from 'lit';
-import { classMap } from 'lit/directives/class-map.js';
 import '../functional-header';
 import '../grid';
 import '../titles';
@@ -14,6 +13,7 @@ import '../side-navigation';
 import './components';
 import styles from './styles.scss';
 import { header, title, body, sideNavigation, contact } from './templates';
+import { conditionalLayout } from './templates/conditionalLayout';
 
 export class VlCookieStatement extends LitElement {
   static get styles() {
@@ -44,15 +44,15 @@ export class VlCookieStatement extends LitElement {
   }
 
   render() {
-    const isInConsent = { 'in-modal': this.isInConsent };
     const columnSize = this.isInConsent ? '12' : '8';
 
     return html`${header(this.withoutFunctionalHeader)}
-      <div class=${classMap(isInConsent)}>
-        ${title(this.version, this.date)}
+      <div>
+        ${title(this.isInConsent, this.version, this.date)}
         <section is="vl-region">
-          <div is="vl-layout">
-            <div is="vl-grid" data-vl-is-stacked>
+          ${conditionalLayout(
+            this.isInConsent,
+            html`<div is="vl-grid" data-vl-is-stacked>
               <div
                 is="vl-column"
                 data-vl-size=${columnSize}
@@ -63,8 +63,8 @@ export class VlCookieStatement extends LitElement {
                 ${body(this)}
               </div>
               ${sideNavigation(this.isInConsent)}
-            </div>
-          </div>
+            </div>`,
+          )}
         </section>
         ${contact(this.isInConsent)}
       </div>`;

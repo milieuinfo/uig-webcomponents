@@ -99,15 +99,6 @@ export class VlCookieConsent extends LitElement {
         case 'analytics':
           handleOptIns(this);
           break;
-        case 'view':
-          // workarounds until modal is migrated iso legacy component
-          if (this.view === VIEWS.COOKIE_STATEMENT || this.view === VIEWS.PRIVACY_STATEMENT) {
-            this.dialogRef.value.style = 'padding: 0';
-          } else {
-            this.dialogRef.value.style.removeProperty('padding');
-          }
-
-          break;
         default:
           break;
       }
