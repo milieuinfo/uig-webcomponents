@@ -15,7 +15,6 @@ export { VlSelectAction } from './select-action';
 export { VlSelectActions } from './select-actions';
 export { VlShowInfoAction } from './show-info-action';
 export { VlShowInfoSelectAction } from './show-info-select-action';
-export { VlSplitAction } from './split-action';
 export { VlTooltips } from './tooltips';
 export { VlTranslateAction } from './translate-action';
 export { VlSnapInteraction } from './snap-interaction';
