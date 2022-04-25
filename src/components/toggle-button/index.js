@@ -110,7 +110,10 @@ export class VlToggleButton extends LitElement {
           }
           break;
         case '_active':
-          this._fireChange();
+          // Don't fire change event for controlled component when active is first set via component props
+          if (!this._isControlled() || (this._isControlled() && oldValue !== undefined)) {
+            this._fireChange();
+          }
           break;
         default:
           break;
