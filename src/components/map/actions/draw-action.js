@@ -84,9 +84,10 @@ export class VlDrawAction extends VlMapAction {
       const { feature } = event;
 
       onDraw(feature, () => {
-        try {
-          layer.getSource().removeFeature(feature); // when the feature was not yet added to the source we'll add a listener in the catch block
-        } catch (exception) {
+        if (layer.getSource().hasFeature(feature)) {
+          layer.getSource().removeFeature(feature);
+        } else {
+          // When the features was not yet added to the source we'll add a listener
           const listener = layer.getSource().on('addfeature', (event) => {
             layer.getSource().removeFeature(event.feature);
             unByKey(listener);

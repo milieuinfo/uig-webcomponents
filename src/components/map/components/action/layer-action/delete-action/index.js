@@ -70,7 +70,6 @@ export class VlMapDeleteAction extends VlMapLayerAction {
       } else {
         features.forEach((feature) => resolve(feature));
       }
-      features.forEach((feature) => resolve(feature));
     };
   }
 
