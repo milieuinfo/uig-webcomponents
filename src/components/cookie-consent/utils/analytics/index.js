@@ -1,8 +1,8 @@
-import { analytics as matomo } from './matomo';
+import { matomo, getScript } from './matomo';
 
 export const addAnalytics = () => {
   if (!document.getElementById(matomo.scriptId)) {
-    document.head.appendChild(matomo.script);
+    document.head.appendChild(getScript());
   }
 };
 

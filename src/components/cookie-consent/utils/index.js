@@ -1,5 +1,5 @@
 import { getCookieValue, submitCookies } from './cookies';
-import { addAnalytics } from './analytics';
+import { addAnalytics, removeAnalytics } from './analytics';
 
 const isUncontrolled = (open) => open === undefined;
 
@@ -14,13 +14,16 @@ export const canModalOpen = (open) => {
 };
 
 export const submit = (reference) => {
-  if (reference.analytics) {
+  if (reference.optIns.some((optIn) => optIn.name === 'analytics')) {
     addAnalytics();
+  } else {
+    removeAnalytics();
   }
 
   const optInsWithDate = reference.optIns.map((optIn) =>
     optIn.name === 'cookie-consent-date' ? { ...optIn, value: new Date().getTime() } : optIn,
   );
+
   const submittedCookies = submitCookies(optInsWithDate);
   reference.dispatchEvent(
     new CustomEvent('vl-submitted', {
