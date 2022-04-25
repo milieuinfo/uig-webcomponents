@@ -43,28 +43,25 @@ export class VlPrivacy extends LitElement {
     const columnSize = this.isInConsent ? '12' : '8';
 
     return html`
-      ${header(this.withoutFunctionalHeader)}
-      <div>
-        ${title(this.isInConsent, this.version, this.date)}
-        <section is="vl-region">
-          ${conditionalLayout(
-            this.isInConsent,
-            html`<div is="vl-grid" data-vl-is-stacked>
-              <div
-                is="vl-column"
-                data-vl-size=${columnSize}
-                data-vl-medium-size=${columnSize}
-                data-vl-small-size=${columnSize}
-                data-vl-extra-small-size="12"
-              >
-                ${body(this)}
-              </div>
-              ${sideNavigation(this.isInConsent)}
-            </div>`,
-          )}
-        </section>
-        ${contact(this.isInConsent)}
-      </div>
+      ${header(this.withoutFunctionalHeader)} ${title(this.isInConsent, this.version, this.date)}
+      <section is="vl-region">
+        ${conditionalLayout(
+          this.isInConsent,
+          html`<div is="vl-grid" data-vl-is-stacked>
+            <div
+              is="vl-column"
+              data-vl-size=${columnSize}
+              data-vl-medium-size=${columnSize}
+              data-vl-small-size=${columnSize}
+              data-vl-extra-small-size="12"
+            >
+              ${body(this)}
+            </div>
+            ${sideNavigation(this.isInConsent)}
+          </div>`,
+        )}
+      </section>
+      ${contact(this.isInConsent)}
     `;
   }
 }
