@@ -1,8 +1,10 @@
 import { html } from 'lit';
+import { conditionalLayout } from '../../../../templates';
 
 export const contact = (isInConsent) => html`<section is="vl-region" ?data-vl-overlap=${!isInConsent}>
-  <div is="vl-layout">
-    <div is="vl-grid" data-vl-is-stacked>
+  ${conditionalLayout(
+    isInConsent,
+    html`<div is="vl-grid" data-vl-is-stacked>
       <div is="vl-column" data-vl-size="12" data-vl-medium-size="12">
         <vl-contact-card id="contact-card">
           <vl-infoblock slot="info" data-vl-type="contact">
@@ -24,6 +26,6 @@ export const contact = (isInConsent) => html`<section is="vl-region" ?data-vl-ov
           </vl-properties>
         </vl-contact-card>
       </div>
-    </div>
-  </div>
+    </div>`,
+  )}
 </section>`;

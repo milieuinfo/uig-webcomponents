@@ -4,6 +4,7 @@ import { backButton } from '../backButton';
 
 export const statement = (reference) => html`
   <div slot="content">
+    <!-- to be in grid -->
     ${backButton(reference)}
     <vl-cookie-statement
       .extraCookies=${reference.extraCookies}

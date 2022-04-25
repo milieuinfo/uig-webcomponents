@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import { conditionalLayout } from '../conditionalLayout';
+import { conditionalLayout } from '../../../../templates';
 
 export const title = (isInConsent, version, date) => html`
   <section is="vl-region">
@@ -15,7 +15,6 @@ export const title = (isInConsent, version, date) => html`
             <span>${date}</span>
           </p>
         </div>
-
         <div is="vl-column" data-vl-size="12" data-vl-medium-size="12">
           <vl-typography>
             <hr />

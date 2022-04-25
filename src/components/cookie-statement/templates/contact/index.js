@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import { conditionalLayout } from '../conditionalLayout';
+import { conditionalLayout } from '../../../../templates';
 
 export const contact = (isInConsent) =>
   html`<section is="vl-region" ?data-vl-overlap=${!isInConsent}>

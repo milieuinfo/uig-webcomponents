@@ -1,10 +1,8 @@
 import { html } from 'lit';
-
-const wrap = (withNavigationRef, children) =>
-  withNavigationRef ? html`<div is="vl-side-navigation-reference">${children}</div>` : html`${children}`;
+import { conditionalNavRef } from '../../../../templates';
 
 export const body = (reference) =>
-  html`${wrap(
+  html`${conditionalNavRef(
     !reference.isInConsent,
     html`
       <div is="vl-grid" data-vl-is-stacked-large>

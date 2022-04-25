@@ -1,8 +1,10 @@
 import { html } from 'lit';
+import { conditionalLayout } from '../../../../templates';
 
-export const title = (version, date) => html`<section is="vl-region">
-  <div is="vl-layout">
-    <div is="vl-grid" data-vl-is-stacked>
+export const title = (isInConsent, version, date) => html`<section is="vl-region">
+  ${conditionalLayout(
+    isInConsent,
+    html`<div is="vl-grid" data-vl-is-stacked>
       <div is="vl-column" data-vl-size="10">
         <h1 is="vl-h1" data-vl-no-space-bottom>Privacy</h1>
       </div>
@@ -18,6 +20,6 @@ export const title = (version, date) => html`<section is="vl-region">
           <hr />
         </vl-typography>
       </div>
-    </div>
-  </div>
+    </div>`,
+  )}
 </section>`;

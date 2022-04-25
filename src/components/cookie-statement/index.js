@@ -13,7 +13,7 @@ import '../side-navigation';
 import './components';
 import styles from './styles.scss';
 import { header, title, body, sideNavigation, contact } from './templates';
-import { conditionalLayout } from './templates/conditionalLayout';
+import { conditionalLayout } from '../../templates';
 
 export class VlCookieStatement extends LitElement {
   static get styles() {
