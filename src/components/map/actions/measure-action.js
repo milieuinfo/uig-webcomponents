@@ -20,6 +20,10 @@ export class VlMeasureAction extends VlDrawAction {
     this.measurementTooltips = [];
     this.measurePointermoveHandler = undefined;
 
+    this.measureOptions = options;
+  }
+
+  activate() {
     this.drawStartHandler = this.drawInteraction.on('drawstart', (event) => {
       this._handleDrawStart(event);
     });
@@ -28,17 +32,19 @@ export class VlMeasureAction extends VlDrawAction {
       this._handleRemoveFeature(event);
     });
 
-    this.measureOptions = options;
+    super.activate(this);
   }
 
   _setMeasurementTooltipsClosable(closable) {
     this.measurementTooltips.forEach((tooltip) => {
       // Check if tooltip still exists
       if (tooltip) {
-        if (closable) {
-          tooltip.getElement().setAttribute('data-vl-closable', closable);
-        } else {
-          tooltip.getElement().removeAttribute('data-vl-closable');
+        if (tooltip.getElement()) {
+          if (closable) {
+            tooltip.getElement().setAttribute('data-vl-closable', closable);
+          } else {
+            tooltip.getElement().removeAttribute('data-vl-closable');
+          }
         }
       }
     });
@@ -57,7 +63,7 @@ export class VlMeasureAction extends VlDrawAction {
     const id = this.featureCounter;
     this.featureCounter += 1;
 
-    this._setMeasurementTooltipsClosable(false);
+    this._setMeasurementTooltipsClosable(false); // Hide close buttons on tooltips while drawing
 
     const { feature } = event;
     feature.setId(id);
@@ -137,7 +143,13 @@ export class VlMeasureAction extends VlDrawAction {
     }
   }
 
+  getTooltipFor(id) {
+    return this.measurementTooltips[id];
+  }
+
   deactivate() {
+    this._setMeasurementTooltipsClosable(true);
+
     this._cleanUp(true);
 
     unByKey(this.drawStartHandler);
