@@ -1,14 +1,6 @@
 import { VlElement, By } from '../../../../../../utils/test';
 
 export class VlDescriptionDataItem extends VlElement {
-  async getElementInShadow(parent, selector) {
-    const element = await this.driver.executeScript(
-      `return arguments[0].shadowRoot.querySelector("${selector}")`,
-      parent,
-    );
-    return element;
-  }
-
   async getLabel() {
     return (await this._getLabel()).getText();
   }
