@@ -88,7 +88,6 @@ export class VlToggleButton extends LitElement {
       },
       active: {
         type: Boolean,
-        attribute: 'active',
       },
     };
   }
