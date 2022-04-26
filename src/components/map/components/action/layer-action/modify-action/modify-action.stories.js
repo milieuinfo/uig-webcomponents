@@ -56,10 +56,9 @@ export const MapWithPointModify = () => {
   };
 
   return html`
-    <vl-map id="map">
+    <vl-map>
       <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-      <vl-map-features-layer data-vl-features=${JSON.stringify(features)}>
-        <vl-map-layer-circle-style></vl-map-layer-circle-style>
+      <vl-map-features-layer .features=${features}>
         <vl-map-modify-action data-vl-default-active></vl-map-modify-action>
       </vl-map-features-layer>
     </vl-map>
@@ -85,10 +84,9 @@ export const MapWithLineModify = () => {
   };
 
   return html`
-    <vl-map id="map">
+    <vl-map>
       <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-      <vl-map-features-layer data-vl-features=${JSON.stringify(features)}>
-        <vl-map-layer-style></vl-map-layer-style>
+      <vl-map-features-layer .features=${features}>
         <vl-map-modify-action data-vl-default-active></vl-map-modify-action>
       </vl-map-features-layer>
     </vl-map>
@@ -118,10 +116,9 @@ export const MapWithPolygonModify = () => {
   };
 
   return html`
-    <vl-map id="map">
+    <vl-map>
       <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-      <vl-map-features-layer data-vl-features=${JSON.stringify(features)}>
-        <vl-map-layer-style></vl-map-layer-style>
+      <vl-map-features-layer .features=${features}>
         <vl-map-modify-action data-vl-default-active></vl-map-modify-action>
       </vl-map-features-layer>
     </vl-map>
@@ -141,10 +138,9 @@ export const MapWithSnappingModify = ({ snapping, snappingPixelTolerance }) => {
   };
 
   return html`
-    <vl-map id="map">
+    <vl-map>
       <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-      <vl-map-features-layer data-vl-features=${JSON.stringify(features)} data-vl-auto-extent>
-        <vl-map-layer-circle-style></vl-map-layer-circle-style>
+      <vl-map-features-layer .features=${features} data-vl-auto-extent>
         <vl-map-modify-action 
             data-vl-default-active
             ?data-vl-snapping=${snapping}

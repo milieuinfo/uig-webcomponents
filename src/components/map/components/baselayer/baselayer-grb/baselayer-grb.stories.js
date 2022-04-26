@@ -21,7 +21,7 @@ export default {
 };
 
 export const Default = () => html`
-  <vl-map id="map">
+  <vl-map>
     <vl-map-baselayer-grb></vl-map-baselayer-grb>
   </vl-map>
 `;

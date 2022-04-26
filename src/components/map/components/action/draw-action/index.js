@@ -30,7 +30,7 @@ export class VlMapDrawAction extends VlMapLayerAction {
 
   get __drawOptions() {
     if (this.dataset.vlSnapping !== undefined) {
-      if (this.__snappingLayers.length == 0) {
+      if (this.__snappingLayers.length === 0) {
         return { snapping: true };
       }
       return {
