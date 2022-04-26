@@ -1,17 +1,17 @@
-import { html } from 'lit-html';
-import '../../../map';
-import { argTypes } from './config.js';
-import { docsIntro } from '../../../../../.storybook/utils.js';
+import { html } from "lit-html";
+import "../../../map";
+import { argTypes } from "./config.js";
+import { docsIntro } from "../../../../../.storybook/utils.js";
 
 export default {
-  title: 'custom-elements/vl-map/vl-map-layer-style',
+  title: "custom-elements/vl-map/vl-map-layer-style",
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
       description: {
         component: docsIntro({
-          root: 'map',
-          intro: 'De kaart laag style klasse.',
+          root: "map",
+          intro: "De kaart laag style klasse.",
         }),
       },
     },
@@ -21,12 +21,12 @@ export default {
 
 export const Default = () => {
   const features = {
-    type: 'FeatureCollection',
+    type: "FeatureCollection",
     features: [
       {
-        type: 'Feature',
+        type: "Feature",
         geometry: {
-          type: 'Polygon',
+          type: "Polygon",
           coordinates: [
             [
               [147055.0, 197908.0],
@@ -37,13 +37,13 @@ export const Default = () => {
             ],
           ],
         },
-        properties: { label: 'Label1' },
+        properties: { label: "Label1" },
       },
     ],
   };
   return html`<vl-map>
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-    <vl-map-features-layer .features=${features}>
+    <vl-map-features-layer data-vl-features=${JSON.stringify(features)}>
       <vl-map-layer-style
         data-vl-color="rgba(255,0,0,0.5)"
         data-vl-border-color="rgba(255,255,100,1)"

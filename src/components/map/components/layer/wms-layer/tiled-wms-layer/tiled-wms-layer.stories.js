@@ -21,7 +21,8 @@ export default {
 };
 
 export const Default = () => html`
-  <vl-map>
+  <vl-map id="map">
+    <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
     <vl-map-tiled-wms-layer
       data-vl-name="Gemeentegrenzen"
       data-vl-version="1.3.0"

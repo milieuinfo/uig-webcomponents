@@ -1,15 +1,15 @@
-import { html } from 'lit-html';
-import '../../../map';
-import { docsIntro } from '../../../../../.storybook/utils.js';
+import { html } from "lit-html";
+import "../../../map";
+import { docsIntro } from "../../../../../.storybook/utils.js";
 
 export default {
-  title: 'custom-elements/vl-map',
+  title: "custom-elements/vl-map",
   parameters: {
     docs: {
       description: {
         component: docsIntro({
-          root: 'map',
-          intro: 'De kaart component.',
+          root: "map",
+          intro: "De kaart component.",
         }),
       },
     },
@@ -22,54 +22,64 @@ export default {
   },
   argTypes: {
     allowFullscreen: {
-      name: 'data-vl-allow-fullscreen',
-      type: { summary: 'boolean' },
+      name: "data-vl-allow-fullscreen",
+      type: { summary: "boolean" },
       description:
-        'Attribuut wordt gebruikt om de gebruiker de mogelijkheid te geven om de kaart in fullscreen te visualiseren.',
+        "Attribuut wordt gebruikt om de gebruiker de mogelijkheid te geven om de kaart in fullscreen te visualiseren.",
       table: {
-        defaultValue: { summary: 'false' },
+        defaultValue: { summary: "false" },
       },
       control: { disable: true },
     },
     disableEscape: {
-      name: 'data-vl-disable-escape-key',
-      type: { summary: 'boolean' },
-      description: 'Attribuut wordt gebruikt om ervoor te zorgen dat de escape toets niet gebruikt kan worden.',
+      name: "data-vl-disable-escape-key",
+      type: { summary: "boolean" },
+      description:
+        "Attribuut wordt gebruikt om ervoor te zorgen dat de escape toets niet gebruikt kan worden.",
       table: {
-        defaultValue: { summary: 'false' },
+        defaultValue: { summary: "false" },
       },
       control: { disable: true },
     },
     disableRotation: {
-      name: 'data-vl-disable-rotation',
-      type: { summary: 'boolean' },
-      description: 'Attribuut wordt gebruikt om ervoor te zorgen dat het niet mogelijk is om de kaart te draaien.',
+      name: "data-vl-disable-rotation",
+      type: { summary: "boolean" },
+      description:
+        "Attribuut wordt gebruikt om ervoor te zorgen dat het niet mogelijk is om de kaart te draaien.",
       table: {
-        defaultValue: { summary: 'false' },
+        defaultValue: { summary: "false" },
       },
       control: { disable: true },
     },
     disableMousewheelZoom: {
-      name: 'data-vl-disable-mouse-wheel-zoom',
-      type: { summary: 'boolean' },
+      name: "data-vl-disable-mouse-wheel-zoom",
+      type: { summary: "boolean" },
       description:
-        'Attribuut wordt gebruikt om ervoor te zorgen dat het niet mogelijk is om de kaart in te zoomen met het muiswiel.',
+        "Attribuut wordt gebruikt om ervoor te zorgen dat het niet mogelijk is om de kaart in te zoomen met het muiswiel.",
       table: {
-        defaultValue: { summary: 'false' },
+        defaultValue: { summary: "false" },
       },
       control: { disable: true },
     },
   },
 };
 
-const Template = ({ allowFullscreen, disableEscape, disableRotation, disableMousewheelZoom }) => html`
+const Template = ({
+  allowFullscreen,
+  disableEscape,
+  disableRotation,
+  disableMousewheelZoom,
+}) => html`
   <vl-map
+    id="map"
     ?data-vl-allow-fullscreen=${allowFullscreen}
     ?data-vl-disable-escape-key=${disableEscape}
     ?data-vl-disable-rotation=${disableRotation}
     ?data-vl-disable-mouse-wheel-zoom=${disableMousewheelZoom}
   >
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+    <vl-map-baselayer-grb></vl-map-baselayer-grb>
+    <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
   </vl-map>
 `;
 

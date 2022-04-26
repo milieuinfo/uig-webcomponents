@@ -19,7 +19,7 @@ export default {
 
 export const Default = () =>
   html`
-    <vl-map>
+    <vl-map id="map">
       <vl-map-search></vl-map-search>
       <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
       <vl-map-baselayer-grb></vl-map-baselayer-grb>
@@ -27,9 +27,9 @@ export const Default = () =>
     </vl-map>
   `;
 
-// to do: bug in docs tab
 export const WithSeparateSearchFunctionality = () => html`
   <vl-map-search id="bind-map-search"></vl-map-search>
+  <br />
   <vl-map id="map">
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
     <vl-map-baselayer-grb></vl-map-baselayer-grb>

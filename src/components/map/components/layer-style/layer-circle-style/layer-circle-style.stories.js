@@ -82,7 +82,7 @@ export const Default = () => {
   };
   return html`<vl-map>
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-    <vl-map-features-layer .features=${features}>
+    <vl-map-features-layer data-vl-features=${JSON.stringify(features)}>
       <vl-map-layer-circle-style
         data-vl-color="#ffe615"
         data-vl-size="5"
