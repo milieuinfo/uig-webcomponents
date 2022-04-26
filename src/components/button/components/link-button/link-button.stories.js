@@ -7,8 +7,8 @@ import { stylesheet, docsIntro } from '../../../../../.storybook/utils.js';
 export default {
   title: 'native-elements/vl-button/vl-link-button',
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
-  buttonArgs,
-  buttonArgTypes,
+  args: buttonArgs,
+  argTypes: buttonArgTypes,
   parameters: {
     docs: {
       description: {
