@@ -17,7 +17,7 @@ export class VlTestToggleButton extends VlElement {
   }
 
   async isDisabled() {
-    return this.hasAttribute('data-vl-disabled');
+    return this.hasAttribute('disabled');
   }
 
   // Controlled toggle button
