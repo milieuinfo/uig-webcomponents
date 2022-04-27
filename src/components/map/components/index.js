@@ -27,4 +27,6 @@ export { VlMapLayerSwitcher } from './layer-switcher';
 export { VlMapSideSheetMenu } from './side-sheet-menu';
 export { VlMapSideSheetMenuItem } from './side-sheet-menu-item';
 export { VlMapModifyAction } from './action/layer-action/modify-action';
+export { VlMapControl } from './controls';
+export { VlMapMeasureControl } from './controls/measure-control';
 export { VlSelectLocation } from './select-location';
