@@ -10,18 +10,19 @@ export default {
       description: {
         component: docsIntro({
           root: 'map',
-          intro: 'The map controls wrapper',
+          intro: 'Controls on the map component.',
         }),
       },
     },
   },
-  args: {},
-  argTypes: {},
 };
 
 export const Default = () => html`
   <vl-map id="map">
-    <vl-map-measure-control></vl-map-measure-control>
+    <vl-map-controls>
+      <vl-map-measure-control></vl-map-measure-control>
+      <vl-map-measure-control></vl-map-measure-control>
+    </vl-map-controls>
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
   </vl-map>
 `;

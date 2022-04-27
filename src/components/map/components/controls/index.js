@@ -1,67 +1,28 @@
-import Control from 'ol/control/Control';
 import { vlElement, define } from '../../../../utils/core';
 import '../../../toggle-button';
 
-export class VlMapControl extends vlElement(HTMLElement) {
-  // connectedCallback() {
-  //   this._configureMap();
-  // }
-
-  connectedCallback() {
-    this._addControl();
-  }
-
-  get _map() {
-    if (this.parentNode) {
-      console.log('get _map: ', this.parentNode.map);
-
-      return this.parentNode.map;
-    }
-  }
-
-  get type() {
-    console.log('type: ', this.getAttribute('type'));
-    return this._type;
-  }
-
-  set type(value) {
-    this._type = value;
-  }
-
-  // _configureMap() {
-  //   if (this._map) {
-  //     this._map.addControl(this._createControl());
-  //   }
-  // }
-
-  // _createControl() {
-  //   return new OlTileLayer({
-  //     title: this.title,
-  //     type: 'base',
-  //     source: this._WMTSSource,
-  //   });
-  // }
-  _addControl() {
-    if (this._map) {
-      this._map.addControl(this._createControl());
-    }
-  }
-
-  _createControl() {
-    const controlElement = document.createElement('vl-toggle-button');
-    controlElement.innerText = 'Meet';
-    controlElement.setAttribute('data-vl-icon', 'pencil');
-    controlElement.setAttribute('style', 'position: absolute');
-
-    switch (this.type) {
-      case 'measure':
-        return new Control({
-          element: controlElement,
-        });
-      default:
-        return null;
-    }
+export class VlMapControls extends vlElement(HTMLElement) {
+  constructor() {
+    super(`
+      <style>
+        div {
+          position: absolute;
+          top: 0;
+          right: 0;
+          z-index: 1;
+          display: flex;
+          flex-direction: row;
+          column-gap: 10px;
+          justify-content: flex-end;
+          width: calc(100% - 20px);
+          padding: 10px;
+        }
+      </style>
+      <div>
+        <slot></slot>
+      </div>
+    `);
   }
 }
 
-define('vl-map-control', VlMapControl);
+define('vl-map-controls', VlMapControls);
