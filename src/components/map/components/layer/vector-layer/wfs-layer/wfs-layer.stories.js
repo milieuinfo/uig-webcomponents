@@ -6,6 +6,7 @@ import { docsIntro } from '../../../../../../../.storybook/utils.js';
 export default {
   title: 'custom-elements/vl-map/vl-map-wfs-layer',
   parameters: {
+    controls: { hideNoControlsWarning: true },
     docs: {
       description: {
         component: docsIntro({
@@ -32,13 +33,13 @@ export default {
   },
 };
 export const Default = () => html`
-  <vl-map id="map">
+  <vl-map>
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
     <vl-map-wfs-layer
       data-vl-name="Oppervlaktewaterlichamen"
       data-vl-url="https://geoserver.vmm.be/geoserver/vmm/wfs"
       data-vl-layers="owl_l"
-      data-vl-max-resolution=${8}
+      data-vl-max-resolution="8"
     >
     </vl-map-wfs-layer>
   </vl-map>

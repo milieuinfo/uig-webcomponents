@@ -21,31 +21,25 @@ export default {
 };
 
 export const Default = () => html`
-  <vl-map id="map">
+  <vl-map>
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-    <vl-map-baselayer-grb></vl-map-baselayer-grb>
-    <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
     <vl-map-features-layer>
-      <vl-map-layer-style></vl-map-layer-style>
       <vl-map-draw-polygon-action data-vl-default-active></vl-map-draw-polygon-action>
     </vl-map-features-layer>
   </vl-map>
 `;
 
-export const WithSnapping = () => html`<vl-map id="map">
+export const WithSnapping = () => html`<vl-map>
   <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-  <vl-map-baselayer-grb></vl-map-baselayer-grb>
-  <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
   <vl-map-features-layer>
-    <vl-map-layer-style></vl-map-layer-style>
-    <vl-map-draw-polygon-action data-vl-snapping data-vl-default-active
-      ><vl-map-wfs-layer
+    <vl-map-draw-polygon-action data-vl-snapping data-vl-default-active>
+      <vl-map-wfs-layer
         data-vl-name="Stromend waterlichamen"
         data-vl-url="https://geoserver.vmm.be/geoserver/vmm/wfs"
         data-vl-layers="owl_l"
         data-vl-max-resolution="4"
       >
-        <vl-map-layer-style></vl-map-layer-style> </vl-map-wfs-layer
-    ></vl-map-draw-polygon-action>
+      </vl-map-wfs-layer>
+    </vl-map-draw-polygon-action>
   </vl-map-features-layer>
 </vl-map>`;
