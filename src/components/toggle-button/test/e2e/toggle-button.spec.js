@@ -3,6 +3,7 @@ import { VlTestToggleButton } from './toggle-button';
 
 const { sbUrl } = config;
 const defaultUrl = `${sbUrl}?id=custom-elements-vl-toggle-button--default`;
+const iconUrl = `${sbUrl}?id=custom-elements-vl-toggle-button--with-icon`;
 const controlledUrl = `${sbUrl}?id=custom-elements-vl-toggle-button--controlled`;
 const selector = 'vl-toggle-button';
 
@@ -22,14 +23,14 @@ describe('vl-toggle-button', async () => {
   });
 
   it('as a user, I can hide the toggle button text', async () => {
-    await driver.get(`${defaultUrl}&args=textHidden:true`);
+    await driver.get(`${iconUrl}&args=textHidden:true`);
     const toggleButton = await new VlTestToggleButton(driver, selector);
 
     await assert.eventually.isTrue(toggleButton.hasHiddenText());
   });
 
   it('as a user, I can see the toggle button icon', async () => {
-    await driver.get(defaultUrl);
+    await driver.get(iconUrl);
     const toggleButton = await new VlTestToggleButton(driver, selector);
 
     const button = await toggleButton.getButton();
@@ -38,7 +39,7 @@ describe('vl-toggle-button', async () => {
   });
 
   it('as a user, I can see the toggle button icon on the left of the text', async () => {
-    await driver.get(`${defaultUrl}&args=iconPlacement:before`);
+    await driver.get(`${iconUrl}&args=iconPlacement:before`);
     const toggleButton = await new VlTestToggleButton(driver, selector);
 
     const button = await toggleButton.getButton();
@@ -48,7 +49,7 @@ describe('vl-toggle-button', async () => {
   });
 
   it('as a user, I can see the toggle button icon on the right of the text', async () => {
-    await driver.get(defaultUrl);
+    await driver.get(iconUrl);
     const toggleButton = await new VlTestToggleButton(driver, selector);
 
     const button = await toggleButton.getButton();
@@ -56,7 +57,7 @@ describe('vl-toggle-button', async () => {
 
     await assert.eventually.isTrue(icon.isAfter());
 
-    await driver.get(`${defaultUrl}&args=iconPlacement:after`);
+    await driver.get(`${iconUrl}&args=iconPlacement:after`);
     const toggleButtonAfter = await new VlTestToggleButton(driver, selector);
 
     const buttonAfter = await toggleButtonAfter.getButton();
