@@ -11,9 +11,9 @@ export class VlTestToggleButton extends VlElement {
   }
 
   async hasHiddenText() {
-    const text = await this.shadowRoot.findElement(By.css('[is="vl-text"]'));
-    const hidden = text.hasAttribute('data-vl-visually-hidden');
-    return !!text && hidden;
+    const text = await this.getElementInShadow(this, '[is="vl-text"]');
+    const hidden = text.getAttribute('data-vl-visually-hidden');
+    return !!text && !!hidden;
   }
 
   async isDisabled() {
