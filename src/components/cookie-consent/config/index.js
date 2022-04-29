@@ -8,6 +8,7 @@ export const args = {
   autoOpened: action('vl-auto-opened'),
   opened: action('vl-opened'),
   closed: action('vl-closed'),
+  getVlCookiesAction: action('getVlCookies'),
   open: false,
   projectName: 'Voortoets',
   extraCookies: [

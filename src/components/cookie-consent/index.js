@@ -11,7 +11,7 @@ import '../button';
 import '../privacy';
 import '../functional-header';
 import '../action-group';
-import { defaultOptIns, canModalOpen, handleOptIns, getActiveCookies } from './utils';
+import { defaultOptIns, canModalOpen, handleOptIns } from './utils';
 import { VIEWS } from './enums';
 import { consent, preferences, privacy, statement } from './templates';
 
@@ -76,11 +76,6 @@ export class VlCookieConsent extends LitElement {
           break;
         case 'open':
           if (this.open) {
-            // compare current cookies from browser everytime the consent opens
-            this.optIns = this.optIns.map((optIn) => {
-              const matchedOptIn = getActiveCookies().find((activeCookie) => activeCookie.name === optIn.name);
-              return matchedOptIn ? { ...optIn, checked: matchedOptIn.value === 'true' } : optIn;
-            });
             this.modalRef.value.open();
             this.dispatchEvent(
               new CustomEvent('vl-opened', {
@@ -121,15 +116,8 @@ export class VlCookieConsent extends LitElement {
       }
     };
 
-    const getTitle = () => {
-      if (this.view === VIEWS.COOKIE_CONSENT) {
-        return 'Cookie-informatie';
-      }
-      return null;
-    };
-
     return html`<vl-modal
-      data-vl-title=${ifDefined(getTitle())}
+      data-vl-title=${ifDefined(this.view === VIEWS.COOKIE_CONSENT ? 'Cookie-informatie' : null)}
       data-vl-not-cancellable
       data-vl-not-auto-closable
       ${ref(this.modalRef)}

@@ -6,6 +6,7 @@ import buttonStyles from '../button/styles.scss';
 import '../action-group';
 import actionGroupStyles from '../action-group/styles.scss';
 import { stylesheet, docsIntro } from '../../../.storybook/utils.js';
+import { getVlCookies } from './utils';
 
 export default {
   title: 'custom-elements/vl-cookie-consent',
@@ -18,7 +19,7 @@ export default {
         component: docsIntro({
           root: 'cookie-consent',
           intro: 'The cookie consent can be used to inform the user about all the cookies that are used.',
-          // utils: [{ name: 'resetCookieConsent', description: 'Fire the function to reset the cookie consent.' }],
+          utils: [{ name: 'getVlCookies', description: '' }],
         }),
       },
     },
@@ -30,9 +31,17 @@ const getConsent = () => {
   return lastItem;
 };
 
-const Template = ({ submitted, analytics, extraOptIns, projectName, extraCookies, open, opened, closed }) => html` <div
-    is="vl-action-group"
-  >
+const Template = ({
+  submitted,
+  analytics,
+  extraOptIns,
+  projectName,
+  extraCookies,
+  open,
+  opened,
+  closed,
+  getVlCookiesAction,
+}) => html` <div is="vl-action-group">
     <button
       is="vl-button"
       @click=${() => {
@@ -40,6 +49,15 @@ const Template = ({ submitted, analytics, extraOptIns, projectName, extraCookies
       }}
     >
       Open consent
+    </button>
+    <button
+      data-vl-secondary
+      is="vl-button"
+      @click=${() => {
+        getVlCookiesAction(getVlCookies());
+      }}
+    >
+      Get cookies
     </button>
   </div>
   <vl-cookie-consent

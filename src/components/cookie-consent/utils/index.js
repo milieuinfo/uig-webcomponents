@@ -1,15 +1,16 @@
-import { getCookieValue, submitCookies } from './cookies';
+import { getCookieValueByName, submitCookies } from './cookies';
 import { addAnalytics, removeAnalytics } from './analytics';
 
 const isUncontrolled = (open) => open === undefined;
+const dateCookieName = 'cookie-consent-date';
 
 export const canModalOpen = (open) => {
-  const hasConsentCookie = getCookieValue('cookie-consent');
-  const consentDateCookie = getCookieValue('cookie-consent-date');
-  const isConsentDateCookieValid =
-    !Number.isNaN(consentDateCookie) && new Date(consentDateCookie) > new Date('2019/05/14');
-  const needsCookiesConsent = !hasConsentCookie || consentDateCookie === undefined || !isConsentDateCookieValid;
-
+  const [hasConsentCookie, consentDateCookie] = [
+    getCookieValueByName('cookie-consent'),
+    getCookieValueByName(dateCookieName),
+  ];
+  const isDateCookieValid = new Date(consentDateCookie) > new Date('2019/05/14');
+  const needsCookiesConsent = !hasConsentCookie || !isDateCookieValid;
   return isUncontrolled(open) && needsCookiesConsent;
 };
 
@@ -21,10 +22,10 @@ export const submit = (reference) => {
   }
 
   const optInsWithDate = reference.optIns.map((optIn) =>
-    optIn.name === 'cookie-consent-date' ? { ...optIn, value: new Date().getTime() } : optIn,
+    optIn.name === dateCookieName ? { ...optIn, value: new Date().getTime() } : optIn,
   );
-
   const submittedCookies = submitCookies(optInsWithDate);
+
   reference.dispatchEvent(
     new CustomEvent('vl-submitted', {
       bubbles: true,
@@ -39,4 +40,4 @@ export const submit = (reference) => {
 };
 
 export { defaultOptIns, handleOptIns } from './optins';
-export { resetCookieConsent, getAllCookies, getActiveCookies } from './cookies';
+export { getVlCookies, getCookieValueByName } from './cookies';

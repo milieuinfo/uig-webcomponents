@@ -1,3 +1,5 @@
+import { getVlCookies } from './cookies';
+
 export const defaultOptIns = [
   { name: 'cookie-consent', checked: true, mandatory: true },
   { name: 'cookie-consent-date', checked: true, mandatory: true },
@@ -12,9 +14,15 @@ export const defaultOptIns = [
 export const handleOptIns = (reference) => {
   const newOptIns = [...defaultOptIns, ...reference.extraOptIns];
 
+  // compare current cookies from browser with showed optins
+  const matchedOptIns = newOptIns.map((optIn) => {
+    const matchedOptIn = getVlCookies().find((cookie) => cookie.name === optIn.name);
+    return matchedOptIn ? { ...optIn, checked: !!matchedOptIn.value } : optIn;
+  });
+
   if (reference.analytics) {
     reference.optIns = [
-      ...newOptIns,
+      ...matchedOptIns,
       {
         name: 'analytics',
         checked: true,
@@ -22,6 +30,6 @@ export const handleOptIns = (reference) => {
       },
     ];
   } else {
-    reference.optIns = newOptIns;
+    reference.optIns = matchedOptIns;
   }
 };

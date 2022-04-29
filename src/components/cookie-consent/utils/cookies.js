@@ -1,50 +1,26 @@
-/* eslint-disable consistent-return */
-import { removeAnalytics } from './analytics';
+const cookiePrefix = 'vl-cookie-consent-';
 
-export const cookiePrefix = 'vl-cookie-consent-';
-
-const getCookieName = (name) => `${cookiePrefix}${name}`;
-
-export const getAllCookies = () => document.cookie.split(';').map((cookie) => cookie.replace(/\s/g, ''));
-
-export const getActiveCookies = () =>
-  getAllCookies().map((cookie) => {
-    const cookieWithoutPrefix = cookie.split('vl-cookie-consent-').pop();
-    const [name, value] = cookieWithoutPrefix.split('=');
-    return { name, value };
+export const getVlCookies = () => {
+  const cookies = document.cookie.split(';').map((cookie) => cookie.replace(/\s/g, ''));
+  const vlCookies = cookies.filter((cookie) => cookie.includes(cookiePrefix));
+  return vlCookies.map((cookie) => {
+    const [name, value] = cookie.split('=');
+    return { name: name.split(cookiePrefix).pop(), value: JSON.parse(value), fullName: name, cookie };
   });
-
-export const getCookieValue = (name) => {
-  const cookieName = `${getCookieName(name)}=`;
-  const cookies = getAllCookies();
-  for (let index = 0; index < cookies.length; index += 1) {
-    const currentCookie = cookies[index];
-    if (currentCookie.includes(cookieName)) {
-      const value = currentCookie.substring(cookieName.length, currentCookie.length);
-      try {
-        return JSON.parse(value);
-      } catch (error) {
-        return value;
-      }
-    }
-  }
 };
 
-export const submitCookies = (optIns) =>
-  optIns.map(({ checked, name, value }) => {
-    const cookieName = getCookieName(name);
-    const cookieValue = value || checked || false;
-    document.cookie = `${cookieName}=${cookieValue};Max-Age=2147483647;path=/;SameSite=Strict;`;
-    return { name: cookieName, value: cookieValue };
-  });
+export const getCookieValueByName = (name) => {
+  const matchedCookie = getVlCookies().find((cookie) => cookie.name === name);
+  if (matchedCookie) {
+    return matchedCookie.value;
+  }
+  return undefined;
+};
 
-export const resetCookieConsent = () => {
-  removeAnalytics();
-  const cookies = getAllCookies();
-  const vlCookies = cookies.filter((cookie) => cookie.includes(cookiePrefix));
-  const removedCookies = vlCookies.map((cookie) => {
-    document.cookie = `${cookie};expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;`;
-    return cookie;
+export const submitCookies = (optIns) => {
+  optIns.forEach(({ checked, name, value }) => {
+    const cookieValue = value || checked || false;
+    document.cookie = `${cookiePrefix}${name}=${cookieValue};Max-Age=2147483647;path=/;SameSite=Strict;`;
   });
-  return removedCookies;
+  return getVlCookies();
 };
