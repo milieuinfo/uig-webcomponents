@@ -1,6 +1,7 @@
 import { VlTestMapDrawPointAction } from './draw-point-action';
 import { VlTestMapDrawLineAction } from './draw-line-action';
 import { VlTestMapDrawPolygonAction } from './draw-polygon-action';
+import { VlTestMapMeasureAction } from './measure-action';
 import { config } from '../../../../../../../utils/test';
 import { VlTestMapPage } from '../../../../map/test/e2e/map.page.js';
 
@@ -21,6 +22,10 @@ export class VlTestMapDrawActionsPage extends VlTestMapPage {
     return this._getMap('#map-with-draw-polygon-action');
   }
 
+  async getMapWithMeasureAction() {
+    return this._getMap('#map-with-measure-action');
+  }
+
   async getDrawPointAction() {
     return new VlTestMapDrawPointAction(this.driver, '#draw-point-action');
   }
@@ -35,6 +40,10 @@ export class VlTestMapDrawActionsPage extends VlTestMapPage {
 
   async getDrawPolygonAction() {
     return new VlTestMapDrawPolygonAction(this.driver, '#draw-polygon-action');
+  }
+
+  async getMeasureAction() {
+    return new VlTestMapMeasureAction(this.driver, '#measure-action');
   }
 
   async load() {

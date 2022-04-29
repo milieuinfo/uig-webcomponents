@@ -9,8 +9,11 @@ import { VlSnapInteraction } from './snap-interaction';
 export class VlDrawAction extends VlMapAction {
   constructor(layer, type, onDraw, options = {}) {
     const interactions = [];
+
     options.source = layer.getSource();
+
     options.type = type;
+
     options.style = new Style({
       fill: new Fill({
         color: 'rgba(2, 85, 204, 0.8)',
@@ -30,8 +33,11 @@ export class VlDrawAction extends VlMapAction {
         }),
       }),
     });
+
     const drawInteraction = new Draw(options);
+
     interactions.push(drawInteraction);
+
     if (options.snapping !== undefined) {
       switch (typeof options.snapping) {
         case 'boolean':
@@ -69,13 +75,14 @@ export class VlDrawAction extends VlMapAction {
         this.map.addOverlay(this.tooltip);
 
         this.measurePointermoveHandler = this.map.on('pointermove', () => {
-          this._showMeasureTooltip(feature, this.tooltip, tooltipElement);
+          this._showMeasureTooltip(feature, tooltipElement);
         });
       }
     });
 
     drawInteraction.on('drawend', (event) => {
       const { feature } = event;
+
       onDraw(feature, () => {
         if (layer.getSource().hasFeature(feature)) {
           layer.getSource().removeFeature(feature);

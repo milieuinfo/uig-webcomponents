@@ -46,7 +46,7 @@ describe('vl-map-draw-action', async () => {
     features = await layer.getFeatures();
     assert.lengthOf(features, 1);
 
-    await action.draw({ x: 152034, y: 212344 }, { x: 152086, y: 212323 });
+    await action.draw({ x: 152034, y: 212344 }, { x: 202086, y: 222323 });
     features = await layer.getFeatures();
     assert.lengthOf(features, 2);
   });
@@ -67,9 +67,9 @@ describe('vl-map-draw-action', async () => {
 
     await action.draw(
       { x: 152280, y: 212101 },
-      { x: 152289, y: 212100 },
-      { x: 152289, y: 212094 },
-      { x: 152280, y: 212094 },
+      { x: 162289, y: 212100 },
+      { x: 162289, y: 222094 },
+      { x: 152280, y: 222094 },
     );
     features = await layer.getFeatures();
     assert.lengthOf(features, 2);
@@ -102,4 +102,19 @@ describe('vl-map-draw-action', async () => {
   //   assert.closeTo(coordinatesOfFeatures[1][0], 147381, 5);
   //   assert.closeTo(coordinatesOfFeatures[1][1], 197951, 5);
   // });
+
+  it('as a user I can draw measurement lines on a map', async () => {
+    const map = await vlMapPage.getMapWithMeasureAction();
+    const action = await vlMapPage.getMeasureAction();
+    const layers = await map.getLayers();
+    assert.isNotEmpty(layers);
+    const layer = layers[0];
+
+    let features = await layer.getFeatures();
+    assert.lengthOf(features, 0);
+
+    await action.draw({ x: 152034, y: 212344 }, { x: 202086, y: 222323 });
+    features = await layer.getFeatures();
+    assert.lengthOf(features, 1);
+  });
 });
