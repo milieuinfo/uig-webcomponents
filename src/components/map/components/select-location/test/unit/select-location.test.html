@@ -5,10 +5,7 @@
     <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
     <script src="/node_modules/web-component-tester/browser.js"></script>
 
-    <script
-      type="module"
-      src="../../../../../../../lib/components/map/index.js"
-    ></script>
+    <script type="module" src="../../../../../../../lib/components/map/index.js"></script>
     <script src="/node_modules/sinon/pkg/sinon.js"></script>
   </head>
 
@@ -20,26 +17,26 @@
     </test-fixture>
 
     <script type="module">
-      import { awaitUntil } from "../../../../../../utils/core/index.js";
-      import { LambertCoordinaat } from "../../../../../../../lib/components/map/components/search";
+      import { awaitUntil } from '../../../../../../utils/core/index.js';
+      import { LambertCoordinaat } from '../../../../../../../lib/components/map/components/search';
 
-      suite("vl-select-location", () => {
+      suite('vl-select-location', () => {
         const sandbox = sinon.createSandbox();
 
         const locationGent1 = {
-          Municipality: "Gent",
-          Zipcode: "9000",
-          Thoroughfarename: "Charles de Kerchovelaan",
-          Housenumber: "191A",
+          Municipality: 'Gent',
+          Zipcode: '9000',
+          Thoroughfarename: 'Charles de Kerchovelaan',
+          Housenumber: '191A',
           ID: 3021631,
-          FormattedAddress: "Charles de Kerchovelaan 191A, 9000 Gent",
+          FormattedAddress: 'Charles de Kerchovelaan 191A, 9000 Gent',
           Location: {
             Lat_WGS84: 51.03991219945412,
             Lon_WGS84: 3.723601443431199,
             X_Lambert72: 104751.84,
             Y_Lambert72: 192389.4,
           },
-          LocationType: "crab_huisnummer_manueleAanduidingVanPerceel",
+          LocationType: 'crab_huisnummer_manueleAanduidingVanPerceel',
           BoundingBox: {
             LowerLeft: {
               Lat_WGS84: 51.03991219945412,
@@ -57,19 +54,19 @@
         };
 
         const locationGent2 = {
-          Municipality: "Gent",
-          Zipcode: "9000",
-          Thoroughfarename: "Charles de Kerchovelaan",
-          Housenumber: "197",
+          Municipality: 'Gent',
+          Zipcode: '9000',
+          Thoroughfarename: 'Charles de Kerchovelaan',
+          Housenumber: '197',
           ID: 1210091,
-          FormattedAddress: "Charles de Kerchovelaan 197, 9000 Gent",
+          FormattedAddress: 'Charles de Kerchovelaan 197, 9000 Gent',
           Location: {
             Lat_WGS84: 51.0398710793381,
             Lon_WGS84: 3.7236600414926286,
             X_Lambert72: 104755.91,
             Y_Lambert72: 192384.79,
           },
-          LocationType: "crab_huisnummer_manueleAanduidingVanPerceel",
+          LocationType: 'crab_huisnummer_manueleAanduidingVanPerceel',
           BoundingBox: {
             LowerLeft: {
               Lat_WGS84: 51.0398710793381,
@@ -87,19 +84,19 @@
         };
 
         const locationAntwerpen1 = {
-          Municipality: "Antwerpen",
+          Municipality: 'Antwerpen',
           Zipcode: null,
           Thoroughfarename: null,
           Housenumber: null,
           ID: 2,
-          FormattedAddress: "Antwerpen",
+          FormattedAddress: 'Antwerpen',
           Location: {
             Lat_WGS84: 51.26055097634139,
             Lon_WGS84: 4.358436586642045,
             X_Lambert72: 149279.48,
             Y_Lambert72: 216739.74,
           },
-          LocationType: "crab_gemeente",
+          LocationType: 'crab_gemeente',
           BoundingBox: {
             LowerLeft: {
               Lat_WGS84: 51.143359370883445,
@@ -117,29 +114,28 @@
         };
 
         const choicesAreLoaded = (element) =>
-          [...element._choices.choiceList.children][0].innerText !=
-          "Zoeken op kaart";
+          [...element._choices.choiceList.children][0].innerText != 'Zoeken op kaart';
 
         setup((done) => {
-          customElements.whenDefined("vl-select-location").then(() => done());
+          customElements.whenDefined('vl-select-location').then(() => done());
         });
 
         teardown(() => {
           sandbox.restore();
         });
 
-        test("het data-vl-select attribuut wordt gezet zodat de zoek functionaliteit geïnitialiseerd wordt", () => {
-          const element = fixture("vl-select-location-fixture");
-          assert.isTrue(element.hasAttribute("data-vl-select"));
+        test('het data-vl-select attribuut wordt gezet zodat de zoek functionaliteit geïnitialiseerd wordt', () => {
+          const element = fixture('vl-select-location-fixture');
+          assert.isTrue(element.hasAttribute('data-vl-select'));
         });
 
-        test("wanneer de gebruiker zoekt zullen bij Geopunt de suggesties opgehaald en gevisualiseerd worden", async () => {
+        test('wanneer de gebruiker zoekt zullen bij Geopunt de suggesties opgehaald en gevisualiseerd worden', async () => {
           const suggestions = [
-            "Antwerpen",
-            "Antwerpenlei, Brasschaat",
-            "Antwerpenplein, Gent",
-            "Antwerpenstraat, Bredene",
-            "Hemiksem",
+            'Antwerpen',
+            'Antwerpenlei, Brasschaat',
+            'Antwerpenplein, Gent',
+            'Antwerpenstraat, Bredene',
+            'Hemiksem',
           ];
           const response = new Promise((resolve, reject) => {
             resolve(
@@ -147,36 +143,30 @@
                 JSON.stringify({
                   SuggestionResult: suggestions,
                 }),
-                { status: 200 }
-              )
+                { status: 200 },
+              ),
             );
           });
-          const fetchStub = sandbox.stub(window, "fetch");
-          fetchStub
-            .withArgs(
-              "https://loc.geopunt.be/v4/Suggestion?q=" + suggestions[0]
-            )
-            .returns(response);
-          const select = fixture("vl-select-location-fixture");
+          const fetchStub = sandbox.stub(window, 'fetch');
+          fetchStub.withArgs(`https://loc.geopunt.be/v4/Suggestion?q=${suggestions[0]}`).returns(response);
+          const select = fixture('vl-select-location-fixture');
           await select.ready();
           select.dispatchEvent(
-            new CustomEvent("search", {
+            new CustomEvent('search', {
               detail: {
                 value: suggestions[0],
               },
-            })
+            }),
           );
           await awaitUntil(() => choicesAreLoaded(select));
           assert.deepEqual(
-            [...select._choices.choiceList.children].map(
-              (suggestion) => suggestion.innerText
-            ),
-            suggestions
+            [...select._choices.choiceList.children].map((suggestion) => suggestion.innerText),
+            suggestions,
           );
         });
 
-        test("wanneer de gebruiker een Lambert-coördinaat zoekt, zullen bij Geopunt de locaties opgehaald en gevisualiseerd worden", async () => {
-          const coordinate = "104719.27, 192387.25";
+        test('wanneer de gebruiker een Lambert-coördinaat zoekt, zullen bij Geopunt de locaties opgehaald en gevisualiseerd worden', async () => {
+          const coordinate = '104719.27, 192387.25';
           const lambertCoordinaat = LambertCoordinaat.of(coordinate);
           const value = lambertCoordinaat.toString();
           const suggestions = [locationGent1, locationGent2];
@@ -186,71 +176,57 @@
                 JSON.stringify({
                   LocationResult: suggestions,
                 }),
-                { status: 200 }
-              )
+                { status: 200 },
+              ),
             );
           });
 
-          const fetchStub = sandbox.stub(window, "fetch");
+          const fetchStub = sandbox.stub(window, 'fetch');
           fetchStub
-            .withArgs(
-              "https://loc.geopunt.be/v4/Location?c=5&xy=" +
-                lambertCoordinaat.x +
-                "," +
-                lambertCoordinaat.y
-            )
+            .withArgs(`https://loc.geopunt.be/v4/Location?c=5&xy=${lambertCoordinaat.x},${lambertCoordinaat.y}`)
             .returns(response);
 
-          const select = fixture("vl-select-location-fixture");
+          const select = fixture('vl-select-location-fixture');
           await select.ready();
           select.dispatchEvent(
-            new CustomEvent("search", {
+            new CustomEvent('search', {
               detail: {
-                value: value,
+                value,
               },
-            })
+            }),
           );
 
           await awaitUntil(() => choicesAreLoaded(select));
           assert.deepEqual(
-            [...select._choices.choiceList.children].map(
-              (suggestion) => suggestion.innerText
-            ),
-            [
-              suggestions[0].FormattedAddress,
-              suggestions[1].FormattedAddress,
-              `Lambert-coördinaat: ${coordinate}`,
-            ]
+            [...select._choices.choiceList.children].map((suggestion) => suggestion.innerText),
+            [suggestions[0].FormattedAddress, suggestions[1].FormattedAddress, `Lambert-coördinaat: ${coordinate}`],
           );
         });
 
-        test("er zijn default placeholders voor het zoek adres select element", async () => {
-          const select = fixture("vl-select-location-fixture");
-          assert.equal(select._placeholderElement.innerText, "Zoeken op kaart");
-          assert.equal(
-            select.DEFAULT_SEARCH_PLACEHOLDER,
-            "Zoeken op adres of coördinaat"
-          );
-          assert.equal(select.DEFAULT_SEARCH_NO_RESULT, "Geen adres gevonden");
-          assert.equal(select.DEFAULT_NO_MORE_OPTIONS, "Geen adres gevonden");
+        test('er zijn default placeholders voor het zoek adres select element', async () => {
+          const select = fixture('vl-select-location-fixture');
+          assert.equal(select._placeholderElement.innerText, 'Zoeken op kaart');
+          assert.equal(select.DEFAULT_SEARCH_PLACEHOLDER, 'Zoeken op adres of coördinaat');
+          assert.equal(select.DEFAULT_SEARCH_NO_RESULT, 'Geen adres gevonden');
+          assert.equal(select.DEFAULT_NO_MORE_OPTIONS, 'Geen adres gevonden');
         });
 
-        test("de default placeholder van het zoek adres select element kan gewijzigd worden", () => {
-          const select = fixture("vl-select-location-fixture");
-          let text1 = "nieuwe tekst 1";
-          select.setAttribute("data-vl-placeholder", text1);
+        test('de default placeholder van het zoek adres select element kan gewijzigd worden', () => {
+          const select = fixture('vl-select-location-fixture');
+          let text1 = 'nieuwe tekst 1';
+          select.setAttribute('data-vl-placeholder', text1);
           assert.equal(select._placeholderElement.innerText, text1);
 
-          text1 = "splinternieuwe tekst 1";
+          text1 = 'splinternieuwe tekst 1';
           select.placeholder = text1;
           assert.equal(select._placeholderElement.innerText, text1);
         });
 
-        test("kan de geografische locatie van het geselecteerde adres opvragen", async () => {
-          const value = "Antwerpen";
+        test('kan de geografische locatie van het geselecteerde adres opvragen', async () => {
+          const value = 'Antwerpen';
           const choices = [
             {
-              value: value,
+              value,
               label: value,
             },
           ];
@@ -261,16 +237,14 @@
                   {
                     LocationResult: [locationAntwerpen1],
                   },
-                  { status: 200 }
-                )
-              )
+                  { status: 200 },
+                ),
+              ),
             );
           });
-          const fetchStub = sandbox.stub(window, "fetch");
-          fetchStub
-            .withArgs("https://loc.geopunt.be/v4/Location?q=" + value)
-            .returns(response);
-          const select = fixture("vl-select-location-fixture");
+          const fetchStub = sandbox.stub(window, 'fetch');
+          fetchStub.withArgs(`https://loc.geopunt.be/v4/Location?q=${value}`).returns(response);
+          const select = fixture('vl-select-location-fixture');
           await select.ready();
           select.choices = choices;
           select.value = choices[0].value;
@@ -284,9 +258,9 @@
           ]);
         });
 
-        test("kan de geografische locatie van een Lambert-coördinaat opvragen", async () => {
-          const fetchSpy = sandbox.spy(window, "fetch");
-          const value = "139508.19, 203712.17";
+        test('kan de geografische locatie van een Lambert-coördinaat opvragen', async () => {
+          const fetchSpy = sandbox.spy(window, 'fetch');
+          const value = '139508.19, 203712.17';
           const lambertCoordinaat = LambertCoordinaat.of(value);
           const choices = [
             {
@@ -294,7 +268,7 @@
               label: `Lambert-coördinaat: ${lambertCoordinaat.toString()}`,
             },
           ];
-          const select = fixture("vl-select-location-fixture");
+          const select = fixture('vl-select-location-fixture');
           await select.ready();
           select.choices = choices;
           select.value = choices[0].value;
@@ -309,15 +283,15 @@
           assert.isTrue(fetchSpy.notCalled);
         });
 
-        test("kan de geografische locatie van een Lambert-coördinaat adres opvragen", async () => {
-          const fetchSpy = sandbox.spy(window, "fetch");
+        test('kan de geografische locatie van een Lambert-coördinaat adres opvragen', async () => {
+          const fetchSpy = sandbox.spy(window, 'fetch');
           const choices = [
             {
               value: locationAntwerpen1,
               label: locationAntwerpen1.FormattedAddress,
             },
           ];
-          const select = fixture("vl-select-location-fixture");
+          const select = fixture('vl-select-location-fixture');
           await select.ready();
           select.choices = choices;
           select.value = choices[0].value;
@@ -332,10 +306,10 @@
           assert.isTrue(fetchSpy.notCalled);
         });
 
-        test("verstuurt een change event wanneer een choice event getriggerd wordt", (done) => {
-          const select = fixture("vl-select-location-fixture");
-          select.addEventListener("change", () => done());
-          select.dispatchEvent(new CustomEvent("choice"));
+        test('verstuurt een change event wanneer een choice event getriggerd wordt', (done) => {
+          const select = fixture('vl-select-location-fixture');
+          select.addEventListener('change', () => done());
+          select.dispatchEvent(new CustomEvent('choice'));
         });
       });
     </script>

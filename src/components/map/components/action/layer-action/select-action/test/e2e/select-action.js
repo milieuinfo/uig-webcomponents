@@ -1,7 +1,7 @@
-import { VlMapAction } from "../../../../../action/test/e2e/action.js";
+import { VlTestMapAction } from '../../../../../action/test/e2e/action.js';
 
-export class VlMapSelectAction extends VlMapAction {
+export class VlTestMapSelectAction extends VlTestMapAction {
   async isClustered() {
-    return this.hasAttribute("cluster");
+    return this.hasAttribute('cluster');
   }
 }

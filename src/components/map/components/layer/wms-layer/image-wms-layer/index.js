@@ -1,9 +1,7 @@
-import { define } from "../../../../../../utils/core";
-import { VlMapWmsLayer } from "../../wms-layer";
-import {
-  OlImageLayer,
-  OlImageWMSSource,
-} from "vl-mapactions/dist/vl-mapactions.js";
+import OlImageLayer from 'ol/layer/Image';
+import OlImageWMSSource from 'ol/source/ImageWMS';
+import { define } from '../../../../../../utils/core';
+import { VlMapWmsLayer } from '../../wms-layer';
 
 /**
  * VlMapImageWmsLayer
@@ -22,4 +20,4 @@ export class VlMapImageWmsLayer extends VlMapWmsLayer {
   }
 }
 
-define("vl-map-image-wms-layer", VlMapImageWmsLayer);
+define('vl-map-image-wms-layer', VlMapImageWmsLayer);

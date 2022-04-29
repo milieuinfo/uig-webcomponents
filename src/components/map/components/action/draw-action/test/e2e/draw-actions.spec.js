@@ -1,5 +1,5 @@
 import { assert, getDriver } from '../../../../../../../utils/test';
-import { VlMapDrawActionsPage } from './draw-actions.page';
+import { VlTestMapDrawActionsPage } from './draw-actions.page';
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -9,7 +9,7 @@ describe('vl-map-draw-action', async () => {
   let vlMapPage;
 
   before(() => {
-    vlMapPage = new VlMapDrawActionsPage(getDriver());
+    vlMapPage = new VlTestMapDrawActionsPage(getDriver());
     return vlMapPage.load();
   });
 
