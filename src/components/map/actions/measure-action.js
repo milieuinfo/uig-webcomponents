@@ -18,7 +18,6 @@ export class VlMeasureAction extends VlDrawAction {
     this.featureCounter = 0;
     this.layer = layer;
     this.measurementTooltips = [];
-    this.measurePointermoveHandler = undefined;
 
     this.measureOptions = options;
   }
@@ -28,8 +27,16 @@ export class VlMeasureAction extends VlDrawAction {
       this._handleDrawStart(event);
     });
 
+    this.drawEndHandler = this.drawInteraction.on('drawend', () => {
+      this._setMeasurementTooltipsClosable(true);
+    });
+
     this.removeFeatureHandler = this.layer.getSource().on('removefeature', (event) => {
       this._handleRemoveFeature(event);
+    });
+
+    this.layerVisibilityChangeHandler = this.layer.on('change:visible', () => {
+      this._handleLayerVisibilityChange();
     });
 
     super.activate(this);
@@ -50,6 +57,21 @@ export class VlMeasureAction extends VlDrawAction {
     });
   }
 
+  _setMeasurementTooltipsVisible(visible) {
+    this.measurementTooltips.forEach((tooltip) => {
+      // Check if tooltip still exists
+      if (tooltip) {
+        if (tooltip.getElement()) {
+          if (visible) {
+            tooltip.getElement().style.display = 'initial';
+          } else {
+            tooltip.getElement().style.display = 'none';
+          }
+        }
+      }
+    });
+  }
+
   _showMeasurementTooltip(feature, tooltipOverlay, tooltipElement) {
     const length = feature.getGeometry().getLength().toFixed(2);
     tooltipElement.textContent = `${length} m`;
@@ -57,7 +79,7 @@ export class VlMeasureAction extends VlDrawAction {
     tooltipOverlay.setPosition(feature.getGeometry().getLastCoordinate());
   }
 
-  _handleDrawStart(event) {
+  _handleDrawStart({ feature }) {
     // Add measurement line (feature) and tooltip (overlay)
 
     const id = this.featureCounter;
@@ -65,11 +87,10 @@ export class VlMeasureAction extends VlDrawAction {
 
     this._setMeasurementTooltipsClosable(false); // Hide close buttons on tooltips while drawing
 
-    const { feature } = event;
     feature.setId(id);
 
     const tooltipElement = document.createElement('vl-pill');
-    tooltipElement.setAttribute('data-vl-opacity', '0.8');
+    tooltipElement.opacity = '0.8';
 
     tooltipElement.addEventListener(
       'close',
@@ -93,14 +114,10 @@ export class VlMeasureAction extends VlDrawAction {
     this.measurePointermoveHandler = this.map.on('pointermove', () => {
       this._showMeasurementTooltip(feature, tooltipOverlay, tooltipElement);
     });
+  }
 
-    this.drawInteraction.on(
-      'drawend',
-      () => {
-        this._setMeasurementTooltipsClosable(true);
-      },
-      { once: true },
-    );
+  _handleLayerVisibilityChange() {
+    this._setTooltipsVisible(this.layer.getVisible());
   }
 
   _removeMeasureFeature(feature) {
@@ -153,7 +170,9 @@ export class VlMeasureAction extends VlDrawAction {
     this._cleanUp(true);
 
     unByKey(this.drawStartHandler);
+    unByKey(this.drawEndHandler);
     unByKey(this.removeFeatureHandler);
+    unByKey(this.layerVisibilityChangeHandler);
 
     super.deactivate(this);
   }

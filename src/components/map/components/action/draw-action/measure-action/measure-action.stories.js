@@ -1,5 +1,5 @@
 import { html } from 'lit-html';
-import '../../../..';
+import '../../../../../map';
 import { args, argTypes } from '../config';
 import { docsIntro } from '../../../../../../../.storybook/utils.js';
 
@@ -21,7 +21,7 @@ export default {
 };
 
 export const Default = () => html`
-  <vl-map id="map">
+  <vl-map>
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
     <vl-map-features-layer>
       <vl-map-measure-action data-vl-default-active></vl-map-measure-action>
