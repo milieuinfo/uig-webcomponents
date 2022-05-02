@@ -49,6 +49,7 @@ export class VlMap extends vlElement(HTMLElement) {
     return {
       action: {
         activated: 'action-activated',
+        deactivated: 'action-deactivated',
       },
     };
   }
@@ -212,6 +213,16 @@ export class VlMap extends vlElement(HTMLElement) {
       this.map.activateAction(action);
       this.dispatchEvent(new Event(VlMap.EVENTS.action.activated));
     }
+  }
+
+  /**
+   * Deactiveert een kaartactie.
+   *
+   * @param {VlMapAction} action
+   */
+  deactivateCurrentAction() {
+    this.map.deactivateCurrentAction();
+    this.dispatchEvent(new Event(VlMap.EVENTS.action.deactivated));
   }
 
   /**

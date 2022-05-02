@@ -12,7 +12,7 @@ export class VlMeasureAction extends VlDrawAction {
       () => {
         unByKey(this.measurePointermoveHandler);
       },
-      { ...options, maxPoints: 2 },
+      { ...options, maxPoints: 2, geometryName: 'measurement' },
     );
 
     this.featureCounter = 0;
