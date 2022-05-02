@@ -12,6 +12,7 @@ services:
       - selenium-hub
     environment:
       - HUB_HOST=selenium-hub
+      - SE_EVENT_BUS_HOST=selenium-hub
       - HUB_PORT=4444
       - http_proxy=${http_proxy}
       - https_proxy=${https_proxy}
@@ -23,6 +24,7 @@ services:
       - selenium-hub
     environment:
       - HUB_PORT_4444_TCP_ADDR=selenium-hub
+      - SE_EVENT_BUS_HOST=selenium-hub
       - HUB_PORT_4444_TCP_PORT=4444
       - http_proxy=${http_proxy}
       - https_proxy=${https_proxy}
