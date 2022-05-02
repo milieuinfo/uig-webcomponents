@@ -18,7 +18,7 @@ services:
       - HUB_PORT=4444
       - http_proxy=${http_proxy}
       - https_proxy=${https_proxy}
-      - no_proxy=${no_proxy},selenium-hub,tests
+      - no_proxy=${no_proxy},selenium-hub,tests,dummy
     shm_size: 2g
   selenium-firefox:
     image: ${DOCKER_REGISTRY}selenium/node-firefox:99.0
@@ -32,7 +32,7 @@ services:
       - HUB_PORT_4444_TCP_PORT=4444
       - http_proxy=${http_proxy}
       - https_proxy=${https_proxy}
-      - no_proxy=${no_proxy},selenium-hub,tests
+      - no_proxy=${no_proxy},selenium-hub,tests,dummy
     shm_size: 2g
   tests:
     image: ${DOCKER_REGISTRY}milieuinfo/ubuntu-node:14.18.3
