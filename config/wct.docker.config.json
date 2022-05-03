@@ -1,6 +1,6 @@
 
 {
-  "testTimeout": 600 * 1000,
+  "testTimeout": 600000,
   "verbose": true,
   "activeBrowsers": [
     {
