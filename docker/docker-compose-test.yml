@@ -6,6 +6,9 @@ services:
     environment:
       - NODE_MAX_SESSION=3
       - NODE_MAX_INSTANCES=3
+      - SE_OPTS="--log-level FINE"
+      - GRID_BROWSER_TIMEOUT=100000
+      - GRID_TIMEOUT=90000
   selenium-chrome:
     image: ${DOCKER_REGISTRY}selenium/node-chrome:101.0
     depends_on:
