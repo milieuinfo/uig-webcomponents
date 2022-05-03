@@ -4,8 +4,8 @@ services:
     image: ${DOCKER_REGISTRY}selenium/hub:4.1.4
     container_name: selenium-hub
     environment:
-      - NODE_MAX_SESSION=3
-      - NODE_MAX_INSTANCES=3
+      - NODE_MAX_SESSION=1
+      - NODE_MAX_INSTANCES=1
       - SE_OPTS=--log-level FINE
     ports: 
       - "4444:4444"
