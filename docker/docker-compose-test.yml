@@ -38,9 +38,9 @@ services:
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - HUB_PORT_4444_TCP_PORT=4444
-      - http_proxy=${http_proxy}
-      - https_proxy=${https_proxy}
-      - no_proxy=${no_proxy},selenium-hub,tests,dummy
+#      - http_proxy=${http_proxy}
+#      - https_proxy=${https_proxy}
+#      - no_proxy=${no_proxy},selenium-hub,tests,dummy
     shm_size: 2g
   tests:
     image: ${DOCKER_REGISTRY}milieuinfo/ubuntu-node:14.18.3
@@ -50,12 +50,12 @@ services:
       - selenium-chrome
       - selenium-firefox
     environment:
-      - http_proxy=${http_proxy}
-      - https_proxy=${https_proxy}
-      - no_proxy=${no_proxy},selenium-hub,tests
-      - HTTP_PROXY=${http_proxy}
-      - HTTPS_PROXY=${https_proxy}
-      - NO_PROXY=${no_proxy},selenium-hub,tests
+#      - http_proxy=${http_proxy}
+#      - https_proxy=${https_proxy}
+#      - no_proxy=${no_proxy},selenium-hub,tests
+#      - HTTP_PROXY=${http_proxy}
+#      - HTTPS_PROXY=${https_proxy}
+#      - NO_PROXY=${no_proxy},selenium-hub,tests
       - NOSELENIUM=1
       - SKIP_WCT_SAUCE_POSTINSTALL_DOWNLOAD=1
       - browserstack_username=${browserstack_username}
