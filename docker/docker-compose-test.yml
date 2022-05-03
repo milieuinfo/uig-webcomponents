@@ -6,7 +6,7 @@ services:
     environment:
       - NODE_MAX_SESSION=3
       - NODE_MAX_INSTANCES=3
-      - SE_OPTS="--log-level FINE"
+      - SE_OPTS=--log-level FINE
     ports: 
       - "4444:4444"
       - "4443:4443"
