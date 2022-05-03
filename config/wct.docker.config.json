@@ -1,6 +1,5 @@
 
 {
-  "testTimeout": 600 * 1000,
   "activeBrowsers": [
     {
       "browserName": "chrome",
