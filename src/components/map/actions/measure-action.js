@@ -45,13 +45,11 @@ export class VlMeasureAction extends VlDrawAction {
   _setMeasurementTooltipsClosable(closable) {
     this.measurementTooltips.forEach((tooltip) => {
       // Check if tooltip still exists
-      if (tooltip) {
-        if (tooltip.getElement()) {
-          if (closable) {
-            tooltip.getElement().setAttribute('data-vl-closable', closable);
-          } else {
-            tooltip.getElement().removeAttribute('data-vl-closable');
-          }
+      if (tooltip && tooltip.getElement()) {
+        if (closable) {
+          tooltip.getElement().setAttribute('data-vl-closable', closable);
+        } else {
+          tooltip.getElement().removeAttribute('data-vl-closable');
         }
       }
     });
@@ -60,13 +58,11 @@ export class VlMeasureAction extends VlDrawAction {
   _setMeasurementTooltipsVisible(visible) {
     this.measurementTooltips.forEach((tooltip) => {
       // Check if tooltip still exists
-      if (tooltip) {
-        if (tooltip.getElement()) {
-          if (visible) {
-            tooltip.getElement().style.display = 'initial';
-          } else {
-            tooltip.getElement().style.display = 'none';
-          }
+      if (tooltip && tooltip.getElement()) {
+        if (visible) {
+          tooltip.getElement().style.display = 'initial';
+        } else {
+          tooltip.getElement().style.display = 'none';
         }
       }
     });
@@ -82,12 +78,12 @@ export class VlMeasureAction extends VlDrawAction {
   _handleDrawStart({ feature }) {
     // Add measurement line (feature) and tooltip (overlay)
 
-    const id = this.featureCounter;
+    const featureId = this.featureCounter;
     this.featureCounter += 1;
 
     this._setMeasurementTooltipsClosable(false); // Hide close buttons on tooltips while drawing
 
-    feature.setId(id);
+    feature.setId(featureId);
 
     const tooltipElement = document.createElement('vl-pill');
     tooltipElement.opacity = '0.8';
@@ -107,9 +103,11 @@ export class VlMeasureAction extends VlDrawAction {
       insertFirst: true,
     });
 
+    tooltipOverlay.set('featureId', featureId);
+
     this.map.addOverlay(tooltipOverlay);
 
-    this.measurementTooltips[id] = tooltipOverlay;
+    this.measurementTooltips = [...this.measurementTooltips, tooltipOverlay];
 
     this.measurePointermoveHandler = this.map.on('pointermove', () => {
       this._showMeasurementTooltip(feature, tooltipOverlay, tooltipElement);
@@ -117,7 +115,12 @@ export class VlMeasureAction extends VlDrawAction {
   }
 
   _handleLayerVisibilityChange() {
-    this._setTooltipsVisible(this.layer.getVisible());
+    this._setMeasurementTooltipsVisible(this.layer.getVisible());
+    this.deactivate();
+
+    this.layerVisibilityChangeHandler = this.layer.on('change:visible', () => {
+      this._handleLayerVisibilityChange();
+    });
   }
 
   _removeMeasureFeature(feature) {
@@ -128,9 +131,11 @@ export class VlMeasureAction extends VlDrawAction {
     }
   }
 
-  _removeMeasurementTooltip(id) {
-    this.map.removeOverlay(this.measurementTooltips[id]);
-    this.measurementTooltips[id] = null; // Not removing the item from the list because id corresponds with list index
+  _removeMeasurementTooltip(featureId) {
+    const tooltip = this.getTooltipFor(featureId);
+    this.map.removeOverlay(tooltip);
+
+    this.measurementTooltips = this.measurementTooltips.filter((t) => this._getFeatureIdFor(t) !== featureId);
   }
 
   _handleRemoveMeasurement(event, feature) {
@@ -148,20 +153,21 @@ export class VlMeasureAction extends VlDrawAction {
 
     if (removeUnlinkedTooltips) {
       // When deactivated (layer gets deactivated or measure drawing gets interrupted) the tooltips that are not linked to a feature need to be removed
-      const tooltipsToRemove = [];
-      this.measurementTooltips.forEach((value, index) => {
-        if (this.layer.getSource().getFeatureById(index) == null) {
-          tooltipsToRemove.push(index);
+      this.measurementTooltips.forEach((tooltip) => {
+        const featureId = this._getFeatureIdFor(tooltip);
+        if (this.layer.getSource().getFeatureById(featureId) == null) {
+          this._removeMeasurementTooltip(featureId);
         }
-      });
-      tooltipsToRemove.forEach((id) => {
-        this._removeMeasurementTooltip(id);
       });
     }
   }
 
-  getTooltipFor(id) {
-    return this.measurementTooltips[id];
+  getTooltipFor(featureId) {
+    return this.measurementTooltips.find((tooltip) => this._getFeatureIdFor(tooltip) === featureId);
+  }
+
+  _getFeatureIdFor(tooltip) {
+    return tooltip.values_.featureId;
   }
 
   deactivate() {
