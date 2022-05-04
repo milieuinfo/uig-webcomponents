@@ -29,7 +29,22 @@
 "src/components/alert/test/unit/**/*.test.html",
 "src/components/accordion/test/unit/**/*.test.html",
 "src/components/side-sheet/test/unit/**/*.test.html",
-"src/components/body/test/unit/**/*.test.html"
+"src/components/body/test/unit/**/*.test.html",
+"src/components/contact-card/test/unit/**/*.test.html",
+"src/components/checkbox/test/unit/**/*.test.html",
+"src/components/document/test/unit/**/*.test.html",
+"src/components/input-group/test/unit/**/*.test.html",
+"src/components/map/utils/test/unit/**/*.test.html",
+"src/components/map/components/layer-switcher/test/unit/**/*.test.html",
+"src/components/map/components/select-location/test/unit/**/*.test.html",
+"src/components/map/components/overview-map/test/unit/**/*.test.html",
+"src/components/map/components/side-sheet/test/unit/**/*.test.html",
+"src/components/map/components/search/test/unit/**/*.test.html",
+"src/components/map/components/action/draw-action/test/unit/**/*.test.html",
+"src/components/map/components/action/layer-action/test/unit/**/*.test.html",
+"src/components/map/components/action/layer-action/modify-action/test/unit/**/*.test.html",
+"src/components/map/components/action/layer-action/delete-action/test/unit/**/*.test.html",
+"src/components/map/components/action/layer-action/select-action/test/unit/**/*.test.html"    
   ],
   "webserver": {
     "hostname": "tests"
