@@ -1,5 +1,6 @@
 <script src="../../../../../../node_modules/wct-browser-legacy/browser.js"></script>
 <script type="module">
+/*
   import DragRotate from 'ol/interaction/DragRotate';
   import DoubleClickZoom from 'ol/interaction/DoubleClickZoom';
   import KeyboardPan from 'ol/interaction/KeyboardPan';
@@ -33,7 +34,6 @@
         done();
       }, VlMapWithActions.CLICK_COUNT_TIMEOUT + 10);
     };
-/*
     it('voegt de interacties van alle actie toe aan de kaart', () => {
       const map = createMapWithActions();
       expect(map.getInteractions().getLength()).to.equal(14); // 9 standaard + 5
@@ -377,6 +377,6 @@
           .filter((interaction) => interaction instanceof DragZoom).length,
       ).to.equal(1);
     });
-    */
   });
+    */
 </script>

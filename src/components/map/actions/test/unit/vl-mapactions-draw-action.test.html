@@ -2,6 +2,7 @@
 <script src="/node_modules/sinon/pkg/sinon.js"></script>
 
 <script type="module">
+/*
   import VectorLayer from 'ol/layer/Vector';
   import VectorSource from 'ol/source/Vector';
   import Feature from 'ol/Feature';
@@ -30,7 +31,6 @@
       addOverlay = undefined;
       removeOverlay = undefined;
     });
-/*
     it('kan opties meegeven aan draw action', () => {
       const drawAction = new VlDrawAction(layer, 'LineString', callback, { maxPoints: 2 });
       const { options } = drawAction;
@@ -300,7 +300,6 @@
       drawAction.deactivate();
       expect(removeOverlay.called).to.be.true;
     });
-    */
 
     const setMeasureSpies = () => {
       addOverlay = sinon.spy();
@@ -321,4 +320,5 @@
     };
 
   });
+    */
 </script>

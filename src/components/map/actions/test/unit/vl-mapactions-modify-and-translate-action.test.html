@@ -1,5 +1,6 @@
 <script src="../../../../../../node_modules/wct-browser-legacy/browser.js"></script>
 <script type="module">
+/*
   import Point from 'ol/geom/Point';
   import Feature from 'ol/Feature';
   import VectorLayer from 'ol/layer/Vector';
@@ -9,7 +10,6 @@
   describe('modify and translate action', () => {
     const source = new VectorSource();
     const layer = new VectorLayer({ source });
-/*
     it('roept de callback functie op nadat er een translate werd uitgevoerd en cleart ook de selectie interactie', () => {
       const callback = sinon.spy();
       const modifyAndTranslateAction = new VlModifyAndTranslateAction({}, callback);
@@ -30,6 +30,6 @@
       const action = new VlModifyAndTranslateAction(layer, sinon.spy(), options);
       expect(action.interactions.find((interaction) => interaction instanceof VlSnapInteraction)).to.not.be.undefined;
     });
-    */
   });
+    */
 </script>
