@@ -30,7 +30,7 @@
       addOverlay = undefined;
       removeOverlay = undefined;
     });
-
+/*
     it('kan opties meegeven aan draw action', () => {
       const drawAction = new VlDrawAction(layer, 'LineString', callback, { maxPoints: 2 });
       const { options } = drawAction;
@@ -300,6 +300,7 @@
       drawAction.deactivate();
       expect(removeOverlay.called).to.be.true;
     });
+    */
 
     const setMeasureSpies = () => {
       addOverlay = sinon.spy();
@@ -318,5 +319,6 @@
       };
       return drawAction;
     };
+
   });
 </script>
