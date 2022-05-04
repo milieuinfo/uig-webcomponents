@@ -6,7 +6,6 @@ services:
     environment:
       - NODE_MAX_SESSION=1
       - NODE_MAX_INSTANCES=1
-      - SE_OPTS=--log-level FINE
     ports: 
       - "4444:4444"
       - "4443:4443"
@@ -21,7 +20,6 @@ services:
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - HUB_PORT=4444
-      - JAVA_OPTS=-Dwebdriver.chrome.verboseLogging=true
 #      - http_proxy=${http_proxy}
 #      - https_proxy=${https_proxy}
 #      - no_proxy=${no_proxy},selenium-hub,tests,dummy
