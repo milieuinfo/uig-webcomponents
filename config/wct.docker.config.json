@@ -21,7 +21,30 @@
     }
   },
   "suites": [
-    "src/**/**/test/unit/**/*.test.html"
+"src/components/map/utils/test/unit/**/*.test.html",
+"src/components/map/components/layer-switcher/test/unit/**/*.test.html",
+"src/components/map/components/select-location/test/unit/**/*.test.html",
+"src/components/map/components/overview-map/test/unit/**/*.test.html",
+"src/components/map/components/side-sheet/test/unit/**/*.test.html",
+"src/components/map/components/search/test/unit/**/*.test.html",
+"src/components/map/components/action/draw-action/test/unit/**/*.test.html",
+"src/components/map/components/action/layer-action/test/unit/**/*.test.html",
+"src/components/map/components/layer/test/unit/**/*.test.html",
+"src/components/map/components/layer/vector-layer/test/unit/**/*.test.html",
+"src/components/map/components/layer/vector-layer/wfs-layer/test/unit/**/*.test.html",
+"src/components/map/components/layer/vector-layer/features-layer/test/unit/**/*.test.html",
+"src/components/map/components/layer/wmts-layer/test/unit/**/*.test.html",
+"src/components/map/components/layer/wms-layer/tiled-wms-layer/test/unit/**/*.test.html",
+"src/components/map/components/layer/wms-layer/test/unit/**/*.test.html",
+"src/components/map/components/layer/wms-layer/image-wms-layer/test/unit/**/*.test.html",
+"src/components/map/components/baselayer/baselayer-grb-gray/test/unit/**/*.test.html",
+"src/components/map/components/baselayer/test/unit/**/*.test.html",
+"src/components/map/components/baselayer/baselayer-grb/test/unit/**/*.test.html",
+"src/components/map/components/baselayer/baselayer-grb-ortho/test/unit/**/*.test.html",
+"src/components/map/components/side-sheet-menu-item/test/unit/**/*.test.html",
+"src/components/map/components/layer-style/test/unit/**/*.test.html",
+"src/components/map/components/layer-style/layer-circle-style/test/unit/**/*.test.html",
+"src/components/map/actions/test/unit/**/*.test.html"
   ],
   "webserver": {
     "hostname": "tests"
