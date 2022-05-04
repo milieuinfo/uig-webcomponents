@@ -41,8 +41,14 @@
 "src/components/select/test/unit/**/*.test.html",
 "src/components/icon/test/unit/**/*.test.html",
 "src/components/link-list/test/unit/**/*.test.html",
-"src/components/pager/test/unit/**/*.test.html"
-
+"src/components/pager/test/unit/**/*.test.html",
+    
+"src/components/map/utils/test/unit/**/*.test.html",
+"src/components/map/components/layer-switcher/test/unit/**/*.test.html",
+"src/components/map/components/select-location/test/unit/**/*.test.html",
+"src/components/map/components/overview-map/test/unit/**/*.test.html",
+"src/components/map/components/side-sheet/test/unit/**/*.test.html",
+"src/components/map/components/search/test/unit/**/*.test.html"
   ],
   "webserver": {
     "hostname": "tests"
