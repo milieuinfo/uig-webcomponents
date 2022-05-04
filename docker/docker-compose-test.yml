@@ -15,6 +15,7 @@ services:
     image: ${DOCKER_REGISTRY}selenium/node-chrome:101.0
     depends_on:
       - selenium-hub
+    privileged: true      
     environment:
       - HUB_HOST=selenium-hub
       - SE_EVENT_BUS_HOST=selenium-hub
