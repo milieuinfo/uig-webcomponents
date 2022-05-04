@@ -21,7 +21,15 @@
     }
   },
   "suites": [
-    "src/**/**/test/unit/**/*.test.html"
+"src/utils/core/test/unit/**/*.test.html",
+"src/components/search-filter/test/unit/**/*.test.html",
+"src/components/form/test/unit/**/*.test.html",
+"src/components/form/components/form-group/test/unit/**/*.test.html",
+"src/components/tooltip/test/unit/**/*.test.html",
+"src/components/alert/test/unit/**/*.test.html",
+"src/components/accordion/test/unit/**/*.test.html",
+"src/components/side-sheet/test/unit/**/*.test.html",
+"src/components/body/test/unit/**/*.test.html"
   ],
   "webserver": {
     "hostname": "tests"
