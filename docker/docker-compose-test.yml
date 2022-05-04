@@ -27,7 +27,7 @@ services:
 #      - no_proxy=${no_proxy},selenium-hub,tests,dummy
     ports:
       - "6900:5900"
-    shm_size: 2g
+    shm_size: 3g
   selenium-firefox:
     image: ${DOCKER_REGISTRY}selenium/node-firefox:99.0
     depends_on:
