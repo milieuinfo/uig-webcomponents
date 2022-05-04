@@ -12,7 +12,7 @@ services:
       - "4443:4443"
       - "4442:4442"
   selenium-chrome:
-    image: ${DOCKER_REGISTRY}selenium/node-chrome:99.0
+    image: ${DOCKER_REGISTRY}selenium/node-chrome:101.0
     depends_on:
       - selenium-hub
     environment:
