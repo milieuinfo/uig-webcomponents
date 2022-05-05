@@ -25,11 +25,6 @@ export class VlPill extends LitElement {
         attribute: 'data-vl-type',
         reflect: true,
       },
-      opacity: {
-        type: Number,
-        attribute: 'data-vl-opacity',
-        reflect: true,
-      },
       closable: {
         type: Boolean,
         attribute: 'data-vl-closable',
