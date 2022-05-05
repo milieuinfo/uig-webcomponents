@@ -28,6 +28,14 @@ export class VlElement extends WebElement {
     return await new VlElement(this.driver, element);
   }
 
+  async getElementInShadow(parent, selector) {
+    const element = await this.driver.executeScript(
+      `return arguments[0].shadowRoot.querySelector('${selector}')`,
+      parent,
+    );
+    return element;
+  }
+
   async getClassList() {
     return (await this.getAttribute('class')).split(' ');
   }
