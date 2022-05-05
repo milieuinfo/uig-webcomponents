@@ -60,9 +60,9 @@ export const Default = () => {
   };
 
   return html`
-    <vl-map>
+    <vl-map id="map">
       <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-      <vl-map-features-layer .features=${features}>
+      <vl-map-features-layer data-vl-features=${JSON.stringify(features)}>
         <vl-map-delete-action data-vl-default-active></vl-map-delete-action>
       </vl-map-features-layer>
     </vl-map>
@@ -108,9 +108,9 @@ export const DeleteWithCustomStyle = () => {
     ],
   };
   return html`
-    <vl-map>
+    <vl-map id="map">
       <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-      <vl-map-features-layer .features=${features}>
+      <vl-map-features-layer data-vl-features=${JSON.stringify(features)}>
         <vl-map-delete-action data-vl-default-active>
           <vl-map-layer-style
             data-vl-text-color="#000"

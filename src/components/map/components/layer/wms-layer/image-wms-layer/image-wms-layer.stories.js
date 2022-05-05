@@ -22,7 +22,7 @@ export default {
 };
 
 export const Default = () => html`
-  <vl-map>
+  <vl-map id="map">
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
     <vl-map-image-wms-layer
       data-vl-name="Beschermingszones"
