@@ -50,142 +50,142 @@
     </test-fixture>
 
     <script type="module">
-      // import OlFeature from 'ol/Feature';
-      // import { VlMapDeleteAction } from '../../../../../../../../../lib/components/map';
-      // import { awaitUntil } from '../../../../../../../../utils/core';
+      import OlFeature from 'ol/Feature';
+      import { VlMapDeleteAction } from '../../../../../../../../../lib/components/map';
+      import { awaitUntil } from '../../../../../../../../utils/core';
 
-      // suite('vl-map-delete-action', () => {
-      //   setup(async () => {
-      //     await customElements.whenDefined('vl-map-delete-action');
-      //     await customElements.whenDefined('vl-map-features-layer');
-      //     await customElements.whenDefined('vl-map-layer-style');
-      //     await customElements.whenDefined('vl-map');
-      //   });
+      suite('vl-map-delete-action', () => {
+        setup(async () => {
+          await customElements.whenDefined('vl-map-delete-action');
+          await customElements.whenDefined('vl-map-features-layer');
+          await customElements.whenDefined('vl-map-layer-style');
+          await customElements.whenDefined('vl-map');
+        });
 
-      //   test('a delete action is a map action', () => {
-      //     assert.isTrue(VlMapDeleteAction.isVlMapAction());
-      //   });
+        test('a delete action is a map action', () => {
+          assert.isTrue(VlMapDeleteAction.isVlMapAction());
+        });
 
-      //   test('delete action configuration is possible', (done) => {
-      //     const map = fixture('vl-map-delete-action-fixture');
-      //     const { layer } = map.querySelector('vl-map-features-layer');
+        test('delete action configuration is possible', (done) => {
+          const map = fixture('vl-map-delete-action-fixture');
+          const { layer } = map.querySelector('vl-map-features-layer');
 
-      //     map.ready.then(() => {
-      //       const action = map.map.actions[0];
-      //       assert.deepEqual(action.layer, layer);
-      //       assert.equal(action.style.getFill().getColor(), 'rgba(241, 174, 174, 0.26)');
-      //       done();
-      //     });
-      //   });
+          map.ready.then(() => {
+            const action = map.map.actions[0];
+            assert.deepEqual(action.layer, layer);
+            assert.equal(action.style.getFill().getColor(), 'rgba(241, 174, 174, 0.26)');
+            done();
+          });
+        });
 
-      //   // test('a custom style can be set', async () => {
-      //   //   const map = fixture('vl-map-delete-action-fixture-custom-stijl');
-      //   //   const styleElement = map.querySelector('vl-map-layer-style');
-      //   //   const { layer } = map.querySelector('vl-map-features-layer');
+        test('a custom style can be set', async () => {
+          const map = fixture('vl-map-delete-action-fixture-custom-stijl');
+          const styleElement = map.querySelector('vl-map-layer-style');
+          const { layer } = map.querySelector('vl-map-features-layer');
 
-      //   //   await map.ready;
-      //   //   assert.deepEqual(map.map.actions[0].layer, layer);
+          await map.ready;
+          assert.deepEqual(map.map.actions[0].layer, layer);
 
-      //   //   await awaitUntil(() => {
-      //   //     const deleteAction = map.map.actions[0];
-      //   //     return (
-      //   //       deleteAction &&
-      //   //       deleteAction.style &&
-      //   //       typeof deleteAction.style === 'function' &&
-      //   //       deleteAction.style().getFill().getColor() === '#FFE615'
-      //   //     );
-      //   //   });
-      //   //   assert.deepEqual(map.map.actions[0].style(), styleElement.style());
-      //   // });
+          await awaitUntil(() => {
+            const deleteAction = map.map.actions[0];
+            return (
+              deleteAction &&
+              deleteAction.style &&
+              typeof deleteAction.style === 'function' &&
+              deleteAction.style().getFill().getColor() === '#FFE615'
+            );
+          });
+          assert.deepEqual(map.map.actions[0].style(), styleElement.style());
+        });
 
-      //   // test('after the delete action is finished, the onDelete callback will be called', async () => {
-      //   //   const map = fixture('vl-map-delete-action-fixture');
-      //   //   await map.ready;
-      //   //   const deleteAction = map.querySelector('vl-map-delete-action');
-      //   //   await awaitUntil(() => deleteAction.action != null);
-      //   //   let featureDeleted = false;
-      //   //   deleteAction.onDelete(() => {
-      //   //     featureDeleted = true;
-      //   //   });
-      //   //   deleteAction.action.hoverInteraction.getFeatures().push(new OlFeature({}));
-      //   //   deleteAction.action.dragBoxInteraction.dispatchEvent('boxend');
+        test('after the delete action is finished, the onDelete callback will be called', async () => {
+          const map = fixture('vl-map-delete-action-fixture');
+          await map.ready;
+          const deleteAction = map.querySelector('vl-map-delete-action');
+          await awaitUntil(() => deleteAction.action != null);
+          let featureDeleted = false;
+          deleteAction.onDelete(() => {
+            featureDeleted = true;
+          });
+          deleteAction.action.hoverInteraction.getFeatures().push(new OlFeature({}));
+          deleteAction.action.dragBoxInteraction.dispatchEvent('boxend');
 
-      //   //   await awaitUntil(() => featureDeleted === true);
-      //   // });
+          await awaitUntil(() => featureDeleted === true);
+        });
 
-      //   // test('after the delete action is finished, the features will be deleted', async () => {
-      //   //   const map = fixture('vl-map-delete-action-fixture');
-      //   //   await map.ready;
-      //   //   const deleteAction = map.querySelector('vl-map-delete-action');
-      //   //   await awaitUntil(() => deleteAction.action != null);
-      //   //   const removeFeatureStub = sinon.stub();
-      //   //   sinon.stub(deleteAction.layer, 'getSource').returns({
-      //   //     removeFeature: removeFeatureStub,
-      //   //     hasFeature: sinon.stub(),
-      //   //   });
-      //   //   const feature = new OlFeature({});
-      //   //   deleteAction.action.hoverInteraction.getFeatures().push(feature);
+        test('after the delete action is finished, the features will be deleted', async () => {
+          const map = fixture('vl-map-delete-action-fixture');
+          await map.ready;
+          const deleteAction = map.querySelector('vl-map-delete-action');
+          await awaitUntil(() => deleteAction.action != null);
+          const removeFeatureStub = sinon.stub();
+          sinon.stub(deleteAction.layer, 'getSource').returns({
+            removeFeature: removeFeatureStub,
+            hasFeature: sinon.stub(),
+          });
+          const feature = new OlFeature({});
+          deleteAction.action.hoverInteraction.getFeatures().push(feature);
 
-      //   //   deleteAction.action.dragBoxInteraction.dispatchEvent('boxend');
+          deleteAction.action.dragBoxInteraction.dispatchEvent('boxend');
 
-      //   //   await awaitUntil(() => deleteAction.action.hoverInteraction.getFeatures().getLength() === 0);
-      //   //   assert.isTrue(removeFeatureStub.calledOnce);
-      //   //   assert.deepEqual(removeFeatureStub.args[0][0], feature);
-      //   // });
+          await awaitUntil(() => deleteAction.action.hoverInteraction.getFeatures().getLength() === 0);
+          assert.isTrue(removeFeatureStub.calledOnce);
+          assert.deepEqual(removeFeatureStub.args[0][0], feature);
+        });
 
-      //   test("after the delete action is finished, the onDelete callback will be called and the arguments can be used to ensure some features are deleted and others aren't", async () => {
-      //     const map = fixture('vl-map-delete-action-fixture');
-      //     await map.ready;
-      //     const deleteAction = map.querySelector('vl-map-delete-action');
-      //     await awaitUntil(() => deleteAction.action != null);
-      //     const removeFeatureStub = sinon.stub();
-      //     sinon.stub(deleteAction.layer, 'getSource').returns({
-      //       removeFeature: removeFeatureStub,
-      //       hasFeature: sinon.stub(),
-      //     });
-      //     const teVerwijderenFeature = new OlFeature({});
-      //     const featureDieNietVerwijderdMagWorden = new OlFeature({});
-      //     deleteAction.onDelete((features, resolve, reject) => {
-      //       features.forEach((feature) => {
-      //         if (feature === teVerwijderenFeature) {
-      //           resolve(feature);
-      //         } else {
-      //           reject(feature);
-      //         }
-      //       });
-      //     });
-      //     deleteAction.action.hoverInteraction.getFeatures().push(teVerwijderenFeature);
-      //     deleteAction.action.hoverInteraction.getFeatures().push(featureDieNietVerwijderdMagWorden);
+        test("after the delete action is finished, the onDelete callback will be called and the arguments can be used to ensure some features are deleted and others aren't", async () => {
+          const map = fixture('vl-map-delete-action-fixture');
+          await map.ready;
+          const deleteAction = map.querySelector('vl-map-delete-action');
+          await awaitUntil(() => deleteAction.action != null);
+          const removeFeatureStub = sinon.stub();
+          sinon.stub(deleteAction.layer, 'getSource').returns({
+            removeFeature: removeFeatureStub,
+            hasFeature: sinon.stub(),
+          });
+          const teVerwijderenFeature = new OlFeature({});
+          const featureDieNietVerwijderdMagWorden = new OlFeature({});
+          deleteAction.onDelete((features, resolve, reject) => {
+            features.forEach((feature) => {
+              if (feature === teVerwijderenFeature) {
+                resolve(feature);
+              } else {
+                reject(feature);
+              }
+            });
+          });
+          deleteAction.action.hoverInteraction.getFeatures().push(teVerwijderenFeature);
+          deleteAction.action.hoverInteraction.getFeatures().push(featureDieNietVerwijderdMagWorden);
 
-      //     deleteAction.action.dragBoxInteraction.dispatchEvent('boxend');
+          deleteAction.action.dragBoxInteraction.dispatchEvent('boxend');
 
-      //     await awaitUntil(() => deleteAction.action.hoverInteraction.getFeatures().getLength() === 0);
-      //     assert.isTrue(removeFeatureStub.calledOnce);
-      //     assert.deepEqual(removeFeatureStub.args[0][0], teVerwijderenFeature);
-      //   });
+          await awaitUntil(() => deleteAction.action.hoverInteraction.getFeatures().getLength() === 0);
+          assert.isTrue(removeFeatureStub.calledOnce);
+          assert.deepEqual(removeFeatureStub.args[0][0], teVerwijderenFeature);
+        });
 
-      //   test('the filter for the delete action returns true by default', (done) => {
-      //     const map = fixture('vl-map-delete-action-fixture');
+        test('the filter for the delete action returns true by default', (done) => {
+          const map = fixture('vl-map-delete-action-fixture');
 
-      //     map.ready.then(() => {
-      //       const action = map.map.actions[0];
-      //       assert.isTrue(action.filter());
-      //       done();
-      //     });
-      //   });
+          map.ready.then(() => {
+            const action = map.map.actions[0];
+            assert.isTrue(action.filter());
+            done();
+          });
+        });
 
-      //   test('the filter for the delete action can be overridden', (done) => {
-      //     const map = fixture('vl-custom-map-delete-action-fixture');
+        test('the filter for the delete action can be overridden', (done) => {
+          const map = fixture('vl-custom-map-delete-action-fixture');
 
-      //     map.ready.then(() => {
-      //       const action = map.map.actions[0];
-      //       assert.isTrue(action.filter({ id: '12' }, { id: '12' }));
-      //       assert.isFalse(action.filter({ id: '2' }, { id: '12' }));
-      //       assert.isFalse(action.filter({ id: '12' }, { id: '2' }));
-      //       done();
-      //     });
-      //   });
-      // });
+          map.ready.then(() => {
+            const action = map.map.actions[0];
+            assert.isTrue(action.filter({ id: '12' }, { id: '12' }));
+            assert.isFalse(action.filter({ id: '2' }, { id: '12' }));
+            assert.isFalse(action.filter({ id: '12' }, { id: '2' }));
+            done();
+          });
+        });
+      });
     </script>
   </body>
 </html>
