@@ -1,6 +1,7 @@
 import { assert, getDriver } from '../../../../../../../utils/test';
 import { VlTestMapDrawActionsPage } from './draw-actions.page';
 
+// Use to wait for map action to be activated. Timeout for activating a mapaction in map-with-actions can otherwise result in flaky tests.
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -8,12 +9,14 @@ function sleep(ms) {
 describe('vl-map-draw-action', async () => {
   let vlMapPage;
 
-  before(() => {
+  beforeEach(() => {
     vlMapPage = new VlTestMapDrawActionsPage(getDriver());
     return vlMapPage.load();
   });
 
-  it('als gebruiker kan ik punten tekenen op een kaart', async () => {
+  it('as a user I can draw points on a map', async () => {
+    await sleep(350);
+
     const map = await vlMapPage.getMapWithDrawPointAction();
     const action = await vlMapPage.getDrawPointAction();
     const layers = await map.getLayers();
@@ -32,7 +35,9 @@ describe('vl-map-draw-action', async () => {
     assert.lengthOf(features, 2);
   });
 
-  it('als gebruiker kan ik lijnen tekenen op een kaart', async () => {
+  it('as a user I can draw lines on a map', async () => {
+    await sleep(350);
+
     const map = await vlMapPage.getMapWithDrawLineAction();
     const action = await vlMapPage.getDrawLineAction();
     const layers = await map.getLayers();
@@ -51,7 +56,9 @@ describe('vl-map-draw-action', async () => {
     assert.lengthOf(features, 2);
   });
 
-  it('als gebruiker kan ik polygonen tekenen op een kaart', async () => {
+  it('as a user I can draw polygons on a map', async () => {
+    await sleep(350);
+
     const map = await vlMapPage.getMapWithDrawPolygonAction();
     const action = await vlMapPage.getDrawPolygonAction();
     const layers = await map.getLayers();
@@ -75,7 +82,7 @@ describe('vl-map-draw-action', async () => {
     assert.lengthOf(features, 2);
   });
 
-  // it("als gebruiker kan ik punten tekenen op een kaart waarbij er bij het tekenen gesnapped wordt op bepaalde lagen", async () => {
+  // it("as a user I can draw points on a map where when drawing is snapped on certain layers", async () => {
   //   const map = await vlMapPage.getMapWithDrawPointSnapAction();
   //   const action = await vlMapPage.getDrawPointSnapAction();
   //   const layers = await map.getLayers();
@@ -104,6 +111,8 @@ describe('vl-map-draw-action', async () => {
   // });
 
   it('as a user I can draw measurement lines on a map', async () => {
+    await sleep(350);
+
     const map = await vlMapPage.getMapWithMeasureAction();
     const action = await vlMapPage.getMeasureAction();
     const layers = await map.getLayers();
@@ -112,6 +121,46 @@ describe('vl-map-draw-action', async () => {
 
     let features = await layer.getFeatures();
     assert.lengthOf(features, 0);
+
+    await action.draw({ x: 152034, y: 212344 }, { x: 202086, y: 222323 });
+    features = await layer.getFeatures();
+    assert.lengthOf(features, 1);
+  });
+
+  it('as a user I can draw measurement lines on a map when I activate the control', async () => {
+    const map = await vlMapPage.getMapWithMeasureActionWithControl();
+    const layers = await map.getLayers();
+    const layer = layers[0];
+
+    let features = await layer.getFeatures();
+    assert.lengthOf(features, 0);
+
+    const control = await vlMapPage.getMeasureActionControl();
+    control.click();
+
+    await sleep(350);
+
+    const action = await vlMapPage.getMeasureActionWithControl();
+
+    await action.draw({ x: 152034, y: 212344 }, { x: 202086, y: 222323 });
+    features = await layer.getFeatures();
+    assert.lengthOf(features, 1);
+  });
+
+  it('as a user I can draw measurement lines on a map when I activate the outside control', async () => {
+    const map = await vlMapPage.getMapWithMeasureActionWithOutsideControl();
+    const layers = await map.getLayers();
+    const layer = layers[0];
+
+    let features = await layer.getFeatures();
+    assert.lengthOf(features, 0);
+
+    const control = await vlMapPage.getMeasureActionControlOutside();
+    control.click();
+
+    await sleep(350);
+
+    const action = await vlMapPage.getMeasureActionWithOutsideControl();
 
     await action.draw({ x: 152034, y: 212344 }, { x: 202086, y: 222323 });
     features = await layer.getFeatures();

@@ -81,11 +81,11 @@
           ]).then(() => done());
         });
 
-        test('een punt teken actie is een map actie', () => {
+        test('a dot draw action is a map action', () => {
           assert.isTrue(VlMapDrawPointAction.isVlMapAction());
         });
 
-        test('snapping wordt goed geconfigureerd als het snapping attribuut er is maar zonder lagen', async () => {
+        test('snapping is properly configured if the snapping attribute is there but without layers', async () => {
           const fixtureMetSnapping = fixture('vl-map-draw-point-action-snapping');
           const drawPointMetSnappingAction = fixtureMetSnapping.querySelector('vl-map-draw-point-action');
           await awaitUntil(() => drawPointMetSnappingAction.action != null);
@@ -93,7 +93,7 @@
           expect(drawActionOptions.snapping).to.equal(true);
         });
 
-        test('snapping wordt goed geconfigureerd als er lagen zijn en pixel tolerantie', async () => {
+        test('snapping is properly configured if there are layers and pixel tolerance', async () => {
           const fixtureMetSnapping = fixture('vl-map-draw-point-action-snapping-met-wfs-layers-fixture');
           const drawPointMetSnappingOpWfsLagenAction = fixtureMetSnapping.querySelector('vl-map-draw-point-action');
           await awaitUntil(() => drawPointMetSnappingOpWfsLagenAction.action != null);

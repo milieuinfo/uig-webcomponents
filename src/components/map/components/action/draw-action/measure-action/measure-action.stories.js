@@ -40,3 +40,34 @@ export const WithControl = () => html`
     </vl-map-features-layer>
   </vl-map>
 `;
+
+// Get last measure action, because storybook can render multiple stories
+const getMeasureAction = () => {
+  const [lastItem] = [...document.querySelectorAll('vl-map-measure-action')].slice(-1);
+  return lastItem;
+};
+
+export const WithSeperateControl = ({ active }) => html`
+  <div>
+    <vl-toggle-button
+      id="measure-button"
+      @click=${() => {
+        const measureAction = getMeasureAction();
+        measureAction.active = !measureAction.active;
+      }}
+      >Meten</vl-toggle-button
+    >
+    <vl-map id="map">
+      <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+      <vl-map-features-layer>
+        <vl-map-measure-action .active=${active}></vl-map-measure-action>
+      </vl-map-features-layer>
+    </vl-map>
+  </div>
+`;
+
+WithSeperateControl.args = {
+  active: false,
+};
+
+WithSeperateControl.argTypes = { active: { control: { disabled: false } } };

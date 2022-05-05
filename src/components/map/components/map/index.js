@@ -122,6 +122,13 @@ export class VlMap extends vlElement(HTMLElement) {
   }
 
   /**
+   * Geeft alle acties van de kaart.
+   */
+  get actions() {
+    return this.map && this.map.actions;
+  }
+
+  /**
    * Geeft de actieve kaartactie.
    *
    * @return {VlMapAction}
@@ -186,6 +193,15 @@ export class VlMap extends vlElement(HTMLElement) {
   }
 
   /**
+   * Voegt een control toe aan de kaart.
+   *
+   * @param {VlMapControl} control
+   */
+  addControl(control) {
+    this.map.addControl(control);
+  }
+
+  /**
    * Voegt een kaartactie toe aan de kaart.
    *
    * @param {VlMapAction} action
@@ -220,9 +236,11 @@ export class VlMap extends vlElement(HTMLElement) {
    *
    * @param {VlMapAction} action
    */
-  deactivateCurrentAction() {
-    this.map.deactivateCurrentAction();
-    this.dispatchEvent(new Event(VlMap.EVENTS.action.deactivated));
+  deactivateAction(action) {
+    if (action) {
+      this.map.deactivateAction(action);
+      this.dispatchEvent(new Event(VlMap.EVENTS.action.deactivated));
+    }
   }
 
   /**

@@ -63,10 +63,12 @@ export class VlMapWithActions extends Map {
     }, VlMapWithActions.CLICK_COUNT_TIMEOUT);
   }
 
-  deactivateCurrentAction() {
-    this.currentAction.deactivate();
-    this.currentAction = undefined;
-    clearTimeout(this.timeout);
+  deactivateAction(action) {
+    if (this.currentAction && this.currentAction === action) {
+      this.currentAction.deactivate();
+      this.currentAction = undefined;
+      clearTimeout(this.timeout);
+    }
   }
 
   addAction(action) {

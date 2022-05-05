@@ -1,5 +1,5 @@
-import { vlElement, define } from "../../../../utils/core";
-import { VlMap } from "../map";
+import { vlElement, define } from '../../../../utils/core';
+import { VlMap } from '../map';
 
 /**
  * VlMapAction
@@ -39,11 +39,11 @@ export class VlMapAction extends vlElement(HTMLElement) {
   }
 
   get _mapElement() {
-    return this.closest("vl-map");
+    return this.closest('vl-map');
   }
 
   get _defaultActive() {
-    return this.hasAttribute("default-active");
+    return this.hasAttribute('default-active');
   }
 
   get _callback() {
@@ -57,8 +57,15 @@ export class VlMapAction extends vlElement(HTMLElement) {
     this._mapElement.activateAction(this.action);
   }
 
+  /**
+   * Deactiveer de kaart actie op de kaart.
+   */
+  deactivate() {
+    this._mapElement.deactivateAction(this.action);
+  }
+
   _createAction() {
-    console.warn("implementatie van _createAction ontbreekt");
+    console.warn('implementatie van _createAction ontbreekt');
   }
 
   _processAction() {
@@ -72,10 +79,11 @@ export class VlMapAction extends vlElement(HTMLElement) {
 
   __registerMapActionChangedCallback() {
     this._mapElement.addEventListener(VlMap.EVENTS.action.activated, () => {
-      this.setAttribute(
-        "active",
-        this._mapElement.activeAction === this.action
-      );
+      this.setAttribute('active', this._mapElement.activeAction === this.action);
+    });
+
+    this._mapElement.addEventListener(VlMap.EVENTS.action.deactivated, () => {
+      this.setAttribute('active', this._mapElement.activeAction === this.action);
     });
   }
 
@@ -86,4 +94,4 @@ export class VlMapAction extends vlElement(HTMLElement) {
   }
 }
 
-define("vl-map-action", VlMapAction);
+define('vl-map-action', VlMapAction);

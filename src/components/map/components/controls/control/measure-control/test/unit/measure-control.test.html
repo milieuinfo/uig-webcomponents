@@ -18,26 +18,34 @@
     </test-fixture>
 
     <script type="module">
+      const should = chai.should();
+
       suite('vl-map-measure-control', () => {
         setup((done) => {
           customElements.whenDefined('vl-map-measure-control').then(() => done());
         });
 
-        test('de measure control wordt goed geconfigureerd', () => {
+        test('the measure control is configured correctly', () => {
           const element = fixture('vl-map-measure-control-fixture');
           const vlMapMeasureControlElement = element.querySelector('vl-map-measure-control');
 
-          assert.equal(vlMapMeasureControlElement.controlElement.element.tagName.toLowerCase(), 'vl-toggle-button');
+          should.exist(vlMapMeasureControlElement);
+          expect(vlMapMeasureControlElement.controlElement.tagName.toLowerCase() === 'vl-toggle-button').to.be.true;
         });
 
-        test('de control zal toegevoegd worden aan de map', async () => {
+        test('the control will be added to the map', async () => {
           const element = fixture('vl-map-measure-control-fixture');
           await element.ready;
 
           const { map } = element.closest('vl-map');
           const controls = map.getControls().getArray();
 
-          expect(!!controls.find((control) => control.element.tagName.toLowerCase() === 'vl-toggle-button')).to.be.true;
+          expect(
+            !!controls.find(
+              (control) =>
+                control.values_ && control.values_.controlIdentifier && control.values_.controlIdentifier === 'measure',
+            ),
+          ).to.be.true;
         });
       });
     </script>

@@ -93,13 +93,43 @@
 
       <vl-map id="map-with-measure-action">
         <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-        <vl-map-baselayer-grb></vl-map-baselayer-grb>
-        <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
-        <vl-map-features-layer id="line-layer">
-          <vl-map-layer-style></vl-map-layer-style>
+        <vl-map-features-layer>
           <vl-map-measure-action id="measure-action" data-vl-default-active></vl-map-measure-action>
         </vl-map-features-layer>
       </vl-map>
+
+      <vl-map id="map-with-measure-action-with-control">
+        <vl-map-controls>
+          <vl-map-measure-control id="measure-action-control"></vl-map-measure-control>
+        </vl-map-controls>
+        <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+        <vl-map-features-layer>
+          <vl-map-measure-action id="measure-action-with-control"></vl-map-measure-action>
+        </vl-map-features-layer>
+      </vl-map>
+
+      <div>
+        <vl-toggle-button
+          id="measure-action-control-outside"
+          onClick="() => {console.log('click');onOutsideControlClick();}"
+          >Meten</vl-toggle-button
+        >
+        <vl-map id="map-with-measure-action-with-outside-control">
+          <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+          <vl-map-features-layer>
+            <vl-map-measure-action id="measure-action-with-outside-control"></vl-map-measure-action>
+          </vl-map-features-layer>
+        </vl-map>
+      </div>
     </div>
+
+    <script>
+      const outsideControl = document.getElementById('measure-action-control-outside');
+
+      outsideControl.addEventListener('click', () => {
+        const measureAction = document.getElementById('measure-action-with-outside-control');
+        measureAction.active = !measureAction.active;
+      });
+    </script>
   </body>
 </html>
