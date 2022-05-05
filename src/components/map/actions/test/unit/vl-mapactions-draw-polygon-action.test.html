@@ -1,0 +1,28 @@
+<script src="../../../../../../node_modules/wct-browser-legacy/browser.js"></script>
+<script type="module">
+  import VectorSource from 'ol/source/Vector';
+  import { VlDrawPolygonAction } from '../../../../../../lib/components/map/actions';
+
+  describe('draw polygon action', () => {
+    const source = new VectorSource({});
+
+    const layer = {
+      getSource: () => source,
+    };
+
+    const callback = sinon.spy();
+    it('geeft de snapping configuratie door aan de draw action', () => {
+      const snappingLayer = sinon.spy();
+      const snapping = {
+        layer: snappingLayer,
+      };
+      const action = new VlDrawPolygonAction(layer, callback, snapping);
+      expect(action.options.layer).to.deep.equal(snappingLayer);
+    });
+
+    it('geeft de juiste configuratie mee aan de draw interaction', () => {
+      const action = new VlDrawPolygonAction(layer, callback);
+      expect(action.options).to.deep.equal(action.options);
+    });
+  });
+</script>

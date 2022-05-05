@@ -1,4 +1,4 @@
-import { vlElement } from "../../../../utils/core";
+import { vlElement } from '../../../../utils/core';
 
 /**
  * VlMapLayer
@@ -18,7 +18,7 @@ import { vlElement } from "../../../../utils/core";
  */
 export class VlMapLayer extends vlElement(HTMLElement) {
   static get _observedAttributes() {
-    return ["hidden"];
+    return ['hidden'];
   }
 
   constructor() {
@@ -78,7 +78,7 @@ export class VlMapLayer extends vlElement(HTMLElement) {
    * @return {String}
    */
   get title() {
-    return this.get("title");
+    return this.get('title');
   }
 
   /**
@@ -94,9 +94,8 @@ export class VlMapLayer extends vlElement(HTMLElement) {
   get mapElement() {
     if (this.parentNode && this.parentNode.map) {
       return this.parentNode;
-    } else {
-      return null;
     }
+    return null;
   }
 
   get ready() {
@@ -104,19 +103,19 @@ export class VlMapLayer extends vlElement(HTMLElement) {
   }
 
   get _name() {
-    return this.getAttribute("name") || "kaartlaag";
+    return this.getAttribute('name') || 'kaartlaag';
   }
 
   get _minResolution() {
-    return this.getAttribute("min-resolution") || 0;
+    return this.getAttribute('min-resolution') || 0;
   }
 
   get _maxResolution() {
-    return this.getAttribute("max-resolution") || Infinity;
+    return this.getAttribute('max-resolution') || Infinity;
   }
 
   get _visible() {
-    return this.getAttribute("hidden") == undefined;
+    return this.getAttribute('hidden') == undefined;
   }
 
   /**

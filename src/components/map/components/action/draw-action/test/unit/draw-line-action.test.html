@@ -5,10 +5,7 @@
     <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
     <script src="/node_modules/web-component-tester/browser.js"></script>
 
-    <script
-      type="module"
-      src="../../../../../../../../lib/components/map/index.js"
-    ></script>
+    <script type="module" src="../../../../../../../../lib/components/map/index.js"></script>
   </head>
 
   <body>
@@ -58,11 +55,7 @@
       <template>
         <vl-map id="map-with-draw-line-snap-action">
           <vl-map-features-layer>
-            <vl-map-draw-line-action
-              id="draw-line-snap-action"
-              data-vl-default-active
-              data-vl-snapping
-            >
+            <vl-map-draw-line-action id="draw-line-snap-action" data-vl-default-active data-vl-snapping>
             </vl-map-draw-line-action>
           </vl-map-features-layer>
         </vl-map>
@@ -70,76 +63,49 @@
     </test-fixture>
 
     <script type="module">
-      import { VlMapDrawLineAction } from "../../../../../lib/components/map/components/action/draw-action/draw-line-action";
-      import { awaitUntil } from "../../../../utils/core/index.js";
+      import { VlMapDrawLineAction } from '../../../../../../../../lib/components/map/components/action/draw-action/draw-line-action';
+      import { awaitUntil } from '../../../../../../../utils/core/index.js';
       import {
         VlCompositeVectorLayer,
         VlCompositeVectorSource,
-      } from "../../../../../lib/components/map/mapactions/index.js";
+      } from '../../../../../../../../lib/components/map/index.js';
 
-      suite("vl-map-draw-line-action", () => {
+      suite('vl-map-draw-line-action', () => {
         setup((done) => {
-          customElements
-            .whenDefined("vl-map-draw-line-action")
-            .then(() => done());
+          customElements.whenDefined('vl-map-draw-line-action').then(() => done());
         });
 
-        test("een lijn teken actie is een map actie", () => {
+        test('een lijn teken actie is een map actie', () => {
           assert.isTrue(VlMapDrawLineAction.isVlMapAction());
         });
 
-        test("snapping wordt goed geconfigureerd als het snapping attribuut er is maar zonder lagen", async () => {
-          const fixtureMetSnapping = fixture(
-            "vl-map-draw-line-action-snapping"
-          );
-          const drawLineMetSnappingAction = fixtureMetSnapping.querySelector(
-            "vl-map-draw-line-action"
-          );
+        test('snapping wordt goed geconfigureerd als het snapping attribuut er is maar zonder lagen', async () => {
+          const fixtureMetSnapping = fixture('vl-map-draw-line-action-snapping');
+          const drawLineMetSnappingAction = fixtureMetSnapping.querySelector('vl-map-draw-line-action');
           await awaitUntil(() => drawLineMetSnappingAction.action != null);
           const drawActionOptions = drawLineMetSnappingAction.action.options;
           expect(drawActionOptions.snapping).to.equal(true);
         });
 
-        test("snapping wordt goed geconfigureerd als er lagen zijn en pixel tolerantie", async () => {
-          const fixtureMetSnapping = fixture(
-            "vl-map-draw-line-action-snapping-met-wfs-layers-fixture"
-          );
-          const drawLineMetSnappingOpWfsLagenAction = fixtureMetSnapping.querySelector(
-            "vl-map-draw-line-action"
-          );
-          await awaitUntil(
-            () => drawLineMetSnappingOpWfsLagenAction.action != null
-          );
-          const drawActionOptions =
-            drawLineMetSnappingOpWfsLagenAction.action.options;
-          expect(drawActionOptions.snapping.pixelTolerance).to.equal("1000");
+        test('snapping wordt goed geconfigureerd als er lagen zijn en pixel tolerantie', async () => {
+          const fixtureMetSnapping = fixture('vl-map-draw-line-action-snapping-met-wfs-layers-fixture');
+          const drawLineMetSnappingOpWfsLagenAction = fixtureMetSnapping.querySelector('vl-map-draw-line-action');
+          await awaitUntil(() => drawLineMetSnappingOpWfsLagenAction.action != null);
+          const drawActionOptions = drawLineMetSnappingOpWfsLagenAction.action.options;
+          expect(drawActionOptions.snapping.pixelTolerance).to.equal('1000');
           expect(drawActionOptions.snapping.node).to.equal(false);
           expect(drawActionOptions.snapping.vertex).to.equal(false);
-          expect(
-            drawActionOptions.snapping.layer instanceof VlCompositeVectorLayer
-          ).to.equal(true);
-          expect(
-            drawActionOptions.snapping.layer.getSource() instanceof
-              VlCompositeVectorSource
-          ).to.equal(true);
-          expect(
-            drawActionOptions.snapping.layer.getSource().sources[0]
-          ).to.equal(
-            fixtureMetSnapping
-              .querySelector("#stromendwater")
-              ._layer.getSource()
+          expect(drawActionOptions.snapping.layer instanceof VlCompositeVectorLayer).to.equal(true);
+          expect(drawActionOptions.snapping.layer.getSource() instanceof VlCompositeVectorSource).to.equal(true);
+          expect(drawActionOptions.snapping.layer.getSource().sources[0]).to.equal(
+            fixtureMetSnapping.querySelector('#stromendwater')._layer.getSource(),
           );
-          expect(
-            drawActionOptions.snapping.layer.getSource().sources[1]
-          ).to.equal(
-            fixtureMetSnapping
-              .querySelector("#stilstaandwater")
-              ._layer.getSource()
+          expect(drawActionOptions.snapping.layer.getSource().sources[1]).to.equal(
+            fixtureMetSnapping.querySelector('#stilstaandwater')._layer.getSource(),
           );
           await awaitUntil(
             () =>
-              drawActionOptions.snapping.layer.getStyle() ==
-              fixtureMetSnapping.querySelector("#stromendwater").style
+              drawActionOptions.snapping.layer.getStyle() == fixtureMetSnapping.querySelector('#stromendwater').style,
           );
         });
       });

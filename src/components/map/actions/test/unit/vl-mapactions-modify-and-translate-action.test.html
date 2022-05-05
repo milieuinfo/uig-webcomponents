@@ -1,0 +1,33 @@
+<script src="../../../../../../node_modules/wct-browser-legacy/browser.js"></script>
+<script type="module">
+  import Point from 'ol/geom/Point';
+  import Feature from 'ol/Feature';
+  import VectorLayer from 'ol/layer/Vector';
+  import VectorSource from 'ol/source/Vector';
+  import { VlModifyAndTranslateAction, VlSnapInteraction } from '../../../../../../lib/components/map/actions';
+
+  describe('modify and translate action', () => {
+    const source = new VectorSource();
+    const layer = new VectorLayer({ source });
+    it('roept de callback functie op nadat er een translate werd uitgevoerd en cleart ook de selectie interactie', () => {
+      const callback = sinon.spy();
+      const modifyAndTranslateAction = new VlModifyAndTranslateAction({}, callback);
+      const feature = new Feature({ geometry: new Point([0, 0]) });
+      modifyAndTranslateAction.selectInteraction.getFeatures().push(feature);
+      modifyAndTranslateAction.translateInteraction.dispatchEvent({
+        type: 'translateend',
+        features: [feature],
+      });
+      expect(callback.calledWith(feature)).to.be.true;
+      expect(modifyAndTranslateAction.selectInteraction.getFeatures().getLength()).to.equal(0);
+    });
+
+    it('kan snapping aanzetten via opties door de modify action correct aan te roepen', () => {
+      const options = {
+        snapping: true,
+      };
+      const action = new VlModifyAndTranslateAction(layer, sinon.spy(), options);
+      expect(action.interactions.find((interaction) => interaction instanceof VlSnapInteraction)).to.not.be.undefined;
+    });
+  });
+</script>
