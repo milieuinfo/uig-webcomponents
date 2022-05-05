@@ -1,5 +1,4 @@
 import { html, css, LitElement, unsafeCSS } from 'lit';
-import { ifDefined } from 'lit/directives/if-defined.js';
 import { createRef, ref } from 'lit/directives/ref.js';
 import { classMap } from 'lit/directives/class-map.js';
 import styles from './styles.scss';
@@ -93,7 +92,7 @@ export class VlPill extends LitElement {
 
     if (this.closable) {
       return html`
-        <div class="${classMap(closableClasses)}" style="opacity: ${ifDefined(this.opacity)}">
+        <div class="${classMap(closableClasses)}">
             <slot></slot>
             <button
               class="vl-pill__close"
@@ -109,7 +108,7 @@ export class VlPill extends LitElement {
 
     if (this.checkable) {
       return html`
-        <label class="${classMap(checkableClasses)}" for="checkbox" style="opacity: ${ifDefined(this.opacity)}">
+        <label class="${classMap(checkableClasses)}" for="checkbox">
           <input
             class="vl-pill--checkable__checkbox"
             type="checkbox"
@@ -135,7 +134,7 @@ export class VlPill extends LitElement {
     }
 
     return html`
-      <span class="${classMap(classes)}" style="opacity: ${ifDefined(this.opacity)}">
+      <span class="${classMap(classes)}">
         <slot></slot>
       </span>
     `;
