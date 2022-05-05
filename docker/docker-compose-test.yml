@@ -1,44 +1,32 @@
 version: "3"
 services:
   selenium-hub:
-    image: ${DOCKER_REGISTRY}selenium/hub:latest
+    image: ${DOCKER_REGISTRY}selenium/hub:3.141.59
     container_name: selenium-hub
     environment:
-      - NODE_MAX_SESSION=1
-      - NODE_MAX_INSTANCES=1
-    ports: 
-      - "4444:4444"
-      - "4443:4443"
-      - "4442:4442"
+      - NODE_MAX_SESSION=3
+      - NODE_MAX_INSTANCES=3
   selenium-chrome:
-    image: ${DOCKER_REGISTRY}selenium/node-chrome-debug:latest
+    image: ${DOCKER_REGISTRY}selenium/node-chrome-debug:3.141.59
     depends_on:
       - selenium-hub
     environment:
       - HUB_HOST=selenium-hub
-      - SE_EVENT_BUS_HOST=selenium-hub
-      - SE_EVENT_BUS_PUBLISH_PORT=4442
-      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - HUB_PORT=4444
-#      - http_proxy=${http_proxy}
-#      - https_proxy=${https_proxy}
-#      - no_proxy=${no_proxy},selenium-hub,tests,dummy
-    ports:
-      - "6900:5900"
-    shm_size: 3g
+      - http_proxy=${http_proxy}
+      - https_proxy=${https_proxy}
+      - no_proxy=${no_proxy},selenium-hub,tests
+    shm_size: 2g
   selenium-firefox:
-    image: ${DOCKER_REGISTRY}selenium/node-firefox-debug:latest
+    image: ${DOCKER_REGISTRY}selenium/node-firefox-debug:3.141.59
     depends_on:
       - selenium-hub
     environment:
       - HUB_PORT_4444_TCP_ADDR=selenium-hub
-      - SE_EVENT_BUS_HOST=selenium-hub
-      - SE_EVENT_BUS_PUBLISH_PORT=4442
-      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - HUB_PORT_4444_TCP_PORT=4444
-#      - http_proxy=${http_proxy}
-#      - https_proxy=${https_proxy}
-#      - no_proxy=${no_proxy},selenium-hub,tests,dummy
+      - http_proxy=${http_proxy}
+      - https_proxy=${https_proxy}
+      - no_proxy=${no_proxy},selenium-hub,tests
     shm_size: 2g
   tests:
     image: ${DOCKER_REGISTRY}milieuinfo/ubuntu-node:14.18.3
@@ -48,12 +36,12 @@ services:
       - selenium-chrome
       - selenium-firefox
     environment:
-#      - http_proxy=${http_proxy}
-#      - https_proxy=${https_proxy}
-#      - no_proxy=${no_proxy},selenium-hub,tests
-#      - HTTP_PROXY=${http_proxy}
-#      - HTTPS_PROXY=${https_proxy}
-#      - NO_PROXY=${no_proxy},selenium-hub,tests
+      - http_proxy=${http_proxy}
+      - https_proxy=${https_proxy}
+      - no_proxy=${no_proxy},selenium-hub,tests
+      - HTTP_PROXY=${http_proxy}
+      - HTTPS_PROXY=${https_proxy}
+      - NO_PROXY=${no_proxy},selenium-hub,tests
       - NOSELENIUM=1
       - SKIP_WCT_SAUCE_POSTINSTALL_DOWNLOAD=1
       - browserstack_username=${browserstack_username}
