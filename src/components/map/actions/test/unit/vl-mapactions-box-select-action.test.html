@@ -28,6 +28,7 @@
       action.map = new Map();
       return action;
     };
+
     it('kan op actief gezet worden, zodat de selectie, hover en dragbox interacties op actief gezet worden', () => {
       const boxSelectAction = createVlBoxSelectAction();
       expect(boxSelectAction.hoverInteraction.getActive()).to.be.false;

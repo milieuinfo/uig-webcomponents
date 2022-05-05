@@ -9,6 +9,7 @@
   describe('modify and translate action', () => {
     const source = new VectorSource();
     const layer = new VectorLayer({ source });
+
     it('roept de callback functie op nadat er een translate werd uitgevoerd en cleart ook de selectie interactie', () => {
       const callback = sinon.spy();
       const modifyAndTranslateAction = new VlModifyAndTranslateAction({}, callback);

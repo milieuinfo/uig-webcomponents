@@ -29,6 +29,7 @@
       minResolution: 2,
       maxResolution: 10,
     });
+
     it('maakt een combinatie van alle layers', () => {
       const compositeVectorLayer = new VlCompositeVectorLayer([layer1, layer2], { title: 'Composite laag' });
       expect(compositeVectorLayer.getMinResolution()).to.equal(2);

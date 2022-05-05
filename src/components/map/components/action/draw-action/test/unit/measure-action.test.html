@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+
+    <script type="module" src="../../../../../../../../lib/components/map/index.js"></script>
+  </head>
+
+  <body>
+    <test-fixture id="vl-map-measure-action">
+      <template>
+        <vl-map id="map-with-measure-action">
+          <vl-map-features-layer>
+            <vl-map-draw-line-action id="measure-action" data-vl-default-active> </vl-map-draw-line-action>
+          </vl-map-features-layer>
+        </vl-map>
+      </template>
+    </test-fixture>
+
+    <script type="module">
+      import { VlMapMeasureAction } from '../../../../../../../../lib/components/map';
+
+      suite('vl-map-measure-action', () => {
+        setup((done) => {
+          customElements.whenDefined('vl-map-measure-action').then(() => done());
+        });
+
+        test('a measure action is a map action', () => {
+          assert.isTrue(VlMapMeasureAction.isVlMapAction());
+        });
+      });
+    </script>
+  </body>
+</html>

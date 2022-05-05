@@ -51,6 +51,7 @@
       );
       showInfoAction.map = map;
     });
+
     it('zet een overlay op de map wanneer punt getekend werd, met daarin inhoud van de promise', (done) => {
       showInfoAction.drawInteraction.dispatchEvent({
         type: 'drawend',

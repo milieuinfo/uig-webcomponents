@@ -33,6 +33,7 @@
         done();
       }, VlMapWithActions.CLICK_COUNT_TIMEOUT + 10);
     };
+
     it('voegt de interacties van alle actie toe aan de kaart', () => {
       const map = createMapWithActions();
       expect(map.getInteractions().getLength()).to.equal(14); // 9 standaard + 5

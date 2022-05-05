@@ -14,6 +14,7 @@
     const layer = new VectorLayer({ source });
     const callback = sinon.spy();
     const filter = () => {};
+
     it('roept de callback functie op nadat er een modify werd uitgevoerd', () => {
       const modifyAction = new VlModifyAction({}, callback);
       const feature = new Feature({
@@ -106,6 +107,7 @@
       modifyAction.deactivate();
       expect(modifyAction.map.removeLayer.calledWith(snappingLayer)).to.be.true;
     });
+
     const createModifyActionWithMap = (options) => {
       const modifyAction = new VlModifyAction(layer, callback, options);
       modifyAction.map = {

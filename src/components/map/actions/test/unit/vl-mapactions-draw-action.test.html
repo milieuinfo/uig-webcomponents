@@ -30,6 +30,7 @@
       addOverlay = undefined;
       removeOverlay = undefined;
     });
+
     it('kan opties meegeven aan draw action', () => {
       const drawAction = new VlDrawAction(layer, 'LineString', callback, { maxPoints: 2 });
       const { options } = drawAction;
@@ -317,6 +318,5 @@
       };
       return drawAction;
     };
-
   });
 </script>
