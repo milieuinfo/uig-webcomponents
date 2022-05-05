@@ -44,12 +44,14 @@ export class VlMeasureAction extends VlDrawAction {
 
   _setMeasurementTooltipsClosable(closable) {
     this.measurementTooltips.forEach((tooltip) => {
+      const closableAttribute = 'data-vl-closable';
       // Check if tooltip still exists
-      if (tooltip && tooltip.getElement()) {
+      if (tooltip) {
+        const tooltipEl = tooltip.getElement();
         if (closable) {
-          tooltip.getElement().setAttribute('data-vl-closable', closable);
+          tooltipEl.setAttribute(closableAttribute, closable);
         } else {
-          tooltip.getElement().removeAttribute('data-vl-closable');
+          tooltipEl.removeAttribute(closableAttribute);
         }
       }
     });
@@ -57,12 +59,14 @@ export class VlMeasureAction extends VlDrawAction {
 
   _setMeasurementTooltipsVisible(visible) {
     this.measurementTooltips.forEach((tooltip) => {
+      const hiddenAttribute = 'hidden';
       // Check if tooltip still exists
-      if (tooltip && tooltip.getElement()) {
+      if (tooltip) {
+        const tooltipEl = tooltip.getElement();
         if (visible) {
-          tooltip.getElement().style.display = 'initial';
+          tooltipEl.removeAttribute(hiddenAttribute);
         } else {
-          tooltip.getElement().style.display = 'none';
+          tooltipEl.setAttribute(hiddenAttribute, true);
         }
       }
     });
@@ -86,7 +90,7 @@ export class VlMeasureAction extends VlDrawAction {
     feature.setId(featureId);
 
     const tooltipElement = document.createElement('vl-pill');
-    tooltipElement.opacity = '0.8';
+    tooltipElement.isInMap = true;
 
     tooltipElement.addEventListener(
       'close',
@@ -105,8 +109,8 @@ export class VlMeasureAction extends VlDrawAction {
 
     tooltipOverlay.set('featureId', featureId);
 
+    // TODO: use one central map overlay array iso seperate measurementTooltips array
     this.map.addOverlay(tooltipOverlay);
-
     this.measurementTooltips = [...this.measurementTooltips, tooltipOverlay];
 
     this.measurePointermoveHandler = this.map.on('pointermove', () => {
@@ -134,12 +138,15 @@ export class VlMeasureAction extends VlDrawAction {
   _removeMeasurementTooltip(featureId) {
     const tooltip = this.getTooltipFor(featureId);
     this.map.removeOverlay(tooltip);
-
-    this.measurementTooltips = this.measurementTooltips.filter((t) => this._getFeatureIdFor(t) !== featureId);
+    this.measurementTooltips = this.measurementTooltips.filter(
+      (measurementTooltip) => this._getFeatureIdFor(measurementTooltip) !== featureId,
+    );
   }
 
   _handleRemoveMeasurement(event, feature) {
     event.stopPropagation();
+
+    // TODO: use one central map overlay array iso seperate measurementTooltips array
     this._removeMeasurementTooltip(feature.getId());
     this._removeMeasureFeature(feature);
   }

@@ -78,6 +78,7 @@ export class VlPill extends LitElement {
       'vl-pill--success': this.type === TYPE.SUCCESS,
       'vl-pill--warning': this.type === TYPE.WARNING,
       'vl-pill--error': this.type === TYPE.ERROR,
+      'vl-pill--map': this.isInMap,
     };
 
     const closableClasses = {
