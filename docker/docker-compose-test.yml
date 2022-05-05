@@ -11,7 +11,7 @@ services:
       - "4443:4443"
       - "4442:4442"
   selenium-chrome:
-    image: ${DOCKER_REGISTRY}selenium/node-chrome-debug:3.141.59
+    image: ${DOCKER_REGISTRY}selenium/node-chrome-debug:4.1.3
     depends_on:
       - selenium-hub
     environment:
@@ -27,7 +27,7 @@ services:
       - "6900:5900"
     shm_size: 3g
   selenium-firefox:
-    image: ${DOCKER_REGISTRY}selenium/node-firefox-debug:3.141.59
+    image: ${DOCKER_REGISTRY}selenium/node-firefox-debug:4.1.3
     depends_on:
       - selenium-hub
     environment:
