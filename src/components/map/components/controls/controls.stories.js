@@ -4,7 +4,6 @@ import { docsIntro } from '../../../../../.storybook/utils.js';
 
 export default {
   title: 'custom-elements/vl-map/vl-map-controls',
-  args: { toggle: true },
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {

@@ -6,7 +6,7 @@ export class VlMapMeasureControl extends VlMapControl(LitElement) {
   constructor() {
     super();
     this.controlElement = document.createElement('vl-toggle-button');
-    this.controlElement.icon = 'pencil';
+    this.controlElement.icon = 'ruler';
     this.controlElement.textHidden = true;
     // this.controlElement.innerText = 'Meten';
   }
