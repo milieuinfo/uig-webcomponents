@@ -1,6 +1,6 @@
 import Control from 'ol/control/Control';
-import { VlMeasureAction } from '../../../../actions/measure-action';
 import { LitElement } from 'lit';
+import { VlMeasureAction } from '../../../../actions/measure-action';
 import { VlMapControl } from '../../mixin';
 import '../../../../../toggle-button';
 

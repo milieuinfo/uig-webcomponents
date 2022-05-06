@@ -31,8 +31,8 @@ export default {
   },
 };
 
-export const Default = ({ active }) => html`
-  <vl-map id="map">
+export const Default = () => html`
+  <vl-map>
     <vl-map-controls>
       <vl-map-measure-control></vl-map-measure-control>
     </vl-map-controls>
