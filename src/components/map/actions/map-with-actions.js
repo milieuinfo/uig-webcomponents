@@ -12,8 +12,7 @@ export class VlMapWithActions extends Map {
     return 300;
   }
 
-  constructor(options) {
-    options = options || {};
+  constructor(options = {}) {
     const enableRotation = !options.disableRotation;
     const enableMouseWheelZoom = !options.disableMouseWheelZoom;
     const interactions = defaults({
@@ -46,6 +45,10 @@ export class VlMapWithActions extends Map {
       document.body.removeEventListener('keydown', activateFirstActionOnEscapeKey);
       document.body.addEventListener('keydown', activateFirstActionOnEscapeKey);
     }
+  }
+
+  get defaultActiveAction() {
+    return this.actions && this.actions.find((action) => action.defaultActive);
   }
 
   activateAction(action) {
@@ -91,8 +94,8 @@ export class VlMapWithActions extends Map {
   }
 
   activateDefaultAction() {
-    if (this.actions.length > 0 && this.actions[0]) {
-      this.activateAction(this.actions[0]);
+    if (this.defaultActiveAction) {
+      this.activateAction(this.defaultActiveAction);
     }
   }
 }

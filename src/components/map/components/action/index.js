@@ -42,7 +42,7 @@ export class VlMapAction extends vlElement(HTMLElement) {
     return this.closest('vl-map');
   }
 
-  get _defaultActive() {
+  get defaultActive() {
     return this.hasAttribute('default-active');
   }
 
@@ -71,7 +71,7 @@ export class VlMapAction extends vlElement(HTMLElement) {
   _processAction() {
     if (this.action) {
       this._mapElement.addAction(this.action);
-      if (this._defaultActive) {
+      if (this.defaultActive) {
         this.activate();
       }
     }
