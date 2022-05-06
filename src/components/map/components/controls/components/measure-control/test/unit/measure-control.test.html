@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+    <script type="module" src="../../../../../../../../../lib/components/map/index.js"></script>
+  </head>
+  <body>
+    <test-fixture id="vl-map-measure-control-fixture">
+      <template>
+        <vl-map>
+          <vl-map-controls>
+            <vl-map-measure-control></vl-map-measure-control>
+          </vl-map-controls>
+        </vl-map>
+      </template>
+    </test-fixture>
+
+    <script type="module">
+      suite('vl-map-measure-control', () => {
+        setup((done) => {
+          customElements.whenDefined('vl-map-measure-control').then(() => done());
+        });
+
+        test('de measure control wordt goed geconfigureerd', () => {
+          const element = fixture('vl-map-measure-control-fixture');
+          const vlMapMeasureControlElement = element.querySelector('vl-map-measure-control');
+
+          assert.equal(vlMapMeasureControlElement.controlElement.tagName.toLowerCase(), 'vl-toggle-button');
+        });
+
+        test('de control zal toegevoegd worden aan de map', async () => {
+          const element = fixture('vl-map-measure-control-fixture');
+          await element.ready;
+
+          const { map } = element.closest('vl-map');
+          const controls = map.getControls().getArray();
+
+          expect(!!controls.find((control) => control.element.tagName.toLowerCase() === 'vl-toggle-button')).to.be.true;
+        });
+      });
+    </script>
+  </body>
+</html>
