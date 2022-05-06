@@ -5,7 +5,46 @@ import titleStyles from '../../../src/components/titles/styles.scss';
 import introStyles from '../../../src/components/introduction/styles.scss';
 import { removeStorybooksDefaultStyling } from '../../../.storybook/utils';
 
-const unreleased = [];
+const unreleased = [
+  {
+    version: 'Unreleased',
+    date: '?',
+    children: html`<ul>
+      <li>
+        <p><code>vl-toggle-button</code></p>
+        <p>Added the new <code>vl-toggle-button</code> componen, which can be used controlled and uncontrolled.</p>
+      </li>
+      <li>
+        <p><code>vl-mapactions</code></p>
+        <p>
+          Moved the <code>vl-mapactions</code> project inside the <code>vl-map</code> component. Changes that are made
+          to the functionalities of the files that were in the <code>vl-mapactions</code> project will from now on be
+          available under <code>vl-map</code> in these changelogs.
+        </p>
+      </li>
+      <li>
+        <p><code>vl-map</code></p>
+        <p>
+          This component now includes the <code>vl-mapactions</code> files, as these were moved into this project in
+          this release (see previous list item).
+        </p>
+        <p>Upgraded the OpenLayers and jsts versions</p>
+        <p>
+          Fixed a bug where the tooltip overlay wouldn't show on the map when using the measure option on draw actions.
+        </p>
+        <p>
+          Changed the existing measure action. The tooltip overlays use <code>vl-pill</code> to show the measurement now
+          and are removable because of the closable functionality of the pill component. The measurement can now take
+          place between two points only.
+        </p>
+      </li>
+      <li>
+        <p><code>vl-pill</code></p>
+        Made the background of <code>vl-pill</code> transparent when it's used in <code>vl-map</code>.
+      </li>
+    </ul>`,
+  },
+];
 
 const changes = [
   ...unreleased,

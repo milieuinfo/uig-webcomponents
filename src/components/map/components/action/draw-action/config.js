@@ -8,17 +8,6 @@ export const args = {
 };
 
 export const argTypes = {
-  active: {
-    name: 'active',
-    description: 'Controls the active state of the measure action.',
-    table: {
-      type: {
-        summary: TYPES.BOOLEAN,
-      },
-      category: CATEGORIES.PROPERTIES,
-    },
-    control: { disabled: true },
-  },
   defaultActive: {
     name: 'data-vl-default-active',
     type: { summary: TYPES.BOOLEAN },
