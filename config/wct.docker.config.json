@@ -1,10 +1,12 @@
 
 {
-  "testTimeout": 600000,
-  "verbose": true,
   "activeBrowsers": [
     {
       "browserName": "chrome",
+      "url": "http://selenium-hub:4444/wd/hub"
+    },
+    {
+      "browserName": "firefox",
       "url": "http://selenium-hub:4444/wd/hub"
     }
   ],
@@ -20,7 +22,8 @@
       }
     }
   },
-  "suites": ["src/**/**/test/unit/**/*.test.html"
+  "suites": [
+    "src/**/**/test/unit/**/*.test.html"
   ],
   "webserver": {
     "hostname": "tests"
