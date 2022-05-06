@@ -26,6 +26,7 @@ services:
     ports:
       - "6900:5900"
     shm_size: 3g
+    oom_kill_disable: true
   selenium-firefox:
     image: ${DOCKER_REGISTRY}selenium/node-firefox:99.0
     depends_on:
