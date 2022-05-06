@@ -7,7 +7,7 @@ services:
       - NODE_MAX_SESSION=3
       - NODE_MAX_INSTANCES=3
   selenium-chrome:
-    image: ${DOCKER_REGISTRY}selenium/node-chrome:101.0
+    image: ${DOCKER_REGISTRY}selenium/node-chrome:98.0
     depends_on:
       - selenium-hub
     environment:
