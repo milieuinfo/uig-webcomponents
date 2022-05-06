@@ -38,7 +38,7 @@ export const Default = () => html`
     </vl-map-controls>
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
     <vl-map-features-layer>
-      <vl-map-measure-action .active=${active}></vl-map-measure-action>
+      <vl-map-measure-action></vl-map-measure-action>
     </vl-map-features-layer>
   </vl-map>
 `;
