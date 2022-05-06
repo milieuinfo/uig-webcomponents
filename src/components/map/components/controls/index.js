@@ -1,28 +1,19 @@
-import { vlElement, define } from '../../../../utils/core';
-import '../../../toggle-button';
+import { html, css, LitElement, unsafeCSS } from 'lit';
+import styles from './styles.scss';
 
-export class VlMapControls extends vlElement(HTMLElement) {
-  constructor() {
-    super(`
-      <style>
-        div {
-          position: absolute;
-          top: 0;
-          right: 0;
-          z-index: 1;
-          display: flex;
-          flex-direction: row;
-          column-gap: 10px;
-          justify-content: flex-end;
-          width: calc(100% - 20px);
-          padding: 10px;
-        }
-      </style>
-      <div>
-        <slot></slot>
-      </div>
-    `);
+export class VlMapControls extends LitElement {
+  static get styles() {
+    return [
+      css`
+        ${unsafeCSS(styles)}
+      `,
+    ];
+  }
+
+  render() {
+    return html`<div>
+      <slot></slot>
+    </div>`;
   }
 }
-
-define('vl-map-controls', VlMapControls);
+customElements.define('vl-map-controls', VlMapControls);

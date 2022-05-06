@@ -4,6 +4,7 @@ import { docsIntro } from '../../../../../.storybook/utils.js';
 
 export default {
   title: 'custom-elements/vl-map/vl-map-controls',
+  args: { toggle: true },
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
@@ -18,7 +19,7 @@ export default {
 };
 
 export const Default = () => html`
-  <vl-map id="map">
+  <vl-map>
     <vl-map-controls>
       <vl-map-measure-control></vl-map-measure-control>
       <vl-map-measure-control></vl-map-measure-control>
