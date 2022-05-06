@@ -29,6 +29,5 @@ export { VlMapSideSheetMenu } from './side-sheet-menu';
 export { VlMapSideSheetMenuItem } from './side-sheet-menu-item';
 export { VlMapModifyAction } from './action/layer-action/modify-action';
 export { VlMapControls } from './controls';
-export { VlMapControl } from './controls/control';
-export { VlMapMeasureControl } from './controls/control/measure-control';
+export { VlMapMeasureControl } from './controls/components/measure-control';
 export { VlSelectLocation } from './select-location';

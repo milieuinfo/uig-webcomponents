@@ -1,9 +1,10 @@
 import Control from 'ol/control/Control';
-import { define } from '../../../../../../utils/core';
 import { VlMeasureAction } from '../../../../actions/measure-action';
-import { VlMapControl } from '../index';
+import { LitElement } from 'lit';
+import { VlMapControl } from '../../mixin';
+import '../../../../../toggle-button';
 
-export class VlMapMeasureControl extends VlMapControl {
+export class VlMapMeasureControl extends VlMapControl(LitElement) {
   constructor(map, controlElement) {
     super(map);
 
@@ -14,14 +15,9 @@ export class VlMapMeasureControl extends VlMapControl {
       });
     } else {
       this.controlElement = document.createElement('vl-toggle-button');
-      // button.setAttribute('data-vl-icon', 'pencil');
-      // this.controlElement.setAttribute('data-vl-text-hidden', 'true');
+      // this.controlElement.icon = 'ruler';
+      // this.controlElement.textHidden = true;
       this.controlElement.innerText = 'Meten';
-
-      this.control = new Control({
-        element: this.controlElement,
-        target: this,
-      });
     }
 
     this.controlElement.addEventListener('click', this.handleMeasureControlClick.bind(this), false);
@@ -32,16 +28,16 @@ export class VlMapMeasureControl extends VlMapControl {
   }
 
   handleMeasureControlClick() {
-    const measureAction = this._map.actions.find((action) => action instanceof VlMeasureAction);
+    const measureAction = this.map.actions.find((action) => action instanceof VlMeasureAction);
 
     if (this.active) {
-      this._map.deactivateAction(measureAction);
+      this.map.deactivateAction(measureAction);
     } else {
-      this._map.activateAction(measureAction);
+      this.map.activateAction(measureAction);
     }
 
     this.active = !this.active;
   }
 }
 
-define('vl-map-measure-control', VlMapMeasureControl);
+customElements.define('vl-map-measure-control', VlMapMeasureControl);
