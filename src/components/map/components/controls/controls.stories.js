@@ -19,7 +19,7 @@ export default {
   argTypes: {
     active: {
       name: 'active',
-      description: 'Controls the active state of the measure action.',
+      description: 'Controls the active state of the action.',
       table: {
         type: {
           summary: TYPES.BOOLEAN,
@@ -31,14 +31,14 @@ export default {
   },
 };
 
-export const Default = () => html`
+export const Default = ({ active }) => html`
   <vl-map id="map">
     <vl-map-controls>
       <vl-map-measure-control></vl-map-measure-control>
     </vl-map-controls>
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
     <vl-map-features-layer>
-      <vl-map-measure-action></vl-map-measure-action>
+      <vl-map-measure-action .active=${active}></vl-map-measure-action>
     </vl-map-features-layer>
   </vl-map>
 `;
@@ -49,7 +49,7 @@ const getMeasureAction = () => {
   return lastItem;
 };
 
-export const SeperateControl = ({ active }) => html`
+export const ControlOutsideOfMap = ({ active }) => html`
   <div>
     <vl-toggle-button
       id="measure-button"
@@ -68,8 +68,8 @@ export const SeperateControl = ({ active }) => html`
   </div>
 `;
 
-SeperateControl.args = {
+ControlOutsideOfMap.args = {
   active: false,
 };
 
-SeperateControl.argTypes = { active: { control: { disabled: false } } };
+ControlOutsideOfMap.argTypes = { active: { control: { disabled: false } } };

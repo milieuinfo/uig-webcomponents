@@ -15,7 +15,7 @@ const unreleased = [
         <p>Added the new <code>vl-toggle-button</code> componen, which can be used controlled and uncontrolled.</p>
       </li>
       <li>
-        <p><code>vl-mapactions</code></p>
+        <p><code>vl-mapactions</code> &#x1F4A5;</p>
         <p>
           Moved the <code>vl-mapactions</code> project inside the <code>vl-map</code> component. Changes that are made
           to the functionalities of the files that were in the <code>vl-mapactions</code> project will from now on be
@@ -30,12 +30,22 @@ const unreleased = [
         </p>
         <p>Upgraded the OpenLayers and jsts versions</p>
         <p>
+          Added <code>vl-map-controls</code> as a wrapper for map controls which will be shown horizontally on the top
+          right of the map.
+        </p>
+        <p>
+          Added <code>vl-map-measure-control</code> to control the active state of the measure action. The control
+          temporarily contains the text "Meten", but should change to a ruler icon when this becomes available.
+        </p>
+        <p>
           Fixed a bug where the tooltip overlay wouldn't show on the map when using the measure option on draw actions.
         </p>
         <p>
           Changed the existing measure action. The tooltip overlays use <code>vl-pill</code> to show the measurement now
           and are removable because of the closable functionality of the pill component. The measurement can now take
-          place between two points only.
+          place between two points only. The measure action can now optionally be controlled using the new
+          <code>vl-map-measure-control</code> or controlling the active state of the measure action from outside the
+          map.
         </p>
       </li>
       <li>
