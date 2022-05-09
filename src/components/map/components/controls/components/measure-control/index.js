@@ -23,20 +23,22 @@ export class VlMapMeasureControl extends VlMapControl(LitElement) {
     this.controlElement.addEventListener('click', this.handleMeasureControlClick.bind(this), false);
 
     this.identifier = 'measure';
-
-    this.active = false;
   }
 
   handleMeasureControlClick() {
     const measureAction = this.map.actions.find((action) => action instanceof VlMeasureAction);
 
-    if (this.active) {
+    if (this.controlElement.active) {
       this.map.deactivateAction(measureAction);
     } else {
       this.map.activateAction(measureAction);
     }
 
-    this.active = !this.active;
+    this.controlElement.active = !this.controlElement.active;
+  }
+
+  deactivate() {
+    this.controlElement.active = false;
   }
 }
 

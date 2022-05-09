@@ -137,6 +137,13 @@ export class VlMap extends vlElement(HTMLElement) {
     return this.map && this.map.currentAction;
   }
 
+  /**
+   * Geeft alle controls van de kaart.
+   */
+  get controls() {
+    return this.map && this.map.getControls().getArray();
+  }
+
   get _mapElement() {
     return this._shadow.querySelector('#map');
   }

@@ -52,10 +52,7 @@ export class VlMapWithActions extends Map {
   }
 
   activateAction(action) {
-    if (this.currentAction) {
-      this.currentAction.deactivate();
-      clearTimeout(this.timeout);
-    }
+    this.deactivateAction(this.currentAction);
 
     this.currentAction = action;
 
@@ -66,8 +63,18 @@ export class VlMapWithActions extends Map {
     }, VlMapWithActions.CLICK_COUNT_TIMEOUT);
   }
 
+  deactivateControls() {
+    this.controls.forEach((control) => {
+      if (control.values_ && control.values_.controlIdentifier) {
+        control.target_.deactivate();
+      }
+    });
+  }
+
   deactivateAction(action) {
     if (this.currentAction && this.currentAction === action) {
+      this.deactivateControls();
+
       this.currentAction.deactivate();
       this.currentAction = undefined;
       clearTimeout(this.timeout);
