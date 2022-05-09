@@ -25,7 +25,7 @@ services:
       - no_proxy=${no_proxy},selenium-hub,tests,dummy
     shm_size: 2g
   selenium-firefox:
-    image: ${DOCKER_REGISTRY}selenium/node-firefox:99.0
+    image: ${DOCKER_REGISTRY}selenium/node-firefox:83.0
     depends_on:
       - selenium-hub
     environment:
