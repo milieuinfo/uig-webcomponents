@@ -12,7 +12,7 @@ const unreleased = [
     children: html`<ul>
       <li>
         <p><code>vl-toggle-button</code></p>
-        <p>Added the new <code>vl-toggle-button</code> componen, which can be used controlled and uncontrolled.</p>
+        <p>Added the new <code>vl-toggle-button</code> component, which can be used controlled and uncontrolled.</p>
       </li>
       <li>
         <p><code>vl-mapactions</code> &#x1F4A5;</p>
@@ -28,25 +28,43 @@ const unreleased = [
           This component now includes the <code>vl-mapactions</code> files, as these were moved into this project in
           this release (see previous list item).
         </p>
-        <p>Upgraded the OpenLayers and jsts versions</p>
-        <p>
-          Added <code>vl-map-controls</code> as a wrapper for map controls which will be shown horizontally on the top
-          right of the map.
-        </p>
-        <p>
-          Added <code>vl-map-measure-control</code> to control the active state of the measure action. The control
-          temporarily contains the text "Meten", but should change to a ruler icon when this becomes available.
-        </p>
-        <p>
-          Fixed a bug where the tooltip overlay wouldn't show on the map when using the measure option on draw actions.
-        </p>
-        <p>
-          Changed the existing measure action. The tooltip overlays use <code>vl-pill</code> to show the measurement now
-          and are removable because of the closable functionality of the pill component. The measurement can now take
-          place between two points only. The measure action can now optionally be controlled using the new
-          <code>vl-map-measure-control</code> or controlling the active state of the measure action from outside the
-          map.
-        </p>
+        <ul>
+          <li><p>Upgraded OpenLayers dependency to v6.14.1 and jsts to v2.8.1.</p></li>
+          <li>
+            <p>
+              Added <code>vl-map-action-controls</code> as a wrapper for map action controls which will be shown
+              horizontally on the top right of the map.
+            </p>
+          </li>
+          <li>
+            <p>
+              Added <code>vl-map-measure-control</code> to control the active state of the measure action. The control
+              temporarily contains the text "Meten", but should change to a ruler icon when this becomes available.
+            </p>
+          </li>
+          <li>
+            <p>
+              Fixed a bug where the tooltip overlay wouldn't show on the map when using the measure option on draw
+              actions.
+            </p>
+          </li>
+          <li>
+            <p>
+              Changed the existing measure action. The tooltip overlays use <code>vl-pill</code> to show the measurement
+              now and are removable because of the closable functionality of the pill component. The measurement can now
+              take place between two points only. The measure action can now optionally be controlled using the new
+              <code>vl-map-measure-control</code> or controlling the active state of the measure action from outside the
+              map.
+            </p>
+          </li>
+          <li>
+            <p>
+              Made a change in the functionality of the <code>data-vl-default-active</code> attribute for map actions.
+              From now on, the default active action will always be the action with this attribute, instead of the first
+              action in the list of actions on the map.
+            </p>
+          </li>
+        </ul>
       </li>
       <li>
         <p><code>vl-pill</code></p>
