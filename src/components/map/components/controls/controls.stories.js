@@ -1,5 +1,5 @@
 import { html } from 'lit-html';
-import '../../../map';
+import '.';
 import { docsIntro, TYPES, CATEGORIES } from '../../../../../.storybook/utils.js';
 
 export default {
@@ -33,9 +33,9 @@ export default {
 
 export const Default = () => html`
   <vl-map>
-    <vl-map-controls>
+    <vl-map-action-controls>
       <vl-map-measure-control></vl-map-measure-control>
-    </vl-map-controls>
+    </vl-map-action-controls>
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
     <vl-map-features-layer>
       <vl-map-measure-action></vl-map-measure-action>

@@ -44,9 +44,9 @@ export const Default = () => html`
 
 export const WithControl = () => html`
   <vl-map>
-    <vl-map-controls>
+    <vl-map-action-controls>
       <vl-map-measure-control></vl-map-measure-control>
-    </vl-map-controls>
+    </vl-map-action-controls>
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
     <vl-map-features-layer>
       <vl-map-measure-action></vl-map-measure-action>

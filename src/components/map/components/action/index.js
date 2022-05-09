@@ -70,7 +70,7 @@ export class VlMapAction extends vlElement(HTMLElement) {
 
   _processAction() {
     if (this.action) {
-      this._mapElement.addAction(this.action);
+      this._mapElement.addAction(this.action, this.defaultActive);
       if (this.defaultActive) {
         this.activate();
       }

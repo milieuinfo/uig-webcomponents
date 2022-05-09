@@ -3,6 +3,7 @@ import { LitElement } from 'lit';
 import { VlMeasureAction } from '../../../../actions/measure-action';
 import { VlMapControl } from '../../mixin';
 import '../../../../../toggle-button';
+import { CONTROL_TYPE } from '../../enums';
 
 export class VlMapMeasureControl extends VlMapControl(LitElement) {
   constructor(map, controlElement) {
@@ -23,6 +24,8 @@ export class VlMapMeasureControl extends VlMapControl(LitElement) {
     this.controlElement.addEventListener('click', this.handleMeasureControlClick.bind(this), false);
 
     this.identifier = 'measure';
+
+    this.type = CONTROL_TYPE.ACTION;
   }
 
   handleMeasureControlClick() {
@@ -30,11 +33,11 @@ export class VlMapMeasureControl extends VlMapControl(LitElement) {
 
     if (this.controlElement.active) {
       this.map.deactivateAction(measureAction);
+      this.controlElement.active = false;
     } else {
       this.map.activateAction(measureAction);
+      this.controlElement.active = true;
     }
-
-    this.controlElement.active = !this.controlElement.active;
   }
 
   deactivate() {

@@ -13,6 +13,7 @@ export const VlMapControl = (superClass) => {
       });
 
       this.control.set('controlIdentifier', this.identifier);
+      this.control.set('controlType', this.type);
 
       this.map.addControl(this.control);
     }

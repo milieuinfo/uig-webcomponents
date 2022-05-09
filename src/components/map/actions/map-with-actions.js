@@ -1,5 +1,6 @@
 import { defaults } from 'ol/interaction';
 import Map from 'ol/Map';
+import { CONTROL_TYPE } from '../components/controls/enums';
 
 /**
  * Deze map bevat enkel de functionaliteit om de acties te behandelen. Aan het eerste argument van de constructor kan het gebruikelijke object map opties worden weergegeven die ook op de ol.Map worden gezet, samen met een extra parameter 'acties' in dat object. Deze array bevat MapActions.
@@ -47,6 +48,14 @@ export class VlMapWithActions extends Map {
     }
   }
 
+  deactivateControls() {
+    this.controls.forEach((control) => {
+      if (control.values_ && control.values_.controlType && control.values_.controlType === CONTROL_TYPE.ACTION) {
+        control.target_.deactivate();
+      }
+    });
+  }
+
   get defaultActiveAction() {
     return this.actions && this.actions.find((action) => action.defaultActive);
   }
@@ -63,14 +72,6 @@ export class VlMapWithActions extends Map {
     }, VlMapWithActions.CLICK_COUNT_TIMEOUT);
   }
 
-  deactivateControls() {
-    this.controls.forEach((control) => {
-      if (control.values_ && control.values_.controlIdentifier) {
-        control.target_.deactivate();
-      }
-    });
-  }
-
   deactivateAction(action) {
     if (this.currentAction && this.currentAction === action) {
       this.deactivateControls();
@@ -81,9 +82,11 @@ export class VlMapWithActions extends Map {
     }
   }
 
-  addAction(action) {
+  addAction(action, defaultActive) {
+    action.defaultActive = defaultActive;
     this.actions.push(action);
     action.map = this;
+
     action.interactions.forEach((interaction) => {
       this.addInteraction(interaction);
       interaction.map = action.map;
