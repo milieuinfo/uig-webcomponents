@@ -56,26 +56,16 @@
       );
     });
 
-    it('heeft als default actie de eerste actie', (done) => {
-      const map = createMapWithActions();
-      setTimeout(() => {
-        expect(map.currentAction).to.equal(action1);
-        done();
-      });
-    });
-
     it('kan een nieuwe actie toevoegen aan de map', (done) => {
       const map = createMapWithActions();
       expect(map.actions.length).to.equal(2);
       expect(map.getInteractions().getLength()).to.equal(14);
       setTimeout(() => {
-        expect(map.currentAction).to.equal(action1);
         const nieuweAction = new VlMapActionAction([new Interaction({}), new Interaction({})]);
         map.addAction(nieuweAction);
         expect(map.actions.length).to.equal(3);
         expect(map.actions[2]).to.equal(nieuweAction);
         expect(map.getInteractions().getLength()).to.equal(16);
-        expect(map.currentAction).to.equal(action1);
         done();
       });
     });
@@ -89,7 +79,6 @@
         expect(map.actions.length).to.equal(2);
         expect(map.actions.indexOf(nieuweAction)).to.equal(-1);
         expect(map.getInteractions().getLength()).to.equal(14);
-        expect(map.currentAction).to.equal(action1);
         done();
       });
     });
@@ -102,7 +91,6 @@
         map.activateAction(nieuweAction);
         expect(map.currentAction).to.equal(nieuweAction);
         map.removeAction(nieuweAction);
-        expect(map.currentAction).to.equal(map.actions[0]);
         done();
       });
     });
@@ -125,32 +113,18 @@
       });
     });
 
-    it('Wanneer de default actie wordt geactiveerd, zal de huidige actie gedeactiveerd worden en is de nieuwe default actie de eerst gedefinieerde actie', (done) => {
+    it('wanneer de huidige actie wordt gedeactiveerd, zal de default actie geactiveerd worden', (done) => {
       const map = createMapWithActions();
+      action1.defaultActive = true;
       map.activateAction(action2);
       expect(map.currentAction).to.equal(action2);
 
       sinon.stub(action1, 'activate');
       sinon.stub(action2, 'activate');
       sinon.stub(action2, 'deactivate');
-      map.activateDefaultAction();
+      map.deactivateAction(action2);
       setTimeout(() => {
         expect(action2.deactivate.called).to.be.true;
-        expect(action1.activate.called).to.be.true;
-        done();
-      }, 2000);
-    });
-
-    it('Wanneer de default actie wordt geactiveerd, zal de huidige actie gedeactiveerd worden en is de nieuwe default actie de eerst gedefinieerde actie, ook als de huidige actie de eerst gedefinieerde is', (done) => {
-      const map = createMapWithActions();
-      map.activateAction(action1);
-      expect(map.currentAction).to.equal(action1);
-
-      sinon.stub(action1, 'activate');
-      sinon.stub(action1, 'deactivate');
-      map.activateDefaultAction();
-      setTimeout(() => {
-        expect(action1.deactivate.called).to.be.true;
         expect(action1.activate.called).to.be.true;
         done();
       }, 2000);

@@ -45,13 +45,14 @@ export class VlMeasureAction extends VlDrawAction {
   _setMeasurementTooltipsClosable(closable) {
     this.measurementTooltips.forEach((tooltip) => {
       const closableAttribute = 'data-vl-closable';
+      const tooltipElement = tooltip.getElement();
+
       // Check if tooltip still exists
-      if (tooltip) {
-        const tooltipEl = tooltip.getElement();
+      if (tooltip && tooltipElement) {
         if (closable) {
-          tooltipEl.setAttribute(closableAttribute, closable);
+          tooltipElement.setAttribute(closableAttribute, closable);
         } else {
-          tooltipEl.removeAttribute(closableAttribute);
+          tooltipElement.removeAttribute(closableAttribute);
         }
       }
     });
@@ -60,13 +61,14 @@ export class VlMeasureAction extends VlDrawAction {
   _setMeasurementTooltipsVisible(visible) {
     this.measurementTooltips.forEach((tooltip) => {
       const hiddenAttribute = 'hidden';
+      const tooltipElement = tooltip.getElement();
+
       // Check if tooltip still exists
-      if (tooltip) {
-        const tooltipEl = tooltip.getElement();
+      if (tooltip && tooltipElement) {
         if (visible) {
-          tooltipEl.removeAttribute(hiddenAttribute);
+          tooltipElement.removeAttribute(hiddenAttribute);
         } else {
-          tooltipEl.setAttribute(hiddenAttribute, true);
+          tooltipElement.setAttribute(hiddenAttribute, true);
         }
       }
     });
