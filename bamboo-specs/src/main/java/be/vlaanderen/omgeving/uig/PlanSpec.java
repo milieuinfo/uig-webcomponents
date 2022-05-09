@@ -46,7 +46,7 @@ public class PlanSpec {
                                     .checkoutItems(new CheckoutItem().defaultRepository())
                                     .cleanCheckout(true),
                                 new ScriptTask()
-                                    .inlineBody("#!/bin/bash\nset -e\nexport browserstack_username=\"${bamboo_browserstack_username}\"\nexport browserstack_password=\"${bamboo_browserstack_password}\"\ndocker-compose -f docker/docker-compose-test.yml up --scale selenium-chrome=1 --scale selenium-firefox=1 --exit-code-from tests --force-recreate\n"))
+                                    .inlineBody("#!/bin/bash\nset -e\nexport browserstack_username=\"${bamboo_browserstack_username}\"\nexport browserstack_password=\"${bamboo_browserstack_password}\"\ndocker-compose -f docker/docker-compose-test.yml up --scale selenium-chrome=3 --scale selenium-firefox=3 --exit-code-from tests --force-recreate\n"))
                             .finalTasks(new ScriptTask()
                                     .inlineBody("/opt/scripts/docker/stop-docker-containers.sh"),
                                 new TestParserTask(TestParserTaskProperties.TestType.JUNIT)
