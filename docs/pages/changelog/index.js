@@ -15,7 +15,7 @@ const unreleased = [
         <p>Added the new <code>vl-toggle-button</code> component, which can be used controlled and uncontrolled.</p>
       </li>
       <li>
-        <p><code>vl-mapactions</code> &#x1F4A5;</p>
+        <p><code>vl-mapactions</code></p>
         <p>
           Moved the <code>vl-mapactions</code> project inside the <code>vl-map</code> component. Changes that are made
           to the functionalities of the files that were in the <code>vl-mapactions</code> project will from now on be
