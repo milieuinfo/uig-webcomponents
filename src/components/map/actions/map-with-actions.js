@@ -48,9 +48,9 @@ export class VlMapWithActions extends Map {
     }
   }
 
-  deactivateControls() {
+  deactivateControlsOfType(type) {
     this.controls.forEach((control) => {
-      if (control.values_ && control.values_.controlType && control.values_.controlType === CONTROL_TYPE.ACTION) {
+      if (control.values_ && control.values_.controlType && control.values_.controlType === type) {
         control.target_.deactivate();
       }
     });
@@ -74,7 +74,7 @@ export class VlMapWithActions extends Map {
 
   deactivateAction(action) {
     if (this.currentAction && this.currentAction === action) {
-      this.deactivateControls();
+      this.deactivateControlsOfType(CONTROL_TYPE.ACTION);
 
       this.currentAction.deactivate();
       this.currentAction = undefined;
