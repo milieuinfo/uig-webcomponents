@@ -24,7 +24,7 @@ services:
       - http_proxy=${http_proxy}
       - https_proxy=${https_proxy}
       - no_proxy=${no_proxy},selenium-hub,tests,dummy
-    shm_size: 2g
+    shm_size: 11g
   selenium-firefox:
     image: ${DOCKER_REGISTRY}selenium/node-firefox:99.0
     depends_on:
@@ -39,7 +39,7 @@ services:
       - http_proxy=${http_proxy}
       - https_proxy=${https_proxy}
       - no_proxy=${no_proxy},selenium-hub,tests,dummy
-    shm_size: 2g
+    shm_size: 11g
   tests:
     image: ${DOCKER_REGISTRY}milieuinfo/ubuntu-node:14.18.3
     command: bash -c "npm run test:bamboo"
