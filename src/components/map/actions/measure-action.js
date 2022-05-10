@@ -5,7 +5,7 @@ import { VlDrawAction } from './draw-action';
 import '../../pill';
 
 export class VlMeasureAction extends VlDrawAction {
-  constructor(layer, options) {
+  constructor(layer, options, element) {
     super(
       layer,
       GeometryType.LINE_STRING,
@@ -14,6 +14,8 @@ export class VlMeasureAction extends VlDrawAction {
       },
       { ...options, maxPoints: 2, geometryName: 'measurement' },
     );
+
+    this.element = element;
 
     this.featureCounter = 0;
     this.layer = layer;

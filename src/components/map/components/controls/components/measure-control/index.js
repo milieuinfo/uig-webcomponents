@@ -32,10 +32,10 @@ export class VlMapMeasureControl extends VlMapControl(LitElement) {
     const measureAction = this.map.actions.find((action) => action instanceof VlMeasureAction);
 
     if (this.controlElement.active) {
-      this.map.deactivateAction(measureAction);
+      measureAction.element.active = false;
       this.controlElement.active = false;
     } else {
-      this.map.activateAction(measureAction);
+      measureAction.element.active = true;
       this.controlElement.active = true;
     }
   }

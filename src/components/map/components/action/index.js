@@ -50,6 +50,19 @@ export class VlMapAction extends vlElement(HTMLElement) {
     return (...args) => (this.__callback ? this.__callback(...args) : null);
   }
 
+  get active() {
+    return this.getAttribute('active') && this.getAttribute('active') === 'true';
+  }
+
+  // For control outside of the map
+  set active(value) {
+    if (value) {
+      this.activate();
+    } else {
+      this.deactivate();
+    }
+  }
+
   /**
    * Activeer de kaart actie op de kaart.
    */
