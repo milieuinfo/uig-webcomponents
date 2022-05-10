@@ -40,20 +40,6 @@ import styles from './styles.scss';
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wmts-layer.html|Demo}
  */
 export class VlMap extends vlElement(HTMLElement) {
-  /**
-   * Geeft de event naam die gebruikt wordt wanneer een nieuwe actie toegevoegd wordt aan de kaart
-   *
-   * @return {string}
-   */
-  static get EVENTS() {
-    return {
-      action: {
-        activated: 'action-activated',
-        deactivated: 'action-deactivated',
-      },
-    };
-  }
-
   constructor() {
     super(`
       <style>
@@ -134,7 +120,7 @@ export class VlMap extends vlElement(HTMLElement) {
    * @return {VlMapAction}
    */
   get activeAction() {
-    return this.map && this.map.currentAction;
+    return this.map && this.map.currentActiveAction;
   }
 
   get _mapElement() {
@@ -217,30 +203,6 @@ export class VlMap extends vlElement(HTMLElement) {
    */
   removeAction(action) {
     this.map.removeAction(action);
-  }
-
-  /**
-   * Activeert een kaartactie.
-   *
-   * @param {VlMapAction} action
-   */
-  activateAction(action) {
-    if (action) {
-      this.map.activateAction(action);
-      this.dispatchEvent(new Event(VlMap.EVENTS.action.activated));
-    }
-  }
-
-  /**
-   * Deactiveert een kaartactie.
-   *
-   * @param {VlMapAction} action
-   */
-  deactivateAction(action) {
-    if (action) {
-      this.map.deactivateAction(action);
-      this.dispatchEvent(new Event(VlMap.EVENTS.action.deactivated));
-    }
   }
 
   /**

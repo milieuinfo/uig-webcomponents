@@ -1,5 +1,5 @@
 import { vlElement, define } from '../../../../utils/core';
-import { VlMap } from '../map';
+import { EVENTS } from '../../enums';
 
 /**
  * VlMapAction
@@ -22,7 +22,7 @@ import { VlMap } from '../map';
 export class VlMapAction extends vlElement(HTMLElement) {
   connectedCallback() {
     this.__defineLayer();
-    this.__registerMapActionChangedCallback();
+    // this.__registerMapActionChangedCallback();
   }
 
   static isVlMapAction() {
@@ -54,12 +54,13 @@ export class VlMapAction extends vlElement(HTMLElement) {
     return this.getAttribute('active') && this.getAttribute('active') === 'true';
   }
 
-  // For control outside of the map
   set active(value) {
     if (value) {
-      this.activate();
+      this._mapElement.map.activateAction(this.action);
+      this._mapElement.dispatchEvent(new Event(EVENTS.ACTIVATED));
     } else {
-      this.deactivate();
+      this._mapElement.map.deactivateAction(this.action);
+      this._mapElement.dispatchEvent(new Event(EVENTS.DEACTIVATED));
     }
   }
 
@@ -67,14 +68,14 @@ export class VlMapAction extends vlElement(HTMLElement) {
    * Activeer de kaart actie op de kaart.
    */
   activate() {
-    this._mapElement.activateAction(this.action);
+    this.active = true;
   }
 
   /**
    * Deactiveer de kaart actie op de kaart.
    */
   deactivate() {
-    this._mapElement.deactivateAction(this.action);
+    this.active = false;
   }
 
   _createAction() {
@@ -90,15 +91,16 @@ export class VlMapAction extends vlElement(HTMLElement) {
     }
   }
 
-  __registerMapActionChangedCallback() {
-    this._mapElement.addEventListener(VlMap.EVENTS.action.activated, () => {
-      this.setAttribute('active', this._mapElement.activeAction === this.action);
-    });
+  // __registerMapActionChangedCallback() {
+  //   this._mapElement.addEventListener(EVENTS.ACTIVATED, () => {
+  //     console.log('active EVENT');
+  //     this.setAttribute('active', this._mapElement.activeAction === this.action);
+  //   });
 
-    this._mapElement.addEventListener(VlMap.EVENTS.action.deactivated, () => {
-      this.setAttribute('active', this._mapElement.activeAction === this.action);
-    });
-  }
+  //   this._mapElement.addEventListener(EVENTS.DEACTIVATED, () => {
+  //     this.setAttribute('active', this._mapElement.activeAction === this.action);
+  //   });
+  // }
 
   __defineLayer() {
     if (this._layerElement) {

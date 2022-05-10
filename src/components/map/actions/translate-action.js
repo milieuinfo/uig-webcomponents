@@ -33,4 +33,8 @@ export class VlTranslateAction extends VlMapAction {
     this.selectInteraction.getFeatures().clear();
     super.deactivate();
   }
+
+  stop() {
+    // TODO: Implement stop
+  }
 }

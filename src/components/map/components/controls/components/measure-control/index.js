@@ -3,7 +3,7 @@ import { LitElement } from 'lit';
 import { VlMeasureAction } from '../../../../actions/measure-action';
 import { VlMapControl } from '../../mixin';
 import '../../../../../toggle-button';
-import { CONTROL_TYPE } from '../../enums';
+import { CONTROL_TYPE } from '../../../../enums';
 
 export class VlMapMeasureControl extends VlMapControl(LitElement) {
   constructor(map, controlElement) {

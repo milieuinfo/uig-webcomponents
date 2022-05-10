@@ -38,7 +38,17 @@ export const Default = () => html`
     </vl-map-action-controls>
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
     <vl-map-features-layer>
+      <vl-map-select-action data-vl-default-active></vl-map-select-action>
       <vl-map-measure-action></vl-map-measure-action>
     </vl-map-features-layer>
   </vl-map>
+  <script>
+    const map = document.getElementById('map');
+    map.addEventListener('action-activated', () => {
+      console.log('action-activated');
+    });
+    map.addEventListener('action-deactivated', () => {
+      console.log('action-deactivated');
+    });
+  </script>
 `;

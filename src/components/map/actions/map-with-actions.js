@@ -1,6 +1,6 @@
 import { defaults } from 'ol/interaction';
 import Map from 'ol/Map';
-import { CONTROL_TYPE } from '../components/controls/enums';
+import { CONTROL_TYPE } from '../enums';
 
 /**
  * Deze map bevat enkel de functionaliteit om de acties te behandelen. Aan het eerste argument van de constructor kan het gebruikelijke object map opties worden weergegeven die ook op de ol.Map worden gezet, samen met een extra parameter 'acties' in dat object. Deze array bevat MapActions.
@@ -39,13 +39,19 @@ export class VlMapWithActions extends Map {
     if (!options.disableEscapeKey) {
       const activateFirstActionOnEscapeKey = (e) => {
         if (e && e.keyCode && e.keyCode == 27) {
-          this.activateDefaultAction();
+          if (this.currentActiveAction) {
+            this.currentActiveAction.stop();
+          } else {
+            this.activateDefaultAction();
+          }
         }
       };
 
       document.body.removeEventListener('keydown', activateFirstActionOnEscapeKey);
       document.body.addEventListener('keydown', activateFirstActionOnEscapeKey);
     }
+
+    this.mapElement = options.target;
   }
 
   deactivateControlsOfType(type) {
@@ -60,25 +66,35 @@ export class VlMapWithActions extends Map {
     return this.actions && this.actions.find((action) => action.defaultActive);
   }
 
+  get currentActiveAction() {
+    return this.actions && this.actions.find((action) => action.active);
+  }
+
   activateAction(action) {
-    this.deactivateAction(this.currentAction);
+    if (action) {
+      if (this.currentActiveAction) {
+        // Set active attribute
+        this.currentActiveAction.active = false;
+      }
 
-    this.currentAction = action;
+      // this.currentActiveAction = action;
 
-    // delay the activation of the action with 300ms because ol has a timeout of 251ms to detect a double click event
-    // when we don't use a delay some click and select events of the previous action will be triggered on the new action
-    this.timeout = setTimeout(() => {
-      action.activate();
-    }, VlMapWithActions.CLICK_COUNT_TIMEOUT);
+      // delay the activation of the action with 300ms because ol has a timeout of 251ms to detect a double click event
+      // when we don't use a delay some click and select events of the previous action will be triggered on the new action
+      this.timeout = setTimeout(() => {
+        action.activate();
+      }, VlMapWithActions.CLICK_COUNT_TIMEOUT);
+    }
   }
 
   deactivateAction(action) {
-    if (this.currentAction && this.currentAction === action) {
-      this.deactivateControlsOfType(CONTROL_TYPE.ACTION);
+    if (action) {
+      if (this.currentActiveAction && this.currentActiveAction === action) {
+        this.deactivateControlsOfType(CONTROL_TYPE.ACTION);
 
-      this.currentAction.deactivate();
-      this.currentAction = undefined;
-      clearTimeout(this.timeout);
+        this.currentActiveAction.deactivate();
+        clearTimeout(this.timeout);
+      }
     }
   }
 
@@ -94,7 +110,7 @@ export class VlMapWithActions extends Map {
   }
 
   removeAction(action) {
-    if (this.currentAction == action) {
+    if (this.currentActiveAction == action) {
       this.activateDefaultAction();
     }
     action.interactions.forEach((interaction) => {
@@ -105,7 +121,7 @@ export class VlMapWithActions extends Map {
 
   activateDefaultAction() {
     if (this.defaultActiveAction) {
-      this.activateAction(this.defaultActiveAction);
+      this.defaultActiveAction.active = true;
     }
   }
 }

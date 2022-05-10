@@ -43,10 +43,10 @@
       const map = createMapWithActions();
       map.activateAction(action1);
       afterActivation(
-        () => expect(map.currentAction).to.equal(action1),
+        () => expect(map.currentActiveAction).to.equal(action1),
         () => {
           map.activateAction(action2);
-          expect(map.currentAction).to.equal(action2);
+          expect(map.currentActiveAction).to.equal(action2);
           action1.interactions.forEach((interaction) => expect(interaction.getActive()).to.be.false);
           afterActivation(
             () => action2.interactions.forEach((interaction) => expect(interaction.getActive()).to.be.true),
@@ -89,7 +89,7 @@
         const nieuweAction = new VlMapActionAction([new Interaction({}), new Interaction({})]);
         map.addAction(nieuweAction);
         map.activateAction(nieuweAction);
-        expect(map.currentAction).to.equal(nieuweAction);
+        expect(map.currentActiveAction).to.equal(nieuweAction);
         map.removeAction(nieuweAction);
         done();
       });
@@ -117,7 +117,7 @@
       const map = createMapWithActions();
       action1.defaultActive = true;
       map.activateAction(action2);
-      expect(map.currentAction).to.equal(action2);
+      expect(map.currentActiveAction).to.equal(action2);
 
       sinon.stub(action1, 'activate');
       sinon.stub(action2, 'activate');

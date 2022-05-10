@@ -193,4 +193,9 @@ export class VlMeasureAction extends VlDrawAction {
 
     super.deactivate(this);
   }
+
+  stop() {
+    super.stop();
+    this._cleanUp(true);
+  }
 }

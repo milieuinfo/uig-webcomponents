@@ -157,4 +157,8 @@ export class VlDrawAction extends VlMapAction {
     const size = geometry.getCoordinates().length;
     return geometry.getCoordinates().slice(size - 2);
   }
+
+  stop() {
+    this.drawInteraction.abortDrawing();
+  }
 }
