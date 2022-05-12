@@ -4,6 +4,7 @@ import OlProjection from 'ol/proj/Projection';
 import proj4 from 'proj4';
 import { vlElement, define } from '../../../../utils/core';
 import { VlCustomMap } from '../../actions/custom-map';
+import { EVENTS, CONTROL_TYPE } from '../../enums';
 
 import styles from './styles.scss';
 
@@ -115,6 +116,13 @@ export class VlMap extends vlElement(HTMLElement) {
   }
 
   /**
+   * Geeft alle controls van de kaart.
+   */
+  get controls() {
+    return this.map && this.map.getControls().getArray();
+  }
+
+  /**
    * Geeft de actieve kaartactie.
    *
    * @return {VlMapAction}
@@ -192,8 +200,8 @@ export class VlMap extends vlElement(HTMLElement) {
    *
    * @param {VlMapAction} action
    */
-  addAction(action, defaultActive) {
-    this.map.addAction(action, defaultActive);
+  addAction(action) {
+    this.map.addAction(action);
   }
 
   /**
@@ -203,6 +211,68 @@ export class VlMap extends vlElement(HTMLElement) {
    */
   removeAction(action) {
     this.map.removeAction(action);
+  }
+
+  _handleActionsActiveState(changedAction, changedActiveState) {
+    // Handle active state of all actions on the map
+    // Only the action that was set to true gets an active state of true
+
+    if (this.actions) {
+      this.actions.forEach((action) => {
+        const set = changedActiveState && changedAction === action;
+        action.element._active = set;
+      });
+    }
+  }
+
+  _handleActionControlsActiveState(changedAction, changedActiveState) {
+    // Handle active state of all action controls on the map
+    // Only the control with the same identifier as the changed action gets an active state of true
+
+    const actionControls = this.map.getControlsOfType(CONTROL_TYPE.ACTION);
+    if (actionControls) {
+      actionControls.forEach((actionControl) => {
+        actionControl.target_.setActive(
+          changedActiveState && changedAction.element.identifier === actionControl.get('identifier'),
+        );
+      });
+    }
+  }
+
+  _dispatchActionActiveChangedEvent(action) {
+    this.dispatchEvent(
+      new CustomEvent(EVENTS.ACTION_ACTIVE_CHANGED, {
+        detail: { action, active: true },
+      }),
+    );
+  }
+
+  /**
+   * Activeert een kaartactie.
+   *
+   * @param {VlMapAction} action
+   */
+  activateAction(action) {
+    if (action) {
+      this.map.activateAction(action);
+      this._dispatchActionActiveChangedEvent(action);
+      this._handleActionsActiveState(action, true);
+      this._handleActionControlsActiveState(action, true);
+    }
+  }
+
+  /**
+   * Deactiveert een kaartactie.
+   *
+   * @param {VlMapAction} action
+   */
+  deactivateAction(action) {
+    if (action) {
+      this.map.deactivateAction(action);
+      this._dispatchActionActiveChangedEvent(action);
+      this._handleActionsActiveState(action, false);
+      this._handleActionControlsActiveState(action, false);
+    }
   }
 
   /**

@@ -42,8 +42,7 @@
 
           expect(
             !!controls.find(
-              (control) =>
-                control.values_ && control.values_.controlIdentifier && control.values_.controlIdentifier === 'measure',
+              (control) => control.values_ && control.get('identifier') && control.get('identifier') === 'measure',
             ),
           ).to.be.true;
         });

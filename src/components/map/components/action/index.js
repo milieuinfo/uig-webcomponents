@@ -1,5 +1,5 @@
+import { unByKey } from 'ol/Observable';
 import { vlElement, define } from '../../../../utils/core';
-import { EVENTS } from '../../enums';
 
 /**
  * VlMapAction
@@ -22,7 +22,9 @@ import { EVENTS } from '../../enums';
 export class VlMapAction extends vlElement(HTMLElement) {
   connectedCallback() {
     this.__defineLayer();
-    // this.__registerMapActionChangedCallback();
+
+    // Active property for control inside of map component
+    this._active = false;
   }
 
   static isVlMapAction() {
@@ -31,36 +33,41 @@ export class VlMapAction extends vlElement(HTMLElement) {
 
   /**
    * Geeft de vl-mapactions kaart actie.
-   *
-   * @return {Object}
-   */
+   * */
   get action() {
     return this._action;
+  }
+
+  /**
+   * Geeft de default active state van deze actie
+   * */
+  get defaultActive() {
+    return this.hasAttribute('default-active');
+  }
+
+  /**
+   * Geeft de activate state van deze actie
+   * */
+  get active() {
+    return this._active;
   }
 
   get _mapElement() {
     return this.closest('vl-map');
   }
 
-  get defaultActive() {
-    return this.hasAttribute('default-active');
-  }
-
   get _callback() {
     return (...args) => (this.__callback ? this.__callback(...args) : null);
   }
 
-  get active() {
-    return this.getAttribute('active') && this.getAttribute('active') === 'true';
-  }
-
+  /**
+   * Controlled active property for control outside op map component; Activates or deactivates an action on the map
+   */
   set active(value) {
     if (value) {
-      this._mapElement.map.activateAction(this.action);
-      this._mapElement.dispatchEvent(new Event(EVENTS.ACTIVATED));
+      this.activate();
     } else {
-      this._mapElement.map.deactivateAction(this.action);
-      this._mapElement.dispatchEvent(new Event(EVENTS.DEACTIVATED));
+      this.deactivate();
     }
   }
 
@@ -68,14 +75,14 @@ export class VlMapAction extends vlElement(HTMLElement) {
    * Activeer de kaart actie op de kaart.
    */
   activate() {
-    this.active = true;
+    this._mapElement.activateAction(this.action);
   }
 
   /**
    * Deactiveer de kaart actie op de kaart.
    */
   deactivate() {
-    this.active = false;
+    this._mapElement.deactivateAction(this.action);
   }
 
   _createAction() {
@@ -84,23 +91,14 @@ export class VlMapAction extends vlElement(HTMLElement) {
 
   _processAction() {
     if (this.action) {
-      this._mapElement.addAction(this.action, this.defaultActive);
+      this.action.element = this;
+      this._mapElement.addAction(this.action);
+
       if (this.defaultActive) {
         this.activate();
       }
     }
   }
-
-  // __registerMapActionChangedCallback() {
-  //   this._mapElement.addEventListener(EVENTS.ACTIVATED, () => {
-  //     console.log('active EVENT');
-  //     this.setAttribute('active', this._mapElement.activeAction === this.action);
-  //   });
-
-  //   this._mapElement.addEventListener(EVENTS.DEACTIVATED, () => {
-  //     this.setAttribute('active', this._mapElement.activeAction === this.action);
-  //   });
-  // }
 
   __defineLayer() {
     if (this._layerElement) {

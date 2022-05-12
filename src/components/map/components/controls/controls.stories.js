@@ -49,27 +49,25 @@ const getMeasureAction = () => {
   return lastItem;
 };
 
-export const ControlOutsideOfMap = ({ active }) => html`
+export const ControlOutsideOfMap = () => html`
   <div>
     <vl-toggle-button
       id="measure-button"
       @click=${() => {
         const measureAction = getMeasureAction();
-        measureAction.active = !measureAction.active;
+        if (measureAction.active) {
+          measureAction.deactivate();
+        } else {
+          measureAction.activate();
+        }
       }}
       >Meten</vl-toggle-button
     >
     <vl-map id="map">
       <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
       <vl-map-features-layer>
-        <vl-map-measure-action .active=${active}></vl-map-measure-action>
+        <vl-map-measure-action></vl-map-measure-action>
       </vl-map-features-layer>
     </vl-map>
   </div>
 `;
-
-ControlOutsideOfMap.args = {
-  active: false,
-};
-
-ControlOutsideOfMap.argTypes = { active: { control: { disabled: false } } };

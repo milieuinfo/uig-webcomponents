@@ -5,7 +5,7 @@ import { VlDrawAction } from './draw-action';
 import '../../pill';
 
 export class VlMeasureAction extends VlDrawAction {
-  constructor(layer, options, element) {
+  constructor(layer, options) {
     super(
       layer,
       GeometryType.LINE_STRING,
@@ -14,8 +14,6 @@ export class VlMeasureAction extends VlDrawAction {
       },
       { ...options, maxPoints: 2, geometryName: 'measurement' },
     );
-
-    this.element = element;
 
     this.featureCounter = 0;
     this.layer = layer;
@@ -178,7 +176,7 @@ export class VlMeasureAction extends VlDrawAction {
   }
 
   _getFeatureIdFor(tooltip) {
-    return tooltip.values_.featureId;
+    return tooltip.get('featureId');
   }
 
   deactivate() {

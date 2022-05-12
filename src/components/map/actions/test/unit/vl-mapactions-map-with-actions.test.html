@@ -115,7 +115,7 @@
 
     it('wanneer de huidige actie wordt gedeactiveerd, zal de default actie geactiveerd worden', (done) => {
       const map = createMapWithActions();
-      action1.defaultActive = true;
+      action1.element.defaultActive = true;
       map.activateAction(action2);
       expect(map.currentActiveAction).to.equal(action2);
 

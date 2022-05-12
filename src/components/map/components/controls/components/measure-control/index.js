@@ -1,47 +1,38 @@
-import Control from 'ol/control/Control';
 import { LitElement } from 'lit';
-import { VlMeasureAction } from '../../../../actions/measure-action';
 import { VlMapControl } from '../../mixin';
 import '../../../../../toggle-button';
-import { CONTROL_TYPE } from '../../../../enums';
+import { CONTROL_TYPE, IDENTIFIER } from '../../../../enums';
 
 export class VlMapMeasureControl extends VlMapControl(LitElement) {
-  constructor(map, controlElement) {
-    super(map);
+  constructor() {
+    super();
 
-    if (controlElement) {
-      this.controlElement = controlElement;
-      this.control = new Control({
-        element: controlElement,
-      });
-    } else {
-      this.controlElement = document.createElement('vl-toggle-button');
-      // this.controlElement.icon = 'ruler';
-      // this.controlElement.textHidden = true;
-      this.controlElement.innerText = 'Meten';
-    }
+    this.controlElement = document.createElement('vl-toggle-button');
+    // this.controlElement.icon = 'ruler';
+    // this.controlElement.textHidden = true;
+    this.controlElement.innerText = 'Meten';
 
     this.controlElement.addEventListener('click', this.handleMeasureControlClick.bind(this), false);
 
-    this.identifier = 'measure';
+    this.identifier = IDENTIFIER.MEASURE;
 
     this.type = CONTROL_TYPE.ACTION;
   }
 
   handleMeasureControlClick() {
-    const measureAction = this.map.actions.find((action) => action instanceof VlMeasureAction);
+    const measureAction = this.map.getActionWithIdentifier(this.identifier);
 
-    if (this.controlElement.active) {
-      measureAction.element.active = false;
-      this.controlElement.active = false;
-    } else {
-      measureAction.element.active = true;
-      this.controlElement.active = true;
+    if (measureAction) {
+      if (this.controlElement.active) {
+        measureAction.element.deactivate();
+      } else {
+        measureAction.element.activate();
+      }
     }
   }
 
-  deactivate() {
-    this.controlElement.active = false;
+  setActive(set) {
+    this.controlElement.active = set;
   }
 }
 
