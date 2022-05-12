@@ -1,4 +1,4 @@
-export const EVENTS = {
+export const EVENT = {
   ACTION_ACTIVE_CHANGED: 'action-active-changed',
 };
 

@@ -10,7 +10,7 @@ export class VlMapMeasureAction extends VlMapDrawAction {
   }
 
   _createAction(layer) {
-    return new VlMeasureAction(layer, this.__drawOptions, this);
+    return new VlMeasureAction(layer, this.__drawOptions);
   }
 }
 

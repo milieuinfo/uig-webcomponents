@@ -4,7 +4,7 @@ import OlProjection from 'ol/proj/Projection';
 import proj4 from 'proj4';
 import { vlElement, define } from '../../../../utils/core';
 import { VlCustomMap } from '../../actions/custom-map';
-import { EVENTS, CONTROL_TYPE } from '../../enums';
+import { EVENT, CONTROL_TYPE } from '../../enums';
 
 import styles from './styles.scss';
 
@@ -241,7 +241,7 @@ export class VlMap extends vlElement(HTMLElement) {
 
   _dispatchActionActiveChangedEvent(action) {
     this.dispatchEvent(
-      new CustomEvent(EVENTS.ACTION_ACTIVE_CHANGED, {
+      new CustomEvent(EVENT.ACTION_ACTIVE_CHANGED, {
         detail: { action, active: true },
       }),
     );
