@@ -64,7 +64,7 @@ describe('vl-multiselect', async () => {
     await assert.eventually.isTrue(multiselect.isDisabled());
   });
 
-  it('the number of results of a search can be limited', async () => {
+  it('as a user I can limit the number of results of a search', async () => {
     const multiselect = await vlMultiSelectPage.getMultiselectMetSpecifiekAantalResultaten();
     await multiselect.searchByPartialText('straat');
     await assert.eventually.equal(multiselect.getNumberOfSearchResults(), 5);
