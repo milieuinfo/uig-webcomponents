@@ -16,10 +16,7 @@ export class VlMeasureAction extends VlDrawAction {
     );
 
     this.featureCounter = 0;
-    this.layer = layer;
     this.measurementTooltips = [];
-
-    this.measureOptions = options;
   }
 
   activate() {
@@ -33,10 +30,6 @@ export class VlMeasureAction extends VlDrawAction {
 
     this.removeFeatureHandler = this.layer.getSource().on('removefeature', (event) => {
       this._handleRemoveFeature(event);
-    });
-
-    this.layerVisibilityChangeHandler = this.layer.on('change:visible', () => {
-      this._handleLayerVisibilityChange();
     });
 
     super.activate(this);
@@ -120,15 +113,6 @@ export class VlMeasureAction extends VlDrawAction {
     });
   }
 
-  _handleLayerVisibilityChange() {
-    this._setMeasurementTooltipsVisible(this.layer.getVisible());
-    this.deactivate();
-
-    this.layerVisibilityChangeHandler = this.layer.on('change:visible', () => {
-      this._handleLayerVisibilityChange();
-    });
-  }
-
   _removeMeasureFeature(feature) {
     const source = this.layer.getSource();
     if (feature && (feature.getId() == null || source.getFeatureById(feature.getId()) === feature)) {
@@ -179,6 +163,10 @@ export class VlMeasureAction extends VlDrawAction {
     return tooltip.get('featureId');
   }
 
+  handleLayerVisibilityChange() {
+    this._setMeasurementTooltipsVisible(this.layer.getVisible());
+  }
+
   deactivate() {
     this._setMeasurementTooltipsClosable(true);
 
@@ -187,13 +175,13 @@ export class VlMeasureAction extends VlDrawAction {
     unByKey(this.drawStartHandler);
     unByKey(this.drawEndHandler);
     unByKey(this.removeFeatureHandler);
-    unByKey(this.layerVisibilityChangeHandler);
 
     super.deactivate(this);
   }
 
   stop() {
     super.stop();
+    this._setMeasurementTooltipsClosable(true);
     this._cleanUp(true);
   }
 }

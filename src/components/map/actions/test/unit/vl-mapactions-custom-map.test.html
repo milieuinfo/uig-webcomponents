@@ -231,8 +231,8 @@
       const overlayElement = map.overviewMapControl.element;
       const overviewMap = map.overviewMapControl.getOverviewMap();
 
-      sinon.stub(map, 'render');
-      sinon.stub(overviewMap, 'render');
+      const mapRenderStub = sinon.stub(map, 'render');
+      const overviewMapRenderStub = sinon.stub(overviewMap, 'render');
 
       overlayElement.click();
       expect(map.getBaseLayers()[0].getVisible()).to.be.false;
@@ -267,6 +267,9 @@
       expect(map.overviewMapControl.getOverviewMap().getLayers().getArray()[2].getVisible()).to.be.false;
       expect(map.render.called).to.be.true;
       expect(overviewMap.render.called).to.be.true;
+
+      mapRenderStub.reset();
+      overviewMapRenderStub.reset();
     });
   });
 </script>

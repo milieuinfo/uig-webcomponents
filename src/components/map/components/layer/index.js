@@ -134,6 +134,7 @@ export class VlMapLayer extends vlElement(HTMLElement) {
   rerender() {
     if (this.mapElement) {
       this.mapElement.rerender();
+      this.mapElement._handleLayerVisibilityChange(this);
     }
   }
 

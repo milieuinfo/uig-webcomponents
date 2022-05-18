@@ -72,12 +72,17 @@
           const map = fixture('vl-map-layer-action-fixture');
           const actionElement = map.querySelector('vl-map-layer-action');
           const layerElement = map.querySelector('vl-map-features-layer');
-          sandbox.stub(actionElement, '_createAction').withArgs(layerElement.layer).returns(action);
+          const createActionStub = sandbox
+            .stub(actionElement, '_createAction')
+            .withArgs(layerElement.layer)
+            .returns(action);
           map.ready.then(() => {
             assert.lengthOf(map._map.actions, 1);
             assert.deepEqual(map._map.actions[0], action);
             setTimeout(() => {
               assert.isFalse(action.activate.called);
+
+              createActionStub.reset();
               done();
             }, VlMapWithActions.CLICK_COUNT_TIMEOUT);
           });
@@ -87,7 +92,7 @@
         //   const map = fixture("vl-map-layer-action-default-active-fixture");
         //   const actionElement = map.querySelector("vl-map-layer-action");
         //   const layerElement = map.querySelector("vl-map-features-layer");
-        //   sandbox
+        //   const createActionStub = sandbox
         //     .stub(actionElement, "_createAction")
         //     .withArgs(layerElement.layer)
         //     .returns(action);
@@ -96,6 +101,7 @@
         //     assert.deepEqual(map._map.actions[0], action);
         //     setTimeout(() => {
         //       assert.isTrue(action.activate.called);
+        //       createActionStub.reset();
         //       done();
         //     }, VlMapWithActions.CLICK_COUNT_TIMEOUT);
         //   });
@@ -105,10 +111,14 @@
           const map = fixture('vl-map-layer-action-layer-by-name-fixture');
           const actionElement = map.querySelector('vl-map-layer-action');
           const layerElement = map.querySelector('vl-map-features-layer');
-          sandbox.stub(actionElement, '_createAction').withArgs(layerElement.layer).returns(action);
+          const createActionStub = sandbox
+            .stub(actionElement, '_createAction')
+            .withArgs(layerElement.layer)
+            .returns(action);
           map.ready.then(() => {
             assert.lengthOf(map._map.actions, 1);
             assert.deepEqual(map._map.actions[0], action);
+            createActionStub.reset();
             done();
           });
         });
@@ -117,13 +127,14 @@
           const map = fixture('vl-map-layer-action-layer-fixture');
           const layerElement = map.querySelector('vl-map-features-layer');
           const actionElement = map.querySelector('vl-map-layer-action');
-          sandbox.stub(actionElement, '_createAction').returns(action);
+          const createActionStub = sandbox.stub(actionElement, '_createAction').returns(action);
           map.ready.then(() => {
             assert.lengthOf(map._map.actions, 0);
             actionElement.layer = layerElement.layer;
             setTimeout(() => {
               assert.lengthOf(map._map.actions, 1);
               assert.deepEqual(map._map.actions[0], action);
+              createActionStub.reset();
               done();
             });
           });

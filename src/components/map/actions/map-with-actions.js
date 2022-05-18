@@ -1,5 +1,6 @@
 import { defaults } from 'ol/interaction';
 import Map from 'ol/Map';
+import { CONTROL_TYPE } from '../enums';
 
 /**
  * Deze map bevat enkel de functionaliteit om de acties te behandelen. Aan het eerste argument van de constructor kan het gebruikelijke object map opties worden weergegeven die ook op de ol.Map worden gezet, samen met een extra parameter 'acties' in dat object. Deze array bevat MapActions.
@@ -37,9 +38,9 @@ export class VlMapWithActions extends Map {
 
     if (!options.disableEscapeKey) {
       const activateFirstActionOnEscapeKey = (e) => {
-        if (e && e.keyCode && e.keyCode == 27) {
-          if (this.currentActiveAction) {
-            this.currentActiveAction.stop();
+        if (e && e.keyCode && e.keyCode === 27) {
+          if (this.getCurrentActiveAction()) {
+            this.getCurrentActiveAction().stop();
           } else {
             this.activateDefaultAction();
           }
@@ -53,11 +54,11 @@ export class VlMapWithActions extends Map {
     this.mapElement = options.target;
   }
 
-  get defaultActiveAction() {
+  getDefaultActiveAction() {
     return this.actions && this.actions.find((action) => action.element.defaultActive);
   }
 
-  get currentActiveAction() {
+  getCurrentActiveAction() {
     return this.actions && this.actions.find((action) => action.element.active);
   }
 
@@ -67,14 +68,27 @@ export class VlMapWithActions extends Map {
 
   getControlsOfType(type) {
     const controls = this.getControls().getArray();
-    return controls.filter((control) => control.get('type') && control.get('type') === type);
+    return controls.filter((control) => control.get('element') && control.get('element').type === type);
+  }
+
+  getActionControls() {
+    return this.getControlsOfType(CONTROL_TYPE.ACTION);
+  }
+
+  getActionControlWithIdentifier(identifier) {
+    const actionControls = this.getActionControls();
+    return (
+      actionControls &&
+      actionControls.find((control) => control.get('element') && control.get('element').identifier === identifier)
+    );
+  }
+
+  getLayerActions(layer) {
+    return this.actions && this.actions.filter((action) => action.layer === layer);
   }
 
   activateAction(action) {
-    if (this.currentActiveAction) {
-      this.currentActiveAction.deactivate();
-      clearTimeout(this.timeout);
-    }
+    this.deactivateCurrentAction();
 
     // delay the activation of the action with 300ms because ol has a timeout of 251ms to detect a double click event
     // when we don't use a delay some click and select events of the previous action will be triggered on the new action
@@ -83,9 +97,9 @@ export class VlMapWithActions extends Map {
     }, VlMapWithActions.CLICK_COUNT_TIMEOUT);
   }
 
-  deactivateAction(action) {
-    if (this.currentActiveAction && this.currentActiveAction === action) {
-      this.currentActiveAction.deactivate();
+  deactivateCurrentAction() {
+    if (this.getCurrentActiveAction()) {
+      this.getCurrentActiveAction().deactivate();
       clearTimeout(this.timeout);
     }
   }
@@ -101,7 +115,7 @@ export class VlMapWithActions extends Map {
   }
 
   removeAction(action) {
-    if (this.currentActiveAction == action) {
+    if (this.getCurrentActiveAction() === action) {
       this.activateDefaultAction();
     }
     action.interactions.forEach((interaction) => {
@@ -111,8 +125,8 @@ export class VlMapWithActions extends Map {
   }
 
   activateDefaultAction() {
-    if (this.defaultActiveAction) {
-      this.defaultActiveAction.activate();
+    if (this.getDefaultActiveAction()) {
+      this.getDefaultActiveAction().element.activate();
     }
   }
 }

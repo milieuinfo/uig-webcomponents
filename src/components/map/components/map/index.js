@@ -8,38 +8,6 @@ import { EVENT, CONTROL_TYPE } from '../../enums';
 
 import styles from './styles.scss';
 
-/**
- * VlMap
- * @class
- * @classdesc De kaart component.
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {boolean} data-vl-allow-fullscreen - Attribuut wordt gebruikt om de gebruiker de mogelijkheid te geven om de kaart in fullscreen te
- *     visualiseren.
- * @property {boolean} data-vl-disable-escape-key - Attribuut wordt gebruikt om ervoor te zorgen dat de escape toets niet gebruikt kan worden.
- * @property {boolean} data-vl-disable-rotation - Attribuut wordt gebruikt om ervoor te zorgen dat het niet mogelijk is om de kaart te draaien.
- * @property {boolean} data-vl-disable-mouse-wheel-zoom - Attribuut wordt gebruikt om ervoor te zorgen dat het niet mogelijk is om de kaart in te zoomen met het muiswiel.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-circle-style.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-delete-action.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-draw-actions.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-features-layer.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-layer-style.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-layer-switcher.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-modify-actions.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-overview-map.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-search.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-select-action.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-side-sheet.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wfs-layer.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wms-layer.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-wmts-layer.html|Demo}
- */
 export class VlMap extends vlElement(HTMLElement) {
   constructor() {
     super(`
@@ -55,7 +23,7 @@ export class VlMap extends vlElement(HTMLElement) {
   }
 
   /**
-   * Geeft een Promise terug die resolved wanneer de kaart klaar is voor verder gebruik.
+   * Returns a Promise that resolves when the map is ready for further use.
    *
    * @return {Promise<void>}
    */
@@ -70,7 +38,7 @@ export class VlMap extends vlElement(HTMLElement) {
   }
 
   /**
-   * Geeft de OpenLayers map terug.
+   * Returns the OpenLayers map.
    *
    * @return {VlCustomMap}
    */
@@ -79,7 +47,7 @@ export class VlMap extends vlElement(HTMLElement) {
   }
 
   /**
-   * Geeft de OpenLayers kaart resolutie terug.
+   * Returns the OpenLayers map resolution.
    *
    * @return {Object}
    */
@@ -88,7 +56,7 @@ export class VlMap extends vlElement(HTMLElement) {
   }
 
   /**
-   * Geeft de OpenLayers kaartlagen terug die niet gebruikt worden als basis kaartlaag.
+   * Returns the OpenLayers map layers that are not used as a base map layer.
    *
    * @return {Object[]}
    */
@@ -109,26 +77,26 @@ export class VlMap extends vlElement(HTMLElement) {
   }
 
   /**
-   * Geeft alle acties van de kaart.
+   * Returns all actions of the map.
    */
   get actions() {
     return this.map && this.map.actions;
   }
 
   /**
-   * Geeft alle controls van de kaart.
+   * Gives all the controls of the map.
    */
   get controls() {
     return this.map && this.map.getControls().getArray();
   }
 
   /**
-   * Geeft de actieve kaartactie.
+   * Gives the active map action.
    *
    * @return {VlMapAction}
    */
   get activeAction() {
-    return this.map && this.map.currentActiveAction;
+    return this.map && this.map.getCurrentActiveAction();
   }
 
   get _mapElement() {
@@ -178,7 +146,7 @@ export class VlMap extends vlElement(HTMLElement) {
   }
 
   /**
-   * Voegt een kaartlaag toe aan de kaart.
+   * Adds a map layer to the map.
    *
    * @param {Object} layer
    */
@@ -187,7 +155,7 @@ export class VlMap extends vlElement(HTMLElement) {
   }
 
   /**
-   * Voegt een control toe aan de kaart.
+   * Adds a control to the map.
    *
    * @param {VlMapControl} control
    */
@@ -196,7 +164,7 @@ export class VlMap extends vlElement(HTMLElement) {
   }
 
   /**
-   * Voegt een kaartactie toe aan de kaart.
+   * Adds a map action to the map.
    *
    * @param {VlMapAction} action
    */
@@ -205,7 +173,7 @@ export class VlMap extends vlElement(HTMLElement) {
   }
 
   /**
-   * Verwijdert een kaartactie van de kaart.
+   * Removes a map action from the map.
    *
    * @param {VlMapAction} action
    */
@@ -213,9 +181,34 @@ export class VlMap extends vlElement(HTMLElement) {
     this.map.removeAction(action);
   }
 
+  _handleLayerVisibilityChange(layerElement) {
+    // Visibility false: Disable action controls linked to actions in the layer and deactivate the possible active action in the layer
+    // Visibility true:  Enable action controls linked to actions in the layer
+    const actions = this.map.getLayerActions(layerElement.layer);
+
+    if (actions) {
+      actions.forEach((action) => {
+        if (!layerElement.visible) {
+          this.deactivateAction(action);
+        }
+
+        if (action.handleLayerVisibilityChange) {
+          action.handleLayerVisibilityChange();
+        }
+
+        const actionControl = action.getControl();
+        if (actionControl) {
+          if (!layerElement.visible) {
+            actionControl.target_.setActive(false);
+          }
+          actionControl.get('element').setDisabled(!layerElement.visible);
+        }
+      });
+    }
+  }
+
   _handleActionsActiveState(changedAction, changedActiveState) {
-    // Handle active state of all actions on the map
-    // Only the action that was set to true gets an active state of true
+    // Only the action that was set to true gets an active state of true, the others are set to false
 
     if (this.actions) {
       this.actions.forEach((action) => {
@@ -226,57 +219,62 @@ export class VlMap extends vlElement(HTMLElement) {
   }
 
   _handleActionControlsActiveState(changedAction, changedActiveState) {
-    // Handle active state of all action controls on the map
-    // Only the control with the same identifier as the changed action gets an active state of true
+    // Only the action control with the same identifier as the changed action gets an active state of true, the others are set to false
 
-    const actionControls = this.map.getControlsOfType(CONTROL_TYPE.ACTION);
+    const actionControls = this.map.getActionControls();
     if (actionControls) {
       actionControls.forEach((actionControl) => {
         actionControl.target_.setActive(
-          changedActiveState && changedAction.element.identifier === actionControl.get('identifier'),
+          changedActiveState && changedAction.element.identifier === actionControl.get('element').identifier,
         );
       });
     }
   }
 
-  _dispatchActionActiveChangedEvent(action) {
+  _dispatchActionActiveChangedEvent(changedAction, changedActiveState) {
     this.dispatchEvent(
       new CustomEvent(EVENT.ACTION_ACTIVE_CHANGED, {
-        detail: { action, active: true },
+        detail: { changedAction, active: changedActiveState },
       }),
     );
   }
 
   /**
-   * Activeert een kaartactie.
+   * Activates a map action.
    *
    * @param {VlMapAction} action
    */
   activateAction(action) {
-    if (action) {
+    // Only activate action when its layer is visible
+    if (action && action.layer.get('visible')) {
       this.map.activateAction(action);
-      this._dispatchActionActiveChangedEvent(action);
+
+      this._dispatchActionActiveChangedEvent(action, true);
       this._handleActionsActiveState(action, true);
       this._handleActionControlsActiveState(action, true);
     }
   }
 
   /**
-   * Deactiveert een kaartactie.
+   * Deactivates a map action.
    *
    * @param {VlMapAction} action
    */
   deactivateAction(action) {
-    if (action) {
-      this.map.deactivateAction(action);
-      this._dispatchActionActiveChangedEvent(action);
+    // First check if action to deactivate is actually active at this moment
+    if (action && this.activeAction && this.activeAction === action) {
+      this.map.deactivateCurrentAction();
+
+      this._dispatchActionActiveChangedEvent(action, false);
       this._handleActionsActiveState(action, false);
       this._handleActionControlsActiveState(action, false);
+
+      this.map.activateDefaultAction();
     }
   }
 
   /**
-   * Zoomt op de kaart naar de meegegeven geometry of bounding box.
+   * Zooms on the map to the given geometry or bounding box.
    *
    * @param {(ol/geom/Geometry|Number[])} geometryOrBoundingbox
    * @param {Number} max
@@ -290,7 +288,7 @@ export class VlMap extends vlElement(HTMLElement) {
   }
 
   /**
-   * Registreer kaart event.
+   * Register map event.
    *
    * @param {*} event
    * @param {*} callback
@@ -300,7 +298,7 @@ export class VlMap extends vlElement(HTMLElement) {
   }
 
   /**
-   * Render de kaart opnieuw.
+   * Render the map again.
    */
   rerender() {
     this.map.render();

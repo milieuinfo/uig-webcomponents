@@ -119,9 +119,10 @@
         //   const deleteAction = map.querySelector('vl-map-delete-action');
         //   await awaitUntil(() => deleteAction.action != null);
         //   const removeFeatureStub = sinon.stub();
-        //   sinon.stub(deleteAction.layer, 'getSource').returns({
+        //   const hasFeatureStub = sinon.stub();
+        //   const getSourceStub = sinon.stub(deleteAction.layer, 'getSource').returns({
         //     removeFeature: removeFeatureStub,
-        //     hasFeature: sinon.stub(),
+        //     hasFeature: hasFeatureStub,
         //   });
         //   const feature = new OlFeature({});
         //   deleteAction.action.hoverInteraction.getFeatures().push(feature);
@@ -131,6 +132,10 @@
         //   await awaitUntil(() => deleteAction.action.hoverInteraction.getFeatures().getLength() === 0);
         //   assert.isTrue(removeFeatureStub.calledOnce);
         //   assert.deepEqual(removeFeatureStub.args[0][0], feature);
+
+        //   removeFeatureStub.reset();
+        //   hasFeatureStub.reset();
+        //   getSourceStub.reset();
         // });
 
         test("after the delete action is finished, the onDelete callback will be called and the arguments can be used to ensure some features are deleted and others aren't", async () => {
@@ -139,9 +144,10 @@
           const deleteAction = map.querySelector('vl-map-delete-action');
           await awaitUntil(() => deleteAction.action != null);
           const removeFeatureStub = sinon.stub();
-          sinon.stub(deleteAction.layer, 'getSource').returns({
+          const hasFeatureStub = sinon.stub();
+          const getSourceStub = sinon.stub(deleteAction.layer, 'getSource').returns({
             removeFeature: removeFeatureStub,
-            hasFeature: sinon.stub(),
+            hasFeature: hasFeatureStub,
           });
           const teVerwijderenFeature = new OlFeature({});
           const featureDieNietVerwijderdMagWorden = new OlFeature({});
@@ -162,6 +168,10 @@
           await awaitUntil(() => deleteAction.action.hoverInteraction.getFeatures().getLength() === 0);
           assert.isTrue(removeFeatureStub.calledOnce);
           assert.deepEqual(removeFeatureStub.args[0][0], teVerwijderenFeature);
+
+          removeFeatureStub.reset();
+          hasFeatureStub.reset();
+          getSourceStub.reset();
         });
 
         test('the filter for the delete action returns true by default', (done) => {

@@ -12,8 +12,7 @@ export const VlMapControl = (superClass) => {
         target: this,
       });
 
-      this.control.set('identifier', this.identifier);
-      this.control.set('type', this.type);
+      this.control.set('element', this);
 
       this.map.addControl(this.control);
     }

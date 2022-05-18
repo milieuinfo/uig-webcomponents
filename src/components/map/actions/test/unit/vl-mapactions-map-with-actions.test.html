@@ -1,4 +1,6 @@
 <script src="../../../../../../node_modules/wct-browser-legacy/browser.js"></script>
+<script src="/node_modules/sinon/pkg/sinon.js"></script>
+
 <script type="module">
   import DragRotate from 'ol/interaction/DragRotate';
   import DoubleClickZoom from 'ol/interaction/DoubleClickZoom';
@@ -11,158 +13,124 @@
   import DragZoom from 'ol/interaction/DragZoom';
   import Collection from 'ol/Collection';
   import Interaction from 'ol/interaction/Interaction';
-  import { VlMapWithActions, VlMapActionAction } from '../../../../../../lib/components/map/actions';
+  import VectorSource from 'ol/source/Vector';
+  import { VlMapWithActions, VlMapActionAction, VlDrawLineAction } from '../../../../../../lib/components/map';
+
+  // Use to wait for map action to be activated because of timeout for activating a mapaction in map-with-actions
+  function sleep() {
+    return new Promise((resolve) => setTimeout(resolve, VlMapWithActions.CLICK_COUNT_TIMEOUT + 10));
+  }
 
   describe('map with actions', () => {
+    let map;
     let action1;
     let action2;
 
-    const createMapWithActions = () =>
-      new VlMapWithActions({
-        actions: [
-          (action1 = new VlMapActionAction([new Interaction({}), new Interaction({})])),
-          (action2 = new VlMapActionAction([new Interaction({}), new Interaction({}), new Interaction({})])),
-        ],
+    class VlTestMapWithActions extends VlMapWithActions {
+      getDefaultActiveAction() {
+        return undefined;
+      }
+
+      getCurrentActiveAction() {
+        return undefined;
+      }
+
+      activateDefaultAction() {
+        return undefined;
+      }
+    }
+
+    beforeEach(() => {
+      action1 = new VlMapActionAction([new Interaction({}), new Interaction({})]);
+      action2 = new VlMapActionAction([new Interaction({}), new Interaction({}), new Interaction({})]);
+    });
+
+    it('adds the interactions of all actions to the map', () => {
+      map = new VlTestMapWithActions({
+        actions: [action1, action2],
       });
 
-    const afterActivation = (callback, done) => {
-      // in de source code wordt VlMapWithActions.CLICK_COUNT_TIMEOUT om de actie effectief te activeren
-      // dus wij wachten in de test 10 ms langer
-      setTimeout(() => {
-        callback();
-        done();
-      }, VlMapWithActions.CLICK_COUNT_TIMEOUT + 10);
-    };
-
-    it('voegt de interacties van alle actie toe aan de kaart', () => {
-      const map = createMapWithActions();
       expect(map.getInteractions().getLength()).to.equal(14); // 9 standaard + 5
     });
 
-    it('kan maar één actie tegelijkertijd activeren, waarbij enkel deze actie zijn interacties op actief staan', (done) => {
-      const map = createMapWithActions();
+    it('can only activate one action at a time, with only this action having its interactions active', async () => {
+      map = new VlTestMapWithActions({
+        actions: [action1, action2],
+      });
+
       map.activateAction(action1);
-      afterActivation(
-        () => expect(map.currentActiveAction).to.equal(action1),
-        () => {
-          map.activateAction(action2);
-          expect(map.currentActiveAction).to.equal(action2);
-          action1.interactions.forEach((interaction) => expect(interaction.getActive()).to.be.false);
-          afterActivation(
-            () => action2.interactions.forEach((interaction) => expect(interaction.getActive()).to.be.true),
-            done,
-          );
-        },
-      );
+      await sleep();
+
+      const currentActiveActionStub = sinon.stub(map, 'getCurrentActiveAction').callsFake(() => action1);
+
+      map.activateAction(action2);
+      await sleep();
+
+      action1.interactions.forEach((interaction) => expect(interaction.getActive()).to.be.false);
+      action2.interactions.forEach((interaction) => expect(interaction.getActive()).to.be.true);
+
+      currentActiveActionStub.reset();
     });
 
-    it('kan een nieuwe actie toevoegen aan de map', (done) => {
-      const map = createMapWithActions();
+    it('can add a new action to the map', async () => {
+      map = new VlTestMapWithActions({
+        actions: [action1, action2],
+      });
+
       expect(map.actions.length).to.equal(2);
       expect(map.getInteractions().getLength()).to.equal(14);
-      setTimeout(() => {
-        const nieuweAction = new VlMapActionAction([new Interaction({}), new Interaction({})]);
-        map.addAction(nieuweAction);
-        expect(map.actions.length).to.equal(3);
-        expect(map.actions[2]).to.equal(nieuweAction);
-        expect(map.getInteractions().getLength()).to.equal(16);
-        done();
+
+      const nieuweAction = new VlMapActionAction([new Interaction({}), new Interaction({})]);
+
+      map.addAction(nieuweAction);
+      await sleep();
+
+      expect(map.actions.length).to.equal(3);
+      expect(map.actions[2]).to.equal(nieuweAction);
+      expect(map.getInteractions().getLength()).to.equal(16);
+    });
+
+    it('can remove an action from the map', async () => {
+      map = new VlTestMapWithActions({
+        actions: [action1, action2],
       });
+
+      const nieuweAction = new VlMapActionAction([new Interaction({}), new Interaction({})]);
+      map.addAction(nieuweAction);
+      sleep();
+
+      map.removeAction(nieuweAction);
+
+      expect(map.actions.length).to.equal(2);
+      expect(map.actions.indexOf(nieuweAction)).to.equal(-1);
+      expect(map.getInteractions().getLength()).to.equal(14);
     });
 
-    it('kan een actie verwijderen van de map', (done) => {
-      const map = createMapWithActions();
-      setTimeout(() => {
-        const nieuweAction = new VlMapActionAction([new Interaction({}), new Interaction({})]);
-        map.addAction(nieuweAction);
-        map.removeAction(nieuweAction);
-        expect(map.actions.length).to.equal(2);
-        expect(map.actions.indexOf(nieuweAction)).to.equal(-1);
-        expect(map.getInteractions().getLength()).to.equal(14);
-        done();
+    it('if the action to be removed is the current action, the default is activated', async () => {
+      map = new VlTestMapWithActions({
+        actions: [action1, action2],
       });
+
+      const activateDefultActionSpy = sinon.spy(map, 'activateDefaultAction');
+      const nieuweAction = new VlMapActionAction([new Interaction({}), new Interaction({})]);
+
+      map.addAction(nieuweAction);
+      await sleep();
+
+      map.activateAction(nieuweAction);
+      await sleep();
+
+      map.removeAction(nieuweAction);
+
+      expect(activateDefultActionSpy.called).to.be.true;
     });
 
-    it('als de te verwijderen actie de current actie wordt de default geactiveerd', (done) => {
-      const map = createMapWithActions();
-      setTimeout(() => {
-        const nieuweAction = new VlMapActionAction([new Interaction({}), new Interaction({})]);
-        map.addAction(nieuweAction);
-        map.activateAction(nieuweAction);
-        expect(map.currentActiveAction).to.equal(nieuweAction);
-        map.removeAction(nieuweAction);
-        done();
-      });
-    });
-
-    it('bij het activeren van een actie, zullen we eerst controleren of deze actie al niet actief stond vooraleer we de vorige actie gaan deactiveren en de nieuwe actie gaan activeren', (done) => {
-      const map = createMapWithActions();
-      setTimeout(() => {
-        sinon.spy(action1, 'activate');
-        sinon.spy(action1, 'deactivate');
-        sinon.spy(action2, 'activate');
-        sinon.spy(action2, 'deactivate');
-        map.activateAction(action1);
-        map.activateAction(action1);
-        map.activateAction(action2);
-        afterActivation(() => {
-          expect(action1.activate.called).to.be.false;
-          expect(action2.activate.called).to.be.true;
-          expect(action1.deactivate.called).to.be.true;
-        }, done);
-      });
-    });
-
-    it('wanneer de huidige actie wordt gedeactiveerd, zal de default actie geactiveerd worden', (done) => {
-      const map = createMapWithActions();
-      action1.element.defaultActive = true;
-      map.activateAction(action2);
-      expect(map.currentActiveAction).to.equal(action2);
-
-      sinon.stub(action1, 'activate');
-      sinon.stub(action2, 'activate');
-      sinon.stub(action2, 'deactivate');
-      map.deactivateAction(action2);
-      setTimeout(() => {
-        expect(action2.deactivate.called).to.be.true;
-        expect(action1.activate.called).to.be.true;
-        done();
-      }, 2000);
-    });
-
-    it('bij het aanmaken van een kaart met acties wordt standaard functionaliteit toegevoegd aan de kaart dat bij escape de eerste kaart actie geactiveerd wordt', (done) => {
-      const map = new VlMapWithActions({
+    it('there are 9 predefined interactions', () => {
+      const map = new VlTestMapWithActions({
         actions: [],
       });
-      sinon.spy(map, 'activateDefaultAction');
-      expect(map.activateDefaultAction.called).to.be.false;
-      const event = new Event('keydown');
-      event.keyCode = 27;
-      document.body.dispatchEvent(event);
-      setTimeout(() => {
-        expect(map.activateDefaultAction.called).to.be.true;
-        done();
-      });
-    });
 
-    it('indien gewenst kan de standaard escape functionaliteit uitgeschakeld worden bij het aanmaken van een kaart met acties', () => {
-      const map = new VlMapWithActions({
-        actions: [],
-        disableEscapeKey: true,
-      });
-      sinon.stub(map, 'activateDefaultAction');
-      expect(map.activateDefaultAction.called).to.be.false;
-      const event = new Event('keydown');
-      event.keyCode = 27;
-      document.body.dispatchEvent(event);
-      expect(map.activateDefaultAction.called).to.be.false;
-    });
-
-    it('er zijn 9 predefined interactions', () => {
-      const map = new VlMapWithActions({
-        actions: [],
-      });
-      expect(map.getInteractions().getLength()).to.equal(9); // Standaard zijn er 9 interactions
+      expect(map.getInteractions().getLength()).to.equal(9); // There are 9 standard interactions
       expect(
         map
           .getInteractions()
@@ -219,11 +187,74 @@
       ).to.equal(1);
     });
 
-    it('indien gewenst kan de standaard rotation functionaliteit uitgeschaked worden bij het aanmaken van een kaart met acties', () => {
-      const map = new VlMapWithActions({
+    it('when creating a map with actions, standard functionality is added to the map that on escape the first map action gets activated when no action is active', () => {
+      map = new VlTestMapWithActions({
+        actions: [],
+      });
+
+      sinon.spy(map, 'activateDefaultAction');
+      expect(map.activateDefaultAction.called).to.be.false;
+
+      const event = new Event('keydown');
+      event.keyCode = 27;
+      document.body.dispatchEvent(event);
+
+      expect(map.activateDefaultAction.called).to.be.true;
+    });
+
+    it('when creating a map with actions, standard functionality is added to the map that on escape the current active action gets stopped when an action is active', async () => {
+      const source = new VectorSource({});
+
+      const layer = {
+        getSource: () => source,
+      };
+
+      const drawLineAction = new VlDrawLineAction(layer, () => {}, {});
+
+      map = new VlTestMapWithActions({
+        actions: [drawLineAction],
+      });
+
+      sinon.spy(drawLineAction, 'stop');
+
+      map.activateAction(drawLineAction);
+      await sleep();
+
+      const currentActiveActionStub = sinon.stub(map, 'getCurrentActiveAction').callsFake(() => drawLineAction);
+
+      const event = new Event('keydown');
+      event.keyCode = 27;
+      document.body.dispatchEvent(event);
+
+      expect(drawLineAction.stop.called).to.be.true;
+
+      currentActiveActionStub.reset();
+    });
+
+    it('if desired, the standard escape functionality can be disabled when creating a map with actions', () => {
+      const map = new VlTestMapWithActions({
+        actions: [],
+        disableEscapeKey: true,
+      });
+
+      const activateDefaultActionStub = sinon.stub(map, 'activateDefaultAction');
+      expect(map.activateDefaultAction.called).to.be.false;
+
+      const event = new Event('keydown');
+      event.keyCode = 27;
+      document.body.dispatchEvent(event);
+
+      expect(map.activateDefaultAction.called).to.be.false;
+
+      activateDefaultActionStub.reset();
+    });
+
+    it('if desired, the standard rotation functionality can be disabled when creating a map with actions', () => {
+      const map = new VlTestMapWithActions({
         actions: [],
         disableRotation: true,
       });
+
       expect(map.getInteractions().getLength()).to.equal(7); // 9-2=7
       expect(
         map
@@ -281,20 +312,22 @@
       ).to.equal(0);
     });
 
-    it('indien gewenst kan de extra interactions toegevoegd worden bij het aanmaken van een kaart met acties', () => {
-      const map = new VlMapWithActions({
+    it('if desired, extra interactions can be added when creating a map with actions', () => {
+      const map = new VlTestMapWithActions({
         actions: [],
         interactions: new Collection([new PinchZoom(), new PinchRotate()]),
         disableRotation: true,
       });
+
       expect(map.getInteractions().getLength()).to.equal(9); // 9-2+2=9
     });
 
-    it('indien gewenst kan het zoomen met de mouse wheel afgezet worden', () => {
-      const map = new VlMapWithActions({
+    it('if desired, zooming with the mouse wheel can be turned off', () => {
+      const map = new VlTestMapWithActions({
         actions: [],
         disableMouseWheelZoom: true,
       });
+
       expect(map.getInteractions().getLength()).to.equal(8);
       expect(
         map

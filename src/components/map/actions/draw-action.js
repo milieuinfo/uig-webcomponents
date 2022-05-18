@@ -101,6 +101,8 @@ export class VlDrawAction extends VlMapAction {
 
     this.options = options;
     this.drawInteraction = drawInteraction;
+
+    this.layer = layer;
   }
 
   activate() {

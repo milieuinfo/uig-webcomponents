@@ -11,7 +11,7 @@ export default {
       description: {
         component: docsIntro({
           root: 'map',
-          intro: 'De kaart polygoon teken actie component.',
+          intro: 'The map polygon draw action component.',
         }),
       },
     },

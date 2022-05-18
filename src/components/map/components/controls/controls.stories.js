@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
 import '.';
-import { docsIntro, TYPES, CATEGORIES } from '../../../../../.storybook/utils.js';
+import { docsIntro } from '../../../../../.storybook/utils.js';
 
 export default {
   title: 'custom-elements/vl-map/vl-map-controls',
@@ -10,23 +10,9 @@ export default {
       description: {
         component: docsIntro({
           root: 'map',
-          intro: 'Controls on the map component.',
+          intro: 'Controls on the map component. Controls should be wrapped with the appropriate wrapper element.',
         }),
       },
-    },
-  },
-  args: { active: undefined },
-  argTypes: {
-    active: {
-      name: 'active',
-      description: 'Controls the active state of the action.',
-      table: {
-        type: {
-          summary: TYPES.BOOLEAN,
-        },
-        category: CATEGORIES.PROPERTIES,
-      },
-      control: { disabled: true },
     },
   },
 };
@@ -43,30 +29,21 @@ export const Default = () => html`
   </vl-map>
 `;
 
-// Get last measure action, because storybook can render multiple stories
-const getMeasureAction = () => {
-  const [lastItem] = [...document.querySelectorAll('vl-map-measure-action')].slice(-1);
-  return lastItem;
-};
-
 export const ControlOutsideOfMap = () => html`
   <div>
     <vl-toggle-button
       id="measure-button"
       @click=${() => {
-        const measureAction = getMeasureAction();
-        if (measureAction.active) {
-          measureAction.deactivate();
-        } else {
-          measureAction.activate();
-        }
+        const measureAction = document.getElementById('measure-action');
+        measureAction.active = !measureAction.active;
       }}
-      >Meten</vl-toggle-button
     >
-    <vl-map id="map">
+      Meten
+    </vl-toggle-button>
+    <vl-map>
       <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
       <vl-map-features-layer>
-        <vl-map-measure-action></vl-map-measure-action>
+        <vl-map-measure-action id="measure-action"></vl-map-measure-action>
       </vl-map-features-layer>
     </vl-map>
   </div>

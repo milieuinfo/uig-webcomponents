@@ -19,8 +19,12 @@ export class VlMapMeasureControl extends VlMapControl(LitElement) {
     this.type = CONTROL_TYPE.ACTION;
   }
 
+  getAction() {
+    return this.map.getActionWithIdentifier(this.identifier);
+  }
+
   handleMeasureControlClick() {
-    const measureAction = this.map.getActionWithIdentifier(this.identifier);
+    const measureAction = this.getAction();
 
     if (measureAction) {
       if (this.controlElement.active) {
@@ -33,6 +37,10 @@ export class VlMapMeasureControl extends VlMapControl(LitElement) {
 
   setActive(set) {
     this.controlElement.active = set;
+  }
+
+  setDisabled(set) {
+    this.controlElement.disabled = set;
   }
 }
 

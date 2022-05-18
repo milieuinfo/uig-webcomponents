@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
-import { args, argTypes } from '../config';
-import { docsIntro } from '../../../../../../../.storybook/utils.js';
+import { args, argTypes } from '../../config';
+import { docsIntro, TYPES, CATEGORIES } from '../../../../../../../.storybook/utils.js';
 
 export default {
   title: 'custom-elements/vl-map/vl-map-select-action',
@@ -10,7 +10,7 @@ export default {
       description: {
         component: docsIntro({
           root: 'map',
-          intro: 'De kaart selecteer actie component.',
+          intro: 'The map select action component.',
         }),
       },
     },
@@ -20,10 +20,11 @@ export default {
     ...argTypes,
     cluster: {
       name: 'data-vl-cluster',
-      type: { summary: 'boolean' },
-      description: 'Attribuut geeft aan of de features geclusterd zijn of niet.',
+      type: { summary: TYPES.BOOLEAN },
+      description: 'Indicates whether the features are clustered or not.',
       table: {
         defaultValue: { summary: 'false' },
+        category: CATEGORIES.ATTRIBUTES,
       },
       control: { disable: true },
     },

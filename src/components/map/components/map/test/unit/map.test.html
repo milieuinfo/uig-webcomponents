@@ -48,11 +48,25 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="vl-map-with-actions-fixture">
+      <template>
+        <vl-map>
+          <vl-map-action-controls>
+            <vl-map-measure-control class="control-action2"></vl-map-measure-control>
+          </vl-map-action-controls>
+          <vl-map-features-layer>
+            <vl-map-select-action class="action1"></vl-map-select-action>
+            <vl-map-measure-action class="action2"></vl-map-measure-action>
+          </vl-map-features-layer>
+        </vl-map>
+      </template>
+    </test-fixture>
+
     <script type="module">
       import OlLayerGroup from 'ol/layer/Group';
       import OlFullScreenControl from 'ol/control/FullScreen';
       import proj4 from 'proj4';
-      import { VlSelectAction, VlMapWithActions } from '../../../../../../../lib/components/map/index.js';
+      import { VlSelectAction } from '../../../../../../../lib/components/map/index.js';
       import { OpenLayersUtil } from '../../../../utils/ol-util.js';
 
       suite('vl-map', () => {
@@ -62,7 +76,7 @@
           customElements.whenDefined('vl-map').then(() => done());
         });
 
-        test('de Lambert 31370 projectie wordt correct gedefinieerd', () => {
+        test('the Lambert 31370 projection is correctly defined', () => {
           sandbox.spy(proj4, 'defs');
           fixture('vl-map-fixture');
           assert(
@@ -73,65 +87,125 @@
           );
         });
 
-        test('de extent bevat Vlaanderen', () => {
-          const element = fixture('vl-map-fixture');
-          const extent = element._extent;
+        test('the extent contains Flanders', () => {
+          const mapElement = fixture('vl-map-fixture');
+          const extent = mapElement._extent;
+
           assert.lengthOf(extent, 4);
           assert.equal(extent[0], 9928);
           assert.equal(extent[1], 66928);
           assert.equal(extent[2], 272072);
           assert.equal(extent[3], 329072);
 
-          assert.deepEqual(element._map.getView().getCenter(), [140860.69299028325, 190532.7165957574]);
+          assert.deepEqual(mapElement._map.getView().getCenter(), [140860.69299028325, 190532.7165957574]);
         });
 
-        test('kan een lagen groep aanmaken', () => {
-          const element = fixture('vl-map-fixture');
+        test('can create a layer group', () => {
+          const mapElement = fixture('vl-map-fixture');
+
           const title = 'title';
           const layer1 = OpenLayersUtil.createDummyLayer('layer 1');
           const layer2 = OpenLayersUtil.createDummyLayer('layer 2');
           const layers = [layer1, layer2];
-          const layerGroup = element.__createLayerGroup(title, layers);
+          const layerGroup = mapElement.__createLayerGroup(title, layers);
           const properties = layerGroup.getProperties();
           const layerGroupLayers = layerGroup.getLayers().getArray();
+
           assert.isTrue(layerGroup instanceof OlLayerGroup);
           assert.equal(properties.title, title);
           assert.deepEqual(layerGroupLayers, layers);
         });
 
-        test('er kan een actie toegevoegd worden aan de kaart', () => {
-          const element = fixture('vl-map-fixture');
-          const { map } = element;
+        test('an action can be added to the map', () => {
+          const mapElement = fixture('vl-map-fixture');
+          const { map } = mapElement;
+
+          const stub = sinon.stub(map, 'getDefaultActiveAction').callsFake(() => undefined);
+
+          const spy = sinon.stub(map, 'addAction');
+
           const actie = new VlSelectAction();
-          sandbox.spy(VlMapWithActions.prototype, 'activateAction');
-          map.addAction(actie);
-          assert(VlMapWithActions.prototype.activateAction);
+
+          mapElement.addAction(actie);
+
+          sinon.assert.calledOnce(spy);
+
+          stub.reset();
         });
 
-        test('er kan gezoomd worden naar een bounding box', () => {
-          const element = fixture('vl-map-fixture');
-          sandbox.spy(element._map, 'zoomToExtent');
+        test('when an action is activated, the action active state and control active state will be set to true and the action active state and control active state of other actions and action controls will be set to false', async () => {
+          const mapElement = fixture('vl-map-with-actions-fixture');
+          await mapElement.ready;
+
+          const action1 = mapElement.getElementsByClassName('action1')[0];
+          const action2 = mapElement.getElementsByClassName('action2')[0];
+          const controlAction2 = mapElement.getElementsByClassName('control-action2')[0];
+          const controlAction2ToggleButton = controlAction2.controlElement;
+
+          mapElement.activateAction(action2.action);
+
+          assert.isTrue(action2.active);
+          assert.isFalse(action1.active);
+          assert.isTrue(controlAction2ToggleButton.active);
+
+          mapElement.activateAction(action1.action);
+
+          assert.isFalse(action2.active);
+          assert.isTrue(action1.active);
+          assert.isFalse(controlAction2ToggleButton.active);
+        });
+
+        test('when the current action is deactivated, the default action will be activated', async () => {
+          const mapElement = fixture('vl-map-with-actions-fixture');
+          await mapElement.ready;
+
+          const { map } = mapElement;
+
+          const spy = sandbox.spy(map, 'activateDefaultAction');
+
+          mapElement.activateAction(map.actions[1]);
+          mapElement.deactivateAction(map.actions[1]);
+
+          sinon.assert.calledOnce(spy);
+        });
+
+        test('you can zoom to a bounding box', () => {
+          const mapElement = fixture('vl-map-fixture');
+
+          sandbox.spy(mapElement._map, 'zoomToExtent');
+
           const boundingbox = [0, 1, 2, 3];
-          element.zoomTo(boundingbox);
-          assert(element._map.zoomToExtent.calledWith(boundingbox));
+          mapElement.zoomTo(boundingbox);
+
+          assert(mapElement._map.zoomToExtent.calledWith(boundingbox));
         });
 
-        test('er kan gezoomd worden naar een geometry', () => {
-          const element = fixture('vl-map-fixture');
-          sandbox.spy(element._map, 'zoomToGeometry');
+        test('you can zoom to a geometry', () => {
+          const mapElement = fixture('vl-map-fixture');
+
+          sandbox.spy(mapElement._map, 'zoomToGeometry');
+
           const geometry = {
             type: 'Point',
             coordinates: [104719.27, 192387.25],
           };
-          element.zoomTo(geometry);
-          assert(element._map.zoomToGeometry.calledWith(geometry));
+          mapElement.zoomTo(geometry);
+
+          assert(mapElement._map.zoomToGeometry.calledWith(geometry));
         });
 
-        test('wanneer een kaart het fullscreen attribuut heeft zal de fullscreen control toegevoegd worden', () => {
-          let map = fixture('vl-map-fixture');
-          assert.isUndefined(map._map.controls.getArray().find((control) => control instanceof OlFullScreenControl));
-          map = fixture('vl-map-fullscreen-fixture');
-          assert.isDefined(map._map.controls.getArray().find((control) => control instanceof OlFullScreenControl));
+        test('when a map has the fullscreen attribute, the fullscreen control will be added', () => {
+          let mapElement = fixture('vl-map-fixture');
+
+          assert.isUndefined(
+            mapElement._map.controls.getArray().find((control) => control instanceof OlFullScreenControl),
+          );
+
+          mapElement = fixture('vl-map-fullscreen-fixture');
+
+          assert.isDefined(
+            mapElement._map.controls.getArray().find((control) => control instanceof OlFullScreenControl),
+          );
         });
       });
     </script>

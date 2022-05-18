@@ -124,10 +124,12 @@
       };
 
       const deleteAction = createVlDeleteAction({ layer });
-      sinon.stub(deleteAction.dragBoxInteraction, 'getGeometry').returns({ getExtent: () => {} });
+      const stub = sinon.stub(deleteAction.dragBoxInteraction, 'getGeometry').returns({ getExtent: () => {} });
       deleteAction.dragBoxInteraction.dispatchEvent('boxdrag');
       deleteAction.dragBoxInteraction.dispatchEvent('boxend');
       expect(deleteAction.map.render.called).to.be.true;
+
+      stub.reset();
     });
 
     it('de feature filter zal doorgegeven worden aan de select action', () => {
