@@ -41,9 +41,7 @@
           const controls = map.getControls().getArray();
 
           expect(
-            !!controls.find(
-              (control) => control.values_ && control.get('identifier') && control.get('identifier') === 'measure',
-            ),
+            !!controls.find((control) => control.get('element') && control.get('element').identifier === 'measure'),
           ).to.be.true;
         });
       });

@@ -35,7 +35,7 @@
       };
 
       const action = new VlMeasureAction(layer, snapping);
-      expect(action.layer).to.deep.equal(snappingLayer);
+      expect(action.options.layer).to.deep.equal(snappingLayer);
     });
 
     it('when the drawing is started and the mouse is moved, a tooltip will appear', () => {
