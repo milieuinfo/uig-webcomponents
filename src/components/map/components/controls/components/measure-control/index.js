@@ -1,4 +1,5 @@
 import { LitElement } from 'lit';
+import { unByKey } from 'ol/Observable';
 import { VlMapControl } from '../../mixin';
 import '../../../../../toggle-button';
 import { CONTROL_TYPE, IDENTIFIER } from '../../../../enums';
@@ -12,11 +13,18 @@ export class VlMapMeasureControl extends VlMapControl(LitElement) {
     // this.controlElement.textHidden = true;
     this.controlElement.innerText = 'Meten';
 
-    this.controlElement.addEventListener('click', this.handleMeasureControlClick.bind(this), false);
-
     this.identifier = IDENTIFIER.MEASURE;
 
     this.type = CONTROL_TYPE.ACTION;
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.clickListener = this.controlElement.addEventListener(
+      'click',
+      this.handleMeasureControlClick.bind(this),
+      false,
+    );
   }
 
   getAction() {
@@ -41,6 +49,11 @@ export class VlMapMeasureControl extends VlMapControl(LitElement) {
 
   setDisabled(set) {
     this.controlElement.disabled = set;
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    unByKey(this.clickListener);
   }
 }
 

@@ -4,7 +4,7 @@ import OlProjection from 'ol/proj/Projection';
 import proj4 from 'proj4';
 import { vlElement, define } from '../../../../utils/core';
 import { VlCustomMap } from '../../actions/custom-map';
-import { EVENT, CONTROL_TYPE } from '../../enums';
+import { EVENT } from '../../enums';
 
 import styles from './styles.scss';
 
@@ -76,25 +76,14 @@ export class VlMap extends vlElement(HTMLElement) {
     return this.getAttribute('disable-mouse-wheel-zoom') != undefined;
   }
 
-  /**
-   * Returns all actions of the map.
-   */
   get actions() {
     return this.map && this.map.actions;
   }
 
-  /**
-   * Gives all the controls of the map.
-   */
   get controls() {
     return this.map && this.map.getControls().getArray();
   }
 
-  /**
-   * Gives the active map action.
-   *
-   * @return {VlMapAction}
-   */
   get activeAction() {
     return this.map && this.map.getCurrentActiveAction();
   }
@@ -145,66 +134,54 @@ export class VlMap extends vlElement(HTMLElement) {
     this.__updateOverviewMapSizeOnLoad();
   }
 
-  /**
-   * Adds a map layer to the map.
-   *
-   * @param {Object} layer
-   */
   addLayer(layer) {
     this.map.getOverlayLayers().push(layer);
   }
 
-  /**
-   * Adds a control to the map.
-   *
-   * @param {VlMapControl} control
-   */
-  addControl(control) {
-    this.map.addControl(control);
-  }
-
-  /**
-   * Adds a map action to the map.
-   *
-   * @param {VlMapAction} action
-   */
   addAction(action) {
     this.map.addAction(action);
   }
 
-  /**
-   * Removes a map action from the map.
-   *
-   * @param {VlMapAction} action
-   */
+  addControl(control) {
+    this.map.addControl(control);
+  }
+
   removeAction(action) {
     this.map.removeAction(action);
   }
 
-  _handleLayerVisibilityChange(layerElement) {
-    // Visibility false: Disable action controls linked to actions in the layer and deactivate the possible active action in the layer
-    // Visibility true:  Enable action controls linked to actions in the layer
+  handleLayerVisibilityChange(layerElement) {
+    this._dispatchLayerVisibleChangedEvent(layerElement);
+
     const actions = this.map.getLayerActions(layerElement.layer);
 
     if (actions) {
       actions.forEach((action) => {
         if (!layerElement.visible) {
+          // Deactivate active action when layer visibility is set to false
           this.deactivateAction(action);
         }
 
+        // Handle visibility changes specific to the action if these are defined
         if (action.handleLayerVisibilityChange) {
           action.handleLayerVisibilityChange();
         }
 
+        // Enable or disable the control of the action
         const actionControl = action.getControl();
         if (actionControl) {
-          if (!layerElement.visible) {
-            actionControl.target_.setActive(false);
-          }
           actionControl.get('element').setDisabled(!layerElement.visible);
         }
       });
     }
+  }
+
+  _dispatchLayerVisibleChangedEvent(changedLayer) {
+    this.dispatchEvent(
+      new CustomEvent(EVENT.LAYER_VISIBLE_CHANGED, {
+        detail: { changedLayer, visible: changedLayer.visible },
+      }),
+    );
   }
 
   _handleActionsActiveState(changedAction, changedActiveState) {
@@ -239,33 +216,23 @@ export class VlMap extends vlElement(HTMLElement) {
     );
   }
 
-  /**
-   * Activates a map action.
-   *
-   * @param {VlMapAction} action
-   */
   activateAction(action) {
     // Only activate action when its layer is visible
     if (action && action.layer.get('visible')) {
       this.map.activateAction(action);
 
-      this._dispatchActionActiveChangedEvent(action, true);
+      this._dispatchActionActiveChangedEvent(action.element, true);
       this._handleActionsActiveState(action, true);
       this._handleActionControlsActiveState(action, true);
     }
   }
 
-  /**
-   * Deactivates a map action.
-   *
-   * @param {VlMapAction} action
-   */
   deactivateAction(action) {
     // First check if action to deactivate is actually active at this moment
     if (action && this.activeAction && this.activeAction === action) {
       this.map.deactivateCurrentAction();
 
-      this._dispatchActionActiveChangedEvent(action, false);
+      this._dispatchActionActiveChangedEvent(action.element, false);
       this._handleActionsActiveState(action, false);
       this._handleActionControlsActiveState(action, false);
 

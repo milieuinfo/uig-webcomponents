@@ -9,7 +9,7 @@ describe('vl-map', async () => {
     return vlMapPage.load();
   });
 
-  it('als gebruiker kan ik verschillende basis kaartlagen definieren voor een map', async () => {
+  it('as a user I can define different base map layers for a map', async () => {
     const map = await vlMapPage.getMap();
     await assert.eventually.isTrue(map.isDisplayed());
     const baseLayers = await map.getBaseLayers();
@@ -18,7 +18,7 @@ describe('vl-map', async () => {
     await assert.eventually.equal(baseLayers[2].getTitle(), 'GRB ortho laag');
   });
 
-  it('als gebruiker kan ik de url en type van een grb baselayer bevragen', async () => {
+  it('as a user I can query the url and type of a grb baselayer', async () => {
     const baseLayerGrb = await vlMapPage.getBaseLayerGrb();
 
     await assert.eventually.equal(
@@ -28,7 +28,7 @@ describe('vl-map', async () => {
     await assert.eventually.equal(baseLayerGrb.getType(), 'wmts');
   });
 
-  it('als gebruiker zie ik het verschil tussen een grijze grb baselayer en de gewone grb baselayer aan de layer en title', async () => {
+  it('as a user I see the difference between a gray grb baselayer and the normal grb baselayer on the layer and title', async () => {
     const baseLayerGrbGray = await vlMapPage.getBaseLayerGrbGray();
     const baseLayerGrb = await vlMapPage.getBaseLayerGrb();
 
@@ -38,7 +38,7 @@ describe('vl-map', async () => {
     await assert.eventually.equal(baseLayerGrb.getTitle(), 'GRB basis laag');
   });
 
-  it('als gebruiker zie ik het verschil tussen een map waar de escape key enabled en disabled is', async () => {
+  it('as a user I see the difference between a map where the escape key is enabled and disabled', async () => {
     const mapEscapeEnabled = await vlMapPage.getMap();
     const mapEscapeDisabled = await vlMapPage.getMapWithoutEscape();
 
@@ -46,7 +46,7 @@ describe('vl-map', async () => {
     await assert.eventually.isTrue(mapEscapeDisabled.isEscapeKeyDisabled());
   });
 
-  it('als gebruiker zie ik het verschil tussen een map waar de rotation enabled en disabled is', async () => {
+  it('as a user I see the difference between a map where the rotation is enabled and disabled', async () => {
     const mapRotationEnabled = await vlMapPage.getMap();
     const mapRotationDisabled = await vlMapPage.getMapWithoutRotation();
 
@@ -54,7 +54,7 @@ describe('vl-map', async () => {
     await assert.eventually.isTrue(mapRotationDisabled.isRotationDisabled());
   });
 
-  it('als gebruiker zie ik het verschil tussen een map waar de mouse wheel zoom enabled en disabled is', async () => {
+  it('as a user I see the difference between a map where the mouse wheel zoom is enabled and disabled', async () => {
     const mapMouseWheelZoomEnabled = await vlMapPage.getMap();
     const mapMouseWheelZoomDisabled = await vlMapPage.getMapWithoutMouseZoom();
 
@@ -62,7 +62,7 @@ describe('vl-map', async () => {
     await assert.eventually.isTrue(mapMouseWheelZoomDisabled.isMouseWheelZoomDisabled());
   });
 
-  it('als gebruiker kan ik de kaart zoomen', async () => {
+  it('as a user i can zoom the map', async () => {
     const map = await vlMapPage.getMap();
     await assert.eventually.isTrue(map.hasZoom(2));
 
@@ -73,12 +73,12 @@ describe('vl-map', async () => {
     await assert.eventually.isTrue(map.hasZoom(2));
   });
 
-  it('als gebruiker kan ik een schaal raadplegen', async () => {
+  it('as a user I can consult a scale', async () => {
     const map = await vlMapPage.getMap();
     await assert.eventually.isDefined(map.getScale());
   });
 
-  it('als gebruiker kan ik een kaart fullscreen aan- en uitzetten', async () => {
+  it('as a user I can switch a map on and off in full screen', async () => {
     const map = await vlMapPage.getMap();
     const mapWithFullscreenAllowed = await vlMapPage.getMapWithFullscreenAllowed();
     await assert.eventually.isFalse(map.isFullscreenAllowed());

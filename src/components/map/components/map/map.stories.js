@@ -88,43 +88,94 @@ const purple = 'rgba(102, 51, 153, 0.6)';
 const toggleGroupStyling = 'width: 100%;';
 const toggleItemStyling = 'display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;';
 
+const getDrawPointActionElement = () => document.getElementById('draw-point-action');
+const getDrawPointToggleButton = () => document.getElementById('draw-point-toggle-button');
+
+const getDrawLineActionElement = () => document.getElementById('draw-line-action');
+const getDrawLineToggleButton = () => document.getElementById('draw-line-toggle-button');
+
+const getDrawPolygonActionElement = () => document.getElementById('draw-polygon-action');
+const getDrawPolygonToggleButton = () => document.getElementById('draw-polygon-toggle-button');
+
+const getModifyActionElement = () => document.getElementById('modify-action');
+const getModifyToggleButton = () => document.getElementById('modify-toggle-button');
+
+const getDeleteActionElement = () => document.getElementById('delete-action');
+const getDeleteToggleButton = () => document.getElementById('delete-toggle-button');
+
+const features = {
+  type: 'FeatureCollection',
+  features: [
+    {
+      type: 'Feature',
+      id: 1,
+      geometry: { type: 'Point', coordinates: [210000, 190000] },
+    },
+    {
+      type: 'Feature',
+      id: 2,
+      geometry: {
+        type: 'LineString',
+        coordinates: [
+          [170000, 170000],
+          [150000, 206000],
+        ],
+      },
+    },
+    {
+      type: 'Feature',
+      id: 3,
+      geometry: {
+        type: 'Polygon',
+        coordinates: [
+          [
+            [44000, 171000],
+            [100000, 171000],
+            [100000, 205000],
+            [44000, 205000],
+            [44000, 171000],
+          ],
+        ],
+      },
+    },
+  ],
+};
+
 export const KitchenSink = ({ allowFullscreen, disableEscape, disableRotation, disableMousewheelZoom }) => {
-  const features = {
-    type: 'FeatureCollection',
-    features: [
-      {
-        type: 'Feature',
-        id: 1,
-        geometry: { type: 'Point', coordinates: [210000, 190000] },
-      },
-      {
-        type: 'Feature',
-        id: 2,
-        geometry: {
-          type: 'LineString',
-          coordinates: [
-            [170000, 170000],
-            [150000, 206000],
-          ],
-        },
-      },
-      {
-        type: 'Feature',
-        id: 3,
-        geometry: {
-          type: 'Polygon',
-          coordinates: [
-            [
-              [44000, 171000],
-              [100000, 171000],
-              [100000, 205000],
-              [44000, 205000],
-              [44000, 171000],
-            ],
-          ],
-        },
-      },
-    ],
+  const handleActionActiveChange = ({ detail: { changedAction, active } }) => {
+    // Activate/deactivate external controls when an action changes its state
+    getDrawPointToggleButton().active = changedAction.action === getDrawPointActionElement().action && active;
+    getDrawLineToggleButton().active = changedAction.action === getDrawLineActionElement().action && active;
+    getDrawPolygonToggleButton().active = changedAction.action === getDrawPolygonActionElement().action && active;
+    getModifyToggleButton().active = changedAction.action === getModifyActionElement().action && active;
+    getDeleteToggleButton().active = changedAction.action === getDeleteActionElement().action && active;
+  };
+
+  const handleLayerVisibleChange = ({ detail: { changedLayer, visible } }) => {
+    // Enable/disable external controls when an action changes its state
+    const layerActions = changedLayer.getElementsByClassName('action');
+
+    for (const layerAction of layerActions) {
+      switch (layerAction) {
+        case getDrawPointActionElement():
+          getDrawPointToggleButton().disabled = !visible;
+          break;
+        case getDrawLineActionElement():
+          getDrawLineToggleButton().disabled = !visible;
+          break;
+        case getDrawPolygonActionElement():
+          getDrawPolygonToggleButton.disabled = !visible;
+          break;
+        case getModifyActionElement():
+          getModifyToggleButton.disabled = !visible;
+          break;
+        case getDeleteActionElement():
+          getDeleteToggleButton.disabled = !visible;
+          break;
+        default:
+          break;
+      }
+    }
   };
 
   return html`
@@ -134,6 +185,8 @@ export const KitchenSink = ({ allowFullscreen, disableEscape, disableRotation, d
       ?data-vl-disable-escape-key=${disableEscape}
       ?data-vl-disable-rotation=${disableRotation}
       ?data-vl-disable-mouse-wheel-zoom=${disableMousewheelZoom}
+      @action-active-changed=${(e) => handleActionActiveChange(e)}
+      @layer-visible-changes=${(e) => handleLayerVisibleChange(e)}
     >
       <vl-map-action-controls>
         <vl-map-measure-control></vl-map-measure-control>
@@ -174,8 +227,7 @@ export const KitchenSink = ({ allowFullscreen, disableEscape, disableRotation, d
                   <vl-toggle-button
                     id="modify-toggle-button"
                     @click=${() => {
-                      const action = document.getElementById('modify-action');
-                      action.active = !action.active;
+                      getModifyActionElement().active = !getModifyActionElement().active;
                     }}
                   >
                     Modify
@@ -183,8 +235,7 @@ export const KitchenSink = ({ allowFullscreen, disableEscape, disableRotation, d
                   <vl-toggle-button
                     id="delete-toggle-button"
                     @click=${() => {
-                      const action = document.getElementById('delete-action');
-                      action.active = !action.active;
+                      getDeleteActionElement().active = !getDeleteActionElement().active;
                     }}
                   >
                     Delete
@@ -199,8 +250,7 @@ export const KitchenSink = ({ allowFullscreen, disableEscape, disableRotation, d
                   data-vl-icon="pencil"
                   data-vl-text-hidden
                   @click=${() => {
-                    const action = document.getElementById('draw-point-action');
-                    action.active = !action.active;
+                    getDrawPointActionElement().active = !getDrawPointActionElement().active;
                   }}
                 >
                   Toggle draw point action
@@ -214,8 +264,7 @@ export const KitchenSink = ({ allowFullscreen, disableEscape, disableRotation, d
                   data-vl-icon="pencil"
                   data-vl-text-hidden
                   @click=${() => {
-                    const action = document.getElementById('draw-line-action');
-                    action.active = !action.active;
+                    getDrawLineActionElement().active = !getDrawLineActionElement().active;
                   }}
                 >
                   Toggle draw line action
@@ -229,8 +278,7 @@ export const KitchenSink = ({ allowFullscreen, disableEscape, disableRotation, d
                   data-vl-icon="pencil"
                   data-vl-text-hidden
                   @click=${() => {
-                    const action = document.getElementById('draw-polygon-action');
-                    action.active = !action.active;
+                    getDrawPolygonActionElement().active = !getDrawPolygonActionElement().active;
                   }}
                 >
                   Toggle draw polygon action
@@ -255,44 +303,18 @@ export const KitchenSink = ({ allowFullscreen, disableEscape, disableRotation, d
         <vl-map-layer-style data-vl-border-color=${purple} data-vl-color=${purple}></vl-map-layer-style>
         <vl-map-layer-circle-style data-vl-border-color=${purple} data-vl-color=${purple}></vl-map-layer-circle-style>
 
-        <vl-map-draw-point-action id="draw-point-action"></vl-map-draw-point-action>
-        <vl-map-draw-line-action id="draw-line-action"></vl-map-draw-line-action>
-        <vl-map-draw-polygon-action id="draw-polygon-action"></vl-map-draw-polygon-action>
+        <vl-map-draw-point-action id="draw-point-action" class="action"></vl-map-draw-point-action>
+        <vl-map-draw-line-action id="draw-line-action" class="action"></vl-map-draw-line-action>
+        <vl-map-draw-polygon-action id="draw-polygon-action" class="action"></vl-map-draw-polygon-action>
 
-        <vl-map-modify-action id="modify-action"></vl-map-modify-action>
-        <vl-map-delete-action id="delete-action"></vl-map-delete-action>
-        <vl-map-select-action id="select-action" data-vl-default-active></vl-map-select-action>
+        <vl-map-modify-action id="modify-action" class="action"></vl-map-modify-action>
+        <vl-map-delete-action id="delete-action" class="action"></vl-map-delete-action>
+        <vl-map-select-action id="select-action" class="action" data-vl-default-active></vl-map-select-action>
       </vl-map-features-layer>
 
       <vl-map-features-layer data-vl-name="Measurements">
-        <vl-map-measure-action id="measure-action"></vl-map-measure-action>
+        <vl-map-measure-action id="measure-action" class="action"></vl-map-measure-action>
       </vl-map-features-layer>
     </vl-map>
-
-    <script>
-      document.getElementById('map-kitchen-sink').addEventListener('action-active-changed', (e) => {
-        const { changedAction, active } = e.detail;
-
-        const drawPointActionElement = document.getElementById('draw-point-action');
-        const drawPointToggleButton = document.getElementById('draw-point-toggle-button');
-        drawPointToggleButton.active = changedAction === drawPointActionElement.action && active;
-
-        const drawLineActionElement = document.getElementById('draw-line-action');
-        const drawLineToggleButton = document.getElementById('draw-line-toggle-button');
-        drawLineToggleButton.active = changedAction === drawLineActionElement.action && active;
-
-        const drawPolygonActionElement = document.getElementById('draw-polygon-action');
-        const drawPolygonToggleButton = document.getElementById('draw-polygon-toggle-button');
-        drawPolygonToggleButton.active = changedAction === drawPolygonActionElement.action && active;
-
-        const modifyActionElement = document.getElementById('modify-action');
-        const modifyToggleButton = document.getElementById('modify-toggle-button');
-        modifyToggleButton.active = changedAction === modifyActionElement.action && active;
-
-        const deleteActionElement = document.getElementById('delete-action');
-        const deleteToggleButton = document.getElementById('delete-toggle-button');
-        deleteToggleButton.active = changedAction === deleteActionElement.action && active;
-      });
-    </script>
   `;
 };

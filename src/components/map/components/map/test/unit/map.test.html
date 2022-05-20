@@ -48,7 +48,7 @@
       </template>
     </test-fixture>
 
-    <test-fixture id="vl-map-with-actions-fixture">
+    <test-fixture id="vl-map-with-actions-and-control-fixture">
       <template>
         <vl-map>
           <vl-map-action-controls>
@@ -66,7 +66,7 @@
       import OlLayerGroup from 'ol/layer/Group';
       import OlFullScreenControl from 'ol/control/FullScreen';
       import proj4 from 'proj4';
-      import { VlSelectAction } from '../../../../../../../lib/components/map/index.js';
+      import { VlSelectAction, VlMapMeasureControl } from '../../../../../../../lib/components/map/index.js';
       import { OpenLayersUtil } from '../../../../utils/ol-util.js';
 
       suite('vl-map', () => {
@@ -100,6 +100,22 @@
           assert.deepEqual(mapElement._map.getView().getCenter(), [140860.69299028325, 190532.7165957574]);
         });
 
+        test('can request the map actions', async () => {
+          const mapElement = fixture('vl-map-with-actions-and-control-fixture');
+          await mapElement.ready;
+
+          assert.isTrue(!!mapElement.actions);
+          assert.isTrue(mapElement.actions.length === 2);
+        });
+
+        test('can request the map controls', async () => {
+          const mapElement = fixture('vl-map-with-actions-and-control-fixture');
+          await mapElement.ready;
+
+          assert.isTrue(!!mapElement.controls);
+          assert.isTrue(mapElement.controls.length === 4);
+        });
+
         test('can create a layer group', () => {
           const mapElement = fixture('vl-map-fixture');
 
@@ -124,17 +140,48 @@
 
           const spy = sinon.stub(map, 'addAction');
 
-          const actie = new VlSelectAction();
+          const action = new VlSelectAction();
 
-          mapElement.addAction(actie);
+          mapElement.addAction(action);
 
           sinon.assert.calledOnce(spy);
+          sinon.assert.calledWith(spy, action);
 
           stub.reset();
         });
 
-        test('when an action is activated, the action active state and control active state will be set to true and the action active state and control active state of other actions and action controls will be set to false', async () => {
-          const mapElement = fixture('vl-map-with-actions-fixture');
+        test('an action can be removed from the map', async () => {
+          const mapElement = fixture('vl-map-with-actions-and-control-fixture');
+          await mapElement.ready;
+
+          const { map } = mapElement;
+
+          const spy = sinon.stub(map, 'removeAction');
+
+          const action = map.actions[0];
+
+          mapElement.removeAction(action);
+
+          sinon.assert.calledOnce(spy);
+          sinon.assert.calledWith(spy, action);
+        });
+
+        test('a control can be added to the map', () => {
+          const mapElement = fixture('vl-map-fixture');
+          const { map } = mapElement;
+
+          const spy = sinon.stub(map, 'addControl');
+
+          const control = new VlMapMeasureControl();
+
+          mapElement.addControl(control);
+
+          sinon.assert.calledOnce(spy);
+          sinon.assert.calledWith(spy, control);
+        });
+
+        test('when an action is activated, the changed action active state and control active state of the linked control will be set to true and the action active state and control active state of other actions and action controls will be set to false', async () => {
+          const mapElement = fixture('vl-map-with-actions-and-control-fixture');
           await mapElement.ready;
 
           const action1 = mapElement.getElementsByClassName('action1')[0];
@@ -155,8 +202,26 @@
           assert.isFalse(controlAction2ToggleButton.active);
         });
 
+        test('an action can only be activated when its layer is visible', async () => {
+          const mapElement = fixture('vl-map-with-actions-and-control-fixture');
+          await mapElement.ready;
+
+          const { map } = mapElement;
+
+          const spy = sandbox.spy(map, 'activateAction');
+          const action = map.actions[1];
+
+          action.layer.setVisible(false);
+          mapElement.activateAction(action);
+          sinon.assert.notCalled(spy);
+
+          action.layer.setVisible(true);
+          mapElement.activateAction(action);
+          sinon.assert.calledOnce(spy);
+        });
+
         test('when the current action is deactivated, the default action will be activated', async () => {
-          const mapElement = fixture('vl-map-with-actions-fixture');
+          const mapElement = fixture('vl-map-with-actions-and-control-fixture');
           await mapElement.ready;
 
           const { map } = mapElement;
@@ -167,6 +232,82 @@
           mapElement.deactivateAction(map.actions[1]);
 
           sinon.assert.calledOnce(spy);
+        });
+
+        test("an action can only be deactivated when it's active", async () => {
+          const mapElement = fixture('vl-map-with-actions-and-control-fixture');
+          await mapElement.ready;
+
+          const { map } = mapElement;
+
+          const deactivateCurrentActionSpy = sandbox.spy(map, 'deactivateCurrentAction');
+          const activateDefaultActionSpy = sandbox.spy(map, 'activateDefaultAction');
+
+          mapElement.deactivateAction(map.actions[1]);
+          sinon.assert.notCalled(deactivateCurrentActionSpy);
+          sinon.assert.notCalled(activateDefaultActionSpy);
+
+          mapElement.activateAction(map.actions[1]);
+          // Activate action also calls deactivateCurrentAction
+          sinon.assert.calledOnce(deactivateCurrentActionSpy);
+          sinon.assert.notCalled(activateDefaultActionSpy);
+
+          mapElement.deactivateAction(map.actions[1]);
+          sinon.assert.calledTwice(deactivateCurrentActionSpy);
+          sinon.assert.calledOnce(activateDefaultActionSpy);
+        });
+
+        test('an active action on a layer will be deactivated when that layer is set to invisible', async () => {
+          const mapElement = fixture('vl-map-with-actions-and-control-fixture');
+          await mapElement.ready;
+
+          const { map } = mapElement;
+
+          const action = map.actions[1];
+
+          mapElement.activateAction(action);
+          assert.isTrue(mapElement.activeAction === action);
+
+          const deactivateCurrentActionSpy = sandbox.spy(map, 'deactivateCurrentAction');
+
+          const layer = mapElement.nonBaseLayers.find((nonBaseLayer) => nonBaseLayer._layer === action.layer);
+          layer.visible = false;
+
+          sinon.assert.calledOnce(deactivateCurrentActionSpy);
+          assert.isFalse(mapElement.activeAction === action);
+        });
+
+        test('can request the active action', () => {
+          const mapElement = fixture('vl-map-fixture');
+          const { map } = mapElement;
+
+          mapElement.activateAction(map.actions[1]);
+
+          assert.isTrue(map.activeAction === map.actions[1]);
+        });
+
+        test('an action control that is linked to an action on a layer will be disabled when that layer is set to invisible and will de deactivated when the action was active', async () => {
+          const mapElement = fixture('vl-map-with-actions-and-control-fixture');
+          await mapElement.ready;
+
+          const { map } = mapElement;
+
+          const action = map.actions[1];
+          const control = action.getControl().get('element');
+
+          mapElement.activateAction(action);
+
+          const setDisabledSpy = sandbox.spy(control, 'setDisabled');
+          const setActiveSpy = sandbox.spy(control, 'setActive');
+
+          const layer = mapElement.nonBaseLayers.find((nonBaseLayer) => nonBaseLayer._layer === action.layer);
+          layer.visible = false;
+
+          sinon.assert.calledOnce(setDisabledSpy);
+          sinon.assert.calledWith(setDisabledSpy, true);
+
+          sinon.assert.calledOnce(setActiveSpy);
+          sinon.assert.calledWith(setActiveSpy, false);
         });
 
         test('you can zoom to a bounding box', () => {
