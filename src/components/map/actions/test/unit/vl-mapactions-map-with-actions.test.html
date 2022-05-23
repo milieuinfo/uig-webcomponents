@@ -53,25 +53,6 @@
       expect(map.getInteractions().getLength()).to.equal(14); // 9 standaard + 5
     });
 
-    it('can only activate one action at a time, with only this action having its interactions active', async () => {
-      map = new VlTestMapWithActions({
-        actions: [action1, action2],
-      });
-
-      map.activateAction(action1);
-      await sleep();
-
-      const currentActiveActionStub = sinon.stub(map, 'getCurrentActiveAction').callsFake(() => action1);
-
-      map.activateAction(action2);
-      await sleep();
-
-      action1.interactions.forEach((interaction) => expect(interaction.getActive()).to.be.false);
-      action2.interactions.forEach((interaction) => expect(interaction.getActive()).to.be.true);
-
-      currentActiveActionStub.reset();
-    });
-
     it('can add a new action to the map', async () => {
       map = new VlTestMapWithActions({
         actions: [action1, action2],
@@ -97,7 +78,7 @@
 
       const nieuweAction = new VlMapActionAction([new Interaction({}), new Interaction({})]);
       map.addAction(nieuweAction);
-      sleep();
+      await sleep();
 
       map.removeAction(nieuweAction);
 
@@ -111,18 +92,18 @@
         actions: [action1, action2],
       });
 
-      const activateDefultActionSpy = sinon.spy(map, 'activateDefaultAction');
-      const nieuweAction = new VlMapActionAction([new Interaction({}), new Interaction({})]);
+      const activateDefaultActionSpy = sinon.spy(map, 'activateDefaultAction');
+      const newAction = new VlMapActionAction([new Interaction({}), new Interaction({})]);
 
-      map.addAction(nieuweAction);
+      map.addAction(newAction);
       await sleep();
 
-      map.activateAction(nieuweAction);
+      map.activateAction(newAction);
       await sleep();
 
-      map.removeAction(nieuweAction);
+      map.removeAction(newAction);
 
-      expect(activateDefultActionSpy.called).to.be.true;
+      expect(activateDefaultActionSpy.called).to.be.true;
     });
 
     it('there are 9 predefined interactions', () => {
@@ -193,7 +174,6 @@
       });
 
       sinon.spy(map, 'activateDefaultAction');
-      expect(map.activateDefaultAction.called).to.be.false;
 
       const event = new Event('keydown');
       event.keyCode = 27;

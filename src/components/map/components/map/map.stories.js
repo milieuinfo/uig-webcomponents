@@ -2,10 +2,12 @@ import { html } from 'lit-html';
 import '../../../map';
 import '../../../button';
 import '../../../../legacy/tabs';
+import { action } from '@storybook/addon-actions';
 import buttonStyles from '../../../button/styles.scss';
 import tabsStyles from '../../../../legacy/tabs/styles.scss';
 import titleStyles from '../../../titles/styles.scss';
-import { stylesheet, docsIntro, TYPES } from '../../../../../.storybook/utils.js';
+import { stylesheet, docsIntro, TYPES, CATEGORIES } from '../../../../../.storybook/utils.js';
+import { EVENT } from '../../enums';
 
 export default {
   title: 'custom-elements/vl-map',
@@ -25,6 +27,8 @@ export default {
     disableEscape: false,
     disableRotation: false,
     disableMousewheelZoom: false,
+    activeActionChange: action(EVENT.ACTIVE_ACTION_CHANGED),
+    layerVisibleChange: action(EVENT.LAYER_VISIBLE_CHANGED),
   },
   argTypes: {
     allowFullscreen: {
@@ -64,6 +68,16 @@ export default {
       },
       control: { disable: true },
     },
+    activeActionChange: {
+      name: EVENT.ACTIVE_ACTION_CHANGED,
+      description: 'Event fired when the current active action changes.',
+      table: { category: CATEGORIES.EVENTS },
+    },
+    layerVisibleChange: {
+      name: EVENT.LAYER_VISIBLE_CHANGED,
+      description: "Event fired when a layer's visible state changes.",
+      table: { category: CATEGORIES.EVENTS },
+    },
   },
 };
 
@@ -86,22 +100,10 @@ DisableMousewheelZoom.args = { disableMousewheelZoom: true };
 
 const purple = 'rgba(102, 51, 153, 0.6)';
 const toggleGroupStyling = 'width: 100%;';
-const toggleItemStyling = 'display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;';
+const toggleItemStyling = 'display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;';
 
-const getDrawPointActionElement = () => document.getElementById('draw-point-action');
-const getDrawPointToggleButton = () => document.getElementById('draw-point-toggle-button');
-
-const getDrawLineActionElement = () => document.getElementById('draw-line-action');
-const getDrawLineToggleButton = () => document.getElementById('draw-line-toggle-button');
-
-const getDrawPolygonActionElement = () => document.getElementById('draw-polygon-action');
-const getDrawPolygonToggleButton = () => document.getElementById('draw-polygon-toggle-button');
-
-const getModifyActionElement = () => document.getElementById('modify-action');
-const getModifyToggleButton = () => document.getElementById('modify-toggle-button');
-
-const getDeleteActionElement = () => document.getElementById('delete-action');
-const getDeleteToggleButton = () => document.getElementById('delete-toggle-button');
+const getActionElement = (name) => document.getElementById(`${name}-action`);
+const getToggleButton = (name) => document.getElementById(`${name}-toggle-button`);
 
 const features = {
   type: 'FeatureCollection',
@@ -141,156 +143,148 @@ const features = {
   ],
 };
 
-export const KitchenSink = ({ allowFullscreen, disableEscape, disableRotation, disableMousewheelZoom }) => {
-  const handleActionActiveChange = ({ detail: { changedAction, active } }) => {
+export const KitchenSink = (props) => {
+  const actionIdentifiers = ['draw-point', 'draw-line', 'draw-polygon', 'modify', 'delete'];
+
+  const handleActiveActionChange = ({ detail: { previous, current } }) => {
     // Activate/deactivate external controls when an action changes its state
-    getDrawPointToggleButton().active = changedAction.action === getDrawPointActionElement().action && active;
-    getDrawLineToggleButton().active = changedAction.action === getDrawLineActionElement().action && active;
-    getDrawPolygonToggleButton().active = changedAction.action === getDrawPolygonActionElement().action && active;
-    getModifyToggleButton().active = changedAction.action === getModifyActionElement().action && active;
-    getDeleteToggleButton().active = changedAction.action === getDeleteActionElement().action && active;
+
+    actionIdentifiers.forEach((actionIdentifier) => {
+      if (previous === getActionElement(actionIdentifier)) {
+        getToggleButton(actionIdentifier).active = false;
+      } else if (current === getActionElement(actionIdentifier)) {
+        getToggleButton(actionIdentifier).active = true;
+      }
+    });
   };
 
-  const handleLayerVisibleChange = ({ detail: { changedLayer, visible } }) => {
+  const handleLayerVisibleChange = ({ detail: { layer, visible } }) => {
     // Enable/disable external controls when an action changes its state
-    const layerActions = changedLayer.getElementsByClassName('action');
+    const layerActions = layer.getElementsByClassName('action');
 
     for (const layerAction of layerActions) {
-      switch (layerAction) {
-        case getDrawPointActionElement():
-          getDrawPointToggleButton().disabled = !visible;
-          break;
-        case getDrawLineActionElement():
-          getDrawLineToggleButton().disabled = !visible;
-          break;
-        case getDrawPolygonActionElement():
-          getDrawPolygonToggleButton.disabled = !visible;
-          break;
-        case getModifyActionElement():
-          getModifyToggleButton.disabled = !visible;
-          break;
-        case getDeleteActionElement():
-          getDeleteToggleButton.disabled = !visible;
-          break;
-        default:
-          break;
-      }
+      actionIdentifiers.forEach((actionIdentifier) => {
+        if (layerAction === getActionElement(actionIdentifier)) {
+          getToggleButton(actionIdentifier).disabled = !visible;
+        }
+      });
     }
   };
 
   return html`
     <vl-map
       id="map-kitchen-sink"
-      ?data-vl-allow-fullscreen=${allowFullscreen}
-      ?data-vl-disable-escape-key=${disableEscape}
-      ?data-vl-disable-rotation=${disableRotation}
-      ?data-vl-disable-mouse-wheel-zoom=${disableMousewheelZoom}
-      @action-active-changed=${(e) => handleActionActiveChange(e)}
-      @layer-visible-changes=${(e) => handleLayerVisibleChange(e)}
+      ?data-vl-allow-fullscreen=${props.allowFullscreen}
+      ?data-vl-disable-escape-key=${props.disableEscape}
+      ?data-vl-disable-rotation=${props.disableRotation}
+      ?data-vl-disable-mouse-wheel-zoom=${props.disableMousewheelZoom}
+      @active-action-changed=${(event) => {
+        props.activeActionChange(event.detail);
+        handleActiveActionChange(event);
+      }}
+      @layer-visible-changed=${(event) => {
+        props.layerVisibleChange(event.detail);
+        handleLayerVisibleChange(event);
+      }}
     >
       <vl-map-action-controls>
         <vl-map-measure-control></vl-map-measure-control>
       </vl-map-action-controls>
 
       <vl-map-side-sheet>
-        <vl-tabs id="tabs">
-          <vl-tabs-pane data-vl-id="flow" data-vl-title="Flow">
-            <div style=${toggleItemStyling}>
-              <h6 is="vl-h6">Measure</h6>
+        <h6 is="vl-h6">Layers</h6>
 
-              <div>
-                <button
-                  is="vl-button"
-                  @click=${() => {
-                    document.getElementById('measure-action').active = true;
-                  }}
-                >
-                  Start
-                </button>
-                <button
-                  is="vl-button"
-                  @click=${() => {
-                    document.getElementById('measure-action').active = false;
-                  }}
-                >
-                  Stop
-                </button>
-              </div>
-            </div>
+        <vl-map-layer-switcher> </vl-map-layer-switcher>
 
-            <hr />
+        <hr />
 
-            <div style=${toggleGroupStyling}>
-              <div style=${toggleItemStyling}>
-                <h6 is="vl-h6">Shapes</h6>
-                <div>
-                  <vl-toggle-button
-                    id="modify-toggle-button"
-                    @click=${() => {
-                      getModifyActionElement().active = !getModifyActionElement().active;
-                    }}
-                  >
-                    Modify
-                  </vl-toggle-button>
-                  <vl-toggle-button
-                    id="delete-toggle-button"
-                    @click=${() => {
-                      getDeleteActionElement().active = !getDeleteActionElement().active;
-                    }}
-                  >
-                    Delete
-                  </vl-toggle-button>
-                </div>
-              </div>
+        <h6 is="vl-h6">Measure</h6>
 
-              <div style=${toggleItemStyling}>
-                <p>Draw point</p>
-                <vl-toggle-button
-                  id="draw-point-toggle-button"
-                  data-vl-icon="pencil"
-                  data-vl-text-hidden
-                  @click=${() => {
-                    getDrawPointActionElement().active = !getDrawPointActionElement().active;
-                  }}
-                >
-                  Toggle draw point action
-                </vl-toggle-button>
-              </div>
+        <div>
+          <button
+            is="vl-button"
+            @click=${() => {
+              document.getElementById('measure-action').active = true;
+            }}
+          >
+            Start
+          </button>
+          <button
+            is="vl-button"
+            @click=${() => {
+              document.getElementById('measure-action').active = false;
+            }}
+          >
+            Stop
+          </button>
+        </div>
 
-              <div style=${toggleItemStyling}>
-                <p>Draw line</p>
-                <vl-toggle-button
-                  id="draw-line-toggle-button"
-                  data-vl-icon="pencil"
-                  data-vl-text-hidden
-                  @click=${() => {
-                    getDrawLineActionElement().active = !getDrawLineActionElement().active;
-                  }}
-                >
-                  Toggle draw line action
-                </vl-toggle-button>
-              </div>
+        <hr />
 
-              <div style=${toggleItemStyling}>
-                <p>Draw Polygon</p>
-                <vl-toggle-button
-                  id="draw-polygon-toggle-button"
-                  data-vl-icon="pencil"
-                  data-vl-text-hidden
-                  @click=${() => {
-                    getDrawPolygonActionElement().active = !getDrawPolygonActionElement().active;
-                  }}
-                >
-                  Toggle draw polygon action
-                </vl-toggle-button>
-              </div>
-            </div>
-          </vl-tabs-pane>
+        <div style=${toggleGroupStyling}>
+          <h6 is="vl-h6">Shapes</h6>
 
-          <vl-tabs-pane data-vl-id="layers" data-vl-title="Layers">
-            <vl-map-layer-switcher> </vl-map-layer-switcher>
-          </vl-tabs-pane>
-        </vl-tabs>
+          <div style="margin-bottom: 2rem;">
+            <vl-toggle-button
+              id="modify-toggle-button"
+              @click=${() => {
+                getActionElement('modify').active = !getActionElement('modify').active;
+              }}
+            >
+              Modify
+            </vl-toggle-button>
+            <vl-toggle-button
+              id="delete-toggle-button"
+              @click=${() => {
+                getActionElement('delete').active = !getActionElement('delete').active;
+              }}
+            >
+              Delete
+            </vl-toggle-button>
+          </div>
+
+          <div style=${toggleItemStyling}>
+            <vl-toggle-button
+              id="draw-point-toggle-button"
+              data-vl-icon="pencil"
+              data-vl-text-hidden
+              @click=${() => {
+                getActionElement('draw-point').active = !getActionElement('draw-point').active;
+              }}
+            >
+              Toggle draw point action
+            </vl-toggle-button>
+            <p>Draw point</p>
+          </div>
+
+          <div style=${toggleItemStyling}>
+            <vl-toggle-button
+              id="draw-line-toggle-button"
+              data-vl-icon="pencil"
+              data-vl-text-hidden
+              @click=${() => {
+                getActionElement('draw-line').active = !getActionElement('draw-line').active;
+              }}
+            >
+              Toggle draw line action
+            </vl-toggle-button>
+            <p>Draw line</p>
+          </div>
+
+          <div style=${toggleItemStyling}>
+            <vl-toggle-button
+              id="draw-polygon-toggle-button"
+              data-vl-icon="pencil"
+              data-vl-text-hidden
+              @click=${() => {
+                getActionElement('draw-polygon').active = !getActionElement('draw-polygon').active;
+              }}
+            >
+              Toggle draw polygon action
+            </vl-toggle-button>
+            <p>Draw Polygon</p>
+          </div>
+        </div>
       </vl-map-side-sheet>
 
       <vl-map-overview-map></vl-map-overview-map>

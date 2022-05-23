@@ -88,6 +88,10 @@ export class VlMap extends vlElement(HTMLElement) {
     return this.map && this.map.getCurrentActiveAction();
   }
 
+  get defaultAction() {
+    return this.map && this.map.getDefaultActiveAction();
+  }
+
   get _mapElement() {
     return this._shadow.querySelector('#map');
   }
@@ -150,6 +154,14 @@ export class VlMap extends vlElement(HTMLElement) {
     this.map.removeAction(action);
   }
 
+  _dispatchLayerVisibleChangedEvent(layer) {
+    this.dispatchEvent(
+      new CustomEvent(EVENT.LAYER_VISIBLE_CHANGED, {
+        detail: { layer, visible: layer.visible },
+      }),
+    );
+  }
+
   handleLayerVisibilityChange(layerElement) {
     this._dispatchLayerVisibleChangedEvent(layerElement);
 
@@ -157,8 +169,8 @@ export class VlMap extends vlElement(HTMLElement) {
 
     if (actions) {
       actions.forEach((action) => {
-        if (!layerElement.visible) {
-          // Deactivate active action when layer visibility is set to false
+        // Deactivate active action on layer when layer visibility is set to false
+        if (!layerElement.visible && action.element.active) {
           this.deactivateAction(action);
         }
 
@@ -176,67 +188,57 @@ export class VlMap extends vlElement(HTMLElement) {
     }
   }
 
-  _dispatchLayerVisibleChangedEvent(changedLayer) {
+  _dispatchActiveActionChangedEvent(previousActiveAction, currentActiveAction) {
+    const previous = console.log('_dispatchActionActiveChangedEvent previous: ', previousActiveAction);
+
     this.dispatchEvent(
-      new CustomEvent(EVENT.LAYER_VISIBLE_CHANGED, {
-        detail: { changedLayer, visible: changedLayer.visible },
+      new CustomEvent(EVENT.ACTIVE_ACTION_CHANGED, {
+        detail: {
+          previous: previousActiveAction ? previousActiveAction.element : previousActiveAction,
+          current: currentActiveAction ? currentActiveAction.element : currentActiveAction,
+        },
       }),
     );
   }
 
-  _handleActionsActiveState(changedAction, changedActiveState) {
-    // Only the action that was set to true gets an active state of true, the others are set to false
+  _changeActiveAction(newActiveAction) {
+    const previousActiveAction = this.activeAction;
+    let currentActiveAction = newActiveAction || this.defaultAction;
 
-    if (this.actions) {
-      this.actions.forEach((action) => {
-        const set = changedActiveState && changedAction === action;
-        action.element._active = set;
-      });
+    this.map.deactivateCurrentAction();
+
+    if (
+      currentActiveAction &&
+      currentActiveAction !== previousActiveAction &&
+      currentActiveAction.layer.get('visible')
+    ) {
+      this.map.activateAction(currentActiveAction);
+
+      currentActiveAction.element._active = true;
+      if (currentActiveAction.getControl()) {
+        currentActiveAction.getControl().get('element').setActive(true);
+      }
+    } else {
+      currentActiveAction = undefined;
     }
-  }
 
-  _handleActionControlsActiveState(changedAction, changedActiveState) {
-    // Only the action control with the same identifier as the changed action gets an active state of true, the others are set to false
-
-    const actionControls = this.map.getActionControls();
-    if (actionControls) {
-      actionControls.forEach((actionControl) => {
-        actionControl.target_.setActive(
-          changedActiveState && changedAction.element.identifier === actionControl.get('element').identifier,
-        );
-      });
+    if (previousActiveAction) {
+      previousActiveAction.element._active = false;
+      if (previousActiveAction.getControl()) {
+        previousActiveAction.getControl().get('element').setActive(false);
+      }
     }
-  }
 
-  _dispatchActionActiveChangedEvent(changedAction, changedActiveState) {
-    this.dispatchEvent(
-      new CustomEvent(EVENT.ACTION_ACTIVE_CHANGED, {
-        detail: { changedAction, active: changedActiveState },
-      }),
-    );
+    this._dispatchActiveActionChangedEvent(previousActiveAction, currentActiveAction);
   }
 
   activateAction(action) {
-    // Only activate action when its layer is visible
-    if (action && action.layer.get('visible')) {
-      this.map.activateAction(action);
-
-      this._dispatchActionActiveChangedEvent(action.element, true);
-      this._handleActionsActiveState(action, true);
-      this._handleActionControlsActiveState(action, true);
-    }
+    this._changeActiveAction(action);
   }
 
   deactivateAction(action) {
-    // First check if action to deactivate is actually active at this moment
-    if (action && this.activeAction && this.activeAction === action) {
-      this.map.deactivateCurrentAction();
-
-      this._dispatchActionActiveChangedEvent(action.element, false);
-      this._handleActionsActiveState(action, false);
-      this._handleActionControlsActiveState(action, false);
-
-      this.map.activateDefaultAction();
+    if (action.element.active && action === this.activeAction) {
+      this._changeActiveAction(undefined);
     }
   }
 

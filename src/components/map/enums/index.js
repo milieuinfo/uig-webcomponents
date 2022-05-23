@@ -1,5 +1,5 @@
 export const EVENT = {
-  ACTION_ACTIVE_CHANGED: 'action-active-changed',
+  ACTIVE_ACTION_CHANGED: 'active-action-changed',
   LAYER_VISIBLE_CHANGED: 'layer-visible-changed',
 };
 

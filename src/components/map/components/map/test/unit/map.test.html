@@ -48,6 +48,20 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="vl-map-with-actions-fixture">
+      <template>
+        <vl-map>
+          <vl-map-action-controls>
+            <vl-map-measure-control class="control-action2"></vl-map-measure-control>
+          </vl-map-action-controls>
+          <vl-map-features-layer>
+            <vl-map-select-action class="action1" data-vl-default-active></vl-map-select-action>
+            <vl-map-measure-action class="action2"></vl-map-measure-action>
+          </vl-map-features-layer>
+        </vl-map>
+      </template>
+    </test-fixture>
+
     <test-fixture id="vl-map-with-actions-and-control-fixture">
       <template>
         <vl-map>
@@ -68,6 +82,11 @@
       import proj4 from 'proj4';
       import { VlSelectAction, VlMapMeasureControl } from '../../../../../../../lib/components/map/index.js';
       import { OpenLayersUtil } from '../../../../utils/ol-util.js';
+
+      // Use to wait for map action to be activated. Timeout for activating a mapaction in map-with-actions can otherwise result in flaky tests.
+      function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
 
       suite('vl-map', () => {
         const sandbox = sinon.createSandbox();
@@ -116,6 +135,29 @@
           assert.isTrue(mapElement.controls.length === 4);
         });
 
+        test('can request the active action', async () => {
+          const mapElement = fixture('vl-map-with-actions-fixture');
+          await mapElement.ready;
+          await sleep(350); // Wait for default action to be activated
+
+          assert.isFalse(!!mapElement.activeAction);
+          assert.isFalse(mapElement.activeAction === mapElement.actions[1]);
+
+          mapElement.activateAction(mapElement.actions[1]);
+          await sleep(350);
+
+          assert.isTrue(!!mapElement.activeAction);
+          assert.isTrue(mapElement.activeAction === mapElement.actions[1]);
+        });
+
+        test('can request the default active action', async () => {
+          const mapElement = fixture('vl-map-with-actions-fixture');
+          await mapElement.ready;
+
+          assert.isTrue(!!mapElement.defaultAction);
+          assert.isTrue(mapElement.defaultAction === mapElement.actions[0]);
+        });
+
         test('can create a layer group', () => {
           const mapElement = fixture('vl-map-fixture');
 
@@ -158,7 +200,7 @@
 
           const spy = sinon.stub(map, 'removeAction');
 
-          const action = map.actions[0];
+          const action = mapElement.actions[0];
 
           mapElement.removeAction(action);
 
@@ -180,25 +222,37 @@
           sinon.assert.calledWith(spy, control);
         });
 
-        test('when an action is activated, the changed action active state and control active state of the linked control will be set to true and the action active state and control active state of other actions and action controls will be set to false', async () => {
+        test('when an action is activated, the previous active action gets deactivated', async () => {
+          const mapElement = fixture('vl-map-with-actions-and-control-fixture');
+          await mapElement.ready;
+          const { map } = mapElement;
+
+          const spy = sandbox.spy(map, 'deactivateCurrentAction');
+
+          mapElement.activateAction(mapElement.actions[1]);
+          await sleep(350);
+
+          sinon.assert.calledOnce(spy);
+        });
+
+        test("when an action is activated, its active state and its control active state will be set to true, and the previous active action's active state and its control active state will be set to false", async () => {
           const mapElement = fixture('vl-map-with-actions-and-control-fixture');
           await mapElement.ready;
 
-          const action1 = mapElement.getElementsByClassName('action1')[0];
-          const action2 = mapElement.getElementsByClassName('action2')[0];
-          const controlAction2 = mapElement.getElementsByClassName('control-action2')[0];
-          const controlAction2ToggleButton = controlAction2.controlElement;
+          const controlAction2ToggleButton = mapElement.actions[1].getControl().element;
 
-          mapElement.activateAction(action2.action);
+          mapElement.activateAction(mapElement.actions[1]);
+          await sleep(350);
 
-          assert.isTrue(action2.active);
-          assert.isFalse(action1.active);
+          assert.isTrue(mapElement.actions[1].element._active);
+          assert.isFalse(mapElement.actions[0].element._active);
           assert.isTrue(controlAction2ToggleButton.active);
 
-          mapElement.activateAction(action1.action);
+          mapElement.activateAction(mapElement.actions[0]);
+          await sleep(350);
 
-          assert.isFalse(action2.active);
-          assert.isTrue(action1.active);
+          assert.isFalse(mapElement.actions[1].element._active);
+          assert.isTrue(mapElement.actions[0].element._active);
           assert.isFalse(controlAction2ToggleButton.active);
         });
 
@@ -209,29 +263,39 @@
           const { map } = mapElement;
 
           const spy = sandbox.spy(map, 'activateAction');
-          const action = map.actions[1];
+          const action = mapElement.actions[1];
 
           action.layer.setVisible(false);
           mapElement.activateAction(action);
+          await sleep(350);
+
           sinon.assert.notCalled(spy);
 
           action.layer.setVisible(true);
           mapElement.activateAction(action);
+          await sleep(350);
+
           sinon.assert.calledOnce(spy);
         });
 
         test('when the current action is deactivated, the default action will be activated', async () => {
-          const mapElement = fixture('vl-map-with-actions-and-control-fixture');
+          const mapElement = fixture('vl-map-with-actions-fixture');
           await mapElement.ready;
+          await sleep(350); // Wait for default action to be activated
 
-          const { map } = mapElement;
+          assert.isTrue(mapElement.actions[0] === mapElement.defaultAction);
 
-          const spy = sandbox.spy(map, 'activateDefaultAction');
+          mapElement.activateAction(mapElement.actions[1]);
+          await sleep(350);
 
-          mapElement.activateAction(map.actions[1]);
-          mapElement.deactivateAction(map.actions[1]);
+          assert.isTrue(mapElement.activeAction === mapElement.actions[1]);
+          assert.isFalse(mapElement.activeAction === mapElement.defaultAction);
 
-          sinon.assert.calledOnce(spy);
+          mapElement.deactivateAction(mapElement.actions[1]);
+          await sleep(350);
+
+          assert.isTrue(mapElement.activeAction === mapElement.actions[0]);
+          assert.isTrue(mapElement.activeAction === mapElement.defaultAction);
         });
 
         test("an action can only be deactivated when it's active", async () => {
@@ -240,21 +304,27 @@
 
           const { map } = mapElement;
 
+          const changeActiveActionSpy = sandbox.spy(mapElement, '_changeActiveAction');
           const deactivateCurrentActionSpy = sandbox.spy(map, 'deactivateCurrentAction');
-          const activateDefaultActionSpy = sandbox.spy(map, 'activateDefaultAction');
 
-          mapElement.deactivateAction(map.actions[1]);
+          mapElement.deactivateAction(mapElement.actions[1]);
+          await sleep(350);
+
+          sinon.assert.notCalled(changeActiveActionSpy);
           sinon.assert.notCalled(deactivateCurrentActionSpy);
-          sinon.assert.notCalled(activateDefaultActionSpy);
 
-          mapElement.activateAction(map.actions[1]);
-          // Activate action also calls deactivateCurrentAction
+          mapElement.activateAction(mapElement.actions[1]);
+          await sleep(350);
+
+          sinon.assert.calledOnce(changeActiveActionSpy);
           sinon.assert.calledOnce(deactivateCurrentActionSpy);
-          sinon.assert.notCalled(activateDefaultActionSpy);
 
-          mapElement.deactivateAction(map.actions[1]);
+          mapElement.deactivateAction(mapElement.actions[1]);
+          await sleep(350);
+
+          sinon.assert.calledTwice(changeActiveActionSpy);
+          sinon.assert.calledWith(changeActiveActionSpy.secondCall, undefined);
           sinon.assert.calledTwice(deactivateCurrentActionSpy);
-          sinon.assert.calledOnce(activateDefaultActionSpy);
         });
 
         test('an active action on a layer will be deactivated when that layer is set to invisible', async () => {
@@ -263,9 +333,11 @@
 
           const { map } = mapElement;
 
-          const action = map.actions[1];
+          const action = mapElement.actions[1];
 
           mapElement.activateAction(action);
+          await sleep(350);
+
           assert.isTrue(mapElement.activeAction === action);
 
           const deactivateCurrentActionSpy = sandbox.spy(map, 'deactivateCurrentAction');
@@ -277,25 +349,15 @@
           assert.isFalse(mapElement.activeAction === action);
         });
 
-        test('can request the active action', () => {
-          const mapElement = fixture('vl-map-fixture');
-          const { map } = mapElement;
-
-          mapElement.activateAction(map.actions[1]);
-
-          assert.isTrue(map.activeAction === map.actions[1]);
-        });
-
         test('an action control that is linked to an action on a layer will be disabled when that layer is set to invisible and will de deactivated when the action was active', async () => {
           const mapElement = fixture('vl-map-with-actions-and-control-fixture');
           await mapElement.ready;
 
-          const { map } = mapElement;
-
-          const action = map.actions[1];
+          const action = mapElement.actions[1];
           const control = action.getControl().get('element');
 
           mapElement.activateAction(action);
+          await sleep(350);
 
           const setDisabledSpy = sandbox.spy(control, 'setDisabled');
           const setActiveSpy = sandbox.spy(control, 'setActive');

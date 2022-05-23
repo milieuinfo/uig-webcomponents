@@ -79,7 +79,6 @@ export default {
     click: {
       name: 'click',
       description: 'Event fired on click of the toggle button.',
-
       table: { category: CATEGORIES.EVENTS },
     },
     ...sharedButtonArgTypes,
