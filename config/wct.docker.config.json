@@ -1,31 +1,29 @@
 {
   "activeBrowsers": [
-  {
-  "browserName": "chrome",
-  "url": "http://selenium-hub:4444/wd/hub"
-  },
-  {
-  "browserName": "firefox",
-  "url": "http://selenium-hub:4444/wd/hub"
-  }
+    {
+      "browserName": "chrome",
+      "url": "http://selenium-hub:4444/wd/hub"
+    },
+    {
+      "browserName": "firefox",
+      "url": "http://selenium-hub:4444/wd/hub"
+    }
   ],
   "expanded": true,
   "npm": true,
   "plugins": {
-  "local": false,
-  "sauce": false,
-  "junit-reporter": {
-  "output": {
-  "path": "results/",
-  "name": "wct-results.xml"
-  }
-  }
+    "local": false,
+    "sauce": false,
+    "junit-reporter": {
+      "output": {
+        "path": "results/",
+        "name": "wct-results.xml"
+      }
+    }
   },
-  "suites": [
-  "src/**/**/test/unit/**/*.test.html"
-  ],
+  "suites": ["src/**/**/test/unit/**/*.test.html"],
   "webserver": {
-  "hostname": "tests"
+    "hostname": "tests"
   },
   "root": "./"
-  }
+}

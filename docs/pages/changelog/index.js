@@ -86,6 +86,16 @@ const unreleased = [
 const changes = [
   ...unreleased,
   {
+    version: '2.3.1',
+    date: '15/4/2022',
+    children: html`<ul>
+      <li>
+        <p><code>vl-tabs</code></p>
+        <p>Added the missing dependency <code>@govflanders/vl-ui-tabs</code>.</p>
+      </li>
+    </ul>`,
+  },
+  {
     version: '2.3.0',
     date: '8/4/2022',
     children: html`<ul>
