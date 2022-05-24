@@ -50,8 +50,6 @@ export class VlMapWithActions extends Map {
       document.body.removeEventListener('keydown', activateFirstActionOnEscapeKey);
       document.body.addEventListener('keydown', activateFirstActionOnEscapeKey);
     }
-
-    this.mapElement = options.target;
   }
 
   getDefaultActiveAction() {
