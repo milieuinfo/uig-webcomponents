@@ -64,6 +64,15 @@ const unreleased = [
               action in the list of actions on the map.
             </p>
           </li>
+          <li>
+            <p>
+              Made a change to the ESC functionality of the map. From now on, when an action is activate and the ESC key
+              is pressed, its stop() implementation is triggered instead of deactivating the action and activating the
+              default active action (with the old implementation as mentioned aboven which resulted in often
+              re-activating the action that was already active). When there is no active action, the default active
+              action is activated.
+            </p>
+          </li>
         </ul>
       </li>
       <li>
