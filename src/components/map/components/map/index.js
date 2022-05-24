@@ -189,8 +189,6 @@ export class VlMap extends vlElement(HTMLElement) {
   }
 
   _dispatchActiveActionChangedEvent(previousActiveAction, currentActiveAction) {
-    const previous = console.log('_dispatchActionActiveChangedEvent previous: ', previousActiveAction);
-
     this.dispatchEvent(
       new CustomEvent(EVENT.ACTIVE_ACTION_CHANGED, {
         detail: {
@@ -203,41 +201,44 @@ export class VlMap extends vlElement(HTMLElement) {
 
   _changeActiveAction(newActiveAction) {
     const previousActiveAction = this.activeAction;
-    let currentActiveAction = newActiveAction || this.defaultAction;
+    const currentActiveAction = newActiveAction || this.defaultAction;
 
-    this.map.deactivateCurrentAction();
-
-    if (
-      currentActiveAction &&
-      currentActiveAction !== previousActiveAction &&
-      currentActiveAction.layer.get('visible')
-    ) {
-      this.map.activateAction(currentActiveAction);
-
-      currentActiveAction.element._active = true;
-      if (currentActiveAction.getControl()) {
-        currentActiveAction.getControl().get('element').setActive(true);
-      }
-    } else {
-      currentActiveAction = undefined;
-    }
+    let deactivatedPrevious;
+    let activatedCurrent;
 
     if (previousActiveAction) {
+      this.map.deactivateCurrentAction();
+      deactivatedPrevious = true;
+
       previousActiveAction.element._active = false;
       if (previousActiveAction.getControl()) {
         previousActiveAction.getControl().get('element').setActive(false);
       }
     }
 
-    this._dispatchActiveActionChangedEvent(previousActiveAction, currentActiveAction);
+    if (currentActiveAction && currentActiveAction.layer.get('visible')) {
+      this.map.activateAction(currentActiveAction);
+      activatedCurrent = true;
+
+      currentActiveAction.element._active = true;
+      if (currentActiveAction.getControl()) {
+        currentActiveAction.getControl().get('element').setActive(true);
+      }
+    }
+
+    if (activatedCurrent || deactivatedPrevious) {
+      this._dispatchActiveActionChangedEvent(previousActiveAction, activatedCurrent ? currentActiveAction : undefined);
+    }
   }
 
   activateAction(action) {
-    this._changeActiveAction(action);
+    if (action) {
+      this._changeActiveAction(action);
+    }
   }
 
   deactivateAction(action) {
-    if (action.element.active && action === this.activeAction) {
+    if (action && action.element.active && action === this.activeAction) {
       this._changeActiveAction(undefined);
     }
   }
