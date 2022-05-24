@@ -5,7 +5,6 @@ export const EVENT = {
 
 export const CONTROL_TYPE = {
   ACTION: 'action',
-  ZOOM: 'zoom',
 };
 
 export const IDENTIFIER = {
