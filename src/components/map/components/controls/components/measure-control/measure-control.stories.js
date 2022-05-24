@@ -3,7 +3,7 @@ import '../../../map';
 import { docsIntro } from '../../../../../../../.storybook/utils.js';
 
 export default {
-  title: 'custom-elements/vl-map/vl-map-controls/vl-measure-control',
+  title: 'custom-elements/vl-map/vl-map-action-controls/vl-measure-control',
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
