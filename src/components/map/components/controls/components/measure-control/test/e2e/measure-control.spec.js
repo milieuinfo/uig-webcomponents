@@ -7,6 +7,11 @@ const defaultUrl = `${sbUrl}?id=custom-elements-vl-map-vl-map-controls--default`
 const controlSelector = 'vl-map-measure-control';
 const actionSelector = 'vl-map-measure-action';
 
+// Use to wait for map action to be activated. Timeout for activating a mapaction in map-with-actions can otherwise result in flaky tests.
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 describe('vl-measure-control', async () => {
   let driver;
 
@@ -24,9 +29,11 @@ describe('vl-measure-control', async () => {
     assert.isFalse(await measureAction.isActive());
 
     measureControl.click();
+    sleep(350);
     assert.isTrue(await measureAction.isActive());
 
     measureControl.click();
+    sleep(350);
     assert.isFalse(await measureAction.isActive());
   });
 });
