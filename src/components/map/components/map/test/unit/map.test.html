@@ -140,8 +140,8 @@
           await mapElement.ready;
           await sleep(350); // Wait for default action to be activated
 
-          assert.isFalse(!!mapElement.activeAction);
-          assert.isFalse(mapElement.activeAction === mapElement.actions[1]);
+          assert.isTrue(!!mapElement.activeAction);
+          assert.isTrue(mapElement.activeAction === mapElement.actions[0]);
 
           mapElement.activateAction(mapElement.actions[1]);
           await sleep(350);
@@ -223,8 +223,9 @@
         });
 
         test('when an action is activated, the previous active action gets deactivated', async () => {
-          const mapElement = fixture('vl-map-with-actions-and-control-fixture');
+          const mapElement = fixture('vl-map-with-actions-fixture');
           await mapElement.ready;
+          await sleep(350); // Wait for default action to be activated
           const { map } = mapElement;
 
           const spy = sandbox.spy(map, 'deactivateCurrentAction');
@@ -317,14 +318,13 @@
           await sleep(350);
 
           sinon.assert.calledOnce(changeActiveActionSpy);
-          sinon.assert.calledOnce(deactivateCurrentActionSpy);
 
           mapElement.deactivateAction(mapElement.actions[1]);
           await sleep(350);
 
           sinon.assert.calledTwice(changeActiveActionSpy);
           sinon.assert.calledWith(changeActiveActionSpy.secondCall, undefined);
-          sinon.assert.calledTwice(deactivateCurrentActionSpy);
+          sinon.assert.calledOnce(deactivateCurrentActionSpy);
         });
 
         test('an active action on a layer will be deactivated when that layer is set to invisible', async () => {

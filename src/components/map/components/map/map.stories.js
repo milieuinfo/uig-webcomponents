@@ -148,7 +148,6 @@ export const KitchenSink = (props) => {
 
   const handleActiveActionChange = ({ detail: { previous, current } }) => {
     // Activate/deactivate external controls when an action changes its state
-
     actionIdentifiers.forEach((actionIdentifier) => {
       if (previous === getActionElement(actionIdentifier)) {
         getToggleButton(actionIdentifier).active = false;
