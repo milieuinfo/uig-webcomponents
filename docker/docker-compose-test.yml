@@ -1,33 +1,45 @@
-version: "3"
+version: '3'
 services:
   selenium-hub:
-    image: ${DOCKER_REGISTRY}selenium/hub:3.141.59
+    image: ${DOCKER_REGISTRY}selenium/hub:4.1.4
     container_name: selenium-hub
     environment:
-      - NODE_MAX_SESSION=3
-      - NODE_MAX_INSTANCES=3
+      - NODE_MAX_SESSION=1
+      - NODE_MAX_INSTANCES=1
+    ports: 
+      - "4444:4444"
+      - "4443:4443"
+      - "4442:4442"
   selenium-chrome:
-    image: ${DOCKER_REGISTRY}selenium/node-chrome-debug:3.141.59
+    image: ${DOCKER_REGISTRY}selenium/node-chrome:98.0
     depends_on:
       - selenium-hub
     environment:
       - HUB_HOST=selenium-hub
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - HUB_PORT=4444
+      - SHM-SIZE=11g
       - http_proxy=${http_proxy}
       - https_proxy=${https_proxy}
-      - no_proxy=${no_proxy},selenium-hub,tests
-    shm_size: 2g
+      - no_proxy=${no_proxy},selenium-hub,tests,dummy
+    shm_size: 11g
   selenium-firefox:
-    image: ${DOCKER_REGISTRY}selenium/node-firefox-debug:3.141.59
+    image: ${DOCKER_REGISTRY}selenium/node-firefox:99.0
     depends_on:
       - selenium-hub
     environment:
       - HUB_PORT_4444_TCP_ADDR=selenium-hub
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - HUB_PORT_4444_TCP_PORT=4444
+      - SHM-SIZE=11g      
       - http_proxy=${http_proxy}
       - https_proxy=${https_proxy}
-      - no_proxy=${no_proxy},selenium-hub,tests
-    shm_size: 2g
+      - no_proxy=${no_proxy},selenium-hub,tests,dummy
+    shm_size: 11g
   tests:
     image: ${DOCKER_REGISTRY}milieuinfo/ubuntu-node:14.18.3
     command: bash -c "npm run test:bamboo"
@@ -47,7 +59,7 @@ services:
       - browserstack_username=${browserstack_username}
       - browserstack_password=${browserstack_password}
     extra_hosts:
-      - "repository.milieuinfo.be:${REPOSITORY_FIXED_IP}"
+      - 'repository.milieuinfo.be:${REPOSITORY_FIXED_IP}'
     working_dir: /data
     volumes:
       - ${HOME:-.}/.npmrc:/root/.npmrc:ro
