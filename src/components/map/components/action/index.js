@@ -22,8 +22,6 @@ import { vlElement, define } from '../../../../utils/core';
 export class VlMapAction extends vlElement(HTMLElement) {
   connectedCallback() {
     this.__defineLayer();
-
-    // Active property for control inside of map component
     this._active = false;
   }
 
