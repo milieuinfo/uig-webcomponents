@@ -9,6 +9,7 @@ export class VlMapMeasureControl extends VlMapControl(LitElement) {
     super();
 
     this.controlElement = document.createElement('vl-toggle-button');
+    // TODO: When upgrading component versions; replace text by icon
     // this.controlElement.icon = 'ruler';
     // this.controlElement.textHidden = true;
     this.controlElement.innerText = 'Meten';
@@ -20,11 +21,7 @@ export class VlMapMeasureControl extends VlMapControl(LitElement) {
 
   connectedCallback() {
     super.connectedCallback();
-    this.clickListener = this.controlElement.addEventListener(
-      'click',
-      this.handleMeasureControlClick.bind(this),
-      false,
-    );
+    this.clickListener = this.controlElement.addEventListener('click', () => this.handleMeasureControlClick());
   }
 
   getAction() {

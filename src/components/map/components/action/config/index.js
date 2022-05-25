@@ -3,9 +3,20 @@ import { TYPES, CATEGORIES } from '../../../../../../.storybook/utils.js';
 export const args = {
   defaultActive: true,
   layer: false,
+  active: false,
 };
 
 export const argTypes = {
+  active: {
+    name: 'active',
+    description: 'Controls the active state of the action.',
+    table: {
+      type: {
+        summary: TYPES.BOOLEAN,
+      },
+      category: CATEGORIES.PROPERTIES,
+    },
+  },
   defaultActive: {
     name: 'data-vl-default-active',
     type: { summary: TYPES.BOOLEAN },
@@ -25,16 +36,5 @@ export const argTypes = {
       category: CATEGORIES.ATTRIBUTES,
     },
     control: { disable: true },
-  },
-  active: {
-    name: 'active',
-    description: 'Controls the active state of the action.',
-    table: {
-      type: {
-        summary: TYPES.BOOLEAN,
-      },
-      category: CATEGORIES.PROPERTIES,
-    },
-    control: { disabled: true },
   },
 };

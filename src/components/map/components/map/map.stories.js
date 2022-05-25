@@ -8,6 +8,7 @@ import tabsStyles from '../../../../legacy/tabs/styles.scss';
 import titleStyles from '../../../titles/styles.scss';
 import { stylesheet, docsIntro, TYPES, CATEGORIES } from '../../../../../.storybook/utils.js';
 import { EVENT } from '../../enums';
+import { getLastElementByClassName } from '../../../../utils/stories';
 
 export default {
   title: 'custom-elements/vl-map',
@@ -102,8 +103,8 @@ const purple = 'rgba(102, 51, 153, 0.6)';
 const toggleGroupStyling = 'width: 100%;';
 const toggleItemStyling = 'display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;';
 
-const getActionElement = (name) => document.getElementById(`${name}-action`);
-const getToggleButton = (name) => document.getElementById(`${name}-toggle-button`);
+const getActionElement = (name) => getLastElementByClassName(`${name}-action`);
+const getToggleButton = (name) => getLastElementByClassName(`${name}-toggle-button`);
 
 const features = {
   type: 'FeatureCollection',
@@ -172,7 +173,6 @@ export const KitchenSink = (props) => {
 
   return html`
     <vl-map
-      id="map-kitchen-sink"
       ?data-vl-allow-fullscreen=${props.allowFullscreen}
       ?data-vl-disable-escape-key=${props.disableEscape}
       ?data-vl-disable-rotation=${props.disableRotation}
@@ -203,7 +203,7 @@ export const KitchenSink = (props) => {
           <button
             is="vl-button"
             @click=${() => {
-              document.getElementById('measure-action').active = true;
+              getActionElement('measure').active = true;
             }}
           >
             Start
@@ -211,7 +211,7 @@ export const KitchenSink = (props) => {
           <button
             is="vl-button"
             @click=${() => {
-              document.getElementById('measure-action').active = false;
+              getActionElement('measure').active = false;
             }}
           >
             Stop
@@ -225,7 +225,7 @@ export const KitchenSink = (props) => {
 
           <div style="margin-bottom: 2rem;">
             <vl-toggle-button
-              id="modify-toggle-button"
+              class="modify-toggle-button"
               @click=${() => {
                 getActionElement('modify').active = !getActionElement('modify').active;
               }}
@@ -233,7 +233,7 @@ export const KitchenSink = (props) => {
               Modify
             </vl-toggle-button>
             <vl-toggle-button
-              id="delete-toggle-button"
+              class="delete-toggle-button"
               @click=${() => {
                 getActionElement('delete').active = !getActionElement('delete').active;
               }}
@@ -244,7 +244,7 @@ export const KitchenSink = (props) => {
 
           <div style=${toggleItemStyling}>
             <vl-toggle-button
-              id="draw-point-toggle-button"
+              class="draw-point-toggle-button"
               data-vl-icon="pencil"
               data-vl-text-hidden
               @click=${() => {
@@ -258,7 +258,7 @@ export const KitchenSink = (props) => {
 
           <div style=${toggleItemStyling}>
             <vl-toggle-button
-              id="draw-line-toggle-button"
+              class="draw-line-toggle-button"
               data-vl-icon="pencil"
               data-vl-text-hidden
               @click=${() => {
@@ -272,7 +272,7 @@ export const KitchenSink = (props) => {
 
           <div style=${toggleItemStyling}>
             <vl-toggle-button
-              id="draw-polygon-toggle-button"
+              class="draw-polygon-toggle-button"
               data-vl-icon="pencil"
               data-vl-text-hidden
               @click=${() => {
@@ -296,17 +296,17 @@ export const KitchenSink = (props) => {
         <vl-map-layer-style data-vl-border-color=${purple} data-vl-color=${purple}></vl-map-layer-style>
         <vl-map-layer-circle-style data-vl-border-color=${purple} data-vl-color=${purple}></vl-map-layer-circle-style>
 
-        <vl-map-draw-point-action id="draw-point-action" class="action"></vl-map-draw-point-action>
-        <vl-map-draw-line-action id="draw-line-action" class="action"></vl-map-draw-line-action>
-        <vl-map-draw-polygon-action id="draw-polygon-action" class="action"></vl-map-draw-polygon-action>
+        <vl-map-draw-point-action class="draw-point-action action"></vl-map-draw-point-action>
+        <vl-map-draw-line-action class="draw-line-action action"></vl-map-draw-line-action>
+        <vl-map-draw-polygon-action class="draw-polygon-action action"></vl-map-draw-polygon-action>
 
-        <vl-map-modify-action id="modify-action" class="action"></vl-map-modify-action>
-        <vl-map-delete-action id="delete-action" class="action"></vl-map-delete-action>
-        <vl-map-select-action id="select-action" class="action" data-vl-default-active></vl-map-select-action>
+        <vl-map-modify-action class="modify-action action"></vl-map-modify-action>
+        <vl-map-delete-action class="delete-action action"></vl-map-delete-action>
+        <vl-map-select-action class="select-action action" data-vl-default-active></vl-map-select-action>
       </vl-map-features-layer>
 
       <vl-map-features-layer data-vl-name="Measurements">
-        <vl-map-measure-action id="measure-action" class="action"></vl-map-measure-action>
+        <vl-map-measure-action class="measure-action action"></vl-map-measure-action>
       </vl-map-features-layer>
     </vl-map>
   `;

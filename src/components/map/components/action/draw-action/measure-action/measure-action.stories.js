@@ -2,6 +2,7 @@ import { html } from 'lit-html';
 import '../../../../../map';
 import { args, argTypes } from '../config';
 import { docsIntro } from '../../../../../../../.storybook/utils.js';
+import { getLastElement } from '../../../../../../utils/stories';
 
 export default {
   title: 'custom-elements/vl-map/vl-map-measure-action',
@@ -21,19 +22,19 @@ export default {
   argTypes,
 };
 
-export const Default = () => html`
+export const Default = ({ active }) => html`
   <vl-map>
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
     <vl-map-features-layer>
-      <vl-map-measure-action data-vl-default-active></vl-map-measure-action>
+      <vl-map-measure-action data-vl-default-active .active=${active}></vl-map-measure-action>
     </vl-map-features-layer>
   </vl-map>
 `;
 
-export const WithSnapping = () => html`<vl-map>
+export const WithSnapping = ({ active }) => html`<vl-map>
   <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
   <vl-map-features-layer>
-    <vl-map-measure-action data-vl-default-active data-vl-snapping>
+    <vl-map-measure-action data-vl-default-active data-vl-snapping .active=${active}>
       <vl-map-wfs-layer
         data-vl-name="Stromend waterlichamen"
         data-vl-url="https://geoserver.vmm.be/geoserver/vmm/wfs"
@@ -58,19 +59,15 @@ export const WithControl = ({ active }) =>
     </vl-map>
   `;
 
-WithControl.args = {
-  active: false,
-};
+const getMeasureAction = () => getLastElement('vl-map-measure-action');
 
-WithControl.argTypes = { active: { control: { disabled: false } } };
-
-export const WithControlOutsideOfMap = () => html`
+export const WithControlOutsideOfMap = ({ active }) => html`
   <div is="vl-grid" data-vl-is-stacked>
     <div is="vl-column">
       <vl-toggle-button
         id="measure-button"
         @click=${() => {
-          const measureAction = document.getElementById('measure-action');
+          const measureAction = getMeasureAction();
           measureAction.active = !measureAction.active;
         }}
       >
@@ -81,7 +78,7 @@ export const WithControlOutsideOfMap = () => html`
       <vl-map>
         <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
         <vl-map-features-layer>
-          <vl-map-measure-action class="measure-action"></vl-map-measure-action>
+          <vl-map-measure-action .active=${active}></vl-map-measure-action>
         </vl-map-features-layer>
       </vl-map>
     </div>

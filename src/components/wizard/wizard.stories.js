@@ -21,6 +21,7 @@ import inputFieldStyles from '../input-field/styles.scss';
 import actionGroupStyles from '../action-group/styles.scss';
 import linkStyles from '../link/styles.scss';
 import iconStyles from '../icon/styles.scss';
+import { getLastElement } from '../../utils/stories/index.js';
 
 export default {
   title: 'custom-elements/vl-wizard',
@@ -92,10 +93,7 @@ export default {
 };
 
 // get last wizard, because storybook can render Default multiple times
-const getWizard = () => {
-  const [lastItem] = [...document.querySelectorAll('vl-wizard')].slice(-1);
-  return lastItem;
-};
+const getWizard = () => getLastElement('vl-wizard');
 
 export const Default = ({ activeStepSlider, title, header, onClickStep }) => html`<div style="max-width: ${wrapWidth}">
   <vl-wizard
