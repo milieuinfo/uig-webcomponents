@@ -75,8 +75,4 @@ export class VlSplitAction extends VlMapAction {
     this.selectAction.deactivate();
     this.drawAction.deactivate();
   }
-
-  stop() {
-    // TODO: Implement stop
-  }
 }

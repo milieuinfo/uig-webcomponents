@@ -192,8 +192,4 @@ export class VlSelectAction extends VlMapAction {
   demarkAllFeatures() {
     this.markInteraction.getFeatures().clear();
   }
-
-  stop() {
-    this.clearFeatures();
-  }
 }

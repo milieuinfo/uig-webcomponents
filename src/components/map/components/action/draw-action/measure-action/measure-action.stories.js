@@ -65,21 +65,25 @@ WithControl.args = {
 WithControl.argTypes = { active: { control: { disabled: false } } };
 
 export const WithControlOutsideOfMap = () => html`
-  <div>
-    <vl-toggle-button
-      id="measure-button"
-      @click=${() => {
-        const measureAction = document.getElementById('measure-action');
-        measureAction.active = !measureAction.active;
-      }}
-    >
-      Meten
-    </vl-toggle-button>
-    <vl-map>
-      <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-      <vl-map-features-layer>
-        <vl-map-measure-action id="measure-action"></vl-map-measure-action>
-      </vl-map-features-layer>
-    </vl-map>
+  <div is="vl-grid" data-vl-is-stacked>
+    <div is="vl-column">
+      <vl-toggle-button
+        id="measure-button"
+        @click=${() => {
+          const measureAction = document.getElementById('measure-action');
+          measureAction.active = !measureAction.active;
+        }}
+      >
+        Meten
+      </vl-toggle-button>
+    </div>
+    <div is="vl-column">
+      <vl-map>
+        <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+        <vl-map-features-layer>
+          <vl-map-measure-action class="measure-action"></vl-map-measure-action>
+        </vl-map-features-layer>
+      </vl-map>
+    </div>
   </div>
 `;

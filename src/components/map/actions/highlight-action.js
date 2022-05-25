@@ -64,8 +64,4 @@ export class VlHighlightAction extends VlMapAction {
   dehighlightAllFeatures() {
     this.highlightInteraction.getFeatures().clear();
   }
-
-  stop() {
-    // TODO: Implement stop
-  }
 }

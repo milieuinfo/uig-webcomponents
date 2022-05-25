@@ -39,8 +39,11 @@ export class VlMapWithActions extends Map {
     if (!options.disableEscapeKey) {
       const activateFirstActionOnEscapeKey = (e) => {
         if (e && e.keyCode && e.keyCode === 27) {
-          if (this.getCurrentActiveAction()) {
-            this.getCurrentActiveAction().stop();
+          const currentActiveAction = this.getCurrentActiveAction();
+          if (currentActiveAction) {
+            if (currentActiveAction.stop) {
+              currentActiveAction.stop();
+            }
           } else {
             this.activateDefaultAction();
           }
@@ -86,6 +89,7 @@ export class VlMapWithActions extends Map {
   }
 
   activateAction(action) {
+    // TODO: Review timeout
     // delay the activation of the action with 300ms because ol has a timeout of 251ms to detect a double click event
     // when we don't use a delay some click and select events of the previous action will be triggered on the new action
     this.timeout = setTimeout(() => {
