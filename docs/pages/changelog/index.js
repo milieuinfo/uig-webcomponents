@@ -23,7 +23,7 @@ const unreleased = [
         </p>
       </li>
       <li>
-        <p><code>vl-map</code></p>
+        <p><code>vl-map</code> &#x1F4A5;</p>
         <p>
           This component now includes the <code>vl-mapactions</code> files, as these were moved into this project in
           this release (see previous list item).
@@ -71,6 +71,20 @@ const unreleased = [
               default active action (with the old implementation as mentioned aboven which resulted in often
               re-activating the action that was already active). When there is no active action, the default active
               action is activated.
+            </p>
+          </li>
+          <li>
+            <p>
+              Changed the map event <code>action-activated</code> to <code>vl-active-action-changed</code>, which now
+              gives back the information of which action was deactivated and which action was activated. This event is
+              internally used to handle the active state of both actions and their controls.
+            </p>
+          </li>
+          <li>
+            <p>
+              Added the map event <code>vl-layer-visible-changed</code>, which provides the information of which layer
+              had its visiblity changed and what the new state of that visibility is. This event is internally used to
+              handle the active state of both actions and their controls.
             </p>
           </li>
         </ul>

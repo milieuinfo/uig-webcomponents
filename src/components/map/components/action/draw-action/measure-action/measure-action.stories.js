@@ -26,15 +26,38 @@ export const Default = ({ active }) => html`
   <vl-map>
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
     <vl-map-features-layer>
-      <vl-map-measure-action data-vl-default-active .active=${active}></vl-map-measure-action>
+      <vl-map-measure-action .active=${active}></vl-map-measure-action>
     </vl-map-features-layer>
   </vl-map>
 `;
 
+export const WithDefaultActive = () => html`<vl-map>
+  <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+  <vl-map-features-layer>
+    <vl-map-measure-action data-vl-default-active>
+      <vl-map-wfs-layer
+        data-vl-name="Stromend waterlichamen"
+        data-vl-url="https://geoserver.vmm.be/geoserver/vmm/wfs"
+        data-vl-layers="owl_l"
+        data-vl-max-resolution="4"
+      >
+      </vl-map-wfs-layer>
+    </vl-map-measure-action>
+  </vl-map-features-layer>
+</vl-map>`;
+
+WithDefaultActive.argTypes = {
+  active: {
+    control: {
+      disable: true,
+    },
+  },
+};
+
 export const WithSnapping = ({ active }) => html`<vl-map>
   <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
   <vl-map-features-layer>
-    <vl-map-measure-action data-vl-default-active data-vl-snapping .active=${active}>
+    <vl-map-measure-action .active=${active} data-vl-snapping>
       <vl-map-wfs-layer
         data-vl-name="Stromend waterlichamen"
         data-vl-url="https://geoserver.vmm.be/geoserver/vmm/wfs"
@@ -58,6 +81,10 @@ export const WithControl = ({ active }) =>
       </vl-map-features-layer>
     </vl-map>
   `;
+
+WithControl.args = {
+  active: false,
+};
 
 const getMeasureAction = () => getLastElement('vl-map-measure-action');
 
@@ -84,3 +111,7 @@ export const WithControlOutsideOfMap = ({ active }) => html`
     </div>
   </div>
 `;
+
+WithControlOutsideOfMap.args = {
+  active: false,
+};

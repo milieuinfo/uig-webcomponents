@@ -3,7 +3,7 @@ import { TYPES, CATEGORIES } from '../../../../../../.storybook/utils.js';
 export const args = {
   defaultActive: true,
   layer: false,
-  active: false,
+  active: true,
 };
 
 export const argTypes = {
