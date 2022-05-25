@@ -89,6 +89,10 @@ export class VlMapLayer extends vlElement(HTMLElement) {
   set visible(value) {
     this._layer.setVisible(value);
     this.rerender();
+
+    if (this.mapElement) {
+      this.mapElement.handleLayerVisibilityChange(this);
+    }
   }
 
   get mapElement() {
@@ -134,7 +138,6 @@ export class VlMapLayer extends vlElement(HTMLElement) {
   rerender() {
     if (this.mapElement) {
       this.mapElement.rerender();
-      this.mapElement.handleLayerVisibilityChange(this);
     }
   }
 
