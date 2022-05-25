@@ -98,8 +98,9 @@ export class VlMapWithActions extends Map {
   }
 
   deactivateCurrentAction() {
-    if (this.getCurrentActiveAction()) {
-      this.getCurrentActiveAction().deactivate();
+    const currentActiveAction = this.getCurrentActiveAction();
+    if (currentActiveAction) {
+      currentActiveAction.deactivate();
       clearTimeout(this.timeout);
     }
   }
@@ -125,8 +126,9 @@ export class VlMapWithActions extends Map {
   }
 
   activateDefaultAction() {
-    if (this.getDefaultActiveAction()) {
-      this.getDefaultActiveAction().element.activate();
+    const currentActiveAction = this.getDefaultActiveAction();
+    if (currentActiveAction) {
+      currentActiveAction.element.activate();
     }
   }
 }
