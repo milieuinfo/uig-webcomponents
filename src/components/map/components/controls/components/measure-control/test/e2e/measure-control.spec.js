@@ -7,6 +7,7 @@ const defaultUrl = `${sbUrl}?id=custom-elements-vl-map-vl-map-action-controls--d
 const controlSelector = 'vl-map-measure-control';
 const actionSelector = 'vl-map-measure-action';
 
+// TODO: Review timeout
 // Use to wait for map action to be activated. Timeout for activating a mapaction in map-with-actions can otherwise result in flaky tests.
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));

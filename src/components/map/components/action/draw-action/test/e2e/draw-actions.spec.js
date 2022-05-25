@@ -1,6 +1,7 @@
 import { assert, getDriver } from '../../../../../../../utils/test';
 import { VlTestMapDrawActionsPage } from './draw-actions.page';
 
+// TODO: Review timeout
 // Use to wait for map action to be activated. Timeout for activating a mapaction in map-with-actions can otherwise result in flaky tests.
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -93,7 +94,7 @@ describe('vl-map-draw-action', async () => {
   //   await search.open();
   //   await search.zoomTo("Hellegatstraat, Puurs-Sint-Amands");
 
-  //   await sleep(5000); // @TODO: Finder better fix.
+  //   await sleep(5000); // @TODO: Find better fix.
 
   //   await action.draw({ x: 147341, y: 197991 });
   //   let coordinatesOfFeatures = await layer.getFeatureCoordinates();

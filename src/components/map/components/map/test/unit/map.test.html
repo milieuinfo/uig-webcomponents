@@ -83,6 +83,7 @@
       import { VlSelectAction, VlMapMeasureControl } from '../../../../../../../lib/components/map/index.js';
       import { OpenLayersUtil } from '../../../../utils/ol-util.js';
 
+      // TODO: Review timeout
       // Use to wait for map action to be activated. Timeout for activating a mapaction in map-with-actions can otherwise result in flaky tests.
       function sleep(ms) {
         return new Promise((resolve) => setTimeout(resolve, ms));
