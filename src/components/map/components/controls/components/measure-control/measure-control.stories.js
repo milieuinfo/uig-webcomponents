@@ -20,7 +20,7 @@ export default {
 
 export const Default = () =>
   html`
-    <vl-map id="map">
+    <vl-map>
       <vl-map-action-controls>
         <vl-map-measure-control></vl-map-measure-control>
       </vl-map-action-controls>

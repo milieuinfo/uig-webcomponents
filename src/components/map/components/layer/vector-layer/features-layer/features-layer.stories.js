@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import '../../../../../map';
 import { argTypes } from '../../config.js';
-import { docsIntro } from '../../../../../../../.storybook/utils.js';
+import { docsIntro, CATEGORIES } from '../../../../../../../.storybook/utils.js';
 
 export default {
   title: 'custom-elements/vl-map/vl-map-features-layer',
@@ -25,6 +25,7 @@ export default {
       description:
         'Attribuut geeft aan of er automatisch gezoomt wordt op de kaartlaag zodat al de features zichtbaar zijn.',
       table: {
+        category: CATEGORIES.ATTRIBUTES,
         defaultValue: { summary: 'false' },
       },
     },
@@ -33,32 +34,40 @@ export default {
       control: { disable: true },
       type: { summary: 'string' },
       description: 'Attribuut geeft aan tot op welk niveau er maximaal automatisch gezoomd wordt bij een extent',
+      table: { category: CATEGORIES.ATTRIBUTES },
     },
     cluster: {
       name: 'data-vl-cluster',
       control: { disable: true },
       type: { summary: 'boolean' },
       description: 'Attribuut geeft aan of de features geclusterd moeten worden of niet.',
-      table: {
-        defaultValue: { summary: 'false' },
-      },
+      table: { category: CATEGORIES.ATTRIBUTES, defaultValue: { summary: 'false' } },
     },
     clusterDistance: {
       name: 'data-vl-cluster-distance',
       control: { disable: true },
       type: { summary: 'string' },
       description: 'Attribuut geeft aan vanaf welke afstand tussen features er geclusterd mag worden.',
+      table: {
+        category: CATEGORIES.ATTRIBUTES,
+      },
     },
     features: {
       name: 'data-vl-features',
       control: { disable: true },
       type: { summary: 'string' },
       description: 'Attribuut die de kaartlaag bevat.',
+      table: {
+        category: CATEGORIES.ATTRIBUTES,
+      },
     },
     featuresProp: {
       name: 'features',
       control: { disable: true },
       description: 'Property die de kaartlaag bevat.',
+      table: {
+        category: CATEGORIES.PROPERTIES,
+      },
     },
   },
 };
