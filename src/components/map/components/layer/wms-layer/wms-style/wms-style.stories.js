@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
 import '../../../../../map';
-import { docsIntro } from '../../../../../../../.storybook/utils.js';
+import { CATEGORIES, docsIntro, TYPES } from '../../../../../../../.storybook/utils.js';
 
 export default {
   title: 'custom-elements/vl-map/vl-map-wms-style',
@@ -18,10 +18,11 @@ export default {
   argTypes: {
     sld: {
       name: 'data-vl-sld',
-      type: { summary: 'string' },
+      type: { summary: TYPES.STRING },
       control: { disable: true },
       description:
         'Attribuut bepaalt de body van een WMS laag. Deze XML kan gebruikt worden om de WMS server side te stijlen. (http://schemas.opengis.net/sld/1.1.0/StyledLayerDescriptor.xsd|Styled Layer Descriptor)',
+      table: { category: CATEGORIES.ATTRIBUTES },
     },
   },
 };

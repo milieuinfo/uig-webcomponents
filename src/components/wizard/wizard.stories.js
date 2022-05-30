@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
 import { action } from '@storybook/addon-actions';
-import { stylesheet, docsIntro, CATEGORIES, wrapWidth, TYPES } from '../../../.storybook/utils.js';
+import { stylesheet, docsIntro, CATEGORIES, wrapWidth, TYPES, getLastElement } from '../../../.storybook/utils.js';
 import '.';
 import '../titles';
 import '../grid';
@@ -21,7 +21,6 @@ import inputFieldStyles from '../input-field/styles.scss';
 import actionGroupStyles from '../action-group/styles.scss';
 import linkStyles from '../link/styles.scss';
 import iconStyles from '../icon/styles.scss';
-import { getLastElement } from '../../utils/stories/index.js';
 
 export default {
   title: 'custom-elements/vl-wizard',

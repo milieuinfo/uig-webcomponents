@@ -6,9 +6,14 @@ import { action } from '@storybook/addon-actions';
 import buttonStyles from '../../../button/styles.scss';
 import tabsStyles from '../../../../legacy/tabs/styles.scss';
 import titleStyles from '../../../titles/styles.scss';
-import { stylesheet, docsIntro, TYPES, CATEGORIES } from '../../../../../.storybook/utils.js';
+import {
+  stylesheet,
+  docsIntro,
+  TYPES,
+  CATEGORIES,
+  getLastElementByClassName,
+} from '../../../../../.storybook/utils.js';
 import { EVENT } from '../../enums';
-import { getLastElementByClassName } from '../../../../utils/stories';
 
 export default {
   title: 'custom-elements/vl-map',
@@ -38,6 +43,7 @@ export default {
       description:
         'Attribute is used to allow the user to visualize the map in full screen. This functionality cannot be used on mobile.',
       table: {
+        category: CATEGORIES.ATTRIBUTES,
         defaultValue: { summary: 'false' },
       },
       control: { disable: true },
@@ -47,6 +53,7 @@ export default {
       type: { summary: TYPES.BOOLEAN },
       description: 'Attribute is used to ensure that the escape key cannot be used.',
       table: {
+        category: CATEGORIES.ATTRIBUTES,
         defaultValue: { summary: 'false' },
       },
       control: { disable: true },
@@ -56,6 +63,7 @@ export default {
       type: { summary: TYPES.BOOLEAN },
       description: 'Attribute is used to ensure that it is not possible to rotate the map.',
       table: {
+        category: CATEGORIES.ATTRIBUTES,
         defaultValue: { summary: 'false' },
       },
       control: { disable: true },
@@ -65,6 +73,7 @@ export default {
       type: { summary: TYPES.BOOLEAN },
       description: 'Attribute is used to ensure that it is not possible to zoom the map with the mouse wheel.',
       table: {
+        category: CATEGORIES.ATTRIBUTES,
         defaultValue: { summary: 'false' },
       },
       control: { disable: true },
@@ -177,11 +186,11 @@ export const KitchenSink = (props) => {
       ?data-vl-disable-escape-key=${props.disableEscape}
       ?data-vl-disable-rotation=${props.disableRotation}
       ?data-vl-disable-mouse-wheel-zoom=${props.disableMousewheelZoom}
-      @active-action-changed=${(event) => {
+      @vl-active-action-changed=${(event) => {
         props.activeActionChange(event.detail);
         handleActiveActionChange(event);
       }}
-      @layer-visible-changed=${(event) => {
+      @vl-layer-visible-changed=${(event) => {
         props.layerVisibleChange(event.detail);
         handleLayerVisibleChange(event);
       }}

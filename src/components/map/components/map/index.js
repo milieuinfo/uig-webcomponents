@@ -239,7 +239,7 @@ export class VlMap extends vlElement(HTMLElement) {
 
   deactivateAction(action) {
     if (action && action === this.activeAction) {
-      this._changeActiveAction(undefined);
+      this._changeActiveAction();
     }
   }
 

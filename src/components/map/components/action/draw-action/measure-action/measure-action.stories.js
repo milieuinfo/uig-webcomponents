@@ -1,8 +1,7 @@
 import { html } from 'lit-html';
 import '../../../../../map';
 import { args, argTypes } from '../config';
-import { docsIntro } from '../../../../../../../.storybook/utils.js';
-import { getLastElement } from '../../../../../../utils/stories';
+import { docsIntro, getLastElement } from '../../../../../../../.storybook/utils.js';
 
 export default {
   title: 'custom-elements/vl-map/vl-map-measure-action',
@@ -92,7 +91,6 @@ export const WithControlOutsideOfMap = ({ active }) => html`
   <div is="vl-grid" data-vl-is-stacked>
     <div is="vl-column">
       <vl-toggle-button
-        id="measure-button"
         @click=${() => {
           const measureAction = getMeasureAction();
           measureAction.active = !measureAction.active;

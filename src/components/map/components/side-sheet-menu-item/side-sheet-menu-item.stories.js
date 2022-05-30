@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
 import '../../../map';
-import { docsIntro } from '../../../../../.storybook/utils.js';
+import { CATEGORIES, docsIntro, TYPES } from '../../../../../.storybook/utils.js';
 
 export default {
   title: 'custom-elements/vl-map/vl-map-side-sheet-menu-item',
@@ -19,17 +19,19 @@ export default {
   argTypes: {
     title: {
       name: 'data-vl-title',
-      type: { summary: 'string' },
+      type: { summary: TYPES.STRING },
       description: 'Attribuut wordt gebruikt als titel van een menu item.',
       table: {
+        category: CATEGORIES.ATTRIBUTES,
         defaultValue: { summary: 'Terug' },
       },
     },
     href: {
       name: 'data-vl-href',
-      type: { summary: 'string' },
+      type: { summary: TYPES.STRING },
       description: 'Attribuut wordt gebruikt om via het href attribuut de link te koppelen aan een menu item.',
       table: {
+        category: CATEGORIES.ATTRIBUTES,
         defaultValue: { summary: '#' },
       },
     },

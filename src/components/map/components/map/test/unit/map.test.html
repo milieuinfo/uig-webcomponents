@@ -324,7 +324,6 @@
           await sleep(350);
 
           sinon.assert.calledTwice(changeActiveActionSpy);
-          sinon.assert.calledWith(changeActiveActionSpy.secondCall, undefined);
           sinon.assert.calledOnce(deactivateCurrentActionSpy);
         });
 

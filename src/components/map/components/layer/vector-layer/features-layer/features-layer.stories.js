@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import '../../../../../map';
-import { argTypes } from '../../config.js';
-import { docsIntro, CATEGORIES } from '../../../../../../../.storybook/utils.js';
+import { argTypes } from '../../config';
+import { docsIntro, CATEGORIES, TYPES } from '../../../../../../../.storybook/utils.js';
 
 export default {
   title: 'custom-elements/vl-map/vl-map-features-layer',
@@ -21,7 +21,7 @@ export default {
     autoExtent: {
       name: 'data-vl-auto-extent',
       control: { disable: true },
-      type: { summary: 'boolean' },
+      type: { summary: TYPES.BOOLEAN },
       description:
         'Attribuut geeft aan of er automatisch gezoomt wordt op de kaartlaag zodat al de features zichtbaar zijn.',
       table: {
@@ -32,21 +32,21 @@ export default {
     autoExtentMaxZoom: {
       name: 'data-vl-max-zoom',
       control: { disable: true },
-      type: { summary: 'string' },
+      type: { summary: TYPES.STRING },
       description: 'Attribuut geeft aan tot op welk niveau er maximaal automatisch gezoomd wordt bij een extent',
       table: { category: CATEGORIES.ATTRIBUTES },
     },
     cluster: {
       name: 'data-vl-cluster',
       control: { disable: true },
-      type: { summary: 'boolean' },
+      type: { summary: TYPES.BOOLEAN },
       description: 'Attribuut geeft aan of de features geclusterd moeten worden of niet.',
       table: { category: CATEGORIES.ATTRIBUTES, defaultValue: { summary: 'false' } },
     },
     clusterDistance: {
       name: 'data-vl-cluster-distance',
       control: { disable: true },
-      type: { summary: 'string' },
+      type: { summary: TYPES.STRING },
       description: 'Attribuut geeft aan vanaf welke afstand tussen features er geclusterd mag worden.',
       table: {
         category: CATEGORIES.ATTRIBUTES,
@@ -55,7 +55,7 @@ export default {
     features: {
       name: 'data-vl-features',
       control: { disable: true },
-      type: { summary: 'string' },
+      type: { summary: TYPES.STRING },
       description: 'Attribuut die de kaartlaag bevat.',
       table: {
         category: CATEGORIES.ATTRIBUTES,

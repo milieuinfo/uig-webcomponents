@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import '../../../../../map';
-import { argTypes as wmsLayerArgTypes } from '../config.js';
-import { argTypes as layerArgTypes } from '../../config.js';
+import { argTypes as wmsLayerArgTypes } from '../config';
+import { argTypes as layerArgTypes } from '../../config';
 import { docsIntro } from '../../../../../../../.storybook/utils.js';
 
 export default {

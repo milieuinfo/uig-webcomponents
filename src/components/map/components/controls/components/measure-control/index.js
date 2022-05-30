@@ -33,9 +33,9 @@ export class VlMapMeasureControl extends VlMapControl(LitElement) {
 
     if (measureAction) {
       if (this.controlElement.active) {
-        measureAction.element.deactivate();
+        measureAction.element.active = false;
       } else {
-        measureAction.element.activate();
+        measureAction.element.active = true;
       }
     }
   }
