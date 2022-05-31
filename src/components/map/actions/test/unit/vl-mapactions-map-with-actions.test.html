@@ -62,13 +62,13 @@
       expect(map.actions.length).to.equal(2);
       expect(map.getInteractions().getLength()).to.equal(14);
 
-      const nieuweAction = new VlMapActionAction([new Interaction({}), new Interaction({})]);
+      const newAction = new VlMapActionAction([new Interaction({}), new Interaction({})]);
 
-      map.addAction(nieuweAction);
+      map.addAction(newAction);
       await sleep();
 
       expect(map.actions.length).to.equal(3);
-      expect(map.actions[2]).to.equal(nieuweAction);
+      expect(map.actions[2]).to.equal(newAction);
       expect(map.getInteractions().getLength()).to.equal(16);
     });
 
@@ -77,14 +77,18 @@
         actions: [action1, action2],
       });
 
-      const nieuweAction = new VlMapActionAction([new Interaction({}), new Interaction({})]);
-      map.addAction(nieuweAction);
+      const newAction = new VlMapActionAction([new Interaction({}), new Interaction({})]);
+      newAction.element = {
+        reset: () => {},
+      };
+
+      map.addAction(newAction);
       await sleep();
 
-      map.removeAction(nieuweAction);
+      map.removeAction(newAction);
 
       expect(map.actions.length).to.equal(2);
-      expect(map.actions.indexOf(nieuweAction)).to.equal(-1);
+      expect(map.actions.indexOf(newAction)).to.equal(-1);
       expect(map.getInteractions().getLength()).to.equal(14);
     });
 
@@ -95,6 +99,9 @@
 
       const activateDefaultActionSpy = sinon.spy(map, 'activateDefaultAction');
       const newAction = new VlMapActionAction([new Interaction({}), new Interaction({})]);
+      newAction.element = {
+        reset: () => {},
+      };
 
       map.addAction(newAction);
       await sleep();
