@@ -20,7 +20,6 @@ export default {
   argTypes,
 };
 
-        id: 1,
 const features = {
   type: 'FeatureCollection',
   features: [

@@ -11,15 +11,23 @@ export class VlMapAction extends LitElement {
 
   constructor() {
     super();
-    this.isVlMapAction = true;
+    // this.isVlMapAction = true;
     this._mapElement = this.closest('vl-map');
     this._active = false;
   }
 
   connectedCallback() {
     super.connectedCallback();
-    this.__defineLayer();
+    // this.__defineLayer();
   }
+
+  isVlMapAction() {
+    return true;
+  }
+
+  // get active() {
+  //   return this._active;
+  // }
 
   activateRightAction() {
     // TODO: implement prevvalue active
@@ -48,6 +56,8 @@ export class VlMapAction extends LitElement {
         case '_action':
           this._action.element = this;
           this._mapElement.addAction(this._action);
+          // to confirm
+          this.action = this._action;
           this.activateRightAction();
           break;
         default:
@@ -64,16 +74,16 @@ export class VlMapAction extends LitElement {
     console.warn('implementatie van _createAction ontbreekt');
   }
 
-  _processAction() {
-    if (this._action) {
-      this._action.element = this;
-      this._mapElement.addAction(this._action);
+  // _processAction() {
+  //   if (this._action) {
+  //     this._action.element = this;
+  //     this._mapElement.addAction(this._action);
 
-      if (this.defaultActive) {
-        this.activate();
-      }
-    }
-  }
+  //     if (this.defaultActive) {
+  //       this.activate();
+  //     }
+  //   }
+  // }
 
   __defineLayer() {
     if (this._layerElement) {

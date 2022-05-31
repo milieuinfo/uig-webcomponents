@@ -67,7 +67,6 @@ export class VlMapLayerAction extends VlMapAction {
 
       if (this.layer) {
         this._action = this._createAction(this.layer);
-        // super._processAction();
       }
     });
   }
