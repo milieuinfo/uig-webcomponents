@@ -236,7 +236,7 @@ export const KitchenSink = (props) => {
             <vl-toggle-button
               class="modify-toggle-button"
               @click=${() => {
-                getActionElement('modify').active = !getActionElement('modify').active;
+                getActionElement('modify').active = !getToggleButton('modify').active;
               }}
             >
               Modify
@@ -244,7 +244,7 @@ export const KitchenSink = (props) => {
             <vl-toggle-button
               class="delete-toggle-button"
               @click=${() => {
-                getActionElement('delete').active = !getActionElement('delete').active;
+                getActionElement('delete').active = !getToggleButton('delete').active;
               }}
             >
               Delete
@@ -257,7 +257,7 @@ export const KitchenSink = (props) => {
               data-vl-icon="pencil"
               data-vl-text-hidden
               @click=${() => {
-                getActionElement('draw-point').active = !getActionElement('draw-point').active;
+                getActionElement('draw-point').active = !getToggleButton('draw-point').active;
               }}
             >
               Toggle draw point action
@@ -271,7 +271,7 @@ export const KitchenSink = (props) => {
               data-vl-icon="pencil"
               data-vl-text-hidden
               @click=${() => {
-                getActionElement('draw-line').active = !getActionElement('draw-line').active;
+                getActionElement('draw-line').active = !getToggleButton('draw-line').active;
               }}
             >
               Toggle draw line action
@@ -285,7 +285,7 @@ export const KitchenSink = (props) => {
               data-vl-icon="pencil"
               data-vl-text-hidden
               @click=${() => {
-                getActionElement('draw-polygon').active = !getActionElement('draw-polygon').active;
+                getActionElement('draw-polygon').active = !getToggleButton('draw-polygon').active;
               }}
             >
               Toggle draw polygon action

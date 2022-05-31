@@ -31,11 +31,13 @@ export class VlMapMeasureControl extends VlMapControl(LitElement) {
   handleMeasureControlClick() {
     const measureAction = this.getAction();
 
+    console.log('measureAction: ', measureAction);
+
     if (measureAction) {
       if (this.controlElement.active) {
-        measureAction.element.active = false;
+        measureAction.element.deactivate();
       } else {
-        measureAction.element.active = true;
+        measureAction.element.activate();
       }
     }
   }

@@ -170,8 +170,8 @@ export class VlMap extends vlElement(HTMLElement) {
     if (actions) {
       actions.forEach((action) => {
         // Deactivate active action on layer when layer visibility is set to false
-        if (!layerElement.visible && action.element.active) {
-          this.deactivateAction(action);
+        if (!layerElement.visible && action.element._active) {
+          action.element.deactivate();
         }
 
         // Handle visibility changes specific to the action if these are defined
@@ -199,16 +199,12 @@ export class VlMap extends vlElement(HTMLElement) {
     );
   }
 
-  _changeActiveAction(newActiveAction) {
+  changeActiveAction(newActiveAction) {
     const previousActiveAction = this.activeAction;
-    const currentActiveAction = newActiveAction || this.defaultAction;
-
-    let deactivatedPrevious;
-    let activatedCurrent;
+    const currentActiveAction = newActiveAction;
 
     if (previousActiveAction) {
       this.map.deactivateCurrentAction();
-      deactivatedPrevious = true;
 
       previousActiveAction.element._active = false;
       if (previousActiveAction.getControl()) {
@@ -216,9 +212,8 @@ export class VlMap extends vlElement(HTMLElement) {
       }
     }
 
-    if (currentActiveAction && currentActiveAction.layer.get('visible')) {
+    if (currentActiveAction) {
       this.map.activateAction(currentActiveAction);
-      activatedCurrent = true;
 
       currentActiveAction.element._active = true;
       if (currentActiveAction.getControl()) {
@@ -226,20 +221,20 @@ export class VlMap extends vlElement(HTMLElement) {
       }
     }
 
-    if (activatedCurrent || deactivatedPrevious) {
-      this._dispatchActiveActionChangedEvent(previousActiveAction, activatedCurrent ? currentActiveAction : undefined);
+    if (currentActiveAction || previousActiveAction) {
+      this._dispatchActiveActionChangedEvent(previousActiveAction, currentActiveAction);
     }
   }
 
   activateAction(action) {
     if (action) {
-      this._changeActiveAction(action);
+      action.element.activate();
     }
   }
 
   deactivateAction(action) {
-    if (action && action === this.activeAction) {
-      this._changeActiveAction();
+    if (action) {
+      action.element.deactivate();
     }
   }
 

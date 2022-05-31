@@ -32,6 +32,7 @@ export class VlMapWithActions extends Map {
       this.addAction(action);
     });
 
+    // TODO: check if timeout is still needed (old bugfix)
     setTimeout(() => {
       this.activateDefaultAction();
     });
@@ -60,7 +61,7 @@ export class VlMapWithActions extends Map {
   }
 
   getCurrentActiveAction() {
-    return this.actions && this.actions.find((action) => action.element.active);
+    return this.actions && this.actions.find((action) => action.element._active);
   }
 
   getActionWithIdentifier(identifier) {
@@ -117,18 +118,26 @@ export class VlMapWithActions extends Map {
 
   removeAction(action) {
     if (this.getCurrentActiveAction() === action) {
-      this.activateDefaultAction();
+      if (action === this.getDefaultActiveAction()) {
+        action.element.deactivate();
+      } else {
+        this.activateDefaultAction();
+      }
     }
+
     action.interactions.forEach((interaction) => {
       this.removeInteraction(interaction);
     });
+
+    action.element.reset();
+
     this.actions.splice(this.actions.indexOf(action), 1);
   }
 
   activateDefaultAction() {
-    const currentActiveAction = this.getDefaultActiveAction();
-    if (currentActiveAction) {
-      currentActiveAction.element.activate();
+    const defaultActiveAction = this.getDefaultActiveAction();
+    if (defaultActiveAction) {
+      defaultActiveAction.element.activate();
     }
   }
 }
