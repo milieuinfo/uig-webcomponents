@@ -306,7 +306,7 @@
 
           const { map } = mapElement;
 
-          const changeActiveActionSpy = sandbox.spy(mapElement, '_changeActiveAction');
+          const changeActiveActionSpy = sandbox.spy(mapElement, 'changeActiveAction');
           const deactivateCurrentActionSpy = sandbox.spy(map, 'deactivateCurrentAction');
 
           mapElement.deactivateAction(mapElement.actions[1]);

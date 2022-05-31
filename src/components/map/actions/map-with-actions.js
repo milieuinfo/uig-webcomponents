@@ -57,7 +57,7 @@ export class VlMapWithActions extends Map {
   }
 
   getDefaultActiveAction() {
-    return this.actions && this.actions.find((action) => action.element.defaultActive);
+    return this.actions && this.actions.find((action) => action.element._defaultActive);
   }
 
   getCurrentActiveAction() {

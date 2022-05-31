@@ -1,32 +1,13 @@
-import { LitElement } from 'lit';
-import { define } from '../../../../utils/core';
+import { vlElement, define } from '../../../../utils/core';
 
-/**
- * VlMapAction
- * @class
- * @classdesc De abstracte kaart actie component.
- *
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {boolean} data-vl-default-active - Attribuut wordt gebruikt om de actie standaard te activeren.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-delete-action.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-draw-actions.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-modify-actions.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-select-action.html|Demo}
- */
-export class VlMapAction extends LitElement {
+export class VlMapAction extends vlElement(HTMLElement) {
   constructor() {
     super();
     this._active = false;
+    this._controlledActive = false;
   }
 
   connectedCallback() {
-    super.connectedCallback();
     this.__defineLayer();
   }
 
@@ -45,34 +26,25 @@ export class VlMapAction extends LitElement {
     return this.closest('vl-map');
   }
 
+  get _defaultActive() {
+    return this.hasAttribute('data-vl-default-active');
+  }
+
   get _callback() {
     return (...args) => (this.__callback ? this.__callback(...args) : null);
   }
 
-  static get properties() {
-    return {
-      active: {
-        type: Boolean,
-        hasChanged: () => true, // Trigger update each time active setter is used
-      },
-      defaultActive: { type: Boolean, attribute: 'data-vl-default-active', reflect: true },
-    };
+  get active() {
+    return this._controlledActive;
   }
 
-  updated(changedProperties) {
-    changedProperties.forEach((oldValue, propName) => {
-      switch (propName) {
-        case 'active':
-          if (this.active) {
-            this.activate();
-          } else {
-            this.deactivate();
-          }
-          break;
-        default:
-          break;
-      }
-    });
+  set active(value) {
+    this._controlledActive = value;
+    if (value) {
+      this.activate();
+    } else {
+      this.deactivate();
+    }
   }
 
   activate() {
@@ -109,10 +81,7 @@ export class VlMapAction extends LitElement {
       // Activate the action when
       // - the action is the default active action and no other action has yet been activated
       // - the controlled active state of the action is true
-      if (
-        (this.defaultActive && !this._mapElement.activeAction) /* || this._mapElement.activeAction === this.action */ ||
-        this.active
-      ) {
+      if ((this._defaultActive && !this._mapElement.activeAction) || this.active) {
         this.activate();
       }
     }
