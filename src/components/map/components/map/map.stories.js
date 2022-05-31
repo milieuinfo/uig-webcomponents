@@ -153,7 +153,7 @@ const features = {
   ],
 };
 
-export const KitchenSink = (props) => {
+export const Playground = (props) => {
   const actionIdentifiers = ['draw-point', 'draw-line', 'draw-polygon', 'modify', 'delete'];
 
   const handleActiveActionChange = ({ detail: { previous, current } }) => {
