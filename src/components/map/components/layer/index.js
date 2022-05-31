@@ -119,7 +119,7 @@ export class VlMapLayer extends vlElement(HTMLElement) {
   }
 
   get _visible() {
-    return this.getAttribute('hidden') === undefined;
+    return !this.getAttribute('hidden');
   }
 
   /**
