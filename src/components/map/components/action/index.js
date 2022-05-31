@@ -1,86 +1,63 @@
-import { unByKey } from 'ol/Observable';
-import { vlElement, define } from '../../../../utils/core';
+import { LitElement } from 'lit';
 
-/**
- * VlMapAction
- * @class
- * @classdesc De abstracte kaart actie component.
- *
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {boolean} data-vl-default-active - Attribuut wordt gebruikt om de actie standaard te activeren.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-delete-action.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-draw-actions.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-modify-actions.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-select-action.html|Demo}
- */
-export class VlMapAction extends vlElement(HTMLElement) {
-  connectedCallback() {
-    this.__defineLayer();
+export class VlMapAction extends LitElement {
+  static get properties() {
+    return {
+      active: { type: Boolean },
+      _action: {},
+      defaultActive: { type: Boolean, attribute: 'data-vl-default-active', reflect: true },
+    };
+  }
+
+  constructor() {
+    super();
+    this.isVlMapAction = true;
+    this._mapElement = this.closest('vl-map');
     this._active = false;
   }
 
-  static isVlMapAction() {
-    return true;
+  connectedCallback() {
+    super.connectedCallback();
+    this.__defineLayer();
   }
 
-  /**
-   * Geeft de vl-mapactions kaart actie.
-   * */
-  get action() {
-    return this._action;
-  }
-
-  /**
-   * Geeft de default active state van deze actie
-   * */
-  get defaultActive() {
-    return this.hasAttribute('default-active');
-  }
-
-  /**
-   * Geeft de activate state van deze actie
-   * */
-  get active() {
-    return this._active;
-  }
-
-  get _mapElement() {
-    return this.closest('vl-map');
-  }
-
-  get _callback() {
-    return (...args) => (this.__callback ? this.__callback(...args) : null);
-  }
-
-  /**
-   * Controlled active property for control outside op map component; Activates or deactivates an action on the map
-   */
-  set active(value) {
-    if (value) {
+  activateRightAction() {
+    // TODO: implement prevvalue active
+    if (this.active || this.defaultActive) {
       this.activate();
     } else {
       this.deactivate();
     }
   }
 
-  /**
-   * Activeer de kaart actie op de kaart.
-   */
   activate() {
-    this._mapElement.activateAction(this.action);
+    this._mapElement.activateAction(this._action);
   }
 
-  /**
-   * Deactiveer de kaart actie op de kaart.
-   */
   deactivate() {
-    this._mapElement.deactivateAction(this.action);
+    this._mapElement.deactivateAction(this._action);
+  }
+
+  updated(changedProperties) {
+    changedProperties.forEach((_, propName) => {
+      switch (propName) {
+        case 'active':
+          // this._active = this.active;
+          this.activateRightAction();
+          break;
+        case '_action':
+          this._action.element = this;
+          this._mapElement.addAction(this._action);
+          this.activateRightAction();
+          break;
+        default:
+          break;
+      }
+    });
+  }
+
+  _callback() {
+    return (...args) => (this.__callback ? this.__callback(...args) : null);
   }
 
   _createAction() {
@@ -88,9 +65,9 @@ export class VlMapAction extends vlElement(HTMLElement) {
   }
 
   _processAction() {
-    if (this.action) {
-      this.action.element = this;
-      this._mapElement.addAction(this.action);
+    if (this._action) {
+      this._action.element = this;
+      this._mapElement.addAction(this._action);
 
       if (this.defaultActive) {
         this.activate();
@@ -105,4 +82,4 @@ export class VlMapAction extends vlElement(HTMLElement) {
   }
 }
 
-define('vl-map-action', VlMapAction);
+customElements.define('vl-map-action', VlMapAction);

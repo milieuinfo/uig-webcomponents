@@ -60,7 +60,7 @@ export class VlMapWithActions extends Map {
   }
 
   getCurrentActiveAction() {
-    return this.actions && this.actions.find((action) => action.element.active);
+    return this.actions && this.actions.find((action) => action.element._active);
   }
 
   getActionWithIdentifier(identifier) {
