@@ -3,7 +3,7 @@
 @import '../../../node_modules/@govflanders/vl-ui-button/src/scss/button';
 
 // the background of a tertiary button is transparent by default, when a toggle button is floating over the map, it needs a background
-.vl-button--map {
+.vl-button--map.vl-button--tertiary {
   background-color: $vl-white;
 
   &:hover,
