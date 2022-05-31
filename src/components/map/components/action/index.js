@@ -62,9 +62,8 @@ export class VlMapAction extends vlElement(HTMLElement) {
       this._mapElement.changeActiveAction(
         this._mapElement.defaultAction &&
           this.action !== this._mapElement.defaultAction &&
-          this._mapElement.defaultAction.layer.get('visible')
-          ? this._mapElement.defaultAction
-          : undefined,
+          this._mapElement.defaultAction.layer.get('visible') &&
+          this._mapElement.defaultAction,
       );
     }
   }

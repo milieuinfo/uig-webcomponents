@@ -201,7 +201,7 @@ export class VlMap extends vlElement(HTMLElement) {
 
   changeActiveAction(newActiveAction) {
     const previousActiveAction = this.activeAction;
-    const currentActiveAction = newActiveAction;
+    const currentActiveAction = newActiveAction || undefined;
 
     if (previousActiveAction) {
       this.map.deactivateCurrentAction();
