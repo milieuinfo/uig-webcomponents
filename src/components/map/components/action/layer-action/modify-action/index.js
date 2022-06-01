@@ -1,7 +1,8 @@
-import { VlModifyAction, VlCompositeVectorLayer } from "vl-mapactions/dist/vl-mapactions.js";
-import { define } from "../../../../../../utils/core";
-import { VlMapLayerAction } from "../../layer-action";
-import { VlMapVectorLayer } from "../../../layer/vector-layer";
+import { VlModifyAction } from '../../../../actions/modify-action';
+import { VlCompositeVectorLayer } from '../../../../actions/composite-vector-layer';
+import { define } from '../../../../../../utils/core';
+import { VlMapLayerAction } from '../../layer-action';
+import { VlMapVectorLayer } from '../../../layer/vector-layer';
 
 /**
  * VlMapModifyAction
@@ -19,7 +20,7 @@ import { VlMapVectorLayer } from "../../../layer/vector-layer";
  */
 export class VlMapModifyAction extends VlMapLayerAction {
   static get _observedAttributes() {
-    return ["snapping", "snapping-pixel-tolerance"];
+    return ['snapping', 'snapping-pixel-tolerance'];
   }
 
   disconnectedCallback() {
@@ -79,7 +80,10 @@ export class VlMapModifyAction extends VlMapLayerAction {
   }
 
   __createSnappingLayer() {
-    this.__snappingLayer = new VlCompositeVectorLayer(this.__snappingLayers.map((layer) => layer._layer), {});
+    this.__snappingLayer = new VlCompositeVectorLayer(
+      this.__snappingLayers.map((layer) => layer._layer),
+      {},
+    );
     this.__addSnappingLayerStyleChangedEventListener();
     return this.__snappingLayer;
   }
@@ -95,13 +99,16 @@ export class VlMapModifyAction extends VlMapLayerAction {
 
   __removeSnappingLayerStyleChangedEventListener() {
     if (this.__snappingLayers && this.__snappingLayers.length > 0) {
-      this.__snappingLayers[0].removeEventListener(VlMapVectorLayer.EVENTS.styleChanged, this.__onSnappingLayerStyleChanged);
+      this.__snappingLayers[0].removeEventListener(
+        VlMapVectorLayer.EVENTS.styleChanged,
+        this.__onSnappingLayerStyleChanged,
+      );
     }
   }
 
   get __snappingLayers() {
-    return Array.from(this.querySelectorAll("vl-map-wfs-layer"));
+    return Array.from(this.querySelectorAll('vl-map-wfs-layer'));
   }
 }
 
-define("vl-map-modify-action", VlMapModifyAction);
+define('vl-map-modify-action', VlMapModifyAction);

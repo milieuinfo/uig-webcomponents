@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
-import { args, argTypes } from '../config';
-import { docsIntro } from '../../../../../../../.storybook/utils.js';
+import { args, argTypes } from '../../config';
+import { docsIntro, TYPES, CATEGORIES } from '../../../../../../../.storybook/utils.js';
 
 export default {
   title: 'custom-elements/vl-map/vl-map-modify-action',
@@ -10,7 +10,7 @@ export default {
       description: {
         component: docsIntro({
           root: 'map',
-          intro: 'De kaart aanpas actie component.',
+          intro: 'The map modify action component.',
         }),
       },
     },
@@ -20,25 +20,27 @@ export default {
     ...argTypes,
     snapping: {
       name: 'data-vl-snapping',
-      type: { summary: 'boolean' },
+      type: { summary: TYPES.BOOLEAN },
       description: 'Attribute enables snapping on the vl-map-wfs-layers that are added to this action.',
       table: {
         defaultValue: { summary: 'false' },
+        category: CATEGORIES.ATTRIBUTES,
       },
     },
     snappingPixelTolerance: {
       name: 'data-vl-snapping-pixel-tolerance',
-      type: { summary: 'number' },
+      type: { summary: TYPES.NUMBER },
       description:
         'Attribute configures the maximum distance (in pixels) between a feature and your pointing device before snapping occurs.',
       table: {
         defaultValue: { summary: '10' },
+        category: CATEGORIES.ATTRIBUTES,
       },
     },
   },
 };
 
-export const MapWithPointModify = () => {
+export const Default = ({ active }) => {
   const features = {
     type: 'FeatureCollection',
     features: [
@@ -52,27 +54,9 @@ export const MapWithPointModify = () => {
         id: 2,
         geometry: { type: 'Point', coordinates: [152161.53, 212358.26] },
       },
-    ],
-  };
-
-  return html`
-    <vl-map id="map">
-      <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-      <vl-map-features-layer data-vl-features=${JSON.stringify(features)}>
-        <vl-map-layer-circle-style></vl-map-layer-circle-style>
-        <vl-map-modify-action data-vl-default-active></vl-map-modify-action>
-      </vl-map-features-layer>
-    </vl-map>
-  `;
-};
-
-export const MapWithLineModify = () => {
-  const features = {
-    type: 'FeatureCollection',
-    features: [
       {
         type: 'Feature',
-        id: 1,
+        id: 3,
         geometry: {
           type: 'LineString',
           coordinates: [
@@ -81,27 +65,9 @@ export const MapWithLineModify = () => {
           ],
         },
       },
-    ],
-  };
-
-  return html`
-    <vl-map id="map">
-      <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-      <vl-map-features-layer data-vl-features=${JSON.stringify(features)}>
-        <vl-map-layer-style></vl-map-layer-style>
-        <vl-map-modify-action data-vl-default-active></vl-map-modify-action>
-      </vl-map-features-layer>
-    </vl-map>
-  `;
-};
-
-export const MapWithPolygonModify = () => {
-  const features = {
-    type: 'FeatureCollection',
-    features: [
       {
         type: 'Feature',
-        id: 1,
+        id: 4,
         geometry: {
           type: 'Polygon',
           coordinates: [
@@ -118,17 +84,77 @@ export const MapWithPolygonModify = () => {
   };
 
   return html`
-    <vl-map id="map">
+    <vl-map>
       <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-      <vl-map-features-layer data-vl-features=${JSON.stringify(features)}>
-        <vl-map-layer-style></vl-map-layer-style>
+      <vl-map-features-layer .features=${features}>
+        <vl-map-modify-action .active=${active}></vl-map-modify-action>
+      </vl-map-features-layer>
+    </vl-map>
+  `;
+};
+
+export const WithDefaultActive = () => {
+  const features = {
+    type: 'FeatureCollection',
+    features: [
+      {
+        type: 'Feature',
+        id: 1,
+        geometry: { type: 'Point', coordinates: [157836.54, 190879.51] },
+      },
+      {
+        type: 'Feature',
+        id: 2,
+        geometry: { type: 'Point', coordinates: [152161.53, 212358.26] },
+      },
+      {
+        type: 'Feature',
+        id: 3,
+        geometry: {
+          type: 'LineString',
+          coordinates: [
+            [157836.54, 190879.51],
+            [152161.53, 212358.26],
+          ],
+        },
+      },
+      {
+        type: 'Feature',
+        id: 4,
+        geometry: {
+          type: 'Polygon',
+          coordinates: [
+            [
+              [104896.56, 193972.22],
+              [157836.54, 190879.51],
+              [152161.53, 212358.26],
+              [173780.97, 174292.43],
+            ],
+          ],
+        },
+      },
+    ],
+  };
+
+  return html`
+    <vl-map>
+      <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+      <vl-map-features-layer .features=${features}>
         <vl-map-modify-action data-vl-default-active></vl-map-modify-action>
       </vl-map-features-layer>
     </vl-map>
   `;
 };
 
-export const MapWithSnappingModify = ({ snapping, snappingPixelTolerance }) => {
+WithDefaultActive.argTypes = {
+  active: {
+    control: {
+      disable: true,
+    },
+  },
+};
+
+export const WithSnapping = ({ active, snapping, snappingPixelTolerance }) => {
   const features = {
     type: 'FeatureCollection',
     features: [
@@ -141,12 +167,11 @@ export const MapWithSnappingModify = ({ snapping, snappingPixelTolerance }) => {
   };
 
   return html`
-    <vl-map id="map">
+    <vl-map>
       <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-      <vl-map-features-layer data-vl-features=${JSON.stringify(features)} data-vl-auto-extent>
-        <vl-map-layer-circle-style></vl-map-layer-circle-style>
+      <vl-map-features-layer .features=${features} data-vl-auto-extent>
         <vl-map-modify-action 
-            data-vl-default-active
+            .active=${active}
             ?data-vl-snapping=${snapping}
             data-vl-snapping-pixel-tolerance=${snappingPixelTolerance}>
           <vl-map-wfs-layer

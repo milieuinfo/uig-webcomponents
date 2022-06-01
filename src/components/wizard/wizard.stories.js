@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
 import { action } from '@storybook/addon-actions';
-import { stylesheet, docsIntro, CATEGORIES, wrapWidth } from '../../../.storybook/utils.js';
+import { stylesheet, docsIntro, CATEGORIES, wrapWidth, TYPES, getLastElement } from '../../../.storybook/utils.js';
 import '.';
 import '../titles';
 import '../grid';
@@ -54,7 +54,7 @@ export default {
       control: { type: 'range', min: 1, max: 2, step: 1 },
       table: {
         type: {
-          summary: 'number',
+          summary: TYPES.NUMBER,
         },
         category: CATEGORIES.ATTRIBUTES,
         defaultValue: { summary: 1 },
@@ -64,7 +64,7 @@ export default {
       description: 'Sets the active step of the wizard.',
       table: {
         type: {
-          summary: 'number',
+          summary: TYPES.NUMBER,
         },
         category: CATEGORIES.PROPERTIES,
         defaultValue: { summary: 1 },
@@ -92,10 +92,7 @@ export default {
 };
 
 // get last wizard, because storybook can render Default multiple times
-const getWizard = () => {
-  const [lastItem] = [...document.querySelectorAll('vl-wizard')].slice(-1);
-  return lastItem;
-};
+const getWizard = () => getLastElement('vl-wizard');
 
 export const Default = ({ activeStepSlider, title, header, onClickStep }) => html`<div style="max-width: ${wrapWidth}">
   <vl-wizard

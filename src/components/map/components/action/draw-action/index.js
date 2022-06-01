@@ -1,6 +1,6 @@
-import { VlMapLayerAction } from "../layer-action";
-import { VlMapVectorLayer } from "../../layer/vector-layer";
-import { VlCompositeVectorLayer } from "vl-mapactions/dist/vl-mapactions.js";
+import { VlMapLayerAction } from '../layer-action';
+import { VlMapVectorLayer } from '../../layer/vector-layer';
+import { VlCompositeVectorLayer } from '../../../actions/composite-vector-layer';
 
 /**
  * VlMapDrawAction
@@ -30,40 +30,35 @@ export class VlMapDrawAction extends VlMapLayerAction {
 
   get __drawOptions() {
     if (this.dataset.vlSnapping !== undefined) {
-      if (this.__snappingLayers.length == 0) {
+      if (this.__snappingLayers.length === 0) {
         return { snapping: true };
-      } else {
-        return {
-          snapping: {
-            layer: this.__createSnappingLayer(),
-            pixelTolerance: this.dataset.vlSnappingPixelTolerance || 10,
-            node: false,
-            vertex: false,
-          },
-        };
       }
-    } else {
-      return {};
+      return {
+        snapping: {
+          layer: this.__createSnappingLayer(),
+          pixelTolerance: this.dataset.vlSnappingPixelTolerance || 10,
+          node: false,
+          vertex: false,
+        },
+      };
     }
+    return {};
   }
 
   __createSnappingLayer() {
     const snappingLayer = new VlCompositeVectorLayer(
       this.__snappingLayers.map((layer) => layer._layer),
-      {}
+      {},
     );
     const firstVectorLayer = this.__snappingLayers[0];
     snappingLayer.setStyle(firstVectorLayer.style);
-    firstVectorLayer.addEventListener(
-      VlMapVectorLayer.EVENTS.styleChanged,
-      (event) => {
-        snappingLayer.setStyle(event.target.style);
-      }
-    );
+    firstVectorLayer.addEventListener(VlMapVectorLayer.EVENTS.styleChanged, (event) => {
+      snappingLayer.setStyle(event.target.style);
+    });
     return snappingLayer;
   }
 
   get __snappingLayers() {
-    return Array.from(this.querySelectorAll("vl-map-wfs-layer"));
+    return Array.from(this.querySelectorAll('vl-map-wfs-layer'));
   }
 }

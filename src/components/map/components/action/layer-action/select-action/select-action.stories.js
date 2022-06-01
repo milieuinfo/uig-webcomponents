@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
-import { args, argTypes } from '../config';
-import { docsIntro } from '../../../../../../../.storybook/utils.js';
+import { args, argTypes } from '../../config';
+import { docsIntro, TYPES, CATEGORIES } from '../../../../../../../.storybook/utils.js';
 
 export default {
   title: 'custom-elements/vl-map/vl-map-select-action',
@@ -10,7 +10,7 @@ export default {
       description: {
         component: docsIntro({
           root: 'map',
-          intro: 'De kaart selecteer actie component.',
+          intro: 'The map select action component.',
         }),
       },
     },
@@ -20,17 +20,18 @@ export default {
     ...argTypes,
     cluster: {
       name: 'data-vl-cluster',
-      type: { summary: 'boolean' },
-      description: 'Attribuut geeft aan of de features geclusterd zijn of niet.',
+      type: { summary: TYPES.BOOLEAN },
+      description: 'Indicates whether the features are clustered or not.',
       table: {
         defaultValue: { summary: 'false' },
+        category: CATEGORIES.ATTRIBUTES,
       },
       control: { disable: true },
     },
   },
 };
 
-export const Default = () => {
+export const Default = ({ active }) => {
   const features = {
     type: 'FeatureCollection',
     features: [
@@ -53,25 +54,16 @@ export const Default = () => {
   };
 
   return html`
-    <vl-map id="map">
+    <vl-map>
       <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-      <vl-map-baselayer-grb></vl-map-baselayer-grb>
-      <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
-      <vl-map-features-layer data-vl-features=${JSON.stringify(features)}>
-        <vl-map-layer-circle-style></vl-map-layer-circle-style>
-        <vl-map-select-action data-vl-default-active>
-          <vl-map-layer-circle-style
-              data-vl-text-color="#000"
-              data-vl-color="#FFE615"
-              data-vl-border-color="#FFE615"
-          ></vl-map-layer-circle-style>
-        </vl-map-select-action>
+      <vl-map-features-layer .features=${features}>
+        <vl-map-select-action .active=${active}></vl-map-select-action>
       </vl-map-features-layer>
     </vl-map>
   `;
 };
 
-export const SelectWithClustering = () => {
+export const WithDefaultActive = () => {
   const features = {
     type: 'FeatureCollection',
     features: [
@@ -94,23 +86,50 @@ export const SelectWithClustering = () => {
   };
 
   return html`
-    <vl-map id="map">
+    <vl-map>
       <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-      <vl-map-baselayer-grb></vl-map-baselayer-grb>
-      <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
-      <vl-map-features-layer
-        data-vl-cluster
-        data-vl-cluster-distance="100"
-        data-vl-features=${JSON.stringify(features)}
-      >
-        <vl-map-layer-circle-style></vl-map-layer-circle-style>
-        <vl-map-select-action data-vl-cluster data-vl-default-active>
-          <vl-map-layer-circle-style
-              data-vl-text-color="#000"
-              data-vl-color="#FFE615"
-              data-vl-border-color="#FFE615"
-          ></vl-map-layer-circle-style>
-        </vl-map-select-action>
+      <vl-map-features-layer .features=${features}>
+        <vl-map-select-action data-vl-default-active></vl-map-select-action>
+      </vl-map-features-layer>
+    </vl-map>
+  `;
+};
+
+WithDefaultActive.argTypes = {
+  active: {
+    control: {
+      disable: true,
+    },
+  },
+};
+
+export const WithClustering = ({ active }) => {
+  const features = {
+    type: 'FeatureCollection',
+    features: [
+      {
+        type: 'Feature',
+        id: 1,
+        geometry: { type: 'Point', coordinates: [147055.0, 197908.0] },
+      },
+      {
+        type: 'Feature',
+        id: 2,
+        geometry: { type: 'Point', coordinates: [149055.0, 199908.0] },
+      },
+      {
+        type: 'Feature',
+        id: 3,
+        geometry: { type: 'Point', coordinates: [151055.0, 201908.0] },
+      },
+    ],
+  };
+
+  return html`
+    <vl-map>
+      <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+      <vl-map-features-layer data-vl-cluster data-vl-cluster-distance="100" .features=${features}>
+        <vl-map-select-action .active=${active} data-vl-cluster></vl-map-select-action>
       </vl-map-features-layer>
     </vl-map>
   `;
