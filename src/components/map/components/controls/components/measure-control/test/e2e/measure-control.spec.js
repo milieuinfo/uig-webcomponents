@@ -27,14 +27,20 @@ describe('vl-measure-control', async () => {
     const measureAction = await new VlTestMapMeasureAction(driver, actionSelector);
     const measureControl = await new VlTestMeasureControl(driver, controlSelector);
 
-    assert.isFalse(await measureAction.isActive());
+    let active = await measureAction.isActive();
+
+    assert.isFalse(active);
 
     measureControl.click();
-    sleep(350);
-    assert.isTrue(await measureAction.isActive());
+    await sleep(350);
+
+    active = await measureAction.isActive();
+    assert.isTrue(active);
 
     measureControl.click();
-    sleep(350);
-    assert.isFalse(await measureAction.isActive());
+    await sleep(350);
+
+    active = await measureAction.isActive();
+    assert.isFalse(active);
   });
 });
