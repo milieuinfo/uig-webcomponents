@@ -32,12 +32,8 @@ export class VlMap extends vlElement(HTMLElement) {
   }
 
   __prepareReadyPromises() {
-    this.__mapReady = new Promise((resolve) => {
-      this.__mapReadyResolver = resolve;
-    });
-    this.__overviewMapReady = new Promise((resolve) => {
-      this.__overviewMapReadyResolver = resolve;
-    });
+    this.__mapReady = new Promise((resolve) => (this.__mapReadyResolver = resolve));
+    this.__overviewMapReady = new Promise((resolve) => (this.__overviewMapReadyResolver = resolve));
     this.__ready = Promise.all([this.__mapReady, this.__overviewMapReady]);
   }
 
@@ -69,15 +65,15 @@ export class VlMap extends vlElement(HTMLElement) {
   }
 
   get disableEscapeKey() {
-    return this.getAttribute('disable-escape-key') !== undefined;
+    return this.getAttribute('disable-escape-key') != undefined;
   }
 
   get disableRotation() {
-    return this.getAttribute('disable-rotation') !== undefined;
+    return this.getAttribute('disable-rotation') != undefined;
   }
 
   get disableMouseWheelZoom() {
-    return this.getAttribute('disable-mouse-wheel-zoom') !== undefined;
+    return this.getAttribute('disable-mouse-wheel-zoom') != undefined;
   }
 
   get actions() {
@@ -101,7 +97,7 @@ export class VlMap extends vlElement(HTMLElement) {
   }
 
   get _controls() {
-    if (this.dataset.vlAllowFullscreen !== undefined) {
+    if (this.dataset.vlAllowFullscreen != undefined) {
       return [new OlFullScreenControl()];
     }
     return [];
