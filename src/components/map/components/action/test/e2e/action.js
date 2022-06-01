@@ -4,7 +4,7 @@ import { VlTestMapLayers } from '../../../layer/test/e2e/layers.js';
 
 export class VlTestMapAction extends VlElement {
   async isActive() {
-    return this.hasAttribute('active');
+    return this.driver.executeScript('return arguments[0]._active', this);
   }
 
   async getMap() {

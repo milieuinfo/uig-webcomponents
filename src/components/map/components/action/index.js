@@ -1,28 +1,14 @@
-import { vlElement, define } from "../../../../utils/core";
-import { VlMap } from "../map";
+import { vlElement, define } from '../../../../utils/core';
 
-/**
- * VlMapAction
- * @class
- * @classdesc De abstracte kaart actie component.
- *
- *
- * @extends HTMLElement
- * @mixes vlElement
- *
- * @property {boolean} data-vl-default-active - Attribuut wordt gebruikt om de actie standaard te activeren.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-map/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-delete-action.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-draw-actions.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-modify-actions.html|Demo}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-map-select-action.html|Demo}
- */
 export class VlMapAction extends vlElement(HTMLElement) {
+  constructor() {
+    super();
+    this._active = false;
+    this._controlledActive = false;
+  }
+
   connectedCallback() {
     this.__defineLayer();
-    this.__registerMapActionChangedCallback();
   }
 
   static isVlMapAction() {
@@ -30,53 +16,69 @@ export class VlMapAction extends vlElement(HTMLElement) {
   }
 
   /**
-   * Geeft de vl-mapactions kaart actie.
-   *
-   * @return {Object}
-   */
+   * Gives the vl-mapactions map action.
+   * */
   get action() {
     return this._action;
   }
 
   get _mapElement() {
-    return this.closest("vl-map");
+    return this.closest('vl-map');
   }
 
   get _defaultActive() {
-    return this.hasAttribute("default-active");
+    return this.hasAttribute('data-vl-default-active');
   }
 
   get _callback() {
     return (...args) => (this.__callback ? this.__callback(...args) : null);
   }
 
-  /**
-   * Activeer de kaart actie op de kaart.
-   */
+  get active() {
+    return this._controlledActive;
+  }
+
+  set active(value) {
+    this._controlledActive = value;
+    if (value) {
+      this.activate();
+    } else {
+      this.deactivate();
+    }
+  }
+
   activate() {
-    this._mapElement.activateAction(this.action);
+    // Do not activate action if its layer is invisible
+    if (this.action && this.action.layer.get('visible')) {
+      this._mapElement.changeActiveAction(this.action);
+    }
+  }
+
+  deactivate() {
+    // Only deactivate if this action is currently active
+    if (this.action && this.action === this._mapElement.activeAction) {
+      const actionIsNotDefault = this.action !== this._mapElement.defaultAction;
+      const layerIsVisible = this._mapElement.defaultAction && this._mapElement.defaultAction.layer.get('visible');
+      this._mapElement.changeActiveAction(actionIsNotDefault && layerIsVisible && this._mapElement.defaultAction);
+    }
   }
 
   _createAction() {
-    console.warn("implementatie van _createAction ontbreekt");
+    console.warn('_createAction implementation is missing');
   }
 
   _processAction() {
     if (this.action) {
+      this.action.element = this;
       this._mapElement.addAction(this.action);
-      if (this._defaultActive) {
+
+      // Activate the action when
+      // - the action is the default active action and no other action has yet been activated
+      // - the controlled active state of the action is true
+      if ((this._defaultActive && !this._mapElement.activeAction) || this.active) {
         this.activate();
       }
     }
-  }
-
-  __registerMapActionChangedCallback() {
-    this._mapElement.addEventListener(VlMap.EVENTS.action.activated, () => {
-      this.setAttribute(
-        "active",
-        this._mapElement.activeAction === this.action
-      );
-    });
   }
 
   __defineLayer() {
@@ -84,6 +86,10 @@ export class VlMapAction extends vlElement(HTMLElement) {
       this.layer = this._layerElement.layer;
     }
   }
+
+  reset() {
+    this._active = false;
+  }
 }
 
-define("vl-map-action", VlMapAction);
+define('vl-map-action', VlMapAction);

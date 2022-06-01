@@ -88,8 +88,8 @@ export class VlDrawAction extends VlMapAction {
           layer.getSource().removeFeature(feature);
         } else {
           // When the features was not yet added to the source we'll add a listener
-          const listener = layer.getSource().on('addfeature', (event) => {
-            layer.getSource().removeFeature(event.feature);
+          const listener = layer.getSource().on('addfeature', (e) => {
+            layer.getSource().removeFeature(e.feature);
             unByKey(listener);
           });
         }
@@ -101,6 +101,8 @@ export class VlDrawAction extends VlMapAction {
 
     this.options = options;
     this.drawInteraction = drawInteraction;
+
+    this.layer = layer;
   }
 
   activate() {
@@ -156,5 +158,9 @@ export class VlDrawAction extends VlMapAction {
   _getCoordinatesOfLastSegment(geometry) {
     const size = geometry.getCoordinates().length;
     return geometry.getCoordinates().slice(size - 2);
+  }
+
+  stop() {
+    this.drawInteraction.abortDrawing();
   }
 }

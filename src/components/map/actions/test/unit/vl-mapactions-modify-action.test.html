@@ -100,12 +100,15 @@
         },
       };
       const modifyAction = createModifyActionWithMap(options);
-      sinon.stub(modifyAction.map, 'addLayer');
+      const addLayerStub = sinon.stub(modifyAction.map, 'addLayer');
       modifyAction.activate();
       expect(modifyAction.map.addLayer.calledWith(snappingLayer)).to.be.true;
-      sinon.stub(modifyAction.map, 'removeLayer');
+      const removeLayerStub = sinon.stub(modifyAction.map, 'removeLayer');
       modifyAction.deactivate();
       expect(modifyAction.map.removeLayer.calledWith(snappingLayer)).to.be.true;
+
+      addLayerStub.reset();
+      removeLayerStub.reset();
     });
 
     const createModifyActionWithMap = (options) => {

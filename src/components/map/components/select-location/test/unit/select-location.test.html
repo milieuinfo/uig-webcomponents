@@ -163,6 +163,8 @@
             [...select._choices.choiceList.children].map((suggestion) => suggestion.innerText),
             suggestions,
           );
+
+          fetchStub.reset();
         });
 
         test('wanneer de gebruiker een Lambert-coördinaat zoekt, zullen bij Geopunt de locaties opgehaald en gevisualiseerd worden', async () => {
@@ -201,6 +203,8 @@
             [...select._choices.choiceList.children].map((suggestion) => suggestion.innerText),
             [suggestions[0].FormattedAddress, suggestions[1].FormattedAddress, `Lambert-coördinaat: ${coordinate}`],
           );
+
+          fetchStub.reset();
         });
 
         test('er zijn default placeholders voor het zoek adres select element', async () => {
@@ -256,6 +260,8 @@
             locationAntwerpen1.BoundingBox.UpperRight.X_Lambert72,
             locationAntwerpen1.BoundingBox.UpperRight.Y_Lambert72,
           ]);
+
+          fetchStub.reset();
         });
 
         test('kan de geografische locatie van een Lambert-coördinaat opvragen', async () => {

@@ -1,5 +1,5 @@
 import { html } from 'lit-html';
-import { args, argTypes } from '../config.js';
+import { args, argTypes } from '../config';
 import '../../../../map';
 import { docsIntro } from '../../../../../../.storybook/utils.js';
 
@@ -21,7 +21,7 @@ export default {
 };
 
 export const Default = () => html`
-  <vl-map id="map">
+  <vl-map>
     <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
   </vl-map>
 `;

@@ -6,6 +6,7 @@ export class VlTestMapMeasureAction extends VlTestMapDrawAction {
       const map = await this.getMap();
       const pixel1 = await map.getPixelFromCoordinate([c1.x, c1.y]);
       const pixel2 = await map.getPixelFromCoordinate([c2.x, c2.y]);
+
       await map.driver
         .actions()
         .move({ origin: map, x: pixel1.x, y: pixel1.y })

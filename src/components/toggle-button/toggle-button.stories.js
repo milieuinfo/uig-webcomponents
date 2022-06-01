@@ -2,7 +2,7 @@ import { html } from 'lit-html';
 import '.';
 import { action } from '@storybook/addon-actions';
 import { ifDefined } from 'lit-html/directives/if-defined';
-import { docsIntro, TYPES, CATEGORIES } from '../../../.storybook/utils.js';
+import { docsIntro, TYPES, CATEGORIES, getLastElement } from '../../../.storybook/utils.js';
 import { ICON_PLACEMENT } from './enums';
 import { sharedButtonArgs, sharedButtonArgTypes } from '../button/config';
 
@@ -79,7 +79,6 @@ export default {
     click: {
       name: 'click',
       description: 'Event fired on click of the toggle button.',
-
       table: { category: CATEGORIES.EVENTS },
     },
     ...sharedButtonArgTypes,
@@ -132,10 +131,7 @@ export const WithIcon = (props) =>
 WithIcon.args = { icon: 'pencil', iconPlacement: ICON_PLACEMENT.AFTER };
 
 // Get last toggle button, because storybook can render multiple stories
-const getToggleButton = () => {
-  const [lastItem] = [...document.querySelectorAll('vl-toggle-button')].slice(-1);
-  return lastItem;
-};
+const getToggleButton = () => getLastElement('vl-toggle-button');
 
 export const Controlled = (props) => html`<vl-toggle-button
   .active=${props.active}

@@ -75,11 +75,11 @@
           customElements.whenDefined('vl-map-draw-line-action').then(() => done());
         });
 
-        test('een lijn teken actie is een map actie', () => {
+        test('a line draw action is a map action', () => {
           assert.isTrue(VlMapDrawLineAction.isVlMapAction());
         });
 
-        test('snapping wordt goed geconfigureerd als het snapping attribuut er is maar zonder lagen', async () => {
+        test('snapping is properly configured if the snapping attribute is there but without layers', async () => {
           const fixtureMetSnapping = fixture('vl-map-draw-line-action-snapping');
           const drawLineMetSnappingAction = fixtureMetSnapping.querySelector('vl-map-draw-line-action');
           await awaitUntil(() => drawLineMetSnappingAction.action != null);
@@ -87,7 +87,7 @@
           expect(drawActionOptions.snapping).to.equal(true);
         });
 
-        test('snapping wordt goed geconfigureerd als er lagen zijn en pixel tolerantie', async () => {
+        test('snapping is properly configured if there are layers and pixel tolerance', async () => {
           const fixtureMetSnapping = fixture('vl-map-draw-line-action-snapping-met-wfs-layers-fixture');
           const drawLineMetSnappingOpWfsLagenAction = fixtureMetSnapping.querySelector('vl-map-draw-line-action');
           await awaitUntil(() => drawLineMetSnappingOpWfsLagenAction.action != null);

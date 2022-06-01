@@ -32,7 +32,7 @@
           await customElements.whenDefined('vl-map-draw-polygon-action');
         });
 
-        test('nadat de tekenactie voltooid is, zal de callback worden opgeroepen met de feature als eerste argument en een reject callback als tweede argument', async () => {
+        test('after the draw action is completed, the callback will be called with the feature as the first argument and a reject callback as the second argument', async () => {
           const map = fixture('vl-map-draw-actions-fixture');
           await map.ready;
           const types = ['point', 'line', 'polygon'];

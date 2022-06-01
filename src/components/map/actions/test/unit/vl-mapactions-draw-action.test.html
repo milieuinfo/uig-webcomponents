@@ -81,12 +81,15 @@
         },
       };
       const drawAction = createDrawActionWithMap('Point', options);
-      sinon.stub(drawAction.map, 'addLayer');
+      const addLayerStub = sinon.stub(drawAction.map, 'addLayer');
       drawAction.activate();
       expect(drawAction.map.addLayer.calledWith(snappingLayer)).to.be.true;
-      sinon.stub(drawAction.map, 'removeLayer');
+      const removeLayerStub = sinon.stub(drawAction.map, 'removeLayer');
       drawAction.deactivate();
       expect(drawAction.map.removeLayer.calledWith(snappingLayer)).to.be.true;
+
+      addLayerStub.reset();
+      removeLayerStub.reset();
     });
 
     it('roept de callback functie aan na het tekenen', () => {
@@ -179,6 +182,8 @@
       expect(tooltipStub.called).to.be.true;
       expect(tooltipStub.getCall(0).args[0].textContent).to.equal('1.41 m');
       expect(tooltip.getOffset()).to.deep.equal([-15, 10]);
+
+      tooltipStub.reset();
     });
 
     it('Als het tekenen gestart is en er met de muis verschoven wordt zal er een tooltip verschijnen als de optie measure een object is met de offset van de tooltip in', () => {
@@ -232,6 +237,8 @@
       expect(tooltipStub.called).to.be.true;
       expect(tooltipStub.getCall(0).args[0].textContent).to.equal('1.41 m');
       expect(tooltip.getOffset()).to.deep.equal([0, 0]);
+
+      tooltipStub.reset();
     });
 
     it('Als het tekenen gestart en er met de muis verschoven wordt zal er geen tooltip verschijnen als de optie measure op false staat', () => {

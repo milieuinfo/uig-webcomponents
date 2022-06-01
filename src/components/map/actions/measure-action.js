@@ -12,14 +12,11 @@ export class VlMeasureAction extends VlDrawAction {
       () => {
         unByKey(this.measurePointermoveHandler);
       },
-      { ...options, maxPoints: 2 },
+      { ...options, maxPoints: 2, geometryName: 'measurement' },
     );
 
     this.featureCounter = 0;
-    this.layer = layer;
     this.measurementTooltips = [];
-
-    this.measureOptions = options;
   }
 
   activate() {
@@ -35,23 +32,20 @@ export class VlMeasureAction extends VlDrawAction {
       this._handleRemoveFeature(event);
     });
 
-    this.layerVisibilityChangeHandler = this.layer.on('change:visible', () => {
-      this._handleLayerVisibilityChange();
-    });
-
     super.activate(this);
   }
 
   _setMeasurementTooltipsClosable(closable) {
     this.measurementTooltips.forEach((tooltip) => {
       const closableAttribute = 'data-vl-closable';
+      const tooltipElement = tooltip.getElement();
+
       // Check if tooltip still exists
-      if (tooltip) {
-        const tooltipEl = tooltip.getElement();
+      if (tooltip && tooltipElement) {
         if (closable) {
-          tooltipEl.setAttribute(closableAttribute, closable);
+          tooltipElement.setAttribute(closableAttribute, closable);
         } else {
-          tooltipEl.removeAttribute(closableAttribute);
+          tooltipElement.removeAttribute(closableAttribute);
         }
       }
     });
@@ -60,13 +54,14 @@ export class VlMeasureAction extends VlDrawAction {
   _setMeasurementTooltipsVisible(visible) {
     this.measurementTooltips.forEach((tooltip) => {
       const hiddenAttribute = 'hidden';
+      const tooltipElement = tooltip.getElement();
+
       // Check if tooltip still exists
-      if (tooltip) {
-        const tooltipEl = tooltip.getElement();
+      if (tooltip && tooltipElement) {
         if (visible) {
-          tooltipEl.removeAttribute(hiddenAttribute);
+          tooltipElement.removeAttribute(hiddenAttribute);
         } else {
-          tooltipEl.setAttribute(hiddenAttribute, true);
+          tooltipElement.setAttribute(hiddenAttribute, true);
         }
       }
     });
@@ -118,15 +113,6 @@ export class VlMeasureAction extends VlDrawAction {
     });
   }
 
-  _handleLayerVisibilityChange() {
-    this._setMeasurementTooltipsVisible(this.layer.getVisible());
-    this.deactivate();
-
-    this.layerVisibilityChangeHandler = this.layer.on('change:visible', () => {
-      this._handleLayerVisibilityChange();
-    });
-  }
-
   _removeMeasureFeature(feature) {
     const source = this.layer.getSource();
     if (feature && (feature.getId() == null || source.getFeatureById(feature.getId()) === feature)) {
@@ -174,7 +160,11 @@ export class VlMeasureAction extends VlDrawAction {
   }
 
   _getFeatureIdFor(tooltip) {
-    return tooltip.values_.featureId;
+    return tooltip.get('featureId');
+  }
+
+  handleLayerVisibilityChange() {
+    this._setMeasurementTooltipsVisible(this.layer.getVisible());
   }
 
   deactivate() {
@@ -185,8 +175,13 @@ export class VlMeasureAction extends VlDrawAction {
     unByKey(this.drawStartHandler);
     unByKey(this.drawEndHandler);
     unByKey(this.removeFeatureHandler);
-    unByKey(this.layerVisibilityChangeHandler);
 
     super.deactivate(this);
+  }
+
+  stop() {
+    super.stop();
+    this._setMeasurementTooltipsClosable(true);
+    this._cleanUp(true);
   }
 }

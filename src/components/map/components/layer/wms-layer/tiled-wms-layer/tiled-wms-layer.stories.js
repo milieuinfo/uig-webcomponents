@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import '../../../../../map';
-import { argTypes as wmsLayerArgTypes } from '../config.js';
-import { argTypes as layerArgTypes } from '../../config.js';
+import { argTypes as wmsLayerArgTypes } from '../config';
+import { argTypes as layerArgTypes } from '../../config';
 import { docsIntro } from '../../../../../../../.storybook/utils.js';
 
 export default {
@@ -21,8 +21,7 @@ export default {
 };
 
 export const Default = () => html`
-  <vl-map id="map">
-    <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
+  <vl-map>
     <vl-map-tiled-wms-layer
       data-vl-name="Gemeentegrenzen"
       data-vl-version="1.3.0"

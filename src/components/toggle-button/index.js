@@ -1,4 +1,5 @@
 import { html, css, LitElement, unsafeCSS } from 'lit';
+import { classMap } from 'lit/directives/class-map.js';
 import styles from './styles.scss';
 import '../button';
 import { ICON_PLACEMENT } from './enums';
@@ -123,6 +124,9 @@ export class VlToggleButton extends LitElement {
   _buttonWrap(children) {
     return html`
       <button
+        class=${classMap({
+          'vl-button--map': this.isInMap,
+        })}
         is="vl-button"
         ?data-vl-error=${this._active && this.error}
         ?data-vl-block=${this.block}

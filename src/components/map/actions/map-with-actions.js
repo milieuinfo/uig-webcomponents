@@ -1,5 +1,6 @@
 import { defaults } from 'ol/interaction';
 import Map from 'ol/Map';
+import { CONTROL_TYPE } from '../enums';
 
 /**
  * Deze map bevat enkel de functionaliteit om de acties te behandelen. Aan het eerste argument van de constructor kan het gebruikelijke object map opties worden weergegeven die ook op de ol.Map worden gezet, samen met een extra parameter 'acties' in dat object. Deze array bevat MapActions.
@@ -12,8 +13,7 @@ export class VlMapWithActions extends Map {
     return 300;
   }
 
-  constructor(options) {
-    options = options || {};
+  constructor(options = {}) {
     const enableRotation = !options.disableRotation;
     const enableMouseWheelZoom = !options.disableMouseWheelZoom;
     const interactions = defaults({
@@ -32,14 +32,22 @@ export class VlMapWithActions extends Map {
       this.addAction(action);
     });
 
+    // TODO: check if timeout and activating default is still needed here (old bugfix)
     setTimeout(() => {
       this.activateDefaultAction();
     });
 
     if (!options.disableEscapeKey) {
       const activateFirstActionOnEscapeKey = (e) => {
-        if (e && e.keyCode && e.keyCode == 27) {
-          this.activateDefaultAction();
+        if (e && e.keyCode && e.keyCode === 27) {
+          const currentActiveAction = this.getCurrentActiveAction();
+          if (currentActiveAction) {
+            if (currentActiveAction.stop) {
+              currentActiveAction.stop();
+            }
+          } else {
+            this.activateDefaultAction();
+          }
         }
       };
 
@@ -48,14 +56,41 @@ export class VlMapWithActions extends Map {
     }
   }
 
+  getDefaultActiveAction() {
+    return this.actions && this.actions.find((action) => action.element._defaultActive);
+  }
+
+  getCurrentActiveAction() {
+    return this.actions && this.actions.find((action) => action.element._active);
+  }
+
+  getActionWithIdentifier(identifier) {
+    return this.actions && this.actions.find((action) => action.element.identifier === identifier);
+  }
+
+  getControlsOfType(type) {
+    const controls = this.getControls().getArray();
+    return controls.filter((control) => control.get('element') && control.get('element').type === type);
+  }
+
+  getActionControls() {
+    return this.getControlsOfType(CONTROL_TYPE.ACTION);
+  }
+
+  getActionControlWithIdentifier(identifier) {
+    const actionControls = this.getActionControls();
+    return (
+      actionControls &&
+      actionControls.find((control) => control.get('element') && control.get('element').identifier === identifier)
+    );
+  }
+
+  getLayerActions(layer) {
+    return this.actions && this.actions.filter((action) => action.layer === layer);
+  }
+
   activateAction(action) {
-    if (this.currentAction) {
-      this.currentAction.deactivate();
-      clearTimeout(this.timeout);
-    }
-
-    this.currentAction = action;
-
+    // TODO: Review timeout
     // delay the activation of the action with 300ms because ol has a timeout of 251ms to detect a double click event
     // when we don't use a delay some click and select events of the previous action will be triggered on the new action
     this.timeout = setTimeout(() => {
@@ -63,9 +98,18 @@ export class VlMapWithActions extends Map {
     }, VlMapWithActions.CLICK_COUNT_TIMEOUT);
   }
 
+  deactivateCurrentAction() {
+    const currentActiveAction = this.getCurrentActiveAction();
+    if (currentActiveAction) {
+      currentActiveAction.deactivate();
+      clearTimeout(this.timeout);
+    }
+  }
+
   addAction(action) {
     this.actions.push(action);
     action.map = this;
+
     action.interactions.forEach((interaction) => {
       this.addInteraction(interaction);
       interaction.map = action.map;
@@ -73,18 +117,27 @@ export class VlMapWithActions extends Map {
   }
 
   removeAction(action) {
-    if (this.currentAction == action) {
-      this.activateDefaultAction();
+    if (this.getCurrentActiveAction() === action) {
+      if (action === this.getDefaultActiveAction()) {
+        action.element.deactivate();
+      } else {
+        this.activateDefaultAction();
+      }
     }
+
     action.interactions.forEach((interaction) => {
       this.removeInteraction(interaction);
     });
+
+    action.element.reset();
+
     this.actions.splice(this.actions.indexOf(action), 1);
   }
 
   activateDefaultAction() {
-    if (this.actions.length > 0 && this.actions[0]) {
-      this.activateAction(this.actions[0]);
+    const defaultActiveAction = this.getDefaultActiveAction();
+    if (defaultActiveAction) {
+      defaultActiveAction.element.activate();
     }
   }
 }

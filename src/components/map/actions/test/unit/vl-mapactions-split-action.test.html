@@ -51,6 +51,8 @@
     //   splitAction.deactivate();
     //   expect(drawActionStub.called).to.be.true;
     //   expect(selectActionStub.called).to.be.true;
+    //   drawActionStub.reset();
+    //   selectActionStub.reset();
     // });
     // it('zal na het selecteren de select action deactiveren en de draw action activeren', () => {
     //   const splitAction = createSplitAction();
@@ -152,6 +154,9 @@
     //     expect(clearFeaturesStub.called).to.be.true;
     //     expect(deactivateDrawStub.called).to.be.true;
     //     expect(activateSelectStub.called).to.be.true;
+    //     clearFeaturesStub.reset();
+    //     activateSelectStub.reset();
+    //     deactivateDrawStub.reset();
     //     done();
     //   });
     // });

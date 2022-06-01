@@ -6,10 +6,10 @@ services:
     environment:
       - NODE_MAX_SESSION=1
       - NODE_MAX_INSTANCES=1
-    ports: 
-      - "4444:4444"
-      - "4443:4443"
-      - "4442:4442"
+    ports:
+      - '4444:4444'
+      - '4443:4443'
+      - '4442:4442'
   selenium-chrome:
     image: ${DOCKER_REGISTRY}selenium/node-chrome:98.0
     depends_on:
@@ -35,7 +35,7 @@ services:
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - HUB_PORT_4444_TCP_PORT=4444
-      - SHM-SIZE=11g      
+      - SHM-SIZE=11g
       - http_proxy=${http_proxy}
       - https_proxy=${https_proxy}
       - no_proxy=${no_proxy},selenium-hub,tests,dummy

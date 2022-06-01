@@ -22,6 +22,10 @@ export { VlTestMapModifyAction } from '../components/action/layer-action/modify-
 export { VlTestMapSelectActionPage } from '../components/action/layer-action/select-action/test/e2e/select-action.page';
 export { VlTestMapSelectAction } from '../components/action/layer-action/select-action/test/e2e/select-action';
 
+// Control
+
+export { VlTestMeasureControl } from '../components/controls/components/measure-control/test/e2e/measure-control';
+
 // Layer
 
 export { VlTestMapBaseLayer } from '../components/baselayer/test/e2e/baselayer';

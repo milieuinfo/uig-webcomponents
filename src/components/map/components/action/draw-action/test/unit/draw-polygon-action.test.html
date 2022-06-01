@@ -75,11 +75,11 @@
           customElements.whenDefined('vl-map-draw-polygon-action').then(() => done());
         });
 
-        test('een polygoon teken actie is een map actie', () => {
+        test('a polygon draw action is a map action', () => {
           assert.isTrue(VlMapDrawPolygonAction.isVlMapAction());
         });
 
-        test('snapping wordt goed geconfigureerd als het snapping attribuut er is maar zonder lagen', async () => {
+        test('snapping is properly configured if the snapping attribute is there but without layers', async () => {
           const fixtureMetSnapping = fixture('vl-map-draw-polygon-action-snapping');
           const drawPolygonMetSnappingAction = fixtureMetSnapping.querySelector('vl-map-draw-polygon-action');
           await awaitUntil(() => drawPolygonMetSnappingAction.action != null);
@@ -87,7 +87,7 @@
           expect(drawActionOptions.snapping).to.equal(true);
         });
 
-        test('snapping wordt goed geconfigureerd als er lagen zijn en pixel tolerantie', async () => {
+        test('snapping is properly configured if there are layers and pixel tolerance', async () => {
           const fixtureMetSnapping = fixture('vl-map-draw-polygon-action-snapping-met-wfs-layers-fixture');
           const drawPolygonMetSnappingOpWfsLagenAction = fixtureMetSnapping.querySelector('vl-map-draw-polygon-action');
           await awaitUntil(() => drawPolygonMetSnappingOpWfsLagenAction.action != null);

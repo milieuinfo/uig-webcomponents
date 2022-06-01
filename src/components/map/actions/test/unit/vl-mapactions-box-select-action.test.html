@@ -9,6 +9,7 @@
     const feature2 = new Feature({ id: 2 });
     const intersectingFeatures = [feature1, feature2];
     let callback;
+    let stub;
 
     const createVlBoxSelectAction = (filter) => {
       callback = sinon.spy();
@@ -24,10 +25,14 @@
         callback,
         { filter },
       );
-      sinon.stub(action.dragBoxInteraction, 'getGeometry').returns({ getExtent: () => {} });
+      stub = sinon.stub(action.dragBoxInteraction, 'getGeometry').returns({ getExtent: () => {} });
       action.map = new Map();
       return action;
     };
+
+    after(() => {
+      stub.reset();
+    });
 
     it('kan op actief gezet worden, zodat de selectie, hover en dragbox interacties op actief gezet worden', () => {
       const boxSelectAction = createVlBoxSelectAction();
