@@ -32,7 +32,7 @@ export class VlMapWithActions extends Map {
       this.addAction(action);
     });
 
-    // TODO: check if timeout is still needed (old bugfix)
+    // TODO: check if timeout and activating default is still needed here (old bugfix)
     setTimeout(() => {
       this.activateDefaultAction();
     });

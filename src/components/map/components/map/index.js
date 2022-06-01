@@ -169,8 +169,13 @@ export class VlMap extends vlElement(HTMLElement) {
 
     if (actions) {
       actions.forEach((action) => {
-        // Deactivate active action on layer when layer visibility is set to false
-        if (!layerElement.visible && action.element._active) {
+        if (layerElement.visible) {
+          // Activate default active action on layer if applicable
+          if (!this.activeAction && action === this.defaultAction) {
+            action.element.activate();
+          }
+        } else if (action.element._active) {
+          // Deactivate active action on layer
           action.element.deactivate();
         }
 
