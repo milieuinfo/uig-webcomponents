@@ -187,7 +187,8 @@ export const Playground = (props) => {
       ?data-vl-disable-rotation=${props.disableRotation}
       ?data-vl-disable-mouse-wheel-zoom=${props.disableMousewheelZoom}
       @vl-active-action-changed=${(event) => {
-        props.activeActionChange(event.detail);
+        props.activeActionChange({ previous: event.detail.previous });
+        props.activeActionChange({ current: event.detail.current });
         handleActiveActionChange(event);
       }}
       @vl-layer-visible-changed=${(event) => {
