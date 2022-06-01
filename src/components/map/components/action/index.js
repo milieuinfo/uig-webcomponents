@@ -57,14 +57,9 @@ export class VlMapAction extends vlElement(HTMLElement) {
   deactivate() {
     // Only deactivate if this action is currently active
     if (this.action && this.action === this._mapElement.activeAction) {
-      // Do not activate default active action when the action to be deactivated IS the default active action
-      // or when the layer of the default active action is invisible
-      this._mapElement.changeActiveAction(
-        this._mapElement.defaultAction &&
-          this.action !== this._mapElement.defaultAction &&
-          this._mapElement.defaultAction.layer.get('visible') &&
-          this._mapElement.defaultAction,
-      );
+      const actionIsNotDefault = this.action !== this._mapElement.defaultAction;
+      const layerIsVisible = this._mapElement.defaultAction && this._mapElement.defaultAction.layer.get('visible');
+      this._mapElement.changeActiveAction(actionIsNotDefault && layerIsVisible && this._mapElement.defaultAction);
     }
   }
 

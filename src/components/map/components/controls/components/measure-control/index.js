@@ -7,15 +7,12 @@ import { CONTROL_TYPE, IDENTIFIER } from '../../../../enums';
 export class VlMapMeasureControl extends VlMapControl(LitElement) {
   constructor() {
     super();
-
     this.controlElement = document.createElement('vl-toggle-button');
     // TODO: When upgrading component versions; replace text by icon
     // this.controlElement.icon = 'ruler';
     // this.controlElement.textHidden = true;
     this.controlElement.innerText = 'Meten';
-
     this.identifier = IDENTIFIER.MEASURE;
-
     this.type = CONTROL_TYPE.ACTION;
   }
 
@@ -30,8 +27,6 @@ export class VlMapMeasureControl extends VlMapControl(LitElement) {
 
   handleMeasureControlClick() {
     const measureAction = this.getAction();
-
-    console.log('measureAction: ', measureAction);
 
     if (measureAction) {
       if (this.controlElement.active) {

@@ -24,7 +24,7 @@ export class VlMapLayer extends vlElement(HTMLElement) {
   constructor() {
     super();
     VlMapLayer._counter = 0;
-    this.__counter = ++VlMapLayer._counter;
+    this.__counter = VlMapLayer._counter + 1;
     this.__ready = false;
   }
 
@@ -119,7 +119,7 @@ export class VlMapLayer extends vlElement(HTMLElement) {
   }
 
   get _visible() {
-    return this.getAttribute('hidden') == undefined;
+    return !this.getAttribute('hidden');
   }
 
   /**
@@ -149,7 +149,7 @@ export class VlMapLayer extends vlElement(HTMLElement) {
 
   _hiddenChangedCallback(oldValue, newValue) {
     if (this._layer) {
-      this.visible = newValue == undefined;
+      this.visible = newValue === undefined;
     }
   }
 
