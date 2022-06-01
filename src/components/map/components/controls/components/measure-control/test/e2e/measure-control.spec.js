@@ -3,7 +3,7 @@ import { VlTestMeasureControl } from './measure-control';
 import { VlTestMapMeasureAction } from '../../../../../action/draw-action/test/e2e/measure-action';
 
 const { sbUrl } = config;
-const defaultUrl = `${sbUrl}?id=custom-elements-vl-map-vl-map-action-controls--default`;
+const defaultUrl = `${sbUrl}?id=custom-elements-vl-map-vl-map-action-controls-vl-measure-control--default`;
 const controlSelector = 'vl-map-measure-control';
 const actionSelector = 'vl-map-measure-action';
 
