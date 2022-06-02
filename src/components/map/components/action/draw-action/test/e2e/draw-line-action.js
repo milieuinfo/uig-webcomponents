@@ -1,6 +1,6 @@
-import { VlMapDrawAction } from "./draw-action.js";
+import { VlTestMapDrawAction } from './draw-action.js';
 
-export class VlMapDrawLineAction extends VlMapDrawAction {
+export class VlTestMapDrawLineAction extends VlTestMapDrawAction {
   async draw(c1 = { x: 152121, y: 212415 }, c2 = { x: 152093, y: 212343 }) {
     await super.draw(async () => {
       const map = await this.getMap();

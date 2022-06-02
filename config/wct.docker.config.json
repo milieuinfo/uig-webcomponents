@@ -1,4 +1,3 @@
-
 {
   "activeBrowsers": [
     {
@@ -22,9 +21,7 @@
       }
     }
   },
-  "suites": [
-    "src/**/**/test/unit/**/*.test.html"
-  ],
+  "suites": ["src/**/**/test/unit/**/*.test.html"],
   "webserver": {
     "hostname": "tests"
   },

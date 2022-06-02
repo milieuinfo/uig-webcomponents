@@ -5,16 +5,11 @@
     <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
     <script src="/node_modules/web-component-tester/browser.js"></script>
 
-    <script
-      type="module"
-      src="../../../../../../../../lib/components/map/index.js"
-    ></script>
+    <script type="module" src="../../../../../../../../lib/components/map/index.js"></script>
   </head>
 
   <body>
-    <test-fixture
-      id="vl-map-draw-polygon-action-snapping-met-wfs-layers-fixture"
-    >
+    <test-fixture id="vl-map-draw-polygon-action-snapping-met-wfs-layers-fixture">
       <template>
         <vl-map id="map-with-draw-polygon-snap-action">
           <vl-map-features-layer id="polygon-layer">
@@ -60,11 +55,7 @@
       <template>
         <vl-map id="map-with-draw-polygon-snap-action">
           <vl-map-features-layer id="polygon-layer">
-            <vl-map-draw-polygon-action
-              id="draw-polygon-snap-action"
-              data-vl-default-active
-              data-vl-snapping
-            >
+            <vl-map-draw-polygon-action id="draw-polygon-snap-action" data-vl-default-active data-vl-snapping>
             </vl-map-draw-polygon-action>
           </vl-map-features-layer>
         </vl-map>
@@ -72,76 +63,49 @@
     </test-fixture>
 
     <script type="module">
-      import { VlMapDrawPolygonAction } from "../../../../../lib/components/map/components/action/draw-action/draw-polygon-action";
-      import { awaitUntil } from "../../../../utils/core/index.js";
+      import { awaitUntil } from '../../../../../../../utils/core/index.js';
       import {
         VlCompositeVectorLayer,
         VlCompositeVectorSource,
-      } from "../../../../../lib/components/map/mapactions/index.js";
+        VlMapDrawPolygonAction,
+      } from '../../../../../../../../lib/components/map/index.js';
 
-      suite("vl-map-draw-polygon-action", () => {
+      suite('vl-map-draw-polygon-action', () => {
         setup((done) => {
-          customElements
-            .whenDefined("vl-map-draw-polygon-action")
-            .then(() => done());
+          customElements.whenDefined('vl-map-draw-polygon-action').then(() => done());
         });
 
-        test("een polygoon teken actie is een map actie", () => {
+        test('a polygon draw action is a map action', () => {
           assert.isTrue(VlMapDrawPolygonAction.isVlMapAction());
         });
 
-        test("snapping wordt goed geconfigureerd als het snapping attribuut er is maar zonder lagen", async () => {
-          const fixtureMetSnapping = fixture(
-            "vl-map-draw-polygon-action-snapping"
-          );
-          const drawPolygonMetSnappingAction = fixtureMetSnapping.querySelector(
-            "vl-map-draw-polygon-action"
-          );
+        test('snapping is properly configured if the snapping attribute is there but without layers', async () => {
+          const fixtureMetSnapping = fixture('vl-map-draw-polygon-action-snapping');
+          const drawPolygonMetSnappingAction = fixtureMetSnapping.querySelector('vl-map-draw-polygon-action');
           await awaitUntil(() => drawPolygonMetSnappingAction.action != null);
           const drawActionOptions = drawPolygonMetSnappingAction.action.options;
           expect(drawActionOptions.snapping).to.equal(true);
         });
 
-        test("snapping wordt goed geconfigureerd als er lagen zijn en pixel tolerantie", async () => {
-          const fixtureMetSnapping = fixture(
-            "vl-map-draw-polygon-action-snapping-met-wfs-layers-fixture"
-          );
-          const drawPolygonMetSnappingOpWfsLagenAction = fixtureMetSnapping.querySelector(
-            "vl-map-draw-polygon-action"
-          );
-          await awaitUntil(
-            () => drawPolygonMetSnappingOpWfsLagenAction.action != null
-          );
-          const drawActionOptions =
-            drawPolygonMetSnappingOpWfsLagenAction.action.options;
-          expect(drawActionOptions.snapping.pixelTolerance).to.equal("1000");
+        test('snapping is properly configured if there are layers and pixel tolerance', async () => {
+          const fixtureMetSnapping = fixture('vl-map-draw-polygon-action-snapping-met-wfs-layers-fixture');
+          const drawPolygonMetSnappingOpWfsLagenAction = fixtureMetSnapping.querySelector('vl-map-draw-polygon-action');
+          await awaitUntil(() => drawPolygonMetSnappingOpWfsLagenAction.action != null);
+          const drawActionOptions = drawPolygonMetSnappingOpWfsLagenAction.action.options;
+          expect(drawActionOptions.snapping.pixelTolerance).to.equal('1000');
           expect(drawActionOptions.snapping.node).to.equal(false);
           expect(drawActionOptions.snapping.vertex).to.equal(false);
-          expect(
-            drawActionOptions.snapping.layer instanceof VlCompositeVectorLayer
-          ).to.equal(true);
-          expect(
-            drawActionOptions.snapping.layer.getSource() instanceof
-              VlCompositeVectorSource
-          ).to.equal(true);
-          expect(
-            drawActionOptions.snapping.layer.getSource().sources[0]
-          ).to.equal(
-            fixtureMetSnapping
-              .querySelector("#stromendwater")
-              ._layer.getSource()
+          expect(drawActionOptions.snapping.layer instanceof VlCompositeVectorLayer).to.equal(true);
+          expect(drawActionOptions.snapping.layer.getSource() instanceof VlCompositeVectorSource).to.equal(true);
+          expect(drawActionOptions.snapping.layer.getSource().sources[0]).to.equal(
+            fixtureMetSnapping.querySelector('#stromendwater')._layer.getSource(),
           );
-          expect(
-            drawActionOptions.snapping.layer.getSource().sources[1]
-          ).to.equal(
-            fixtureMetSnapping
-              .querySelector("#stilstaandwater")
-              ._layer.getSource()
+          expect(drawActionOptions.snapping.layer.getSource().sources[1]).to.equal(
+            fixtureMetSnapping.querySelector('#stilstaandwater')._layer.getSource(),
           );
           await awaitUntil(
             () =>
-              drawActionOptions.snapping.layer.getStyle() ==
-              fixtureMetSnapping.querySelector("#stromendwater").style
+              drawActionOptions.snapping.layer.getStyle() == fixtureMetSnapping.querySelector('#stromendwater').style,
           );
         });
       });

@@ -1,17 +1,15 @@
-import { vlElement, define } from "../../../../utils/core";
-import {
-  OlWMTSSource,
-  OlWMTSTileGrid,
-  OlVectorSource,
-  OlVectorLayer,
-  OlTileLayer,
-  OlGeoJSON,
-  OlStyle,
-  OlStyleStroke,
-  OlStyleFill,
-  OlExtent,
-  OlLoadingstrategy,
-} from "vl-mapactions/dist/vl-mapactions.js";
+import OlWMTSSource from 'ol/source/WMTS';
+import OlWMTSTileGrid from 'ol/tilegrid/WMTS';
+import OlVectorSource from 'ol/source/Vector';
+import OlVectorLayer from 'ol/layer/Vector';
+import OlTileLayer from 'ol/layer/Tile';
+import OlGeoJSON from 'ol/format/GeoJSON';
+import OlStyle from 'ol/style/Style';
+import OlStyleStroke from 'ol/style/Stroke';
+import OlStyleFill from 'ol/style/Fill';
+import * as OlExtent from 'ol/extent';
+import * as OlLoadingstrategy from 'ol/loadingstrategy';
+import { vlElement, define } from '../../../../utils/core';
 
 /**
  * VlMapBaseLayer
@@ -41,7 +39,7 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
    * @Return {string}
    */
   get type() {
-    return this.getAttribute("type") || "wmts";
+    return this.getAttribute('type') || 'wmts';
   }
 
   /**
@@ -50,7 +48,7 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
    * @Return {string}
    */
   get url() {
-    return this.getAttribute("url") || this._url;
+    return this.getAttribute('url') || this._url;
   }
 
   set url(value) {
@@ -63,7 +61,7 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
    * @Return {string}
    */
   get layer() {
-    return this.getAttribute("layer") || this._layer;
+    return this.getAttribute('layer') || this._layer;
   }
 
   set layer(value) {
@@ -76,7 +74,7 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
    * @Return {string}
    */
   get title() {
-    return this.getAttribute("title") || this._title;
+    return this.getAttribute('title') || this._title;
   }
 
   set title(value) {
@@ -101,17 +99,13 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
   }
 
   get _vectorSource() {
-    this._createdVectorSource =
-      this._createdVectorSource || this._createVectorSource();
+    this._createdVectorSource = this._createdVectorSource || this._createVectorSource();
     return this._createdVectorSource;
   }
 
   _configureMap() {
     if (this._map) {
-      this._map.addBaseLayerAndOverlayMapLayer(
-        this._createBaseLayer(),
-        this._createBaseLayer()
-      );
+      this._map.addBaseLayerAndOverlayMapLayer(this._createBaseLayer(), this._createBaseLayer());
     }
   }
 
@@ -127,16 +121,16 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
     return new OlWMTSSource({
       url: this.url,
       layer: this.layer,
-      matrixSet: "BPL72VL",
-      format: "image/png",
+      matrixSet: 'BPL72VL',
+      format: 'image/png',
       projection: this._projection,
       tileGrid: new OlWMTSTileGrid({
         extent: this._projection.getExtent(),
         origin: OlExtent.getTopLeft(this._projection.getExtent()),
-        resolutions: resolutions,
-        matrixIds: matrixIds,
+        resolutions,
+        matrixIds,
       }),
-      style: "",
+      style: '',
     });
   }
 
@@ -146,8 +140,8 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
       format: new OlGeoJSON({
         dataProjection: self._projection,
       }),
-      url: function () {
-        return self.url + "&typeName=" + self.layer;
+      url() {
+        return `${self.url}&typeName=${self.layer}`;
       },
       strategy: OlLoadingstrategy.bbox,
     });
@@ -155,22 +149,22 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
 
   _createBaseLayer() {
     switch (this.type) {
-      case "wmts":
+      case 'wmts':
         return new OlTileLayer({
           title: this.title,
-          type: "base",
+          type: 'base',
           source: this._WMTSSource,
         });
-      case "wfs":
+      case 'wfs':
         return new OlVectorLayer({
           source: this._vectorSource,
           style: new OlStyle({
             stroke: new OlStyleStroke({
-              color: "rgba(0, 0, 0, 1.0)",
+              color: 'rgba(0, 0, 0, 1.0)',
               width: 1,
             }),
             fill: new OlStyleFill({
-              color: "rgba(255, 0, 0, 1.0)",
+              color: 'rgba(255, 0, 0, 1.0)',
             }),
           }),
         });
@@ -180,4 +174,4 @@ export class VlMapBaseLayer extends vlElement(HTMLElement) {
   }
 }
 
-define("vl-map-baselayer", VlMapBaseLayer);
+define('vl-map-baselayer', VlMapBaseLayer);

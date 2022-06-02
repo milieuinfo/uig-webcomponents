@@ -1,5 +1,5 @@
-import { define } from "../../../../../utils/core";
-import { VlMapAction } from "../../action";
+import { define } from '../../../../../utils/core';
+import { VlMapAction } from '../../action';
 
 /**
  * VlMapLayerAction
@@ -19,7 +19,7 @@ import { VlMapAction } from "../../action";
  */
 export class VlMapLayerAction extends VlMapAction {
   static get _observedAttributes() {
-    return ["layer"];
+    return ['layer'];
   }
 
   connectedCallback() {
@@ -48,9 +48,8 @@ export class VlMapLayerAction extends VlMapAction {
 
   get _layerElement() {
     return (
-      this._mapElement.querySelector(
-        `[data-vl-is-layer][data-vl-name="${this.dataset.vlLayer}"]`
-      ) || this.closest("[data-vl-is-layer]")
+      this._mapElement.querySelector(`[data-vl-is-layer][data-vl-name="${this.dataset.vlLayer}"]`) ||
+      this.closest('[data-vl-is-layer]')
     );
   }
 
@@ -74,4 +73,4 @@ export class VlMapLayerAction extends VlMapAction {
   }
 }
 
-define("vl-map-layer-action", VlMapLayerAction);
+define('vl-map-layer-action', VlMapLayerAction);

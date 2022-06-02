@@ -1,19 +1,19 @@
-import { VlElement } from "../../../../../../utils/test";
+import { VlElement } from '../../../../../../utils/test';
 
-export class VlMapBaseLayer extends VlElement {
+export class VlTestMapBaseLayer extends VlElement {
   async getType() {
-    return this.getAttribute("type");
+    return this.getAttribute('type');
   }
 
   async getUrl() {
-    return this.getAttribute("url");
+    return this.getAttribute('url');
   }
 
   async getLayer() {
-    return this.getAttribute("layer");
+    return this.getAttribute('layer');
   }
 
   async getTitle() {
-    return this.getAttribute("title");
+    return this.getAttribute('title');
   }
 }

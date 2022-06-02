@@ -1,15 +1,15 @@
-import { VlMapLayerStyle } from "../../../test/e2e/layer-style.js";
+import { VlTestMapLayerStyle } from '../../../test/e2e/layer-style.js';
 
-export class VlMapLayerCircleStyle extends VlMapLayerStyle {
+export class VlTestMapLayerCircleStyle extends VlTestMapLayerStyle {
   async getSize() {
-    return this.getAttribute("size");
+    return this.getAttribute('size');
   }
 
   async getBorderColor() {
-    return this.getAttribute("border-color");
+    return this.getAttribute('border-color');
   }
 
   async getBorderSize() {
-    return this.getAttribute("border-size");
+    return this.getAttribute('border-size');
   }
 }
