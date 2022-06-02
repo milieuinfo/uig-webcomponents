@@ -1,0 +1,22 @@
+<script src="../../../../../../node_modules/wct-browser-legacy/browser.js"></script>
+
+<script type="module">
+  import VectorSource from 'ol/source/Vector';
+  import { VlSnapInteraction } from '../../../../../../lib/components/map/actions';
+
+  describe('snapinteraction interaction', () => {
+    it('bij het aanmaken van een snap interactie zullen de options correct worden gezet', () => {
+      const source = new VectorSource({ features: [] });
+      const snapInteraction = new VlSnapInteraction(source);
+      expect(snapInteraction.source_).to.equal(source);
+      expect(snapInteraction.pixelTolerance_).to.equal(7);
+    });
+
+    it('pixel tolerance kan ook meegegeven worden', () => {
+      const source = new VectorSource({ features: [] });
+      const snapInteraction = new VlSnapInteraction(source, { pixelTolerance: 1000 });
+      expect(snapInteraction.source_).to.equal(source);
+      expect(snapInteraction.pixelTolerance_).to.equal(1000);
+    });
+  });
+</script>

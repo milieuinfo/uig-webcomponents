@@ -8,7 +8,7 @@ const operatingSystems = {
 };
 
 const browsers = [
-  { name: 'chrome', isActive: argv.chrome, version: '85.0', os: operatingSystems.windows },
+  { name: 'chrome', isActive: argv.chrome, version: '98.0', os: operatingSystems.windows },
   { name: 'firefox', isActive: argv.firefox, version: '83.0', os: operatingSystems.windows },
   { name: 'edge', isActive: argv.edge, version: '86.0', os: operatingSystems.windows },
   { name: 'safari', isActive: argv.safari, version: 'latest', os: operatingSystems.mac },
@@ -20,6 +20,7 @@ const activeBrowser =
 
 const sbRoot = argv.local ? '' : 'storybook-static/';
 const basePort = argv.local ? '8081' : '8080';
+const host = argv.grid ? 'tests' : 'localhost';
 
 export const config = {
   osName: activeBrowser.os.name,
@@ -27,7 +28,8 @@ export const config = {
   browserName: activeBrowser.name,
   browserVersion: activeBrowser.version,
   browserstack: argv.browserstack,
+  gridEnabled: argv.grid,
   gridUrl: 'http://selenium-hub:4444/wd/hub',
-  baseUrl: `http://localhost:${basePort}/src/`,
-  sbUrl: `http://localhost:8080/${sbRoot}iframe.html`,
+  baseUrl: `http://${host}:${basePort}/src/`,
+  sbUrl: `http://${host}:8080/${sbRoot}iframe.html`,
 };

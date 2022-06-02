@@ -1,10 +1,8 @@
-import { VlElement, By } from "../../../../../../utils/test";
+import { VlElement, By } from '../../../../../../utils/test';
 
-export class VlMapSideSheetMenuItem extends VlElement {
+export class VlTestMapSideSheetMenuItem extends VlElement {
   async getLink() {
-    return this.shadowRoot.findElement(
-      By.css("#vl-map-side-sheet-menu-item-link")
-    );
+    return this.shadowRoot.findElement(By.css('#vl-map-side-sheet-menu-item-link'));
   }
 
   async getTitle() {
@@ -13,7 +11,7 @@ export class VlMapSideSheetMenuItem extends VlElement {
   }
 
   async getMessagesSlotElements() {
-    const slot = await this.shadowRoot.findElement(By.css("slot"));
+    const slot = await this.shadowRoot.findElement(By.css('slot'));
     return this.getAssignedElements(slot);
   }
 }
