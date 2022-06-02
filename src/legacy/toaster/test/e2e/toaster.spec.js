@@ -5,12 +5,9 @@ describe('vl-toaster', async () => {
   let driver;
   let vlToasterPage;
 
-  before(() => {
+  it('as a user I can see alerts in a toaster', async () => {
     driver = getDriver();
     vlToasterPage = new VlToasterPage(driver);
-  });
-
-  it('as a user I can see alerts in a toaster', async () => {
     vlToasterPage.load();
     const toaster = await vlToasterPage.getStandardToaster();
     await assert.eventually.isFalse(toaster.shouldFadeOut());
@@ -36,6 +33,8 @@ describe('vl-toaster', async () => {
   });
 
   it('as a user I can see a toaster in all corners of the page', async () => {
+    driver = getDriver();
+    vlToasterPage = new VlToasterPage(driver);
     vlToasterPage.load();
     const bottomLeftToaster = await vlToasterPage.getBottomLeftToaster();
     await assert.eventually.isTrue(bottomLeftToaster.isLocatedBottomLeft());
@@ -63,6 +62,8 @@ describe('vl-toaster', async () => {
   });
 
   it('as a user I can see that alerts disappear after a few seconds whens they are configured that way', async () => {
+    driver = getDriver();
+    vlToasterPage = new VlToasterPage(driver);
     vlToasterPage.load();
     const toaster = await vlToasterPage.getFadeoutToaster();
     const successAlertButton = await vlToasterPage.getFadeoutToasterSuccessAlertButton();
@@ -78,6 +79,8 @@ describe('vl-toaster', async () => {
   });
 
   it('as a user I can see that alerts that were created at the same moment will disappear after a few seconds when they are configured that way', async () => {
+    driver = getDriver();
+    vlToasterPage = new VlToasterPage(driver);
     vlToasterPage.load();
     const toaster = await vlToasterPage.getFadeoutToaster();
     const button = await vlToasterPage.getFadeoutToasterWarningAlertsButton();
