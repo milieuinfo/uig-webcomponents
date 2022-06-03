@@ -1,6 +1,6 @@
 import { nativeVlElement, define, awaitUntil } from '../../utils/core';
 import { VlLinkToolbarFactory } from './vl-tinymce-link-toolbar.js';
-import { vlFormValidation, vlFormValidationElement } from '../form-validation';
+import { vlFormValidation, vlFormValidationElement } from '../../components/form-validation';
 import '../../../node_modules/tinymce';
 
 export class VlTextarea extends vlFormValidationElement(nativeVlElement(HTMLTextAreaElement)) {

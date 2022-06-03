@@ -1,16 +1,17 @@
 import { html } from 'lit-html';
-import { docsIntro, stylesheet } from '../../../.storybook/utils.js';
+import { docsIntro, stylesheet } from '../../../.storybook/utils';
 import linkStyles from '../../components/link/styles.scss';
 
 export default {
-  title: 'legacy/vl-upload',
+  title: 'legacy/vl-textarea',
   decorators: [(story) => html`${stylesheet(linkStyles)} ${story()}`],
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
       description: {
         component: docsIntro({
-          root: 'upload',
+          root: 'textarea',
+          stylesheets: ['textarea'],
           isLegacy: true,
         }),
       },
@@ -22,7 +23,7 @@ export const Default = () => html`<a
   is="vl-link"
   target="_blank"
   data-vl-inline
-  href="https://webcomponenten.omgeving.vlaanderen.be/doc/VlUpload.html"
+  href="https://webcomponenten.omgeving.vlaanderen.be/doc/VlTextarea.html"
 >
   Legacy docs <span is="vl-icon" data-vl-icon="external" data-vl-after data-vl-link></span
 ></a>`;
