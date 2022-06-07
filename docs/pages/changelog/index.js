@@ -5,7 +5,18 @@ import titleStyles from '../../../src/components/titles/styles.scss';
 import introStyles from '../../../src/components/introduction/styles.scss';
 import { removeStorybooksDefaultStyling } from '../../../.storybook/utils';
 
-const unreleased = [];
+const unreleased = [
+  {
+    version: 'Unreleased',
+    date: '?',
+    children: html`<ul>
+      <li>
+        <p><code>vl-checkbox</code></p>
+        <p>Added as a legacy component.</p>
+      </li>
+    </ul>`,
+  },
+];
 
 const changes = [
   ...unreleased,
