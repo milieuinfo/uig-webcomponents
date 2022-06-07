@@ -6,7 +6,7 @@ import '../../../../components/form-message';
 import '../../../../components/input-field';
 import '../../../../components/button';
 
-import styles from '../../styles.scss';
+import styles from './styles.scss';
 
 class VlTextareaModal extends vlElement(HTMLElement) {
   constructor() {
