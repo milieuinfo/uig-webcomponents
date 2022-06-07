@@ -97,3 +97,8 @@ export { VlTabsPane } from './legacy/tabs/components/vl-tabs-pane';
 export { VlTabSection } from './legacy/tabs/components/vl-tab-section';
 export { VlTab } from './legacy/tabs/components/vl-tab';
 export { VlUpload } from './legacy/upload';
+export { VlTextarea } from './legacy/textarea';
+
+// Test components
+
+export { VlTestRichTextarea } from './legacy/textarea/test/e2e/vl-rich-textarea';

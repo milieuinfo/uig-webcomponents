@@ -8,6 +8,15 @@ export class VlTextarea extends VlElement {
   }
 
   async getValue() {
+    const rich = await this.isRich();
+
+    if (rich) {
+      await this._switchToWysiwygiframe();
+      const body = await this._wysiwygBodyElement();
+      const html = await body.getAttribute('innerHTML');
+      await this._switchToDefault();
+      return html;
+    }
     await this.driver.executeScript('arguments[0].editor && arguments[0].editor.save()', this);
     return this.getAttribute('value');
   }

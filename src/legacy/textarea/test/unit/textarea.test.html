@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+
+    <script src="/node_modules/sinon/pkg/sinon.js"></script>
+    <script src="/node_modules/tinymce"></script>
+
+    <script type="module" src="../../../../../lib/legacy/textarea/index.js"></script>
+    <title>vl-textarea test</title>
+  </head>
+
+  <body>
+    <test-fixture id="vl-textarea-fixture">
+      <template>
+        <textarea id="textarea" is="vl-textarea"></textarea>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-textarea-rich-fixture">
+      <template>
+        <div>
+          <textarea id="textarea" is="vl-textarea" data-vl-rich></textarea>
+        </div>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-textarea-form-fixture">
+      <template>
+        <form is="vl-form" data-vl-validate>
+          <textarea id="textarea" is="vl-textarea"></textarea>
+        </form>
+      </template>
+    </test-fixture>
+
+    <script type="module">
+      import { vlFormValidation } from '../../../../components/form-validation';
+      import { VlTextarea } from '../../index.js';
+      import { awaitUntil } from '../../../../utils/core/index.js';
+
+      console.log('script');
+
+      suite('vl-textarea', () => {
+        const sandbox = sinon.createSandbox();
+
+        teardown(() => {
+          tinyMCE.editors.forEach((editor) => editor.destroy());
+          sandbox.restore();
+        });
+
+        test('has the vl textarea class', () => {
+          const textarea = fixture('vl-textarea-fixture');
+          assert.isTrue(textarea.classList.contains('vl-textarea'));
+        });
+
+        test('gets the correct class when the textarea contains an attribute', () => {
+          const textarea = fixture('vl-textarea-fixture');
+          ['error', 'disabled', 'block', 'success', 'focus'].forEach((attribuut) => {
+            assert.isFalse(textarea.classList.contains(`vl-textarea--${attribuut}`));
+            textarea.setAttribute(`data-vl-${attribuut}`, '');
+            assert.isTrue(textarea.classList.contains(`vl-textarea--${attribuut}`));
+            textarea.removeAttribute(`data-vl-${attribuut}`);
+            assert.isFalse(textarea.classList.contains(`vl-textarea--${attribuut}`));
+          });
+        });
+
+        test('with a rich variant the wysiwyg will be correctly initialized', () => {
+          const textarea = fixture('vl-textarea-fixture');
+          sandbox.spy(tinyMCE, 'init');
+          textarea.setAttribute('data-vl-rich', '');
+          assert.equal(tinyMCE.baseURL, '/node_modules/tinymce');
+          assert(tinyMCE.init.called);
+        });
+
+        test('the wysiwyg is properly closed on a disconnect', () => {
+          const textarea = fixture('vl-textarea-rich-fixture').querySelector('textarea');
+          sandbox.spy(textarea._editor, 'destroy');
+          textarea.disconnectedCallback();
+          assert(textarea._editor.destroy.called);
+        });
+
+        test('the wysiwyg closes correctly when it is no longer rich', () => {
+          const textarea = fixture('vl-textarea-rich-fixture').querySelector('textarea');
+          sandbox.spy(textarea._editor, 'destroy');
+          textarea.removeAttribute('data-vl-rich');
+          assert(textarea._editor.destroy.called);
+        });
+
+        test('the success and error attributes are set correctly on the wysiwyg elements', (done) => {
+          const array = ['success', 'error'];
+          array.forEach((attribute, index) => {
+            const textarea = fixture('vl-textarea-rich-fixture').querySelector('textarea');
+            textarea.setAttribute(`data-vl-${attribute}`, '');
+            awaitUntil(() => textarea._editor && textarea._editor.getContainer()).then(() => {
+              assert.isTrue(textarea._editor.getContainer().classList.contains(attribute));
+              assert.isTrue(textarea._editor.getBody().classList.contains(attribute));
+              if (array.length == ++index) {
+                done();
+              }
+            });
+          });
+        });
+
+        test('the wysiwyg blur event will trigger a change event on the textarea', (done) => {
+          const textarea = fixture('vl-textarea-rich-fixture').querySelector('textarea');
+          textarea.addEventListener('change', () => done());
+          textarea._editor.fire('blur');
+        });
+
+        test('by default the wysiwyg toolbar will contain some default items', () => {
+          const textarea = fixture('vl-textarea-fixture');
+          sandbox.spy(tinyMCE, 'init');
+          textarea.setAttribute('data-vl-rich', '');
+          assert(tinyMCE.init.called);
+          assert.equal(tinyMCE.init.args[0][0].toolbar, 'undo redo | bold italic underline strikethrough');
+        });
+
+        test('it is possible to compose the wysiwyg toolbar yourself according to your wishes', () => {
+          const textarea = fixture('vl-textarea-fixture');
+          sandbox.spy(tinyMCE, 'init');
+          const toolbar = 'toolbar';
+          textarea.setAttribute('data-vl-toolbar', toolbar);
+          textarea.setAttribute('data-vl-rich', '');
+          assert(tinyMCE.init.called);
+          assert.equal(tinyMCE.init.args[0][0].toolbar, toolbar);
+        });
+
+        test('putting the error attribute twice on a rich textarea still results in an error', (done) => {
+          const array = ['success', 'error'];
+          array.forEach((attribute, index) => {
+            const textarea = fixture('vl-textarea-rich-fixture').querySelector('textarea');
+            textarea.setAttribute(`data-vl-${attribute}`, '');
+            textarea.setAttribute(`data-vl-${attribute}`, '');
+            awaitUntil(() => textarea._editor && textarea._editor.getContainer()).then(() => {
+              assert.isTrue(textarea._editor.getContainer().classList.contains(attribute));
+              assert.isTrue(textarea._editor.getBody().classList.contains(attribute));
+              if (array.length == ++index) {
+                done();
+              }
+            });
+          });
+        });
+
+        test('can programmatically activate focus', (done) => {
+          const textarea = fixture('vl-textarea-fixture');
+          textarea.addEventListener('focus', () => done());
+          textarea.focus();
+        });
+
+        test('can programmatically activate focus on a rich variant', (done) => {
+          const textarea = fixture('vl-textarea-rich-fixture').querySelector('textarea');
+          awaitUntil(() => textarea._editor && textarea._editor.getContainer()).then(() => {
+            sandbox.spy(textarea.editor, 'focus');
+            textarea.focus();
+            assert(textarea.editor.focus.called);
+            done();
+          });
+        });
+
+        test('contains the form validation observed attributes to realize correct form validation', () => {
+          vlFormValidation
+            ._observedAttributes()
+            .forEach((attribute) => assert.include(VlTextarea._observedAttributes, attribute));
+        });
+
+        test('the textarea will only execute the validation dress function if it is part of a form', () => {
+          sandbox.spy(vl.formValidation, 'dress');
+          fixture('vl-textarea-fixture');
+          assert(vl.formValidation.dress.notCalled);
+          const textarea = fixture('vl-textarea-form-fixture').querySelector('textarea');
+          assert(vl.formValidation.dress.calledWith(textarea.form));
+        });
+      });
+    </script>
+  </body>
+</html>
