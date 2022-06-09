@@ -29,9 +29,10 @@ const buildConfig = {
     'select',
     'side-navigation',
     'titles',
+    'toaster',
     'video-player',
   ],
-  componentsWithStylesheetAndInlineStyling: ['button', 'pill', 'tooltip', 'toaster'],
+  componentsWithStylesheetAndInlineStyling: ['button', 'pill', 'tooltip'],
 };
 
 const { src, dist, componentsWithStylesheet, componentsWithStylesheetAndInlineStyling } = buildConfig;
