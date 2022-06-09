@@ -1,6 +1,9 @@
 import path from 'path';
 import fs from 'fs-extra';
 import sass from 'sass';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
@@ -31,7 +34,7 @@ const buildConfig = {
     'titles',
     'video-player',
   ],
-  componentsWithStylesheetAndInlineStyling: ['button', 'pill', 'tooltip', 'textarea'],
+  componentsWithStylesheetAndInlineStyling: ['button', 'pill', 'tooltip', 'textarea', 'typography'],
 };
 
 const { src, dist, componentsWithStylesheet, componentsWithStylesheetAndInlineStyling } = buildConfig;

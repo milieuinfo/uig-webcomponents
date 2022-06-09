@@ -1,7 +1,8 @@
+/* global tinyMCE */
 import { nativeVlElement, define, awaitUntil } from '../../utils/core';
 import { VlLinkToolbarFactory } from './vl-tinymce-link-toolbar.js';
 import { vlFormValidation, vlFormValidationElement } from '../../components/form-validation';
-import '../../../node_modules/tinymce';
+import 'tinymce';
 
 export class VlTextarea extends vlFormValidationElement(nativeVlElement(HTMLTextAreaElement)) {
   static get _observedAttributes() {
@@ -15,7 +16,6 @@ export class VlTextarea extends vlFormValidationElement(nativeVlElement(HTMLText
   connectedCallback() {
     this.classList.add('vl-textarea');
     this._dressFormValidation();
-
     if (this.isRich) {
       this._configureWysiwyg();
     }
@@ -44,6 +44,7 @@ export class VlTextarea extends vlFormValidationElement(nativeVlElement(HTMLText
   }
 
   get _wysiwygConfig() {
+    const stylePath = '/lib/components/typography/styles.css';
     return {
       target: this,
       menubar: false,
@@ -52,7 +53,7 @@ export class VlTextarea extends vlFormValidationElement(nativeVlElement(HTMLText
       branding: false,
       powerpaste_word_import: 'clean',
       powerpaste_html_import: 'clean',
-      content_css: '/src/style.css',
+      content_css: `${process.env.VL_DEV ? stylePath : `/node_modules/uig-webcomponents${stylePath}`}`,
       verify_html: false,
       forced_root_block: 'p',
       body_class: 'vl-typography',
