@@ -6,7 +6,6 @@
     <script src="/node_modules/web-component-tester/browser.js"></script>
 
     <script src="/node_modules/sinon/pkg/sinon.js"></script>
-    <script src="/node_modules/tinymce"></script>
 
     <script type="module" src="../../../../../lib/legacy/textarea/index.js"></script>
     <title>vl-textarea test</title>
@@ -37,10 +36,11 @@
 
     <script type="module">
       import { vlFormValidation } from '../../../../components/form-validation';
-      import { VlTextarea } from '../../index.js';
+      import { VlTextarea } from '../../../../../lib/legacy/textarea';
       import { awaitUntil } from '../../../../utils/core/index.js';
 
-      console.log('script');
+      // Mock process variable because window component tester does not have a process object
+      window.process = { env: { VL_DEV: true } };
 
       suite('vl-textarea', () => {
         const sandbox = sinon.createSandbox();
