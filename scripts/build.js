@@ -17,6 +17,7 @@ const buildConfig = {
     'grid',
     'icon',
     'image',
+    'infotext',
     'input-addon',
     'input-field',
     'input-group',
@@ -31,7 +32,7 @@ const buildConfig = {
     'titles',
     'video-player',
   ],
-  componentsWithStylesheetAndInlineStyling: ['button', 'pill', 'tooltip', 'infotext'],
+  componentsWithStylesheetAndInlineStyling: ['button', 'pill', 'tooltip'],
 };
 
 const { src, dist, componentsWithStylesheet, componentsWithStylesheetAndInlineStyling } = buildConfig;
