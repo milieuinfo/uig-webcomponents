@@ -21,6 +21,39 @@ export class VlTextarea extends VlElement {
     return this.getAttribute('value');
   }
 
+  async getChild(selector, parent) {
+    // Use for rich textarea
+    let parentElement = parent;
+
+    await this._switchToWysiwygiframe();
+    if (!parent) {
+      parentElement = await this._wysiwygBodyElement();
+    }
+    const childElement = await parentElement.findElement(By.css(selector));
+    await this._switchToDefault();
+    return childElement;
+  }
+
+  async getNthChild(nth, selector, parent) {
+    // Use for rich textarea
+    let parentElement = parent;
+    await this._switchToWysiwygiframe();
+    if (!parent) {
+      parentElement = await this._wysiwygBodyElement();
+    }
+    const childElement = await parentElement.findElement(By.css(`${selector}:nth-of-type(${nth})`));
+    await this._switchToDefault();
+    return childElement;
+  }
+
+  async getChildValue(child) {
+    // Use for rich textarea
+    await this._switchToWysiwygiframe();
+    const html = await child.getAttribute('innerHTML');
+    await this._switchToDefault();
+    return html;
+  }
+
   async isBlock() {
     return this.hasAttribute('data-vl-block');
   }

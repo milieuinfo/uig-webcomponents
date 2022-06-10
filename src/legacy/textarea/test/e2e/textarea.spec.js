@@ -81,7 +81,10 @@ describe('vl-textarea', async () => {
     const text = 'text';
     await textarea.setValue(text);
 
-    await assert.eventually.include(textarea.getValue(), `<p>${text}</p>`);
+    const paragraph = await textarea.getChild('p');
+    const paragraphText = await textarea.getChildValue(paragraph);
+    await assert.exists(paragraph);
+    await assert.include(paragraphText, text);
   });
 
   it('as a user I can provide my text with bold, italic, underline and strikethrough style', async () => {
@@ -115,19 +118,48 @@ describe('vl-textarea', async () => {
     await textarea.clear();
     const text = 'title';
     await textarea.sendKeys(text);
-    await assert.eventually.include(textarea.getValue(), `${text}`);
+
     await textarea.activateH1();
-    await assert.eventually.include(textarea.getValue(), `<h1>${text}</h1>`);
+
+    let title = await textarea.getChild('h1');
+    let titleText = await textarea.getChildValue(title);
+    await assert.exists(title);
+    await assert.include(titleText, text);
+
     await textarea.activateH2();
-    await assert.eventually.include(textarea.getValue(), `<h2>${text}</h2>`);
+
+    title = await textarea.getChild('h2');
+    titleText = await textarea.getChildValue(title);
+    await assert.exists(title);
+    await assert.include(titleText, text);
+
     await textarea.activateH3();
-    await assert.eventually.include(textarea.getValue(), `<h3>${text}</h3>`);
+
+    title = await textarea.getChild('h3');
+    titleText = await textarea.getChildValue(title);
+    await assert.exists(title);
+    await assert.include(titleText, text);
+
     await textarea.activateH4();
-    await assert.eventually.include(textarea.getValue(), `<h4>${text}</h4>`);
+
+    title = await textarea.getChild('h4');
+    titleText = await textarea.getChildValue(title);
+    await assert.exists(title);
+    await assert.include(titleText, text);
+
     await textarea.activateH5();
-    await assert.eventually.include(textarea.getValue(), `<h5>${text}</h5>`);
+
+    title = await textarea.getChild('h5');
+    titleText = await textarea.getChildValue(title);
+    await assert.exists(title);
+    await assert.include(titleText, text);
+
     await textarea.activateH6();
-    await assert.eventually.include(textarea.getValue(), `<h6>${text}</h6>`);
+
+    title = await textarea.getChild('h6');
+    titleText = await textarea.getChildValue(title);
+    await assert.exists(title);
+    await assert.include(titleText, text);
   });
 
   it('as a user I can add a quote text', async () => {
@@ -136,9 +168,10 @@ describe('vl-textarea', async () => {
     await textarea.setValue(text);
     await assert.eventually.include(textarea.getValue(), `${text}`);
     await textarea.activateBlockquote();
-    await assert.eventually.include(textarea.getValue(), `<blockquote><p>${text}</p></blockquote>`);
-    await textarea.deactivateBlockquote();
-    await assert.eventually.include(textarea.getValue(), `${text}`);
+    const blockquote = await textarea.getChild('blockquote');
+    const blockquoteText = await textarea.getChildValue(blockquote);
+    await assert.exists(blockquote);
+    await assert.include(blockquoteText, text);
   });
 
   it('as a user I can add a horizontal line tag', async () => {
@@ -154,18 +187,34 @@ describe('vl-textarea', async () => {
     const textarea = await vlTextareaPage.getTextareaRich();
     const text = 'item';
     await textarea.setValue(text);
-    await assert.eventually.include(textarea.getValue(), `${text}`);
+
     await textarea.addNumberedList();
-    await assert.eventually.include(textarea.getValue(), `<ol><li>${text}</li></ol>`);
+
+    const numberedList = await textarea.getChild('ol');
+    await assert.exists(numberedList);
+
+    const listItem = await textarea.getChild('li', numberedList);
+    await assert.exists(listItem);
+
+    const listItemText = await textarea.getChildValue(listItem);
+    await assert.include(listItemText, text);
   });
 
   it('as a user I can add a list', async () => {
     const textarea = await vlTextareaPage.getTextareaRich();
     const text = 'item';
     await textarea.setValue(text);
-    await assert.eventually.include(textarea.getValue(), `${text}`);
+
     await textarea.addList();
-    await assert.eventually.include(textarea.getValue(), `<ul><li>${text}</li></ul>`);
+
+    const numberedList = await textarea.getChild('ul');
+    await assert.exists(numberedList);
+
+    const listItem = await textarea.getChild('li', numberedList);
+    await assert.exists(listItem);
+
+    const listItemText = await textarea.getChildValue(listItem);
+    await assert.include(listItemText, text);
   });
 
   it('as a user I can add a link', async () => {
@@ -221,9 +270,19 @@ describe('vl-textarea', async () => {
 
   it('as a user I create a new paragraph element with every enter', async () => {
     const textarea = await vlTextareaPage.getTextareaRich();
-    const text = 'text';
-    await textarea.setValue(text + Key.RETURN + text);
-    await assert.eventually.include(textarea.getValue(), `<p>text</p><p>text</p>`);
+    const text1 = 'text1';
+    const text2 = 'text2';
+    await textarea.setValue(text1 + Key.RETURN + text2);
+
+    const paragraph1 = await textarea.getNthChild(1, 'p');
+    const paragraph1Text = await textarea.getChildValue(paragraph1);
+    await assert.exists(paragraph1);
+    await assert.include(paragraph1Text, text1);
+
+    const paragraph2 = await textarea.getNthChild(2, 'p');
+    const paragraph2Text = await textarea.getChildValue(paragraph2);
+    await assert.exists(paragraph2);
+    await assert.include(paragraph2Text, text2);
   });
 
   it('as a user i can copy text with style', async () => {
