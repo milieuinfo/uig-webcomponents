@@ -257,14 +257,18 @@ describe('vl-textarea', async () => {
     const textarea = await vlTextareaPage.getTextareaRich();
     await textarea.clear();
     await assert.eventually.isEmpty(textarea.getValue());
+
     await textarea.addLink();
+
     const modal = await textarea.getLinkToolbarModal();
     const contentElements = await modal.getContentSlotElements();
     const textInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#text')));
     await textInputField.setValue('text');
+
     await modal.cancel();
+
     await textarea.addLink();
-    await assert.eventually.isEmpty(textarea.getValue());
+    await assert.eventually.isEmpty(textInputField.getValue());
     await modal.cancel();
   });
 
