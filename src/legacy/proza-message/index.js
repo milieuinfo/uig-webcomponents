@@ -1,19 +1,35 @@
-import { vlElement, define, awaitUntil } from '../../utils/core';
-import '../../../node_modules/tinymce';
-
-import { VlProzaMessagePreloader } from './components/vl-proza-message-preloader';
-import { ProzaRestClient } from './proza-rest-client';
-
-import { VlTypography } from '../typography';
-import '../button';
-import '../icon';
-import '../../legacy/toaster';
-import toasterStyles from '../../legacy/toaster/styles.scss';
-
-import '@govflanders/vl-ui-alert/dist/js/alert.js';
-
+/* eslint-disable max-classes-per-file */
+/* global tinyMCE */
+import { awaitUntil, define, vlElement } from '../../utils/core';
+import { VlTypography } from '../../components/typography';
+import '../../components/button';
+import '../../components/link';
+import '../../components/icon';
+import '../toaster';
+import '../../components/alert';
+import 'tinymce/tinymce.min.js';
 import styles from './styles.scss';
 
+/**
+ * VlProzaMessage
+ * @class
+ * @classdesc De vl-proza-message webcomponent kan gebruikt worden om teksten te laten beheren door de business. De edit modus wordt geactiveerd door
+ *   op het potlood icoon te klikken. De edit modus kan gedactiveerd worden door op enter te duwen of een focus te geven aan een ander element op de
+ *   pagina. Wanneer de gebruiker op escape klikt zal de edit modus afgesloten worden en zullen de wijzigingen ongedaan gemaakt worden.
+ *
+ * @extends HTMLElement
+ * @mixes vlElement
+ *
+ * @property {string} data-vl-domain - Het Proza domein waarin het Proza bericht zit.
+ * @property {string} data-vl-code - De code die het Proza bericht identificeert.
+ * @property {string} data-vl-block - Attribuut om aan te duiden dat de inhoud van het Proza bericht een block element is.
+ * @property {string} data-vl-parameters - De key/value parameters die verwerkt en getoond zullen worden in het content element.
+ *
+ * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-proza-message/releases/latest|Release notes}
+ * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-proza-message/issues|Issues}
+ * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-proza-message.html|Demo}
+ *
+ */
 export class VlProzaMessage extends vlElement(HTMLElement) {
   static get _observedAttributes() {
     return ['domain', 'code', 'block', 'parameters'];
@@ -23,7 +39,7 @@ export class VlProzaMessage extends vlElement(HTMLElement) {
     super();
     this.shadow(`
       <style>
-        ${styles}
+       ${styles}
       </style>
       <div>
         <slot></slot>
@@ -52,7 +68,7 @@ export class VlProzaMessage extends vlElement(HTMLElement) {
       document.head.appendChild(
         this._template(`
         <style id=${id}>
-          ${toasterStyles}
+          @import '/node_modules/vl-ui-toaster/dist/style.css';
         </style>
     `),
       );
@@ -135,7 +151,7 @@ export class VlProzaMessage extends vlElement(HTMLElement) {
       quickbars_selection_toolbar: 'bold italic underline',
       powerpaste_word_import: 'clean',
       powerpaste_html_import: 'clean',
-      content_css: 'src/components/proza-message/styles.scss',
+      content_css: '/lib/legacy/proza-message/styles.css',
       verify_html: false,
       forced_root_block: '',
     };
@@ -383,11 +399,11 @@ export class VlProzaMessage extends vlElement(HTMLElement) {
   }
 
   __hideWysiwygButton() {
-    this._buttonElement.style.display = 'none';
+    this._buttonElement.hidden = true;
   }
 
   __showWysiwygButton() {
-    this._buttonElement.style.display = 'initial';
+    this._buttonElement.hidden = false;
   }
 
   __createWysiwygElement() {
@@ -424,4 +440,183 @@ export class VlProzaMessage extends vlElement(HTMLElement) {
   }
 }
 
+/**
+ * VlProzaMessagePreloader
+ * @class
+ * @classdesc Proza preloader dient om proza codes op voorhand op te halen zodat deze sneller getoond kunnen worden aan de gebruiker.
+ *
+ * @extends HTMLElement
+ * @mixes vlElement
+ *
+ * @property {string} data-vl-domain - Het Proza domein waarin de Proza berichten zitten.
+ *
+ * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-proza-message/releases/latest|Release notes}
+ * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-proza-message/issues|Issues}
+ * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-proza-message.html|Demo}
+ *
+ */
+export class VlProzaMessagePreloader extends vlElement(HTMLElement) {
+  static get _observedAttributes() {
+    return ['domain'];
+  }
+
+  constructor() {
+    super();
+    this._preload();
+  }
+
+  _domainChangedCallback() {
+    this._preload();
+  }
+
+  get _domain() {
+    return this.dataset.vlDomain;
+  }
+
+  _preload() {
+    if (this._domain) {
+      VlProzaMessagePreloader._preload(this._domain);
+    }
+  }
+
+  static _preload(domain) {
+    if (!VlProzaMessagePreloader.isPreloaded(domain)) {
+      VlProzaMessagePreloader.__setPreloadedMessagesCacheForDomain(domain, ProzaRestClient.getMessages(domain));
+    }
+  }
+
+  /**
+   * Geeft een Proza bericht terug.
+   *
+   * @param {String} domain - Het Proza domein waarin het Proza bericht zit.
+   * @param {String} code - De code die het Proza bericht identificeert.
+   * @return {Promise<string>} Resolved naar het Proza bericht indien teruggevonden en anders wordt de Promise rejected.
+   */
+  static getMessage(domain, code) {
+    return VlProzaMessagePreloader._getMessages(domain).then((messages) => {
+      const message = messages[code];
+      if (message) {
+        return message;
+      }
+      throw Error(`Bericht voor {domein: ${domain}, code: ${code}} niet gevonden`);
+    });
+  }
+
+  /**
+   * Geeft de Proza codes terug op basis van een prefix.
+   *
+   * @param {String} domain - Het Proza domein waarin het Proza bericht zit.
+   * @param {String} prefix - De prefix van de code die het Proza bericht
+   * identificeert.
+   * @return {Promise<[string]>} Resolved naar de Proza codes met de
+   * opgegeven prefix
+   */
+  static async getProzaCodes(domain, prefix) {
+    VlProzaMessagePreloader._preload(domain);
+    const messages = await VlProzaMessagePreloader._getMessages(domain);
+    return Object.keys(messages).filter((code) => code.startsWith(prefix));
+  }
+
+  /**
+   * Geeft terug of het Proza domein al reeds preloaded werd.
+   *
+   * @param {String} domain - Het Proza domein.
+   * @return {boolean}
+   */
+  static isPreloaded(domain) {
+    return !!VlProzaMessagePreloader.__getPreloadedMessagesCacheForDomain(domain);
+  }
+
+  static _getMessages(domain) {
+    if (VlProzaMessagePreloader.isPreloaded(domain)) {
+      return VlProzaMessagePreloader.__getPreloadedMessagesCacheForDomain(domain);
+    }
+    return Promise.reject(new Error(`Berichten voor domein ${domain} zijn niet preloaded`));
+  }
+
+  static get __domainCache() {
+    if (!VlProzaMessagePreloader.__cache) {
+      VlProzaMessagePreloader.__cache = {};
+    }
+    return VlProzaMessagePreloader.__cache;
+  }
+
+  static __getCacheForDomain(domain) {
+    const cache = VlProzaMessagePreloader.__domainCache;
+    if (!cache[domain]) {
+      cache[domain] = {};
+    }
+    return cache[domain];
+  }
+
+  static __getPreloadedMessagesCacheForDomain(domain) {
+    return VlProzaMessagePreloader.__getCacheForDomain(domain).messages;
+  }
+
+  static __setPreloadedMessagesCacheForDomain(domain, messages) {
+    VlProzaMessagePreloader.__getCacheForDomain(domain).messages = messages;
+  }
+}
+
+export class ProzaRestClient {
+  static saveMessage(domain, code, text) {
+    return fetch(`proza/domein/${domain}/${code}`, {
+      method: 'PUT',
+      body: text,
+    })
+      .then((response) => ProzaRestClient.__handleError(response))
+      .then((message) => message.tekst)
+      .catch((error) => {
+        console.error(
+          `Er is iets fout gelopen bij het bewaren van het Proza bericht voor {domein: ${domain}, code: ${code}}`,
+          error,
+        );
+        return Promise.reject(error);
+      });
+  }
+
+  static getMessage(domain, code) {
+    return ProzaRestClient.__fetchJson(`proza/domein/${domain}/${code}`)
+      .then((message) => message.tekst)
+      .catch((error) => {
+        console.error(
+          `Er is iets fout gelopen bij het ophalen van het Proza bericht voor {domein: ${domain}, code: ${code}}`,
+          error,
+        );
+        return Promise.reject(error);
+      });
+  }
+
+  static getMessages(domain) {
+    return ProzaRestClient.__fetchJson(`proza/domein/${domain}`)
+      .then((messages) => Object.assign({}, ...messages.map((message) => ({ [message.code]: message.tekst }))))
+      .catch((error) => {
+        console.error(`Er is iets fout gelopen bij het ophalen van de Proza berichten voor domein ${domain}`, error);
+        return Promise.reject(error);
+      });
+  }
+
+  static getToegelatenOperaties(domain) {
+    return ProzaRestClient.__fetchJson(`proza/domein/${domain}/toegelatenoperaties`).catch((error) => {
+      console.error(
+        `Er is iets fout gelopen bij het ophalen van de toegelaten Proza operaties voor domein ${domain}`,
+        error,
+      );
+      return Promise.reject(error);
+    });
+  }
+
+  static __fetchJson(url) {
+    return fetch(url).then(ProzaRestClient.__handleError);
+  }
+
+  static __handleError(response) {
+    if (response.ok) {
+      return response.json();
+    }
+    throw Error(`Response geeft aan dat er een fout is: ${response.statusText}`);
+  }
+}
+
+define('vl-proza-message-preloader', VlProzaMessagePreloader);
 define('vl-proza-message', VlProzaMessage);

@@ -4,7 +4,7 @@ import styles from './styles.scss';
 
 import '.';
 
-import './utils/mock-api';
+// import './utils/mock-api';
 
 export default {
   title: 'custom-elements/vl-proza-message',

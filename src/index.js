@@ -98,3 +98,4 @@ export { VlTabSection } from './legacy/tabs/components/vl-tab-section';
 export { VlTab } from './legacy/tabs/components/vl-tab';
 export { VlUpload } from './legacy/upload';
 export { VlToaster } from './legacy/toaster';
+export { VlProzaMessage, VlProzaMessagePreloader, ProzaRestClient } from './legacy/proza-message';
