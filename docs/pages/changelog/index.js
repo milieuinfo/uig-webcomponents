@@ -14,6 +14,10 @@ const unreleased = [
         <p><code>vl-checkbox</code></p>
         <p>Added as a legacy component.</p>
       </li>
+      <li>
+        <p><code>vl-infotext</code></p>
+        <p>Added as a legacy component.</p>
+      </li>
     </ul>`,
   },
 ];
