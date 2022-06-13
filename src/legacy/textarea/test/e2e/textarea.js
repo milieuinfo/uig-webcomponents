@@ -117,12 +117,12 @@ export class VlTextarea extends VlElement {
       await body.sendKeys(Key.COMMAND, 'v');
       await this._switchToDefault();
     } else {
-      await body.sendKeys(Key.SHIFT, Key.ARROW_UP);
-      await body.sendKeys(Key.CONTROL, 'c');
-      await body.sendKeys(Key.COMMAND, 'c');
-      await body.sendKeys(Key.ARROW_RIGHT);
-      await body.sendKeys(Key.CONTROL, 'v');
-      await body.sendKeys(Key.COMMAND, 'v');
+      await this.sendKeys(Key.SHIFT, Key.ARROW_UP);
+      await this.sendKeys(Key.CONTROL, 'c');
+      await this.sendKeys(Key.COMMAND, 'c');
+      await this.sendKeys(Key.ARROW_RIGHT);
+      await this.sendKeys(Key.CONTROL, 'v');
+      await this.sendKeys(Key.COMMAND, 'v');
     }
   }
 
@@ -135,7 +135,7 @@ export class VlTextarea extends VlElement {
       await body.sendKeys(Key.SHIFT, Key.ARROW_UP);
       await this._switchToDefault();
     } else {
-      await body.sendKeys(Key.SHIFT, Key.ARROW_UP);
+      await this.sendKeys(Key.SHIFT, Key.ARROW_UP);
     }
   }
 

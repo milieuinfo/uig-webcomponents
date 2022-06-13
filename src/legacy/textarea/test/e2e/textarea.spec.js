@@ -88,27 +88,51 @@ describe('vl-textarea', async () => {
   });
 
   it('as a user I can provide my text with bold, italic, underline and strikethrough style', async () => {
-    if (config.browserName !== 'chrome') {
+    if (config.browserName === 'chrome') {
       const textarea = await vlTextareaPage.getTextareaRich();
       await textarea.clear();
       const text = 'text';
       await textarea.sendKeys(text);
       await assert.eventually.include(textarea.getValue(), `${text}`);
+
+      // await textarea.setValue(text);
+      await textarea.selectValue();
       await textarea.activateBold();
-      await textarea.sendKeys(text);
-      await assert.eventually.include(textarea.getValue(), `<b>${text}</b>`);
+      let element = await textarea.getChild('b');
+      let elementText = await textarea.getChildValue(element);
+      await assert.exists(element);
+      await assert.include(elementText, text);
+      await textarea.selectValue();
       await textarea.deactivateBold();
+
+      await textarea.setValue(text);
+      await textarea.selectValue();
       await textarea.activateItalic();
-      await textarea.sendKeys(text);
-      await assert.eventually.include(textarea.getValue(), `<i>${text}</i>`);
+      element = await textarea.getChild('i');
+      elementText = await textarea.getChildValue(element);
+      await assert.exists(element);
+      await assert.include(elementText, text);
+      await textarea.selectValue();
       await textarea.deactivateItalic();
+
+      await textarea.setValue(text);
+      await textarea.selectValue();
       await textarea.activateUnderline();
-      await textarea.sendKeys(text);
-      await assert.eventually.include(textarea.getValue(), `<u>${text}</u>`);
+      element = await textarea.getChild('u');
+      elementText = await textarea.getChildValue(element);
+      await assert.exists(element);
+      await assert.include(elementText, text);
+      await textarea.selectValue();
       await textarea.deactivateUnderline();
+
+      await textarea.setValue(text);
+      await textarea.selectValue();
       await textarea.activateStrikethrough();
-      await textarea.sendKeys(text);
-      await assert.eventually.include(textarea.getValue(), `<s>${text}</s>`);
+      element = await textarea.getChild('s');
+      elementText = await textarea.getChildValue(element);
+      await assert.exists(element);
+      await assert.include(elementText, text);
+      await textarea.selectValue();
       await textarea.deactivateStrikethrough();
     }
   });
@@ -256,15 +280,12 @@ describe('vl-textarea', async () => {
   it('as a user I can cancel the link modal and when opening the link modal again the input fields will be empty', async () => {
     const textarea = await vlTextareaPage.getTextareaRich();
     await textarea.clear();
-    await assert.eventually.isEmpty(textarea.getValue());
-
     await textarea.addLink();
 
     const modal = await textarea.getLinkToolbarModal();
     const contentElements = await modal.getContentSlotElements();
     let textInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#text')));
     await textInputField.setValue('text');
-
     await modal.cancel();
 
     await textarea.addLink();
@@ -292,22 +313,23 @@ describe('vl-textarea', async () => {
   });
 
   it('as a user i can copy text with style', async () => {
-    if (config.browserName !== 'chrome' && config.browserName !== 'edge') {
+    if (config.browserName === 'chrome') {
       const textarea = await vlTextareaPage.getTextareaRich();
       await textarea.clear();
 
-      await textarea.activateBold();
       const text = 'text';
       await textarea.sendKeys(text);
+      await textarea.selectValue();
+      await textarea.activateBold();
 
-      let paragraph = await textarea.getChild('p');
+      let paragraph = await textarea.getChild('b');
       let paragraphText = await textarea.getChildValue(paragraph);
       await assert.exists(paragraph);
       await assert.include(paragraphText, text);
 
       await textarea.copyPasteValue();
 
-      paragraph = await textarea.getChild('p');
+      paragraph = await textarea.getChild('b');
       paragraphText = await textarea.getChildValue(paragraph);
       await assert.exists(paragraph);
       await assert.include(paragraphText, `${text}${text}`);
@@ -322,83 +344,91 @@ describe('vl-textarea', async () => {
   });
 
   it('as a user I can select a text and then add a link without having to re-enter the text', async () => {
-    const textarea = await vlTextareaPage.getTextareaRich();
-    await textarea.clear();
-    const text = 'this is a link!';
-    const link = 'https://www.google.be';
-    await textarea.setValue(text);
-    await textarea.selectValue();
-    await textarea.addLink();
-    const modal = await textarea.getLinkToolbarModal();
-    const contentElements = await modal.getContentSlotElements();
-    const textInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#text')));
-    const linkInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#url')));
-    await assert.eventually.equal(textInputField.getValue(), text);
-    await linkInputField.setValue(link);
-    await modal.submit();
-    await assert.eventually.include(
-      textarea.getValue(),
-      `<a target="_blank" href="${link}" rel="noopener" data-mce-href="${link}">${text}</a>`,
-    );
+    if (config.browserName === 'chrome') {
+      const textarea = await vlTextareaPage.getTextareaRich();
+      await textarea.clear();
+      const text = 'this is a link!';
+      const link = 'https://www.google.be';
+      await textarea.setValue(text);
+      await textarea.selectValue();
+
+      await textarea.addLink();
+      const modal = await textarea.getLinkToolbarModal();
+      const contentElements = await modal.getContentSlotElements();
+      const textInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#text')));
+      const linkInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#url')));
+      await assert.eventually.equal(textInputField.getValue(), text);
+
+      await linkInputField.setValue(link);
+      await modal.submit();
+      await assert.eventually.include(
+        textarea.getValue(),
+        `<a target="_blank" href="${link}" rel="noopener" data-mce-href="${link}">${text}</a>`,
+      );
+    }
   });
 
   it('as a user I can select a text with special characters and then add a link without having to re-enter the text', async () => {
-    const textarea = await vlTextareaPage.getTextareaRich();
-    await textarea.clear();
-    const text = 'this is a <spécîàl> link!';
-    const link = 'https://www.google.be';
-    await textarea.setValue(text);
-    await textarea.selectValue();
-    await textarea.addLink();
-    const modal = await textarea.getLinkToolbarModal();
-    const contentElements = await modal.getContentSlotElements();
-    const textInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#text')));
-    const linkInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#url')));
-    await assert.eventually.equal(textInputField.getValue(), text);
-    await linkInputField.setValue(link);
-    await modal.submit();
-    await assert.eventually.include(
-      textarea.getValue(),
-      `<a target="_blank" href="${link}" rel="noopener" data-mce-href="${link}">this is a &lt;spécîàl&gt; link!</a>`,
-    );
+    if (config.browserName === 'chrome') {
+      const textarea = await vlTextareaPage.getTextareaRich();
+      await textarea.clear();
+      const text = 'this is a <spécîàl> link!';
+      const link = 'https://www.google.be';
+      await textarea.setValue(text);
+      await textarea.selectValue();
+      await textarea.addLink();
+      const modal = await textarea.getLinkToolbarModal();
+      const contentElements = await modal.getContentSlotElements();
+      const textInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#text')));
+      const linkInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#url')));
+      await assert.eventually.equal(textInputField.getValue(), text);
+      await linkInputField.setValue(link);
+      await modal.submit();
+      await assert.eventually.include(
+        textarea.getValue(),
+        `<a target="_blank" href="${link}" rel="noopener" data-mce-href="${link}">this is a &lt;spécîàl&gt; link!</a>`,
+      );
+    }
   });
 
   it('as a user I can edit a link', async () => {
-    const textarea = await vlTextareaPage.getTextareaRich();
-    await textarea.clear();
-    const text = 'Vlaanderen';
-    const link = 'https://www.vlaanderen.be/';
+    if (config.browserName === 'chrome') {
+      const textarea = await vlTextareaPage.getTextareaRich();
+      await textarea.clear();
+      const text = 'Vlaanderen';
+      const link = 'https://www.vlaanderen.be/';
 
-    await textarea.setValue(text);
-    await textarea.selectValue();
-    await textarea.addLink();
+      await textarea.setValue(text);
+      await textarea.selectValue();
+      await textarea.addLink();
 
-    const modal = await textarea.getLinkToolbarModal();
+      const modal = await textarea.getLinkToolbarModal();
 
-    const contentElements = await modal.getContentSlotElements();
-    let textInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#text')));
-    await assert.eventually.equal(textInputField.getValue(), text);
+      const contentElements = await modal.getContentSlotElements();
+      let textInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#text')));
+      await assert.eventually.equal(textInputField.getValue(), text);
 
-    let linkInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#url')));
+      let linkInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#url')));
 
-    await linkInputField.setValue(link);
+      await linkInputField.setValue(link);
 
-    linkInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#url')));
-    await assert.eventually.equal(linkInputField.getValue(), link);
+      linkInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#url')));
+      await assert.eventually.equal(linkInputField.getValue(), link);
 
-    await modal.submit();
-    await assert.eventually.include(
-      textarea.getValue(),
-      `<a target="_blank" href="${link}" rel="noopener" data-mce-href="${link}">${text}</a>`,
-    );
+      await modal.submit();
+      await assert.eventually.include(
+        textarea.getValue(),
+        `<a target="_blank" href="${link}" rel="noopener" data-mce-href="${link}">${text}</a>`,
+      );
 
-    await textarea.selectValue();
-    await textarea.addLink();
+      await textarea.selectValue();
+      await textarea.addLink();
 
-    textInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#text')));
-    linkInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#url')));
+      textInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#text')));
+      linkInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#url')));
 
-    await assert.eventually.include(textInputField.getValue(), text);
-    await assert.eventually.equal(linkInputField.getValue(), link);
+      await assert.eventually.include(textInputField.getValue(), text);
+      await assert.eventually.equal(linkInputField.getValue(), link);
+    }
   });
 });
