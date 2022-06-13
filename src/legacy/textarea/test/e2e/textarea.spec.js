@@ -376,11 +376,16 @@ describe('vl-textarea', async () => {
     const modal = await textarea.getLinkToolbarModal();
 
     const contentElements = await modal.getContentSlotElements();
-    const textInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#text')));
-    const linkInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#url')));
-
+    let textInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#text')));
     await assert.eventually.equal(textInputField.getValue(), text);
+
+    let linkInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#url')));
+
     await linkInputField.setValue(link);
+
+    linkInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#url')));
+    await assert.eventually.equal(linkInputField.getValue(), link);
+
     await modal.submit();
     await assert.eventually.include(
       textarea.getValue(),
@@ -389,6 +394,9 @@ describe('vl-textarea', async () => {
 
     await textarea.selectValue();
     await textarea.addLink();
+
+    textInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#text')));
+    linkInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#url')));
 
     await assert.eventually.include(textInputField.getValue(), text);
     await assert.eventually.equal(linkInputField.getValue(), link);
