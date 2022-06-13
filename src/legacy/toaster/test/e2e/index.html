@@ -1,0 +1,117 @@
+<DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <title>vl-toaster voorbeeld</title>
+      <script type="module" src="../../../../../build/index.js"></script>
+      <link rel="stylesheet" type="text/css" href="../../../../../lib/legacy/toaster/styles.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../../lib/components/body/styles.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../../lib/components/button/styles.css" />
+    </head>
+
+    <body is="vl-body">
+      <script>
+        // eslint-disable-next-line no-unused-vars
+        const demoToaster = () => document.querySelector('#demo-toaster');
+      </script>
+
+      <div id="demo-toaster" is="vl-toaster"></div>
+      <button id="demo-toaster-success-alert-button" is="vl-button" onclick="demoToaster().push(newSuccessAlert());">
+        Success
+      </button>
+      <button id="demo-toaster-warning-alert-button" is="vl-button" onclick="demoToaster().push(newWarningAlert());">
+        Warning
+      </button>
+      <button id="demo-toaster-error-alert-button" is="vl-button" onclick="demoToaster().push(newErrorAlert());">
+        Error
+      </button>
+      <button id="demo-toaster-cta-alert-button" is="vl-button" onclick="demoToaster().push(newCtaAlert());">
+        Call of action
+      </button>
+
+      <script>
+        // eslint-disable-next-line no-unused-vars
+        const topLeftToaster = () => document.querySelector('#top-left-toaster');
+
+        // eslint-disable-next-line no-unused-vars
+        const topRightToaster = () => document.querySelector('#top-right-toaster');
+
+        // eslint-disable-next-line no-unused-vars
+        const bottomLeftToaster = () => document.querySelector('#bottom-left-toaster');
+
+        // eslint-disable-next-line no-unused-vars
+        const bottomRightToaster = () => document.querySelector('#bottom-right-toaster');
+      </script>
+
+      <div id="top-left-toaster" is="vl-toaster" data-vl-top-left></div>
+      <div id="top-right-toaster" is="vl-toaster" data-vl-top-right></div>
+      <div id="bottom-left-toaster" is="vl-toaster" data-vl-bottom-left></div>
+      <div id="bottom-right-toaster" is="vl-toaster" data-vl-bottom-right></div>
+      <button is="vl-button" onclick="topLeftToaster().push(newSuccessAlert());">Top-left</button>
+      <button is="vl-button" onclick="topRightToaster().push(newSuccessAlert());">Top-right</button>
+      <button is="vl-button" onclick="bottomLeftToaster().push(newSuccessAlert());">Bottom-left</button>
+      <button is="vl-button" onclick="bottomRightToaster().push(newSuccessAlert());">Bottom-right</button>
+
+      <script>
+        // eslint-disable-next-line no-unused-vars
+        const fadeoutToaster = () => document.querySelector('#fadeout-toaster');
+      </script>
+
+      <div id="fadeout-toaster" is="vl-toaster" data-vl-fadeout></div>
+      <button id="fadeout-toaster-error-alert-button" is="vl-button" onclick="fadeoutToaster().push(newErrorAlert());">
+        Error
+      </button>
+      <button
+        id="fadeout-toaster-success-alert-button"
+        is="vl-button"
+        onclick="fadeoutToaster().push(newSuccessAlert());"
+      >
+        Success
+      </button>
+      <button
+        id="fadeout-toaster-warning-alerts-button"
+        is="vl-button"
+        onclick="fadeoutToaster().push(newWarningAlert()); fadeoutToaster().push(newWarningAlert());"
+      >
+        Warnings
+      </button>
+
+      <script>
+        // eslint-disable-next-line no-unused-vars
+        const newWarningAlert = () => document.querySelector('#alert-1').cloneNode(true);
+
+        // eslint-disable-next-line no-unused-vars
+        const newErrorAlert = () => document.querySelector('#alert-2').cloneNode(true);
+
+        // eslint-disable-next-line no-unused-vars
+        const newSuccessAlert = () => document.querySelector('#alert-3').cloneNode(true);
+
+        // eslint-disable-next-line no-unused-vars
+        const newCtaAlert = () => document.querySelector('#alert-4').cloneNode(true);
+      </script>
+
+      <vl-alert
+        id="alert-1"
+        data-vl-type="warning"
+        data-vl-icon="warning"
+        data-vl-title="Technische storing"
+        data-vl-closable
+      >
+        <p>Door een technische storing is dit loket tijdelijk niet beschikbaar.</p>
+      </vl-alert>
+      <br />
+      <vl-alert id="alert-2" data-vl-type="error" data-vl-icon="warning" data-vl-title="Error" data-vl-closable>
+        <p>Er is een fout opgetreden.</p>
+      </vl-alert>
+      <br />
+      <vl-alert id="alert-3" data-vl-type="success" data-vl-icon="check" data-vl-title="Gelukt" data-vl-closable>
+        <p>Wij hebben uw melding goed ontvangen en nemen deze spoedig in behandeling.</p>
+      </vl-alert>
+      <br />
+      <vl-alert id="alert-4" data-vl-type="cta" data-vl-icon="info" data-vl-title="Opgelet!" data-vl-closable>
+        <p>U heeft geen rechten om deze actie uit te voeren. <a href="#">Vraag rechten aan</a>.</p>
+        <button slot="actions" is="vl-button" id="b1">Fout melden</button>
+      </vl-alert>
+    </body>
+  </html>
+</DOCTYPE>

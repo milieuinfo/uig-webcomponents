@@ -11,12 +11,21 @@ const unreleased = [
     date: '?',
     children: html`<ul>
       <li>
+        <p><code>vl-toaster</code></p>
+        <p>Added as a legacy component.</p>
+      </li>
+      <li>
+        <p><code>vl-checkbox</code></p>
+        <p>Added as a legacy component.</p>
+      </li>
+      <li>
         <p><code>vl-infotext</code></p>
         <p>Added as a legacy component.</p>
       </li>
     </ul>`,
   },
 ];
+
 const changes = [
   ...unreleased,
   {
