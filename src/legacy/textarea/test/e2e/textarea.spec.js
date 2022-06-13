@@ -328,7 +328,7 @@ describe('vl-textarea', async () => {
 
       await textarea.copyPasteValue();
 
-        paragraph = await textarea.getChild('p');
+      paragraph = await textarea.getChild('b');
       paragraphText = await textarea.getChildValue(paragraph);
       await assert.exists(paragraph);
       await assert.include(paragraphText, `${text}${text}`);
