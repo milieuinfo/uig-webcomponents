@@ -262,12 +262,14 @@ describe('vl-textarea', async () => {
 
     const modal = await textarea.getLinkToolbarModal();
     const contentElements = await modal.getContentSlotElements();
-    const textInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#text')));
+    let textInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#text')));
     await textInputField.setValue('text');
 
     await modal.cancel();
 
     await textarea.addLink();
+
+    textInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#text')));
     await assert.eventually.isEmpty(textInputField.getValue());
     await modal.cancel();
   });
@@ -293,13 +295,22 @@ describe('vl-textarea', async () => {
     if (config.browserName !== 'chrome' && config.browserName !== 'edge') {
       const textarea = await vlTextareaPage.getTextareaRich();
       await textarea.clear();
-      await assert.eventually.isEmpty(textarea.getValue());
+
       await textarea.activateBold();
       const text = 'text';
       await textarea.sendKeys(text);
-      await assert.eventually.include(textarea.getValue(), `<p><b>${text}</b></p>`);
+
+      let paragraph = await textarea.getChild('p');
+      let paragraphText = await textarea.getChildValue(paragraph);
+      await assert.exists(paragraph);
+      await assert.include(paragraphText, text);
+
       await textarea.copyPasteValue();
-      await assert.eventually.include(textarea.getValue(), `<p><b>${text}${text}</b></p>`);
+
+      paragraph = await textarea.getChild('p');
+      paragraphText = await textarea.getChildValue(paragraph);
+      await assert.exists(paragraph);
+      await assert.include(paragraphText, `${text}${text}`);
     }
   });
 
@@ -357,13 +368,17 @@ describe('vl-textarea', async () => {
     await textarea.clear();
     const text = 'Vlaanderen';
     const link = 'https://www.vlaanderen.be/';
+
     await textarea.setValue(text);
     await textarea.selectValue();
     await textarea.addLink();
+
     const modal = await textarea.getLinkToolbarModal();
+
     const contentElements = await modal.getContentSlotElements();
     const textInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#text')));
     const linkInputField = await new VlInputField(driver, await contentElements[0].findElement(By.css('#url')));
+
     await assert.eventually.equal(textInputField.getValue(), text);
     await linkInputField.setValue(link);
     await modal.submit();
@@ -374,8 +389,7 @@ describe('vl-textarea', async () => {
 
     await textarea.selectValue();
     await textarea.addLink();
-    const value = await textInputField.getValue();
-    console.log('value: ', value);
+
     await assert.eventually.include(textInputField.getValue(), text);
     await assert.eventually.equal(linkInputField.getValue(), link);
   });
