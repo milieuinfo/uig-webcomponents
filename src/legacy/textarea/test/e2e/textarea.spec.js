@@ -317,19 +317,18 @@ describe('vl-textarea', async () => {
       const textarea = await vlTextareaPage.getTextareaRich();
       await textarea.clear();
 
+        await textarea.activateBold();
       const text = 'text';
       await textarea.sendKeys(text);
-      await textarea.selectValue();
-      await textarea.activateBold();
 
-      let paragraph = await textarea.getChild('b');
+        let paragraph = await textarea.getChild('p');
       let paragraphText = await textarea.getChildValue(paragraph);
       await assert.exists(paragraph);
       await assert.include(paragraphText, text);
 
       await textarea.copyPasteValue();
 
-      paragraph = await textarea.getChild('b');
+        paragraph = await textarea.getChild('p');
       paragraphText = await textarea.getChildValue(paragraph);
       await assert.exists(paragraph);
       await assert.include(paragraphText, `${text}${text}`);
