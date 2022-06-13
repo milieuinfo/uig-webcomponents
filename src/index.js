@@ -96,5 +96,6 @@ export { VlTabsPane } from './legacy/tabs/components/vl-tabs-pane';
 export { VlTabSection } from './legacy/tabs/components/vl-tab-section';
 export { VlTab } from './legacy/tabs/components/vl-tab';
 export { VlUpload } from './legacy/upload';
+export { VlToaster } from './legacy/toaster';
 export { VlCheckbox } from './legacy/checkbox';
 export { VlInfotext } from './legacy/infotext';

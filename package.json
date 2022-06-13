@@ -86,6 +86,7 @@
     "@govflanders/vl-ui-search-filter": "^3.12.17",
     "@govflanders/vl-ui-search-results": "^3.12.3",
     "@govflanders/vl-ui-titles": "^3.12.3",
+    "@govflanders/vl-ui-toaster": "^3.12.3",
     "@govflanders/vl-ui-toggle": "^3.12.17",
     "@govflanders/vl-ui-tooltip": "^3.12.3",
     "@govflanders/vl-ui-typography": "^3.12.17",
