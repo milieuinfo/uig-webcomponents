@@ -41,6 +41,7 @@
     "@govflanders/vl-ui-side-navigation": "^3.12.3",
     "@govflanders/vl-ui-util": "^3.12.24",
     "@govflanders/vl-ui-tabs": "^3.12.17",
+    "@govflanders/vl-ui-infotext": "^3.12.3",
     "@ungap/custom-elements": "^0.1.15",
     "bootstrap-sass": "^3.3.4",
     "jsts": "^2.8.1",
