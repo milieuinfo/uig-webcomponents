@@ -115,10 +115,35 @@ export class VlTextarea extends VlElement {
       config.browserName === 'chrome' ? await body.sendKeys('') : await body.click();
 
       const actions = this.driver.actions();
+
       await actions.keyDown(Key.SHIFT).sendKeys(Key.ARROW_UP).keyUp(Key.SHIFT).perform();
-      await actions.keyDown(cmdCtrl).sendKeys('c').keyUp(cmdCtrl).perform();
+      if (os === 'Mac OS') {
+        await actions.keyDown(Key.COMMAND).sendKeys('c').keyUp(Key.COMMAND).perform();
+      } else if (os === 'Linux') {
+        await actions
+          .keyDown(Key.CONTROL)
+          .keyDown(Key.SHIFT)
+          .sendKeys('c')
+          .keyUp(Key.CONTROL)
+          .keyUp(Key.SHIFT)
+          .perform();
+      } else {
+        await actions.keyDown(Key.CONTROL).sendKeys('c').keyUp(Key.CONTROL).perform();
+      }
       await actions.sendKeys(Key.ARROW_RIGHT);
-      await actions.keyDown(cmdCtrl).sendKeys('v').keyUp(cmdCtrl).perform();
+      if (os === 'Mac OS') {
+        await actions.keyDown(Key.COMMAND).sendKeys('v').keyUp(Key.COMMAND).perform();
+      } else if (os === 'Linux') {
+        await actions
+          .keyDown(Key.CONTROL)
+          .keyDown(Key.SHIFT)
+          .sendKeys('v')
+          .keyUp(Key.CONTROL)
+          .keyUp(Key.SHIFT)
+          .perform();
+      } else {
+        await actions.keyDown(Key.CONTROL).sendKeys('v').keyUp(Key.CONTROL).perform();
+      }
 
       await this._switchToDefault();
     } else {
