@@ -1,5 +1,6 @@
 import { VlElement, By, Key, config } from '../../../../utils/test';
 import { VlModal } from '../../../modal/test/e2e/modal';
+import { getOS } from '../../../../utils/test/helper';
 
 export class VlTextarea extends VlElement {
   async setValue(text) {
@@ -104,25 +105,27 @@ export class VlTextarea extends VlElement {
   }
 
   async copyPasteValue() {
+    const os = await getOS(this.driver);
+    const cmdCtrl = os === 'Windows' ? Key.CONTROL : Key.COMMAND;
+
     const rich = await this.isRich();
     if (rich) {
       await this._switchToWysiwygiframe();
       const body = await this._wysiwygBodyElement();
       config.browserName === 'chrome' ? await body.sendKeys('') : await body.click();
-      await body.sendKeys(Key.SHIFT, Key.ARROW_UP);
-      await body.sendKeys(Key.CONTROL, 'c');
-      await body.sendKeys(Key.COMMAND, 'c');
-      await body.sendKeys(Key.ARROW_RIGHT);
-      await body.sendKeys(Key.CONTROL, 'v');
-      await body.sendKeys(Key.COMMAND, 'v');
+
+      const actions = this.driver.actions();
+      await actions.keyDown(Key.SHIFT).sendKeys(Key.ARROW_UP).keyUp(Key.SHIFT).perform();
+      await actions.keyDown(cmdCtrl).sendKeys('c').keyUp(cmdCtrl).perform();
+      await actions.sendKeys(Key.ARROW_RIGHT);
+      await actions.keyDown(cmdCtrl).sendKeys('v').keyUp(cmdCtrl).perform();
+
       await this._switchToDefault();
     } else {
       await this.sendKeys(Key.SHIFT, Key.ARROW_UP);
-      await this.sendKeys(Key.CONTROL, 'c');
-      await this.sendKeys(Key.COMMAND, 'c');
+      await this.sendKeys(cmdCtrl, 'c');
       await this.sendKeys(Key.ARROW_RIGHT);
-      await this.sendKeys(Key.CONTROL, 'v');
-      await this.sendKeys(Key.COMMAND, 'v');
+      await this.sendKeys(cmdCtrl, 'v');
     }
   }
 
@@ -132,7 +135,7 @@ export class VlTextarea extends VlElement {
       await this._switchToWysiwygiframe();
       const body = await this._wysiwygBodyElement();
       config.browserName === 'chrome' ? await body.sendKeys('') : await body.click();
-      await body.sendKeys(Key.SHIFT, Key.ARROW_UP);
+      await body.sendKeys(Key.CONTROL, 'a');
       await this._switchToDefault();
     } else {
       await this.sendKeys(Key.SHIFT, Key.ARROW_UP);
