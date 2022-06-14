@@ -160,7 +160,7 @@ export class VlTextarea extends VlElement {
       await this._switchToWysiwygiframe();
       const body = await this._wysiwygBodyElement();
       config.browserName === 'chrome' ? await body.sendKeys('') : await body.click();
-      await body.sendKeys(Key.CONTROL, 'a');
+      await body.sendKeys(Key.SHIFT, Key.ARROW_UP);
       await this._switchToDefault();
     } else {
       await this.sendKeys(Key.SHIFT, Key.ARROW_UP);
