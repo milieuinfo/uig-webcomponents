@@ -6,3 +6,4 @@ build
 storybook-static
 .npmrc
 results
+/.idea/

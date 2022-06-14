@@ -102,8 +102,6 @@ async function fetchDataWithApiCall(searchTerm, autocomplete){
 }
 
 export const WithApiCall = () => html`
-
-
   <label for="vl-autocomplete-1-input" class="vl-form__label">
     Geolocation
   </label>
