@@ -1,20 +1,20 @@
-import { assert, getDriver } from "../../../../../../../../utils/test";
-import { VlMapDeleteActionPage } from "./delete-action.page.js";
+import { assert, getDriver } from '../../../../../../../../utils/test';
+import { VlTestMapDeleteActionPage } from './delete-action.page.js';
 
-describe("vl-map-delete-action", async () => {
+describe('vl-map-delete-action', async () => {
   let vlMapPage;
 
   beforeEach(() => {
-    vlMapPage = new VlMapDeleteActionPage(getDriver());
+    vlMapPage = new VlTestMapDeleteActionPage(getDriver());
     return vlMapPage.load();
   });
 
-  it("als gebruiker zie ik dat de delete actie actief staat", async () => {
+  it('als gebruiker zie ik dat de delete actie actief staat', async () => {
     const deleteAction = await vlMapPage.getDeleteAction();
     await assert.eventually.isTrue(deleteAction.isActive());
   });
 
-  it("kan features deleten door er op te klikken", async () => {
+  it('kan features deleten door er op te klikken', async () => {
     const deleteAction = await vlMapPage.getDeleteAction();
     const layer = await deleteAction.getLayer();
     await assert.eventually.equal(layer.getNumberOfFeatures(), 3);
@@ -26,7 +26,7 @@ describe("vl-map-delete-action", async () => {
     await assert.eventually.equal(layer.getNumberOfFeatures(), 0);
   });
 
-  it("kan features deleten door rechthoek te trekken over alle features die weg mogen", async () => {
+  it('kan features deleten door rechthoek te trekken over alle features die weg mogen', async () => {
     const deleteAction = await vlMapPage.getDeleteAction();
     const layer = await deleteAction.getLayer();
     await assert.eventually.equal(layer.getNumberOfFeatures(), 3);

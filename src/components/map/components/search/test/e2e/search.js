@@ -1,7 +1,7 @@
-import { VlElement, By } from "../../../../../../utils/test";
-import { VlSelect } from "../../../../../../components/select/test/e2e/select.js";
+import { VlElement, By } from '../../../../../../utils/test';
+import { VlSelect } from '../../../../../../components/select/test/e2e/select.js';
 
-export class VlMapSearch extends VlElement {
+export class VlTestMapSearch extends VlElement {
   async open() {
     const select = await this._getSelect();
     await select.open();
@@ -15,12 +15,12 @@ export class VlMapSearch extends VlElement {
 
   async sendText(text) {
     const search = await this._getSearch();
-    const input = await search.findElement(By.css(".vl-select__list > input"));
+    const input = await search.findElement(By.css('.vl-select__list > input'));
     await this.driver.executeScript(`arguments[0].focus()`, input);
     await this.driver.executeScript(`arguments[0].value='${text}'`, input);
     await this.driver.executeScript(
       `arguments[0].dispatchEvent(new CustomEvent('keyup', {composed: true, bubbles: true}))`,
-      input
+      input,
     );
   }
 
@@ -28,14 +28,14 @@ export class VlMapSearch extends VlElement {
     const select = await this._getSelect();
     await this.driver.executeScript(
       `arguments[0].dispatchEvent(new CustomEvent('search', {detail: {value: '${text}'}}))`,
-      select
+      select,
     );
   }
 
   async hasNoResults() {
     const search = await this._getSearch();
     try {
-      await search.findElement(By.css(".vl-select__list > .has-no-results"));
+      await search.findElement(By.css('.vl-select__list > .has-no-results'));
       return true;
     } catch (error) {
       return false;
@@ -64,9 +64,7 @@ export class VlMapSearch extends VlElement {
 
   async _getSelect() {
     const search = await this._getSearch();
-    const element = await search.findElement(
-      By.css('select[is="vl-select-location"]')
-    );
+    const element = await search.findElement(By.css('select[is="vl-select-location"]'));
     const select = await new VlSelect(this.driver, element);
     await this.driver.wait(() => select.isSearchable());
     return select;
@@ -85,9 +83,8 @@ export class VlMapSearch extends VlElement {
           }
           await new Promise((resolve) => setTimeout(resolve, 1000));
           return false;
-        } else {
-          return values.filter((value) => value != null).length > 0;
         }
+        return values.filter((value) => value != null).length > 0;
       }, 5000);
     } catch (error) {}
   }

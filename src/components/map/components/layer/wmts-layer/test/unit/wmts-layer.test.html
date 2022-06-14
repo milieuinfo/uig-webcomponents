@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <meta charset="utf-8">
-  <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
-  <script src="/node_modules/web-component-tester/browser.js"></script>
+  <head>
+    <meta charset="utf-8" />
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
 
     <script type="module" src="../../../../../../../../lib/components/map/index.js"></script>
-
+  </head>
   <body>
     <test-fixture id="vl-map-wmts-layer-fixture">
       <template>
@@ -47,23 +46,20 @@
     </test-fixture>
 
     <script type="module">
-      import {
-        OlWMTSSource,
-        OlWMTSTileGrid,
-      } from "../../../../../lib/components/map/mapactions/index.js";
-      suite("vl-map-wmts-layer", () => {
-        const LAYER_SELECTOR = "[data-vl-is-layer]";
+      import OlWMTSSource from 'ol/source/WMTS';
+      import OlWMTSTileGrid from 'ol/tilegrid/WMTS';
 
-        const getLayer = (map) => {
-          return map.querySelector(LAYER_SELECTOR);
-        };
+      suite('vl-map-wmts-layer', () => {
+        const LAYER_SELECTOR = '[data-vl-is-layer]';
+
+        const getLayer = (map) => map.querySelector(LAYER_SELECTOR);
 
         setup((done) => {
-          customElements.whenDefined("vl-map-wmts-layer").then(() => done());
+          customElements.whenDefined('vl-map-wmts-layer').then(() => done());
         });
 
-        test("de wmts source wordt correct geconfigureerd", async () => {
-          const map = fixture("vl-map-wmts-layer-fixture");
+        test('de wmts source wordt correct geconfigureerd', async () => {
+          const map = fixture('vl-map-wmts-layer-fixture');
           await map.ready;
 
           const layers = map.map.getOverlayLayers();
@@ -74,71 +70,31 @@
           assert.isTrue(source instanceof OlWMTSSource);
 
           assert.lengthOf(source.urls, 1);
-          assert.equal(
-            source.urls[0],
-            "https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts"
-          );
-          assert.equal(source.getLayer(), "grb_sel");
-          assert.equal(source.getMatrixSet(), "BPL72VL");
-          assert.equal(source.getFormat(), "image/png");
-          assert.equal(
-            JSON.stringify(source.getProjection()),
-            JSON.stringify(map._projection)
-          );
-          assert.equal(source.getStyle(), "");
+          assert.equal(source.urls[0], 'https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts');
+          assert.equal(source.getLayer(), 'grb_sel');
+          assert.equal(source.getMatrixSet(), 'BPL72VL');
+          assert.equal(source.getFormat(), 'image/png');
+          assert.equal(JSON.stringify(source.getProjection()), JSON.stringify(map._projection));
+          assert.equal(source.getStyle(), '');
 
           const tileGrid = source.getTileGrid();
           assert.isTrue(tileGrid instanceof OlWMTSTileGrid);
           assert.deepEqual(tileGrid.getOrigin(), [9928, 329072]);
-          assert.deepEqual(tileGrid.getResolutions(), [
-            1024,
-            512,
-            256,
-            128,
-            64,
-            32,
-            16,
-            8,
-            4,
-            2,
-            1,
-            0.5,
-            0.25,
-            0.125,
-            0.0625,
-            0.03125,
-          ]);
-          assert.deepEqual(tileGrid.getMatrixIds(), [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-          ]);
+          assert.deepEqual(
+            tileGrid.getResolutions(),
+            [1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1, 0.5, 0.25, 0.125, 0.0625, 0.03125],
+          );
+          assert.deepEqual(tileGrid.getMatrixIds(), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
         });
 
-        test("de kaartlaag zal pas angemaakt worden na constructie zodat op moment van constructie nog niet al de attributen gekend moeten zijn", (done) => {
-          const map = fixture("vl-map-fixture");
-          const layer = document.createElement("vl-map-wmts-layer");
-          layer.setAttribute(
-            "data-vl-url",
-            "https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts"
-          );
-          layer.setAttribute("data-vl-layer", "grb_sel");
-          layer.setAttribute("data-vl-name", "GRB Wegenkaart");
-          layer.setAttribute("data-vl-min-resolution", "2");
-          layer.setAttribute("data-vl-max-resolution", "4");
+        test('de kaartlaag zal pas angemaakt worden na constructie zodat op moment van constructie nog niet al de attributen gekend moeten zijn', (done) => {
+          const map = fixture('vl-map-fixture');
+          const layer = document.createElement('vl-map-wmts-layer');
+          layer.setAttribute('data-vl-url', 'https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts');
+          layer.setAttribute('data-vl-layer', 'grb_sel');
+          layer.setAttribute('data-vl-name', 'GRB Wegenkaart');
+          layer.setAttribute('data-vl-min-resolution', '2');
+          layer.setAttribute('data-vl-max-resolution', '4');
           assert.isUndefined(layer.source);
           assert.isUndefined(layer.layer);
           map.appendChild(layer);
@@ -149,9 +105,9 @@
           });
         });
 
-        test("de kaartlaag kan bij creatie op hidden gezet worden", (done) => {
-          const mapVisible = fixture("vl-map-wmts-layer-fixture");
-          const mapHidden = fixture("vl-map-wmts-layer-hidden-fixture");
+        test('de kaartlaag kan bij creatie op hidden gezet worden', (done) => {
+          const mapVisible = fixture('vl-map-wmts-layer-fixture');
+          const mapHidden = fixture('vl-map-wmts-layer-hidden-fixture');
           mapVisible.ready.then(() => {
             mapHidden.ready.then(() => {
               const layerVisible = getLayer(mapVisible);

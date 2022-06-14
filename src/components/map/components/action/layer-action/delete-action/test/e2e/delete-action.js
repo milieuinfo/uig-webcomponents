@@ -1,6 +1,6 @@
-import { VlMapAction } from "../../../../../action/test/e2e/action.js";
+import { VlTestMapAction } from '../../../../../action/test/e2e/action.js';
 
-export class VlMapDeleteAction extends VlMapAction {
+export class VlTestMapDeleteAction extends VlTestMapAction {
   async removeFeature(id) {
     const layer = await this.getLayer();
     const map = await this.getMap();

@@ -1,15 +1,15 @@
-import { VlMapLayer } from "../../../../../layer/test/e2e/layer.js";
+import { VlTestMapLayer } from '../../../../../layer/test/e2e/layer.js';
 
-export class VlMapWfsLayer extends VlMapLayer {
+export class VlTestMapWfsLayer extends VlTestMapLayer {
   async getUrl() {
-    return this.getAttribute("url");
+    return this.getAttribute('url');
   }
 
   async getLayers() {
-    return this.getAttribute("layers");
+    return this.getAttribute('layers');
   }
 
   static get TAG() {
-    return "vl-map-wfs-layer";
+    return 'vl-map-wfs-layer';
   }
 }

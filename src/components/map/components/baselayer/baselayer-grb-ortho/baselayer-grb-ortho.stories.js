@@ -1,17 +1,17 @@
-import { html } from "lit-html";
-import { args, argTypes } from "../config.js";
-import "../../../../map";
-import { docsIntro } from "../../../../../../.storybook/utils.js";
+import { html } from 'lit-html';
+import { args, argTypes } from '../config';
+import '../../../../map';
+import { docsIntro } from '../../../../../../.storybook/utils.js';
 
 export default {
-  title: "custom-elements/vl-map/vl-map-baselayer-grb-ortho",
+  title: 'custom-elements/vl-map/vl-map-baselayer-grb-ortho',
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
       description: {
         component: docsIntro({
-          root: "map",
-          intro: "De kaart basis laag component voor GRB ortho.",
+          root: 'map',
+          intro: 'De kaart basis laag component voor GRB ortho.',
         }),
       },
     },
@@ -20,10 +20,8 @@ export default {
   argTypes,
 };
 
-export const Default = () => {
-  return html`
-    <vl-map id="map">
-      <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
-    </vl-map>
-  `;
-};
+export const Default = () => html`
+  <vl-map>
+    <vl-map-baselayer-grb-ortho></vl-map-baselayer-grb-ortho>
+  </vl-map>
+`;

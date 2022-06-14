@@ -11,6 +11,7 @@ export default {
       description: {
         component: docsIntro({
           root: 'toaster',
+          stylesheets: ['toaster'],
           isLegacy: true,
         }),
       },

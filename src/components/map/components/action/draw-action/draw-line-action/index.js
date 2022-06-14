@@ -1,6 +1,6 @@
-import { define } from "../../../../../../utils/core";
-import { VlMapDrawAction } from "../../draw-action";
-import { VlDrawLineAction } from "vl-mapactions/dist/vl-mapactions.js";
+import { define } from '../../../../../../utils/core';
+import { VlMapDrawAction } from '../../draw-action';
+import { VlDrawLineAction } from '../../../../actions/draw-line-action';
 
 /**
  * VlMapDrawLineAction
@@ -19,4 +19,4 @@ export class VlMapDrawLineAction extends VlMapDrawAction {
   }
 }
 
-define("vl-map-draw-line-action", VlMapDrawLineAction);
+define('vl-map-draw-line-action', VlMapDrawLineAction);

@@ -1,9 +1,7 @@
-import { define } from "../../../../../../utils/core";
-import { VlMapWmsLayer } from "../../wms-layer";
-import {
-  OlTileWMSSource,
-  OlTileLayer,
-} from "vl-mapactions/dist/vl-mapactions.js";
+import OlTileWMSSource from 'ol/source/TileWMS';
+import OlTileLayer from 'ol/layer/Tile';
+import { define } from '../../../../../../utils/core';
+import { VlMapWmsLayer } from '../../wms-layer';
 
 /**
  * VlMapTiledWmsLayer
@@ -22,4 +20,4 @@ export class VlMapTiledWmsLayer extends VlMapWmsLayer {
   }
 }
 
-define("vl-map-tiled-wms-layer", VlMapTiledWmsLayer);
+define('vl-map-tiled-wms-layer', VlMapTiledWmsLayer);

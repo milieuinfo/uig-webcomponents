@@ -1,16 +1,16 @@
-import { html } from "lit-html";
-import "../../../../map";
-import { argTypes } from "../config";
-import { docsIntro } from "../../../../../../.storybook/utils.js";
+import { html } from 'lit-html';
+import '../../../../map';
+import { argTypes } from '../config';
+import { docsIntro } from '../../../../../../.storybook/utils.js';
 
 export default {
-  title: "custom-elements/vl-map/vl-map-wmts-layer",
+  title: 'custom-elements/vl-map/vl-map-wmts-layer',
   parameters: {
     docs: {
       description: {
         component: docsIntro({
-          root: "map",
-          intro: "Een WMTS (overlay) layer.",
+          root: 'map',
+          intro: 'Een WMTS (overlay) layer.',
         }),
       },
     },
@@ -19,7 +19,7 @@ export default {
 };
 
 export const Default = () => html`
-  <vl-map id="map">
+  <vl-map>
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
     <vl-map-wmts-layer
       data-vl-url="https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts"

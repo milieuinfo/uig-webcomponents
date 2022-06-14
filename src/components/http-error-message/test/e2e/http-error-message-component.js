@@ -7,14 +7,6 @@ export default class VlHttpErrorMessageComponent extends VlElement {
     return new VlHttpErrorMessage(this.driver, await this.getElementInShadow(this, 'vl-http-error-message'));
   }
 
-  async getElementInShadow(parent, selector) {
-    const element = await this.driver.executeScript(
-      `return arguments[0].shadowRoot.querySelector("${selector}")`,
-      parent,
-    );
-    return element;
-  }
-
   async clickOnAction() {
     return (await this._getAction()).click();
   }

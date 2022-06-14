@@ -1,23 +1,22 @@
 import { html } from 'lit-html';
 import '../button';
 import '../text';
-import { args, argTypes } from './config';
+import { buttonArgs, buttonArgTypes } from './config';
 import styles from './styles.scss';
 import { stylesheet, docsIntro } from '../../../.storybook/utils.js';
 
 export default {
   title: 'native-elements/vl-button',
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
-  args,
-  argTypes,
+  args: buttonArgs,
+  argTypes: buttonArgTypes,
   parameters: {
     docs: {
       description: {
         component: docsIntro({
           stylesheets: ['button'],
           root: 'button',
-          intro:
-            'Gebruik de vl-button om een CTA toe te voegen. Het type call-to-action wordt bepaald door het label of de pictogram.',
+          intro: 'Use the vl button to add a CTA. The type of call to action is determined by the label or icon.',
         }),
       },
     },
@@ -51,19 +50,19 @@ export const Default = ({
 </button>`;
 
 export const IconButton = (props) => {
-  const buttonWrap = (props, children) =>
+  const buttonWrap = (wrapProps, children) =>
     html`
       <button
         is="vl-button"
-        ?disabled=${props.disabled}
-        ?data-vl-error=${props.error}
-        ?data-vl-block=${props.block}
-        ?data-vl-large=${props.large}
-        ?data-vl-wide=${props.wide}
-        ?data-vl-narrow=${props.narrow}
-        ?data-vl-loading=${props.loading}
-        ?data-vl-secondary=${props.secondary}
-        ?data-vl-tertiary=${props.tertiary}
+        ?disabled=${wrapProps.disabled}
+        ?data-vl-error=${wrapProps.error}
+        ?data-vl-block=${wrapProps.block}
+        ?data-vl-large=${wrapProps.large}
+        ?data-vl-wide=${wrapProps.wide}
+        ?data-vl-narrow=${wrapProps.narrow}
+        ?data-vl-loading=${wrapProps.loading}
+        ?data-vl-secondary=${wrapProps.secondary}
+        ?data-vl-tertiary=${wrapProps.tertiary}
       >
         ${children}
       </button>

@@ -1,6 +1,6 @@
-import { VlMapLayer } from "../../layer";
-import { VlMapLayerStyle } from "../../layer-style";
-import { OlVectorLayer } from "vl-mapactions/dist/vl-mapactions.js";
+import OlVectorLayer from 'ol/layer/Vector';
+import { VlMapLayer } from '../../layer';
+import { VlMapLayerStyle } from '../../layer-style';
 
 /**
  * VlMapVectorLayer style changed event
@@ -23,7 +23,7 @@ import { OlVectorLayer } from "vl-mapactions/dist/vl-mapactions.js";
 export class VlMapVectorLayer extends VlMapLayer {
   static get EVENTS() {
     return {
-      styleChanged: "style-changed",
+      styleChanged: 'style-changed',
     };
   }
 
@@ -57,11 +57,9 @@ export class VlMapVectorLayer extends VlMapLayer {
   set style(style) {
     if (style instanceof VlMapLayerStyle) {
       this._styles.push(style);
-      this._layer.setStyle((feature) => {
-        return this._styles
-          .map((style) => style.style(feature))
-          .filter((style) => style != null);
-      });
+      this._layer.setStyle((feature) =>
+        this._styles.map((style) => style.style(feature)).filter((style) => style != null),
+      );
     } else {
       this._styles = [];
       this._layer.setStyle(style);
@@ -70,8 +68,8 @@ export class VlMapVectorLayer extends VlMapLayer {
       new CustomEvent(VlMapVectorLayer.EVENTS.styleChanged, {
         bubbles: true,
         composed: true,
-        detail: { style: style },
-      })
+        detail: { style },
+      }),
     );
   }
 
@@ -85,7 +83,7 @@ export class VlMapVectorLayer extends VlMapLayer {
       maxResolution: this._maxResolution,
       visible: this._visible,
     });
-    layer.set("id", VlMapLayer._counter);
+    layer.set('id', VlMapLayer._counter);
     return layer;
   }
 }

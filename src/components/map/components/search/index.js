@@ -1,9 +1,9 @@
-import { vlElement, define } from "../../../../utils/core";
-import "../../../search";
-import "../select-location";
-import { OlOverlay } from "vl-mapactions/dist/vl-mapactions.js";
-import LambertCoordinaat from "../../utils/lambert-coordinaat";
-import styles from "./styles.scss";
+import OlOverlay from 'ol/Overlay';
+import { vlElement, define } from '../../../../utils/core';
+import '../../../search';
+import '../select-location';
+import LambertCoordinaat from '../../utils/lambert-coordinaat';
+import styles from './styles.scss';
 
 /**
  * VlMapSearch
@@ -24,12 +24,7 @@ import styles from "./styles.scss";
  */
 class VlMapSearch extends vlElement(HTMLElement) {
   static get _observedAttributes() {
-    return [
-      "placeholder",
-      "search-placeholder",
-      "search-empty-text",
-      "search-no-results-text",
-    ];
+    return ['placeholder', 'search-placeholder', 'search-empty-text', 'search-no-results-text'];
   }
 
   constructor() {
@@ -49,7 +44,7 @@ class VlMapSearch extends vlElement(HTMLElement) {
   }
 
   get _selectElement() {
-    return this._shadow.querySelector("select");
+    return this._shadow.querySelector('select');
   }
 
   bindMap(map) {
@@ -70,21 +65,21 @@ class VlMapSearch extends vlElement(HTMLElement) {
   }
 
   _configure() {
-    customElements.whenDefined("vl-map").then(() => {
+    customElements.whenDefined('vl-map').then(() => {
       if (this.parentNode && this.parentNode.map) {
         this._map = this.parentNode._shadow.host;
         this._map.map.addOverlay(
           new OlOverlay({
-            className: "vl-map-search__overlaycontainer",
+            className: 'vl-map-search__overlaycontainer',
             element: this,
-          })
+          }),
         );
       }
     });
   }
 
   _addSelectChangeListener() {
-    this._selectElement.addEventListener("change", (e) => {
+    this._selectElement.addEventListener('change', (e) => {
       if (e.target.location) {
         e.target.location.then((location) => {
           if (this._onSelect) {
@@ -98,35 +93,30 @@ class VlMapSearch extends vlElement(HTMLElement) {
   }
 
   _placeholderChangedCallback(oldValue, newValue) {
-    this._dispatchSelectAttribute("placeholder", newValue);
+    this._dispatchSelectAttribute('placeholder', newValue);
   }
 
   _searchPlaceholderChangedCallback(oldValue, newValue) {
-    this._dispatchSelectAttribute("search-placeholder", newValue);
+    this._dispatchSelectAttribute('search-placeholder', newValue);
   }
 
   _searchEmptyTextChangedCallback(oldValue, newValue) {
-    this._dispatchSelectAttribute("search-empty-text", newValue);
+    this._dispatchSelectAttribute('search-empty-text', newValue);
   }
 
   _searchNoResultsTextChangedCallback(oldValue, newValue) {
-    this._dispatchSelectAttribute("search-no-results-text", newValue);
+    this._dispatchSelectAttribute('search-no-results-text', newValue);
   }
 
   _dispatchSelectAttribute(attribute, value) {
     if (value != undefined) {
-      this._selectElement.setAttribute(
-        `${VlMapSearch.attributePrefix}${attribute}`,
-        value
-      );
+      this._selectElement.setAttribute(`${VlMapSearch.attributePrefix}${attribute}`, value);
     } else {
-      this._selectElement.removeAttribute(
-        `${VlMapSearch.attributePrefix}${attribute}`
-      );
+      this._selectElement.removeAttribute(`${VlMapSearch.attributePrefix}${attribute}`);
     }
   }
 }
 
 export { LambertCoordinaat, VlMapSearch };
 
-define("vl-map-search", VlMapSearch);
+define('vl-map-search', VlMapSearch);

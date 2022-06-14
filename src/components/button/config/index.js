@@ -1,9 +1,6 @@
-import { CATEGORIES } from '../../../../.storybook/utils';
+import { CATEGORIES, TYPES } from '../../../../.storybook/utils';
 
-export const args = {
-  content: 'Button',
-  secondary: false,
-  tertiary: false,
+export const sharedButtonArgs = {
   loading: false,
   disabled: false,
   error: false,
@@ -13,29 +10,17 @@ export const args = {
   narrow: false,
 };
 
-export const argTypes = {
-  secondary: {
-    name: 'data-vl-secondary',
-    type: { summary: 'boolean' },
-    description: 'Attribuut wordt gebruikt in combinatie met een gewone knop om alternatieve acties te voorzien.',
-    table: {
-      defaultValue: { summary: 'false' },
-      category: CATEGORIES.ATTRIBUTES,
-    },
-  },
-  tertiary: {
-    name: 'data-vl-tertiary',
-    type: { summary: 'boolean' },
-    description:
-      'Attribuut wordt gebruikt in combinatie met gewone en secondary knoppen om alternatieve acties te voorzien.',
-    table: {
-      defaultValue: { summary: 'false' },
-      category: CATEGORIES.ATTRIBUTES,
-    },
-  },
+export const buttonArgs = {
+  content: 'Button',
+  secondary: false,
+  tertiary: false,
+  ...sharedButtonArgs,
+};
+
+export const sharedButtonArgTypes = {
   disabled: {
-    type: { summary: 'boolean' },
-    description: 'Attribuut wordt gebruikt om aan de gebruiker aan te duiden dat de functionaliteit niet actief is.',
+    type: { summary: TYPES.BOOLEAN },
+    description: 'Used to indicate to the user that the functionality is not active.',
     table: {
       defaultValue: { summary: 'false' },
       category: CATEGORIES.ATTRIBUTES,
@@ -43,8 +28,8 @@ export const argTypes = {
   },
   error: {
     name: 'data-vl-error',
-    type: { summary: 'boolean' },
-    description: 'Attribuut wordt gebruikt om het belang of de gevolgen van een actie te benadrukken.',
+    type: { summary: TYPES.BOOLEAN },
+    description: 'Used to emphasize the importance or consequences of an action.',
     table: {
       defaultValue: { summary: 'false' },
       category: CATEGORIES.ATTRIBUTES,
@@ -52,9 +37,9 @@ export const argTypes = {
   },
   block: {
     name: 'data-vl-block',
-    type: { summary: 'boolean' },
+    type: { summary: TYPES.BOOLEAN },
     description:
-      'Attribuut wordt gebruikt om ervoor te zorgen dat de knop getoond wordt als een block element en bijgevol de breedte van de parent zal aannemen.',
+      'Used to ensure that the button is shown as a block element and will therefore take the width of the parent.',
     table: {
       defaultValue: { summary: 'false' },
       category: CATEGORIES.ATTRIBUTES,
@@ -62,8 +47,8 @@ export const argTypes = {
   },
   large: {
     name: 'data-vl-large',
-    type: { summary: 'boolean' },
-    description: 'Attribuut wordt gebruikt om de aandacht van de gebruiker te trekken door de font-size te vergroten.',
+    type: { summary: TYPES.BOOLEAN },
+    description: "Used to grab the user's attention by increasing the font size.",
     table: {
       defaultValue: { summary: 'false' },
       category: CATEGORIES.ATTRIBUTES,
@@ -71,8 +56,8 @@ export const argTypes = {
   },
   wide: {
     name: 'data-vl-wide',
-    type: { summary: 'boolean' },
-    description: 'Attribuut zorgt ervoor dat de knop breder op het scherm zal getoond worden.',
+    type: { summary: TYPES.BOOLEAN },
+    description: 'Makes the button appear wider on the screen.',
     table: {
       defaultValue: { summary: 'false' },
       category: CATEGORIES.ATTRIBUTES,
@@ -80,8 +65,8 @@ export const argTypes = {
   },
   narrow: {
     name: 'data-vl-narrow',
-    type: { summary: 'boolean' },
-    description: 'Attribuut zorgt ervoor dat de knop smaller op het scherm zal getoond worden.',
+    type: { summary: TYPES.BOOLEAN },
+    description: 'Causes the button to appear narrower on the screen.',
     table: {
       defaultValue: { summary: 'false' },
       category: CATEGORIES.ATTRIBUTES,
@@ -89,8 +74,8 @@ export const argTypes = {
   },
   loading: {
     name: 'data-vl-loading',
-    type: { summary: 'boolean' },
-    description: 'Attribuut wordt gebruikt om aan de gebruiker aan te geven dat zijn actie momenteel verwerkt wordt.',
+    type: { summary: TYPES.BOOLEAN },
+    description: 'Used to indicate to the user that their action is currently being processed.',
     table: {
       defaultValue: { summary: 'false' },
       category: CATEGORIES.ATTRIBUTES,
@@ -98,6 +83,28 @@ export const argTypes = {
   },
   content: {
     name: 'content (for demo purposes)',
-    type: { summary: 'string' },
+    type: { summary: TYPES.STRING },
   },
+};
+
+export const buttonArgTypes = {
+  secondary: {
+    name: 'data-vl-secondary',
+    type: { summary: TYPES.BOOLEAN },
+    description: 'Used in conjunction with a regular button to provide alternate actions.',
+    table: {
+      defaultValue: { summary: 'false' },
+      category: CATEGORIES.ATTRIBUTES,
+    },
+  },
+  tertiary: {
+    name: 'data-vl-tertiary',
+    type: { summary: TYPES.BOOLEAN },
+    description: 'Used in conjunction with regular and secondary buttons to provide alternate actions.',
+    table: {
+      defaultValue: { summary: 'false' },
+      category: CATEGORIES.ATTRIBUTES,
+    },
+  },
+  ...sharedButtonArgTypes,
 };

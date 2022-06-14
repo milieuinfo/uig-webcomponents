@@ -1,47 +1,47 @@
-import { VlElement } from "../../../../../../utils/test";
+import { VlElement } from '../../../../../../utils/test';
 
-export class VlMapLayerStyle extends VlElement {
+export class VlTestMapLayerStyle extends VlElement {
   async getColor() {
-    return this.getAttribute("color");
+    return this.getAttribute('color');
   }
 
   async getBorderColor() {
-    return this.getAttribute("border-color");
+    return this.getAttribute('border-color');
   }
 
   async getBorderSize() {
-    return this.getAttribute("border-size");
+    return this.getAttribute('border-size');
   }
 
   async getTextColor() {
-    return this.getAttribute("text-color");
+    return this.getAttribute('text-color');
   }
 
   async getTextBackgroundColor() {
-    return this.getAttribute("text-background-color");
+    return this.getAttribute('text-background-color');
   }
 
   async getTextSize() {
-    return this.getAttribute("text-size");
+    return this.getAttribute('text-size');
   }
 
   async getTextBorderColor() {
-    return this.getAttribute("text-border-color");
+    return this.getAttribute('text-border-color');
   }
 
   async getTextBorderSize() {
-    return this.getAttribute("text-border-size");
+    return this.getAttribute('text-border-size');
   }
 
   async getTextFeatureAttributeName() {
-    return this.getAttribute("text-feature-attribute-name");
+    return this.getAttribute('text-feature-attribute-name');
   }
 
   async getTextOffsetX() {
-    return this.getAttribute("text-offset-x");
+    return this.getAttribute('text-offset-x');
   }
 
   async getTextOffsetY() {
-    return this.getAttribute("text-offset-y");
+    return this.getAttribute('text-offset-y');
   }
 }

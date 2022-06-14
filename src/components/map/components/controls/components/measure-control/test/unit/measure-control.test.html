@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+    <script type="module" src="../../../../../../../../../lib/components/map/index.js"></script>
+  </head>
+  <body>
+    <test-fixture id="vl-map-measure-control-fixture">
+      <template>
+        <vl-map>
+          <vl-map-action-controls>
+            <vl-map-measure-control></vl-map-measure-control>
+          </vl-map-action-controls>
+
+          <vl-map-features-layer>
+            <vl-map-measure-action></vl-map-measure-action>
+          </vl-map-features-layer>
+        </vl-map>
+      </template>
+    </test-fixture>
+
+    <script type="module">
+      const should = chai.should();
+
+      suite('vl-map-measure-control', () => {
+        setup((done) => {
+          customElements.whenDefined('vl-map-measure-control').then(() => done());
+        });
+
+        test('the measure control is configured correctly', () => {
+          const element = fixture('vl-map-measure-control-fixture');
+          const vlMapMeasureControlElement = element.querySelector('vl-map-measure-control');
+
+          should.exist(vlMapMeasureControlElement);
+          expect(vlMapMeasureControlElement.controlElement.tagName.toLowerCase() === 'vl-toggle-button').to.be.true;
+          expect(vlMapMeasureControlElement.identifier === 'measure').to.be.true;
+          expect(vlMapMeasureControlElement.type === 'action').to.be.true;
+        });
+
+        test('the measure control will be added to the map', async () => {
+          const element = fixture('vl-map-measure-control-fixture');
+          await element.ready;
+
+          const { map } = element.closest('vl-map');
+          const controls = map.getControls().getArray();
+
+          expect(
+            !!controls.find((control) => control.get('element') && control.get('element').identifier === 'measure'),
+          ).to.be.true;
+        });
+
+        test('the measure action of the measure control can be requested', async () => {
+          const element = fixture('vl-map-measure-control-fixture');
+          await element.ready;
+
+          const mapElement = element.closest('vl-map');
+          const measureControl = mapElement.querySelector(`vl-map-measure-control`);
+
+          const measureAction = measureControl.getAction();
+          expect(!!measureAction);
+          expect(measureAction.element.identifier === measureControl.identifier).to.be.true;
+        });
+
+        test('the measure control can be activated and deactivated', async () => {
+          const element = fixture('vl-map-measure-control-fixture');
+          await element.ready;
+
+          const mapElement = element.closest('vl-map');
+          const measureControl = mapElement.querySelector(`vl-map-measure-control`);
+
+          expect(measureControl.controlElement.active === true).to.be.false;
+
+          measureControl.setActive(true);
+          expect(measureControl.controlElement.active === true).to.be.true;
+
+          measureControl.setActive(false);
+          expect(measureControl.controlElement.active === true).to.be.false;
+        });
+
+        test('the measure control can be disabled and enabled', async () => {
+          const element = fixture('vl-map-measure-control-fixture');
+          await element.ready;
+
+          const mapElement = element.closest('vl-map');
+          const measureControl = mapElement.querySelector(`vl-map-measure-control`);
+
+          expect(measureControl.controlElement.disabled).to.be.false;
+
+          measureControl.setDisabled(true);
+          expect(measureControl.controlElement.disabled).to.be.true;
+
+          measureControl.setDisabled(false);
+          expect(measureControl.controlElement.disabled).to.be.false;
+        });
+      });
+    </script>
+  </body>
+</html>

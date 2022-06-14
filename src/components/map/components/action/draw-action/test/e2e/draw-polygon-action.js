@@ -1,6 +1,6 @@
-import { VlMapDrawAction } from "./draw-action.js";
+import { VlTestMapDrawAction } from './draw-action.js';
 
-export class VlMapDrawPolygonAction extends VlMapDrawAction {
+export class VlTestMapDrawPolygonAction extends VlTestMapDrawAction {
   async draw(...coordinates) {
     await super.draw(async () => {
       coordinates =
@@ -16,17 +16,11 @@ export class VlMapDrawPolygonAction extends VlMapDrawAction {
       const actions = this.driver.actions();
       for (let i = 0; i < coordinates.length; i++) {
         const coordinate = coordinates[i];
-        const pixel = await map.getPixelFromCoordinate([
-          coordinate.x,
-          coordinate.y,
-        ]);
+        const pixel = await map.getPixelFromCoordinate([coordinate.x, coordinate.y]);
         if (i + 1 < coordinates.length) {
           await actions.move({ origin: map, x: pixel.x, y: pixel.y }).click();
         } else {
-          await actions
-            .move({ origin: map, x: pixel.x, y: pixel.y })
-            .doubleClick()
-            .perform();
+          await actions.move({ origin: map, x: pixel.x, y: pixel.y }).doubleClick().perform();
         }
       }
     });

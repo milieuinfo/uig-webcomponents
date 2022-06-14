@@ -1,10 +1,8 @@
-import { define } from "../../../../../../utils/core";
-import { VlMapVectorLayer } from "../../vector-layer";
-import {
-  OlVectorSource,
-  OlLoadingstrategy,
-  OlGML2,
-} from "vl-mapactions/dist/vl-mapactions.js";
+import OlVectorSource from 'ol/source/Vector';
+import * as OlLoadingstrategy from 'ol/loadingstrategy';
+import OlGML2 from 'ol/format/GML2';
+import { define } from '../../../../../../utils/core';
+import { VlMapVectorLayer } from '../../vector-layer';
 
 /**
  * VlMapWfsLayer
@@ -28,17 +26,17 @@ export class VlMapWfsLayer extends VlMapVectorLayer {
   }
 
   get _url() {
-    const url = this.getAttribute("url");
+    const url = this.getAttribute('url');
     if (!url) {
-      throw new Error("URL not defined");
+      throw new Error('URL not defined');
     }
     return new URL(url);
   }
 
   get _layers() {
-    const layers = this.getAttribute("layers");
+    const layers = this.getAttribute('layers');
     if (!layers) {
-      throw new Error("Layers not defined");
+      throw new Error('Layers not defined');
     }
     return layers;
   }
@@ -53,14 +51,14 @@ export class VlMapWfsLayer extends VlMapVectorLayer {
 
   __getWfsUrl(extent, resolution, projection) {
     const url = this._url;
-    const searchParams = url.searchParams;
-    searchParams.set("service", "WFS");
-    searchParams.set("request", "GetFeature");
-    searchParams.set("typename", this._layers);
-    searchParams.set("bbox", extent.join(","));
-    searchParams.set("srsname", projection.getCode());
-    searchParams.set("outputFormat", this.__wfsOutputFormat);
-    searchParams.set("version", this.__wfsVersion);
+    const { searchParams } = url;
+    searchParams.set('service', 'WFS');
+    searchParams.set('request', 'GetFeature');
+    searchParams.set('typename', this._layers);
+    searchParams.set('bbox', extent.join(','));
+    searchParams.set('srsname', projection.getCode());
+    searchParams.set('outputFormat', this.__wfsOutputFormat);
+    searchParams.set('version', this.__wfsVersion);
     return url;
   }
 
@@ -73,12 +71,12 @@ export class VlMapWfsLayer extends VlMapVectorLayer {
   }
 
   get __wfsOutputFormat() {
-    return "GML2";
+    return 'GML2';
   }
 
   get __wfsVersion() {
-    return "2.0.0";
+    return '2.0.0';
   }
 }
 
-define("vl-map-wfs-layer", VlMapWfsLayer);
+define('vl-map-wfs-layer', VlMapWfsLayer);

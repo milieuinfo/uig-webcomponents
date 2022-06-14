@@ -1,9 +1,7 @@
-import { define } from "../../../../../../utils/core";
-import { VlMapDrawAction } from "../../draw-action";
-import {
-  VlDrawAction,
-  OlGeometryType,
-} from "vl-mapactions/dist/vl-mapactions.js";
+import GeometryType from 'ol/geom/GeometryType';
+import { define } from '../../../../../../utils/core';
+import { VlMapDrawAction } from '../../draw-action';
+import { VlDrawAction } from '../../../../actions/draw-action';
 
 /**
  * VlMapDrawPointAction
@@ -18,13 +16,8 @@ import {
  */
 export class VlMapDrawPointAction extends VlMapDrawAction {
   _createAction(layer) {
-    return new VlDrawAction(
-      layer,
-      OlGeometryType.POINT,
-      this._callback,
-      this.__drawOptions
-    );
+    return new VlDrawAction(layer, GeometryType.POINT, this._callback, this.__drawOptions);
   }
 }
 
-define("vl-map-draw-point-action", VlMapDrawPointAction);
+define('vl-map-draw-point-action', VlMapDrawPointAction);
