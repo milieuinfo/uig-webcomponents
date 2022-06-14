@@ -11,7 +11,7 @@ import '../input-field';
 import '../action-group';
 import '../link';
 import '../icon';
-import '../checkbox';
+import '../../legacy/checkbox';
 import titleStyles from '../titles/styles.scss';
 import gridStyles from '../grid/styles.scss';
 import buttonStyles from '../button/styles.scss';

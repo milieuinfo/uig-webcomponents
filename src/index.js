@@ -73,7 +73,6 @@ export {
 } from './components/map';
 export { VlTemplate } from './components/template';
 export { VlContentHeader } from './components/content-header';
-export { VlCheckbox } from './components/checkbox';
 export { VlSelect } from './components/select';
 export { VlSideSheet } from './components/side-sheet';
 export { VlTooltip } from './components/tooltip';
@@ -97,3 +96,6 @@ export { VlTabsPane } from './legacy/tabs/components/vl-tabs-pane';
 export { VlTabSection } from './legacy/tabs/components/vl-tab-section';
 export { VlTab } from './legacy/tabs/components/vl-tab';
 export { VlUpload } from './legacy/upload';
+export { VlToaster } from './legacy/toaster';
+export { VlCheckbox } from './legacy/checkbox';
+export { VlInfotext } from './legacy/infotext';
