@@ -19,7 +19,10 @@ export class VlAutocomplete extends LitElement {
         attribute: "data-min-chars",
         reflect: true,
       },
-      fulllist: { type: Array },
+      staticList: {
+        type: Array,
+        attribute: "data-static-list"
+      },
       opened: { type: Boolean, reflect: true },
       firstValidItemIndex: { type: Number, reflect: true},
       maxSuggestions: {
@@ -59,7 +62,7 @@ export class VlAutocomplete extends LitElement {
     return this._inputEl;
   }
 
-  set fulllist(value) {
+  set staticList(value) {
     this.items = value;
   }
 
@@ -274,7 +277,7 @@ export class VlAutocomplete extends LitElement {
   _onFocus(ev) {
     console.log("on focus!");
     this._blur = false;
-    this._matches.length && this.open();
+    //this._matches.length && this.open();
   }
 
   _onBlur(ev) {
@@ -309,30 +312,37 @@ export class VlAutocomplete extends LitElement {
     console.log(`suggestions:${  suggestions}`);
     this._matches = suggestions || [];
 
-    this._groupedMatches = new Map();
-    if(this._matches.length > 0) {
-      if (this.groupBy != null) {
-        this._matches.forEach(item => {
-          const groupByValue = item[this.groupBy];
-          console.log("groupByValue: " + groupByValue);
-          var group = this._groupedMatches.get(groupByValue);
-          if (group == null) {
-            group = [];
-            this._groupedMatches.set(groupByValue, group);
-          }
-          group[group.length] = item;
-        });
-        console.log(`suggest - _groupedMatches: ${this._groupedMatches.size}`);
-        this.firstValidItemIndex = 1;
+    var searchTerm = this.contentElement.value;
+    if(searchTerm.length >= this.minChars) {
+
+      this._matches = suggestions || [];
+
+      this._groupedMatches = new Map();
+      if (this._matches.length > 0) {
+        if (this.groupBy != null) {
+          this._matches.forEach(item => {
+            const groupByValue = item[this.groupBy];
+            console.log("groupByValue: " + groupByValue);
+            var group = this._groupedMatches.get(groupByValue);
+            if (group == null) {
+              group = [];
+              this._groupedMatches.set(groupByValue, group);
+            }
+            group[group.length] = item;
+          });
+          console.log(`suggest - _groupedMatches: ${this._groupedMatches.size}`);
+          this.firstValidItemIndex = 1;
+        } else {
+          this.firstValidItemIndex = 0;
+        }
       } else {
-        this.firstValidItemIndex = 0;
+        this._matches = [];
+        this._matches.push({value: null, title: "Sorry, No matches"});
+        this.firstValidItemIndex = null;
       }
     }
-    else
-    {
+    else {
       this._matches = [];
-      this._matches.push({ value: null, title: "Sorry, No matches" });
-      this.firstValidItemIndex = null;
     }
 
     this._matches.length ? this.open() : this.close();

@@ -20,8 +20,8 @@ export default {
 //--------------------------
 
 export const Default = () => html`
-  <vl-autocomplete data-min-chars="1"
-      fulllist='[
+  <vl-autocomplete data-min-chars="1" 
+                   data-static-list='[
               {"title":"hello", "value": "1"},
               {"title":"hi", "value": "2"},
               {"title":"How are you", "value": "3" },
@@ -30,8 +30,8 @@ export const Default = () => html`
 //--------------------------
 
 export const WithCustomInputField = () => html`
-  <vl-autocomplete data-min-chars="1"
-      fulllist='[
+  <vl-autocomplete data-min-chars="1" 
+                   data-static-list='[
               {"title":"hello", "value": "1"},
               {"title":"hi", "value": "2"},
               {"title":"How are you", "value": "3" },
