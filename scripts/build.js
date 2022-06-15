@@ -1,9 +1,6 @@
 import path from 'path';
 import fs from 'fs-extra';
 import sass from 'sass';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
