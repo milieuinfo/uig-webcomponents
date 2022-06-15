@@ -1,9 +1,7 @@
-import { html, css, LitElement, unsafeCSS, nothing} from "lit";
+import { html, css, LitElement, unsafeCSS} from "lit";
 import styles from './styles.scss';
 
 const MAX_MATCHES = 15;
-
-const NO_RESULTS_MESSAGE_TIME = 5;
 
 export class VlAutocomplete extends LitElement {
   static get styles() {
@@ -23,12 +21,24 @@ export class VlAutocomplete extends LitElement {
       },
       fulllist: { type: Array },
       opened: { type: Boolean, reflect: true },
-      maxSuggestions: Number,
+      firstValidItemIndex: { type: Number, reflect: true},
+      maxSuggestions: {
+        type: Number,
+        attribute: "data-max-suggestions",
+      },
+      groupBy: {
+        type: String,
+        attribute: "data-group-by",
+      },
+      placeholder: {
+        type: String,
+        attribute: "placeholder"
+      },
       dataFetcher: {
         type: Function,
       },
       captionFormatter: {
-        type: Function,
+        type: Function
       }
     };
   }
@@ -63,6 +73,8 @@ export class VlAutocomplete extends LitElement {
     this._eventReferences = {};
 
     this._matches = [];
+    this._groupedMatches = new Map();
+    this.firstValidItemIndex = null;
 
     this.minChars = 3;
 
@@ -76,13 +88,21 @@ export class VlAutocomplete extends LitElement {
       console.log(`Default dataFetcher: ${  searchTerm}`);
     };
 
-    this.captionFormatter = (item) => item.title;
+    this.captionFormatter = (item) => {
+      if(item.subtitle != null) {
+        return html`<span class="vl-autocomplete__cta__title">${item.title}</span><span
+            class="vl-autocomplete__cta__sub">${item.subtitle}</span>`;
+      }
+      else {
+        return html`<span class="vl-autocomplete__cta__title">${item.title}</span>`;
+      }
+    }
   }
 
   firstUpdated() {
     this._suggestionEl = this.shadowRoot.getElementById("suggestions");
-    //this._suggestionEl.style.width =
-    //    this.contentElement.getBoundingClientRect().width + "px";
+    this._suggestionEl.style.width =
+        this.contentElement.getBoundingClientRect().width + "px";
 
     this._eventReferences.onFocus = this._onFocus.bind(this);
     this._eventReferences.onBlur = this._onBlur.bind(this);
@@ -109,16 +129,20 @@ export class VlAutocomplete extends LitElement {
   updated(changed) {
     console.log("updated!!");
     if (
-        changed.has("opened") &&
+        (changed.has("opened") || changed.has("firstValidItemIndex")) &&
         this.opened &&
         this._suggestionEl.childElementCount
     ) {
       for (let item of this._suggestionEl.children) {
         item.classList.remove("vl-autocomplete__cta--focus");
       }
-      this._highlightedEl = this._suggestionEl.children[0];
-      this._highlightedEl.classList.add("vl-autocomplete__cta--focus");
-      this._highlightedEl.scrollIntoView();
+
+      console.log(`this.firstValidItemIndex: ${  this.firstValidItemIndex}`);
+
+      if(this.firstValidItemIndex != null) {
+        this._highlightedEl = this._suggestionEl.children[this.firstValidItemIndex];
+        this._highlightedEl.classList.add("vl-autocomplete__cta--focus");
+      }
     }
   }
 
@@ -144,7 +168,6 @@ export class VlAutocomplete extends LitElement {
         this._eventReferences.onBlur
     );
   }
-
 
   _onKeyDown(ev) {
     if (ev.key === "ArrowUp" || ev.key === "ArrowDown") {
@@ -219,23 +242,10 @@ export class VlAutocomplete extends LitElement {
             )
 
             .slice(0, this.maxSuggestions); // Limit results
-
-    if (suggestions.length === 0) {
-      suggestions = [];
-      suggestions.push({ value: null, title: "Sorry, No matches" });
-    }
-
     this.suggest(suggestions);
   }
 
   fetchDataResult(suggestions) {
-    console.log(suggestions);
-
-    if (suggestions.length === 0) {
-      suggestions = [];
-      suggestions.push({ value: null, title: "Sorry, No matches" });
-    }
-
     this.suggest(suggestions);
   }
 
@@ -298,18 +308,80 @@ export class VlAutocomplete extends LitElement {
     console.log("suggest");
     console.log(`suggestions:${  suggestions}`);
     this._matches = suggestions || [];
+
+    this._groupedMatches = new Map();
+    if(this._matches.length > 0) {
+      if (this.groupBy != null) {
+        this._matches.forEach(item => {
+          const groupByValue = item[this.groupBy];
+          console.log("groupByValue: " + groupByValue);
+          var group = this._groupedMatches.get(groupByValue);
+          if (group == null) {
+            group = [];
+            this._groupedMatches.set(groupByValue, group);
+          }
+          group[group.length] = item;
+        });
+        console.log(`suggest - _groupedMatches: ${this._groupedMatches.size}`);
+        this.firstValidItemIndex = 1;
+      } else {
+        this.firstValidItemIndex = 0;
+      }
+    }
+    else
+    {
+      this._matches = [];
+      this._matches.push({ value: null, title: "Sorry, No matches" });
+      this.firstValidItemIndex = null;
+    }
+
     this._matches.length ? this.open() : this.close();
+
     this.requestUpdate();
   }
 
-  autocomplete(value, title) {
-    this.contentElement.value = value;
+  generateItems()
+  {
+    if(this.groupBy && this._groupedMatches.size > 0) {
+      const liElements = [];
+
+      this._groupedMatches.forEach((items, groupName, map) => {
+        liElements.push(html`
+        <li class="vl-autocomplete__cta group">
+            ${groupName}
+        </li>`);
+        items.forEach(item => liElements.push(this.generateItem(item)));
+      })
+
+      return html`${liElements}`;
+    }
+    else {
+      return html`${this._matches.map(item => this.generateItem(item))}`
+    }
+  }
+
+  generateItem(item)
+  {
+    return html`
+        <li @click=${ev =>
+        this.autocomplete(item.title, item.value ? item.value : null)} class="vl-autocomplete__cta" role="option"
+            tabindex="-1"
+            data-vl-index="1" data-vl-record="" data-vl-focus="">
+          ${this.formatCaption(item)}
+        </li>`;
+  }
+
+  autocomplete(title, value) {
+
+    if(value == null) return;
+
+    this.contentElement.value = title;
 
     this.close();
 
     this.dispatchEvent(
         new CustomEvent("selected-autocomplete", {
-          detail: { value, title },
+          detail: { title, value },
           composed: true,
           bubbles: true
         })
@@ -317,59 +389,23 @@ export class VlAutocomplete extends LitElement {
   }
 
   render() {
-
     return html`
-      
-      <!--
       <style>
-        ul {
-          position: absolute;
-          margin: 0;
-          padding: 0;
-          z-index: 5000;
-          background: white;
-          display: block;
-          list-style-type: none;
-          width: 100% !important;
-          border: 1px solid black;
+        li.group {
+          font-weight: bold;
         }
 
-        li {
-          padding: 10px;
-        }
-
-        li.active {
-          background: gray;
-        }
-
-        [hidden] {
-          display: none;
+        .js-vl-autocomplete div.vl-autocomplete__list-wrapper, .js-vl-autocomplete div.autocomplete__list-wrapper  {
+          max-height: 100vh;
         }
       </style>
-      -->
-      <!--
-     
-
-      <slot id="dropdown-input">
-        <input id="defaultInput" type="text" />
-      </slot>
-
-      <ul
-          id="suggestions"
-          ?hidden=${!this.opened}
-          @mouseenter=${this._handleItemMouseEnter}
-          @mouseleave=${this._handleItemMouseLeave}
-      >
-        ${this._matches.map(item => html`<li @click=${ev =>
-            this.autocomplete(item.title, item.value ? item.value : null)}> ${this.formatCaption(item)}</li>`
-        )}
-      </ul>
-      -->
-
-      <div class="js-vl-autocomplete" id="vl-autocomplete-1" data-vl-autocomplete="" data-vl-min-chars="3" 
+      <div class="js-vl-autocomplete" data-vl-autocomplete="" data-vl-min-chars="3" 
            data-vl-id="n_l4ccf1zt_60ntk4812m6ubixdrvocg" data-vl-autocomplete-dressed="true" data-vl-loading="false">
         <slot id="dropdown-input">
-            <input type="text" name="vl-autocomplete-1-input-name" id="defaultInput" placeholder="Programmeertaal" class="vl-input-field vl-input-field--block" aria-describedby="vl-autocomplete-1-hint" autocomplete="off" data-vl-focus="" data-vl-input="" autocapitalize="off" spellcheck="off" aria-autocomplete="list" aria-owns="autocomplete-n_l4ccf1zt_60ntk4812m6ubixdrvocg" aria-controls="autocomplete-n_l4ccf1zt_60ntk4812m6ubixdrvocg" aria-haspopup="listbox">
+            <input type="text" name="vl-autocomplete-1-input-name" id="defaultInput" placeholder="${this.placeholder}" class="vl-input-field vl-input-field--block" 
+                   aria-describedby="vl-autocomplete-1-hint" autocomplete="off" data-vl-focus="" data-vl-input="" autocapitalize="off" spellcheck="off" 
+                   aria-autocomplete="list" aria-owns="autocomplete-n_l4ccf1zt_60ntk4812m6ubixdrvocg" aria-controls="autocomplete-n_l4ccf1zt_60ntk4812m6ubixdrvocg" 
+                   aria-haspopup="listbox">
         </slot>
         <div class="vl-autocomplete__loader" data-vl-show="false" data-vl-loader="" aria-hidden="true"></div>
         <div class="vl-autocomplete"
@@ -377,115 +413,15 @@ export class VlAutocomplete extends LitElement {
              @mouseenter=${this._handleItemMouseEnter}
              @mouseleave=${this._handleItemMouseLeave} 
              data-vl-content="" aria-hidden="false" data-vl-show="true" aria-labelledby="vl-autocomplete-1-input">
-          <div class="vl-autocomplete__list-wrapper">
+          <div class="vl-autocomplete__list-wrapper uig-autocomplete__list-wrapper">
             <ul id="suggestions" class="vl-autocomplete__list" data-vl-records="" role="listbox">
-              ${this._matches.map(item => html`<li @click=${ev =>
-                  this.autocomplete(item.title, item.value ? item.value : null)} class="vl-autocomplete__cta" role="option" tabindex="-1" data-vl-index="1" data-vl-record="" data-vl-focus="" data-vl-value="Dit is een zonder subtitel" id="vl-autocomplete__cta-1">
-                <span class="vl-autocomplete__cta__title">${this.formatCaption(item)}</span>
-              </li>`
-              )}
+              ${this.generateItems()}
             </ul>
           </div>
         </div>
-        <!--
-        <div class="vl-autocomplete" data-vl-content="" aria-hidden="false" data-vl-show="true" aria-labelledby="vl-autocomplete-1-input">
-        </div>
-        <div class="vl-autocomplete__a11y__wrapper vl-u-visually-hidden" aria-live="polite" role="status">Er zijn 6 resultaten beschikbaar</div>
-        -->
       </div>
     `;
   }
 }
-/*
-
-
-
-<div class="vl-autocomplete" data-vl-content="" aria-hidden="false" data-vl-show="true" aria-labelledby="vl-autocomplete-1-input">
-<div class="vl-autocomplete__list-wrapper"><ul class="vl-autocomplete__list" data-vl-records="" role="listbox" id="autocomplete-m_l4ce24xa_lgw2j7g8f2ovfhjafyfbc"><li class="vl-autocomplete__cta" role="option" tabindex="-1" data-vl-index="1" data-vl-record="" data-vl-focus="" data-vl-value="Dit is een zonder subtitel" id="vl-autocomplete__cta-1"><span class="vl-autocomplete__cta__title"><mark>Dit</mark> is zonder subtitel</span></li><li class="vl-autocomplete__cta" role="option" tabindex="-1" data-vl-index="2" data-vl-record="" data-vl-focus="" data-vl-value="Dit is een programmeertaal 2" id="vl-autocomplete__cta-2"><span class="vl-autocomplete__cta__title"><mark>Dit</mark> is een programmeertaal 2</span><span class="vl-autocomplete__cta__sub">Dit is een subtitel van de programmeertaal</span></li><li class="vl-autocomplete__cta" role="option" tabindex="-1" data-vl-index="3" data-vl-record="" data-vl-focus="" data-vl-value="Dit is een programmeertaal 3" id="vl-autocomplete__cta-3"><span class="vl-autocomplete__cta__title"><mark>Dit</mark> is een programmeertaal 3</span><span class="vl-autocomplete__cta__sub">Dit is een subtitel van de programmeertaal</span></li><li class="vl-autocomplete__cta" role="option" tabindex="-1" data-vl-index="4" data-vl-record="" data-vl-focus="" data-vl-value="Dit is een programmeertaal 4" id="vl-autocomplete__cta-4"><span class="vl-autocomplete__cta__title"><mark>Dit</mark> is een programmeertaal 4</span><span class="vl-autocomplete__cta__sub">Dit is een subtitel van de programmeertaal</span></li><li class="vl-autocomplete__cta" role="option" tabindex="-1" data-vl-index="5" data-vl-record="" data-vl-focus="" data-vl-value="Dit is een programmeertaal 5" id="vl-autocomplete__cta-5"><span class="vl-autocomplete__cta__title"><mark>Dit</mark> is een programmeertaal 5</span><span class="vl-autocomplete__cta__sub">Dit is een subtitel van de programmeertaal</span></li><li class="vl-autocomplete__cta" role="option" tabindex="-1" data-vl-index="6" data-vl-record="" data-vl-focus="" data-vl-value="Dit is een programmeertaal 6" id="vl-autocomplete__cta-6"><span class="vl-autocomplete__cta__title"><mark>Dit</mark> is een programmeertaal 6</span><span class="vl-autocomplete__cta__sub">Dit is een subtitel van de programmeertaal</span></li></ul></div></div>
-
-
-
-<div class="js-vl-autocomplete" id="vl-autocomplete-1" data-vl-autocomplete="" data-vl-min-chars="3" data-vl-id="n_l4ccf1zt_60ntk4812m6ubixdrvocg" data-vl-autocomplete-dressed="true" data-vl-loading="false">
-  <input type="text" name="vl-autocomplete-1-input-name" id="vl-autocomplete-1-input" placeholder="Programmeertaal" class="vl-input-field vl-input-field--block" aria-describedby="vl-autocomplete-1-hint" autocomplete="off" data-vl-focus="" data-vl-input="" autocapitalize="off" spellcheck="off" aria-autocomplete="list" aria-owns="autocomplete-n_l4ccf1zt_60ntk4812m6ubixdrvocg" aria-controls="autocomplete-n_l4ccf1zt_60ntk4812m6ubixdrvocg" aria-haspopup="listbox">
-  <div class="vl-autocomplete__loader" data-vl-show="false" data-vl-loader="" aria-hidden="true"></div>
-  <div class="vl-autocomplete__list-wrapper">
-    <ul class="vl-autocomplete__list" data-vl-records="" role="listbox" id="autocomplete-n_l4ccf1zt_60ntk4812m6ubixdrvocg">
-      <li class="vl-autocomplete__cta" role="option" tabindex="-1" data-vl-index="1" data-vl-record="" data-vl-focus="" data-vl-value="Dit is een zonder subtitel" id="vl-autocomplete__cta-1">
-        <span class="vl-autocomplete__cta__title"><mark>Dit</mark> is zonder subtitel</span>
-      </li>
-      <li class="vl-autocomplete__cta" role="option" tabindex="-1" data-vl-index="2" data-vl-record="" data-vl-focus="" data-vl-value="Dit is een programmeertaal 2" id="vl-autocomplete__cta-2">
-        <span class="vl-autocomplete__cta__title"><mark>Dit</mark> is een programmeertaal 2</span>
-        <span class="vl-autocomplete__cta__sub">Dit is een subtitel van de programmeertaal</span>
-      </li>
-      <li class="vl-autocomplete__cta" role="option" tabindex="-1" data-vl-index="3" data-vl-record="" data-vl-focus="" data-vl-value="Dit is een programmeertaal 3" id="vl-autocomplete__cta-3">
-        <span class="vl-autocomplete__cta__title"><mark>Dit</mark> is een programmeertaal 3</span>
-        <span class="vl-autocomplete__cta__sub">Dit is een subtitel van de programmeertaal</span>
-      </li>
-    </ul>
-  </div>
-  <div class="vl-autocomplete" data-vl-content="" aria-hidden="false" data-vl-show="true" aria-labelledby="vl-autocomplete-1-input">
-  </div>
-  <div class="vl-autocomplete__a11y__wrapper vl-u-visually-hidden" aria-live="polite" role="status">Er zijn 6 resultaten beschikbaar</div>
-</div>
-
-
-
-
- */
-
-
-
-
-/*
-<ul
-          id="suggestions"
-          ?hidden=${!this.opened}
-          @mouseenter=${this._handleItemMouseEnter}
-          @mouseleave=${this._handleItemMouseLeave}
-      >
-        <!--50-->
-        ${this._matches.map(item => html`<li @click=${ev =>
-            this.autocomplete(item.title, item.value ? item.value : null)}> ${this.formatCaption(item)}</li>`
-        )}
-      </ul>
-
-
-<slot id="dropdown-input" class="js-vl-autocomplete">
-        <input id="defaultInput"  type="text" class="vl-input-field vl-input-field--block">
-      </slot>
-      <div class="vl-autocomplete">
-            <div class="vl-autocomplete__list-wrapper">
-              <ul id="suggestions"
-                  ?hidden=${!this.opened}
-                  @mouseenter=${this._handleItemMouseEnter}
-                  @mouseleave=${this._handleItemMouseLeave} class="vl-autocomplete__list">
-
-
-                ${this._matches.map(item => html`<li @click=${ev =>
-                    this.autocomplete(item.title, item.value ? item.value : null)} class="vl-autocomplete__cta" role="option" tabindex="-1" data-vl-index="1" data-vl-record="" data-vl-focus="" data-vl-value="Dit is een zonder subtitel" id="vl-autocomplete__cta-1">
-                  <span class="vl-autocomplete__cta__title">
-                    ${this.formatCaption(item)}
-                  </span>
-                </li>`)}
-
-
-              </ul>
-            </div>
-        </div>
-
- */
-
-
-
-/*item => html`
-            <li @click=${ev =>
-            this.autocomplete(item.title, item.value ? item.value : null)}
-            >
-                ${this.formatCaption(item)}
-            </li>
-          `*/
-
-/*${this.formatCaption(item)}*/
-/*html`${item.subtitle}<br>${item.title}`*/
 
 window.customElements.define("vl-autocomplete", VlAutocomplete);

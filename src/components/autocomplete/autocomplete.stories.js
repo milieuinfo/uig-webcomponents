@@ -1,6 +1,6 @@
-import { html } from 'lit-html';
-import {docsIntro, getLastElement, getLastElementByClassName} from '../../../.storybook/utils.js';
-import '.';
+import { html } from "lit-html";
+import "../autocomplete";
+import { docsIntro } from "../../../.storybook/utils.js";
 
 export default {
   title: 'custom-elements/vl-autocomplete',
@@ -17,15 +17,29 @@ export default {
   },
 };
 
+//--------------------------
+
 export const Default = () => html`
   <vl-autocomplete data-min-chars="1"
       fulllist='[
               {"title":"hello", "value": "1"},
               {"title":"hi", "value": "2"},
               {"title":"How are you", "value": "3" },
+              {"title":"My name is" , "value": "4"}]' placeholder="Hint: typ hello, hi, How are you of My name is"></vl-autocomplete>`;
+
+//--------------------------
+
+export const WithCustomInputField = () => html`
+  <vl-autocomplete data-min-chars="1"
+      fulllist='[
+              {"title":"hello", "value": "1"},
+              {"title":"hi", "value": "2"},
+              {"title":"How are you", "value": "3" },
               {"title":"My name is" , "value": "4"}]'>
-    <input type="text" placeholder="search value" />
+    <input type="text" placeholder="Hint: typ hello, hi, How are you of My name is" style="width: 100%" />
   </vl-autocomplete>`;
+
+//--------------------------
 
 async function fetchDataFromFunction(searchTerm, autocomplete){
   const suggestions = [
@@ -37,9 +51,7 @@ async function fetchDataFromFunction(searchTerm, autocomplete){
 }
 
 export const WithDataFromFunction = () => html`
-  <vl-autocomplete data-min-chars="1" .dataFetcher="${fetchDataFromFunction}">
-    <input type="text" placeholder="search value" />
-  </vl-autocomplete>`;
+  <vl-autocomplete data-min-chars="1" .dataFetcher="${fetchDataFromFunction}" placeholder="Hint: typ hello, hi, How are you of My name is"></vl-autocomplete>`;
 
 //--------------------------
 
@@ -54,6 +66,23 @@ async function fetchComplexDataFromFunction(searchTerm, autocomplete){
   autocomplete.filterAndSuggest(searchTerm, suggestions);
 }
 
+export const WithComplexDataFromFunctionAndDefaultCaptionFormatter = () => html`
+  <vl-autocomplete data-min-chars="1" .dataFetcher="${fetchComplexDataFromFunction}" placeholder="Hint: typ Gent"></vl-autocomplete>`;
+
+//--------------------------
+function formatCaptionWithOnlyTitle(item)
+{
+  return item.title;
+}
+
+
+export const WithComplexDataFromFunctionGroupBySubTitle = () => html`
+  <vl-autocomplete data-min-chars="1" data-group-by="subtitle" .dataFetcher="${fetchComplexDataFromFunction}" 
+                   .captionFormatter="${formatCaptionWithOnlyTitle}" 
+                   placeholder="Hint: typ Gent"></vl-autocomplete>`;
+
+//--------------------------
+
 function formatCaption(item)
 {
   if(item.subtitle != null) {
@@ -64,33 +93,38 @@ function formatCaption(item)
   }
 }
 
-export const WithComplexDataFromFunction = () => html`
-  <vl-autocomplete data-min-chars="1" .dataFetcher="${fetchComplexDataFromFunction}" .captionFormatter="${formatCaption}">
-    <input type="text" placeholder="search value" />
-  </vl-autocomplete>`;
+export const WithComplexDataFromFunctionAndCustomCaptionFormatter = () => html`
+  <vl-autocomplete data-min-chars="1" .dataFetcher="${fetchComplexDataFromFunction}" .captionFormatter="${formatCaption}" placeholder="Hint: typ Gent"></vl-autocomplete>`;
 
 //--------------------------
 
 function formatCaptionAsHtml(item)
 {
+  return `${item.subtitle}<br>${item.title}`;
   //return html`${item.subtitle}<br>${item.title}`;
-  if(item.subtitle != null) {
+  /*if(item.subtitle != null) {
     return `${item.subtitle}<br>${item.title}`;
   }
   else {
     return item.title;
+  }*/
+  /*if(item.subtitle != null) {
+    return html`<span class="vl-autocomplete__cta__title">${item.title}</span><span
+            class="vl-autocomplete__cta__sub">${item.subtitle}</span>`;
   }
+  else {
+    return html`<span class="vl-autocomplete__cta__title">${item.title}</span>`;
+  }*/
 }
 
 export const WithComplexDataFromFunctionAndHtmlCaptionFormatter = () => html`
-  <vl-autocomplete data-min-chars="1" .dataFetcher="${fetchComplexDataFromFunction}" .captionFormatter="${formatCaptionAsHtml}">
-    <input type="text" placeholder="search value" />
-  </vl-autocomplete>`;
+  <vl-autocomplete data-min-chars="1" .dataFetcher="${fetchComplexDataFromFunction}" .captionFormatter="${formatCaptionAsHtml}" placeholder="Hint: typ Gent"></vl-autocomplete>`;
 
 //--------------------------
 
 async function fetchDataWithApiCall(searchTerm, autocomplete){
-  const result = await fetch(`https://loc.geopunt.be/geolocation/suggestion?q=${searchTerm}&c=10`)
+  const count = this.maxSuggestions;
+  const result = await fetch(`https://loc.geopunt.be/geolocation/suggestion?q=${searchTerm}&c=${count}`)
   const responseBody = await result.json()
   console.log(responseBody);
 
@@ -102,23 +136,5 @@ async function fetchDataWithApiCall(searchTerm, autocomplete){
 }
 
 export const WithApiCall = () => html`
-  <label for="vl-autocomplete-1-input" class="vl-form__label">
-    Geolocation
-  </label>
-  <vl-autocomplete .dataFetcher="${fetchDataWithApiCall}" >
-    <input type="text" placeholder="search value" />
-  </vl-autocomplete>
-  <div id="vl-autocomplete-1-hint" class="vl-form__annotation">
-    Minimum 3 karakters
-  </div>
-  
-  <!--
-  <label for="vl-autocomplete-1-input" class="vl-form__label">
-    Geolocation
-  </label>
-  <vl-autocomplete .dataFetcher="${fetchDataWithApiCall}" >
-    <input type="text" placeholder="search value" />
-  </vl-autocomplete>
-  <div id="vl-autocomplete-1-hint" class="vl-form__annotation">
-    Minimum 3 karakters
-  </div>-->`;
+  <vl-autocomplete .dataFetcher="${fetchDataWithApiCall}" placeholder="Gemeente, Straat of Project" data-max-suggestions="10"></vl-autocomplete>
+`;
