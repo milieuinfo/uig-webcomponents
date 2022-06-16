@@ -20,10 +20,14 @@ export default {
 };
 
 export const Default = () => html`<a
-  is="vl-link"
-  target="_blank"
-  data-vl-inline
-  href="https://webcomponenten.omgeving.vlaanderen.be/doc/VlTextarea.html"
->
-  Legacy docs <span is="vl-icon" data-vl-icon="external" data-vl-after data-vl-link></span
-></a>`;
+    is="vl-link"
+    target="_blank"
+    data-vl-inline
+    href="https://webcomponenten.omgeving.vlaanderen.be/doc/VlTextarea.html"
+  >
+    Legacy docs <span is="vl-icon" data-vl-icon="external" data-vl-after data-vl-link></span
+  ></a>
+  <p>
+    Disclaimer: data-vl-rich attribute does not work in combination with webpack and thus can not be used at this
+    moment.
+  </p>`;
