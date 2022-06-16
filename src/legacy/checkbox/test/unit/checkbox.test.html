@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+
+    <script type="module" src="../../../../../lib/legacy/checkbox/index.js"></script>
+    <script src="/node_modules/sinon/pkg/sinon.js"></script>
+  </head>
+
+  <body>
+    <test-fixture id="vl-checkbox-fixture">
+      <template>
+        <vl-checkbox></vl-checkbox>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-checkboxes-fixture">
+      <template>
+        <vl-checkbox data-vl-value="1"></vl-checkbox>
+        <vl-checkbox data-vl-value="2"></vl-checkbox>
+        <vl-checkbox data-vl-value="3"></vl-checkbox>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-checkboxes-slot-fixture">
+      <template>
+        <vl-checkbox data-vl-label="optie 1"></vl-checkbox>
+        <vl-checkbox data-vl-label="optie 1">
+          <span>slot optie 1</span>
+        </vl-checkbox>
+        <vl-checkbox>
+          <span>slot optie 1</span>
+        </vl-checkbox>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-checkboxes-form-fixture">
+      <template>
+        <form>
+          <vl-checkbox data-vl-label="optie 1" data-vl-checked name="option-1"></vl-checkbox>
+          <vl-checkbox data-vl-label="optie 2" name="option-2"></vl-checkbox>
+        </form>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-checkboxes-form-identical-names-fixture">
+      <template>
+        <form>
+          <vl-checkbox data-vl-label="optie 1" name="options"></vl-checkbox>
+          <vl-checkbox data-vl-label="optie 2" name="options"></vl-checkbox>
+        </form>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('vl-checkbox', () => {
+        const should = chai.should();
+
+        const hasElementInternalsSupport = () => {
+          const checkbox = fixture('vl-checkbox-fixture');
+          return checkbox._internals != undefined;
+        };
+
+        setup((done) => {
+          customElements.whenDefined('vl-checkbox').then(() => done());
+        });
+
+        test('gets the correct class when the button contains an attribute', () => {
+          const checkbox = fixture('vl-checkbox-fixture');
+          const checkboxLabel = checkbox.shadowRoot.querySelector('.vl-checkbox');
+          ['block', 'single', 'disabled', 'error'].forEach((attribuut) => {
+            assert.isFalse(checkboxLabel.classList.contains(`vl-checkbox--${attribuut}`));
+            checkbox.setAttribute(`data-vl-${attribuut}`, '');
+            assert.isTrue(checkboxLabel.classList.contains(`vl-checkbox--${attribuut}`));
+            checkbox.removeAttribute(`data-vl-${attribuut}`);
+            assert.isFalse(checkboxLabel.classList.contains(`vl-checkbox--${attribuut}`));
+          });
+        });
+
+        test('set the value attribute to the input checkbox', () => {
+          const checkbox = fixture('vl-checkbox-fixture');
+          const value = 'de value';
+          checkbox.setAttribute('data-vl-value', value);
+          assert.equal(checkbox._inputElement.value, value);
+        });
+
+        test('set the checked attribute to the input checkbox if this is a boolean', () => {
+          const checkbox = fixture('vl-checkbox-fixture');
+          assert.isFalse(checkbox._inputElement.checked);
+          checkbox.setAttribute('data-vl-checked', true);
+          assert.isTrue(checkbox._inputElement.checked);
+          checkbox.setAttribute('data-vl-checked', false);
+          assert.isFalse(checkbox._inputElement.checked);
+        });
+
+        test('set the checked attribute to the input checkbox based on the value if the checkbox is an array', () => {
+          const checkboxes = fixture('vl-checkboxes-fixture');
+          const checkbox1 = checkboxes[0];
+          const checkbox2 = checkboxes[1];
+          const checkbox3 = checkboxes[2];
+          assert.isFalse(checkbox1._inputElement.checked);
+          assert.isFalse(checkbox2._inputElement.checked);
+          assert.isFalse(checkbox3._inputElement.checked);
+          checkbox1.setAttribute('data-vl-checked', '[1,3]');
+          checkbox2.setAttribute('data-vl-checked', '[1,3]');
+          checkbox3.setAttribute('data-vl-checked', '[1,3]');
+          assert.isTrue(checkbox1._inputElement.checked);
+          assert.isFalse(checkbox2._inputElement.checked);
+          assert.isTrue(checkbox3._inputElement.checked);
+        });
+
+        test('contains a disabled input checkbox when the checkbox contains the disabled attribute', () => {
+          const checkbox = fixture('vl-checkbox-fixture');
+          assert.isFalse(checkbox._inputElement.disabled);
+          checkbox.setAttribute('data-vl-disabled', true);
+          assert.isTrue(checkbox._inputElement.disabled);
+        });
+
+        test('will hide the label when the checkbox contains the single attribute', () => {
+          const checkbox = fixture('vl-checkbox-fixture');
+          let checkboxHiddenLabel = checkbox.shadowRoot.querySelector('.vl-u-visually-hidden');
+          should.not.exist(checkboxHiddenLabel);
+          checkbox.setAttribute('data-vl-single', true);
+          checkboxHiddenLabel = checkbox.shadowRoot.querySelector('.vl-u-visually-hidden');
+          should.exist(checkboxHiddenLabel);
+          checkbox.setAttribute('data-vl-label', 'new label');
+          checkboxHiddenLabel = checkbox.shadowRoot.querySelector('.vl-u-visually-hidden');
+          should.exist(checkboxHiddenLabel);
+        });
+
+        test('clicking the input field will modify the checkbox checked value for a checkbox with a boolean checked attribute', () => {
+          const checkbox = fixture('vl-checkbox-fixture');
+          assert.isFalse(checkbox._inputElement.checked);
+          checkbox._inputElement.click();
+          assert.isTrue(checkbox._inputElement.checked);
+          checkbox._inputElement.click();
+          assert.isFalse(checkbox._inputElement.checked);
+        });
+
+        test('toggle will adjust the checked value on a checkbox with a boolean checked attribute', () => {
+          const checkbox = fixture('vl-checkbox-fixture');
+          assert.isFalse(checkbox._inputElement.checked);
+          checkbox.toggle();
+          assert.isTrue(checkbox._inputElement.checked);
+          checkbox.toggle();
+          assert.isFalse(checkbox._inputElement.checked);
+        });
+
+        test('clicking the input field will throw an event with the value of the boolean checked attribute', (done) => {
+          const checkbox = fixture('vl-checkbox-fixture');
+          checkbox.addEventListener('input', (e) => {
+            if (e.detail) {
+              assert.isTrue(e.detail);
+              assert.isTrue(e.srcElement.checked);
+              done();
+            }
+          });
+          checkbox._inputElement.click();
+        });
+
+        test('toggle will throw an event with the value of the boolean checked attribute', (done) => {
+          const checkbox = fixture('vl-checkbox-fixture');
+          checkbox.addEventListener('input', (e) => {
+            if (e.detail) {
+              assert.isTrue(e.detail);
+              assert.isTrue(e.srcElement.checked);
+              done();
+            }
+          });
+          checkbox.toggle();
+        });
+
+        test('clicking the input field will add or remove the checkbox checked value from the checked attribute on a checkbox with an array attribute', () => {
+          const checkboxes = fixture('vl-checkboxes-fixture');
+          const checkbox = checkboxes[0];
+          checkbox.setAttribute('data-vl-checked', '[2,3]');
+          assert.isFalse(checkbox._inputElement.checked);
+          assert.isFalse(JSON.parse(checkbox.getAttribute('checked')).includes(1));
+          checkbox._inputElement.click();
+          assert.isTrue(checkbox._inputElement.checked);
+          assert.isTrue(JSON.parse(checkbox.getAttribute('checked')).includes(1));
+          checkbox._inputElement.click();
+          assert.isFalse(checkbox._inputElement.checked);
+          assert.isFalse(JSON.parse(checkbox.getAttribute('checked')).includes(1));
+        });
+
+        test('toggle will add or remove the checked value from the checked attribute on a checkbox with an array checked attribute', () => {
+          const checkboxes = fixture('vl-checkboxes-fixture');
+          const checkbox = checkboxes[0];
+          checkbox.setAttribute('data-vl-checked', '[2,3]');
+          assert.isFalse(checkbox._inputElement.checked);
+          assert.isFalse(JSON.parse(checkbox.getAttribute('checked')).includes(1));
+          checkbox.toggle();
+          assert.isTrue(checkbox._inputElement.checked);
+          assert.isTrue(JSON.parse(checkbox.getAttribute('checked')).includes(1));
+          checkbox.toggle();
+          assert.isFalse(checkbox._inputElement.checked);
+          assert.isFalse(JSON.parse(checkbox.getAttribute('checked')).includes(1));
+        });
+
+        test('clicking the input field will throw an event with the array checked attribute on a checkbox with an array checked attribute', (done) => {
+          const checkboxes = fixture('vl-checkboxes-fixture');
+          const checkbox = checkboxes[0];
+          checkbox.setAttribute('data-vl-checked', '[2,3]');
+          checkbox.addEventListener('input', (e) => {
+            if (e.detail) {
+              assert.isTrue(JSON.parse(checkbox.getAttribute('checked')).includes(1));
+              done();
+            }
+          });
+          checkbox._inputElement.click();
+        });
+
+        test('toggle will throw an event with the array checked attribute on a checkbox with an array checked attribute', (done) => {
+          const checkboxes = fixture('vl-checkboxes-fixture');
+          const checkbox = checkboxes[0];
+          checkbox.setAttribute('data-vl-checked', '[2,3]');
+          checkbox.addEventListener('input', (e) => {
+            if (e.detail) {
+              assert.isTrue(JSON.parse(checkbox.getAttribute('checked')).includes(1));
+              done();
+            }
+          });
+          checkbox.toggle();
+        });
+
+        test('clicking on the input field will only forward one input event', (done) => {
+          const checkboxes = fixture('vl-checkboxes-fixture');
+          const checkbox = checkboxes[0];
+          let counter = 0;
+          checkbox.addEventListener('input', (e) => {
+            counter++;
+            if (e.detail) {
+              setTimeout(() => {
+                assert.equal(counter, 1);
+                done();
+              });
+            }
+          });
+          checkbox._inputElement.click();
+        });
+
+        test('clicking the input field will forward the original change event', (done) => {
+          const checkboxes = fixture('vl-checkboxes-fixture');
+          const checkbox = checkboxes[0];
+          checkbox._inputElement.addEventListener('change', () => done());
+          checkbox._inputElement.click();
+        });
+
+        test('label can be defined via attribute or lock', () => {
+          const checkboxes = fixture('vl-checkboxes-slot-fixture');
+          assert.equal(checkboxes[0]._labelElement.innerText, checkboxes[0].getAttribute('label'));
+          assert.equal(checkboxes[1]._labelElement.innerText, checkboxes[1].getAttribute('label'));
+          assert.equal(
+            checkboxes[2]._labelElement.querySelector('slot').assignedElements()[0],
+            checkboxes[2].children[0],
+          );
+        });
+
+        test('the label attribute takes precedence over the lock element', () => {
+          const checkboxes = fixture('vl-checkboxes-slot-fixture');
+          assert.equal(checkboxes[0]._labelElement.innerText, checkboxes[0].getAttribute('label'));
+          assert.equal(checkboxes[1]._labelElement.innerText, checkboxes[1].getAttribute('label'));
+          assert.notEqual(checkboxes[1]._labelElement.innerText, checkboxes[2].querySelector('span').innerText);
+        });
+
+        test('the checked value can be set programmatically', () => {
+          const checkbox = fixture('vl-checkbox-fixture');
+          assert.isFalse(checkbox._inputElement.checked);
+          checkbox.checked = true;
+          assert.isTrue(checkbox._inputElement.checked);
+          checkbox.checked = false;
+          assert.isFalse(checkbox._inputElement.checked);
+        });
+
+        test('change event is propagated by', (done) => {
+          const checkbox = fixture('vl-checkbox-fixture');
+          checkbox.addEventListener('change', () => done());
+          checkbox._inputElement.click();
+        });
+
+        test('when the form is reset, the checkbox values will be restored', () => {
+          if (hasElementInternalsSupport()) {
+            const form = fixture('vl-checkboxes-form-fixture');
+            const checkboxes = form.querySelectorAll('vl-checkbox');
+            assert.isTrue(checkboxes[0].checked);
+            assert.isFalse(checkboxes[1].checked);
+            checkboxes[0].checked = false;
+            checkboxes[1].checked = true;
+            assert.isFalse(checkboxes[0].checked);
+            assert.isTrue(checkboxes[1].checked);
+            form.reset();
+            assert.isTrue(checkboxes[0].checked);
+            assert.isFalse(checkboxes[1].checked);
+          }
+        });
+
+        test('the form getters are properly delegated', () => {
+          if (hasElementInternalsSupport()) {
+            const checkbox = fixture('vl-checkbox-fixture');
+            assert.equal(checkbox.form, checkbox._internals.form);
+            assert.equal(checkbox.validity, checkbox._internals.validity);
+            assert.equal(checkbox.validationMessage, checkbox._internals.validationMessage);
+            assert.equal(checkbox.willValidate, checkbox._internals.willValidate);
+          }
+        });
+
+        test('the checkbox can be requested via the form selector', () => {
+          if (hasElementInternalsSupport()) {
+            const form = fixture('vl-checkboxes-form-fixture');
+            const checkboxes = form.querySelectorAll('vl-checkbox');
+            assert.equal(form['option-1'], checkboxes[0]);
+            assert.equal(form['option-2'], checkboxes[1]);
+          }
+        });
+
+        test('the checkboxes can be requested via the form selector if they share the same name attribute', () => {
+          if (hasElementInternalsSupport()) {
+            const form = fixture('vl-checkboxes-form-identical-names-fixture');
+            const checkboxes = form.querySelectorAll('vl-checkbox');
+            assert.lengthOf(form.options, checkboxes.length);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

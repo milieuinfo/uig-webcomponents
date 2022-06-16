@@ -1,5 +1,5 @@
 import { VlElement, By } from '../../../../../../utils/test';
-import { VlCheckbox } from '../../../../../checkbox/test/e2e/checkbox.js';
+import { VlCheckbox } from '../../../../../../legacy/checkbox/test/e2e/checkbox.js';
 
 export class VlTestMapLayerSwitcher extends VlElement {
   async getCheckboxForLayer(name) {
