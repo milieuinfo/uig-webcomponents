@@ -1,8 +1,10 @@
 import { html } from 'lit-html';
-import { docsIntro } from '../../../.storybook/utils.js';
+import { docsIntro, stylesheet } from '../../../.storybook/utils.js';
+import linkStyles from '../../components/link/styles.scss';
 
 export default {
   title: 'legacy/vl-upload',
+  decorators: [(story) => html`${stylesheet(linkStyles)} ${story()}`],
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {

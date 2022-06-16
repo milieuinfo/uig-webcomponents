@@ -10,6 +10,16 @@ const unreleased = [];
 const changes = [
   ...unreleased,
   {
+    version: '3.0.2',
+    date: '16/6/2022',
+    children: html`<ul>
+      <li>
+        <p><code>vl-textarea</code></p>
+        <p>Added as a legacy component.</p>
+      </li>
+    </ul>`,
+  },
+  {
     version: '3.0.1',
     date: '14/6/2022',
     children: html`<ul>

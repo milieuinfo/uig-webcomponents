@@ -39,8 +39,8 @@
     "@govflanders/vl-ui-core": "^4.1.24",
     "@govflanders/vl-ui-progress-bar": "^3.12.3",
     "@govflanders/vl-ui-side-navigation": "^3.12.3",
-    "@govflanders/vl-ui-util": "^3.12.24",
     "@govflanders/vl-ui-tabs": "^3.12.17",
+    "@govflanders/vl-ui-util": "^3.12.24",
     "@govflanders/vl-ui-infotext": "^3.12.3",
     "@ungap/custom-elements": "^0.1.15",
     "bootstrap-sass": "^3.3.4",
@@ -48,7 +48,8 @@
     "lit": "^2.1.2",
     "ol": "^6.14.1",
     "proj4": "^2.2.1",
-    "swipe-detect": "^1.0.1"
+    "swipe-detect": "^1.0.1",
+    "tinymce": "^5.10.3"
   },
   "devDependencies": {
     "@govflanders/vl-ui-action-group": "^3.12.24",
@@ -85,6 +86,7 @@
     "@govflanders/vl-ui-radio": "^3.12.3",
     "@govflanders/vl-ui-search-filter": "^3.12.17",
     "@govflanders/vl-ui-search-results": "^3.12.3",
+    "@govflanders/vl-ui-textarea": "^3.12.3",
     "@govflanders/vl-ui-titles": "^3.12.3",
     "@govflanders/vl-ui-toaster": "^3.12.3",
     "@govflanders/vl-ui-toggle": "^3.12.17",
@@ -102,7 +104,7 @@
     "browserstack-local": "^1.4.8",
     "chai": "^4.3.4",
     "chai-as-promised": "^7.1.1",
-    "chromedriver": "^101.0.0",
+    "chromedriver": "^102.0.0",
     "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.3.0",
     "fetch-mock": "^9.11.0",
