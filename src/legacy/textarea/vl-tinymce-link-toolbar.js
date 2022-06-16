@@ -1,4 +1,4 @@
-import './components/vl-textarea-modal';
+import './components/textarea-modal';
 
 export class VlLinkToolbarFactory {
   create(editor) {

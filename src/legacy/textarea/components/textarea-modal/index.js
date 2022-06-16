@@ -1,5 +1,5 @@
 import { vlElement, define } from '../../../../utils/core';
-import '../../../../legacy/modal';
+import '../../../modal';
 import '../../../../components/form';
 import '../../../../components/form-grid';
 import '../../../../components/form-message';
