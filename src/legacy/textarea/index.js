@@ -2,7 +2,7 @@
 import { nativeVlElement, define, awaitUntil } from '../../utils/core';
 import { VlLinkToolbarFactory } from './vl-tinymce-link-toolbar.js';
 import { vlFormValidation, vlFormValidationElement } from '../../components/form-validation';
-import 'tinymce';
+import 'tinymce/tinymce.min.js';
 
 export class VlTextarea extends vlFormValidationElement(nativeVlElement(HTMLTextAreaElement)) {
   static get _observedAttributes() {
