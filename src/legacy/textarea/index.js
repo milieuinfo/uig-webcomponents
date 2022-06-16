@@ -44,7 +44,6 @@ export class VlTextarea extends vlFormValidationElement(nativeVlElement(HTMLText
   }
 
   get _wysiwygConfig() {
-    const stylePath = '/lib/components/typography/styles.css';
     return {
       target: this,
       menubar: false,
@@ -53,7 +52,7 @@ export class VlTextarea extends vlFormValidationElement(nativeVlElement(HTMLText
       branding: false,
       powerpaste_word_import: 'clean',
       powerpaste_html_import: 'clean',
-      content_css: `${process.env.VL_DEV ? stylePath : `/node_modules/uig-webcomponents${stylePath}`}`,
+      content_css: '/src/style.css',
       verify_html: false,
       forced_root_block: 'p',
       body_class: 'vl-typography',
