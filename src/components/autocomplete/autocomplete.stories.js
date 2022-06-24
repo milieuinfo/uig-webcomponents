@@ -11,7 +11,7 @@ export default {
         component: docsIntro({
           root: 'autocomplete',
           intro: 'Use autocomplete to show a list of suggestions filtered by the text that was entered. ' +
-              'The list can be a static list (data-static-list) or can be retrieved from an api call (dataFetcher).',
+              'The list can be a static list (data-vl-static-list) or can be retrieved from an api call (dataFetcher).',
         }),
       },
     },
@@ -21,8 +21,8 @@ export default {
 //--------------------------
 
 export const Default = () => html`
-  <vl-autocomplete data-min-chars="1" 
-                   data-static-list='[
+  <vl-autocomplete data-vl-min-chars="1" 
+                   data-vl-static-list='[
               {"title":"hello", "value": "1"},
               {"title":"hi", "value": "2"},
               {"title":"How are you", "value": "3" },
@@ -31,8 +31,8 @@ export const Default = () => html`
 //--------------------------
 
 export const WithCustomInputField = () => html`
-  <vl-autocomplete data-min-chars="1" 
-                   data-static-list='[
+  <vl-autocomplete data-vl-min-chars="1" 
+                   data-vl-static-list='[
               {"title":"hello", "value": "1"},
               {"title":"hi", "value": "2"},
               {"title":"How are you", "value": "3" },
@@ -52,7 +52,7 @@ async function fetchDataFromFunction(searchTerm, autocomplete){
 }
 
 export const WithDataFromFunction = () => html`
-  <vl-autocomplete data-min-chars="1" .dataFetcher="${fetchDataFromFunction}" placeholder="Hint: typ hello, hi, How are you of My name is"></vl-autocomplete>`;
+  <vl-autocomplete data-vl-min-chars="1" .dataFetcher="${fetchDataFromFunction}" placeholder="Hint: typ hello, hi, How are you of My name is"></vl-autocomplete>`;
 
 //--------------------------
 
@@ -68,7 +68,7 @@ async function fetchComplexDataFromFunction(searchTerm, autocomplete){
 }
 
 export const WithComplexDataFromFunctionAndDefaultCaptionFormatter = () => html`
-  <vl-autocomplete data-min-chars="1" .dataFetcher="${fetchComplexDataFromFunction}" placeholder="Hint: typ Gent"></vl-autocomplete>`;
+  <vl-autocomplete data-vl-min-chars="1" .dataFetcher="${fetchComplexDataFromFunction}" placeholder="Hint: typ Gent"></vl-autocomplete>`;
 
 //--------------------------
 function formatCaptionWithOnlyTitle(item)
@@ -78,7 +78,7 @@ function formatCaptionWithOnlyTitle(item)
 
 
 export const WithComplexDataFromFunctionGroupBySubTitle = () => html`
-  <vl-autocomplete data-min-chars="1" data-group-by="subtitle" .dataFetcher="${fetchComplexDataFromFunction}" 
+  <vl-autocomplete data-vl-min-chars="1" data-vl-group-by="subtitle" .dataFetcher="${fetchComplexDataFromFunction}" 
                    .captionFormatter="${formatCaptionWithOnlyTitle}" 
                    placeholder="Hint: typ Gent"></vl-autocomplete>`;
 
@@ -95,7 +95,7 @@ function formatCaption(item)
 }
 
 export const WithComplexDataFromFunctionAndCustomCaptionFormatter = () => html`
-  <vl-autocomplete data-min-chars="1" .dataFetcher="${fetchComplexDataFromFunction}" .captionFormatter="${formatCaption}" placeholder="Hint: typ Gent"></vl-autocomplete>`;
+  <vl-autocomplete data-vl-min-chars="1" .dataFetcher="${fetchComplexDataFromFunction}" .captionFormatter="${formatCaption}" placeholder="Hint: typ Gent"></vl-autocomplete>`;
 
 //--------------------------
 
@@ -119,7 +119,7 @@ function formatCaptionAsHtml(item)
 }
 
 export const WithComplexDataFromFunctionAndHtmlCaptionFormatter = () => html`
-  <vl-autocomplete data-min-chars="1" .dataFetcher="${fetchComplexDataFromFunction}" .captionFormatter="${formatCaptionAsHtml}" placeholder="Hint: typ Gent"></vl-autocomplete>`;
+  <vl-autocomplete data-vl-min-chars="1" .dataFetcher="${fetchComplexDataFromFunction}" .captionFormatter="${formatCaptionAsHtml}" placeholder="Hint: typ Gent"></vl-autocomplete>`;
 
 //--------------------------
 
@@ -137,5 +137,5 @@ async function fetchDataWithApiCall(searchTerm, autocomplete){
 }
 
 export const WithApiCall = () => html`
-  <vl-autocomplete .dataFetcher="${fetchDataWithApiCall}" placeholder="Gemeente, Straat of Project" data-max-suggestions="10"></vl-autocomplete>
+  <vl-autocomplete .dataFetcher="${fetchDataWithApiCall}" placeholder="Gemeente, Straat of Project" data-vl-max-suggestions="10"></vl-autocomplete>
 `;

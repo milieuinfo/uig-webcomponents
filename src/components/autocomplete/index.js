@@ -16,22 +16,22 @@ export class VlAutocomplete extends LitElement {
     return {
       minChars: {
         type: Number,
-        attribute: "data-min-chars",
+        attribute: "data-vl-min-chars",
         reflect: true,
       },
       staticList: {
         type: Array,
-        attribute: "data-static-list"
+        attribute: "data-vl-static-list"
       },
       opened: { type: Boolean, reflect: true },
       firstValidItemIndex: { type: Number, reflect: true},
       maxSuggestions: {
         type: Number,
-        attribute: "data-max-suggestions",
+        attribute: "data-vl-max-suggestions",
       },
       groupBy: {
         type: String,
-        attribute: "data-group-by",
+        attribute: "data-vl-group-by",
       },
       placeholder: {
         type: String,
@@ -375,8 +375,7 @@ export class VlAutocomplete extends LitElement {
     return html`
         <li @click=${ev =>
         this.autocomplete(item.title, item.value ? item.value : null)} class="vl-autocomplete__cta" role="option"
-            tabindex="-1"
-            data-vl-index="1" data-vl-record="" data-vl-focus="">
+            tabindex="-1">
           ${this.formatCaption(item)}
         </li>`;
   }
@@ -409,22 +408,20 @@ export class VlAutocomplete extends LitElement {
           max-height: 100vh;
         }
       </style>
-      <div class="js-vl-autocomplete" data-vl-autocomplete="" data-vl-min-chars="3" 
-           data-vl-id="n_l4ccf1zt_60ntk4812m6ubixdrvocg" data-vl-autocomplete-dressed="true" data-vl-loading="false">
+      <div class="js-vl-autocomplete">
         <slot id="dropdown-input">
             <input type="text" name="vl-autocomplete-1-input-name" id="defaultInput" placeholder="${this.placeholder}" class="vl-input-field vl-input-field--block" 
-                   aria-describedby="vl-autocomplete-1-hint" autocomplete="off" data-vl-focus="" data-vl-input="" autocapitalize="off" spellcheck="off" 
+                   aria-describedby="vl-autocomplete-1-hint" autocomplete="off" autocapitalize="off" spellcheck="off" 
                    aria-autocomplete="list" aria-owns="autocomplete-n_l4ccf1zt_60ntk4812m6ubixdrvocg" aria-controls="autocomplete-n_l4ccf1zt_60ntk4812m6ubixdrvocg" 
                    aria-haspopup="listbox">
         </slot>
-        <div class="vl-autocomplete__loader" data-vl-show="false" data-vl-loader="" aria-hidden="true"></div>
+        <div class="vl-autocomplete__loader" aria-hidden="true"></div>
         <div class="vl-autocomplete"
              ?hidden=${!this.opened}
              @mouseenter=${this._handleItemMouseEnter}
-             @mouseleave=${this._handleItemMouseLeave} 
-             data-vl-content="" aria-hidden="false" data-vl-show="true" aria-labelledby="vl-autocomplete-1-input">
+             @mouseleave=${this._handleItemMouseLeave} aria-hidden="false" aria-labelledby="vl-autocomplete-1-input">
           <div class="vl-autocomplete__list-wrapper uig-autocomplete__list-wrapper">
-            <ul id="suggestions" class="vl-autocomplete__list" data-vl-records="" role="listbox">
+            <ul id="suggestions" class="vl-autocomplete__list" role="listbox">
               ${this.generateItems()}
             </ul>
           </div>
