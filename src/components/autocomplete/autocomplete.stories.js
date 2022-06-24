@@ -10,7 +10,8 @@ export default {
       description: {
         component: docsIntro({
           root: 'autocomplete',
-          intro: 'Use autocomplete to show ...',
+          intro: 'Use autocomplete to show a list of suggestions filtered by the text that was entered. ' +
+              'The list can be a static list (data-static-list) or can be retrieved from an api call (dataFetcher).',
         }),
       },
     },
