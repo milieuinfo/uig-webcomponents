@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+
+    <script src="/node_modules/sinon/pkg/sinon.js"></script>
+
+    <script type="module" src="../../../../../lib/legacy/steps/components/step/index.js"></script>
+    <title>vl-textarea test</title>
+  </head>
+
+  <body>
+  <test-fixture id="vl-step-fixture">
+    <template>
+      <vl-step></vl-step>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="vl-step-slots-fixture">
+    <template>
+      <vl-step>
+        <span slot="identifier">identifier</span>
+        <span slot="identifier-annotation">identifier-annotation</span>
+        <span slot="title">title</span>
+        <span slot="title-label">title-label</span>
+        <span slot="title-annotation">title-annotation</span>
+        <span slot="sub-title">sub-title</span>
+        <span slot="content">content</span>
+      </vl-step>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="vl-step-toggleable-fixture">
+    <template>
+      <vl-step data-vl-toggleable>
+        <span slot="title">title</span>
+        <span slot="title-label">title-label</span>
+      </vl-step>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('vl-step', () => {
+      const sandbox = sinon.createSandbox();
+
+      teardown(() => {
+        sandbox.restore();
+      });
+
+      test('krijgt de juiste class wanneer de step het type attribuut bevat', () => {
+        const step = fixture('vl-step-fixture');
+        const attribute = 'data-vl-type';
+        const prefix = 'vl-step--';
+        ['success', 'warning', 'error'].forEach((type) => {
+          const clazz = `${prefix}${type}`;
+          assert.isFalse(step._element.classList.contains(clazz));
+          step.setAttribute(attribute, type);
+          assert.isTrue(step._element.classList.contains(clazz));
+          step.removeAttribute(attribute);
+          assert.isFalse(step._element.classList.contains(clazz));
+        });
+      });
+
+      test('krijgt de juiste class wanneer de step het disabled attribuut bevat', () => {
+        const step = fixture('vl-step-fixture');
+        const attribute = 'data-vl-disabled';
+        const prefix = 'vl-step--';
+        const clazz = `${prefix}${attribute}`;
+        assert.isFalse(step._element.classList.contains(clazz));
+        step.setAttribute(attribute, '');
+        assert.isTrue(step._element.classList.contains(clazz));
+        step.removeAttribute(attribute);
+        assert.isFalse(step._element.classList.contains(clazz));
+      });
+
+      test('kan de identifier bepalen via een slot', () => {
+        const step = fixture('vl-step-slots-fixture');
+        const identifierElement = step.querySelector('[slot="identifier"]');
+        const identifierSlot = step.shadowRoot.querySelector('[slot="identifier"]');
+        const identifierAnnotationElement = step.querySelector('[slot="identifier-annotation"]');
+        const identifierAnnotationSlot = step.shadowRoot.querySelector('[slot="identifier-annotation"]');
+        assert.isTrue(identifierSlot.isEqualNode(identifierElement));
+        assert.isTrue(identifierAnnotationSlot.isEqualNode(identifierAnnotationElement));
+        assert.equal(step._iconElement.innerText, `${identifierElement.innerText} ${identifierAnnotationElement.innerText}`);
+      });
+
+      test('kan de titel bepalen via een slot', () => {
+        const step = fixture('vl-step-slots-fixture');
+        const titleElement = step.querySelector('[slot="title"]');
+        const titleSlot = step.shadowRoot.querySelector('[slot="title"]');
+        const titleLabelElement = step.querySelector('[slot="title-label"]');
+        const titleLabelSlot = step.shadowRoot.querySelector('[slot="title-label"]');
+        const titleAnnotationElement = step.querySelector('[slot="title-annotation"]');
+        const titleAnnotationSlot = step.shadowRoot.querySelector('[slot="title-annotation"]');
+        const subTitleElement = step.querySelector('[slot="sub-title"]');
+        const subTitleSlot = step.shadowRoot.querySelector('[slot="sub-title"]');
+        assert.isTrue(titleSlot.isEqualNode(titleElement));
+        assert.isTrue(titleLabelSlot.isEqualNode(titleLabelElement));
+        assert.isTrue(titleAnnotationSlot.isEqualNode(titleAnnotationElement));
+        assert.isTrue(subTitleSlot.isEqualNode(subTitleElement));
+        assert.equal(step._titleElement.innerText, `${titleElement.innerText} ${titleLabelElement.innerText} ${titleAnnotationElement.innerText}`);
+        assert.equal(step._subTitleElement.innerText, subTitleElement.innerText);
+      });
+
+      test('kan de content bepalen via een slot', () => {
+        const step = fixture('vl-step-slots-fixture');
+        const element = step.querySelector('[slot="content"]');
+        const slot = step.shadowRoot.querySelector('[slot="content"]');
+        assert.isTrue(slot.isEqualNode(element));
+        assert.equal(step._contentElement.innerText, element.innerText);
+      });
+
+      test('zal de nodige container elementen verbergen bij het ontbreken van bepaalde slot elementen', () => {
+        let step = fixture('vl-step-slots-fixture');
+        assert.isFalse(step._iconElement.hidden);
+        assert.isFalse(step._subIconElement.hidden);
+        assert.isFalse(step._titleElement.hidden);
+        assert.isFalse(step._titleAnnotationElement.hidden);
+        assert.isFalse(step._subTitleElement.hidden);
+        assert.isFalse(step._contentElement.hidden);
+
+        step = fixture('vl-step-fixture');
+        assert.isTrue(step._iconElement.hidden);
+        assert.isTrue(step._subIconElement.hidden);
+        assert.isTrue(step._titleElement.hidden);
+        assert.isTrue(step._titleAnnotationElement.hidden);
+        assert.isTrue(step._subTitleElement.hidden);
+        assert.isTrue(step._contentElement.hidden);
+      });
+
+      test('een toggleable step zal de accordion dress functie correct aanroepen', () => {
+        sandbox.spy(vl.accordion, 'dress');
+        const step = fixture('vl-step-toggleable-fixture');
+        assert.isTrue(vl.accordion.dress.calledWith(step.template));
+      });
+
+      test('bij een toggleable step zal de click op de content tegengehouden worden om te voorkomen dat de step geopend of gesloten wordt', () => {
+        const step = fixture('vl-step-toggleable-fixture');
+        assert.isFalse(step.template.classList.contains('js-vl-accordion--open'));
+        step.shadowRoot.querySelector('#content').click();
+        assert.isFalse(step.template.classList.contains('js-vl-accordion--open'));
+      });
+
+      test('kan de titel bepalen via een slot van een toggleable step', () => {
+        const step = fixture('vl-step-toggleable-fixture');
+        const titleElement = step.querySelector('[slot="title"]');
+        const titleSlot = step.shadowRoot.querySelector('[slot="title"]');
+        const titleLabelElement = step.querySelector('[slot="title-label"]');
+        const titleLabelSlot = step.shadowRoot.querySelector('[slot="title-label"]');
+        assert.isTrue(titleSlot.isEqualNode(titleElement));
+        assert.isTrue(titleLabelSlot.isEqualNode(titleLabelElement));
+        assert.equal(step._titleElement.innerText, `${titleElement.innerText} ${titleLabelElement.innerText}`);
+      });
+    });
+  </script>
+</body>
+</html>
