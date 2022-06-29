@@ -106,7 +106,6 @@
     "chromedriver": "^101.0.0",
     "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.3.0",
-    "fetch-mock": "^9.11.0",
     "fs-extra": "^10.0.0",
     "geckodriver": "^3.0.1",
     "http-server": "^13.0.2",

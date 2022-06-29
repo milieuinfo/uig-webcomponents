@@ -1,9 +1,7 @@
 import { html } from 'lit-html';
-import fetchMock from 'fetch-mock';
 import { stylesheet, docsIntro } from '../../../.storybook/utils.js';
 import linkStyles from '../../components/link/styles.scss';
-
-import './';
+import '../proza-message';
 
 export default {
   title: 'legacy/vl-proza-message',
@@ -21,13 +19,11 @@ export default {
   },
 };
 
-export const Default = () => {
-  return html`<a
-      is="vl-link"
-      target="_blank"
-      data-vl-inline
-      href="https://webcomponenten.omgeving.vlaanderen.be/doc/VlProzaMessage.html"
-    >
-      Legacy docs <span is="vl-icon" data-vl-icon="external" data-vl-after data-vl-link></span
-    ></a>
-};
+export const Default = () => html`<a
+  is="vl-link"
+  target="_blank"
+  data-vl-inline
+  href="https://webcomponenten.omgeving.vlaanderen.be/doc/VlProzaMessage.html"
+>
+  Legacy docs <span is="vl-icon" data-vl-icon="external" data-vl-after data-vl-link></span>
+</a>`;
