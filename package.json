@@ -93,6 +93,7 @@
     "@govflanders/vl-ui-tooltip": "^3.12.3",
     "@govflanders/vl-ui-typography": "^3.12.17",
     "@govflanders/vl-ui-upload": "^3.12.17",
+    "@govflanders/vl-ui-steps": "^3.12.3",
     "@govflanders/vl-ui-video-player": "^3.12.3",
     "@govflanders/vl-ui-wizard": "^3.12.3",
     "@open-wc/eslint-config": "^7.0.0",
