@@ -1,0 +1,17 @@
+@charset "utf-8";
+@import '../../../node_modules/@govflanders/vl-ui-core/src/scss/core';
+@import '../../../node_modules/@govflanders/vl-ui-steps/src/scss/steps';
+@import '../../../node_modules/@govflanders/vl-ui-util/src/scss/util';
+
+#title-label:not([hidden]) {
+    display: inline-block;
+    margin-left: 3rem;
+}
+
+.vl-step--accordion {
+    &.js-vl-accordion--open {
+        .vl-step__content-wrapper {
+            overflow: inherit;
+        }
+    }
+}
