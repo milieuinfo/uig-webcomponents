@@ -61,6 +61,7 @@
     "@govflanders/vl-ui-contact-card": "^3.12.17",
     "@govflanders/vl-ui-content-header": "^3.12.3",
     "@govflanders/vl-ui-data-table": "^3.12.17",
+    "@govflanders/vl-ui-datepicker": "^3.12.17",
     "@govflanders/vl-ui-description-data": "^3.12.3",
     "@govflanders/vl-ui-document": "^3.12.3",
     "@govflanders/vl-ui-doormat": "^3.12.3",
