@@ -11,7 +11,7 @@ const changes = [
   ...unreleased,
   {
     version: '3.0.4',
-    date: '?',
+    date: '4/7/2022',
     children: html`<ul>
       <li>
         <p><code>vl-datepicker</code></p>
