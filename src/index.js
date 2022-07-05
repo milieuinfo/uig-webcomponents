@@ -6,6 +6,7 @@ export { VlButton } from './components/button';
 export { VlLinkButton } from './components/button/components/link-button';
 export { VlContactCard } from './components/contact-card';
 export { VlDataTable } from './components/data-table';
+export { VlDatepicker} from './legacy/datepicker';
 export { VlFunctionalHeader } from './components/functional-header';
 export { VlGrid } from './components/grid';
 export { VlRegion } from './components/grid/components/region';
@@ -96,6 +97,12 @@ export { VlTabsPane } from './legacy/tabs/components/vl-tabs-pane';
 export { VlTabSection } from './legacy/tabs/components/vl-tab-section';
 export { VlTab } from './legacy/tabs/components/vl-tab';
 export { VlUpload } from './legacy/upload';
+export { VlTextarea } from './legacy/textarea';
+export { VlSteps } from './legacy/steps';
 export { VlToaster } from './legacy/toaster';
 export { VlCheckbox } from './legacy/checkbox';
 export { VlInfotext } from './legacy/infotext';
+
+// Test components
+
+export { VlTestRichTextarea } from './legacy/textarea/test/e2e/vl-rich-textarea';

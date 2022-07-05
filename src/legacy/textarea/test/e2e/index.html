@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <title>vl-ui-textarea voorbeeld</title>
+    <script type="module" src="../../../../../build/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../../../lib/components/body/styles.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../lib/legacy/textarea/styles.css" />
+  </head>
+
+  <body is="vl-body">
+    <textarea id="textarea" is="vl-textarea" cols="40" rows="4">foobar</textarea>
+
+    <textarea id="textarea-block" is="vl-textarea" cols="40" rows="4" data-vl-block>foobar</textarea>
+
+    <textarea id="textarea-error" is="vl-textarea" cols="40" rows="4" data-vl-error>foobar</textarea>
+
+    <textarea id="textarea-success" is="vl-textarea" cols="40" rows="4" data-vl-success>foobar</textarea>
+
+    <textarea id="textarea-disabled" is="vl-textarea" cols="40" rows="4" disabled>foobar</textarea>
+
+    <textarea id="textarea-focus" is="vl-textarea" cols="40" rows="4" data-vl-focus>foobar</textarea>
+
+    <textarea
+      id="textarea-rich"
+      is="vl-textarea"
+      cols="40"
+      rows="50"
+      data-vl-rich
+      data-vl-toolbar="undo redo | bold italic underline strikethrough | h1 h2 h3 h4 h5 h6 | vlLink blockquote hr | numlist bullist"
+    >
+                <p>
+                    <h1>h1 title</h1>
+                    <h2>h2 title</h2>
+                    <h3>h3 title</h3>
+                    <h4>h4 title</h4>
+                    <h5>h5 title</h5>
+                    <h6>h6 title</h6>
+                </p>
+                <p><b>b-tag</b></p>
+                <p><i>i-tag</i></p>
+                <p><u>u-tag</u></p>
+                <p><hr/></p>
+                <p><s>s-tag</s></p>
+                <p><blockquote>blockquote-tag</blockquote></p>
+                <p><hr/></p>
+                <p>
+                    <ul>
+                        <li>unsorted list item</li>
+                        <li>unsorted list item</li>
+                        <ul>
+                            <li>unsorted list subitem</li>
+                            <li>unsorted list subitem</li>
+                        </ul>
+                        <li>unsorted list item</li>
+                    </ul>
+                </p>
+                <p><hr/></p>
+                <p>
+                    <ol>
+                        <li>ordered list item</li>
+                        <li>ordered list item</li>
+                        <ol>
+                            <li>ordered list subitem</li>
+                            <li>ordered list subitem</li>
+                        </ol>
+                        <li>ordered list item</li>
+                    </ol>
+                </p>
+            </textarea
+    >
+
+    <vl-rich-textarea></vl-rich-textarea>
+  </body>
+</html>

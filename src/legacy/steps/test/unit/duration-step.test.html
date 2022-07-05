@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/node_modules/web-component-tester/browser.js"></script>
+
+    <script src="/node_modules/sinon/pkg/sinon.js"></script>
+
+    <script type="module" src="../../../../../lib/legacy/steps/components/duration-step/index.js"></script>
+    <title>vl-duration-step test</title>
+  </head>
+
+<body>
+  <test-fixture id="vl-duration-step-fixture">
+    <template>
+      <vl-duration-step>
+        <span>test 1</span>
+        <span>test 2</span>
+      </vl-duration-step>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('vl-duration-step', () => {
+      test('zal de child elementen toevoegen aan het step duration element', () => {
+        const stepDuration = fixture('vl-duration-step-fixture');
+        [...stepDuration._element.children].forEach((child, index) => {
+          assert.isTrue(child.isEqualNode(stepDuration.children[index]));
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

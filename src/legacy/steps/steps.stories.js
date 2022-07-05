@@ -1,16 +1,18 @@
+
 import { html } from 'lit-html';
-import { docsIntro, stylesheet } from '../../../.storybook/utils.js';
+import '../../components/link';
 import linkStyles from '../../components/link/styles.scss';
+import { docsIntro, stylesheet } from '../../../.storybook/utils.js';
 
 export default {
-  title: 'legacy/vl-upload',
-  decorators: [(story) => html`${stylesheet(linkStyles)} ${story()}`],
+  title: 'legacy/vl-steps',
+  decorators: [(story) => html`${stylesheet(linkStyles)}${story()}`],
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
       description: {
         component: docsIntro({
-          root: 'upload',
+          root: 'steps',
           isLegacy: true,
         }),
       },
@@ -22,7 +24,7 @@ export const Default = () => html`<a
   is="vl-link"
   target="_blank"
   data-vl-inline
-  href="https://webcomponenten.omgeving.vlaanderen.be/doc/VlUpload.html"
+  href="https://webcomponenten.omgeving.vlaanderen.be/doc/VlSteps.html"
 >
   Legacy docs <span is="vl-icon" data-vl-icon="external" data-vl-after data-vl-link></span
 ></a>`;
