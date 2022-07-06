@@ -13,6 +13,7 @@ const complexItems = [
 
 export default {
   title: 'custom-elements/vl-autocomplete',
+  decorators: [(story) => html`<div style="margin-bottom: 20em;">${story()}</div>`],
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
@@ -165,6 +166,7 @@ async function fetchDataFromApiCall(autocomplete, searchTerm){
 
 export const WithInputAndApiCall = () => html`
   <vl-autocomplete @search=${(e) => fetchDataFromApiCall(e.target, e.detail.searchTerm)} 
-                   placeholder="Gemeente, Straat of Project" 
+                   placeholder="Gemeente, Straat of Project"
+                   data-vl-min-chars="2"
                    data-vl-max-suggestions="10"></vl-autocomplete>
 `;

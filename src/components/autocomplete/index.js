@@ -388,7 +388,7 @@ export class VlAutocomplete extends LitElement {
     try {
       const searchTerm = this.contentElement.value;
       if (searchTerm.length >= this.minChars) {
-        if (this.items.length) {
+        if (this.items && this.items.length) {
           this.filterAndSuggest(searchTerm, this.items)
         } else {
           const options = {
