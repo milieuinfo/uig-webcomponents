@@ -1,7 +1,10 @@
 import { html, css, LitElement, unsafeCSS} from "lit";
 import styles from './styles.scss';
+import {CAPTION_FORMAT} from './enums';
 
-const MAX_MATCHES = 15;
+export const DEFAULT_MAX_MATCHES = 15;
+export const DEFAULT_MIN_CHARS = 3;
+export const DEFAULT_CAPTION_FORMAT = CAPTION_FORMAT.TITLE_SUBTITLE_VERTICAL;
 
 export class VlAutocomplete extends LitElement {
   static get styles() {
@@ -68,14 +71,15 @@ export class VlAutocomplete extends LitElement {
     this._groupedMatches = new Map();
     this.firstValidItemIndex = null;
 
-    this.minChars = 3;
+    this.minChars = DEFAULT_MIN_CHARS;
 
     this.items = [];
 
     this.loading = false;
     this.opened = false;
 
-    this.maxSuggestions = MAX_MATCHES;
+    this.maxSuggestions = DEFAULT_MAX_MATCHES;
+    this.captionFormat = DEFAULT_CAPTION_FORMAT;
   }
 
   firstUpdated() {
@@ -181,21 +185,21 @@ export class VlAutocomplete extends LitElement {
   {
     switch (this.captionFormat)
     {
-      case VlAutocomplete.CaptionFormat.Title: return html`${item.title}`;
-      case VlAutocomplete.CaptionFormat.Subtitle: return html`${item.subtitle}`;
-      case VlAutocomplete.CaptionFormat.Value: return html`${item.value}`;
+      case CAPTION_FORMAT.TITLE: return html`${item.title}`;
+      case CAPTION_FORMAT.SUBTITLE: return html`${item.subtitle}`;
+      case CAPTION_FORMAT.VALUE: return html`${item.value}`;
       default:
     }
 
     if(item.subtitle != null) {
-      if(this.captionFormat === VlAutocomplete.CaptionFormat.TitleSubtitleVertical || this.captionFormat == null) {
+      if(this.captionFormat === CAPTION_FORMAT.TITLE_SUBTITLE_VERTICAL || this.captionFormat == null) {
         return html`<span class="vl-autocomplete__cta__title">${item.title}</span><span
             class="vl-autocomplete__cta__sub">${item.subtitle}</span>`;
       }
-      if(this.captionFormat === VlAutocomplete.CaptionFormat.TitleSubtitleHorizontal) {
+      if(this.captionFormat === CAPTION_FORMAT.TITLE_SUBTITLE_HORIZONTAL) {
         return html`${item.title}: ${item.subtitle}`;
       }
-      if(this.captionFormat === VlAutocomplete.CaptionFormat.SubtitleTitleHorizontal) {
+      if(this.captionFormat === CAPTION_FORMAT.SUBTITLE_TITLE_HORIZONTAL) {
         return html`${item.subtitle}: ${item.title}`;
       }
     }
@@ -255,7 +259,7 @@ export class VlAutocomplete extends LitElement {
     this._blur = true;
     if(!this._mouseEnter)
     {
-      this.close();
+     this.close();
     }
   }
 
@@ -428,15 +432,6 @@ export class VlAutocomplete extends LitElement {
       </div>
     `;
   }
-}
-
-VlAutocomplete.CaptionFormat = {
-  Title: "title",
-  Subtitle: "subtitle",
-  Value: "value",
-  TitleSubtitleVertical: "title-subtitle-vertical",
-  TitleSubtitleHorizontal: "title-subtitle-horizontal",
-  SubtitleTitleHorizontal: "subtitle-title-horizontal",
 }
 
 window.customElements.define("vl-autocomplete", VlAutocomplete);
