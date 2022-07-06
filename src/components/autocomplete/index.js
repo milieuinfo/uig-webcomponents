@@ -19,10 +19,8 @@ export class VlAutocomplete extends LitElement {
         attribute: "data-vl-min-chars",
         reflect: true,
       },
-      staticList: {
-        type: Array,
-        attribute: "data-vl-static-list"
-      },
+      items: Array,
+      loading: { type: Boolean, reflect: true },
       opened: { type: Boolean, reflect: true },
       firstValidItemIndex: { type: Number, reflect: true},
       maxSuggestions: {
@@ -33,15 +31,13 @@ export class VlAutocomplete extends LitElement {
         type: String,
         attribute: "data-vl-group-by",
       },
+      captionFormat: {
+        type: String,
+        attribute: "data-vl-caption-format",
+      },
       placeholder: {
         type: String,
         attribute: "placeholder"
-      },
-      dataFetcher: {
-        type: Function,
-      },
-      captionFormatter: {
-        type: Function
       }
     };
   }
@@ -51,19 +47,12 @@ export class VlAutocomplete extends LitElement {
       return this._inputEl;
     }
 
-    var slotInputList = this.shadowRoot
-        .getElementById("dropdown-input")
-        .assignedNodes()[1];
+    if(this.shadowRoot) {
+      this._inputEl = this.shadowRoot.getElementById("defaultInput");
+      return this._inputEl;
+    }
 
-    this._inputEl = slotInputList
-        ? slotInputList
-        : this.shadowRoot.getElementById("defaultInput");
-
-    return this._inputEl;
-  }
-
-  set staticList(value) {
-    this.items = value;
+    return null;
   }
 
   set dataMinChars(value) {
@@ -83,29 +72,16 @@ export class VlAutocomplete extends LitElement {
 
     this.items = [];
 
+    this.loading = false;
     this.opened = false;
 
     this.maxSuggestions = MAX_MATCHES;
-
-    this.dataFetcher = (searchTerm, autocomplete) => {
-      console.log(`Default dataFetcher: ${  searchTerm}`);
-    };
-
-    this.captionFormatter = (item) => {
-      if(item.subtitle != null) {
-        return html`<span class="vl-autocomplete__cta__title">${item.title}</span><span
-            class="vl-autocomplete__cta__sub">${item.subtitle}</span>`;
-      }
-      else {
-        return html`<span class="vl-autocomplete__cta__title">${item.title}</span>`;
-      }
-    }
   }
 
   firstUpdated() {
     this._suggestionEl = this.shadowRoot.getElementById("suggestions");
     this._suggestionEl.style.width =
-        this.contentElement.getBoundingClientRect().width + "px";
+        `${this.contentElement.getBoundingClientRect().width}px`;
 
     this._eventReferences.onFocus = this._onFocus.bind(this);
     this._eventReferences.onBlur = this._onBlur.bind(this);
@@ -130,17 +106,14 @@ export class VlAutocomplete extends LitElement {
   }
 
   updated(changed) {
-    console.log("updated!!");
     if (
         (changed.has("opened") || changed.has("firstValidItemIndex")) &&
         this.opened &&
         this._suggestionEl.childElementCount
     ) {
-      for (let item of this._suggestionEl.children) {
+      for (const item of this._suggestionEl.children) {
         item.classList.remove("vl-autocomplete__cta--focus");
       }
-
-      console.log(`this.firstValidItemIndex: ${  this.firstValidItemIndex}`);
 
       if(this.firstValidItemIndex != null) {
         this._highlightedEl = this._suggestionEl.children[this.firstValidItemIndex];
@@ -195,38 +168,42 @@ export class VlAutocomplete extends LitElement {
         break;
 
       case "Enter":
-        this._highlightedEl && this._highlightedEl.click();
+        if(this._highlightedEl)
+        {
+          this._highlightedEl.click();
+        }
         break;
       default:
-        var searchTerm = this.contentElement.value;
-        if(searchTerm.length >= this.minChars) {
-          if (this.items.length) {
-
-            console.log(this.items);
-
-            this.filterAndSuggest(searchTerm, this.items)
-          } else {
-            this.fetchData(searchTerm);
-          }
-        }
-        else {
-          this.suggest([]);
-        }
     }
-  }
-
-  fetchData(searchTerm)
-  {
-    this.dataFetcher(searchTerm, this);
   }
 
   formatCaption(item)
   {
-    return this.captionFormatter(item)
+    switch (this.captionFormat)
+    {
+      case VlAutocomplete.CaptionFormat.Title: return html`${item.title}`;
+      case VlAutocomplete.CaptionFormat.Subtitle: return html`${item.subtitle}`;
+      case VlAutocomplete.CaptionFormat.Value: return html`${item.value}`;
+      default:
+    }
+
+    if(item.subtitle != null) {
+      if(this.captionFormat === VlAutocomplete.CaptionFormat.TitleSubtitleVertical || this.captionFormat == null) {
+        return html`<span class="vl-autocomplete__cta__title">${item.title}</span><span
+            class="vl-autocomplete__cta__sub">${item.subtitle}</span>`;
+      }
+      if(this.captionFormat === VlAutocomplete.CaptionFormat.TitleSubtitleHorizontal) {
+        return html`${item.title}: ${item.subtitle}`;
+      }
+      if(this.captionFormat === VlAutocomplete.CaptionFormat.SubtitleTitleHorizontal) {
+        return html`${item.subtitle}: ${item.title}`;
+      }
+    }
+    return html`<span class="vl-autocomplete__cta__title">${item.title}</span>`;
   }
 
   filterAndSuggest(searchTerm, items){
-    var suggestions = [];
+    let suggestions = [];
     suggestions =
         searchTerm &&
         items
@@ -241,14 +218,10 @@ export class VlAutocomplete extends LitElement {
                                 .replace(",", "")
                                 .replace(/\s/g, "")
                                 .toLowerCase()
-                        ) != -1
+                        ) !== -1
             )
 
             .slice(0, this.maxSuggestions); // Limit results
-    this.suggest(suggestions);
-  }
-
-  fetchDataResult(suggestions) {
     this.suggest(suggestions);
   }
 
@@ -274,47 +247,50 @@ export class VlAutocomplete extends LitElement {
     this._highlightedEl.scrollIntoView();
   }
 
-  _onFocus(ev) {
-    console.log("on focus!");
+  _onFocus() {
     this._blur = false;
-    //this._matches.length && this.open();
   }
 
-  _onBlur(ev) {
+  _onBlur() {
     this._blur = true;
-    !this._mouseEnter && this.close();
+    if(!this._mouseEnter)
+    {
+      this.close();
+    }
   }
 
-  _handleItemMouseEnter(ev) {
+  _handleItemMouseEnter() {
     this._mouseEnter = true;
   }
 
-  _handleItemMouseLeave(ev) {
+  _handleItemMouseLeave() {
     this._mouseEnter = false;
-    this._blur && setTimeout(_ => this.close(), 500);
+    if(this._blur)
+    {
+      setTimeout(() => this.close(), 500);
+    }
   }
 
   open() {
-    console.log("open()");
     if (this._matches.length) {
       this.opened = true;
     }
   }
 
   close() {
-    console.log("close()");
     this.opened = false;
     this._highlightedEl = null;
   }
 
+  set matches(items) {
+    this.suggest(items)
+  }
+
   suggest(suggestions) {
-    console.log("suggest");
-    console.log(`suggestions:${  suggestions}`);
-    this._matches = suggestions || [];
+    const {contentElement} = this;
+    const searchTerm = contentElement?this.contentElement.value:null;
 
-    var searchTerm = this.contentElement.value;
-    if(searchTerm.length >= this.minChars) {
-
+    if(searchTerm && searchTerm.length >= this.minChars) {
       this._matches = suggestions || [];
 
       this._groupedMatches = new Map();
@@ -322,15 +298,13 @@ export class VlAutocomplete extends LitElement {
         if (this.groupBy != null) {
           this._matches.forEach(item => {
             const groupByValue = item[this.groupBy];
-            console.log("groupByValue: " + groupByValue);
-            var group = this._groupedMatches.get(groupByValue);
+            let group = this._groupedMatches.get(groupByValue);
             if (group == null) {
               group = [];
               this._groupedMatches.set(groupByValue, group);
             }
             group[group.length] = item;
           });
-          console.log(`suggest - _groupedMatches: ${this._groupedMatches.size}`);
           this.firstValidItemIndex = 1;
         } else {
           this.firstValidItemIndex = 0;
@@ -345,7 +319,16 @@ export class VlAutocomplete extends LitElement {
       this._matches = [];
     }
 
-    this._matches.length ? this.open() : this.close();
+    if(this._matches.length)
+    {
+      this.open()
+    }
+    else
+    {
+      this.close();
+    }
+
+    this.loading = false;
 
     this.requestUpdate();
   }
@@ -355,7 +338,7 @@ export class VlAutocomplete extends LitElement {
     if(this.groupBy && this._groupedMatches.size > 0) {
       const liElements = [];
 
-      this._groupedMatches.forEach((items, groupName, map) => {
+      this._groupedMatches.forEach((items, groupName) => {
         liElements.push(html`
         <li class="vl-autocomplete__cta group">
             ${groupName}
@@ -365,16 +348,14 @@ export class VlAutocomplete extends LitElement {
 
       return html`${liElements}`;
     }
-    else {
-      return html`${this._matches.map(item => this.generateItem(item))}`
-    }
+    
+    return html`${this._matches.map(item => this.generateItem(item))}`
   }
 
   generateItem(item)
   {
     return html`
-        <li @click=${ev =>
-        this.autocomplete(item.title, item.value ? item.value : null)} class="vl-autocomplete__cta" role="option"
+        <li @click=${() => this.autocomplete(item.title, item.value ? item.value : null)} class="vl-autocomplete__cta" role="option"
             tabindex="-1">
           ${this.formatCaption(item)}
         </li>`;
@@ -397,25 +378,43 @@ export class VlAutocomplete extends LitElement {
     );
   }
 
+  async _notify() {
+    this.loading = true;
+
+    try {
+      const searchTerm = this.contentElement.value;
+      if (searchTerm.length >= this.minChars) {
+        if (this.items.length) {
+          this.filterAndSuggest(searchTerm, this.items)
+        } else {
+          const options = {
+            detail: {searchTerm},
+            bubbles: true,
+            composed: true,
+          };
+          this.dispatchEvent(new CustomEvent('search', options));
+        }
+      } else {
+        this.suggest([]);
+      }
+    }
+    catch(e)
+    {
+      this.loading = false;
+      throw e;
+    }
+  }
+
   render() {
     return html`
-      <style>
-        li.group {
-          font-weight: bold;
-        }
-
-        .js-vl-autocomplete div.vl-autocomplete__list-wrapper, .js-vl-autocomplete div.autocomplete__list-wrapper  {
-          max-height: 100vh;
-        }
-      </style>
       <div class="js-vl-autocomplete">
         <slot id="dropdown-input">
             <input type="text" name="vl-autocomplete-1-input-name" id="defaultInput" placeholder="${this.placeholder}" class="vl-input-field vl-input-field--block" 
                    aria-describedby="vl-autocomplete-1-hint" autocomplete="off" autocapitalize="off" spellcheck="off" 
                    aria-autocomplete="list" aria-owns="autocomplete-n_l4ccf1zt_60ntk4812m6ubixdrvocg" aria-controls="autocomplete-n_l4ccf1zt_60ntk4812m6ubixdrvocg" 
-                   aria-haspopup="listbox">
+                   aria-haspopup="listbox" @input=${this._notify}>
         </slot>
-        <div class="vl-autocomplete__loader" aria-hidden="true"></div>
+        <div class="vl-autocomplete__loader" aria-hidden="true" ?hidden=${!this.loading}></div>
         <div class="vl-autocomplete"
              ?hidden=${!this.opened}
              @mouseenter=${this._handleItemMouseEnter}
@@ -429,6 +428,15 @@ export class VlAutocomplete extends LitElement {
       </div>
     `;
   }
+}
+
+VlAutocomplete.CaptionFormat = {
+  Title: "title",
+  Subtitle: "subtitle",
+  Value: "value",
+  TitleSubtitleVertical: "title-subtitle-vertical",
+  TitleSubtitleHorizontal: "title-subtitle-horizontal",
+  SubtitleTitleHorizontal: "subtitle-title-horizontal",
 }
 
 window.customElements.define("vl-autocomplete", VlAutocomplete);
