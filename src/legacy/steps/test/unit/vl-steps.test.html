@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="/node_modules/web-component-tester/browser.js"></script>
+
+  <script src="/node_modules/sinon/pkg/sinon.js"></script>
+
+  <script type="module" src="../../../../../lib/legacy/steps/index.js"></script>
+  <title>vl-steps test</title>
+</head>
+
+<body>
+  <test-fixture id="vl-steps-fixture">
+    <template>
+      <vl-steps>
+        <vl-step></vl-step>
+        <vl-duration-step></vl-duration-step>
+        <vl-step></vl-step>
+        <vl-duration-step></vl-duration-step>
+      </vl-steps>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="vl-steps-empty-step-fixture">
+    <template>
+      <vl-steps>
+        <vl-step></vl-step>
+      </vl-steps>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="vl-steps-step-fixture">
+    <template>
+      <vl-steps>
+        <vl-step>
+          <span slot="identifier">identifier</span>
+          <span slot="identifier-annotation">identifier-annotation</span>
+          <span slot="title">title</span>
+          <span slot="title-label">title-label</span>
+          <span slot="title-annotation">title-annotation</span>
+          <span slot="sub-title">sub-title</span>
+          <span slot="content">content</span>
+        </vl-step>
+      </vl-steps>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('vl-steps', () => {
+      const slots = ['identifier', 'identifier-annotation', 'title', 'title-label', 'title-annotation', 'sub-title', 'content'];
+
+      test('krijgt de juiste class wanneer de step het timeline attribuut bevat', () => {
+        const steps = fixture('vl-steps-fixture');
+        const attribute = 'data-vl-timeline';
+        const prefix = 'vl-steps--';
+        const clazz = `${prefix}${attribute}`;
+        const element = steps._stepsElement;
+        assert.isFalse(element.classList.contains(clazz));
+        steps.setAttribute(attribute, '');
+        assert.isTrue(element.classList.contains(clazz));
+        steps.removeAttribute(attribute);
+        assert.isFalse(element.classList.contains(clazz));
+      });
+
+      test('zal voor elke step en duration-step element een template renderen', (done) => {
+        const steps = fixture('vl-steps-fixture');
+        customElements.whenDefined('vl-step').then(() => {
+          customElements.whenDefined('vl-duration-step').then(() => {
+            assert.lengthOf(steps._stepsElement.children, steps.children.length);
+            [...steps._stepsElement.children].forEach((child, index) => {
+              assert.isTrue(child.isEqualNode(steps.children[index].template));
+            });
+            done();
+          });
+        });
+      });
+
+      test('zal al de child elementen opnieuw renderen zodra er iets wijzigt aan child element', (done) => {
+        const steps = fixture('vl-steps-fixture');
+        const step = steps.querySelector('vl-step');
+        step.setAttribute('data-vl-disabled', '');
+        setTimeout(() => {
+          [...steps._stepsElement.children].forEach((child, index) => {
+            assert.isTrue(child.isEqualNode(steps.children[index].template));
+          });
+
+          const stepDuration = steps.querySelector('vl-duration-step');
+          stepDuration.innerText = 'test';
+          setTimeout(() => {
+            [...steps._stepsElement.children].forEach((child, index) => {
+              assert.isTrue(child.isEqualNode(steps.children[index].template));
+            });
+            done();
+          });
+        });
+      });
+
+      test('zal de content aanpassen indien de slot content wordt aangepast', (done) => {
+        const steps = fixture('vl-steps-step-fixture');
+        const step = steps.querySelector('vl-step');
+        const text = 'text';
+        slots.forEach((identifier, index) => step.querySelector(`[slot="${identifier}"]`).innerText = `${text}-${index}`);
+        setTimeout(() => {
+          const step = steps._stepsElement.children[0];
+          slots.forEach((identifier, index) => assert.equal(step.querySelector(`[slot="${identifier}"]`).innerText, `${text}-${index}`));
+          done();
+        });
+      });
+
+      test('zal de content aanpassen indien slot elementen worden toegevoegd of verwijderd', (done) => {
+        const steps = fixture('vl-steps-empty-step-fixture');
+        const step = steps.querySelector('vl-step');
+        const text = 'text';
+        slots.forEach((identifier, index) => {
+          const element = document.createElement('span');
+          element.setAttribute('slot', identifier);
+          element.innerText = `${text}-${index}`;
+          step.appendChild(element);
+        });
+
+        setTimeout(() => {
+          let element = steps._stepsElement.children[0];
+          slots.forEach((identifier, index) => assert.equal(element.querySelector(`[slot="${identifier}"]`).innerText, `${text}-${index}`));
+          slots.forEach((identifier) => step.querySelector(`[slot="${identifier}"]`).remove());
+
+          setTimeout(() => {
+            element = steps._stepsElement.children[0];
+            slots.forEach((identifier) => assert.equal(element.querySelector(`[slot="${identifier}"]`).textContent, ''));
+            done();
+          });
+        });
+      });
+
+      test('slot inhoud wordt al dan niet verborgen bij verwijderen of toevoegen', (done) => {
+        const steps = fixture('vl-steps-empty-step-fixture');
+        const step = steps.querySelector('vl-step');
+
+        setTimeout(() => {
+          let element = steps._stepsElement.children[0];
+          slots.forEach((identifier) => assert.isTrue(element.querySelector(`[slot="${identifier}"]`).parentElement.hidden));
+    
+          slots.forEach((identifier, index) => {
+            const element = document.createElement('span');
+            element.setAttribute('slot', identifier);
+            step.appendChild(element);
+          });
+
+          setTimeout(() => {
+            element = steps._stepsElement.children[0];
+            slots.forEach((identifier) => assert.isFalse(element.querySelector(`[slot="${identifier}"]`).parentElement.hidden));
+            slots.forEach((identifier) => step.querySelector(`[slot="${identifier}"]`).remove());
+    
+            setTimeout(() => {
+              element = steps._stepsElement.children[0];
+              slots.forEach((identifier) => assert.isTrue(element.querySelector(`[slot="${identifier}"]`).parentElement.hidden));
+              done();
+            });
+          });
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
