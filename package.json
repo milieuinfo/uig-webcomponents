@@ -110,6 +110,7 @@
     "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.3.0",
     "fs-extra": "^10.0.0",
+    "fetch-mock": "^9.10.7",
     "geckodriver": "^3.0.1",
     "http-server": "^13.0.2",
     "jsdom": "^16.3.0",
