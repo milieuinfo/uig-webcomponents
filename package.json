@@ -8,7 +8,7 @@
     "test": "npm run build && npm run test:unit && npm run test:e2e",
     "test:bamboo": "npm run build && npm run test:e2e:bamboo && npm run test:unit:bamboo",
     "test:server:start": "http-server ./ &",
-    "test:unit": "wct --config-file ./config/wct.local.config.json",
+    "test:unit": "wct -p --config-file ./config/wct.local.config.json",
     "test:unit:bamboo": "wct --config-file ./config/wct.docker.config.json",
     "test:e2e": "build-storybook && npm run test:server:start && mocha --chrome --config ./config/mocha.config.json --es-module-specifier-resolution=node",
     "test:e2e:short": "npm run test:server:start && mocha --chrome --local --config ./config/mocha.config.json --es-module-specifier-resolution=node",
