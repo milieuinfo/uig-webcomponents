@@ -1,4 +1,4 @@
-import { vlElement, define } from '../../utils/core';
+import { vlElement, define } from '../../../../utils/core/index.js';
 import { ProzaRestClient } from './vl-proza-rest-client.js';
 
 /**

@@ -1,6 +1,7 @@
-import { awaitUntil, vlElement, define } from '../../utils/core';
-// import toasterStyles from '../toaster/styles.scss';
-// import { VlTypography } from '../../components/typography';
+import { awaitUntil, vlElement, define } from '../../../../utils/core/index.js';
+import styles from './vl-proza-message.scss';
+import toasterStyles from '../../../toaster/styles.scss';
+import { VlTypography } from '../../../../components/typography';
 import { VlProzaMessagePreloader } from './vl-proza-message-preloader.js';
 
 /**

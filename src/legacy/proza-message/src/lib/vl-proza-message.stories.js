@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
-import { stylesheet, docsIntro } from '../../../.storybook/utils.js';
-import linkStyles from '../../components/link/styles.scss';
-import '../proza-message';
+import { stylesheet, docsIntro } from '../../../../../.storybook/utils.js';
+import linkStyles from '../../../../components/link/styles.scss';
+import '../index.js';
 
 export default {
   title: 'legacy/vl-proza-message',
