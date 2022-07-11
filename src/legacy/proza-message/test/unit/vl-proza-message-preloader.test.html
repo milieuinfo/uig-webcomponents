@@ -2,7 +2,6 @@
 <html lang="nl">
   <head>
     <meta charset="utf-8" />
-    <!--    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>-->
     <script src="/node_modules/web-component-tester/browser.js"></script>
     <script src="/node_modules/sinon/pkg/sinon.js"></script>
     <script type="module" src="../../../../../lib/legacy/proza-message/src"></script>
@@ -47,12 +46,6 @@
           fetchMock.restore();
           delete VlProzaMessagePreloader.__cache;
           console.log('teardown - after');
-        });
-
-        test('test het testen', () => {
-          console.log('test het testen - before');
-          assert.isTrue(true);
-          console.log('test het testen - after');
         });
 
         test('berichten zijn beschikbaar', (done) => {

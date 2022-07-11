@@ -1,5 +1,5 @@
 import { vlElement, define } from "../../utils/core";
-// import styles from "./styles.scss";
+import styles from "./styles.scss";
 
 /**
  * VlTypography
