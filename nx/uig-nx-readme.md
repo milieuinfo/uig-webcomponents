@@ -12,6 +12,9 @@ https://nx.dev/
 - npx nx g @nrwl/web:application exhibit
 - npx nx g @nrwl/web:lib exhibit/core
 - npm install -D @nrwl/storybook
+- npx nx g @nrwl/web:application storybook
+
+
 - npm install -D @nrwl/react
 - npx nx g @nrwl/web:application storybook
 - nx g @nrwl/react:storybook-configuration storybook
