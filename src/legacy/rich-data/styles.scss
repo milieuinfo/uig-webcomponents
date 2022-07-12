@@ -1,6 +1,6 @@
 @charset "utf-8";
-@import "vl-ui-core/src/scss/core";
-@import "vl-ui-util/src/scss/util";
+@import '../../../node_modules/@govflanders/vl-ui-core/src/scss/core';
+@import '../../../node_modules/@govflanders/vl-ui-util/src/scss/util';
 
 #search-results, #sorter {
     line-height: 2em;

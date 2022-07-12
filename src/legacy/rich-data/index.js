@@ -41,16 +41,11 @@ export class VlRichData extends vlElement(HTMLElement) {
   constructor(style = '', content = '') {
     super(`
       <style>
-        @import "/src/style.css";
         ${styles}
         ${gridStyles}
         ${formMessageStyles}
         ${iconStyles}
         ${buttonStyles}
-        @import "/node_modules/vl-ui-grid/dist/style.css";
-        @import "/node_modules/vl-ui-form-message/dist/style.css";
-        @import "/node_modules/vl-ui-icon/dist/style.css";
-        @import "/node_modules/vl-ui-button/dist/style.css";
       </style>
       ${style}
       <div>
@@ -336,7 +331,12 @@ export class VlRichData extends vlElement(HTMLElement) {
       this.__pager.setAttribute('data-vl-align-right', true);
       this.__pager.addEventListener('change', (e) => {
         this.__onStateChange(e, {paging: true});
-        this.__contentSlot?.assignedNodes()[0]?.children[0]?.querySelector('a')?.focus();
+        //this.__contentSlot?.assignedNodes()[0]?.children[0]?.querySelector('a')?.focus();
+        if(this.__contentSlot) {
+          if(this.__contentSlot.assignedNodes()[0].children.querySelector('a')) {
+            this.__contentSlot.assignedNodes()[0].children.querySelector('a').focus();
+          }
+        }
       });
     }
   }

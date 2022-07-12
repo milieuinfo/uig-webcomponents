@@ -102,6 +102,7 @@ export { VlSteps } from './legacy/steps';
 export { VlToaster } from './legacy/toaster';
 export { VlCheckbox } from './legacy/checkbox';
 export { VlInfotext } from './legacy/infotext';
+export { VlRichData } from './legacy/rich-data';
 
 // Test components
 
