@@ -1,0 +1,51 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Documentatie/1. Introductie" />
+
+# Commando's
+
+## Applicaties
+
+`npx nx serve exhibit` om de exhibit demo app te starten
+
+`npx nx e2e exhibit-e2e --watch` om de e2e tov de demo app te starten
+
+
+## Testen
+
+`npx nx run-many --all --target=test --parallel --maxParallel=4` om alle testen uit te voeren
+
+`npx nx run-many --all --target=test --parallel --maxParallel=4 --skip-nx-cache` om expliciet alle testen opnieuw uit te voeren
+
+
+## Storybook
+
+`npx nx storybook storybook` om Storybook op te starten
+
+`npx nx e2e storybook-e2e --watch` om Storybook op te starten en de Cypress test console te openen
+
+`npx nx e2e storybook-e2e` om Storybook op te starten en de Cypress testen eenmalig te laten lopen
+
+`npx nx build-storybook storybook` om een distribueerbare Storybook te bouwen
+
+<br />
+
+# Project aanpak
+
+## Nx
+
+Dit project is opgezet met [**Nx**](https://nx.dev/latest/angular).
+
+## Storybook
+
+De [**Nx Storybook plugin**](https://nx.dev/latest/angular/plugins/storybook/overview) wordt gebruikt.
+
+## Storybook voorbeelden
+
+-   https://5a375b97f4b14f0020b0cda3-kteijjgcjy.chromatic.com/?path=/story/addons-actions--arg-types-example
+
+## dep-graph
+
+```
+nx dep-graph
+```
