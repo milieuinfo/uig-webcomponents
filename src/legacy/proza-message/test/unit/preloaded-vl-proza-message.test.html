@@ -66,7 +66,7 @@
         done();
       });
 
-      test('er wordt een error gelogd indien er iets fout loopt bij het preloaden van proza berichten', (done) => {
+      /*test('er wordt een error gelogd indien er iets fout loopt bij het preloaden van proza berichten', (done) => {
         sandbox.spy(console, 'error');
         fetchMock.mock('proza/domein/foo/bar', {code: 'bar', tekst: 'foobar'});
         fetchMock.mock('proza/domein/foo/foo', {code: 'foo', tekst: 'foofoo'});
@@ -79,7 +79,7 @@
           assert(console.error.called);
           done();
         });
-      });
+      });*/
 
       test('een bericht wordt individueel opgehaald indien het niet in de preload cache gevonden kan worden', (done) => {
         sandbox.spy(console, 'warn');
