@@ -1,6 +1,7 @@
 node_modules
 lib
 !src/**/lib
+!nx/**/lib
 build
 .DS_STORE
 storybook-static
