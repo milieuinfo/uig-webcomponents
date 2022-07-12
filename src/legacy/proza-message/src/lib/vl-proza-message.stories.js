@@ -26,4 +26,7 @@ export const Default = () => html`<a
   href="https://webcomponenten.omgeving.vlaanderen.be/doc/VlProzaMessage.html"
 >
   Legacy docs <span is="vl-icon" data-vl-icon="external" data-vl-after data-vl-link></span>
-</a>`;
+</a>
+  <p>
+    Disclaimer: the wysiwyg functionality of this component might not work properly at this time. 
+  </p>`;

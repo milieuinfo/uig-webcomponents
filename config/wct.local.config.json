@@ -3,7 +3,7 @@
   "npm": true,
   "plugins": {
     "local": {
-      "browsers": ["chrome"]
+      "browsers": ["chrome", "firefox"]
     },
     "junit-reporter": {
       "output": {
@@ -12,7 +12,7 @@
       }
     }
   },
-  "suites": ["src/**/proza-message/test/unit/**/*.test.html"],
+  "suites": ["src/**/**/test/unit/**/*.test.html"],
   "webserver": { "port": "8081" },
   "root": "./"
 }
