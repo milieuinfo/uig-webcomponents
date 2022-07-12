@@ -3,6 +3,7 @@
   "version": 2,
   "projects": {
     "exhibit": "apps/exhibit",
+    "exhibit-core": "libs/exhibit/core",
     "exhibit-e2e": "apps/exhibit-e2e",
     "publish-dv-components": "libs/publish/dv-components",
     "publish-map": "libs/publish/map"
