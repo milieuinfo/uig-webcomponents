@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@uig/dv-components": ["libs/publish/dv-components/src/index.ts"]
+      "@uig/dv-components": ["libs/publish/dv-components/src/index.ts"],
+      "@uig/map": ["libs/publish/map/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

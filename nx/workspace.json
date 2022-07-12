@@ -2,6 +2,7 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
-    "publish-dv-components": "libs/publish/dv-components"
+    "publish-dv-components": "libs/publish/dv-components",
+    "publish-map": "libs/publish/map"
   }
 }
