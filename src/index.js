@@ -104,6 +104,7 @@ export { VlCheckbox } from './legacy/checkbox';
 export { VlInfotext } from './legacy/infotext';
 export { VlProzaMessage } from './legacy/proza-message/src';
 export { VlProzaMessagePreloader } from './legacy/proza-message/src';
+export { VlMultiSelect } from './legacy/multiselect';
 
 // Test components
 
