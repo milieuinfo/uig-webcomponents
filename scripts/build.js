@@ -30,10 +30,9 @@ const buildConfig = {
     'select',
     'side-navigation',
     'titles',
-    'toaster',
     'video-player',
   ],
-  componentsWithStylesheetAndInlineStyling: ['icon', 'grid', 'button', 'pill', 'tooltip', 'textarea', 'typography', 'rich-data'],
+  componentsWithStylesheetAndInlineStyling: ['icon', 'grid', 'button', 'pill', 'tooltip', 'textarea', 'typography', 'rich-data', 'proza-message'],
 };
 
 const { src, dist, componentsWithStylesheet, componentsWithStylesheetAndInlineStyling } = buildConfig;

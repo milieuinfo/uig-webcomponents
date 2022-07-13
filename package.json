@@ -1,6 +1,6 @@
 {
   "name": "uig-webcomponents",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -109,8 +109,8 @@
     "chromedriver": "^102.0.0",
     "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.3.0",
-    "fetch-mock": "^9.11.0",
     "fs-extra": "^10.0.0",
+    "fetch-mock": "^9.10.7",
     "geckodriver": "^3.0.1",
     "http-server": "^13.0.2",
     "jsdom": "^16.3.0",
