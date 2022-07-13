@@ -1,4 +1,4 @@
-import { nativeVlElement } from "../../../utils/core";
+import { nativeVlElement } from "../../utils/core";
 
 /**
  * Gebruik de button mixin in combinatie met button elementen.
