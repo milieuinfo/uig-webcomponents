@@ -7,7 +7,7 @@ import { nativeVlElement } from "../../utils/core";
  * @param {Object} SuperClass - Class die als base class gebruikt zal worden.
  * @return {Object} class
  */
-export const vlButtonElement = (SuperClass) => {
+export const vlButtonElement = (SuperClass: any) => {
   return class extends nativeVlElement(SuperClass) {
     static get _observedAttributes() {
       return [];
@@ -34,7 +34,7 @@ export const vlButtonElement = (SuperClass) => {
       });
     }
 
-    get _classPrefix() {
+    get _classPrefix(): string {
       return "vl-button--";
     }
 

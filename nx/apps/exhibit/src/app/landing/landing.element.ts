@@ -14,12 +14,23 @@ export class LandingElement extends HTMLElement {
             <span> Welcome to the landing page ! </span>
             Welcome ${title} 👋
           </h1>
-          <vl-button></vl-button>
+          <button slot="actions" is="vl-button" id="b1" data-vl-error data-vl-wide>Fout melden</button>
         </div>
       </div>
     </div>
       `;
   }
 }
+
+  // ?disabled=${wrapProps.disabled}
+  //     ?data-vl-error=${wrapProps.error}
+  //       ?data-vl-block=${wrapProps.block}
+  //         ?data-vl-large=${wrapProps.large}
+  //           ?data-vl-wide=${wrapProps.wide}
+  //             ?data-vl-narrow=${wrapProps.narrow}
+  //               ?data-vl-loading=${wrapProps.loading}
+  //                 ?data-vl-secondary=${wrapProps.secondary}
+  //                   ?data-vl-tertiary=${wrapProps.tertiary}
+
 
 customElements.define('exhibit-landing', LandingElement);

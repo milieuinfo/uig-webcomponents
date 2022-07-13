@@ -38,12 +38,19 @@ export const vlElement = (SuperClass) => {
 
     static get observedAttributes() {
       const spacer = [`${VlElement.attributePrefix}spacer-none`];
-      const observedAttributes = [spacer].concat(this._observedAttributes.concat(this._observedPrefixAttributes));
-      const observedClassAttributes = this._observedClassAttributes.concat(this._observedPrefixClassAttributes);
-      const observedChildClassAttributes = this._observedChildClassAttributes.concat(
-        this._observedPrefixChildClassAttributes,
+      const observedAttributes = [spacer].concat(
+        this._observedAttributes.concat(this._observedPrefixAttributes)
       );
-      return observedAttributes.concat(observedClassAttributes).concat(observedChildClassAttributes);
+      const observedClassAttributes = this._observedClassAttributes.concat(
+        this._observedPrefixClassAttributes
+      );
+      const observedChildClassAttributes =
+        this._observedChildClassAttributes.concat(
+          this._observedPrefixChildClassAttributes
+        );
+      return observedAttributes
+        .concat(observedClassAttributes)
+        .concat(observedChildClassAttributes);
     }
 
     /**
@@ -77,15 +84,21 @@ export const vlElement = (SuperClass) => {
     }
 
     static get _observedPrefixAttributes() {
-      return this._observedAttributes.map((attribute) => VlElement.attributePrefix + attribute);
+      return this._observedAttributes.map(
+        (attribute) => VlElement.attributePrefix + attribute
+      );
     }
 
     static get _observedPrefixClassAttributes() {
-      return this._observedClassAttributes.map((attribute) => VlElement.attributePrefix + attribute);
+      return this._observedClassAttributes.map(
+        (attribute) => VlElement.attributePrefix + attribute
+      );
     }
 
     static get _observedPrefixChildClassAttributes() {
-      return this._observedChildClassAttributes.map((attribute) => VlElement.attributePrefix + attribute);
+      return this._observedChildClassAttributes.map(
+        (attribute) => VlElement.attributePrefix + attribute
+      );
     }
 
     attributeChangedCallback(attr, oldValue, newValue) {
@@ -93,27 +106,43 @@ export const vlElement = (SuperClass) => {
         attr = attr.replace(VlElement.attributePrefix, '');
       }
 
-      this.constructor._observedClassAttributes
-        .concat(this.constructor._observedPrefixClassAttributes)
-        .filter((attribute) => attribute == attr || attribute == VlElement.attributePrefix + attr)
+      this._observedClassAttributes
+        .concat(this._observedPrefixClassAttributes)
+        .filter(
+          (attribute) =>
+            attribute == attr || attribute == VlElement.attributePrefix + attr
+        )
         .forEach((attribute) => {
-          this.__changeAttribute(this, oldValue, newValue, attribute);
+          this.__changeAttribute(this, oldValue, newValue, attribute, null);
         });
 
-      this.constructor._observedChildClassAttributes
-        .concat(this.constructor._observedPrefixChildClassAttributes)
-        .filter((attribute) => attribute == attr || attribute == VlElement.attributePrefix + attr)
+      this._observedChildClassAttributes
+        .concat(this._observedPrefixChildClassAttributes)
+        .filter(
+          (attribute) =>
+            attribute == attr || attribute == VlElement.attributePrefix + attr
+        )
         .forEach((attribute) => {
-          this.__changeAttribute(this._element, oldValue, newValue, attribute);
+          this.__changeAttribute(
+            this._element,
+            oldValue,
+            newValue,
+            attribute,
+            null
+          );
         });
 
-      const getDeprecatedCallbackFunction = (attribute) => this[`_${attribute.split('-').join('_')}ChangedCallback`];
+      const getDeprecatedCallbackFunction = (attribute) =>
+        this[`_${attribute.split('-').join('_')}ChangedCallback`];
 
       const getCallbackFunction = (attribute) => {
         const splittedAttribute = attribute.split('-');
-        const changeFirstLetterToUpperCase = (item) => `${item.charAt(0).toUpperCase()}${item.slice(1)}`;
+        const changeFirstLetterToUpperCase = (item) =>
+          `${item.charAt(0).toUpperCase()}${item.slice(1)}`;
         return this[
-          `_${splittedAttribute.shift()}${splittedAttribute.map(changeFirstLetterToUpperCase).join('')}ChangedCallback`
+          `_${splittedAttribute.shift()}${splittedAttribute
+            .map(changeFirstLetterToUpperCase)
+            .join('')}ChangedCallback`
         ];
       };
 
@@ -160,8 +189,9 @@ export const vlElement = (SuperClass) => {
      * @protected
      * @return {void}
      */
-    get _classPrefix() {
+    get _classPrefix(): string {
       console.error('class prefix is undefined');
+      return '';
     }
 
     /**
@@ -197,7 +227,9 @@ export const vlElement = (SuperClass) => {
      * @return {String}
      */
     getTranslation(key) {
-      return vl.i18n.i18n[key];
+      // TODO kspeltin: wat is vl ???
+      // return vl.i18n.i18n[key];
+      return 'TODO i18n';
     }
 
     /**
@@ -246,7 +278,11 @@ export const vlElement = (SuperClass) => {
      * @return {void}
      */
     _changeClass(element, oldValue, newValue, classPrefix) {
-      if (element.classList.contains((classPrefix || this._classPrefix) + oldValue)) {
+      if (
+        element.classList.contains(
+          (classPrefix || this._classPrefix) + oldValue
+        )
+      ) {
         element.classList.remove((classPrefix || this._classPrefix) + oldValue);
       }
 
@@ -283,7 +319,9 @@ export const vlElement = (SuperClass) => {
      * @param {String} value
      */
     _changeTranslation(key, value) {
-      vl.i18n.i18n[key] = value;
+      // TODO kspeltin: wat is vl ???
+      // vl.i18n.i18n[key] = value;
+      return 'TODO i18n';
     }
 
     __changeAttribute(element, oldValue, newValue, attribute, classPrefix) {
@@ -291,7 +329,9 @@ export const vlElement = (SuperClass) => {
         if (this.getAttribute(attribute) != undefined) {
           element.classList.add((classPrefix || this._classPrefix) + attribute);
         } else {
-          element.classList.remove((classPrefix || this._classPrefix) + attribute);
+          element.classList.remove(
+            (classPrefix || this._classPrefix) + attribute
+          );
         }
       }
     }
@@ -314,7 +354,7 @@ export const nativeVlElement = (SuperClass) => {
      * @return {void}
      */
     constructor() {
-      super();
+      super('');
     }
 
     /**
@@ -366,10 +406,14 @@ export const awaitScript = (id, src) => {
 
   const promise = new Promise((resolve, reject) => {
     script.onload = () => {
-      resolve();
+      resolve(undefined); // TODO kspeltin: value te bekijken
     };
     script.onerror = () => {
-      reject(new Error(`error when script with src attribute '${script.src}' was loaded`));
+      reject(
+        new Error(
+          `error when script with src attribute '${script.src}' was loaded`
+        )
+      );
     };
   });
 
@@ -398,7 +442,7 @@ export const awaitUntil = (condition) =>
     while (!condition()) {
       await sleep(50);
     }
-    resolve();
+    resolve(undefined); // TODO kspeltin: value te bekijken
   });
 
 export const VlElement = vlElement;
