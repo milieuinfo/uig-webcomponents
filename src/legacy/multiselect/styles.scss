@@ -1,0 +1,18 @@
+@charset "utf-8";
+@import '../../../node_modules/@govflanders/vl-ui-core/src/scss/core';
+@import '../../../node_modules/@govflanders/vl-ui-form-structure/src/scss/form-structure';
+@import '../../../node_modules/@govflanders/vl-ui-input-field/src/scss/input-field';
+@import '../../../node_modules/@govflanders/vl-ui-select/src/scss/select';
+@import '../../../node_modules/@govflanders/vl-ui-pill/src/scss/pill';
+@import '../../../node_modules/@govflanders/vl-ui-pill-input/src/scss/pill-input';
+@import '../../../node_modules/@govflanders/vl-ui-multiselect/src/scss/multiselect';
+@import '../../../node_modules/@govflanders/vl-ui-util/src/scss/util';
+
+
+.js-vl-select, .vl-select__list--dropdown {
+    z-index: 100;
+}
+
+.js-vl-select.is-open, .vl-select__list--dropdown.is-active {
+    z-index: 101;
+}
