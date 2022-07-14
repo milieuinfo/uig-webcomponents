@@ -14,7 +14,6 @@ const buildConfig = {
     'doormat',
     'form',
     'form-grid',
-    'grid',
     'icon',
     'image',
     'infotext',
@@ -32,7 +31,7 @@ const buildConfig = {
     'titles',
     'video-player',
   ],
-  componentsWithStylesheetAndInlineStyling: ['button', 'pill', 'tooltip', 'textarea', 'toaster', 'typography', 'proza-message', 'multiselect', 'icon'],
+  componentsWithStylesheetAndInlineStyling: ['button', 'pill', 'tooltip', 'textarea', 'toaster', 'typography', 'proza-message', 'multiselect', 'icon', 'grid'],
 };
 
 const { src, dist, componentsWithStylesheet, componentsWithStylesheetAndInlineStyling } = buildConfig;

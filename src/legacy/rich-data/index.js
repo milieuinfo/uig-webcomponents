@@ -47,7 +47,6 @@ export class VlRichData extends vlElement(HTMLElement) {
         ${iconStyles}
         ${buttonStyles}
       </style>
-      ${style}
       <div>
         <div is="vl-grid" is-stacked>
           <div id="toggle-filter" is="vl-column" class="vl-u-align-right vl-u-hidden--s" hidden data-vl-size="12" data-vl-medium-size="12">
