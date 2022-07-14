@@ -32,7 +32,7 @@ const buildConfig = {
     'titles',
     'video-player',
   ],
-  componentsWithStylesheetAndInlineStyling: ['button', 'pill', 'tooltip', 'textarea', 'toaster', 'typography', 'proza-message'],
+  componentsWithStylesheetAndInlineStyling: ['icon', 'grid', 'button', 'pill', 'tooltip', 'textarea', 'typography', 'rich-data', 'proza-message'],
 };
 
 const { src, dist, componentsWithStylesheet, componentsWithStylesheetAndInlineStyling } = buildConfig;
