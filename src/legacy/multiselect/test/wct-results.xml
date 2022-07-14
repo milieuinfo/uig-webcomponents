@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<testsuites>
+	<testsuite errors="0" failures="0" name="test/unit/vl-multiselect.test.html (firefox 89)" skipped="0" tests="4">
+		<testcase name="vl-multiselect; heeft de vl-multiselect class en attributen" time="1"/>
+		<testcase name="vl-multiselect; wanneer het vl-multiselect element volledig klaar is zal het een ready event versturen" time="2"/>
+		<testcase name="vl-multiselect; wanneer het vl-multiselect element success of error attribuut bevat zal dit zichtbaar zijn" time="115"/>
+		<testcase name="vl-multiselect; kan programmatisch focus activeren" time="8"/>
+	</testsuite>
+</testsuites>

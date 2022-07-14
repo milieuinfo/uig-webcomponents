@@ -17,13 +17,13 @@ export class VlMultiSelect extends VlSelect {
     super.connectedCallback();
   }
 
-  hasSelected = () => {
+ hasSelected() {
     const options = Array.from(this.querySelectorAll('option'));
 
     return options.some((option) => {
       return option.hasAttribute('selected');
     });
-  };
+ } 
 
   /**
    * Geeft de ready event naam.
