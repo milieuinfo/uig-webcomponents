@@ -330,15 +330,11 @@ export class VlRichData extends vlElement(HTMLElement) {
       this.__pager.setAttribute('data-vl-align-right', true);
       this.__pager.addEventListener('change', (e) => {
         this.__onStateChange(e, {paging: true});
-        if(this.__contentSlot.assignedNodes()[0].children[0].querySelector('a')) {
-          this.__contentSlot.assignedNodes()[0].children[0].querySelector('a').focus();
+        if(this.__contentSlot.assignedNodes()[0] !== undefined) {
+          if(this.__contentSlot.assignedNodes()[0].children[0].querySelector('a') !== undefined) {
+            this.__contentSlot.assignedNodes()[0].children[0].querySelector('a').focus();
+          }
         }
-        //this.__contentSlot?.assignedNodes()[0]?.children[0]?.querySelector('a')?.focus();
-        // if(this.__contentSlot) {
-        //   if(this.__contentSlot.assignedNodes()[0].children.querySelector('a')) {
-        //     this.__contentSlot.assignedNodes()[0].children.querySelector('a').focus();
-        //   }
-        // }
       });
     }
   }
