@@ -1,0 +1,9 @@
+@charset "utf-8";
+@import '../../../node_modules/@govflanders/vl-ui-core/src/scss/core';
+@import '../../../node_modules/@govflanders/vl-ui-util/src/scss/util';
+
+th[data-vl-sortable] {
+    a {
+        cursor: pointer;
+    }
+}
