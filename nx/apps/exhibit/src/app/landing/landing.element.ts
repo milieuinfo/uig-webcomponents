@@ -14,6 +14,7 @@ export class LandingElement extends HTMLElement {
             <span> Welcome to the landing page ! </span>
             Welcome ${title} 👋
           </h1>
+          <vl-button2>werkt niet</vl-button2>
           <button slot="actions" is="vl-button" id="b1" data-vl-error data-vl-wide>Fout melden</button>
         </div>
       </div>
