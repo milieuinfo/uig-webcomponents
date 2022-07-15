@@ -5,7 +5,7 @@ import { customElement, property } from 'lit/decorators.js';
 @customElement('vl-button2')
 export class VlButton2 extends LitElement {
 
-  @property()
+  @property({type: Boolean})
   noShadowDom = false;
 
   // static get styles() {
@@ -25,7 +25,7 @@ export class VlButton2 extends LitElement {
 
   render() {
     // throw new Error("bugje");
-    return html`<p class="test">Hello from my template. ${this.noShadowDom}</p>`;
+    return html`<p class="test">Hello from my template. shadowDom=${!this.noShadowDom}</p>`;
   }
 }
 
