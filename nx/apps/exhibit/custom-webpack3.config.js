@@ -7,18 +7,18 @@ module.exports = (config, context) => {
     module: {
       rules: [
         {
-          test: /styling2\.s2css$/,
+          test: /styling2\.scss$/,
           loader: 'lit-css-loader',
           options: {
             specifier: 'lit',
             transform: (data, { filePath }) => {
               console.log('lit-css-loader - before', filePath, data);
-              const result = Sass.renderSync({ data, file: filePath }).css.toString();
+              const result = Sass.compileString(data).css.toString();
               console.log('lit-css-loader - after', result);
               return result;
             },
           },
-        },
+        }, 'extract-loader', 'css-loader', 'sass-loader'
       ],
     },
   });

@@ -5,6 +5,8 @@
     "exhibit": "apps/exhibit",
     "exhibit-core": "libs/exhibit/core",
     "exhibit-e2e": "apps/exhibit-e2e",
+    "exhibit2": "apps/exhibit2",
+    "exhibit2-e2e": "apps/exhibit2-e2e",
     "publish-dv-components": "libs/publish/dv-components",
     "publish-dv-components2": "libs/publish/dv-components2",
     "publish-map": "libs/publish/map",
