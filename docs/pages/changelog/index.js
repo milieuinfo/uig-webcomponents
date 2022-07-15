@@ -18,6 +18,10 @@ const changes = [
         <p>Added as a legacy component.</p>
       </li>
       <li>
+        <p><code>vl-rich-data-table</code></p>
+        <p>Added as a legacy component.</p>
+      </li>
+      <li>
         <p><code>vl-multiselect</code></p>
         <p>Added as a legacy component.</p>
       </li>
