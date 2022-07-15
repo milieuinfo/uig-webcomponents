@@ -1,6 +1,6 @@
-import { css, html, LitElement } from 'lit';
+import {css, html, LitElement, unsafeCSS} from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-// import style2 from './styling2.scss';
+import style2 from './styling2.s2css';
 
 @customElement('vl-button2')
 export class VlButton2 extends LitElement {
@@ -10,14 +10,23 @@ export class VlButton2 extends LitElement {
 
   // static get styles() {
   //   console.log('hallo wereld', style2);
-  //   return [style2];
+  //   return [];
   // }
+  static get styles() {
+    return [
+      css`
+        ${unsafeCSS(style2)}
+      `,
+    ];
+  }
 
-  static styles = css`
-    p {
-      background-color: green;
-    }
-  `;
+  // static styles = unsafeCSS`${style2}`;
+
+  // static styles = css`
+  //   p {
+  //     background-color: green;
+  //   }
+  // `;
 
   createRenderRoot() {
     return this.noShadowDom ? this : super.createRenderRoot();
