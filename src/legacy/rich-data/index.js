@@ -10,6 +10,7 @@ import gridStyles from '../../components/grid/styles.scss';
 import formMessageStyles from '../../components/form-message/styles.scss';
 import iconStyles from '../../components/icon/styles.scss';
 import buttonStyles from '../../components/button/styles.scss';
+import tableStyles from '../../components/data-table/styles.scss';
 
 /**
  * VlRichData
@@ -46,6 +47,7 @@ export class VlRichData extends vlElement(HTMLElement) {
         ${formMessageStyles}
         ${iconStyles}
         ${buttonStyles}
+        ${tableStyles}
       </style>
       <div>
         <div is="vl-grid" is-stacked>
