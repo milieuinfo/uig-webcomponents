@@ -1,8 +1,9 @@
 import {define} from '../../utils/core';
-import {VlRichData} from '../rich-data';
-import {VlRichDataField} from './components/rich-data-field';
-import {VlRichDataSorter} from './components/rich-data-sorter';
 import '../../components/data-table';
+import {VlRichDataField } from './components/rich-data-field';
+import {VlRichDataSorter} from './components/rich-data-sorter';
+import {VlRichData} from '../rich-data';
+
 import styles from './styles.scss';
 
 export class VlRichDataTable extends VlRichData {
