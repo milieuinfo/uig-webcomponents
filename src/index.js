@@ -107,6 +107,7 @@ export { VlRichDataTable } from './legacy/rich-data-table';
 export { VlProzaMessage } from './legacy/proza-message/src';
 export { VlProzaMessagePreloader } from './legacy/proza-message/src';
 export { VlMultiSelect } from './legacy/multiselect';
+export { VlCookieConsent } from './legacy/cookie-consent';
 
 // Test components
 
