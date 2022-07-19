@@ -2,12 +2,13 @@ const { merge } = require('webpack-merge');
 const Sass = require('sass');
 
 module.exports = (config, context) => {
-  // console.log('custom-webpack.config.js', config);
+  config.module.rules[3].exclude = /styling2\.scss$/;
+  console.log('custom-webpack.config.js - config', config.module.rules);
   return merge(config, {
     module: {
       rules: [
         {
-          test: /styling2\.s2css$/,
+          test: /styling2\.scss$/,
           loader: 'lit-css-loader',
           options: {
             specifier: 'lit',

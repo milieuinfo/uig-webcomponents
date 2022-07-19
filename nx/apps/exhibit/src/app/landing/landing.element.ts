@@ -15,6 +15,13 @@ export class LandingElement extends HTMLElement {
             Welcome ${title} 👋
           </h1>
           <vl-button2>geen shadow dom</vl-button2>
+          <uig-table>
+            <uig-row noShadowDom>
+              <uig-cell noShadowDom style="background-color: blue">cell-1</uig-cell>
+              <uig-cell noShadowDom>cell-2</uig-cell>
+              <uig-cell noShadowDom>cell-3</uig-cell>
+            </uig-row>
+          </uig-table>
           <button slot="actions" is="vl-button" id="b1" data-vl-error data-vl-wide>Fout melden</button>
         </div>
       </div>
