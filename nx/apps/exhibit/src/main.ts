@@ -1,6 +1,6 @@
 import './app/app.element.ts';
 import './app/landing/landing.element.ts';
-import '@nx/publish/dv-components2';
+import '@uig/elements';
 // import { VlButton } from '@uig/dv-components';
 // import { define } from '../../../libs/publish/dv-components/src/lib/utils/core';
 //
