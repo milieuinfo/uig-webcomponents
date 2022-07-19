@@ -1,3 +1,4 @@
+import { Class } from '@uig/common-base';
 import { nativeVlElement } from '@uig/common-base';
 
 /**

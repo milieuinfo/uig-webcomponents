@@ -1,6 +1,4 @@
-import '@ungap/custom-elements/min.js';
-import '@govflanders/vl-ui-util/dist/js/util.js';
-import '@govflanders/vl-ui-core/dist/js/core.js';
+import { Class } from './types';
 
 /**
  * Definieert een class als custom element enkel wanneer deze nog niet gedefinieerd werd.

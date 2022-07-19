@@ -1,3 +1,7 @@
+import { Class } from './types';
+
+declare const vl: any;
+
 // TODO kspeltin:
 //   - kan die Class niet specifieker, CustomElementConstructor ?
 //   - mogelijks kan dit wel 'ge-merged' worden met native-vl-element, niet native elementen zouden van LitElement
