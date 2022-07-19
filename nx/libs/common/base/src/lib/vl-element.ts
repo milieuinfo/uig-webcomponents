@@ -1,4 +1,7 @@
-// TODO kspeltin: kan die Class niet specifieker, CustomElementConstructor ?
+// TODO kspeltin:
+//   - kan die Class niet specifieker, CustomElementConstructor ?
+//   - mogelijks kan dit wel 'ge-merged' worden met native-vl-element, niet native elementen zouden van LitElement
+//     overerven
 export const vlElement = (SuperClass: Class): Class => {
     /**
      * VlElement

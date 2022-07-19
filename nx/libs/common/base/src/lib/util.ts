@@ -12,7 +12,7 @@ import '@govflanders/vl-ui-core/dist/js/core.js';
  */
 export const define = (
     name: string,
-    constructor: CustomElementConstructor,
+    constructor: Class, // TODO kspeltin: CustomElementConstructor,
     options?: ElementDefinitionOptions
 ): void => {
     if (customElements.get(name)) {

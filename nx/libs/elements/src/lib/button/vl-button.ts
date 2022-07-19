@@ -1,5 +1,4 @@
 import { define } from '@uig/common-base';
-import './components/link-button';
 import { vlButtonElement } from './vl-button-element';
 
 /**

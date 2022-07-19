@@ -7,7 +7,7 @@ import { nativeVlElement } from '@uig/common-base';
  * @param {Object} SuperClass - Class die als base class gebruikt zal worden.
  * @return {Object} class
  */
-export const vlButtonElement = (SuperClass) => {
+export const vlButtonElement = (SuperClass: Class): Class => {
     return class extends nativeVlElement(SuperClass) {
         static get _observedAttributes() {
             return [];
@@ -45,5 +45,3 @@ export const vlButtonElement = (SuperClass) => {
         }
     };
 };
-
-export const VlButtonElement = vlButtonElement;
