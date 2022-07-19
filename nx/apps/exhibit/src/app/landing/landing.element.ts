@@ -14,7 +14,8 @@ export class LandingElement extends HTMLElement {
             <span> Welcome to the landing page ! </span>
             Welcome ${title} 👋
           </h1>
-          <button is="vl-button" data-vl-error data-vl-wide>Hallo UIG</button>
+          <button is="vl-button" data-vl-error data-vl-wide>UIG Button</button>
+          <a is="vl-link-button" data-vl-error data-vl-wide>UIG Link Button</a>
         </div>
       </div>
     </div>

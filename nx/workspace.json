@@ -2,18 +2,14 @@
     "$schema": "./node_modules/nx/schemas/workspace-schema.json",
     "version": 2,
     "projects": {
+        "exhibit": "apps/exhibit",
+        "exhibit-e2e": "apps/exhibit-e2e",
+        "storybook": "apps/storybook",
+        "storybook-e2e": "apps/storybook-e2e",
         "common-utilities": "libs/common/utilities",
         "components": "libs/components",
         "elements": "libs/elements",
-        "exhibit": "apps/exhibit",
-        "exhibit-core": "libs/exhibit/core",
-        "exhibit-e2e": "apps/exhibit-e2e",
-        "exhibit2": "apps/exhibit2",
-        "exhibit2-e2e": "apps/exhibit2-e2e",
         "publish-dv-components": "libs/publish/dv-components",
-        "publish-dv-components2": "libs/publish/dv-components2",
-        "publish-map": "libs/publish/map",
-        "storybook": "apps/storybook",
-        "storybook-e2e": "apps/storybook-e2e"
+        "publish-dv-components2": "libs/publish/dv-components2"
     }
 }
