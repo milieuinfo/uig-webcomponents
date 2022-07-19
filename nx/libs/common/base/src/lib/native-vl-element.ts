@@ -2,7 +2,7 @@ import '@ungap/custom-elements/min.js';
 import '@govflanders/vl-ui-util/dist/js/util.js';
 import '@govflanders/vl-ui-core/dist/js/core.js';
 
-export const nativeVlElement = (SuperClass) => {
+export const nativeVlElement = (SuperClass: Class) => {
   /**
    * NativeVlElement
    * @class
