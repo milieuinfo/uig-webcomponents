@@ -1,4 +1,5 @@
-export const vlElement = (SuperClass: Class) => {
+// TODO kspeltin: kan die Class niet specifieker, CustomElementConstructor ?
+export const vlElement = (SuperClass: Class): Class => {
     /**
      * VlElement
      * @class

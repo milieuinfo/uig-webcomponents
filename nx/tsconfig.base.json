@@ -15,9 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx/common/base": ["libs/common/base/src/index.ts"],
-      "@nx/exhibit/core": ["libs/exhibit/core/src/index.ts"],
-      "@nx/publish/dv-components2": [
+      "@uig/common/base": ["libs/common/base/src/index.ts"],
+      "@uig/exhibit/core": ["libs/exhibit/core/src/index.ts"],
+      "@uig/publish/dv-components2": [
         "libs/publish/dv-components2/src/index.ts"
       ],
       "@uig/components": ["libs/components/src/index.ts"],
