@@ -175,7 +175,8 @@ export class VlCookieConsent extends vlElement(HTMLElement) {
   }
 
   _getButtonTemplate() {
-    const text = Object.values(this._optIns).length > 0 ? 'Bewaar keuze' : 'Ik begrijp het';
+    const filteredOptIns = Object.values(this._optIns).filter(optIn => optIn.name !== "functional"); 
+    const text = filteredOptIns.length > 0 ? 'Bewaar keuze' : 'Ik begrijp het';
     const template = this._template(`
       <button is="vl-button" slot="button">${text}</button>
     `);
