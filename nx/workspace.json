@@ -2,6 +2,9 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "common-base": "libs/common/base",
+    "components": "libs/components",
+    "elements": "libs/elements",
     "exhibit": "apps/exhibit",
     "exhibit-core": "libs/exhibit/core",
     "exhibit-e2e": "apps/exhibit-e2e",

@@ -1,4 +1,4 @@
-declare module "*.s2css" {
+declare module "*.scss" {
   const styles: { [className: string]: string };
   export default styles;
 }

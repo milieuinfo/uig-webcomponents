@@ -1,6 +1,6 @@
 import { css, html, LitElement, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import style2 from './styling2.s2css';
+import style2 from './styling2.scss';
 
 @customElement('vl-button2')
 export class VlButton2 extends LitElement {
@@ -12,7 +12,7 @@ export class VlButton2 extends LitElement {
   //   return [style2];
   // }
   static get styles() {
-    // console.log('hallo wereld', style2);
+    // console.log('hallo werelåd', style2);
     return [
       css`
         ${unsafeCSS(style2)}
