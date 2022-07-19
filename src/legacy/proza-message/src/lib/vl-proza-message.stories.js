@@ -11,7 +11,7 @@ export default {
     docs: {
       description: {
         component: docsIntro({
-          root: 'proza-message',
+          root: 'proza-message/src',
           isLegacy: true,
         }),
       },

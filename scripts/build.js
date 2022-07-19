@@ -10,11 +10,8 @@ const buildConfig = {
   componentsWithStylesheet: [
     'action-group',
     'body',
-    'data-table',
     'doormat',
     'form',
-    'form-grid',
-    'grid',
     'icon',
     'image',
     'infotext',
@@ -32,7 +29,7 @@ const buildConfig = {
     'titles',
     'video-player',
   ],
-  componentsWithStylesheetAndInlineStyling: ['button', 'pill', 'tooltip', 'textarea', 'toaster', 'typography', 'proza-message'],
+  componentsWithStylesheetAndInlineStyling: ['button', 'pill', 'tooltip', 'textarea', 'toaster', 'typography', 'proza-message', 'multiselect', 'icon', 'grid', 'data-table', 'form-grid'],
 };
 
 const { src, dist, componentsWithStylesheet, componentsWithStylesheetAndInlineStyling } = buildConfig;

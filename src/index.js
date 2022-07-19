@@ -102,8 +102,12 @@ export { VlSteps } from './legacy/steps';
 export { VlToaster } from './legacy/toaster';
 export { VlCheckbox } from './legacy/checkbox';
 export { VlInfotext } from './legacy/infotext';
+export { VlRichData } from './legacy/rich-data';
+export { VlRichDataTable } from './legacy/rich-data-table';
 export { VlProzaMessage } from './legacy/proza-message/src';
 export { VlProzaMessagePreloader } from './legacy/proza-message/src';
+export { VlMultiSelect } from './legacy/multiselect';
+export { VlCookieConsent, VlCookieConsentOptIn } from './legacy/cookie-consent';
 
 // Test components
 
