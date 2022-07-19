@@ -3,7 +3,6 @@
     "version": 2,
     "projects": {
         "common-base": "libs/common/base",
-        "common-base2": "libs/common/base2",
         "components": "libs/components",
         "elements": "libs/elements",
         "exhibit": "apps/exhibit",

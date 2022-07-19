@@ -1,5 +1,6 @@
-import { define, vlButtonElement } from "@uig/common/base";
-import "./components/link-button";
+import { define } from '@uig/common-base';
+import './components/link-button';
+import { vlButtonElement } from './vl-button-element';
 
 /**
  * VlButton
@@ -25,4 +26,4 @@ import "./components/link-button";
 
 export class VlButton extends vlButtonElement(HTMLButtonElement) {}
 
-define("vl-button", VlButton, { extends: "button" });
+define('vl-button', VlButton, { extends: 'button' });

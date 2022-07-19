@@ -15,8 +15,7 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "@uig/common/base": ["libs/common/base/src/index.ts"],
-            "@uig/common/base2": ["libs/common/base2/src/index.ts"],
+            "@uig/common-base": ["libs/common/base/src/index.ts"],
             "@uig/components": ["libs/components/src/index.ts"],
             "@uig/dv-components": ["libs/publish/dv-components/src/index.ts"],
             "@uig/elements": ["libs/elements/src/index.ts"],

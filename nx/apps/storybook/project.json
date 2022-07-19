@@ -1,70 +1,67 @@
 {
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "application",
-  "sourceRoot": "apps/storybook/src",
-  "tags": [],
-  "targets": {
-    "build": {
-      "executor": "@nrwl/web:webpack",
-      "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
-      "options": {
-        "outputPath": "dist/apps/storybook",
-        "compiler": "babel",
-        "index": "apps/storybook/src/index.html",
-        "baseHref": "/",
-        "main": "apps/storybook/src/main.ts",
-        "polyfills": "apps/storybook/src/polyfills.ts",
-        "tsConfig": "apps/storybook/tsconfig.app.json",
-        "assets": [
-          "apps/storybook/src/favicon.ico",
-          "apps/storybook/src/assets"
-        ],
-        "styles": ["apps/storybook/src/styles.scss"],
-        "scripts": []
-      },
-      "configurations": {
-        "production": {
-          "fileReplacements": [
-            {
-              "replace": "apps/storybook/src/environments/environment.ts",
-              "with": "apps/storybook/src/environments/environment.prod.ts"
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "application",
+    "sourceRoot": "apps/storybook/src",
+    "tags": [],
+    "targets": {
+        "build": {
+            "executor": "@nrwl/web:webpack",
+            "outputs": ["{options.outputPath}"],
+            "defaultConfiguration": "production",
+            "options": {
+                "outputPath": "dist/apps/storybook",
+                "compiler": "babel",
+                "index": "apps/storybook/src/index.html",
+                "baseHref": "/",
+                "main": "apps/storybook/src/main.ts",
+                "polyfills": "apps/storybook/src/polyfills.ts",
+                "tsConfig": "apps/storybook/tsconfig.app.json",
+                "assets": ["apps/storybook/src/favicon.ico", "apps/storybook/src/assets"],
+                "styles": ["apps/storybook/src/styles.scss"],
+                "scripts": []
+            },
+            "configurations": {
+                "production": {
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/storybook/src/environments/environment.ts",
+                            "with": "apps/storybook/src/environments/environment.prod.ts"
+                        }
+                    ],
+                    "optimization": true,
+                    "outputHashing": "all",
+                    "sourceMap": false,
+                    "namedChunks": false,
+                    "extractLicenses": true,
+                    "vendorChunk": false
+                }
             }
-          ],
-          "optimization": true,
-          "outputHashing": "all",
-          "sourceMap": false,
-          "namedChunks": false,
-          "extractLicenses": true,
-          "vendorChunk": false
+        },
+        "serve": {
+            "executor": "@nrwl/web:dev-server",
+            "options": {
+                "buildTarget": "storybook:build"
+            },
+            "configurations": {
+                "production": {
+                    "buildTarget": "storybook:build:production"
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["apps/storybook/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/apps/storybook"],
+            "options": {
+                "jestConfig": "apps/storybook/jest.config.ts",
+                "passWithNoTests": true
+            }
         }
-      }
-    },
-    "serve": {
-      "executor": "@nrwl/web:dev-server",
-      "options": {
-        "buildTarget": "storybook:build"
-      },
-      "configurations": {
-        "production": {
-          "buildTarget": "storybook:build:production"
-        }
-      }
-    },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/storybook/**/*.ts"]
-      }
-    },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/storybook"],
-      "options": {
-        "jestConfig": "apps/storybook/jest.config.ts",
-        "passWithNoTests": true
-      }
     }
-  }
 }
