@@ -1,7 +1,3 @@
-declare type Class<T = any> = new (...args: any[]) => T;
-
-declare const vl: any;
-
 export const vlElement = (SuperClass: Class) => {
     /**
      * VlElement
