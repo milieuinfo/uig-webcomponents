@@ -1,7 +1,7 @@
 import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { UigElement } from '../uig-element/uig-elements';
-import {LandingElement} from "../../../../../../apps/exhibit/src/app/landing/landing.element";
+import {ButtonsElement} from "../../../../../../apps/exhibit/src/app/landing/buttonsElement";
 
 // @customElement('uig-cell')
 export class UigCell extends UigElement {
