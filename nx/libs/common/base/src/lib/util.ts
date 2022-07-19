@@ -10,12 +10,16 @@ import '@govflanders/vl-ui-core/dist/js/core.js';
  * @param {Object} options - opties
  * @return {void}
  */
-export const define = (name, constructor, options) => {
-  if (customElements.get(name)) {
-    console.warn(`${name} werd reeds gedefinieerd als custom element`);
-  } else {
-    customElements.define(name, constructor, options);
-  }
+export const define = (
+    name: string,
+    constructor: CustomElementConstructor,
+    options?: ElementDefinitionOptions
+): void => {
+    if (customElements.get(name)) {
+        console.warn(`${name} werd reeds gedefinieerd als custom element`);
+    } else {
+        customElements.define(name, constructor, options);
+    }
 };
 
 /**
@@ -25,28 +29,28 @@ export const define = (name, constructor, options) => {
  * @param {String} src - script src path
  * @return {void}
  */
-export const awaitScript = (id, src) => {
-  if (document.head.querySelector(`script#${id}`)) {
-    console.log(`script with id '${id}' is already loaded`);
-    return Promise.resolve();
-  }
+export const awaitScript = (id: string, src: string): Promise<void> => {
+    if (document.head.querySelector(`script#${id}`)) {
+        console.log(`script with id '${id}' is already loaded`);
+        return Promise.resolve();
+    }
 
-  const script = document.createElement('script');
-  script.id = id;
-  script.src = src;
-  script.async = false;
+    const script: HTMLScriptElement = document.createElement('script');
+    script.id = id;
+    script.src = src;
+    script.async = false;
 
-  const promise = new Promise((resolve, reject) => {
-    script.onload = () => {
-      resolve();
-    };
-    script.onerror = () => {
-      reject(new Error(`error when script with src attribute '${script.src}' was loaded`));
-    };
-  });
+    const promise: Promise<void> = new Promise((resolve, reject) => {
+        script.onload = () => {
+            resolve();
+        };
+        script.onerror = () => {
+            reject(new Error(`error when script with src attribute '${script.src}' was loaded`));
+        };
+    });
 
-  document.head.appendChild(script);
-  return promise;
+    document.head.appendChild(script);
+    return promise;
 };
 
 /**
@@ -55,9 +59,7 @@ export const awaitScript = (id, src) => {
  * @param {Number} ms - aantal milliseconden dat er gewacht moeten worden
  * @return {Promise}
  */
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
  * Wacht tot conditie geldig (truthy) is.
@@ -65,10 +67,12 @@ function sleep(ms) {
  * @param {Function} condition - conditionele functie
  * @return {Promise}
  */
-export const awaitUntil = (condition) =>
-  new Promise(async (resolve, reject) => {
-    while (!condition()) {
-      await sleep(50);
-    }
-    resolve();
-  });
+export const awaitUntil = (condition: any): Promise<void> =>
+    // TODO kspeltin: raar die async in een promise
+    // eslint-disable-next-line no-async-promise-executor
+    new Promise(async (resolve, reject) => {
+        while (!condition()) {
+            await sleep(50);
+        }
+        resolve();
+    });
