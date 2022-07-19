@@ -1,4 +1,4 @@
-import { Class } from './types';
+import { Class } from '../type/types';
 
 /**
  * Definieert een class als custom element enkel wanneer deze nog niet gedefinieerd werd.
@@ -6,7 +6,7 @@ import { Class } from './types';
  * @param {String} name - custom HTML element naam
  * @param {Object} constructor - constructor voor de class
  * @param {Object} options - opties
- * @return {void}
+ * @return {void}g
  */
 export const define = (
     name: string,

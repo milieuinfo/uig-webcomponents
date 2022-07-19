@@ -1,4 +1,4 @@
-import { Class } from '../types/types';
+import { Class } from '../type/types';
 
 declare const vl: any;
 

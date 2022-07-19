@@ -1,5 +1,5 @@
 import { vlElement } from './vl-element';
-import { Class } from '../types/types';
+import { Class } from '../type/types';
 
 export const nativeVlElement = (SuperClass: Class) => {
     /**
