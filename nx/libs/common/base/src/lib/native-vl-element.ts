@@ -1,5 +1,5 @@
 import { vlElement } from './vl-element';
-import { Class } from './types';
+import { Class } from '@uig/common/util';
 
 export const nativeVlElement = (SuperClass: Class) => {
     /**

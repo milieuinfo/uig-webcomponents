@@ -1,4 +1,4 @@
-import { define } from '@uig/common-base';
+import { define } from '@uig/common/util';
 import { vlButtonElement } from './vl-button-element';
 
 /**

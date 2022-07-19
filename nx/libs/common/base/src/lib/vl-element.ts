@@ -1,4 +1,4 @@
-import { Class } from './types';
+import { Class } from '@uig/common/util';
 
 declare const vl: any;
 

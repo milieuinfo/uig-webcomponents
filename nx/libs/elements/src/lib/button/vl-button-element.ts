@@ -1,5 +1,5 @@
-import { Class } from '@uig/common-base';
-import { nativeVlElement } from '@uig/common-base';
+import { Class } from '@uig/common/util';
+import { nativeVlElement } from '@uig/common/base';
 
 /**
  * Gebruik de button mixin in combinatie met button elementen.
