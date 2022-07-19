@@ -1,7 +1,3 @@
-import '@ungap/custom-elements/min.js';
-import '@govflanders/vl-ui-util/dist/js/util.js';
-import '@govflanders/vl-ui-core/dist/js/core.js';
-
 declare type Class<T = any> = new (...args: any[]) => T;
 
 declare const vl: any;
