@@ -9,7 +9,7 @@ https://nx.dev/
 - npm install -D @nrwl/web
 - npx nx g @nrwl/web:lib elements --buildable --publishable --importPath=@uig/elements
 - npx nx g @nrwl/web:lib components --buildable --publishable --importPath=@uig/components
-- npx nx g @nrwl/web:lib common/base
+- npx nx g @nrwl/web:lib common/base2 --buildable
 - npx nx g @nrwl/web:lib map --buildable --publishable --importPath=@uig/map
 - npx nx g @nrwl/web:application exhibit
 - npx nx g @nrwl/web:lib exhibit/core
