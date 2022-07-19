@@ -101,30 +101,33 @@ export const vlElement = (SuperClass: Class) => {
         }
 
         attributeChangedCallback(attr: string, oldValue: string, newValue: string) {
+            const classRef = Object.getPrototypeOf(this).constructor;
+
             if (attr.startsWith(VlElement.attributePrefix)) {
                 attr = attr.replace(VlElement.attributePrefix, '');
             }
 
-            this.constructor._observedClassAttributes
-                .concat(this.constructor._observedPrefixClassAttributes)
-                .filter((attribute) => attribute == attr || attribute == VlElement.attributePrefix + attr)
-                .forEach((attribute) => {
+            classRef._observedClassAttributes
+                .concat(classRef._observedPrefixClassAttributes)
+                .filter((attribute: string) => attribute == attr || attribute == VlElement.attributePrefix + attr)
+                .forEach((attribute: string) => {
                     this.__changeAttribute(this, oldValue, newValue, attribute);
                 });
 
-            this.constructor._observedChildClassAttributes
-                .concat(this.constructor._observedPrefixChildClassAttributes)
-                .filter((attribute) => attribute == attr || attribute == VlElement.attributePrefix + attr)
-                .forEach((attribute) => {
+            classRef._observedChildClassAttributes
+                .concat(classRef._observedPrefixChildClassAttributes)
+                .filter((attribute: string) => attribute == attr || attribute == VlElement.attributePrefix + attr)
+                .forEach((attribute: string) => {
                     this.__changeAttribute(this._element, oldValue, newValue, attribute);
                 });
 
-            const getDeprecatedCallbackFunction = (attribute) =>
+            const getDeprecatedCallbackFunction = (attribute: string) =>
                 this[`_${attribute.split('-').join('_')}ChangedCallback`];
 
-            const getCallbackFunction = (attribute) => {
+            const getCallbackFunction = (attribute: string) => {
                 const splittedAttribute = attribute.split('-');
-                const changeFirstLetterToUpperCase = (item) => `${item.charAt(0).toUpperCase()}${item.slice(1)}`;
+                const changeFirstLetterToUpperCase = (item: string) =>
+                    `${item.charAt(0).toUpperCase()}${item.slice(1)}`;
                 return this[
                     `_${splittedAttribute.shift()}${splittedAttribute
                         .map(changeFirstLetterToUpperCase)
@@ -302,7 +305,13 @@ export const vlElement = (SuperClass: Class) => {
             vl.i18n.i18n[key] = value;
         }
 
-        __changeAttribute(element: any, oldValue: string, newValue: string, attribute: string, classPrefix: string) {
+        __changeAttribute(
+            element: any,
+            oldValue: string,
+            newValue: string,
+            attribute: string,
+            classPrefix: string | null = null
+        ) {
             if (oldValue != newValue) {
                 if (this.getAttribute(attribute) != undefined) {
                     element.classList.add((classPrefix || this._classPrefix) + attribute);
