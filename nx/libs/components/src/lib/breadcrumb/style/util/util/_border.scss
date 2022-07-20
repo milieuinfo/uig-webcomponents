@@ -1,0 +1,48 @@
+// Border utility
+@mixin u-border($vl-color: $vl-accent-color, $vl-width: .5rem, $vl-padding: 3.5rem, $vl-style: solid) {
+  padding-left: $vl-padding;
+  position: relative;
+
+  @include respond-to("small") {
+    padding-left: #{$vl-padding / 2};
+  }
+
+  &:after {
+    content: '';
+    width: 0.5rem;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background: $vl-color;
+  }
+
+  &.vl-grid {
+    &:after {
+      height: 100%;
+      bottom: 0;
+      top: auto;
+      left: $vl-spacing-medium;
+
+      @include respond-to("small") {
+        left: $vl-spacing-small;
+      }
+    }
+
+    &--is-stacked {
+      &:after {
+        height: calc(100% - #{$vl-spacing-medium});
+
+        @include respond-to("small") {
+          height: calc(100% - #{$vl-spacing-small});
+        }
+      }
+    }
+  }
+}
+
+.vl-u-border {
+  @include u-border;
+}

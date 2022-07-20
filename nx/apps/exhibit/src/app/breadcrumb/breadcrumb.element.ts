@@ -1,4 +1,4 @@
-import './buttons.element.scss';
+import './breadcrumb.element.scss';
 
 export class BreadcrumbElement extends HTMLElement {
     public static observedAttributes = [];

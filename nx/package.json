@@ -53,6 +53,7 @@
     "@govflanders/vl-ui-core": "^4.1.24",
     "@govflanders/vl-ui-util": "^3.12.24",
     "core-js": "^3.6.5",
+    "node-sass": "^7.0.1",
     "regenerator-runtime": "0.13.7",
     "sass": "^1.53.0",
     "tslib": "^2.3.0"

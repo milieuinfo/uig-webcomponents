@@ -1,0 +1,9 @@
+@mixin vl-annotation {
+  color: $vl-annotation-color;
+  font-weight: 400;
+  font-size: inherit;
+
+  &--small {
+    font-size: 0.65em;
+  }
+}

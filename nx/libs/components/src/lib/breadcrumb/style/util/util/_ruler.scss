@@ -1,0 +1,13 @@
+// create a horizontal ruler
+.vl-u-hr {
+  @include u-hr;
+
+  &--wave {
+    @include u-hr('wave');
+    border-bottom: 0;
+  }
+
+  &--dashed {
+    @include u-hr('dashed');
+  }
+}

@@ -1,5 +1,5 @@
 import { html, css, LitElement, unsafeCSS } from 'lit';
-import { customElement, property } from 'lit/decorators';
+import { customElement, property } from 'lit/decorators.js';
 import styles from './style/_vl-breadcrumb.scss';
 
 @customElement('vl-breadcrumb-item')

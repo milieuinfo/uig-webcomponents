@@ -1,0 +1,21 @@
+@mixin pattern($vl-color: $vl-accent-color, $vl-pattern: $vl-pattern-dots-small, $vl-pattern-size: 12px) {
+  @supports (-webkit-background-clip: text){
+    background: $vl-color url($vl-pattern);
+    background-size: $vl-pattern-size;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: $vl-color;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+  }
+
+  @supports (background-clip: text){
+    background: $vl-color url($vl-pattern);
+    background-size: $vl-pattern-size;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: $vl-color;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+  }
+}

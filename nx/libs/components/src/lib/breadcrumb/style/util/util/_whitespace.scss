@@ -1,0 +1,27 @@
+.vl-u-whitespace {
+  @include u-whitespace;
+}
+
+.vl-u-whitespace--nowrap {
+  @include u-whitespace(nowrap);
+}
+
+.vl-u-whitespace--pre {
+  @include u-whitespace(pre);
+}
+
+.vl-u-whitespace--pre-line {
+  @include u-whitespace(pre-line);
+}
+
+.vl-u-whitespace--pre-wrap {
+  @include u-whitespace(prewrap);
+}
+
+.vl-u-whitespace--unset {
+  @include u-whitespace(unset);
+}
+
+.vl-u-whitespace--break-spaces {
+  @include u-whitespace(break-spaces);
+}

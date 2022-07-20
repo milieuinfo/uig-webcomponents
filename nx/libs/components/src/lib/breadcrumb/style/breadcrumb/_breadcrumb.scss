@@ -1,0 +1,140 @@
+$vl-breadcrumb-box-shadow-1: rgba(12, 13, 14, .1);
+$vl-breadcrumb-box-shadow-2: rgba(12, 13, 14, .035);
+$vl-breadcrumb-box-shadow-3: rgba(12, 13, 14, .025);
+
+.vl-breadcrumb-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: $vl-alt-bg;
+  box-shadow: 0 1px 3px $vl-breadcrumb-box-shadow-1,
+  0 4px 20px $vl-breadcrumb-box-shadow-2,
+  0 1px 1px $vl-breadcrumb-box-shadow-3;
+
+  &__search, &__actions {
+    position: relative;
+    margin-right: $vl-spacing-small;
+    padding-left: 2rem;
+
+    @include respond-to(xsmall) {
+      margin-right: 2rem;
+      width: 100%;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%) rotate(-18deg);
+      width: .1rem;
+      height: 2.4rem;
+      background: $vl-border-color;
+
+      @include respond-to(xsmall) {
+        display: none;
+      }
+    }
+
+    .vl-search {
+      min-width: 12rem;
+      &__input {
+        border-color: $vl-alt-bg;
+        background: none;
+
+        &:focus {
+          background: $vl-white;
+          border-color: $vl-outline-color;
+        }
+
+        @include respond-to(xsmall) {
+          background: $vl-white;
+          border-color: $vl-white;
+        }
+      }
+    }
+  }
+
+  &__actions {
+    padding-left: 3rem;
+    width: auto;
+    white-space: nowrap;
+
+    @include respond-to(xsmall) {
+      padding-left: 1rem;
+    }
+  }
+}
+
+.vl-breadcrumb {
+  display: flex;
+  flex: 0 1 auto;
+
+  .vl-breadcrumb-bar & {
+    padding-left: $vl-spacing-small;
+    height: 100%;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    height: auto;
+
+    .vl-breadcrumb-bar & {
+      min-height: 4.3rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    &__item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 2px 0;
+
+      &:not(:last-of-type) {
+        margin-right: $vl-spacing-xsmall;
+
+        @include respond-to(small) {
+          margin-right: $vl-spacing-xxsmall;
+        }
+      }
+
+      &__separator {
+        @include vi;
+        @include vi-breadcrumb-separator;
+        display: flex;
+        align-items: center;
+        margin-right: $vl-spacing-xsmall;
+        color: $vl-border-color;
+        width: 1.4rem;
+        height: 1.4rem;
+        font-size: 1.6rem;
+
+        @include respond-to(small) {
+          margin-right: $vl-spacing-xxsmall;
+        }
+      }
+
+      &__cta {
+        display: inline-block;
+        align-items: center;
+        height: 100%;
+        font-size: 1.6rem;
+        text-decoration: none;
+        color: $vl-text-color;
+        cursor: pointer;
+
+        @include respond-to(medium) {
+          font-size: 1.4rem;
+        }
+
+        &:hover,
+        &:focus {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

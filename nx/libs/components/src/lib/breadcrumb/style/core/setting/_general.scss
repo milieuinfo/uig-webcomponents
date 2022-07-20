@@ -1,0 +1,9 @@
+// Box shadow
+$vl-base-box-shadow: 0 0 2.1rem 0 rgba(0, 0, 0, 0.3);
+$vl-base-box-shadow-light: 0 0 2.1rem 0 rgba(0, 0, 0, 0.1);
+$vl-focus-box-shadow: 0 0 0 2px $vl-page-bg, 0 0 0 5px rgba($vl-action-color, .65) !default;
+$vl-general-easing: cubic-bezier(1, 0.1, 0, 0.9);
+
+// Link styles
+$vl-link-list-spacing: 1rem !default;
+$vl-link-visited-state: true !default;

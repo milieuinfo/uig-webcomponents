@@ -8,4 +8,5 @@
 @import '@govflanders/vl-ui-button/src/scss/button';
 
 // @uig element styles
-@use '../lib/button/style/uig_button';
+// TODO kspeltin: @use
+@import '../lib/button/style/uig_button';
