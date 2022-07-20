@@ -19,16 +19,11 @@ export class VlBreadcrumb extends LitElement {
         observer.observe(this, { subtree: true, childList: true });
     }
 
-    // createRenderRoot() {
-    //     return this;
-    // }
-
     render() {
-        const children = this.children as any;
         return html`
             <nav aria-label="U bent hier: " class="vl-breadcrumb">
                 <ol class="vl-breadcrumb__list">
-                    ${[...children].map((child, index) => {
+                    ${[...Array.from(this.children)].map((child, index) => {
                         const name = `item-${index}`;
                         child.setAttribute('slot', name);
                         return html`

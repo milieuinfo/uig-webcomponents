@@ -15,10 +15,6 @@ export class VlBreadcrumbItem extends LitElement {
         ];
     }
 
-    // createRenderRoot() {
-    //     return this;
-    // }
-
     render() {
         return html`
             <a href=${this.href} class="vl-breadcrumb__list__item__cta">
