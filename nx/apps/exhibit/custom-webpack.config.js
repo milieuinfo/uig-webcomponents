@@ -4,6 +4,7 @@ const NodeSass = require('node-sass');
 const litCssLoaderRule = {
     test: /vl-breadcrumb\.scss$/,
     loader: 'lit-css-loader',
+    include: /\/libs\/components\/src\/lib/,
     options: {
         specifier: 'lit',
         transform: (data, { filePath }) => {
@@ -37,7 +38,7 @@ const litScssLoaderRule = {
 module.exports = (config, context) => {
     // const rules = config.module.rules;
     // const scssRule = rules.filter(rule => rule.test.includes('.scss'))
-    config.module.rules[3].exclude = /vl-breadcrumb\.scss$/;
+    config.module.rules[3].exclude = /\/libs\/components\/src\/lib/;
     config.module.rules = [...config.module.rules, litCssLoaderRule];
     // console.log('custom-webpack.config.js - config', config.module.rules);
     return config;
