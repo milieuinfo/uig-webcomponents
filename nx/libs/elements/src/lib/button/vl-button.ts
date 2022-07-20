@@ -1,5 +1,5 @@
 import { define } from '@uig/common/utilities';
-import { vlButtonMixin } from './mixin/vl-button-mixin';
+import { vlButtonBase } from './base/vl-button-base';
 
 /**
  * VlButton
@@ -7,7 +7,7 @@ import { vlButtonMixin } from './mixin/vl-button-mixin';
  * @classdesc Gebruik de vl-button om een CTA toe te voegen. Het type call-to-action wordt bepaald door het label of de pictogram.
  *
  * @extends HTMLButtonElement
- * @mixes vlButtonMixin
+ * @mixes vlButtonBase
  *
  * @property {boolean} data-vl-error - Attribuut wordt gebruikt om het belang of de gevolgen van een actie te benadrukken.
  * @property {boolean} data-vl-block - Attribuut wordt gebruikt om ervoor te zorgen dat de knop getoond wordt als een block element en bijgevol de breedte van de parent zal aannemen.
@@ -23,6 +23,6 @@ import { vlButtonMixin } from './mixin/vl-button-mixin';
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-button.html|Demo}
  */
 
-export class VlButton extends vlButtonMixin(HTMLButtonElement) {}
+export class VlButton extends vlButtonBase(HTMLButtonElement) {}
 
 define('vl-button', VlButton, { extends: 'button' });
