@@ -1,2 +1,11 @@
-@import "@govflanders/vl-ui-core/src/scss/core";
-@import "@govflanders/vl-ui-button/src/scss/button";
+@charset "utf-8";
+
+// @govflanders global styles
+@import '@govflanders/vl-ui-core/src/scss/core';
+@import '@govflanders/vl-ui-util/src/scss/util';
+
+// @govflanders component styles
+@import '@govflanders/vl-ui-button/src/scss/button';
+
+// @uig element styles
+@use '../lib/button/style/styles';
