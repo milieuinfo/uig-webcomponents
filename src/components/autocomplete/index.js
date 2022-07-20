@@ -185,25 +185,25 @@ export class VlAutocomplete extends LitElement {
   {
     switch (this.captionFormat)
     {
-      case CAPTION_FORMAT.TITLE: return html`${item.title}`;
-      case CAPTION_FORMAT.SUBTITLE: return html`${item.subtitle}`;
-      case CAPTION_FORMAT.VALUE: return html`${item.value}`;
+      case CAPTION_FORMAT.TITLE: return html`<span class="uig-autocomplete_title">${item.title}</span>`;
+      case CAPTION_FORMAT.SUBTITLE: return html`<span class="uig-autocomplete_subtitle">${item.subtitle}</span>`;
+      case CAPTION_FORMAT.VALUE: return html`<span class="uig-autocomplete_value">${item.value}</span>`;
       default:
     }
 
     if(item.subtitle != null) {
       if(this.captionFormat === CAPTION_FORMAT.TITLE_SUBTITLE_VERTICAL || this.captionFormat == null) {
-        return html`<span class="vl-autocomplete__cta__title">${item.title}</span><span
-            class="vl-autocomplete__cta__sub">${item.subtitle}</span>`;
+        return html`<span class="uig-autocomplete_title uig-autocomplete_title">${item.title}</span><span
+            class="uig-autocomplete_subtitle vl-autocomplete__cta__sub">${item.subtitle}</span>`;
       }
       if(this.captionFormat === CAPTION_FORMAT.TITLE_SUBTITLE_HORIZONTAL) {
-        return html`${item.title}: ${item.subtitle}`;
+        return html`<span class="uig-autocomplete_title">${item.title}</span>: <span class="uig-autocomplete_subtitle">${item.subtitle}</span>`;
       }
       if(this.captionFormat === CAPTION_FORMAT.SUBTITLE_TITLE_HORIZONTAL) {
-        return html`${item.subtitle}: ${item.title}`;
+        return html`<span class="uig-autocomplete_subtitle">${item.subtitle}</span>: <span class="uig-autocomplete_title">${item.title}</span>`;
       }
     }
-    return html`<span class="vl-autocomplete__cta__title">${item.title}</span>`;
+    return html`<span class="uig-autocomplete_title vl-autocomplete__cta__title">${item.title}</span>`;
   }
 
   filterAndSuggest(searchTerm, items){
@@ -339,27 +339,29 @@ export class VlAutocomplete extends LitElement {
 
   generateItems()
   {
+    let groupIndex = 0;
     if(this.groupBy && this._groupedMatches.size > 0) {
       const liElements = [];
 
       this._groupedMatches.forEach((items, groupName) => {
         liElements.push(html`
-        <li class="vl-autocomplete__cta group">
+        <li class="vl-autocomplete__cta uig-autocomplete-group" groupindex="${groupIndex}">
             ${groupName}
         </li>`);
-        items.forEach(item => liElements.push(this.generateItem(item)));
+        items.forEach(item => liElements.push(this.generateItem(item, groupIndex)));
+        groupIndex +=1;
       })
 
       return html`${liElements}`;
     }
     
-    return html`${this._matches.map(item => this.generateItem(item))}`
+    return html`${this._matches.map(item => this.generateItem(item, groupIndex))}`
   }
 
-  generateItem(item)
+  generateItem(item, groupIndex)
   {
     return html`
-        <li @click=${() => this.autocomplete(item.title, item.value ? item.value : null)} class="vl-autocomplete__cta" role="option"
+        <li @click=${() => this.autocomplete(item.title, item.value ? item.value : null)} class="vl-autocomplete__cta uig-autocomplete-item" groupindex="${groupIndex}" role="option"
             tabindex="-1">
           ${this.formatCaption(item)}
         </li>`;
