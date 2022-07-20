@@ -18,18 +18,14 @@ const buildConfig = {
     'input-addon',
     'input-field',
     'input-group',
-    'introduction',
-    'link',
     'link-list',
-    'properties',
     'search-filter',
     'search-results',
     'select',
-    'side-navigation',
     'titles',
     'video-player',
   ],
-  componentsWithStylesheetAndInlineStyling: ['button', 'pill', 'tooltip', 'textarea', 'toaster', 'typography', 'proza-message', 'multiselect', 'icon', 'grid', 'data-table', 'form-grid'],
+  componentsWithStylesheetAndInlineStyling: ['properties', 'side-navigation', 'link', 'introduction', 'button', 'pill', 'tooltip', 'textarea', 'toaster', 'typography', 'proza-message', 'multiselect', 'icon', 'grid', 'data-table', 'form-grid'],
 };
 
 const { src, dist, componentsWithStylesheet, componentsWithStylesheetAndInlineStyling } = buildConfig;
