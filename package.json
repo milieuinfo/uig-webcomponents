@@ -54,6 +54,7 @@
   "devDependencies": {
     "@govflanders/vl-ui-action-group": "^3.12.24",
     "@govflanders/vl-ui-alert": "^3.12.24",
+    "@govflanders/vl-ui-autocomplete": "^3.12.3",
     "@govflanders/vl-ui-breadcrumb": "^3.12.3",
     "@govflanders/vl-ui-button": "^3.12.24",
     "@govflanders/vl-ui-checkbox": "^3.12.23",
