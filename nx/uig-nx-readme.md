@@ -22,6 +22,7 @@ https://nx.dev/
 - npx nx g @nrwl/web:application storybook
 - nx g @nrwl/react:storybook-configuration storybook
 
+- npx node-sass __vl-breadcrumb.scss --output-style compressed > _vl-breadcrumb.scss
 
 # Workspace aanpak
 

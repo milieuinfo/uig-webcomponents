@@ -1,6 +1,6 @@
 import { html, css, LitElement, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import styles from './style/_vl-breadcrumb.scss';
+import styles from './style/vl-breadcrumb.scss';
 
 @customElement('vl-breadcrumb-item')
 export class VlBreadcrumbItem extends LitElement {
@@ -14,6 +14,10 @@ export class VlBreadcrumbItem extends LitElement {
             `,
         ];
     }
+
+    // createRenderRoot() {
+    //     return this;
+    // }
 
     render() {
         return html`
