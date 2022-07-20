@@ -11,6 +11,7 @@ export class AppElement extends HTMLElement {
                     <h1>Elementen Overzicht UIG</h1>
                     <br>
                     <exhibit-buttons></exhibit-buttons>
+                    <exhibit-breadcrumb></exhibit-breadcrumb>
                 </div>
             </div>
       `;

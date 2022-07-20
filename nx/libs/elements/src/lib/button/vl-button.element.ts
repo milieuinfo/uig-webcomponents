@@ -1,5 +1,5 @@
 import { define } from '@uig/common/utilities';
-import { vlButtonBaseElement } from './base/vl-button-base';
+import { vlButtonBaseElement } from './base/vl-button-base.element';
 
 /**
  * VlButton
