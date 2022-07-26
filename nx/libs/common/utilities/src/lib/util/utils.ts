@@ -1,4 +1,4 @@
-import {Class} from '../type/types';
+import { Class } from '../type/types';
 
 /**
  * Definieert een class als custom element enkel wanneer deze nog niet gedefinieerd werd.

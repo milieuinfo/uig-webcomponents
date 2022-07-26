@@ -1,4 +1,4 @@
-import {ButtonsElement} from './buttons.element';
+import { ButtonsElement } from './buttons.element';
 
 // TODO: fix
 describe('AppElement', () => {

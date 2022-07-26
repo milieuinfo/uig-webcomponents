@@ -1,4 +1,4 @@
-import {Class} from '../type/types';
+import { Class } from '../type/types';
 
 declare const vl: any;
 
@@ -106,18 +106,18 @@ export const vlElement = (SuperClass: Class): Class => {
             }
 
             classRef._observedClassAttributes
-            .concat(classRef._observedPrefixClassAttributes)
-            .filter((attribute: string) => attribute == attr || attribute == VlElement.attributePrefix + attr)
-            .forEach((attribute: string) => {
-                this.__changeAttribute(this, oldValue, newValue, attribute);
-            });
+                .concat(classRef._observedPrefixClassAttributes)
+                .filter((attribute: string) => attribute == attr || attribute == VlElement.attributePrefix + attr)
+                .forEach((attribute: string) => {
+                    this.__changeAttribute(this, oldValue, newValue, attribute);
+                });
 
             classRef._observedChildClassAttributes
-            .concat(classRef._observedPrefixChildClassAttributes)
-            .filter((attribute: string) => attribute == attr || attribute == VlElement.attributePrefix + attr)
-            .forEach((attribute: string) => {
-                this.__changeAttribute(this._element, oldValue, newValue, attribute);
-            });
+                .concat(classRef._observedPrefixChildClassAttributes)
+                .filter((attribute: string) => attribute == attr || attribute == VlElement.attributePrefix + attr)
+                .forEach((attribute: string) => {
+                    this.__changeAttribute(this._element, oldValue, newValue, attribute);
+                });
 
             const getDeprecatedCallbackFunction = (attribute: string) =>
                 this[`_${attribute.split('-').join('_')}ChangedCallback`];
@@ -128,9 +128,9 @@ export const vlElement = (SuperClass: Class): Class => {
                     `${item.charAt(0).toUpperCase()}${item.slice(1)}`;
                 return this[
                     `_${splittedAttribute.shift()}${splittedAttribute
-                    .map(changeFirstLetterToUpperCase)
-                    .join('')}ChangedCallback`
-                    ];
+                        .map(changeFirstLetterToUpperCase)
+                        .join('')}ChangedCallback`
+                ];
             };
 
             const callback =
@@ -234,7 +234,7 @@ export const vlElement = (SuperClass: Class): Class => {
          * @return {void}
          */
         shadow(html: any) {
-            this._shadow = this.attachShadow({mode: 'open'});
+            this._shadow = this.attachShadow({ mode: 'open' });
             this._shadow.innerHTML = html;
         }
 

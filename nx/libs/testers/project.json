@@ -1,30 +1,30 @@
 {
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
-    "sourceRoot": "libs/elements/src",
+    "sourceRoot": "libs/testers/src",
     "projectType": "library",
     "targets": {
         "build": {
             "executor": "@nrwl/js:tsc",
             "outputs": ["{options.outputPath}"],
             "options": {
-                "outputPath": "dist/libs/elements",
-                "main": "libs/elements/src/index.ts",
-                "tsConfig": "libs/elements/tsconfig.lib.json",
-                "assets": ["libs/elements/*.md"]
+                "outputPath": "dist/libs/testers",
+                "main": "libs/testers/src/index.ts",
+                "tsConfig": "libs/testers/tsconfig.lib.json",
+                "assets": ["libs/testers/*.md"]
             }
         },
         "lint": {
             "executor": "@nrwl/linter:eslint",
             "outputs": ["{options.outputFile}"],
             "options": {
-                "lintFilePatterns": ["libs/elements/**/*.ts"]
+                "lintFilePatterns": ["libs/testers/**/*.ts"]
             }
         },
         "test": {
             "executor": "@nrwl/jest:jest",
-            "outputs": ["coverage/libs/elements"],
+            "outputs": ["coverage/libs/testers"],
             "options": {
-                "jestConfig": "libs/elements/jest.config.ts",
+                "jestConfig": "libs/testers/jest.config.ts",
                 "passWithNoTests": true
             }
         }

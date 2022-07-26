@@ -1,4 +1,4 @@
-import {Class, vlElement} from '@uig/common/utilities';
+import { Class, vlElement } from '@uig/common/utilities';
 
 /**
  * Gebruik de button mixin in combinatie met button elementen.

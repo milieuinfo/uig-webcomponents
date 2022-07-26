@@ -1,5 +1,5 @@
-import {define} from '@uig/common/utilities';
-import {vlButtonBaseElement} from './base/vl-button-base.element';
+import { define } from '@uig/common/utilities';
+import { vlButtonBaseElement } from './base/vl-button-base.element';
 
 /**
  * VlLinkButton
@@ -12,7 +12,6 @@ import {vlButtonBaseElement} from './base/vl-button-base.element';
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-link/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-link.html|Demo}
  */
-export class VlLinkButtonElement extends vlButtonBaseElement(HTMLAnchorElement) {
-}
+export class VlLinkButtonElement extends vlButtonBaseElement(HTMLAnchorElement) {}
 
-define("vl-link-button", VlLinkButtonElement, {extends: "a"});
+define('vl-link-button', VlLinkButtonElement, { extends: 'a' });

@@ -6,8 +6,9 @@ const litCssLoaderRule = {
     include: /\/libs\/components\/src\/lib/,
     options: {
         specifier: 'lit',
-        transform: (data, {filePath}) => {
+        transform: (data, { filePath }) => {
             // console.log('lit-css-loader - before', filePath, data);
+            // renderSync is deprecated en zou compile moeten worden, maar dat geeft een fout
             const result = Sass.renderSync({
                 data,
                 file: filePath,
@@ -20,10 +21,11 @@ const litCssLoaderRule = {
 };
 
 module.exports = (config, context) => {
-    // const rules = config.module.rules;
-    // const scssRule = rules.filter(rule => rule.test.includes('.scss'))
-    // TODO kspeltin: niet hard coderen op index '3' maar de index vinden van de filter die inwerkt op .scss
-    config.module.rules[3].exclude = /\/libs\/components\/src\/lib/;
+    // de bestaande rule vinden die de .scss verwerkt
+    const scssRule = config.module.rules.find((rule) => rule.test.toString().includes('.scss'));
+    // die scssRule uitbreiden met een exclude, de scss wordt door de litCssLoaderRule verwerkt
+    scssRule.exclude = /\/libs\/components\/src\/lib/;
+    // de litCssLoaderRule toevoegen aan de rules
     config.module.rules = [...config.module.rules, litCssLoaderRule];
     // console.log('custom-webpack.config.js - config', config.module.rules);
     return config;
