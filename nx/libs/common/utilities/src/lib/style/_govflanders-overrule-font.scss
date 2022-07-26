@@ -1,0 +1,22 @@
+$vl-flanders-font-name: "Flanders Art Sans";
+$vl-flanders-serif-font-name: "Flanders Art Serif";
+$vl-flanders-family: "FlandersArtSans";
+$vl-flanders-serif-family: "FlandersArtSerif";
+$vl-icon-family: "vlaanderen-icon";
+
+@include font-face($vl-flanders-font-name, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/", $vl-flanders-family + "-Light", 300, normal);
+@include font-face($vl-flanders-font-name, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/", $vl-flanders-family + "-Regular", 400, normal);
+@include font-face($vl-flanders-font-name, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/", $vl-flanders-family + "-Medium", 500, normal);
+@include font-face($vl-flanders-font-name, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/", $vl-flanders-family + "-Bold", 700, normal);
+
+@include font-face($vl-flanders-font-name, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/", $vl-flanders-family + "-Light", 300, italic);
+@include font-face($vl-flanders-font-name, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/", $vl-flanders-family + "-Regular", 400, italic);
+@include font-face($vl-flanders-font-name, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/", $vl-flanders-family + "-Medium", 500, italic);
+@include font-face($vl-flanders-font-name, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/", $vl-flanders-family + "-Bold", 700, italic);
+
+@include font-face($vl-flanders-serif-font-name, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/", $vl-flanders-serif-family + "-Light", 300, normal);
+@include font-face($vl-flanders-serif-font-name, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/", $vl-flanders-serif-family + "-Regular", 400, normal);
+@include font-face($vl-flanders-serif-font-name, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/", $vl-flanders-serif-family + "-Medium", 500, normal);
+@include font-face($vl-flanders-serif-font-name, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/", $vl-flanders-serif-family + "-Bold", 700, normal);
+
+@include font-face($vl-icon-family, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/iconfont/3.12.23/", $vl-icon-family, normal, normal);

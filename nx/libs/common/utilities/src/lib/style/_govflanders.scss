@@ -4,5 +4,8 @@
 @import '@govflanders/vl-ui-core/src/scss/core';
 @import '@govflanders/vl-ui-util/src/scss/util';
 
+// @govflanders overrule font
+@import 'govflanders-overrule-font';
+
 // @govflanders component styles
 @import '@govflanders/vl-ui-button/src/scss/button';

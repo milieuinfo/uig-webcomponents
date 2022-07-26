@@ -1,10 +1,10 @@
-import { html, css, LitElement, unsafeCSS } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import {html, css, LitElement, unsafeCSS} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
 import styles from './style/vl-breadcrumb.scss';
 
 @customElement('vl-breadcrumb-item')
 export class VlBreadcrumbItem extends LitElement {
-    @property({ type: String, attribute: 'data-vl-href', reflect: true })
+    @property({type: String, attribute: 'data-vl-href', reflect: true})
     private href = '';
 
     static get styles() {
