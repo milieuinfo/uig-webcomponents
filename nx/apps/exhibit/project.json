@@ -1,67 +1,81 @@
 {
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "application",
-  "sourceRoot": "apps/exhibit/src",
-  "tags": [],
-  "targets": {
-    "build": {
-      "executor": "@nrwl/web:webpack",
-      "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
-      "options": {
-        "outputPath": "dist/apps/exhibit",
-        "compiler": "babel",
-        "index": "apps/exhibit/src/index.html",
-        "baseHref": "/",
-        "main": "apps/exhibit/src/main.ts",
-        "polyfills": "apps/exhibit/src/polyfills.ts",
-        "tsConfig": "apps/exhibit/tsconfig.app.json",
-        "assets": ["apps/exhibit/src/favicon.ico", "apps/exhibit/src/assets"],
-        "styles": ["apps/exhibit/src/styles.scss"],
-        "scripts": []
-      },
-      "configurations": {
-        "production": {
-          "fileReplacements": [
-            {
-              "replace": "apps/exhibit/src/environments/environment.ts",
-              "with": "apps/exhibit/src/environments/environment.prod.ts"
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "application",
+    "sourceRoot": "apps/exhibit/src",
+    "tags": [],
+    "targets": {
+        "build": {
+            "executor": "@nrwl/web:webpack",
+            "outputs": [
+                "{options.outputPath}"
+            ],
+            "defaultConfiguration": "production",
+            "options": {
+                "outputPath": "dist/apps/exhibit",
+                "compiler": "babel",
+                "index": "apps/exhibit/src/index.html",
+                "baseHref": "/",
+                "main": "apps/exhibit/src/main.ts",
+                "polyfills": "apps/exhibit/src/polyfills.ts",
+                "tsConfig": "apps/exhibit/tsconfig.app.json",
+                "assets": [
+                    "apps/exhibit/src/favicon.ico",
+                    "apps/exhibit/src/assets"
+                ],
+                "styles": [
+                    "apps/exhibit/src/styles.scss"
+                ],
+                "scripts": [],
+                "webpackConfig": "apps/exhibit/custom-webpack.config.js"
+            },
+            "configurations": {
+                "production": {
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/exhibit/src/environments/environment.ts",
+                            "with": "apps/exhibit/src/environments/environment.prod.ts"
+                        }
+                    ],
+                    "optimization": true,
+                    "outputHashing": "all",
+                    "sourceMap": false,
+                    "namedChunks": false,
+                    "extractLicenses": true,
+                    "vendorChunk": false
+                }
             }
-          ],
-          "optimization": true,
-          "outputHashing": "all",
-          "sourceMap": false,
-          "namedChunks": false,
-          "extractLicenses": true,
-          "vendorChunk": false
+        },
+        "serve": {
+            "executor": "@nrwl/web:dev-server",
+            "options": {
+                "buildTarget": "exhibit:build"
+            },
+            "configurations": {
+                "production": {
+                    "buildTarget": "exhibit:build:production"
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": [
+                "{options.outputFile}"
+            ],
+            "options": {
+                "lintFilePatterns": [
+                    "apps/exhibit/**/*.ts"
+                ]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": [
+                "coverage/apps/exhibit"
+            ],
+            "options": {
+                "jestConfig": "apps/exhibit/jest.config.ts",
+                "passWithNoTests": true
+            }
         }
-      }
-    },
-    "serve": {
-      "executor": "@nrwl/web:dev-server",
-      "options": {
-        "buildTarget": "exhibit:build"
-      },
-      "configurations": {
-        "production": {
-          "buildTarget": "exhibit:build:production"
-        }
-      }
-    },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/exhibit/**/*.ts"]
-      }
-    },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/exhibit"],
-      "options": {
-        "jestConfig": "apps/exhibit/jest.config.ts",
-        "passWithNoTests": true
-      }
     }
-  }
 }
