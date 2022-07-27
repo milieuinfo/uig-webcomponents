@@ -7,7 +7,7 @@ export class BreadcrumbElement extends HTMLElement {
             <div class="wrapper">
                 <div class="container">
                     <div id="welcome">
-                        <h2>${title}</h2>
+                        <h2 is="vl-h2" data-vl-alt data-vl-no-space-bottom>${title}</h2>
                         <br>
                         <vl-breadcrumb>
                             <vl-breadcrumb-item data-vl-href="#">Vlaanderen Intern</vl-breadcrumb-item>
