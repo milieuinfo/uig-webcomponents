@@ -1,97 +1,95 @@
-# Nx
+![omgeving](docs/image/omgeving.png)
 
-This project was generated using [Nx](https://nx.dev).
+<hr>
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+# UIG Web Components - Nx
 
-🔎 **Smart, Fast and Extensible Build System**
+## Inhoudstafel
 
-## Adding capabilities to your workspace
+- 🚀 [Project](#project)
+- 🛠 [Opzet](#opzet)
+- 📒 [Project Structuur](#project-structuur)
+- ⚗ [Web Componenten Bibliotheek](#web-componenten-bibliotheek)
+    - ⚛ [Elements Bibliotheek](#elements-bibliotheek)
+    - ⚙ [Components Bibliotheek](#components-bibliotheek)
+- 👥 [Ontwikkel Team](#ontwikkel-team)
 
-Nx supports many plugins which add capabilities for developing different types of applications and
-different tools.
+## Project
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test,
-and build projects as well.
+Deze __monorepo__ bevat de ontwikkeling die gebeurd door het __UIG-team__ (User Interface Governance Team)
+van [Departement Omgeving](https://omgeving.vlaanderen.be/), onderdeel van
+de [Vlaamse Overheid](https://www.vlaanderen.be/).
 
-Below are our core plugins:
+De basis wordt gevormd door een [Web Componenten](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
+bibliotheek, die verder bouwt op het [Webuniversum v3](https://overheid.vlaanderen.be/webuniversum/v3/) ontwikkeld
+door [Digitaal Vlaanderen](https://www.vlaanderen.be/digitaal-vlaanderen) (onderdeel van de VO).
 
--   [React](https://reactjs.org)
-    -   `npm install --save-dev @nrwl/react`
--   Web (no framework frontends)
-    -   `npm install --save-dev @nrwl/web`
--   [Angular](https://angular.io)
-    -   `npm install --save-dev @nrwl/angular`
--   [Nest](https://nestjs.com)
-    -   `npm install --save-dev @nrwl/nest`
--   [Express](https://expressjs.com)
-    -   `npm install --save-dev @nrwl/express`
--   [Node](https://nodejs.org)
-    -   `npm install --save-dev @nrwl/node`
+<sup>_[WIP - aan te vullen met links naar de code of de draaiende toepassing]_</sup>\
+Het gebruik van de bibliotheek wordt toegepast in de __Exhibit__ toepassing.
 
-There are also many [community plugins](https://nx.dev/community) you could add.
+## Opzet
 
-## Generate an application
+Dit project is opgezet met [Nx](https://nx.dev/), bij opzet werd er [documentatie](docs/md/nx-nrwl.md) gegenereerd.
+Nx (wat staat voor Nrwl Extensions) is een 'Smart, Fast and Extensible Build System' dat open-source ontwikkeld wordt
+door [Nrwl](https://github.com/nrwl), een start-up die groeide uit Google.
 
-Run `nx g @nrwl/react:app my-app` to generate an application.
+De huidige setup werd opgebouwd m.b.v. [nx commando's](docs/md/nx-setup.md).
 
-> You can use any of the plugins above to generate applications as well.
+## Project Structuur
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
+- apps <sup>_[de toepassingen]_</sup>
+    - exhibit <sup>_[de demo toepassing]_</sup>
+    - exhibit-e2e <sup>_[de Cypress testen van Exhibit]_</sup>
+- libs <sup>_[de bibliotheken]_</sup>
+    - common <sup>_[de gedeelde code]_</sup>
+        - utilities
+    - components <sup>_[web componenten geïmplementeerd met Lit]_</sup>
+    - elements <sup>_[web componenten geïmplementeerd als native HTMLElement]_</sup>
+    - testers <sup>_[deprecated - Javascript code met test helpers - legacy gebruikt door andere OMG ontwikkel teams]_</sup>
 
-## Generate a library
+## Web Componenten Bibliotheek
 
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
+De ⚗ <sup>web componenten</sup> zitten opgesplitst in 2 sub-bibliotheken: __elements__ en __components__.
 
-> You can also use any of the plugins above to generate libraries as well.
+> De bibliotheek wordt momenteel gemigreerd, in het analyse document
+> (numbers) [UIG - componenten bibliotheek](docs/numbers/UIG%20-%20componenten%20bibliotheek.numbers) staat de
+> vooruitgang.
 
-Libraries are shareable across libraries and applications. They can be imported from `@nx/mylib`.
+### Elements Bibliotheek
 
-## Development server
+De ⚛ <sup>elementen</sup> zijn in de repo te vinden onder __'/libs/elements'__ en worden gepubliceerd onder __@uig/elements__
 
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will
-automatically reload if you change any of the source files.
+Een __element__ is geïmplementeerd als een native html-element en heeft technisch volgende eigenschappen:
+- extends steeds van een sub-klasse van HTMLElement (bvb. HTMLButtonElement)
+  - dus steeds te gebruiken met 'is='
+  - bvb. `<button is="vl-button"></button>`
+- heeft __geen__ shadow DOM
+- de styling wordt globaal gedefinieerd
+  - 1 sccs (_vl-elements.scss) die de css van alle elementen bevat
+  - de bulk van de styling komt van DV (Digitaal Vlaanderen)
+  - afnemers dienen expliciet deze css eenmalig (vanuit index.html) te refereren
 
-## Code scaffolding
+### Components Bibliotheek
 
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
+De ⚙ <sup>componenten</sup> zijn in de repo te vinden onder __'/libs/components'__ en worden gepubliceerd onder __@uig/components__
 
-## Build
+Een __component__ is geïmplementeerd als een [LitElement](https://lit.dev/docs/api/LitElement/) en heeft technisch volgende eigenschappen:
+- extends steeds van LitElement
+  - dus steeds te gebruiken als custom tag
+  - bvb. `<vl-breadcrumb></vl-breadcrumb>`
+- heeft __steeds een__ shadow DOM
+- de styling komt mee binnen met de component
+  - ook de element styling is voorzien in de shadow DOM
+  - geneste elementen worden dus steeds correct gestyled
+  - afnemers moeten niets doen m.b.t. styling
 
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/`
-directory. Use the `--prod` flag for a production build.
+<hr>
 
-## Running unit tests
+## Ontwikkel Team
 
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
+| Gert-Jan Meire                                                            | Kris Speltincx                                                             |
+|---------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| ![Gert-Jan Meire](https://avatars.githubusercontent.com/u/30627591?s=160) | ![Kris Speltincx](https://avatars.githubusercontent.com/u/110020569?s=160) |
+| [meirege](https://github.com/meirege)                                     | [kspeltix](https://github.com/kspeltix)                                    |
 
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `nx e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev) to learn more.
-
-## ☁ Nx Cloud
-
-### Distributed Computation Caching & Distributed Task Execution
-
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10
-times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework
-alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for
-both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
+<hr>

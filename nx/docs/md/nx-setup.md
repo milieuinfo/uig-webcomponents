@@ -1,8 +1,4 @@
-# Nrwl - Nx
-
-https://nx.dev/
-
-# Setup
+# Nx Project Setup
 
 -   npx create-nx-workspace@latest
     -> nx / apps [an empty workspace with no plugins with a layout that works best for building apps]
