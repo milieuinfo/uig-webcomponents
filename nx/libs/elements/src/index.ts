@@ -8,3 +8,4 @@ export * from './lib/titles/vl-h5.element';
 export * from './lib/titles/vl-h6.element';
 export * from './lib/image/vl-image.element';
 export * from './lib/introduction/vl-introduction.element';
+export * from './lib/typography/vl-typography.element';

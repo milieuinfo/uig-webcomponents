@@ -13,6 +13,7 @@ export class AppElement extends HTMLElement {
                     <exhibit-introduction></exhibit-introduction>
                     <exhibit-titles></exhibit-titles>
                     <exhibit-image></exhibit-image>
+                    <exhibit-typography></exhibit-typography>
                 </div>
             </div>
       `;
