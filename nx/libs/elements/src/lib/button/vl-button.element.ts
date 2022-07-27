@@ -17,10 +17,6 @@ import { vlButtonBaseElement } from './base/vl-button-base.element';
  * @property {boolean} data-vl-loading - Attribuut wordt gebruikt om aan de gebruiker aan te geven dat zijn actie momenteel verwerkt wordt.
  * @property {boolean} data-vl-secondary - Attribuut wordt gebruikt in combinatie met een gewone knop om alternatieve acties te voorzien.
  * @property {boolean} data-vl-tertiary - Attribuut wordt gebruikt in combinatie met gewone en secondary knoppen om alternatieve acties te voorzien.
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-button/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-button/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-button.html|Demo}
  */
 
 export class VlButtonElement extends vlButtonBaseElement(HTMLButtonElement) {}

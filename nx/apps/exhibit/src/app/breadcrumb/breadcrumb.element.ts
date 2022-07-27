@@ -1,5 +1,3 @@
-import './breadcrumb.element.scss';
-
 export class BreadcrumbElement extends HTMLElement {
     public static observedAttributes = [];
 
