@@ -9,3 +9,4 @@ import './app/buttons/buttons.element.ts';
 import './app/image/image.element';
 import './app/introduction/introduction.element';
 import './app/titles/titles.element';
+import './app/typography/typography.element';
