@@ -2,6 +2,21 @@
 
 <hr>
 
+### Quick Start Commands - Nx
+```
+npx nx build
+```
+```
+npx nx serve exhibit
+```
+```
+npx nx storybook storybook 
+```
+```
+npx nx build-storybook storybook 
+```
+<hr>
+
 # UIG Web Components - Nx
 
 ## Inhoudstafel
