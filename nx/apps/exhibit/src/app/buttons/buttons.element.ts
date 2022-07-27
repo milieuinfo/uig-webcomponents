@@ -1,5 +1,3 @@
-import './buttons.element.scss';
-
 export class ButtonsElement extends HTMLElement {
     public static observedAttributes = [];
 

@@ -1,5 +1,3 @@
-import './app.element.scss';
-
 export class AppElement extends HTMLElement {
     public static observedAttributes = [];
 
@@ -12,6 +10,7 @@ export class AppElement extends HTMLElement {
                     <br>
                     <exhibit-buttons></exhibit-buttons>
                     <exhibit-breadcrumb></exhibit-breadcrumb>
+                    <exhibit-introduction></exhibit-introduction>
                 </div>
             </div>
       `;
