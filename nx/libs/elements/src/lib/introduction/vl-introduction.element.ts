@@ -8,10 +8,10 @@ import { vlElement, define } from '@uig/common/utilities';
  * @extends HTMLParagraphElement
  * @mixes vlElement 
  */
-export class VlIntroduction extends vlElement(HTMLParagraphElement) {
+export class VlIntroductionElement extends vlElement(HTMLParagraphElement) {
     connectedCallback() {
         this.classList.add('vl-introduction');
     }
 }
 
-define("vl-introduction", VlIntroduction, { extends: "p" });
+define("vl-introduction", VlIntroductionElement, { extends: "p" });

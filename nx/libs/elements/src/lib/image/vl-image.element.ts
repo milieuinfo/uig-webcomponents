@@ -8,7 +8,7 @@ import { vlElement, define } from '@uig/common/utilities';
  * @extends HTMLImageElement
  * @mixes nativeVlElement
  */
-export class VlImage extends vlElement(HTMLImageElement) {
+export class VlImageElement extends vlElement(HTMLImageElement) {
   connectedCallback() {
     this.classList.add("vl-image");
     if (!this.alt) {
@@ -17,4 +17,4 @@ export class VlImage extends vlElement(HTMLImageElement) {
   }
 }
 
-define("vl-image", VlImage, { extends: "img" });
+define("vl-image", VlImageElement, { extends: "img" });
