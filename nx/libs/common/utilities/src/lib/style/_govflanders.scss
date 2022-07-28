@@ -12,8 +12,10 @@ $vl-icon-font-location: 'https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/i
 
 // @govflanders component styles
 @import '@govflanders/vl-ui-button/src/scss/button';
+@import '@govflanders/vl-ui-icon/src/scss/icon';
 @import '@govflanders/vl-ui-image/src/scss/image';
 @import '@govflanders/vl-ui-introduction/src/scss/introduction';
+@import '@govflanders/vl-ui-link/src/scss/link';
 @import '@govflanders/vl-ui-titles/src/scss/titles';
 @import '@govflanders/vl-ui-typography/src/scss/typography';
 
