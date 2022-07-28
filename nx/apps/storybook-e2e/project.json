@@ -6,13 +6,7 @@
         "e2e": {
             "executor": "@nrwl/cypress:cypress",
             "options": {
-                "cypressConfig": "apps/storybook-e2e/cypress.json",
-                "devServerTarget": "storybook:serve"
-            },
-            "configurations": {
-                "production": {
-                    "devServerTarget": "storybook:serve:production"
-                }
+                "cypressConfig": "apps/storybook-e2e/cypress.json"
             }
         },
         "lint": {

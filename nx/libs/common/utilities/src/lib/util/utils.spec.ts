@@ -1,7 +1,5 @@
-// import { nativeVlElement } from './native-vl-element';
-//
-// describe('nativeVlElement', () => {
-//   it('should work', () => {
-//     // expect(nativeVlElement()).toEqual('common-base');
-//   });
-// });
+describe('Jest - common-utilities:utils.ts', () => {
+    it('TODO: zinvolle testen schrijven of dit bestand verwijderen', () => {
+        expect(null === undefined).toEqual(false);
+    });
+});
