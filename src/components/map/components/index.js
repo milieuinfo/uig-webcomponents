@@ -30,4 +30,5 @@ export { VlMapSideSheetMenuItem } from './side-sheet-menu-item';
 export { VlMapModifyAction } from './action/layer-action/modify-action';
 export { VlMapActionControls } from './controls/components/action-controls';
 export { VlMapMeasureControl } from './controls/components/measure-control';
+export { VlMapLegendControl } from './controls/components/legend-control';
 export { VlSelectLocation } from './select-location';

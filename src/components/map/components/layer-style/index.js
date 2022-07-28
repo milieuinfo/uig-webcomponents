@@ -33,6 +33,10 @@ export class VlMapLayerStyle extends vlElement(HTMLElement) {
     this._setStyleOnParent();
   }
 
+  get legendText() {
+    return this.getAttribute('data-vl-legend-text');
+  }
+
   /**
    * Geeft de color van de stijl terug.
    *
