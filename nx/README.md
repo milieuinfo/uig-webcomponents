@@ -1,20 +1,9 @@
-![omgeving](docs/image/omgeving.png)
+![omgeving](resources/images/omgeving.png)
 
 <hr>
 
-### Quick Start Commands - Nx
-```
-npx nx build
-```
-```
-npx nx serve exhibit
-```
-```
-npx nx storybook storybook 
-```
-```
-npx nx build-storybook storybook 
-```
+### [Quick Start - Nx Commando's](resources/markdown/nx-commandos.md)
+
 <hr>
 
 # UIG Web Components - Nx
@@ -44,11 +33,11 @@ Het gebruik van de bibliotheek wordt toegepast in de __Exhibit__ toepassing.
 
 ## Opzet
 
-Dit project is opgezet met [Nx](https://nx.dev/), bij opzet werd er [documentatie](docs/md/nx-nrwl.md) gegenereerd.
+Dit project is opgezet met [Nx](https://nx.dev/), bij opzet werd er [documentatie](resources/markdown/nx-nrwl.md) gegenereerd.
 Nx (wat staat voor Nrwl Extensions) is een 'Smart, Fast and Extensible Build System' dat open-source ontwikkeld wordt
 door [Nrwl](https://github.com/nrwl), een start-up die groeide uit Google.
 
-De huidige setup werd opgebouwd m.b.v. [nx commando's](docs/md/nx-setup.md).
+De huidige setup werd opgebouwd m.b.v. [nx commando's](resources/markdown/nx-setup.md).
 
 ## Project Structuur
 
