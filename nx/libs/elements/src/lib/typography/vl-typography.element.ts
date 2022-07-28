@@ -10,7 +10,7 @@ import { vlElement, define } from '@uig/common/utilities';
  *
  * @property {string} data-vl-parameters - De key/value parameters die verwerkt en getoond zullen worden in het content element.
  */
-export class VlTypography extends vlElement(HTMLDivElement) {
+export class VlTypographyElement extends vlElement(HTMLDivElement) {
     static get _observedAttributes() {
         return ['parameters'];
     }
@@ -74,4 +74,4 @@ export class VlTypography extends vlElement(HTMLDivElement) {
     // }
 }
 
-define('vl-typography', VlTypography, { extends: 'div' });
+define('vl-typography', VlTypographyElement, { extends: 'div' });
