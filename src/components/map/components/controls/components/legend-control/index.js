@@ -69,19 +69,6 @@ export class VlMapLegendControl extends LitElement {
 
     return position;
   }
-
-  updated(changedProperties) {
-    changedProperties.forEach((oldValue, propName) => {
-      console.log(`${propName} changed. oldValue: ${oldValue}`);
-       switch (propName) {
-        case 'data-vl-placement':
-          this.onPlacementUpdated();
-          break;
-        default:
-          break;
-      }
-    });
-  }
   
   set left(left)
   {
@@ -128,6 +115,9 @@ export class VlMapLegendControl extends LitElement {
   }
 
   render() {
+
+    if(!this.items) return null;
+
     return html`<div class="uig-map-legend" style="${this.__generateItemStyle()}">
         ${this.items.map((item) => html`<div style="display:inline-block"><div class="uig-map-legend-icon" style="${this.__generateIconStyle(item)}"></div>
         <span class="uig-map-legend-text">${item.legendText}</span></div>`)}
