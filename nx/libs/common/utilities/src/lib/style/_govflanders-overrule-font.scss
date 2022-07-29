@@ -1,0 +1,35 @@
+$vl-flanders-font-name: 'Flanders Art Sans';
+$vl-flanders-serif-font-name: 'Flanders Art Serif';
+$vl-flanders-family: 'FlandersArtSans';
+$vl-flanders-serif-family: 'FlandersArtSerif';
+$vl-icon-family: 'vlaanderen-icon';
+
+// prettier-ignore
+@include font-face($vl-flanders-font-name, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/", $vl-flanders-family + "-Light", 300, normal);
+// prettier-ignore
+@include font-face($vl-flanders-font-name, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/", $vl-flanders-family + "-Regular", 400, normal);
+// prettier-ignore
+@include font-face($vl-flanders-font-name, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/", $vl-flanders-family + "-Medium", 500, normal);
+// prettier-ignore
+@include font-face($vl-flanders-font-name, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/", $vl-flanders-family + "-Bold", 700, normal);
+
+// prettier-ignore
+@include font-face($vl-flanders-font-name, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/", $vl-flanders-family + "-Light", 300, italic);
+// prettier-ignore
+@include font-face($vl-flanders-font-name, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/", $vl-flanders-family + "-Regular", 400, italic);
+// prettier-ignore
+@include font-face($vl-flanders-font-name, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/", $vl-flanders-family + "-Medium", 500, italic);
+// prettier-ignore
+@include font-face($vl-flanders-font-name, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/", $vl-flanders-family + "-Bold", 700, italic);
+
+// prettier-ignore
+@include font-face($vl-flanders-serif-font-name, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/", $vl-flanders-serif-family + "-Light", 300, normal);
+// prettier-ignore
+@include font-face($vl-flanders-serif-font-name, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/", $vl-flanders-serif-family + "-Regular", 400, normal);
+// prettier-ignore
+@include font-face($vl-flanders-serif-font-name, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/", $vl-flanders-serif-family + "-Medium", 500, normal);
+// prettier-ignore
+@include font-face($vl-flanders-serif-font-name, "https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/", $vl-flanders-serif-family + "-Bold", 700, normal);
+
+// prettier-ignore
+@include font-face($vl-icon-family, 'https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/iconfont/3.12.23/', $vl-icon-family, normal, normal);

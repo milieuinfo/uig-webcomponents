@@ -1,0 +1,9 @@
+@charset "utf-8";
+
+// @govflanders styles
+@import '../../../common/utilities/src/lib/style/govflanders';
+
+// @uig element styles
+// TODO kspeltin: @use
+@import './button/style/vl-button';
+@import './typography/style/vl-typography';
