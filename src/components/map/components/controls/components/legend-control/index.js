@@ -119,7 +119,9 @@ export class VlMapLegendControl extends LitElement {
     this.items = [];
     layers.forEach((layer) => {
       layer._styles.forEach((style) => {
-        this.items.push(style);
+        if(style.legendText) {
+          this.items.push(style);
+        }
       });
     });
     this.requestUpdate();
