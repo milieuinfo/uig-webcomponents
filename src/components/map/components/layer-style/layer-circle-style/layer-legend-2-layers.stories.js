@@ -2,6 +2,7 @@ import { html } from 'lit-html';
 import '../../../../map';
 import { argTypes } from '../config';
 import { CATEGORIES, docsIntro, TYPES } from '../../../../../../.storybook/utils.js';
+import {LEGEND_PLACEMENT} from '../../controls/components/legend-control/enums';
 
 export default {
   title: 'custom-elements/vl-map/vl-map-layer-multi-layer-legend',
@@ -121,6 +122,6 @@ export const Default = () => {
     <vl-map-action-controls>
       <vl-map-measure-control></vl-map-measure-control>
     </vl-map-action-controls>
-    <vl-map-legend-control right="60px" bottom="10px"></vl-map-legend-control>
+    <vl-map-legend-control data-vl-placement="${LEGEND_PLACEMENT.TOP_LEFT}"></vl-map-legend-control>
   </vl-map>`;
 };

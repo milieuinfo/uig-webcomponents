@@ -1,8 +1,17 @@
 import {css, html, LitElement, unsafeCSS} from 'lit';
 import {VlMapVectorLayer} from "../../../layer/vector-layer/index.js";
 import styles from './styles.scss';
+import {LEGEND_PLACEMENT} from './enums';
 
 export class VlMapLegendControl extends LitElement {
+
+  static get styles() {
+    return [
+      css`
+        ${unsafeCSS(styles)}
+      `,
+    ];
+  }
 
   static get properties() {
     return {
@@ -10,15 +19,67 @@ export class VlMapLegendControl extends LitElement {
       top: { type: String, reflect: true },
       right: { type: String, reflect: true },
       bottom: { type: String, reflect: true },
+      placement: {
+        type: String,
+        attribute: 'data-vl-placement',
+        reflect: true,
+      },
     };
   }
-  
-   static get styles() {
-    return [
-      css`
-        ${unsafeCSS(styles)}
-      `,
-    ];
+
+  __getPosition()
+  {
+    const position = {};
+
+    switch (this.placement)
+    {
+      case LEGEND_PLACEMENT.TOP_LEFT:
+        position.top = "4px";
+        position.left = "0";
+        position.right = undefined;
+        position.bottom = undefined;
+        break;
+      case LEGEND_PLACEMENT.TOP_RIGHT:
+        position.top = "4px";
+        position.left = undefined;
+        position.right = "10px";
+        position.bottom = undefined;
+        break;
+      case LEGEND_PLACEMENT.BOTTOM_LEFT:
+        position.top = undefined;
+        position.left = "0";
+        position.right = undefined;
+        position.bottom = "10px";
+        break;
+      case LEGEND_PLACEMENT.BOTTOM_RIGHT:
+        position.top = undefined;
+        position.left = undefined;
+        position.right = "60px";
+        position.bottom = "10px";
+        break;
+      default:
+        break;
+    }
+
+    if(this._top) position.top = this._top;
+    if(this._left) position.left = this._left;
+    if(this._right) position.right = this._right;
+    if(this._bottom) position.bottom = this._bottom;
+
+    return position;
+  }
+
+  updated(changedProperties) {
+    changedProperties.forEach((oldValue, propName) => {
+      console.log(`${propName} changed. oldValue: ${oldValue}`);
+       switch (propName) {
+        case 'data-vl-placement':
+          this.onPlacementUpdated();
+          break;
+        default:
+          break;
+      }
+    });
   }
   
   set left(left)
@@ -71,7 +132,8 @@ export class VlMapLegendControl extends LitElement {
   }
 
   generateStyle() {
-    return (this._left?`;left:${this._left}`:"") + (this._top?`;top:${this._top}`:"") + (this._right?`;right:${this._right}`:"") + (this._bottom?`;bottom:${this._bottom}`:"");
+    const position = this.__getPosition();
+    return (position.left?`;left:${position.left}`:"") + (position.top?`;top:${position.top}`:"") + (position.right?`;right:${position.right}`:"") + (position.bottom?`;bottom:${position.bottom}`:"");
   }
 }
 
