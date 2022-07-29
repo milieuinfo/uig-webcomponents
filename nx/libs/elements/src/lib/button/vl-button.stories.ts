@@ -5,9 +5,9 @@ export default {
     title: 'Elements/vl-button',
 };
 
-export const vlButton1 = () =>
+export const vlButton = () =>
     '<div style="display: flex; align-items: center; justify-content: center;">' +
     '   <div style="width: 800px">' +
-    '       <button is="vl-button" data-vl-error data-vl-wide>knopje</button>' +
+    '       <button data-cy="button-wide-error" is="vl-button" data-vl-error data-vl-wide>knopje</button>' +
     '   </div>' +
     '</div>';
