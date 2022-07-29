@@ -114,6 +114,6 @@ export const Default = () => {
     <vl-map-action-controls>
       <vl-map-measure-control></vl-map-measure-control>
     </vl-map-action-controls>
-    <vl-map-legend-control right="50px" bottom="0px"></vl-map-legend-control>
+    <vl-map-legend-control right="60px" bottom="10px"></vl-map-legend-control>
   </vl-map>`;
 };
