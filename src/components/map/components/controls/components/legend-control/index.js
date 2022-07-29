@@ -2,6 +2,7 @@ import {css, html, LitElement, unsafeCSS} from 'lit';
 import {VlMapVectorLayer} from "../../../layer/vector-layer/index.js";
 import styles from './styles.scss';
 import {LEGEND_PLACEMENT} from './enums';
+import {VlMapLayerCircleStyle} from "../../../layer-style/layer-circle-style/index.js";
 
 export class VlMapLegendControl extends LitElement {
 
@@ -125,15 +126,25 @@ export class VlMapLegendControl extends LitElement {
   }
 
   render() {
-    return html`<div class="uig-map-legend" style="${this.generateStyle()}">
-        ${this.items.map((item) => html`<div style="display:inline-block"><div class="uig-map-legend-icon" style="border: 1px solid ${  item.borderColor  }; background-color:${item.color};"></div>
+    return html`<div class="uig-map-legend" style="${this.__generateItemStyle()}">
+        ${this.items.map((item) => html`<div style="display:inline-block"><div class="uig-map-legend-icon" style="${this.__generateIconStyle(item)}"></div>
         <span class="uig-map-legend-text">${item.legendText}</span></div>`)}
     </div>`;
   }
 
-  generateStyle() {
+  __generateItemStyle() {
     const position = this.__getPosition();
     return (position.left?`;left:${position.left}`:"") + (position.top?`;top:${position.top}`:"") + (position.right?`;right:${position.right}`:"") + (position.bottom?`;bottom:${position.bottom}`:"");
+  }
+
+  __generateIconStyle(item) {
+    let borderRadius = ``
+    if(item instanceof VlMapLayerCircleStyle)
+    {
+      borderRadius = "border-radius: 50%;";
+    }
+
+    return `border: ${item.borderSize}px solid ${  item.borderColor  }; background-color:${item.color};${borderRadius}`;
   }
 }
 
