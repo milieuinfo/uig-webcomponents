@@ -99,56 +99,35 @@ export const Default = () => {
     ],
   }; */
 
-  document.addEventListener('DOMContentLoaded', async (e) => {
-
-    console.log("DOMContentLoaded >>>")
-
-    const map = document.getElementById("map");
-    await map.ready;
-    const laag1Features = {
-      type: "FeatureCollection",
-      features: [
-        {
-          type: "Feature",
-          geometry: {
-            type: "Point",
-            coordinates: [147055.0, 197908.0],
-          },
-          properties: {
-            type: "1"
-          }
+  const features = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [147055.0, 197908.0],
         },
-        {
-          type: "Feature",
-          geometry: {
-            type: "Point",
-            coordinates: [141000.0, 200908.0],
-          },
-          properties: {
-            type: "2"
-          }
+        properties: {
+          styleId: "style-1"
         }
-      ]
-    };
-     const laag1 = document.getElementById("laag-1");
-    laag1.features = laag1Features;
-
-    document.getElementById("style-1").appliesTo = feature => feature.get("type") === "1";
-    document.getElementById("style-2").appliesTo = feature => feature.get("type") !== "1";
-
-    /* const selectAction = document.getElementById("select-action");
-    selectAction.layer = laag1.layer;
-    selectAction.onSelect((feature) => {
-      alert(feature.get("type") == "1" ? "Op nen blauwe geklikt" : "Op ne rode geklikt");
-    }); */
-
-  });
-
-  // .features=${features}
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [141000.0, 200908.0],
+        },
+        properties: {
+          styleId: "style-2"
+        }
+      }
+    ]
+  };
 
   return html`<vl-map id="map">
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-    <vl-map-features-layer  id="laag-1" data-vl-name="Laag 1">
+    <vl-map-features-layer .features=${features} data-vl-name="Laag 1">
       <vl-map-layer-circle-style id="style-1" data-vl-legend-text="Openbaar onderzoek"
         data-vl-color="#ffe615"
         data-vl-size="5"
@@ -165,7 +144,7 @@ export const Default = () => {
     </vl-map-features-layer>
     <vl-map-action-controls>
       <vl-map-measure-control></vl-map-measure-control>
-      <vl-map-legend-control></vl-map-legend-control>
     </vl-map-action-controls>
+    <vl-map-legend-control right="50px" bottom="0px"></vl-map-legend-control>
   </vl-map>`;
 };

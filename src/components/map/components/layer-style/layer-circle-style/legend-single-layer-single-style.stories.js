@@ -4,7 +4,7 @@ import { argTypes } from '../config';
 import { CATEGORIES, docsIntro, TYPES } from '../../../../../../.storybook/utils.js';
 
 export default {
-  title: 'custom-elements/vl-map/vl-map-layer-multi-layer-legend',
+  title: 'custom-elements/vl-map/vl-map-legend-single-layer-single-style',
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
@@ -73,48 +73,41 @@ export default {
 };
 
 export const Default = () => {
-  const features1 = {
-    type: 'FeatureCollection',
+
+  const features = {
+    type: "FeatureCollection",
     features: [
       {
-        type: 'Feature',
+        type: "Feature",
         geometry: {
-          type: 'Point',
+          type: "Point",
           coordinates: [147055.0, 197908.0],
         },
+        properties: {
+          styleId: "style-1"
+        }
       },
-    ],
-  };
-
-  const features2 = {
-    type: 'FeatureCollection',
-    features: [
       {
-        type: 'Feature',
+        type: "Feature",
         geometry: {
-          type: 'Point',
+          type: "Point",
           coordinates: [141000.0, 200908.0],
         },
-      },
-    ],
+        properties: {
+          styleId: "style-2"
+        }
+      }
+    ]
   };
-  return html`<vl-map>
+
+  return html`<vl-map id="map">
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-    <vl-map-features-layer .features=${features1}>
+    <vl-map-features-layer .features=${features} data-vl-name="Laag 1">
       <vl-map-layer-circle-style data-vl-legend-text="Openbaar onderzoek"
         data-vl-color="#ffe615"
         data-vl-size="5"
         data-vl-border-color="#000"
         data-vl-border-size="1"
-      ></vl-map-layer-circle-style>
-      <vl-map-measure-action></vl-map-measure-action>
-    </vl-map-features-layer>
-    <vl-map-features-layer .features=${features2}>
-      <vl-map-layer-circle-style data-vl-legend-text="Beslissing"
-          data-vl-color="red"
-          data-vl-size="5"
-          data-vl-border-color="#000"
-          data-vl-border-size="1"
       ></vl-map-layer-circle-style>
       <vl-map-measure-action></vl-map-measure-action>
     </vl-map-features-layer>

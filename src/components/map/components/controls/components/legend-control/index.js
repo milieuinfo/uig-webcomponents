@@ -1,51 +1,77 @@
-import { LitElement } from 'lit';
-import { VlMapControl } from '../../mixin';
+import {css, html, LitElement, unsafeCSS} from 'lit';
 import {VlMapVectorLayer} from "../../../layer/vector-layer/index.js";
+import styles from './styles.scss';
 
-export class VlMapLegendControl extends VlMapControl(LitElement) {
-  constructor() {
-    super();
-    this.controlElement = document.createElement('div');
+export class VlMapLegendControl extends LitElement {
+
+  static get properties() {
+    return {
+      left: { type: String, reflect: true },
+      top: { type: String, reflect: true },
+      right: { type: String, reflect: true },
+      bottom: { type: String, reflect: true },
+    };
+  }
+  
+   static get styles() {
+    return [
+      css`
+        ${unsafeCSS(styles)}
+      `,
+    ];
+  }
+  
+  set left(left)
+  {
+    this._left = left;
+  }
+
+  set right(right)
+  {
+    this._right = right;
+  }
+
+  set top(top)
+  {
+    this._top = top;
+  }
+
+  set bottom(bottom)
+  {
+    this._bottom = bottom;
   }
 
   connectedCallback() {
     super.connectedCallback();
-
+    this._mapElement = this.closest('vl-map');
     const layers = this._mapElement.featuresLayers;
+
     layers.forEach((layer) => {
       layer.addEventListener(VlMapVectorLayer.EVENTS.styleChanged, () => {
-        this.updateLegend(layers)
+        this.updateLegendItems(layers)
       });
     });
   }
 
-  updateLegend(layers) {
-    this.controlElement.innerText = '';
+  updateLegendItems(layers) {
+    this.items = [];
     layers.forEach((layer) => {
-      this.updateControlElement(layer._styles);
+      layer._styles.forEach((style) => {
+        this.items.push(style);
+      });
     });
+    this.requestUpdate();
   }
 
-  createLegendIcon(style)
-  {
-    const icon = document.createElement('div');
-    icon.setAttribute("style", `border: 1px solid ${  style.borderColor  }; background-color:${style.color}; height:20px; width:20px; margin-bottom:5px;display:inline-block`);
-
-    const text = document.createElement('span');
-    text.setAttribute("style", `margin-left: 3px; line-height: 20px; vertical-align: top;`);
-    text.innerText = style.legendText;
-
-    const div = document.createElement('div');
-    div.appendChild(icon);
-    div.appendChild(text);
-
-    return div;
+  render() {
+    return html`<div class="uig-map-legend" style="${this.generateStyle()}">
+        ${this.items.map((item) => html`<div style="display:inline-block"><div class="uig-map-legend-icon" style="border: 1px solid ${  item.borderColor  }; background-color:${item.color};"></div>
+        <span class="uig-map-legend-text">${item.legendText}</span></div>`)}
+    </div>`;
   }
 
-  updateControlElement(styles) {
-    styles.forEach((style) => {
-      this.controlElement.appendChild(this.createLegendIcon(style));
-    });
+  generateStyle() {
+    return (this._left?`;left:${this._left}`:"") + (this._top?`;top:${this._top}`:"") + (this._right?`;right:${this._right}`:"") + (this._bottom?`;bottom:${this._bottom}`:"");
   }
 }
 
