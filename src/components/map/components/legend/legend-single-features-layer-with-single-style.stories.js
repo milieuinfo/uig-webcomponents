@@ -1,11 +1,11 @@
 import { html } from 'lit-html';
-import '../../../../map';
-import { argTypes } from '../config';
-import { CATEGORIES, docsIntro, TYPES } from '../../../../../../.storybook/utils.js';
-import {LEGEND_PLACEMENT} from '../../controls/components/legend-control/enums';
+import '../../index.js';
+import { argTypes } from '../layer-style/config/index.js';
+import { CATEGORIES, docsIntro, TYPES } from '../../../../../.storybook/utils.js';
+import {LEGEND_PLACEMENT} from './enums/index.js';
 
 export default {
-  title: 'custom-elements/vl-map/vl-map-legend-single-layer-single-style',
+  title: 'custom-elements/vl-map/vl-map-legend-single-features-layer-with-single-style',
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
@@ -115,6 +115,6 @@ export const Default = () => {
     <vl-map-action-controls>
       <vl-map-measure-control></vl-map-measure-control>
     </vl-map-action-controls>
-    <vl-map-legend-control data-vl-placement="${LEGEND_PLACEMENT.TOP_RIGHT}" right="100px"></vl-map-legend-control>
+    <vl-map-legend data-vl-placement="${LEGEND_PLACEMENT.TOP_RIGHT}" right="100px"></vl-map-legend>
   </vl-map>`;
 };

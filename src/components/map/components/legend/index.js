@@ -1,10 +1,10 @@
 import {css, html, LitElement, unsafeCSS} from 'lit';
-import {VlMapVectorLayer} from "../../../layer/vector-layer/index.js";
+import {VlMapVectorLayer} from "../layer/vector-layer/index.js";
 import styles from './styles.scss';
-import {LEGEND_PLACEMENT} from './enums';
-import {VlMapLayerCircleStyle} from "../../../layer-style/layer-circle-style/index.js";
+import {LEGEND_PLACEMENT} from './enums/index.js';
+import {VlMapLayerCircleStyle} from "../layer-style/layer-circle-style/index.js";
 
-export class VlMapLegendControl extends LitElement {
+export class VlMapLegend extends LitElement {
 
   static get styles() {
     return [
@@ -140,4 +140,4 @@ export class VlMapLegendControl extends LitElement {
   }
 }
 
-customElements.define('vl-map-legend-control', VlMapLegendControl);
+customElements.define('vl-map-legend', VlMapLegend);
