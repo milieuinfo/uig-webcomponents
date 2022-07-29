@@ -43,7 +43,9 @@ De huidige setup werd opgebouwd m.b.v. [nx commando's](resources/markdown/nx-set
 
 - apps <sup>_[de toepassingen]_</sup>
     - exhibit <sup>_[de demo toepassing]_</sup>
-    - exhibit-e2e <sup>_[de Cypress testen van Exhibit]_</sup>
+    - exhibit-e2e <sup>_[de Cypress testen tegenover Exhibit]_</sup>
+    - storybook <sup>_[Storybook]_</sup>
+    - storybook-e2e <sup>_[de Cypress testen tegenover Storybook]_</sup>
 - libs <sup>_[de bibliotheken]_</sup>
     - common <sup>_[de gedeelde code]_</sup>
         - utilities
@@ -96,4 +98,3 @@ Een __component__ is geïmplementeerd als een [LitElement](https://lit.dev/docs/
 | ![Gert-Jan Meire](https://avatars.githubusercontent.com/u/30627591?s=160) | ![Kris Speltincx](https://avatars.githubusercontent.com/u/110020569?s=160) |
 | [meirege](https://github.com/meirege)                                     | [kspeltix](https://github.com/kspeltix)                                    |
 
-<hr>
