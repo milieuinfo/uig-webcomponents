@@ -42,6 +42,7 @@ export const Default = ({
     ?data-vl-small=${small}
     ?data-vl-large=${large}
     ?data-vl-bold=${bold}
+    data-cy="link-default"
     >${content}</a
   >`;
 
@@ -75,6 +76,7 @@ export const WithIcon = ({
       ?data-vl-small=${small}
       ?data-vl-large=${large}
       ?data-vl-bold=${bold}
+      data-cy="link-with-icon"
       ><span
         is="vl-icon"
         data-vl-icon=${icon}
