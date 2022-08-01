@@ -1,10 +1,9 @@
-describe('story vl-button', () => {
-    beforeEach(() =>
-        cy.visit('http://localhost:4600/iframe.html?args=&id=elements-vl-button--vl-button&viewMode=story')
-    );
+const url = 'http://localhost:4600/iframe.html?id=elements-vl-button--default&viewMode=story'
 
+describe('story vl-button', () => {
     it('should contain a wide error button', () => {
-        cy.getDataCy('button-wide-error')
+        cy.visit(`${url}&args=error:true;wide:true`);
+        cy.getDataCy('button-default')
             .should('have.class', 'vl-button')
             .should('have.class', 'vl-button--wide')
             .should('have.class', 'vl-button--error');
