@@ -123,6 +123,7 @@ export const Default = ({ size, icon, light, rotate, fullRotate }: DefaultInterf
   ?data-vl-light=${light}
   ?data-vl-90deg=${rotate}
   ?data-vl-180deg=${fullRotate}
+  data-cy="icon-default"
 ></span>`;
 
 Default.argTypes = { content: { control: false } };
@@ -149,6 +150,7 @@ export const BeforeElement = ({
     ?data-vl-light=${light}
     ?data-vl-90deg=${rotate}
     ?data-vl-180deg=${fullRotate}
+    data-cy="icon-before-element"
   ></span
   ><span>${content}</span>
 </p>`;
@@ -180,6 +182,7 @@ export const AfterElement = ({
     ?data-vl-light=${light}
     ?data-vl-90deg=${rotate}
     ?data-vl-180deg=${fullRotate}
+    data-cy="icon-after-element"
   ></span>
 </p>`;
 
