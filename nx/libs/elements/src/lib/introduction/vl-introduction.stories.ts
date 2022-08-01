@@ -17,6 +17,6 @@ interface DefaultInterface {
     content: any
 }
 
-export const Default = ({ content }: DefaultInterface) => html`<p is="vl-introduction">
+export const Default = ({ content }: DefaultInterface) => html`<p is="vl-introduction" data-cy="introduction">
   ${content}
 </p>`;
