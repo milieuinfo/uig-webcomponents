@@ -23,6 +23,7 @@ export const Default = ({ border, content, sans, alt, noSpaceBottom }: DefaultIn
     ?data-vl-sans=${sans}
     ?data-vl-alt=${alt}
     ?data-vl-no-space-bottom=${noSpaceBottom}
+    data-cy="h2"
   >
     ${content}
   </h2>`;
