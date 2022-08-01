@@ -17,7 +17,7 @@ module.exports = {
     stories: [
         '../../../resources/voorbeeld-stories/**/*.stories.mdx',
         '../../../resources/voorbeeld-stories/**/*.stories.@(js|jsx|ts|tsx)',
-        '../../../libs/elements/src/lib/button/**/*.stories.@(js|jsx|ts|tsx)',
+        '../../../libs/elements/src/lib/**/*.stories.@(js|jsx|ts|tsx)',
     ],
     addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
     framework: '@storybook/web-components',
