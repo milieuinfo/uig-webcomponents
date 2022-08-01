@@ -2,7 +2,7 @@ import { html } from "lit-html";
 import "./vl-icon.element";
 
 export default {
-  title: "Elements/vl-icon-wrapper",
+  title: "Elements/vl-icon/vl-icon-wrapper",
   args: {
     wrappersAmount: 3,
   },
