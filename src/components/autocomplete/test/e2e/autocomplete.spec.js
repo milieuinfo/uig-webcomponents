@@ -15,13 +15,10 @@ const apiCallUrl = `${sbUrl}?id=custom-elements-vl-autocomplete--with-input-and-
 describe('vl-autocomplete', async () => {
   let driver;
 
-  function delay(interval)
-  {
-    return it('should delay', done =>
-    {
-      setTimeout(() => done(), interval)
-
-    }).timeout(interval + 100) // The extra 100ms should guarantee the test will not fail due to exceeded timeout
+  function delay(interval) {
+    return it('should delay', (done) => {
+      setTimeout(() => done(), interval);
+    }).timeout(interval + 100); // The extra 100ms should guarantee the test will not fail due to exceeded timeout
   }
 
   beforeEach(() => {
@@ -47,9 +44,9 @@ describe('vl-autocomplete', async () => {
     await driver.get(customPlaceHolderUrl);
     const autocomplete = await new VlTestAutocomplete(driver, selector);
 
-    await autocomplete.setInputValue("g");
+    await autocomplete.setInputValue('g');
 
-    const suggestions = await autocomplete.getSuggestions()
+    const suggestions = await autocomplete.getSuggestions();
     const size = suggestions.length;
     assert.equal(size, 5);
   });
@@ -58,9 +55,9 @@ describe('vl-autocomplete', async () => {
     await driver.get(customPlaceHolderUrl);
     const autocomplete = await new VlTestAutocomplete(driver, selector);
 
-    await autocomplete.setInputValue("m");
+    await autocomplete.setInputValue('m');
 
-    const suggestions = await autocomplete.getSuggestions()
+    const suggestions = await autocomplete.getSuggestions();
     const size = suggestions.length;
     assert.equal(size, 2);
   });
@@ -69,108 +66,102 @@ describe('vl-autocomplete', async () => {
     await driver.get(minCharsUrl);
     const autocomplete = await new VlTestAutocomplete(driver, selector);
 
-    await autocomplete.setInputValue("g");
+    await autocomplete.setInputValue('g');
 
-    let suggestions = await autocomplete.getSuggestions()
-    let size = suggestions.length;
-    assert.equal(size, 0);
+    await autocomplete.assertSuggestionsCount(0);
 
-    await autocomplete.setInputValue("e");
+    await autocomplete.setInputValue('e');
 
-    suggestions = await autocomplete.getSuggestions()
-    size = suggestions.length;
-    assert.equal(size, 0);
+    await autocomplete.assertSuggestionsCount(0);
 
-    await autocomplete.setInputValue("n");
+    await autocomplete.setInputValue('n');
 
-    suggestions = await autocomplete.getSuggestions()
-    size = suggestions.length;
-    assert.equal(size, 5);
+    await autocomplete.assertSuggestionsCount(5);
   });
 
   it('as a user, I can see a limited amount of suggestions', async () => {
     await driver.get(maxSuggestionsUrl);
     const autocomplete = await new VlTestAutocomplete(driver, selector);
 
-    await autocomplete.setInputValue("g");
+    await autocomplete.setInputValue('g');
 
-    const suggestions = await autocomplete.getSuggestions()
+    const suggestions = await autocomplete.getSuggestions();
     const size = suggestions.length;
     assert.equal(size, 3);
   });
 
   it('as a user, I can see list of suggestions grouped by subtitle', async () => {
     await driver.get(groupByUrl);
+
     const autocomplete = await new VlTestAutocomplete(driver, selector);
 
-    await autocomplete.setInputValue("g");
+    await autocomplete.setInputValue('g');
 
-    const suggestions = await autocomplete.getSuggestions()
+    const suggestions = await autocomplete.getSuggestions();
     const size = suggestions.length;
     assert.equal(size, 5);
 
     const groups = await autocomplete.getGroupNames();
     const groupsSize = groups.length;
     assert.equal(groupsSize, 3);
-    assert.deepEqual(groups, ["Gemeente","Adres","Project"])
+    assert.deepEqual(groups, ['Gemeente', 'Adres', 'Project']);
 
-    const gemeenteGroupIndex = await autocomplete.getGroupIndex("Gemeente");
+    const gemeenteGroupIndex = await autocomplete.getGroupIndex('Gemeente');
     assert.equal(gemeenteGroupIndex, 0);
 
-    const adresGroupIndex = await autocomplete.getGroupIndex("Adres");
+    const adresGroupIndex = await autocomplete.getGroupIndex('Adres');
     assert.equal(adresGroupIndex, 1);
 
-    const projectGroupIndex = await autocomplete.getGroupIndex("Project");
+    const projectGroupIndex = await autocomplete.getGroupIndex('Project');
     assert.equal(projectGroupIndex, 2);
 
-    const gemeenteSuggestions = await autocomplete.getSuggestionsOfGroup("Gemeente");
+    const gemeenteSuggestions = await autocomplete.getSuggestionsOfGroup('Gemeente');
     const gemeenteSuggestionsSize = gemeenteSuggestions.length;
     assert.equal(gemeenteSuggestionsSize, 1);
-    assert.deepEqual(gemeenteSuggestions, [ { title:"Gent", subtitle:"Gemeente" } ])
+    assert.deepEqual(gemeenteSuggestions, [{ title: 'Gent', subtitle: 'Gemeente' }]);
 
-    const adresSuggestions = await autocomplete.getSuggestionsOfGroup("Adres");
+    const adresSuggestions = await autocomplete.getSuggestionsOfGroup('Adres');
     const adresSuggestionsSize = adresSuggestions.length;
     assert.equal(adresSuggestionsSize, 3);
     assert.deepEqual(adresSuggestions, [
-      { title: 'Gentbos, Merelbeke', subtitle:"Adres" },
-      { title: 'Gentbruggestraat, Gent', subtitle:"Adres" },
-      { title: 'Gentele, Brugge', subtitle:"Adres" }
-    ])
+      { title: 'Gentbos, Merelbeke', subtitle: 'Adres' },
+      { title: 'Gentbruggestraat, Gent', subtitle: 'Adres' },
+      { title: 'Gentele, Brugge', subtitle: 'Adres' },
+    ]);
 
-    const projectSuggestions = await autocomplete.getSuggestionsOfGroup("Project");
+    const projectSuggestions = await autocomplete.getSuggestionsOfGroup('Project');
     const projectSuggestionsSize = projectSuggestions.length;
     assert.equal(1, projectSuggestionsSize);
-    assert.deepEqual(projectSuggestions, [ { title: 'Automotive Contractors Gent', subtitle:"Project" } ])
-
+    assert.deepEqual(projectSuggestions, [{ title: 'Automotive Contractors Gent', subtitle: 'Project' }]);
   });
 
   it('as a user, I can see list of suggestions with only a title displayed', async () => {
     await driver.get(captionFormatTitleOnlyUrl);
     const autocomplete = await new VlTestAutocomplete(driver, selector);
 
-    await autocomplete.setInputValue("g");
+    await autocomplete.setInputValue('g');
 
-    const suggestions = await autocomplete.getSuggestions()
+    const suggestions = await autocomplete.getSuggestions();
     const size = suggestions.length;
     assert.equal(size, 5);
 
     assert.deepEqual(suggestions, [
-      { title: 'Gent'},
+      { title: 'Gent' },
       { title: 'Gentbos, Merelbeke' },
       { title: 'Gentbruggestraat, Gent' },
       { title: 'Gentele, Brugge' },
-      { title: 'Automotive Contractors Gent' }
-    ])
+      { title: 'Automotive Contractors Gent' },
+    ]);
   });
 
   it('as a user, I can see list of suggestions when the autocomplete is calling an api call to resolve the suggestions', async () => {
     await driver.get(apiCallUrl);
     const autocomplete = await new VlTestAutocomplete(driver, selector);
 
-    await autocomplete.setInputValue("drabstraat");
+    await autocomplete.setInputValue('drabstraat');
     await autocomplete.assertSuggestionsCount(5);
 
-    const suggestions = await autocomplete.getSuggestions()
+    const suggestions = await autocomplete.getSuggestions();
     const size = suggestions.length;
     assert.equal(size, 5);
 
@@ -179,8 +170,7 @@ describe('vl-autocomplete', async () => {
       { title: 'Drabstraat, Kontich' },
       { title: 'Drabstraat, Mechelen' },
       { title: 'Drabstraat, Mortsel' },
-      { title: 'Drabstraat, Wichelen' }
-
-    ])
+      { title: 'Drabstraat, Wichelen' },
+    ]);
   });
 });

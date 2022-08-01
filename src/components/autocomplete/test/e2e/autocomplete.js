@@ -1,7 +1,6 @@
 import { VlElement, By } from '../../../../utils/test';
 
 export class VlTestAutocomplete extends VlElement {
-
   async getPlaceHolder() {
     const input = await this.getElementInShadow(this, 'input');
     return input.getAttribute('placeholder');
@@ -11,114 +10,97 @@ export class VlTestAutocomplete extends VlElement {
     return this.hasAttribute('disabled');
   }
 
-  async setInputValue(value)
-  {
+  async setInputValue(value) {
     const input = await this.getElementInShadow(this, 'input');
     input.sendKeys(value);
   }
 
-  async assertSuggestionsCount(count)
-  {
-    await this.waitUntilShadowDomElementsCount(this, By.css(`ul[class='vl-autocomplete__list'] > li[class*='uig-autocomplete-item']`), count)
+  async assertSuggestionsCount(count) {
+    await this.waitUntilShadowDomElementsCount(this, `ul.vl-autocomplete__list li.uig-autocomplete-item`, count);
   }
 
-  async getSuggestions()
-  {
-    await this.waitUntilShadowDomElementLocated(this, By.css('div[class=vl-autocomplete]:not([hidden=true])'))
-
-    const list = await this.findShadowDomElements(this, By.css(`ul[class='vl-autocomplete__list'] > li[class*='uig-autocomplete-item']`));
-
+  async getSuggestions() {
+    await this.waitUntilShadowDomElementLocated(this, 'div.vl-autocomplete:not([hidden])');
+    const list = await this.findShadowDomElements(this, `ul.vl-autocomplete__list li.uig-autocomplete-item`);
     const asyncItemInfos = [];
-    list.forEach( e => {
+    list.forEach((e) => {
       asyncItemInfos.push(this.getItemInfo(e));
-    })
-
-    return Promise.all(asyncItemInfos).then(items => items);
+    });
+    return Promise.all(asyncItemInfos).then((items) => items);
   }
 
-  async getGroupInfos()
-  {
-    await this.waitUntilShadowDomElementLocated(this, By.css('div[class=vl-autocomplete]:not([hidden=true])'))
-    const list = await this.findShadowDomElements(this, By.css(`ul[class='vl-autocomplete__list'] > li[class*='uig-autocomplete-group']`));
-    return Promise.all(list.map(this.getGroupInfo)).then(g => g);
+  async getGroupInfos() {
+    await this.waitUntilShadowDomElementLocated(this, 'div.vl-autocomplete:not([hidden])');
+    const list = await this.findShadowDomElements(this, `ul.vl-autocomplete__list li.uig-autocomplete-group`);
+    return Promise.all(list.map(this.getGroupInfo)).then((g) => g);
   }
 
-  async getGroupIndex(groupName)
-  {
+  async getGroupIndex(groupName) {
     const groups = await this.getGroupInfos();
-    const group = groups.find(g => g.name === groupName);
+    const group = groups.find((g) => g.name === groupName);
     return group.index;
   }
 
-  async getGroupInfo(e)
-  {
+  async getGroupInfo(e) {
     const name = await e.getText();
-    const index = await e.getAttribute("groupindex");
+    const index = await e.getAttribute('groupindex');
 
-    return ({name, index})
+    return { name, index };
   }
 
-  async getGroupNames()
-  {
+  async getGroupNames() {
     const groups = await this.getGroupInfos();
-    return groups.map(g => g.name);
+    return groups.map((g) => g.name);
   }
 
-  async getSuggestionsOfGroup(groupName)
-  {
+  async getSuggestionsOfGroup(groupName) {
     const groupIndex = await this.getGroupIndex(groupName);
+    await this.waitUntilShadowDomElementLocated(this, 'div.vl-autocomplete:not([hidden])');
 
-    await this.waitUntilShadowDomElementLocated(this, By.css(`div[class='vl-autocomplete']:not([hidden=true])`))
-    const list = await this.findShadowDomElements(this, By.css(`ul[class='vl-autocomplete__list'] > li[class*='uig-autocomplete-item'][groupindex='${groupIndex}']`));
+    const list = await this.findShadowDomElements(
+      this,
+      `ul.vl-autocomplete__list li.uig-autocomplete-item[groupindex='${groupIndex}']`,
+    );
 
     const asyncItemInfos = [];
-    list.forEach( e => {
+    list.forEach((e) => {
       asyncItemInfos.push(this.getItemInfo(e));
-    })
+    });
 
-     return Promise.all(asyncItemInfos).then(items => items);
+    return Promise.all(asyncItemInfos).then((items) => items);
   }
 
-  async getItemTitleInfo(e)
-  {
+  async getItemTitleInfo(e) {
     const title = await e.getText();
 
-    return ({title})
+    return { title };
   }
 
-  async getItemInfo(item)
-  {
+  async getItemInfo(item) {
     const itemInfo = {};
 
     try {
-      itemInfo.title = await this.getItemProperty(item, "uig-autocomplete_title");
-    }
-    catch(e)
-    {
+      itemInfo.title = await this.getItemProperty(item, 'uig-autocomplete_title');
+    } catch (e) {
       // title is optional, do nothing if item cannot be found
     }
 
     try {
-      itemInfo.subtitle = await this.getItemProperty(item, "uig-autocomplete_subtitle");
-    }
-    catch(e)
-    {
+      itemInfo.subtitle = await this.getItemProperty(item, 'uig-autocomplete_subtitle');
+    } catch (e) {
       // subtitle is optional, do nothing if item cannot be found
     }
 
     try {
-      itemInfo.value = await this.getItemProperty(item, "uig-autocomplete_value");
-    }
-    catch(e)
-    {
+      itemInfo.value = await this.getItemProperty(item, 'uig-autocomplete_value');
+    } catch (e) {
       // value is optional, do nothing if item cannot be found
     }
 
     return itemInfo;
   }
 
-  async getItemProperty(item, propertyClassName)
-  {
+  async getItemProperty(item, propertyClassName) {
     const titleElement = await item.findElement(By.css(`span[class*='${propertyClassName}']`));
     return titleElement.getText();
   }
