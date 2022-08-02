@@ -11,4 +11,5 @@ import './app/image/image.element';
 import './app/introduction/introduction.element';
 import './app/link/link.element';
 import './app/titles/titles.element';
+import './app/text/text.element';
 import './app/typography/typography.element';
