@@ -1,4 +1,4 @@
-import { CATEGORIES, TYPES } from './storiebook.utils';
+import { CATEGORIES, TYPES } from './stories.utils';
 
 export const sharedButtonArgs = {
     loading: false,
