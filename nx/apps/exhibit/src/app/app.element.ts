@@ -3,7 +3,6 @@ export class AppElement extends HTMLElement {
     public static observedAttributes = [];
 
     connectedCallback() {
-        const title = 'exhibit';
         this.innerHTML = `
             <div class="wrapper">
                 <div class="container">
@@ -16,6 +15,7 @@ export class AppElement extends HTMLElement {
                     <exhibit-typography></exhibit-typography>
                     <exhibit-icon></exhibit-icon>
                     <exhibit-link></exhibit-link>
+                    <exhibit-text></exhibit-text>
                 </div>
             </div>
       `;
