@@ -1,7 +1,8 @@
 import { html } from 'lit-html';
 import '../../index.js';
-import { CATEGORIES, docsIntro, TYPES } from '../../../../../.storybook/utils.js';
+import { docsIntro } from '../../../../../.storybook/utils.js';
 import { LEGEND_PLACEMENT } from './enums/index.js';
+import { argTypes } from './config/index.js';
 
 export default {
   title: 'custom-elements/vl-map/vl-map-legend-multi-features-layer',
@@ -11,66 +12,14 @@ export default {
       description: {
         component: docsIntro({
           root: 'map',
-          intro: 'De kaart legende voor kaart met meerdere feature layers.',
+          intro:
+            'De kaart legende voor kaart met meerdere vl-map-features-layers met een vl-map-layer-style per vl-map-features-layer.',
         }),
       },
     },
   },
   argTypes: {
-    placement: {
-      name: 'data-vl-placement',
-      type: { summary: TYPES.STRING },
-      description: 'Attribuut wordt gebruikt om de plaats van de legende op de kaart te bepalen',
-      table: {
-        category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: `${LEGEND_PLACEMENT.BOTTOM_RIGHT}` },
-      },
-      control: { disable: true },
-    },
-    left: {
-      name: 'left',
-      type: { summary: TYPES.STRING },
-      description:
-        'Attribuut wordt gebruikt om de "left" positie van de legende op de kaart te bepalen. Kan gebruikt worden in combinatie met data-vl-placement.',
-      table: {
-        category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: 'undefined' },
-      },
-      control: { disable: true },
-    },
-    top: {
-      name: 'top',
-      type: { summary: TYPES.STRING },
-      description:
-        'Attribuut wordt gebruikt om de "top" positie van de legende op de kaart te bepalen. Kan gebruikt worden in combinatie met data-vl-placement.',
-      table: {
-        category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: 'undefined' },
-      },
-      control: { disable: true },
-    },
-    right: {
-      name: 'right',
-      type: { summary: TYPES.STRING },
-      description:
-        'Attribuut wordt gebruikt om de "right" positie van de legende op de kaart te bepalen. Kan gebruikt worden in combinatie met data-vl-placement.',
-      table: {
-        category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: 'undefined' },
-      },
-      control: { disable: true },
-    },
-    bottom: {
-      name: 'bottom',
-      type: { summary: TYPES.STRING },
-      description:
-        'Attribuut wordt gebruikt om de "bottom" positie van de legende op de kaart te bepalen. Kan gebruikt worden in combinatie met data-vl-placement.',
-      table: {
-        category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: 'undefined' },
-      },
-      control: { disable: true },
-    },
+    ...argTypes,
   },
 };
 

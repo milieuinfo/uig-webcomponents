@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import '../../index.js';
-import { argTypes } from '../layer-style/config/index.js';
-import { CATEGORIES, docsIntro, TYPES } from '../../../../../.storybook/utils.js';
+import { argTypes } from './config/index.js';
+import { docsIntro } from '../../../../../.storybook/utils.js';
 import { LEGEND_PLACEMENT } from './enums/index.js';
 
 export default {
@@ -12,64 +12,13 @@ export default {
       description: {
         component: docsIntro({
           root: 'map',
-          intro: 'De kaart laag style klasse voor cirkels.',
+          intro: 'De kaart legende voor kaart met één vl-map-features-layer met één vl-map-layer-style.',
         }),
       },
     },
   },
   argTypes: {
     ...argTypes,
-    size: {
-      name: 'data-vl-size',
-      type: { summary: TYPES.NUMBER },
-      description: 'Attribuut wordt gebruikt om aan te geven wat de grootte is van de cirkels',
-      table: {
-        category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: 5 },
-      },
-      control: { disable: true },
-    },
-    borderColor: {
-      name: 'data-vl-border-color',
-      type: { summary: TYPES.STRING },
-      description: 'Attribuut wordt gebruikt om aan te geven wat de color is van de randen van de cirkels.',
-      table: {
-        category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: 'rgba(0, 0, 0, 0)' },
-      },
-      control: { disable: true },
-    },
-    borderSize: {
-      name: 'data-vl-border-size',
-      type: { summary: TYPES.NUMBER },
-      description: 'Attribuut wordt gebruikt om aan te geven wat de grootte is van de randen van de cirkels.',
-      table: {
-        category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: 1 },
-      },
-      control: { disable: true },
-    },
-    clusterTextColor: {
-      name: 'data-vl-cluster-text-color',
-      type: { summary: TYPES.STRING },
-      description:
-        'Attribuut wordt gebruikt om aan te geven wat de kleur van de tekst is bij het clusteren van features.',
-      table: {
-        category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: '#FFF' },
-      },
-      control: { disable: true },
-    },
-    clusterColor: {
-      name: 'data-vl-cluster-color',
-      type: { summary: TYPES.STRING },
-      description: 'Attribuut wordt gebruikt om aan te geven wat de kleur is bij het clusteren van features.',
-      table: {
-        category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: 'rgba(2, 85, 204, 1)' },
-      },
-      control: { disable: true },
-    },
   },
 };
 
