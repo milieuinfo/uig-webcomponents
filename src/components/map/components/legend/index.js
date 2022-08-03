@@ -13,6 +13,11 @@ export class VlMapLegend extends LitElement {
     ];
   }
 
+  constructor() {
+    super();
+    this.placement = LEGEND_PLACEMENT.BOTTOM_RIGHT;
+  }
+
   static get properties() {
     return {
       left: { type: String, reflect: true },

@@ -1,8 +1,7 @@
 import { html } from 'lit-html';
 import '../../index.js';
-import { argTypes } from '../layer-style/config/index.js';
 import { CATEGORIES, docsIntro, TYPES } from '../../../../../.storybook/utils.js';
-import {LEGEND_PLACEMENT} from './enums/index.js';
+import { LEGEND_PLACEMENT } from './enums/index.js';
 
 export default {
   title: 'custom-elements/vl-map/vl-map-legend-multi-features-layer',
@@ -12,61 +11,63 @@ export default {
       description: {
         component: docsIntro({
           root: 'map',
-          intro: 'De kaart laag style klasse voor cirkels.',
+          intro: 'De kaart legende voor kaart met meerdere feature layers.',
         }),
       },
     },
   },
   argTypes: {
-    ...argTypes,
-    size: {
-      name: 'data-vl-size',
-      type: { summary: TYPES.NUMBER },
-      description: 'Attribuut wordt gebruikt om aan te geven wat de grootte is van de cirkels',
-      table: {
-        category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: 5 },
-      },
-      control: { disable: true },
-    },
-    borderColor: {
-      name: 'data-vl-border-color',
+    placement: {
+      name: 'data-vl-placement',
       type: { summary: TYPES.STRING },
-      description: 'Attribuut wordt gebruikt om aan te geven wat de color is van de randen van de cirkels.',
+      description: 'Attribuut wordt gebruikt om de plaats van de legende op de kaart te bepalen',
       table: {
         category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: 'rgba(0, 0, 0, 0)' },
+        defaultValue: { summary: `${LEGEND_PLACEMENT.BOTTOM_RIGHT}` },
       },
       control: { disable: true },
     },
-    borderSize: {
-      name: 'data-vl-border-size',
-      type: { summary: TYPES.NUMBER },
-      description: 'Attribuut wordt gebruikt om aan te geven wat de grootte is van de randen van de cirkels.',
-      table: {
-        category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: 1 },
-      },
-      control: { disable: true },
-    },
-    clusterTextColor: {
-      name: 'data-vl-cluster-text-color',
+    left: {
+      name: 'left',
       type: { summary: TYPES.STRING },
       description:
-        'Attribuut wordt gebruikt om aan te geven wat de kleur van de tekst is bij het clusteren van features.',
+        'Attribuut wordt gebruikt om de "left" positie van de legende op de kaart te bepalen. Kan gebruikt worden in combinatie met data-vl-placement.',
       table: {
         category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: '#FFF' },
+        defaultValue: { summary: 'undefined' },
       },
       control: { disable: true },
     },
-    clusterColor: {
-      name: 'data-vl-cluster-color',
+    top: {
+      name: 'top',
       type: { summary: TYPES.STRING },
-      description: 'Attribuut wordt gebruikt om aan te geven wat de kleur is bij het clusteren van features.',
+      description:
+        'Attribuut wordt gebruikt om de "top" positie van de legende op de kaart te bepalen. Kan gebruikt worden in combinatie met data-vl-placement.',
       table: {
         category: CATEGORIES.ATTRIBUTES,
-        defaultValue: { summary: 'rgba(2, 85, 204, 1)' },
+        defaultValue: { summary: 'undefined' },
+      },
+      control: { disable: true },
+    },
+    right: {
+      name: 'right',
+      type: { summary: TYPES.STRING },
+      description:
+        'Attribuut wordt gebruikt om de "right" positie van de legende op de kaart te bepalen. Kan gebruikt worden in combinatie met data-vl-placement.',
+      table: {
+        category: CATEGORIES.ATTRIBUTES,
+        defaultValue: { summary: 'undefined' },
+      },
+      control: { disable: true },
+    },
+    bottom: {
+      name: 'bottom',
+      type: { summary: TYPES.STRING },
+      description:
+        'Attribuut wordt gebruikt om de "bottom" positie van de legende op de kaart te bepalen. Kan gebruikt worden in combinatie met data-vl-placement.',
+      table: {
+        category: CATEGORIES.ATTRIBUTES,
+        defaultValue: { summary: 'undefined' },
       },
       control: { disable: true },
     },
@@ -102,7 +103,8 @@ export const Default = () => {
   return html`<vl-map>
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
     <vl-map-features-layer .features=${features1}>
-      <vl-map-layer-circle-style data-vl-legend-text="Openbaar onderzoek"
+      <vl-map-layer-circle-style
+        data-vl-legend-text="Openbaar onderzoek"
         data-vl-color="#ffe615"
         data-vl-size="5"
         data-vl-border-color="#000"
@@ -111,11 +113,12 @@ export const Default = () => {
       <vl-map-measure-action></vl-map-measure-action>
     </vl-map-features-layer>
     <vl-map-features-layer .features=${features2}>
-      <vl-map-layer-circle-style data-vl-legend-text="Beslissing"
-          data-vl-color="red"
-          data-vl-size="5"
-          data-vl-border-color="#000"
-          data-vl-border-size="1"
+      <vl-map-layer-circle-style
+        data-vl-legend-text="Beslissing"
+        data-vl-color="red"
+        data-vl-size="5"
+        data-vl-border-color="#000"
+        data-vl-border-size="1"
       ></vl-map-layer-circle-style>
       <vl-map-measure-action></vl-map-measure-action>
     </vl-map-features-layer>
