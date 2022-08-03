@@ -12,7 +12,11 @@ export class VlTestAutocomplete extends VlElement {
 
   async setInputValue(value) {
     const input = await this.getElementInShadow(this, 'input');
-    input.sendKeys(value);
+
+    const actions = this.driver.actions();
+    await actions.click(input).sendKeys(value).perform();
+
+    await this.driver.sleep(1000);
   }
 
   async assertSuggestionsCount(count) {
