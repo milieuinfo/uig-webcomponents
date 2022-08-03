@@ -3,7 +3,7 @@ import './vl-input-field.element';
 // import "../button/vl-button.element";
 // import "../link/vl-link.element";
 // import "../form-message/vl-form-message.element";
-import { args, argTypes } from "../form-validation/helper/vl-form-validation.stories-helper";
+// import { args, argTypes } from "../form-validation/helper/vl-form-validation.stories-helper";
 // import { VALIDATION_TYPE } from "../form-validation/enums/vl-form-validation.enum";
 
 export default {
@@ -13,7 +13,7 @@ export default {
     error: false,
     small: false,
     success: false,
-    ...args,
+    // ...args,
   },
   argTypes: {
     block: {
@@ -52,7 +52,7 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
-    ...argTypes,
+    // ...argTypes,
   },
 };
 

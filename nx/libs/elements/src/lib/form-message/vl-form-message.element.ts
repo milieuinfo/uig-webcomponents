@@ -1,4 +1,4 @@
-import { vlElement, define } from "@uig/common/utilities";
+import { Class, vlElement, define } from "@uig/common/utilities";
 
 // TODO gertjame: Divide into separate classes and files.
 
@@ -83,7 +83,7 @@ export class VlFormValidationMessage extends vlElement(
     return `vl-form__`;
   }
 
-  _successChangedCallback(oldValue, newValue) {
+  _successChangedCallback(oldValue:string, newValue:string) {
     if (newValue != undefined) {
       this._element.append(this._getCheckTemplate());
     } else if (this._checkElement) {
@@ -91,7 +91,7 @@ export class VlFormValidationMessage extends vlElement(
     }
   }
 
-  _blockChangedCallback(oldValue, newValue) {
+  _blockChangedCallback(oldValue:string, newValue:string) {
     this._toggleClass(
       this,
       newValue,
@@ -107,7 +107,7 @@ export class VlFormValidationMessage extends vlElement(
  * @param {Object} SuperClass - Class die als base class gebruikt zal worden.
  * @return {Object} class
  */
-const vlFormAnnotationElement = (SuperClass) => {
+const vlFormAnnotationElement = (SuperClass: Class): Class => {
   return class extends vlElement(SuperClass) {
     static get _observedClassAttributes() {
       return ["block"];

@@ -22,7 +22,7 @@ export class GridElement extends HTMLElement {
                     <div>
                         <h2 is="vl-h2" data-vl-alt>${title}</h2>
                         <div class="container">
-                            <h3 is="vl-h3" data-vl-alt>Region</h3>
+                            <h3 is="vl-h3" data-vl-has-border>Region</h3>
                             <section id="region" is="vl-region" class="vl-region">
                                 <span>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores assumenda dignissimos doloremque eos est
@@ -32,7 +32,7 @@ export class GridElement extends HTMLElement {
                             </section>
                         </div>
                         <div class="container">
-                            <h3 is="vl-h3" data-vl-alt>Region alt</h3>
+                            <h3 is="vl-h3" data-vl-has-border>Region alt</h3>
                             <section id="region-alt" is="vl-region" data-vl-alt="" class="vl-region--alt vl-region--data-vl-alt vl-region">
                                 <span>
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores assumenda dignissimos doloremque eos est
@@ -42,7 +42,7 @@ export class GridElement extends HTMLElement {
                             </section>
                         </div>
                         <div class="container">
-                            <h3 is="vl-h3" data-vl-alt>Region overlap</h3>
+                            <h3 is="vl-h3" data-vl-has-border>Region overlap</h3>
                             <section id="region-overlap" is="vl-region" data-vl-overlap="" class="vl-region--overlap vl-region--data-vl-overlap vl-region">
                                 <div is="vl-layout" class="vl-layout">
                                     <div is="vl-grid" class="vl-grid">
@@ -56,7 +56,7 @@ export class GridElement extends HTMLElement {
                             </section>
                         </div>
                         <div class="container">
-                            <h3 is="vl-h3" data-vl-alt>Grid stacking</h3>
+                            <h3 is="vl-h3" data-vl-has-border>Grid stacking</h3>
                             <div id="grid-stacking" is="vl-grid" data-vl-is-stacked="" class="vl-grid--is-stacked vl-grid--data-vl-is-stacked vl-grid">
                                 <div is="vl-column" data-vl-size="12" class="vl-col--12-12 vl-col--10-12--m vl-col--12-12--s vl-col--12-12--xs">
                                     <div class="presentation__grid__col">
@@ -76,7 +76,7 @@ export class GridElement extends HTMLElement {
                             </div>
                         </div>
                         <div class="container">
-                            <h3 is="vl-h3" data-vl-alt>Grid stacking minder marge</h3>
+                            <h3 is="vl-h3" data-vl-has-border>Grid stacking minder marge</h3>
                             <div id="grid-stacking-small" is="vl-grid" data-vl-is-stacked-small="" class="vl-grid--is-stacked-small vl-grid--data-vl-is-stacked-small vl-grid">
                                 <div is="vl-column" data-vl-size="12" class="vl-col--12-12 vl-col--10-12--m vl-col--12-12--s vl-col--12-12--xs">
                                     <div class="presentation__grid__col">
@@ -96,7 +96,7 @@ export class GridElement extends HTMLElement {
                             </div>
                         </div>
                         <div class="container">
-                            <h3 is="vl-h3" data-vl-alt>Grid stacking meer marge</h3>
+                            <h3 is="vl-h3" data-vl-has-border>Grid stacking meer marge</h3>
                             <div id="grid-stacking-large" is="vl-grid" data-vl-is-stacked-large="" class="vl-grid--is-stacked-large vl-grid--data-vl-is-stacked-large vl-grid">
                                 <div is="vl-column" data-vl-size="12" class="vl-col--12-12 vl-col--10-12--m vl-col--12-12--s vl-col--12-12--xs">
                                     <div class="presentation__grid__col">
@@ -116,7 +116,7 @@ export class GridElement extends HTMLElement {
                             </div>
                         </div>
                         <div class="container">
-                            <h3 is="vl-h3" data-vl-alt>Grid alignment horizontaal</h3>
+                            <h3 is="vl-h3" data-vl-has-border>Grid alignment horizontaal</h3>
                             <div id="grid-align-start" is="vl-grid" data-vl-align-start="" class="vl-grid--align-start vl-grid--data-vl-align-start vl-grid">
                                 <div is="vl-column" data-vl-size="6" class="vl-col--6-12 vl-col--10-12--m vl-col--12-12--s vl-col--12-12--xs">
                                     <div class="presentation__grid__col">
@@ -164,7 +164,7 @@ export class GridElement extends HTMLElement {
                             </div>
                         </div>
                         <div class="container">
-                            <h3 is="vl-h3" data-vl-alt>Grid alignment verticaal</h3>
+                            <h3 is="vl-h3" data-vl-has-border>Grid alignment verticaal</h3>
                             <div class="presentation__grid" style="margin-bottom: 1rem;">
                                 <div id="grid-v-top" is="vl-grid" data-vl-v-top="" style="height: 5rem;" class="vl-grid--v-top vl-grid--data-vl-v-top vl-grid">
                                     <div is="vl-column" data-vl-size="1" data-vl-max-size="1" class="vl-col--1-1 vl-col--10-12--m vl-col--12-12--s vl-col--12-12--xs">
@@ -203,7 +203,7 @@ export class GridElement extends HTMLElement {
                             </div>
                         </div>
                         <div class="container">
-                            <h3 is="vl-h3" data-vl-alt>Grid columns 12/12</h3>
+                            <h3 is="vl-h3" data-vl-has-border>Grid columns 12/12</h3>
                             <div is="vl-grid" class="vl-grid">
                             <div id="vl-column-default-size" is="vl-column" data-vl-size="12" class="vl-col--12-12 vl-col--10-12--m vl-col--12-12--s vl-col--12-12--xs">
                                 <div class="presentation__grid__col">
@@ -213,7 +213,7 @@ export class GridElement extends HTMLElement {
                         </div>
                         </div>
                         <div class="container">
-                            <h3 is="vl-h3" data-vl-alt>Grid columns 4/12</h3>
+                            <h3 is="vl-h3" data-vl-has-border>Grid columns 4/12</h3>
                             <div is="vl-grid" class="vl-grid">
                             <div id="vl-column-default-max-size" is="vl-column" data-vl-size="4" class="vl-col--4-12 vl-col--10-12--m vl-col--12-12--s vl-col--12-12--xs">
                                 <div class="presentation__grid__col">
@@ -223,7 +223,7 @@ export class GridElement extends HTMLElement {
                         </div>
                         </div>
                         <div class="container">
-                            <h3 is="vl-h3" data-vl-alt>Grid columns 3/4 - 1/4</h3>
+                            <h3 is="vl-h3" data-vl-has-border>Grid columns 3/4 - 1/4</h3>
                             <div is="vl-grid" class="vl-grid">
                                 <div id="vl-column-3-4-size" is="vl-column" data-vl-size="3" data-vl-max-size="4" class="vl-col--3-4 vl-col--10-12--m vl-col--12-12--s vl-col--12-12--xs">
                                     <div class="presentation__grid__col">
@@ -238,7 +238,7 @@ export class GridElement extends HTMLElement {
                             </div>
                         </div>
                         <div class="container">
-                            <h3 is="vl-h3" data-vl-alt>Grid pushing column</h3>
+                            <h3 is="vl-h3" data-vl-has-border>Grid pushing column</h3>
                             <div is="vl-grid" class="vl-grid">
                                 <div id="vl-column-push" is="vl-column" data-vl-size="4" data-vl-max-size="12" data-vl-push="1" class="vl-push--1-12 vl-col--4-12 vl-col--10-12--m vl-col--12-12--s vl-col--12-12--xs">
                                     <div class="presentation__grid__col">
