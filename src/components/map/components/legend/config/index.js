@@ -4,13 +4,19 @@ import { LEGEND_PLACEMENT } from '../enums/index.js';
 export const argTypes = {
   placement: {
     name: 'data-vl-placement',
-    type: { summary: TYPES.STRING },
+    type: { summary: `${LEGEND_PLACEMENT.TOP_LEFT} | ${LEGEND_PLACEMENT.TOP_RIGHT} | ${LEGEND_PLACEMENT.BOTTOM_LEFT} 
+        | ${LEGEND_PLACEMENT.BOTTOM_RIGHT}`, required: false, },
     description: 'Attribuut wordt gebruikt om de plaats van de legende op de kaart te bepalen',
     table: {
       category: CATEGORIES.ATTRIBUTES,
       defaultValue: { summary: `${LEGEND_PLACEMENT.BOTTOM_RIGHT}` },
     },
     control: { disable: true },
+   /* control: {
+      type: 'select',
+      options: [LEGEND_PLACEMENT.TOP_LEFT, LEGEND_PLACEMENT.TOP_RIGHT, LEGEND_PLACEMENT.BOTTOM_LEFT,
+        LEGEND_PLACEMENT.BOTTOM_RIGHT],
+    },*/
   },
   left: {
     name: 'left',
