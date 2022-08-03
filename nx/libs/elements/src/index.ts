@@ -4,6 +4,7 @@ export * from './lib/form/vl-form-group.element';
 export * from './lib/form-grid/vl-form-grid.element';
 export * from './lib/form-grid/vl-form-column.element';
 export * from './lib/grid/vl-grid.element';
+export * from './lib/input-field/vl-input-field.element';
 export * from './lib/grid/components/column/vl-column.element';
 export * from './lib/grid/components/layout/vl-layout.element';
 export * from './lib/grid/components/region/vl-region.element';
