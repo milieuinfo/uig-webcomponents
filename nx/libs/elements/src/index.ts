@@ -24,6 +24,8 @@ export * from './lib/icon/vl-icon.element';
 export * from './lib/image/vl-image.element';
 export * from './lib/introduction/vl-introduction.element';
 export * from './lib/link/vl-link.element';
+export * from './lib/link-list/vl-link-list.element';
+export * from './lib/link-list/vl-link-list-item.element';
 export * from './lib/link/vl-button-link.element';
 export * from './lib/typography/vl-typography.element';
 export * from './lib/text/vl-text.element';

@@ -17,6 +17,7 @@ import './app/input-field/input-field.element';
 import './app/image/image.element';
 import './app/introduction/introduction.element';
 import './app/link/link.element';
+import './app/link-list/link-list.element';
 import './app/titles/titles.element';
 import './app/text/text.element';
 import './app/typography/typography.element';
