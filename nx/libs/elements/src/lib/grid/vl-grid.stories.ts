@@ -131,6 +131,7 @@ const Template = ({
         ?data-vl-v-center=${vCenter}
         ?data-vl-v-bottom=${vBottom}
         ?data-vl-v-stretch=${vStretch}
+        data-cy="grid"
       >
         ${columns.map(() => column)}
       </div>

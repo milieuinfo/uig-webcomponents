@@ -70,6 +70,7 @@ export const Default = ({ block, error, success, small }: InputFieldInterface) =
     ?data-vl-error=${error}
     ?data-vl-success=${success}
     ?data-vl-small=${small}
+    data-cy="input-field"
   />
 `;
 
@@ -81,6 +82,7 @@ export const Disabled = ({ block, error, success, small }: InputFieldInterface) 
     ?data-vl-error=${error}
     ?data-vl-success=${success}
     ?data-vl-small=${small}
+    data-cy="input-field"
     />
 `;
 

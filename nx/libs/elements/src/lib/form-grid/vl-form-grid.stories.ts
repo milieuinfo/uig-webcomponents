@@ -44,7 +44,7 @@ export const Default = ({
 }: DefaultInterface) => {
   return html`
     <div style="max-width: 800px">
-      <form is="vl-form">
+      <form is="vl-form" data-cy="form">
         <div
           is="vl-form-grid"
           ?data-vl-is-stacked=${stacked}
@@ -59,6 +59,7 @@ export const Default = ({
           ?data-vl-v-center=${vCenter}
           ?data-vl-v-bottom=${vBottom}
           ?data-vl-v-stretch=${vStretch}
+          data-cy="form-grid"
         >
           <div is="vl-form-column" data-vl-size="2">
             <label is="vl-form-label" for="text" data-vl-block>Email</label>
