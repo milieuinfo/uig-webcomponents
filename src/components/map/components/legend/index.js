@@ -35,39 +35,55 @@ export class VlMapLegend extends LitElement {
   __getPosition() {
     const position = {};
 
+    console.log("this.placement");
+    console.log(this.placement);
+
     switch (this.placement) {
       case LEGEND_PLACEMENT.TOP_LEFT:
+        console.log("TOP_LEFT");
         position.top = '10px';
         position.left = '10px';
         position.right = undefined;
         position.bottom = undefined;
+        console.log({position});
         break;
       case LEGEND_PLACEMENT.TOP_RIGHT:
+        console.log("TOP_RIGHT");
         position.top = '10px';
         position.left = undefined;
         position.right = '10px';
         position.bottom = undefined;
+        console.log({position});
         break;
       case LEGEND_PLACEMENT.BOTTOM_LEFT:
+        console.log("BOTTOM_LEFT");
         position.top = undefined;
-        position.left = '0';
+        position.left = '8px';
         position.right = undefined;
-        position.bottom = '10px';
+        position.bottom = '40px';
         break;
       case LEGEND_PLACEMENT.BOTTOM_RIGHT:
+        console.log("BOTTOM_RIGHT");
         position.top = undefined;
         position.left = undefined;
         position.right = '58px';
         position.bottom = '10px';
         break;
       default:
+        console.log("Invalid placement " + this.placement + "!!!");
         break;
     }
 
-    if (this._top) position.top = this._top;
+    console.log({position});
+
+    console.log("top")
+    console.log(this._top)
+    if (this._top != undefined) position.top = this._top;
     if (this._left) position.left = this._left;
     if (this._right) position.right = this._right;
     if (this._bottom) position.bottom = this._bottom;
+
+    console.log({position});
 
     return position;
   }

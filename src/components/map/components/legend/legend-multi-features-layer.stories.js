@@ -5,7 +5,7 @@ import { LEGEND_PLACEMENT } from './enums/index.js';
 import { argTypes } from './config/index.js';
 
 export default {
-  title: 'custom-elements/vl-map/vl-map-legend-multi-features-layer',
+  title: 'custom-elements/vl-map/vl-map-legend/vl-map-legend-multi-features-layer',
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {

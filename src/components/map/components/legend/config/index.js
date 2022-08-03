@@ -11,12 +11,11 @@ export const argTypes = {
       category: CATEGORIES.ATTRIBUTES,
       defaultValue: { summary: `${LEGEND_PLACEMENT.BOTTOM_RIGHT}` },
     },
-    control: { disable: true },
-   /* control: {
+    control: {
       type: 'select',
       options: [LEGEND_PLACEMENT.TOP_LEFT, LEGEND_PLACEMENT.TOP_RIGHT, LEGEND_PLACEMENT.BOTTOM_LEFT,
         LEGEND_PLACEMENT.BOTTOM_RIGHT],
-    },*/
+    },
   },
   left: {
     name: 'left',
