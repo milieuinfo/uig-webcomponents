@@ -16,6 +16,11 @@ export class AppElement extends HTMLElement {
                     <exhibit-icon></exhibit-icon>
                     <exhibit-link></exhibit-link>
                     <exhibit-text></exhibit-text>
+                    <exhibit-form></exhibit-form>
+                    <exhibit-form-group></exhibit-form-group>
+                    <exhibit-form-grid></exhibit-form-grid>
+                    <exhibit-grid></exhibit-grid>
+                    <exhibit-input-field></exhibit-input-field>
                 </div>
             </div>
       `;
