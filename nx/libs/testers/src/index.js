@@ -15,6 +15,7 @@ export * from './lib/element/input-field';
 export * from './lib/element/introduction';
 export * from './lib/element/layout';
 export * from './lib/element/link';
+export * from './lib/element/link-list';
 export * from './lib/element/region';
 export * from './lib/element/titles';
 export * from './lib/element/typography';

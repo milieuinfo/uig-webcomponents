@@ -23,6 +23,7 @@ export class AppElement extends HTMLElement {
                     <exhibit-input-field></exhibit-input-field>
                     <exhibit-input-addon></exhibit-input-addon>
                     <exhibit-input-group></exhibit-input-group>
+                    <exhibit-link-list></exhibit-link-list>
                 </div>
             </div>
       `;
