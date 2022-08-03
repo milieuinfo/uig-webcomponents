@@ -2,6 +2,14 @@ div.uig-map-legend {
   position: absolute;
   z-index: 1;
   display: flex;
+  background-color: #fff;
+  border: 1px #cbd2da solid;
+  padding-right: 0.5em;
+}
+
+span.uig-map-legend-title {
+  padding-left: 0.5em;
+  font-weight: bolder;
 }
 
 span.uig-map-legend-text {

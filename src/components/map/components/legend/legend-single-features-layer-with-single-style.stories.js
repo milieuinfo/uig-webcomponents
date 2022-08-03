@@ -2,7 +2,7 @@ import { html } from 'lit-html';
 import '../../index.js';
 import { argTypes } from '../layer-style/config/index.js';
 import { CATEGORIES, docsIntro, TYPES } from '../../../../../.storybook/utils.js';
-import {LEGEND_PLACEMENT} from './enums/index.js';
+import { LEGEND_PLACEMENT } from './enums/index.js';
 
 export default {
   title: 'custom-elements/vl-map/vl-map-legend-single-features-layer-with-single-style',
@@ -74,37 +74,37 @@ export default {
 };
 
 export const Default = () => {
-
   const features = {
-    type: "FeatureCollection",
+    type: 'FeatureCollection',
     features: [
       {
-        type: "Feature",
+        type: 'Feature',
         geometry: {
-          type: "Point",
+          type: 'Point',
           coordinates: [147055.0, 197908.0],
         },
         properties: {
-          styleId: "style-1"
-        }
+          styleId: 'style-1',
+        },
       },
       {
-        type: "Feature",
+        type: 'Feature',
         geometry: {
-          type: "Point",
+          type: 'Point',
           coordinates: [141000.0, 200908.0],
         },
         properties: {
-          styleId: "style-2"
-        }
-      }
-    ]
+          styleId: 'style-2',
+        },
+      },
+    ],
   };
 
   return html`<vl-map id="map">
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
     <vl-map-features-layer .features=${features} data-vl-name="Laag 1">
-      <vl-map-layer-circle-style data-vl-legend-text="Openbaar onderzoek"
+      <vl-map-layer-circle-style
+        data-vl-legend-text="Openbaar onderzoek"
         data-vl-color="#ffe615"
         data-vl-size="5"
         data-vl-border-color="#000"
