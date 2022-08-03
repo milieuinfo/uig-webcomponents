@@ -12,6 +12,7 @@ import './app/form-grid/form-grid.element';
 import './app/grid/grid.element';
 import './app/icon/icon.element';
 import './app/input-addon/input-addon.element';
+import './app/input-group/input-group.element';
 import './app/input-field/input-field.element';
 import './app/image/image.element';
 import './app/introduction/introduction.element';
