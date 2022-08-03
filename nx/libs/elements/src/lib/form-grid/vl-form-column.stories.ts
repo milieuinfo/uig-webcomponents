@@ -35,7 +35,7 @@ export const Default = ({
   extraSmallMaxSize,
   push,
 }: DefaultInterface) => html`
-  <form is="vl-form">
+  <form is="vl-form" data-cy="form">
     <div is="vl-form-grid">
       <div
         is="vl-form-column"
@@ -48,6 +48,7 @@ export const Default = ({
         data-vl-extra-small-size=${extraSmallSize}
         data-vl-extra-small-max-size=${extraSmallMaxSize}
         data-vl-push=${push}
+        data-cy="form-column"
       >
         <input name="surname" is="vl-input-field" placeholder="Doe" data-vl-block />
       </div>
