@@ -1,3 +1,4 @@
+export * from './lib/element/action-group';
 export * from './lib/element/button';
 export * from './lib/element/body';
 export * from './lib/element/column';
