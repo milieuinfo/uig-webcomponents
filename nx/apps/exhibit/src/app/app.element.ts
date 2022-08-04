@@ -25,6 +25,7 @@ export class AppElement extends HTMLElement {
                     <exhibit-input-group></exhibit-input-group>
                     <exhibit-link-list></exhibit-link-list>
                     <exhibit-data-table></exhibit-data-table>
+                    <exhibit-action-group></exhibit-action-group>
                 </div>
             </div>
       `;

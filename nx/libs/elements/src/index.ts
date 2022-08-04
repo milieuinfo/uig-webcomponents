@@ -1,3 +1,4 @@
+export * from './lib/action-group/vl-action-group.element';
 export * from './lib/button/vl-button.element';
 export * from './lib/data-table/vl-data-table.element';
 export * from './lib/form/vl-form.element';
