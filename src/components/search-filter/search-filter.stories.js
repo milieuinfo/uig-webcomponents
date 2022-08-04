@@ -67,7 +67,7 @@ const Template = ({ title, alt, mobileModal, mobileModalTitle, maxWidth }) => ht
               data-vl-block
               autocomplete="address-level2"
             >
-              <option placeholder="">Kies een stad</option>
+              <option placeholder>Kies een stad</option>
               <option value="brussel">Brussel</option>
               <option value="gent">Gent</option>
             </select>
@@ -81,7 +81,7 @@ const Template = ({ title, alt, mobileModal, mobileModalTitle, maxWidth }) => ht
               data-vl-block
               autocomplete="country"
             >
-              <option placeholder="">Kies een land</option>
+              <option placeholder>Kies een land</option>
               <option value="belgië">België</option>
             </select>
           </div>

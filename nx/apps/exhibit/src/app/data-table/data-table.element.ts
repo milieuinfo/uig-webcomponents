@@ -76,7 +76,7 @@ export class DataTableElement extends HTMLElement {
                         </div>
                         <div class="container">
                             <h3 is="vl-h3" data-vl-has-border>Data table matrix | joined row titles</h3>
-                            <table is="vl-data-table" data-vl-matrix="" id="data-table-matrix-row-titles">
+                            <table is="vl-data-table" data-vl-matrix>
                                 <caption>Data table Matrix - Joined row titles</caption>
                                 <thead>
                                     <tr>
@@ -122,7 +122,7 @@ export class DataTableElement extends HTMLElement {
                         </div>
                         <div class="container">
                             <h3 is="vl-h3" data-vl-has-border>Data table | lined</h3>
-                            <table is="vl-data-table" data-vl-lined="" id="data-table-lined">
+                            <table is="vl-data-table" data-vl-lined>
                                 <caption>Data table Lined</caption>
                                 <thead>
                                     <tr>
@@ -155,7 +155,7 @@ export class DataTableElement extends HTMLElement {
                         </div>
                         <div class="container">
                             <h3 is="vl-h3" data-vl-has-border>Data table | joined row titles</h3>
-                            <table is="vl-data-table" data-vl-lined="" id="data-table-lined-row-titles">
+                            <table is="vl-data-table" data-vl-lined>
                                 <caption>Data table Lined - Joined row titles</caption>
                                 <thead>
                                     <tr>
@@ -201,7 +201,7 @@ export class DataTableElement extends HTMLElement {
                         </div>
                         <div class="container">
                             <h3 is="vl-h3" data-vl-has-border>Data table | zebra</h3>
-                            <table is="vl-data-table" data-vl-zebra="" id="data-table-zebra">
+                            <table is="vl-data-table" data-vl-zebra>
                                 <caption>Data table Zebra</caption>
                                 <thead>
                                     <tr>
@@ -234,7 +234,7 @@ export class DataTableElement extends HTMLElement {
                         </div>
                         <div class="container">
                             <h3 is="vl-h3" data-vl-has-border>Data table | collapsed medium</h3>
-                            <table is="vl-data-table" data-vl-collapsed-m="" id="data-table-collapsed-medium">
+                            <table is="vl-data-table" data-vl-collapsed-m>
                                 <thead>
                                     <tr>
                                     <th>Entry Header 1</th>

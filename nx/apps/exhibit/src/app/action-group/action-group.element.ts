@@ -13,7 +13,7 @@ export class ActionGroupElement extends HTMLElement {
                             <button is="vl-button">
                                 Aanvraag starten
                             </button>
-                            <button is="vl-button" data-vl-secondary="">
+                            <button is="vl-button" data-vl-secondary>
                                 Annuleren
                             </button>
                         </div>
@@ -24,7 +24,7 @@ export class ActionGroupElement extends HTMLElement {
                             <button is="vl-button">
                                 Aanvraag starten
                             </button>
-                            <button is="vl-button" data-vl-secondary="">
+                            <button is="vl-button" data-vl-secondary>
                                 Annuleren
                             </button>
                         </div>
@@ -35,18 +35,18 @@ export class ActionGroupElement extends HTMLElement {
                             <button is="vl-button">
                                 Aanvraag starten
                             </button>
-                            <button is="vl-button" data-vl-secondary="">
+                            <button is="vl-button" data-vl-secondary>
                                 Annuleren
                             </button>
                         </div>
                     </div> 
                     <div class="container">
                         <h3 is="vl-h3" data-vl-has-border>Action group space between</h3>
-                        <div is="vl-action-group" data-vl-space-between="">
+                        <div is="vl-action-group" data-vl-space-between>
                             <button class="vl-button">
                                 Aanvraag starten
                             </button>
-                            <button is="vl-button" data-vl-secondary="">
+                            <button is="vl-button" data-vl-secondary>
                                 Annuleren
                             </button>
                         </div>
@@ -55,15 +55,15 @@ export class ActionGroupElement extends HTMLElement {
                         <h3 is="vl-h3" data-vl-has-border>Action group met links</h3>
                         <div is="vl-action-group">
                             <a href="#" is="vl-link">
-                                <span is="vl-icon" data-vl-icon="bell" data-vl-before=""></span>
+                                <span is="vl-icon" data-vl-icon="bell" data-vl-before></span>
                                 Notificaties
                             </a>
                             <a href="#" is="vl-link">
-                                <span is="vl-icon" data-vl-icon="graduate" data-vl-before=""></span>
+                                <span is="vl-icon" data-vl-icon="graduate" data-vl-before></span>
                                 Opleidingen
                             </a>
                             <a href="#" is="vl-link">
-                                <span is="vl-icon" data-vl-icon="pin" data-vl-before=""></span>
+                                <span is="vl-icon" data-vl-icon="pin" data-vl-before></span>
                                 Locaties
                             </a>
                         </div>
@@ -73,15 +73,15 @@ export class ActionGroupElement extends HTMLElement {
                         <div is="vl-action-group" data-vl-has-border>
 
                             <a href="#" is="vl-link">
-                                <span is="vl-icon" data-vl-icon="bell" data-vl-before=""></span>
+                                <span is="vl-icon" data-vl-icon="bell" data-vl-before></span>
                                 Notificaties
                             </a>
                             <a href="#" is="vl-link">
-                                <span is="vl-icon" data-vl-icon="graduate" data-vl-before=""></span>
+                                <span is="vl-icon" data-vl-icon="graduate" data-vl-before></span>
                                 Opleidingen
                             </a>
                             <a href="#" is="vl-link">
-                                <span is="vl-icon" data-vl-icon="pin" data-vl-before=""></span>
+                                <span is="vl-icon" data-vl-icon="pin" data-vl-before></span>
                                 Locaties
                             </a>
                         </div>
