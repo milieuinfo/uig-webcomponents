@@ -154,7 +154,7 @@
 
       test('de template van de label van een field wrapt de volledige kolom in een anchor tag als de kolom sorteerbaar is', () => {
         const field = fixture('vl-rich-data-field-fixture-sortable');
-        assert.equal(field.headerTemplate().outerHTML.replace(/\s\s+/g, ''), '<th data-vl-sortable=""><a>Foo<vl-rich-data-sorter data-vl-for="Foo"></vl-rich-data-sorter></a></th>');
+        assert.equal(field.headerTemplate().outerHTML.replace(/\s\s+/g, ''), '<th data-vl-sortable><a>Foo<vl-rich-data-sorter data-vl-for="Foo"></vl-rich-data-sorter></a></th>');
       });
 
       test('indien er geen label attribuut aanwezig is, zal de template label slot gebruikt worden om de header te visualiseren', () => {
@@ -164,7 +164,7 @@
 
       test('indien er geen label attribuut aanwezig is, zal de template label slot gebruikt worden voor een sortable field om de header te visualiseren', () => {
         const field = fixture('vl-rich-data-field-label-template-fixture-sortable');
-        assert.equal(field.headerTemplate().outerHTML.replace(/\s\s+/g, ''), '<th data-vl-sortable=""><a><span>Foo</span><vl-rich-data-sorter data-vl-for="Foo"></vl-rich-data-sorter></a></th>');
+        assert.equal(field.headerTemplate().outerHTML.replace(/\s\s+/g, ''), '<th data-vl-sortable><a><span>Foo</span><vl-rich-data-sorter data-vl-for="Foo"></vl-rich-data-sorter></a></th>');
       });
 
       test('indien er zowel geen label attribuut als geen template label slot aanwezig is, bevat de header template geen text content', () => {

@@ -9,22 +9,22 @@ export class InputFieldElement extends HTMLElement {
                     <div>
                         <h2 is="vl-h2" data-vl-alt>${title}</h2>
                         <div class="container">
-                            <input is="vl-input-field" id="input-field" />
+                            <input is="vl-input-field" />
                         </div>
                         <div class="container">
-                            <input is="vl-input-field" data-vl-block="" id="input-field-block" />
+                            <input is="vl-input-field" data-vl-block />
                         </div>
                         <div class="container">
-                            <input is="vl-input-field" data-vl-error="" id="input-field-error" />
+                            <input is="vl-input-field" data-vl-error />
                         </div>
                         <div class="container">
-                            <input is="vl-input-field" data-vl-success="" id="input-field-success" />
+                            <input is="vl-input-field" data-vl-success />
                         </div>
                         <div class="container">
-                            <input is="vl-input-field" disabled="" id="input-field-disabled" />
+                            <input is="vl-input-field" disabled />
                         </div>
                         <div class="container">
-                            <input is="vl-input-field" data-vl-small="" id="input-field-small" />
+                            <input is="vl-input-field" data-vl-small />
                         </div>
                     </div>
                 </div>

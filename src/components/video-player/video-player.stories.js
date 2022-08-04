@@ -46,6 +46,6 @@ export const Default = () => html`<div style="max-width: ${wrapWidth}">
       default=""
     />
     <!-- Fallback for browsers that don't support the <video> element -->
-    <a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.mp4" download=""> Download </a>
+    <a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.mp4" download> Download </a>
   </video>
 </div>`;

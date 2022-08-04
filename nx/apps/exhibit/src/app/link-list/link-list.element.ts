@@ -21,7 +21,7 @@ export class LinkListElement extends HTMLElement {
                         </div>
                         <!-- <div class="container">
                             <h3 is="vl-h3" data-vl-has-border>Link list small</h3>
-                            <ul is="vl-link-list" data-vl-small="">
+                            <ul is="vl-link-list" data-vl-small>
                                 <li is="vl-link-list-item">
                                     <a is="vl-link" href="#">Ga naar index</a>
                                 </li>
@@ -32,7 +32,7 @@ export class LinkListElement extends HTMLElement {
                         </div>-->
                         <div class="container">
                             <h3 is="vl-h3" data-vl-has-border>Link list inline</h3>
-                            <ul is="vl-link-list" data-vl-inline="">
+                            <ul is="vl-link-list" data-vl-inline>
                                 <li is="vl-link-list-item">
                                     <a is="vl-link" href="#">Ga naar index</a>
                                 </li>
@@ -43,7 +43,7 @@ export class LinkListElement extends HTMLElement {
                         </div>
                         <div class="container">
                             <h3 is="vl-h3" data-vl-has-border>Link list bordered</h3>
-                            <ul is="vl-link-list" data-vl-bordered="">
+                            <ul is="vl-link-list" data-vl-bordered>
                                 <li is="vl-link-list-item">
                                     <a is="vl-link" href="#">Ga naar index</a>
                                 </li>

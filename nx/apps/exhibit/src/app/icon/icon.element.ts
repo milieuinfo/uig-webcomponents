@@ -13,11 +13,11 @@ export class IconElement extends HTMLElement {
                         </div>
                         <div class="container">
                             <span is="vl-icon-wrapper">
-                                <span is="vl-icon" data-vl-icon="calendar" data-vl-before=""></span><span>Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</span>
+                                <span is="vl-icon" data-vl-icon="calendar" data-vl-before></span><span>Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</span>
                             </span>
                         </div>
                         <div class="container">
-                            <span is="vl-icon" data-vl-icon="calendar" data-vl-180deg=""></span>
+                            <span is="vl-icon" data-vl-icon="calendar" data-vl-180deg></span>
                         </div>
                     </div>
                 </div>
