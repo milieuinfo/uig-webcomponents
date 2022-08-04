@@ -24,6 +24,7 @@ export class AppElement extends HTMLElement {
                     <exhibit-input-addon></exhibit-input-addon>
                     <exhibit-input-group></exhibit-input-group>
                     <exhibit-link-list></exhibit-link-list>
+                    <exhibit-data-table></exhibit-data-table>
                 </div>
             </div>
       `;
