@@ -112,4 +112,14 @@ export const argTypes = {
     },
     control: { disable: true },
   },
+  legendText: {
+    name: 'data-vl-legend-text',
+    type: { summary: TYPES.STRING },
+    description:
+      'Attribuut wordt gebruikt om aan te geven wat de wat de text is die getoond moet worden in de legende voor deze stijl indien de vl-map-legend op de kaart is toegevoegd. Een stijl zonder data-vl-legend-text zal nooit in de legende getoond worden.',
+    table: {
+      category: CATEGORIES.ATTRIBUTES,
+    },
+    control: { disable: true },
+  },
 };

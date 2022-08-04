@@ -2,10 +2,10 @@ import { html } from 'lit-html';
 import '../../index.js';
 import { argTypes } from './config/index.js';
 import { docsIntro } from '../../../../../.storybook/utils.js';
-import {sharedButtonArgs} from "../../../button/config/index.js";
-import {action} from "@storybook/addon-actions";
+import { sharedButtonArgs } from '../../../button/config/index.js';
+import { action } from '@storybook/addon-actions';
 import { LEGEND_PLACEMENT } from './enums/index.js';
-import {ifDefined} from 'lit-html/directives/if-defined';
+import { ifDefined } from 'lit-html/directives/if-defined';
 
 export default {
   title: 'custom-elements/vl-map/vl-map-legend/vl-map-legend-single-features-layer',
@@ -15,7 +15,10 @@ export default {
       description: {
         component: docsIntro({
           root: 'map',
-          intro: 'De kaart legende voor kaart met één vl-map-features-layer met meerdere vl-map-layer-styles.',
+          intro:
+            'De kaart legende voor kaart met één vl-map-features-layer met meerdere vl-map-layer-styles. ' +
+            'Voeg de property styleId toe in de properties van elke feature om aan te geven met welke stijl ' +
+            'de feature op de kaart moet getoond worden',
         }),
       },
     },
@@ -25,7 +28,7 @@ export default {
     top: undefined,
     right: undefined,
     bottom: undefined,
-    left: undefined
+    left: undefined,
   },
   argTypes: {
     ...argTypes,
@@ -116,11 +119,12 @@ export const Default = (props) => {
     <vl-map-action-controls>
       <vl-map-measure-control></vl-map-measure-control>
     </vl-map-action-controls>
-    <vl-map-legend data-vl-placement="${props.placement}" 
-                   top="${ifDefined(props.top)}" 
-                   right="${ifDefined(props.right)}" 
-                   bottom="${ifDefined(props.bottom)}" 
-                   left="${ifDefined(props.left)}"
+    <vl-map-legend
+      data-vl-placement="${props.placement}"
+      top="${ifDefined(props.top)}"
+      right="${ifDefined(props.right)}"
+      bottom="${ifDefined(props.bottom)}"
+      left="${ifDefined(props.left)}"
     ></vl-map-legend>
   </vl-map>`;
 };

@@ -1,9 +1,15 @@
-import { assert, getDriver, config } from '../../../../utils/test';
-import { VlTestAutocomplete } from './legend.js';
+import { assert, getDriver, config } from '../../../../../../utils/test';
+import { VlTestMapLegend } from './legend.js';
+import { LEGEND_PLACEMENT } from '../../enums/index.js';
+//import { Default } from '../../legend-single-features-layer.stories.js';
 
 const { sbUrl } = config;
-const defaultUrl = `${sbUrl}?id=custom-elements-vl-map-vl-map-legend-single-features-layer--default&viewMode=story`;
-const legendInTopLeftCornerUrl = `${defaultUrl}&args=placement:top_left`;
+const defaultUrl = `${sbUrl}?id=custom-elements-vl-map-vl-map-legend-vl-map-legend-single-features-layer--default&viewMode=story`;
+const selector = 'vl-map-legend';
+
+function getUrlWithPlacement(placement) {
+  return `${defaultUrl}&args=placement:${placement}`;
+}
 
 describe('vl-map-legend', async () => {
   let driver;
@@ -19,14 +25,76 @@ describe('vl-map-legend', async () => {
     driver.manage().window().maximize();
   });
 
-  it('as a user, I can see the autocomplete placeholder', async () => {
+  it('as a user, I can see the legend by default positioned in de bottom-right corner', async () => {
     await driver.get(defaultUrl);
-    const autocomplete = await new VlTestAutocomplete(driver, selector);
+    const legend = await new VlTestMapLegend(driver, selector);
 
-    await assert.eventually.equal(autocomplete.getPlaceHolder(), 'Hint: typ Gent');
+    await assert.eventually.equal(legend.getTop(), undefined);
+    await assert.eventually.equal(legend.getLeft(), undefined);
+    await assert.eventually.notEqual(legend.getBottom(), undefined);
+    await assert.eventually.notEqual(legend.getRight(), undefined);
   });
 
-  it('as a user, I can see the autocomplete custom placeholder', async () => {
+  it(`as a user, I can see the legend by default positioned in de top-left corner of placement attribute is ${LEGEND_PLACEMENT.TOP_LEFT}`, async () => {
+    await driver.get(getUrlWithPlacement(LEGEND_PLACEMENT.TOP_LEFT));
+    const legend = await new VlTestMapLegend(driver, selector);
+
+    await assert.eventually.notEqual(legend.getTop(), undefined);
+    await assert.eventually.notEqual(legend.getLeft(), undefined);
+    await assert.eventually.equal(legend.getBottom(), undefined);
+    await assert.eventually.equal(legend.getRight(), undefined);
+  });
+
+  it(`as a user, I can see the legend by default positioned in de top-right corner of placement attribute is ${LEGEND_PLACEMENT.TOP_RIGHT}`, async () => {
+    await driver.get(getUrlWithPlacement(LEGEND_PLACEMENT.TOP_RIGHT));
+    const legend = await new VlTestMapLegend(driver, selector);
+
+    await assert.eventually.notEqual(legend.getTop(), undefined);
+    await assert.eventually.equal(legend.getLeft(), undefined);
+    await assert.eventually.equal(legend.getBottom(), undefined);
+    await assert.eventually.notEqual(legend.getRight(), undefined);
+  });
+
+  it(`as a user, I can see the legend by default positioned in de bottom-left corner of placement attribute is ${LEGEND_PLACEMENT.BOTTOM_LEFT}`, async () => {
+    await driver.get(getUrlWithPlacement(LEGEND_PLACEMENT.BOTTOM_LEFT));
+    const legend = await new VlTestMapLegend(driver, selector);
+
+    await assert.eventually.equal(legend.getTop(), undefined);
+    await assert.eventually.notEqual(legend.getLeft(), undefined);
+    await assert.eventually.notEqual(legend.getBottom(), undefined);
+    await assert.eventually.equal(legend.getRight(), undefined);
+  });
+
+  it(`as a user, I can see the legend by default positioned in de bottom-right corner of placement attribute is ${LEGEND_PLACEMENT.BOTTOM_RIGHT}`, async () => {
+    await driver.get(getUrlWithPlacement(LEGEND_PLACEMENT.BOTTOM_RIGHT));
+    const legend = await new VlTestMapLegend(driver, selector);
+
+    await assert.eventually.equal(legend.getTop(), undefined);
+    await assert.eventually.equal(legend.getLeft(), undefined);
+    await assert.eventually.notEqual(legend.getBottom(), undefined);
+    await assert.eventually.notEqual(legend.getRight(), undefined);
+  });
+
+  it(`as a user, I can see the same amount of items in the legend as there are styles in the vl-map-features-layer`, async () => {
+    await driver.get(defaultUrl);
+    const legend = await new VlTestMapLegend(driver, selector);
+
+    console.log({ legend });
+
+    //const featuresLayers = Default.getFeaturesLayers();
+    //console.log({ featuresLayers });
+
+    //console.log({ featuresLayers });
+
+    /*await assert.eventually.equal(legend.getTop(), undefined);
+    await assert.eventually.equal(legend.getLeft(), undefined);
+    await assert.eventually.notEqual(legend.getBottom(), undefined);
+    await assert.eventually.notEqual(legend.getRight(), undefined);*/
+  });
+
+  //delay(600000);
+
+  /*it('as a user, I can see the autocomplete custom placeholder', async () => {
     await driver.get(customPlaceHolderUrl);
     const autocomplete = await new VlTestAutocomplete(driver, selector);
 
@@ -165,5 +233,5 @@ describe('vl-map-legend', async () => {
       { title: 'Drabstraat, Mortsel' },
       { title: 'Drabstraat, Wichelen' },
     ]);
-  });
+  });*/
 });

@@ -5,7 +5,7 @@ import { docsIntro } from '../../../../../.storybook/utils.js';
 import { LEGEND_PLACEMENT } from './enums/index.js';
 
 export default {
-  title: 'custom-elements/vl-map/vl-map-legend-single-features-layer-with-single-style',
+  title: 'custom-elements/vl-map/vl-map-legend/vl-map-legend-single-features-layer-with-single-style',
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
@@ -32,18 +32,12 @@ export const Default = () => {
           type: 'Point',
           coordinates: [147055.0, 197908.0],
         },
-        properties: {
-          styleId: 'style-1',
-        },
       },
       {
         type: 'Feature',
         geometry: {
           type: 'Point',
           coordinates: [141000.0, 200908.0],
-        },
-        properties: {
-          styleId: 'style-2',
         },
       },
     ],

@@ -1,9 +1,44 @@
-import { VlElement, By } from '../../../../utils/test';
+import { VlElement, By } from '../../../../../../utils/test';
 
-export class VlTestAutocomplete extends VlElement {
-  async getPlaceHolder() {
-    const input = await this.getElementInShadow(this, 'input');
-    return input.getAttribute('placeholder');
+export class VlTestMapLegend extends VlElement {
+  async getMapLegendStyle() {
+    const div = await this.getElementInShadow(this, '.uig-map-legend');
+    const style = await div.getAttribute('style');
+    return this.cssToObj(style);
+  }
+
+  async getTop() {
+    return this.getMapLegendStyle().then((s) => s.top);
+  }
+
+  getFeaturesLayers() {
+    const map = this.closest('vl-map');
+    return map.getFeaturesLayers();
+  }
+
+  cssToObj(css) {
+    const obj = {};
+    const s = css
+      .toLowerCase()
+      .replace(/-(.)/g, (m, g) => g.toUpperCase())
+      .replace(/;\s?$/g, '')
+      .split(/:|;/g);
+    for (let i = 0; i < s.length; i += 2) {
+      obj[s[i].replace(/\s/g, '')] = s[i + 1].replace(/^\s+|\s+$/g, '');
+    }
+    return obj;
+  }
+
+  async getLeft() {
+    return this.getMapLegendStyle().then((s) => s.left);
+  }
+
+  async getBottom() {
+    return this.getMapLegendStyle().then((s) => s.bottom);
+  }
+
+  async getRight() {
+    return this.getMapLegendStyle().then((s) => s.right);
   }
 
   async isDisabled() {
