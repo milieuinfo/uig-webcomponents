@@ -1,0 +1,23 @@
+@charset "utf-8";
+
+// TODO: de cdn uitbreiden conform:
+// https://cdn.milieuinfo.be/vlaanderen-font/4.1.33/font
+// -> daaronder komt dan /flanders en /iconfont/
+
+$vl-font-location: 'https://cdn.omgeving.vlaanderen.be/vlaanderen-font-new/LATEST/font/flanders/';
+$vl-icon-font-location: 'https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/iconfont/3.12.23/';
+
+// @govflanders global styles
+@import '@govflanders/vl-ui-core/src/scss/core';
+
+// @govflanders component styles
+@import '@govflanders/vl-ui-button/src/scss/button';
+@import '@govflanders/vl-ui-icon/src/scss/icon';
+@import '@govflanders/vl-ui-image/src/scss/image';
+@import '@govflanders/vl-ui-introduction/src/scss/introduction';
+@import '@govflanders/vl-ui-link/src/scss/link';
+@import '@govflanders/vl-ui-titles/src/scss/titles';
+@import '@govflanders/vl-ui-typography/src/scss/typography';
+
+// @govflanders util styles
+@import '@govflanders/vl-ui-util/src/scss/util';
