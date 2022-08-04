@@ -1,4 +1,5 @@
 export * from './lib/button/vl-button.element';
+export * from './lib/data-table/vl-data-table.element';
 export * from './lib/form/vl-form.element';
 export * from './lib/form/vl-form-group.element';
 export * from './lib/form-grid/vl-form-grid.element';

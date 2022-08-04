@@ -6,6 +6,7 @@ import '@uig/components';
 import './app/app.element.ts';
 import './app/breadcrumb/breadcrumb.element';
 import './app/buttons/buttons.element.ts';
+import './app/data-table/data-table.element';
 import './app/form/form.element';
 import './app/form-group/form-group.element';
 import './app/form-grid/form-grid.element';
