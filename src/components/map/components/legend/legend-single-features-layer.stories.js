@@ -78,6 +78,15 @@ export const Default = (props) => {
     ],
   };
 
+  document.addEventListener('DOMContentLoaded', async (e) => {
+    const map = document.getElementById('map');
+    await map.ready;
+
+    document.querySelector('#style-1').appliesTo = (feature) => feature.get('styleId') === 'style-1';
+    document.querySelector('#style-2').appliesTo = (feature) => feature.get('styleId') === 'style-2';
+    document.querySelector('#style-3').appliesTo = (feature) => feature.get('styleId') === 'style-3';
+  });
+
   return html`<vl-map id="map">
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
     <vl-map-features-layer .features=${features} data-vl-name="Laag 1">
