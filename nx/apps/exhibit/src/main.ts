@@ -14,6 +14,7 @@ import './app/form-group/form-group.element';
 import './app/form-grid/form-grid.element';
 import './app/grid/grid.element';
 import './app/icon/icon.element';
+import './app/infotext/infotext.element';
 import './app/input-addon/input-addon.element';
 import './app/input-group/input-group.element';
 import './app/input-field/input-field.element';

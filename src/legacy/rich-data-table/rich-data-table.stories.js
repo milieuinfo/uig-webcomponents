@@ -89,7 +89,7 @@ export const Test = () => {
         data-vl-selector="name"
         data-vl-sortable=""
       ></vl-rich-data-field>
-      <vl-rich-data-field data-vl-name="owner" data-vl-selector="owner" data-vl-sortable>
+      <vl-rich-data-field data-vl-name="owner" data-vl-selector="owner" data-vl-sortable="">
         <template slot="label">
           <span>Eigenaar</span>
         </template>
