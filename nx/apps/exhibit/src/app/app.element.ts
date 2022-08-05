@@ -27,6 +27,7 @@ export class AppElement extends HTMLElement {
                     <exhibit-data-table></exhibit-data-table>
                     <exhibit-action-group></exhibit-action-group>
                     <exhibit-doormat></exhibit-doormat>
+                    <exhibit-infotext></exhibit-infotext>
                 </div>
             </div>
       `;
