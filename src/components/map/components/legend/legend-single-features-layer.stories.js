@@ -1,11 +1,9 @@
 import { html } from 'lit-html';
 import '../../index.js';
+import { ifDefined } from 'lit-html/directives/if-defined';
 import { argTypes } from './config/index.js';
 import { docsIntro } from '../../../../../.storybook/utils.js';
-import { sharedButtonArgs } from '../../../button/config/index.js';
-import { action } from '@storybook/addon-actions';
 import { LEGEND_PLACEMENT } from './enums/index.js';
-import { ifDefined } from 'lit-html/directives/if-defined';
 
 export default {
   title: 'custom-elements/vl-map/vl-map-legend/vl-map-legend-single-features-layer',
