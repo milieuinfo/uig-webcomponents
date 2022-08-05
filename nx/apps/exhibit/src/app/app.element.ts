@@ -28,6 +28,9 @@ export class AppElement extends HTMLElement {
                     <exhibit-action-group></exhibit-action-group>
                     <exhibit-doormat></exhibit-doormat>
                     <exhibit-infotext></exhibit-infotext>
+                    <exhibit-search-filter></exhibit-search-filter>
+                    <exhibit-search-results></exhibit-search-results>
+                    <exhibit-select></exhibit-select>
                 </div>
             </div>
       `;

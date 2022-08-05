@@ -24,4 +24,7 @@ import './app/link/link.element';
 import './app/link-list/link-list.element';
 import './app/titles/titles.element';
 import './app/text/text.element';
+import './app/search-filter/search-filter.element';
+import './app/search-results/search-results.element';
+import './app/select/select.element';
 import './app/typography/typography.element';
