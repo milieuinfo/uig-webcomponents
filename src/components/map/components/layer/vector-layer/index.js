@@ -61,15 +61,14 @@ export class VlMapVectorLayer extends VlMapLayer {
         this._styles.map((style) => style.style(feature)).filter((style) => style != null),
       );
 
-      if(this._styles.length > 1) {
-        this._styles.forEach(s => {
+      if (this._styles.length > 1) {
+        this._styles.forEach((s) => {
           const styleId = s.id;
-          if(styleId) {
-            s.appliesTo = feature => feature.get("styleId") === styleId;
+          if (styleId && s.appliesTo === undefined) {
+            s.appliesTo = (feature) => feature != null && feature.get('styleId') === styleId;
           }
         });
       }
-
     } else {
       this._styles = [];
       this._layer.setStyle(style);
