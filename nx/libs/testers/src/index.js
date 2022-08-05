@@ -3,6 +3,7 @@ export * from './lib/element/button';
 export * from './lib/element/body';
 export * from './lib/element/column';
 export * from './lib/element/data-table';
+export * from './lib/element/doormat';
 export * from './lib/element/form';
 export * from './lib/element/form-column';
 export * from './lib/element/form-grid';
