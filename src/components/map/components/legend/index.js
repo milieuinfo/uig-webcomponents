@@ -137,7 +137,7 @@ export class VlMapLegend extends LitElement {
         <span class="uig-map-legend-text uig-map-legend-title">Legende: </span>
       </div>
       ${this.items.map(
-        (item) => html`<div>
+        (item) => html`<div class="uig-map-legend-item">
           <div class="uig-map-legend-icon" style="${this.__generateIconStyle(item)}"></div>
           <span class="uig-map-legend-text">${item.legendText}</span>
         </div>`,
