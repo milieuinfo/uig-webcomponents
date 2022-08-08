@@ -16,6 +16,7 @@ module.exports = {
     },
     stories: [
         '../../../libs/elements/src/lib/**/*.stories.@(js|jsx|ts|tsx)',
+        '../../../libs/components/src/lib/**/*.stories.@(js|jsx|ts|tsx)',
     ],
     addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
     framework: '@storybook/web-components',

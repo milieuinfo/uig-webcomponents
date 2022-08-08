@@ -4,6 +4,7 @@ import '@uig/components';
 
 // app components
 import './app/app.element.ts';
+import './app/alert/alert.element';
 import './app/action-group/action-group.element';
 import './app/breadcrumb/breadcrumb.element';
 import './app/buttons/buttons.element.ts';
