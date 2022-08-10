@@ -31,6 +31,7 @@ export class AppElement extends HTMLElement {
                     <exhibit-search-filter></exhibit-search-filter>
                     <exhibit-search-results></exhibit-search-results>
                     <exhibit-select></exhibit-select>
+                    <exhibit-multiselect></exhibit-multiselect>
 
                     <h1 is="vl-h1" data-vl-alt data-vl-no-space-bottom>Componenten Overzicht UIG</h1>
                     <exhibit-alert></exhibit-alert>
