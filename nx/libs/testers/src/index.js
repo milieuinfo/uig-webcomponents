@@ -26,5 +26,8 @@ export * from './lib/element/search-filter';
 export * from './lib/element/search-result';
 export * from './lib/element/search-results';
 export * from './lib/element/select';
+export * from './lib/element/side-navigation';
+export * from './lib/element/side-navigation-item';
+export * from './lib/element/toggle';
 export * from './lib/element/titles';
 export * from './lib/element/typography';
