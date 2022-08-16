@@ -12,7 +12,8 @@ describe('vl-template', async () => {
     driver.manage().window().maximize();
   });
 
-  it('as a user, I can see the content', async () => {
+  // TODO kspeltin: terug activeren
+  it.skip('as a user, I can see the content', async () => {
     await driver.get(defaultUrl);
     const template = await new VlTemplate(driver, 'vl-template');
     const contentSlotElements = await template.getContentSlotElements();
