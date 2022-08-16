@@ -36,7 +36,7 @@
   ],
   "dependencies": {
     "@govflanders/vl-ui-accordion": "^3.12.17",
-    "@govflanders/vl-ui-core": "^3.10.0",
+    "@govflanders/vl-ui-core": "^4.1.24",
     "@govflanders/vl-ui-infotext": "^3.12.3",
     "@govflanders/vl-ui-progress-bar": "^3.12.3",
     "@govflanders/vl-ui-side-navigation": "^3.12.3",
