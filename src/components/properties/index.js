@@ -4,6 +4,8 @@ import "./components/list";
 import "./components/term";
 import "./components/value";
 
+import styles from "./styles.scss";
+
 /**
  * VlProperties
  * @class
@@ -25,6 +27,9 @@ export class VlProperties extends vlElement(HTMLElement) {
 
   constructor() {
     super(`
+      <style>
+        ${styles}
+      </style>
       <div class="vl-properties">
         <slot></slot>
       </div>
