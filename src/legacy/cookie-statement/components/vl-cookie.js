@@ -1,13 +1,15 @@
 import {vlElement, define} from '../../../utils/core';
-import '../../../components/properties'
-import '../../../components/typography'
+import '../../../components/properties';
+import '../../../components/typography';
+import styles from '../styles.scss';
+import propertiesStyles from '../../../components/properties/styles.scss';
 
 export class VlCookie extends vlElement(HTMLElement) {
   constructor({title, name, purpose, domain, processor, validity} = {}) {
     super(`
         <style>
-            @import '/src/style.css';
-            @import '/node_modules/vl-ui-properties/dist/style.css';
+          ${styles}
+          ${propertiesStyles}
         </style>
     `);
 
