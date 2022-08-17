@@ -10,13 +10,19 @@ const unreleased = [];
 const changes = [
   ...unreleased,
   {
-    version: '3.0.8',
+    version: '3.0.9',
     date: '17/8/2022',
     children: html`<ul>
       <li>
         <p><code>vl-core</code></p>
         <p>Added a fix for the icon issues. Icons should now render correctly throughout the library.</p>
       </li>
+    </ul>`,
+  },
+  {
+    version: '3.0.8',
+    date: '16/8/2022',
+    children: html`<ul>
       <li>
         <p><code>vl-autocomplete</code></p>
         <p>Added as a autocomplete component.</p>
