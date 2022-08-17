@@ -154,23 +154,23 @@ describe('vl-autocomplete', async () => {
     ]);
   });
 
-  // it('as a user, I can see list of suggestions when the autocomplete is calling an api call to resolve the suggestions', async () => {
-  //   await driver.get(apiCallUrl);
-  //   const autocomplete = await new VlTestAutocomplete(driver, selector);
+  it('as a user, I can see list of suggestions when the autocomplete is calling an api call to resolve the suggestions', async () => {
+    await driver.get(apiCallUrl);
+    const autocomplete = await new VlTestAutocomplete(driver, selector);
 
-  //   await autocomplete.setInputValue('drabstraat');
-  //   await autocomplete.assertSuggestionsCount(5);
+    await autocomplete.setInputValue('drabstraat');
+    await autocomplete.assertSuggestionsCount(5);
 
-  //   const suggestions = await autocomplete.getSuggestions();
-  //   const size = suggestions.length;
-  //   assert.equal(size, 5);
+    const suggestions = await autocomplete.getSuggestions();
+    const size = suggestions.length;
+    assert.equal(size, 5);
 
-  //   assert.deepEqual(suggestions, [
-  //     { title: 'Drabstraat, Gent' },
-  //     { title: 'Drabstraat, Kontich' },
-  //     { title: 'Drabstraat, Mechelen' },
-  //     { title: 'Drabstraat, Mortsel' },
-  //     { title: 'Drabstraat, Wichelen' },
-  //   ]);
-  // });
+    assert.deepEqual(suggestions, [
+      { title: 'Drabstraat, Gent' },
+      { title: 'Drabstraat, Kontich' },
+      { title: 'Drabstraat, Mechelen' },
+      { title: 'Drabstraat, Mortsel' },
+      { title: 'Drabstraat, Wichelen' },
+    ]);
+  });
 });
