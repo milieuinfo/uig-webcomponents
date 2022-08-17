@@ -14,7 +14,7 @@ const changes = [
     date: '17/8/2022',
     children: html`<ul>
       <li>
-        <p><code>vl-core</code></p>
+        <p><code>vl-cookie-statement</code></p>
         <p>Added a fix for the icon issues. Icons should now render correctly throughout the library.</p>
       </li>
     </ul>`,
