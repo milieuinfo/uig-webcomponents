@@ -17,6 +17,10 @@ const changes = [
         <p><code>vl-cookie-statement</code></p>
         <p>Fixed an issue where the properties lists had no styling.</p>
       </li>
+      <li>
+        <p><code>vl-textarea</code></p>
+        <p>Fixed broken wysiwyg implementation.</p>
+      </li>
     </ul>`,
   },
   {
