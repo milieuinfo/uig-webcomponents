@@ -10,6 +10,16 @@ const unreleased = [];
 const changes = [
   ...unreleased,
   {
+    version: '3.0.11',
+    date: '18/8/2022',
+    children: html`<ul>
+      <li>
+        <p><code>vl-pill</code></p>
+        <p>Fixed closable state. There was an issue that the icon did not show up anymore.</p>
+      </li>
+    </ul>`,
+  },
+  {
     version: '3.0.10',
     date: '17/8/2022',
     children: html`<ul>
