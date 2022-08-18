@@ -17,6 +17,10 @@ const changes = [
         <p><code>vl-pill</code></p>
         <p>Fixed closable state. There was an issue that the icon did not show up anymore.</p>
       </li>
+      <li>
+        <p><code>vl-proza-message</code></p>
+        <p>Fixed an issue where the wysiwyg does not work with proza message.</p>
+      </li>
     </ul>`,
   },
   {
