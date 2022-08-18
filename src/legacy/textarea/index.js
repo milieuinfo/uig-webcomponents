@@ -2,7 +2,20 @@
 import { nativeVlElement, define, awaitUntil } from '../../utils/core';
 import { VlLinkToolbarFactory } from './vl-tinymce-link-toolbar.js';
 import { vlFormValidation, vlFormValidationElement } from '../../components/form-validation';
-import 'tinymce/tinymce.min.js';
+// TinyMCE
+import 'tinymce/tinymce.js';
+// TinyMCE - default icons are required for TinyMCE 5.3 or above
+import 'tinymce/icons/default';
+// TinyMCE - a theme is also required
+import 'tinymce/themes/silver';
+// TinyMCE - import the skin
+import 'tinymce/skins/ui/oxide/skin.css';
+import 'tinymce/skins/ui/oxide/content.css';
+// TinyMCE - import plugins
+import 'tinymce/plugins/hr';
+import 'tinymce/plugins/lists';
+import 'tinymce/plugins/advlist';
+import 'tinymce/plugins/paste';
 
 export class VlTextarea extends vlFormValidationElement(nativeVlElement(HTMLTextAreaElement)) {
   static get _observedAttributes() {
@@ -52,6 +65,7 @@ export class VlTextarea extends vlFormValidationElement(nativeVlElement(HTMLText
       branding: false,
       powerpaste_word_import: 'clean',
       powerpaste_html_import: 'clean',
+      skin: false,
       content_css: '/lib/legacy/textarea/styles.css',
       verify_html: false,
       forced_root_block: 'p',
@@ -80,7 +94,6 @@ export class VlTextarea extends vlFormValidationElement(nativeVlElement(HTMLText
   _configureWysiwyg() {
     this.disabled = true;
     this._addBlockAttribute();
-    tinyMCE.baseURL = '/node_modules/tinymce';
     try {
       tinyMCE.init(this._wysiwygConfig);
     } catch (e) {
