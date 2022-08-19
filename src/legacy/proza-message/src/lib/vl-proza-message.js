@@ -5,7 +5,7 @@ import toasterStyles from '../../../toaster/styles.scss';
 import { VlTypography } from '../../../../components/typography';
 import { VlProzaMessagePreloader } from './vl-proza-message-preloader.js';
 import { ProzaRestClient } from './vl-proza-rest-client';
-import '/node_modules/tinymce/tinymce.min.js'
+import 'tinymce/tinymce.min.js';
 
 /**
  * VlProzaMessage
