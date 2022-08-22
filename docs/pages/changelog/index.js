@@ -10,6 +10,24 @@ const unreleased = [];
 const changes = [
   ...unreleased,
   {
+    version: '3.0.12',
+    date: '22/8/2022',
+    children: html`<ul>
+      <li>
+        <p><code>vl-breadcrumb</code></p>
+        <p>Fixed an issue where the breadcrumb did not show an arrow after the first item..</p>
+      </li>
+      <li>
+        <p><code>vl-tabs</code></p>
+        <p>Fixed a bug where you could not conditionally render a new tab .</p>
+      </li>
+      <li>
+        <p><code>vl-datepicker</code></p>
+        <p>Fixed a bug where the datepicker did not correctly render inside a modal.</p>
+      </li>
+    </ul>`,
+  },
+  {
     version: '3.0.11',
     date: '18/8/2022',
     children: html`<ul>
