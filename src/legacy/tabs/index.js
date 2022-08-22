@@ -195,7 +195,7 @@ export class VlTabs extends vlElement(HTMLElement) {
       .filter((node) => node instanceof VlTabsPane);
     tabPanesToDelete.forEach((tabPane) => this.__removeTabAndSection(tabPane));
 
-    this.__dress();
+    this.__dress(true);
   }
 
   __addTabAndSection(tabPane) {
