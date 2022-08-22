@@ -7,10 +7,10 @@ import { Class, vlElement } from '@uig/common/utilities';
  * @param {Object} SuperClass
  * @return {Object} SuperClass
  */
-export const vlInputAddonBaseElement = (SuperClass) => {
-  return class extends vlElement(SuperClass) {
-    connectedCallback() {
-      this.classList.add("vl-input-addon");
-    }
-  };
+export const vlInputAddonBaseElement = (SuperClass: Class): Class => {
+    return class extends vlElement(SuperClass) {
+        connectedCallback() {
+            this.classList.add('vl-input-addon');
+        }
+    };
 };
