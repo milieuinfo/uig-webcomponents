@@ -26,9 +26,7 @@ export class VlBreadcrumb extends LitElement {
           const name = `item-${index}`;
           child.setAttribute('slot', name);
           return html` <li class="vl-breadcrumb__list__item">
-            ${index === 0
-              ? nothing
-              : html`<span class="vl-breadcrumb__list__item__separator" aria-hidden="true"></span>`}
+            <span class="vl-breadcrumb__list__item__separator" aria-hidden="true"></span>
             <slot name=${name}></slot>
           </li>`;
         })}

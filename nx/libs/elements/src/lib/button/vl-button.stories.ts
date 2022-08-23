@@ -57,7 +57,7 @@ export const IconButton = (props: any) => {
         return html`${buttonWrap(
             props,
             html`<span is="vl-icon" data-vl-icon="location"></span>
-                <span is="vl-text" data-vl-visually-hidden="">${props.content}</span>`
+                <span is="vl-text" data-vl-visually-hidden>${props.content}</span>`
         )}`;
     }
     return html`

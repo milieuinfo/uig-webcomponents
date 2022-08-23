@@ -11,11 +11,22 @@ $vl-icon-font-location: 'https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/i
 @import '@govflanders/vl-ui-core/src/scss/core';
 
 // @govflanders component styles
+@import '@govflanders/vl-ui-action-group/src/scss/action-group';
 @import '@govflanders/vl-ui-button/src/scss/button';
+@import '@govflanders/vl-ui-data-table/src/scss/data-table';
+@import '@govflanders/vl-ui-doormat/src/scss/doormat';
+@import '@govflanders/vl-ui-form-message/src/scss/form-message';
+@import '@govflanders/vl-ui-form-structure/src/scss/form-structure';
 @import '@govflanders/vl-ui-icon/src/scss/icon';
+@import '@govflanders/vl-ui-infotext/src/scss/infotext';
+@import '@govflanders/vl-ui-input-addon/src/scss/input-addon';
+@import '@govflanders/vl-ui-input-group/src/scss/input-group';
 @import '@govflanders/vl-ui-image/src/scss/image';
+@import '@govflanders/vl-ui-input-field/src/scss/input-field';
 @import '@govflanders/vl-ui-introduction/src/scss/introduction';
 @import '@govflanders/vl-ui-link/src/scss/link';
+@import '@govflanders/vl-ui-link-list/src/scss/link-list';
+@import '@govflanders/vl-ui-popover/src/scss/popover';
 @import '@govflanders/vl-ui-titles/src/scss/titles';
 @import '@govflanders/vl-ui-typography/src/scss/typography';
 

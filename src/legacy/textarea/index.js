@@ -52,7 +52,7 @@ export class VlTextarea extends vlFormValidationElement(nativeVlElement(HTMLText
       branding: false,
       powerpaste_word_import: 'clean',
       powerpaste_html_import: 'clean',
-      content_css: '/src/style.css',
+      content_css: '/lib/legacy/textarea/styles.css',
       verify_html: false,
       forced_root_block: 'p',
       body_class: 'vl-typography',
@@ -80,6 +80,8 @@ export class VlTextarea extends vlFormValidationElement(nativeVlElement(HTMLText
   _configureWysiwyg() {
     this.disabled = true;
     this._addBlockAttribute();
+    // opmerking: afnemers moeten zorgen dat icons, plugins, skins en themes
+    // van tinymce statisch beschikbaar zijn onder '/node_modules/tinymce'
     tinyMCE.baseURL = '/node_modules/tinymce';
     try {
       tinyMCE.init(this._wysiwygConfig);

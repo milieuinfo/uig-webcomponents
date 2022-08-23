@@ -10,6 +10,72 @@ const unreleased = [];
 const changes = [
   ...unreleased,
   {
+    version: '3.0.12',
+    date: '22/8/2022',
+    children: html`<ul>
+      <li>
+        <p><code>vl-breadcrumb</code></p>
+        <p>Fixed an issue where the breadcrumb did not show an arrow after the first item..</p>
+      </li>
+      <li>
+        <p><code>vl-tabs</code></p>
+        <p>Fixed a bug where you could not conditionally render a new tab .</p>
+      </li>
+      <li>
+        <p><code>vl-datepicker</code></p>
+        <p>Fixed a bug where the datepicker did not correctly render inside a modal.</p>
+      </li>
+    </ul>`,
+  },
+  {
+    version: '3.0.11',
+    date: '18/8/2022',
+    children: html`<ul>
+      <li>
+        <p><code>vl-pill</code></p>
+        <p>Fixed closable state. There was an issue that the icon did not show up anymore.</p>
+      </li>
+      <li>
+        <p><code>vl-proza-message</code></p>
+        <p>Fixed an issue where the wysiwyg does not work with proza message.</p>
+      </li>
+    </ul>`,
+  },
+  {
+    version: '3.0.10',
+    date: '17/8/2022',
+    children: html`<ul>
+      <li>
+        <p><code>vl-cookie-statement</code></p>
+        <p>Fixed an issue where the properties lists had no styling.</p>
+      </li>
+      <li>
+        <p><code>vl-textarea</code></p>
+        <p>Fixed broken wysiwyg implementation.</p>
+      </li>
+    </ul>`,
+  },
+  {
+    version: '3.0.9',
+    date: '17/8/2022',
+    children: html`<ul>
+      <li>
+        <p><code>vl-core</code></p>
+        <p>Added a fix for the icon issues. Icons should now render correctly throughout the library.</p>
+      </li>
+    </ul>`,
+  },
+  {
+    version: '3.0.8',
+    date: '16/8/2022',
+    children: html`<ul>
+      <li>
+        <p><code>vl-autocomplete</code></p>
+        <p>Added as a autocomplete component.</p>
+      </li>
+    </ul>`,
+  },
+  {
     version: '3.0.7',
     date: '20/7/2022',
     children: html`<ul>
