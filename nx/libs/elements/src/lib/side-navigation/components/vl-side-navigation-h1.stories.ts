@@ -1,7 +1,7 @@
 import "../vl-side-navigation.element";
 
 export default {
-  title: "native-elements/vl-side-navigation/vl-side-navigation-h1",
+  title: "Elements/vl-side-navigation/vl-side-navigation-h1",
   parameters: {
     controls: { hideNoControlsWarning: true },
   },
