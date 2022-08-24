@@ -31,3 +31,4 @@ export { VlMapModifyAction } from './action/layer-action/modify-action';
 export { VlMapActionControls } from './controls/components/action-controls';
 export { VlMapMeasureControl } from './controls/components/measure-control';
 export { VlSelectLocation } from './select-location';
+export { VlMapLegend } from './legend';
