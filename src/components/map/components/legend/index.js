@@ -64,28 +64,12 @@ export class VlMapLegend extends LitElement {
         break;
     }
 
-    if (this._top !== undefined) position.top = this._top;
-    if (this._left) position.left = this._left;
-    if (this._right) position.right = this._right;
-    if (this._bottom) position.bottom = this._bottom;
+    if (this.top) position.top = this.top;
+    if (this.left) position.left = this.left;
+    if (this.right) position.right = this.right;
+    if (this.bottom) position.bottom = this.bottom;
 
     return position;
-  }
-
-  set left(left) {
-    this._left = left;
-  }
-
-  set right(right) {
-    this._right = right;
-  }
-
-  set top(top) {
-    this._top = top;
-  }
-
-  set bottom(bottom) {
-    this._bottom = bottom;
   }
 
   connectedCallback() {

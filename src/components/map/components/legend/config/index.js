@@ -4,8 +4,11 @@ import { LEGEND_PLACEMENT } from '../enums/index.js';
 export const argTypes = {
   placement: {
     name: 'data-vl-placement',
-    type: { summary: `${LEGEND_PLACEMENT.TOP_LEFT} | ${LEGEND_PLACEMENT.TOP_RIGHT} | ${LEGEND_PLACEMENT.BOTTOM_LEFT} 
-        | ${LEGEND_PLACEMENT.BOTTOM_RIGHT}`, required: false, },
+    type: {
+      summary: `${LEGEND_PLACEMENT.TOP_LEFT} | ${LEGEND_PLACEMENT.TOP_RIGHT} | ${LEGEND_PLACEMENT.BOTTOM_LEFT} 
+        | ${LEGEND_PLACEMENT.BOTTOM_RIGHT}`,
+      required: false,
+    },
     description: 'Attribuut wordt gebruikt om de plaats van de legende op de kaart te bepalen',
     table: {
       category: CATEGORIES.ATTRIBUTES,
@@ -13,8 +16,12 @@ export const argTypes = {
     },
     control: {
       type: 'select',
-      options: [LEGEND_PLACEMENT.TOP_LEFT, LEGEND_PLACEMENT.TOP_RIGHT, LEGEND_PLACEMENT.BOTTOM_LEFT,
-        LEGEND_PLACEMENT.BOTTOM_RIGHT],
+      options: [
+        LEGEND_PLACEMENT.TOP_LEFT,
+        LEGEND_PLACEMENT.TOP_RIGHT,
+        LEGEND_PLACEMENT.BOTTOM_LEFT,
+        LEGEND_PLACEMENT.BOTTOM_RIGHT,
+      ],
     },
   },
   left: {
@@ -26,7 +33,7 @@ export const argTypes = {
       category: CATEGORIES.ATTRIBUTES,
       defaultValue: { summary: 'undefined' },
     },
-    control: { disable: true },
+    control: { type: 'text' },
   },
   top: {
     name: 'top',
@@ -37,7 +44,7 @@ export const argTypes = {
       category: CATEGORIES.ATTRIBUTES,
       defaultValue: { summary: 'undefined' },
     },
-    control: { disable: true },
+    control: { type: 'text' },
   },
   right: {
     name: 'right',
@@ -48,7 +55,7 @@ export const argTypes = {
       category: CATEGORIES.ATTRIBUTES,
       defaultValue: { summary: 'undefined' },
     },
-    control: { disable: true },
+    control: { type: 'text' },
   },
   bottom: {
     name: 'bottom',
@@ -59,6 +66,6 @@ export const argTypes = {
       category: CATEGORIES.ATTRIBUTES,
       defaultValue: { summary: 'undefined' },
     },
-    control: { disable: true },
+    control: { type: 'text' },
   },
 };

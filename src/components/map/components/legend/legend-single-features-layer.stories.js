@@ -78,7 +78,7 @@ export const Default = (props) => {
     ],
   };
 
-  document.addEventListener('DOMContentLoaded', async (e) => {
+  document.addEventListener('DOMContentLoaded', async () => {
     const map = document.getElementById('map');
     await map.ready;
 

@@ -1,5 +1,6 @@
 import { html } from 'lit-html';
 import '../../index.js';
+import { ifDefined } from 'lit-html/directives/if-defined';
 import { docsIntro } from '../../../../../.storybook/utils.js';
 import { LEGEND_PLACEMENT } from './enums/index.js';
 import { argTypes } from './config/index.js';
@@ -18,12 +19,19 @@ export default {
       },
     },
   },
+  args: {
+    placement: LEGEND_PLACEMENT.TOP_LEFT,
+    top: undefined,
+    right: undefined,
+    bottom: undefined,
+    left: undefined,
+  },
   argTypes: {
     ...argTypes,
   },
 };
 
-export const Default = () => {
+export const Default = (props) => {
   const features1 = {
     type: 'FeatureCollection',
     features: [
@@ -74,6 +82,12 @@ export const Default = () => {
     <vl-map-action-controls>
       <vl-map-measure-control></vl-map-measure-control>
     </vl-map-action-controls>
-    <vl-map-legend data-vl-placement="${LEGEND_PLACEMENT.TOP_LEFT}"></vl-map-legend>
+    <vl-map-legend
+      data-vl-placement="${props.placement}"
+      top="${ifDefined(props.top)}"
+      right="${ifDefined(props.right)}"
+      bottom="${ifDefined(props.bottom)}"
+      left="${ifDefined(props.left)}"
+    ></vl-map-legend>
   </vl-map>`;
 };
