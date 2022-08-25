@@ -17,7 +17,7 @@ export default {
   },
 };
 
-export const Default = () => html`
+export const breadcrumbDefault = () => html`
   <vl-breadcrumb>
     <vl-breadcrumb-item data-vl-href="#">Vlaanderen Intern</vl-breadcrumb-item>
     <vl-breadcrumb-item data-vl-href="#">Regelgeving</vl-breadcrumb-item>
@@ -25,3 +25,22 @@ export const Default = () => html`
     <vl-breadcrumb-item data-vl-href="#">Componenten</vl-breadcrumb-item>
   </vl-breadcrumb>
 `;
+breadcrumbDefault.storyName = 'breadcrumb - default';
+
+export const breadcrumbReactive = () => html`
+  <script>
+    console.log('BREADCRUMB WORDT GEÏNITIALISEERD');
+    changeHref = (href) => {
+      console.log('changeHref to', href);
+      document.getElementById('breadCrumbItem1').setAttribute('data-vl-href', href);
+    };
+  </script>
+  <button onclick="changeHref('testUrl')">Href wijzigen</button>
+  <vl-breadcrumb>
+    <vl-breadcrumb-item id="breadCrumbItem1" data-vl-href="#">Vlaanderen Intern</vl-breadcrumb-item>
+    <vl-breadcrumb-item data-vl-href="#">Regelgeving</vl-breadcrumb-item>
+    <vl-breadcrumb-item data-vl-href="#">Webuniversum</vl-breadcrumb-item>
+    <vl-breadcrumb-item data-vl-href="#">Componenten</vl-breadcrumb-item>
+  </vl-breadcrumb>
+`;
+breadcrumbReactive.storyName = 'breadcrumb - reactive';
