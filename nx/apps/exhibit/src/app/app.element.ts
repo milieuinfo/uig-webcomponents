@@ -39,6 +39,7 @@ export class AppElement extends HTMLElement {
                     <exhibit-contact-card></exhibit-contact-card>
                     <exhibit-properties></exhibit-properties>
                     <exhibit-infoblock></exhibit-infoblock>
+                    <exhibit-content-header></exhibit-content-header>
                 </div>
             </div>
       `;
