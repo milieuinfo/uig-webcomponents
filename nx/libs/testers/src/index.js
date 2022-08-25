@@ -26,6 +26,7 @@ export * from './lib/element/layout';
 export * from './lib/element/link';
 export * from './lib/element/link-list';
 export * from './lib/element/list';
+export * from './lib/element/pager';
 export * from './lib/element/properties';
 export * from './lib/element/properties-column';
 export * from './lib/element/region';
