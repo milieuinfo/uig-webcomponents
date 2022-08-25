@@ -40,6 +40,7 @@ export class AppElement extends HTMLElement {
                     <exhibit-properties></exhibit-properties>
                     <exhibit-infoblock></exhibit-infoblock>
                     <exhibit-content-header></exhibit-content-header>
+                    <exhibit-document></exhibit-document>
                 </div>
             </div>
       `;
