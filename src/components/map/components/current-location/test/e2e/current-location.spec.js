@@ -1,5 +1,5 @@
 import { assert, getDriver, config } from '../../../../../../utils/test';
-import { VlTestMapCurrentLocation } from './legend.js';
+import { VlTestMapCurrentLocation } from './current-location.js';
 
 const { sbUrl } = config;
 const defaultUrl = `${sbUrl}?id=custom-elements-vl-map-vl-map-current-location-vl-map-current-location--default&viewMode=story`;
