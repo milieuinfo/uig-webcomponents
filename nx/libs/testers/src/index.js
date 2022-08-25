@@ -11,6 +11,7 @@ export * from './lib/element/form';
 export * from './lib/element/form-column';
 export * from './lib/element/form-grid';
 export * from './lib/element/form-message';
+export * from './lib/element/functional-header';
 export * from './lib/element/grid';
 export * from './lib/element/icon';
 export * from './lib/element/image';
