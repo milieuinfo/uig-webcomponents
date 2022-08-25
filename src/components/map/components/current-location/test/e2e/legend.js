@@ -1,19 +1,10 @@
 import { VlElement } from '../../../../../../utils/test';
 
-export class VlTestMapLegend extends VlElement {
+export class VlTestMapCurrentLocation extends VlElement {
   async getMapLegendStyle() {
-    const div = await this.getElementInShadow(this, '.uig-map-legend');
+    const div = await this.getElementInShadow(this, '.uig-map-current-location');
     const style = await div.getAttribute('style');
     return this.cssToObj(style);
-  }
-
-  async getTop() {
-    return this.getMapLegendStyle().then((s) => s.top);
-  }
-
-  getFeaturesLayers() {
-    const map = this.closest('vl-map');
-    return map.getFeaturesLayers();
   }
 
   cssToObj(css) {
@@ -27,18 +18,6 @@ export class VlTestMapLegend extends VlElement {
       obj[s[i].replace(/\s/g, '')] = s[i + 1].replace(/^\s+|\s+$/g, '');
     }
     return obj;
-  }
-
-  async getLeft() {
-    return this.getMapLegendStyle().then((s) => s.left);
-  }
-
-  async getBottom() {
-    return this.getMapLegendStyle().then((s) => s.bottom);
-  }
-
-  async getRight() {
-    return this.getMapLegendStyle().then((s) => s.right);
   }
 
   async getLegendItems() {
