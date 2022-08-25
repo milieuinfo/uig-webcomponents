@@ -29,6 +29,7 @@ import './app/introduction/introduction.element';
 import './app/link/link.element';
 import './app/link-list/link-list.element';
 import './app/multiselect/multiselect.element';
+import './app/pager/pager.element';
 import './app/properties/properties.element';
 import './app/side-navigation/side-navigation.element';
 import './app/titles/titles.element';
