@@ -7,10 +7,6 @@ import { vlElement, define } from "@uig/common/utilities";
  *
  * @extends HTMLDivElement
  * @mixes nativeVlElement
- *
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-input-group/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-input-group/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-input-group.html|Demo}
  */
 export class VlInputGroupElement extends vlElement(HTMLDivElement) {
   connectedCallback() {

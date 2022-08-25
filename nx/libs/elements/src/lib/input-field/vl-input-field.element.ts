@@ -1,10 +1,10 @@
 import { vlElement, define } from "@uig/common/utilities";
-// import { vlFormValidation, vlFormValidationElement } from "../form-validation/vl-form-validation.element";
+import { vlFormValidation, vlFormValidationElement } from "../form-validation/vl-form-validation.element";
 import { vlPattern } from "../pattern/vl-pattern.element";
 
-// Promise.all([vlFormValidation.ready(), vlPattern.ready()]).then(() =>
-//   define("vl-input-field", VlInputFieldElement, { extends: "input" })
-// );
+Promise.all([vlFormValidation.ready(), vlPattern.ready()]).then(() =>
+  define("vl-input-field", VlInputFieldElement, { extends: "input" })
+);
 
 /**
  * VlInputField
@@ -22,13 +22,12 @@ import { vlPattern } from "../pattern/vl-pattern.element";
  */
 
 // TODO gertjame: Fix validation.
-// export class VlInputFieldElement extends vlFormValidationElement(
-//   vlElement(HTMLInputElement)
-// ) {
-export class VlInputFieldElement  extends vlElement(HTMLInputElement) {
-  // static get _observedAttributes() {
-  //   return vlFormValidation._observedAttributes();
-  // }
+export class VlInputFieldElement extends vlFormValidationElement(
+  vlElement(HTMLInputElement)
+) {
+  static get _observedAttributes() {
+    return vlFormValidation._observedAttributes();
+  }
 
   static get _observedChildClassAttributes() {
     return ["block", "small", "error", "success", "disabled"];
@@ -44,7 +43,7 @@ export class VlInputFieldElement  extends vlElement(HTMLInputElement) {
   }
 
   _dress() {
-    // this._dressFormValidation();
+    this._dressFormValidation();
     this._dressPattern();
   }
 
