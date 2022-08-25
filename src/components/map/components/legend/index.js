@@ -91,6 +91,13 @@ export class VlMapLegend extends LitElement {
   updateLegendItems(layers) {
     this.items = [];
     layers.forEach((layer) => {
+      if (layer._styles.length === 1) {
+        const style = layer._styles[0];
+        if (!style.legendText && layer.name !== undefined) {
+          style.legendText = layer.name;
+        }
+      }
+
       layer._styles.forEach((style) => {
         if (style.legendText) {
           this.items.push(style);

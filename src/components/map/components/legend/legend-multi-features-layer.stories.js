@@ -59,9 +59,8 @@ export const Default = (props) => {
   };
   return html`<vl-map>
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-    <vl-map-features-layer .features=${features1}>
+    <vl-map-features-layer .features=${features1} data-vl-name="Openbare onderzoeken laag">
       <vl-map-layer-circle-style
-        data-vl-legend-text="Openbaar onderzoek"
         data-vl-color="#ffe615"
         data-vl-size="5"
         data-vl-border-color="#000"
@@ -69,7 +68,7 @@ export const Default = (props) => {
       ></vl-map-layer-circle-style>
       <vl-map-measure-action></vl-map-measure-action>
     </vl-map-features-layer>
-    <vl-map-features-layer .features=${features2}>
+    <vl-map-features-layer .features=${features2} data-vl-name="Beslissingen laag">
       <vl-map-layer-circle-style
         data-vl-legend-text="Beslissing"
         data-vl-color="red"

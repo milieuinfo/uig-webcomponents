@@ -31,10 +31,7 @@ import { vlElement, define } from '../../../../utils/core';
 export class VlMapLayerStyle extends vlElement(HTMLElement) {
   connectedCallback() {
     this._setStyleOnParent();
-  }
-
-  get legendText() {
-    return this.getAttribute('data-vl-legend-text');
+    this.legendText = this.getAttribute('data-vl-legend-text');
   }
 
   /**
