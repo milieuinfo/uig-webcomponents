@@ -41,6 +41,7 @@ export class AppElement extends HTMLElement {
                     <exhibit-infoblock></exhibit-infoblock>
                     <exhibit-content-header></exhibit-content-header>
                     <exhibit-document></exhibit-document>
+                    <exhibit-functional-header></exhibit-functional-header>
                 </div>
             </div>
       `;

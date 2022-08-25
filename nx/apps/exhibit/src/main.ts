@@ -16,6 +16,7 @@ import './app/doormat/doormat.element.ts';
 import './app/form/form.element';
 import './app/form-group/form-group.element';
 import './app/form-grid/form-grid.element';
+import './app/functional-header/functional-header.element';
 import './app/grid/grid.element';
 import './app/icon/icon.element';
 import './app/infoblock/infoblock.element';
