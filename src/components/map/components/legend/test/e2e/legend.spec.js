@@ -6,6 +6,7 @@ const { sbUrl } = config;
 const singleFeaturesLayerUrl = `${sbUrl}?id=custom-elements-vl-map-vl-map-legend-vl-map-legend-single-features-layer--default&viewMode=story`;
 const multiFeaturesLayerUrl = `${sbUrl}?id=custom-elements-vl-map-vl-map-legend-vl-map-legend-multi-features-layer--default&viewMode=story`;
 const singleFeaturesLayerWithSingleStyleUrl = `${sbUrl}?id=custom-elements-vl-map-vl-map-legend-vl-map-legend-single-features-layer-with-single-style--default&viewMode=story`;
+const wfsLayerUrl = `${sbUrl}?id=custom-elements-vl-map-vl-map-legend-vl-map-legend-wfs-layer--default&viewMode=story`;
 const defaultUrl = `${singleFeaturesLayerUrl}`;
 
 const selector = 'vl-map-legend';
@@ -109,5 +110,15 @@ describe('vl-map-legend', async () => {
 
     await assert.equal(1, items.length);
     await assert.equal('Openbaar onderzoek', items[0].title);
+  });
+
+  it(`as a user, when viewing a map with a wfs layer with a single style in the layer, I can see the same amount of items in the legend as there are styles in the vl-map-wfs-layer`, async () => {
+    await driver.get(wfsLayerUrl);
+    const legend = await new VlTestMapLegend(driver, selector);
+
+    const items = await legend.getLegendItems();
+
+    await assert.equal(1, items.length);
+    await assert.equal('Oppervlaktewaterlichamen', items[0].title);
   });
 });

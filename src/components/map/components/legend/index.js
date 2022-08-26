@@ -75,20 +75,17 @@ export class VlMapLegend extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     this._mapElement = this.closest('vl-map');
-    this._featuresLayers = this._mapElement.featuresLayers;
 
-    this._featuresLayers.forEach((layer) => {
+    const layers = [].concat(this._mapElement.featuresLayers, this._mapElement.wfsLayers);
+
+    layers.forEach((layer) => {
       layer.addEventListener(VlMapVectorLayer.EVENTS.styleChanged, () => {
-        this.updateLegendItems(this._featuresLayers);
+        this._updateLegendItems(layers);
       });
     });
   }
 
-  getFeaturesLayers() {
-    return this._featuresLayers;
-  }
-
-  updateLegendItems(layers) {
+  _updateLegendItems(layers) {
     this.items = [];
     layers.forEach((layer) => {
       if (layer._styles.length === 1) {

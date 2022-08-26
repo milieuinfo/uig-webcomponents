@@ -4,16 +4,11 @@ export class VlTestMapLegend extends VlElement {
   async getMapLegendStyle() {
     const div = await this.getElementInShadow(this, '.uig-map-legend');
     const style = await div.getAttribute('style');
-    return this.cssToObj(style);
+    return VlTestMapLegend._cssToObj(style);
   }
 
   async getTop() {
     return this.getMapLegendStyle().then((s) => s.top);
-  }
-
-  getFeaturesLayers() {
-    const map = this.closest('vl-map');
-    return map.getFeaturesLayers();
   }
 
   static _cssToObj(css) {
