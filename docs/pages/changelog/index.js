@@ -10,9 +10,19 @@ const unreleased = [];
 const changes = [
   ...unreleased,
   {
+    version: '3.0.13',
+    date: '26/8/2022',
+    children: html` <ul>
+      <li>
+        <p><code>vl-upload</code></p>
+        <p>Fix: close button is again outlined to the right</p>
+      </li>
+    </ul>`,
+  },
+  {
     version: '3.0.12',
     date: '22/8/2022',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-breadcrumb</code></p>
         <p>Fixed an issue where the breadcrumb did not show an arrow after the first item..</p>
@@ -30,7 +40,7 @@ const changes = [
   {
     version: '3.0.11',
     date: '18/8/2022',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-pill</code></p>
         <p>Fixed closable state. There was an issue that the icon did not show up anymore.</p>
@@ -44,7 +54,7 @@ const changes = [
   {
     version: '3.0.10',
     date: '17/8/2022',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-cookie-statement</code></p>
         <p>Fixed an issue where the properties lists had no styling.</p>
@@ -58,7 +68,7 @@ const changes = [
   {
     version: '3.0.9',
     date: '17/8/2022',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-core</code></p>
         <p>Added a fix for the icon issues. Icons should now render correctly throughout the library.</p>
@@ -68,7 +78,7 @@ const changes = [
   {
     version: '3.0.8',
     date: '16/8/2022',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-autocomplete</code></p>
         <p>Added as a autocomplete component.</p>
@@ -78,7 +88,7 @@ const changes = [
   {
     version: '3.0.7',
     date: '20/7/2022',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-cookie-statement</code></p>
         <p>Added as a legacy component.</p>
@@ -88,7 +98,7 @@ const changes = [
   {
     version: '3.0.6',
     date: '19/7/2022',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-rich-data</code></p>
         <p>Added as a legacy component.</p>
@@ -110,7 +120,7 @@ const changes = [
   {
     version: '3.0.5',
     date: '12/7/2022',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-proza-message</code></p>
         <p>Added as a legacy component.</p>
@@ -120,7 +130,7 @@ const changes = [
   {
     version: '3.0.4',
     date: '4/7/2022',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-datepicker</code></p>
         <p>Added as a legacy component.</p>
@@ -130,7 +140,7 @@ const changes = [
   {
     version: '3.0.3',
     date: '29/6/2022',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-steps</code></p>
         <p>Added as a legacy component.</p>
@@ -140,7 +150,7 @@ const changes = [
   {
     version: '3.0.2',
     date: '16/6/2022',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-textarea</code></p>
         <p>Added as a legacy component.</p>
@@ -150,7 +160,7 @@ const changes = [
   {
     version: '3.0.1',
     date: '14/6/2022',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-toaster</code></p>
         <p>Added as a legacy component.</p>
@@ -168,7 +178,7 @@ const changes = [
   {
     version: '3.0.0',
     date: '1/6/2022',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-toggle-button</code></p>
         <p>Added the new <code>vl-toggle-button</code> component, which can be used controlled and uncontrolled.</p>
@@ -257,7 +267,7 @@ const changes = [
   {
     version: '2.3.1',
     date: '15/4/2022',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-tabs</code></p>
         <p>Added the missing dependency <code>@govflanders/vl-ui-tabs</code>.</p>
@@ -267,7 +277,7 @@ const changes = [
   {
     version: '2.3.0',
     date: '8/4/2022',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-map</code></p>
         <p>
@@ -280,7 +290,7 @@ const changes = [
   {
     version: '2.2.6',
     date: '28/3/2022',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-info-tile</code></p>
         <p>When migrating the info tile, we made the toggleable feature reactive.</p>
@@ -321,7 +331,7 @@ const changes = [
   {
     version: '2.2.5',
     date: '17/3/2022',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-http-error-message</code></p>
         <p>Fixed an import error for the styling of the button that is used in the components.</p>
@@ -331,7 +341,7 @@ const changes = [
   {
     version: '2.2.4',
     date: '7/3/2022',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-http-error-message</code></p>
         <p>
@@ -355,7 +365,7 @@ const changes = [
   {
     version: '2.2.3',
     date: '18/2/2022',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-breadcrumb</code> &#x1F4A5;</p>
         <p>
@@ -375,7 +385,7 @@ const changes = [
   {
     version: '2.2.2',
     date: '11/2/2022',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p>An icon mismatch bug is fixed.</p>
       </li>
@@ -384,7 +394,7 @@ const changes = [
   {
     version: '2.2.1',
     date: '9/2/2022',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p>Added <code>"type": "module"</code> to our package.json, as requested.</p>
       </li>
@@ -393,7 +403,7 @@ const changes = [
   {
     version: '2.2.0',
     date: '28/1/2022',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-pill</code></p>
         <p>
@@ -410,7 +420,7 @@ const changes = [
   {
     version: '2.1.2',
     date: '6/1/2022',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p>
           From now on, you can find a test wrapper in the folder of the component to use in your tests. Some customers
@@ -422,7 +432,7 @@ const changes = [
   {
     version: '2.1.1',
     date: '15/12/2021',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-action-group</code></p>
         <p>The stylesheet of the component was not included. Now, it is.</p>
@@ -436,7 +446,7 @@ const changes = [
   {
     version: '2.1.0',
     date: '26/11/2021',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-share-buttons</code></p>
         <p>A new component is introduced.</p>
@@ -450,7 +460,7 @@ const changes = [
   {
     version: '2.0.3',
     date: '18/11/2021',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-pager</code></p>
         <p>
@@ -475,7 +485,7 @@ const changes = [
   {
     version: '2.0.2',
     date: '10/11/2021',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-wizard</code> &#x1F4A5;</p>
         <p>The wizard is refactored, and an outline styling bug is fixed.</p>
@@ -485,7 +495,7 @@ const changes = [
   {
     version: '2.0.1',
     date: '8/11/2021',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-map</code></p>
         <p>The layers that extend the baselayer, no longer set their properties via attributes.</p>
@@ -495,7 +505,7 @@ const changes = [
   {
     version: '2.0.0',
     date: '4/11/2021',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-tooltip</code></p>
         <p>The tooltip and its attributes behave reactive from now on, and it undresses when it disconnects.</p>
@@ -513,7 +523,7 @@ const changes = [
   {
     version: '1.1.1',
     date: '18/10/2021',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-map</code></p>
         <p>From now on the map component uses the actions from a new dependency, called vl-mapactions.</p>
@@ -523,7 +533,7 @@ const changes = [
   {
     version: '1.1.0',
     date: '6/10/2021',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-accessibility</code></p>
         <p>
@@ -551,7 +561,7 @@ const changes = [
   {
     version: '1.0.1',
     date: '1/10/2021',
-    children: html`<ul>
+    children: html` <ul>
       <li>
         <p><code>vl-header</code></p>
         <p>
