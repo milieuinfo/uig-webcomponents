@@ -1,7 +1,8 @@
 @charset "utf-8";
 @import '../../../node_modules/@govflanders/vl-ui-core/src/scss/core';
-@import '../../../node_modules/@govflanders/vl-ui-upload/src/scss/upload';
+@import '../../../node_modules/@govflanders/vl-ui-core-4.1.24/src/scss/generic/iconfont';
 @import '../../../node_modules/@govflanders/vl-ui-link/src/scss/link';
+@import '../../../node_modules/@govflanders/vl-ui-upload/src/scss/upload';
 @import '../../../node_modules/@govflanders/vl-ui-util/src/scss/util';
 
 .vl-upload {

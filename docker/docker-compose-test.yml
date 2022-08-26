@@ -42,7 +42,7 @@ services:
     shm_size: 11g
   tests:
     image: ${DOCKER_REGISTRY}milieuinfo/ubuntu-node:14.18.3
-    command: bash -c "npm run test:bamboo"
+    command: bash -c "rm -rf nx && npm run test:bamboo"
     depends_on:
       - selenium-hub
       - selenium-chrome

@@ -18,7 +18,7 @@ export default {
   },
 };
 
-export const Default = () => html`<a
+export const legacyDocs = () => html`<a
   is="vl-link"
   target="_blank"
   data-vl-inline
