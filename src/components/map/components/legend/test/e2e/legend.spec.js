@@ -78,7 +78,7 @@ describe('vl-map-legend', async () => {
     await assert.eventually.notEqual(legend.getRight(), undefined);
   });
 
-  it(`as a user, I can see the same amount of items in the legend as there are styles in the vl-map-features-layer`, async () => {
+  it(`as a user, when viewing a map with a single features layer with multiple styles, I can see the same amount of items in the legend as there are styles in the vl-map-features-layer`, async () => {
     await driver.get(singleFeaturesLayerUrl);
     const legend = await new VlTestMapLegend(driver, selector);
 
@@ -90,7 +90,7 @@ describe('vl-map-legend', async () => {
     await assert.equal('And another one', items[2].title);
   });
 
-  it(`as a user, I can see the correct amount of items in the legend as there are styles with a valid style vl-data-name attribute or valid layer vl-data-name attribute `, async () => {
+  it(`as a user, when viewing a map with a multiple features layers with a single style per layer, I can see the correct amount of items in the legend as there are styles with a valid style vl-data-name attribute or valid layer vl-data-name attribute `, async () => {
     await driver.get(multiFeaturesLayerUrl);
     const legend = await new VlTestMapLegend(driver, selector);
 
@@ -101,7 +101,7 @@ describe('vl-map-legend', async () => {
     await assert.equal('Beslissing', items[1].title);
   });
 
-  it(`as a user, I can see the same amount of items in the legend as there are styles in the vl-map-features-layer`, async () => {
+  it(`as a user, when viewing a map with a single features layer with a single style in the layer, I can see the same amount of items in the legend as there are styles in the vl-map-features-layer`, async () => {
     await driver.get(singleFeaturesLayerWithSingleStyleUrl);
     const legend = await new VlTestMapLegend(driver, selector);
 
