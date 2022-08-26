@@ -1,3 +1,4 @@
+export * from './lib/accordion/vl-accordion.component';
 export * from './lib/alert/vl-alert.component';
 export * from './lib/breadcrumb/vl-breadcrumb.component';
 export * from './lib/breadcrumb/vl-breadcrumb-item.component';
@@ -6,7 +7,8 @@ export * from './lib/content-header/vl-content-header.component';
 export * from './lib/document/vl-document.component';
 export * from './lib/functional-header/vl-functional-header.component';
 export * from './lib/infoblock/vl-infoblock.component';
+export * from './lib/info-tile/vl-info-tile.component';
 export * from './lib/pager/vl-pager.component';
 export * from './lib/properties/vl-properties.component';
 export * from './lib/search/vl-search.component';
-
+export * from './lib/steps/vl-steps.component';
