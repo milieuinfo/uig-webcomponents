@@ -90,14 +90,14 @@ describe('vl-map-legend', async () => {
     await assert.equal('And another one', items[2].title);
   });
 
-  it(`as a user, I can see the same amount of items in the legend as there are styles in the vl-map-features-layer`, async () => {
+  it(`as a user, I can see the correct amount of items in the legend as there are styles with a valid style vl-data-name attribute or valid layer vl-data-name attribute `, async () => {
     await driver.get(multiFeaturesLayerUrl);
     const legend = await new VlTestMapLegend(driver, selector);
 
     const items = await legend.getLegendItems();
 
     await assert.equal(2, items.length);
-    await assert.equal('Openbaar onderzoek', items[0].title);
+    await assert.equal('Openbare onderzoeken laag', items[0].title);
     await assert.equal('Beslissing', items[1].title);
   });
 
