@@ -1,4 +1,4 @@
-import { vlElement, define } from "@uig/common/utilities";
+import { BaseElementOfType, define } from '@uig/common/utilities';
 
 /**
  * VlSideNavigationGroup
@@ -8,15 +8,15 @@ import { vlElement, define } from "@uig/common/utilities";
  * @extends HTMLUListElement
  * @mixes nativeVlElement
  */
-export class VlSideNavigationGroupElement extends vlElement(HTMLUListElement) {
-  constructor() {
-    super();
-    this._processClasses();
-  }
+export class VlSideNavigationGroupElement extends BaseElementOfType(HTMLUListElement) {
+    constructor() {
+        super();
+        this._processClasses();
+    }
 
-  _processClasses() {
-    this.classList.add("vl-side-navigation__group");
-  }
+    _processClasses() {
+        this.classList.add('vl-side-navigation__group');
+    }
 }
 
-define("vl-side-navigation-group", VlSideNavigationGroupElement, { extends: "ul" });
+define('vl-side-navigation-group', VlSideNavigationGroupElement, { extends: 'ul' });

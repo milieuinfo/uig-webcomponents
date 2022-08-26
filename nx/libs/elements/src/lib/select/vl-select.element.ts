@@ -1,4 +1,4 @@
-import { vlElement, awaitUntil, define } from '@uig/common/utilities';
+import { BaseElementOfType, awaitUntil, define } from '@uig/common/utilities';
 import { vlFormValidation, vlFormValidationElement } from '../form-validation/vl-form-validation.element';
 import './lib/select-lib.js';
 
@@ -27,7 +27,7 @@ Promise.all([vlFormValidation.ready()]).then(() => define('vl-select', VlSelect,
  * @property {string} data-vl-search-no-results-text - Attribuut bepaalt de tekst wanneer er geen zoekresultaten meer zijn.
  * @property {string} data-vl-no-more-options - Attribuut bepaalt de tekst wanneer er geen keuzes meer mogelijk zijn.
  */
-export class VlSelect extends vlFormValidationElement(vlElement(HTMLSelectElement)) {
+export class VlSelect extends vlFormValidationElement(BaseElementOfType(HTMLSelectElement)) {
     /**
      * Geeft de ready event naam.
      *

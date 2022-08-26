@@ -1,10 +1,6 @@
-import { Class } from '../type/types';
-
 declare const vl: any;
 
-// TODO kspeltin:
-//   - kan die Class niet specifieker, CustomElementConstructor ?
-export const vlElement = (SuperClass: Class): Class => {
+export const BaseElementOfType = (SuperClass: typeof HTMLElement): typeof HTMLElement => {
     /**
      * VlElement
      * @class
@@ -16,7 +12,9 @@ export const vlElement = (SuperClass: Class): Class => {
      * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-core/releases/latest|Release notes}
      * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-core/issues|Issues}
      */
-    return class VlElement extends SuperClass {
+    return class BaseElement extends SuperClass {
+        private _shadow: any;
+
         /**
          * VlElement constructor die een shadow DOM voorziet op basis van de HTML {Literal} parameter.
          *
@@ -40,7 +38,7 @@ export const vlElement = (SuperClass: Class): Class => {
         }
 
         static get observedAttributes(): string[][] {
-            const spacer = [`${VlElement.attributePrefix}spacer-none`];
+            const spacer = [`${BaseElement.attributePrefix}spacer-none`];
             const observedAttributes = [spacer].concat(this._observedAttributes.concat(this._observedPrefixAttributes));
             const observedClassAttributes = this._observedClassAttributes.concat(this._observedPrefixClassAttributes);
             const observedChildClassAttributes = this._observedChildClassAttributes.concat(
@@ -87,46 +85,46 @@ export const vlElement = (SuperClass: Class): Class => {
         }
 
         static get _observedPrefixAttributes(): string[] {
-            return this._observedAttributes.map((attribute) => VlElement.attributePrefix + attribute);
+            return this._observedAttributes.map((attribute) => BaseElement.attributePrefix + attribute);
         }
 
         static get _observedPrefixClassAttributes(): string[] {
-            return this._observedClassAttributes.map((attribute) => VlElement.attributePrefix + attribute);
+            return this._observedClassAttributes.map((attribute) => BaseElement.attributePrefix + attribute);
         }
 
         static get _observedPrefixChildClassAttributes(): string[] {
-            return this._observedChildClassAttributes.map((attribute) => VlElement.attributePrefix + attribute);
+            return this._observedChildClassAttributes.map((attribute) => BaseElement.attributePrefix + attribute);
         }
 
         attributeChangedCallback(attr: string, oldValue: string, newValue: string) {
             const classRef = Object.getPrototypeOf(this).constructor;
 
-            if (attr.startsWith(VlElement.attributePrefix)) {
-                attr = attr.replace(VlElement.attributePrefix, '');
+            if (attr.startsWith(BaseElement.attributePrefix)) {
+                attr = attr.replace(BaseElement.attributePrefix, '');
             }
 
             classRef._observedClassAttributes
                 .concat(classRef._observedPrefixClassAttributes)
-                .filter((attribute: string) => attribute == attr || attribute == VlElement.attributePrefix + attr)
+                .filter((attribute: string) => attribute == attr || attribute == BaseElement.attributePrefix + attr)
                 .forEach((attribute: string) => {
                     this.__changeAttribute(this, oldValue, newValue, attribute);
                 });
 
             classRef._observedChildClassAttributes
                 .concat(classRef._observedPrefixChildClassAttributes)
-                .filter((attribute: string) => attribute == attr || attribute == VlElement.attributePrefix + attr)
+                .filter((attribute: string) => attribute == attr || attribute == BaseElement.attributePrefix + attr)
                 .forEach((attribute: string) => {
                     this.__changeAttribute(this._element, oldValue, newValue, attribute);
                 });
 
             const getDeprecatedCallbackFunction = (attribute: string) =>
-                this[`_${attribute.split('-').join('_')}ChangedCallback`];
+                (this as any)[`_${attribute.split('-').join('_')}ChangedCallback`];
 
             const getCallbackFunction = (attribute: string) => {
                 const splittedAttribute = attribute.split('-');
                 const changeFirstLetterToUpperCase = (item: string) =>
                     `${item.charAt(0).toUpperCase()}${item.slice(1)}`;
-                return this[
+                return (this as any)[
                     `_${splittedAttribute.shift()}${splittedAttribute
                         .map(changeFirstLetterToUpperCase)
                         .join('')}ChangedCallback`
@@ -136,8 +134,8 @@ export const vlElement = (SuperClass: Class): Class => {
             const callback =
                 getCallbackFunction(attr) ||
                 getDeprecatedCallbackFunction(attr) ||
-                getCallbackFunction(`${VlElement.attributePrefix}${attr}`) ||
-                getDeprecatedCallbackFunction(`${VlElement.attributePrefix}${attr}`);
+                getCallbackFunction(`${BaseElement.attributePrefix}${attr}`) ||
+                getDeprecatedCallbackFunction(`${BaseElement.attributePrefix}${attr}`);
             if (callback) {
                 callback.call(this, oldValue, newValue);
             }
@@ -148,7 +146,7 @@ export const vlElement = (SuperClass: Class): Class => {
          *
          * @return {string}
          */
-        get name(): string {
+        get name(): string | null {
             return this.getAttribute('name');
         }
 
@@ -157,8 +155,12 @@ export const vlElement = (SuperClass: Class): Class => {
          *
          * @param {string} value
          */
-        set name(value) {
-            this.setAttribute(`${VlElement.attributePrefix}name`, value);
+        set name(value: string | null) {
+            if (value === null) {
+                this.removeAttribute(`${BaseElement.attributePrefix}name`);
+            } else {
+                this.setAttribute(`${BaseElement.attributePrefix}name`, value);
+            }
         }
 
         /**
@@ -199,9 +201,9 @@ export const vlElement = (SuperClass: Class): Class => {
          * @param {String} attribute
          * @return {String}
          */
-        getAttribute(attribute: string): string {
-            return super.hasAttribute(VlElement.attributePrefix + attribute)
-                ? super.getAttribute(VlElement.attributePrefix + attribute)
+        getAttribute(attribute: string): string | null {
+            return super.hasAttribute(BaseElement.attributePrefix + attribute)
+                ? super.getAttribute(BaseElement.attributePrefix + attribute)
                 : super.getAttribute(attribute);
         }
 

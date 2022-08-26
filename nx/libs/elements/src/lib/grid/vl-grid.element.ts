@@ -1,7 +1,7 @@
-import { vlElement, define } from "@uig/common/utilities";
-import "./components/column/vl-column.element";
-import "./components/layout/vl-layout.element";
-import "./components/region/vl-region.element";
+import { BaseElementOfType, define } from '@uig/common/utilities';
+import './components/column/vl-column.element';
+import './components/layout/vl-layout.element';
+import './components/region/vl-region.element';
 
 /**
  * VlGrid
@@ -25,31 +25,31 @@ import "./components/region/vl-region.element";
  * @property {boolean} data-vl-v-stretch - Rek de kolommen tot aan hun maximum hoogte.
  */
 
-export class VlGridElement extends vlElement(HTMLDivElement) {
-  static get _observedClassAttributes() {
-    return [
-      "is-stacked",
-      "is-stacked-small",
-      "is-stacked-large",
-      "align-start",
-      "align-center",
-      "align-end",
-      "align-space-between",
-      "align-space-around",
-      "v-top",
-      "v-center",
-      "v-bottom",
-      "v-stretch",
-    ];
-  }
+export class VlGridElement extends BaseElementOfType(HTMLDivElement) {
+    static get _observedClassAttributes() {
+        return [
+            'is-stacked',
+            'is-stacked-small',
+            'is-stacked-large',
+            'align-start',
+            'align-center',
+            'align-end',
+            'align-space-between',
+            'align-space-around',
+            'v-top',
+            'v-center',
+            'v-bottom',
+            'v-stretch',
+        ];
+    }
 
-  connectedCallback() {
-    this.classList.add("vl-grid");
-  }
+    connectedCallback() {
+        this.classList.add('vl-grid');
+    }
 
-  get _classPrefix() {
-    return "vl-grid--";
-  }
+    get _classPrefix() {
+        return 'vl-grid--';
+    }
 }
 
-define("vl-grid", VlGridElement, { extends: "div" });
+define('vl-grid', VlGridElement, { extends: 'div' });

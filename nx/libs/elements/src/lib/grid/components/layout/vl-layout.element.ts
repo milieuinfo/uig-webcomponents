@@ -1,4 +1,4 @@
-import { vlElement, define } from "@uig/common/utilities";
+import { BaseElementOfType, define } from '@uig/common/utilities';
 
 /**
  * VlLayout
@@ -8,18 +8,18 @@ import { vlElement, define } from "@uig/common/utilities";
  * @extends HTMLDivElement
  * @mixes nativeVlElement
  */
-export class VlLayoutElement extends vlElement(HTMLDivElement) {
-  static get _observedClassAttributes() {
-    return [];
-  }
+export class VlLayoutElement extends BaseElementOfType(HTMLDivElement) {
+    static get _observedClassAttributes() {
+        return [];
+    }
 
-  connectedCallback() {
-    this.classList.add("vl-layout");
-  }
+    connectedCallback() {
+        this.classList.add('vl-layout');
+    }
 
-  get _classPrefix() {
-    return "vl-layout--";
-  }
+    get _classPrefix() {
+        return 'vl-layout--';
+    }
 }
 
-define("vl-layout", VlLayoutElement, { extends: "div" });
+define('vl-layout', VlLayoutElement, { extends: 'div' });

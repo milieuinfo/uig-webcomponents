@@ -1,4 +1,4 @@
-import { vlElement, define } from "@uig/common/utilities";
+import { BaseElementOfType, define } from '@uig/common/utilities';
 
 /**
  * VlSideNavigationToggle
@@ -10,27 +10,25 @@ import { vlElement, define } from "@uig/common/utilities";
  *
  * @property {String} data-vl-child - Attribuut wordt gebruikt om aan te geven dat het een menu item is. De koppeling gebeurt via het `data-vl-parent` attribuut van de submenu items.
  */
-export class VlSideNavigationToggleElement extends vlElement(HTMLAnchorElement) {
-  constructor() {
-    super();
-    this._processClasses();
-  }
+export class VlSideNavigationToggleElement extends BaseElementOfType(HTMLAnchorElement) {
+    constructor() {
+        super();
+        this._processClasses();
+    }
 
-  connectedCallback() {
-    this.addEventListener("click", () => {
-      const element = this.getRootNode().querySelector(
-        this.getAttribute("href")
-      );
-      if (element) {
-        element.scrollIntoView();
-        window.scrollBy(0, -43);
-      }
-    });
-  }
+    connectedCallback() {
+        this.addEventListener('click', () => {
+            const element = this.getRootNode().querySelector(this.getAttribute('href'));
+            if (element) {
+                element.scrollIntoView();
+                window.scrollBy(0, -43);
+            }
+        });
+    }
 
-  _processClasses() {
-    this.classList.add("vl-side-navigation__toggle");
-  }
+    _processClasses() {
+        this.classList.add('vl-side-navigation__toggle');
+    }
 }
 
-define("vl-side-navigation-toggle", VlSideNavigationToggleElement, { extends: "a" });
+define('vl-side-navigation-toggle', VlSideNavigationToggleElement, { extends: 'a' });

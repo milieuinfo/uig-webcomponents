@@ -1,4 +1,4 @@
-import { vlElement, define } from '@uig/common/utilities';
+import { BaseElementOfType, define } from '@uig/common/utilities';
 
 /**
  * VlImage
@@ -8,13 +8,13 @@ import { vlElement, define } from '@uig/common/utilities';
  * @extends HTMLImageElement
  * @mixes nativeVlElement
  */
-export class VlImageElement extends vlElement(HTMLImageElement) {
-  connectedCallback() {
-    this.classList.add("vl-image");
-    if (!this.alt) {
-      this.alt = "";
+export class VlImageElement extends BaseElementOfType(HTMLImageElement) {
+    connectedCallback() {
+        this.classList.add('vl-image');
+        if (!this.alt) {
+            this.alt = '';
+        }
     }
-  }
 }
 
-define("vl-image", VlImageElement, { extends: "img" });
+define('vl-image', VlImageElement, { extends: 'img' });

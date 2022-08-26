@@ -1,4 +1,4 @@
-import { Class, vlElement } from '@uig/common/utilities';
+import { BaseElementOfType } from '@uig/common/utilities';
 
 /**
  * Gebruik de button mixin in combinatie met button elementen.
@@ -7,8 +7,8 @@ import { Class, vlElement } from '@uig/common/utilities';
  * @param {Object} SuperClass - Class die als base class gebruikt zal worden.
  * @return {Object} class
  */
-export const vlButtonBaseElement = (SuperClass: Class): Class => {
-    return class extends vlElement(SuperClass) {
+export const BaseButtonOfType = (SuperClass: typeof HTMLElement): typeof HTMLElement => {
+    return class extends BaseElementOfType(SuperClass) {
         static get _observedAttributes() {
             return [];
         }

@@ -1,16 +1,16 @@
-import { vlElement, define } from '@uig/common/utilities';
+import { BaseElementOfType, define } from '@uig/common/utilities';
 
 /**
  * VlTypography
  * @class
  * @classdesc Gebruik de typograhpy component om de standaard elementen te visualiseren binnen een container. De typography component wordt voornamelijk gebruikt om de stijl van de inhoud van een wysiwyg-editor correct te renderen.
  *
- * @extends HTMLDivElement 
- * @mixes vlElement
+ * @extends HTMLDivElement
+ * @mixes BaseElementOfType
  *
  * @property {string} data-vl-parameters - De key/value parameters die verwerkt en getoond zullen worden in het content element.
  */
-export class VlTypographyElement extends vlElement(HTMLDivElement) {
+export class VlTypographyElement extends BaseElementOfType(HTMLDivElement) {
     static get _observedAttributes() {
         return ['parameters'];
     }
@@ -22,8 +22,8 @@ export class VlTypographyElement extends vlElement(HTMLDivElement) {
     }
 
     connectedCallback() {
-      this.classList.add('vl-typography');
-      // this.__processSlotElements();
+        this.classList.add('vl-typography');
+        // this.__processSlotElements();
     }
 
     // disconnectedCallback() {

@@ -1,4 +1,4 @@
-import { vlElement, define } from "@uig/common/utilities";
+import { BaseElementOfType, define } from '@uig/common/utilities';
 
 /**
  * VlSideNavigationReference
@@ -8,22 +8,22 @@ import { vlElement, define } from "@uig/common/utilities";
  * @extends HTMLDivElement
  * @mixes nativeVlElement
  */
-export class VlSideNavigationReferenceElement extends vlElement(HTMLDivElement) {
-  constructor() {
-    super();
-    this._processAttributes();
-    this._processClasses();
-  }
+export class VlSideNavigationReferenceElement extends BaseElementOfType(HTMLDivElement) {
+    constructor() {
+        super();
+        this._processAttributes();
+        this._processClasses();
+    }
 
-  _processAttributes() {
-    this.setAttribute("data-vl-scrollspy-content", "");
-  }
+    _processAttributes() {
+        this.setAttribute('data-vl-scrollspy-content', '');
+    }
 
-  _processClasses() {
-    this.classList.add("js-vl-scrollspy__content");
-  }
+    _processClasses() {
+        this.classList.add('js-vl-scrollspy__content');
+    }
 }
 
-define("vl-side-navigation-reference", VlSideNavigationReferenceElement, {
-  extends: "div",
+define('vl-side-navigation-reference', VlSideNavigationReferenceElement, {
+    extends: 'div',
 });

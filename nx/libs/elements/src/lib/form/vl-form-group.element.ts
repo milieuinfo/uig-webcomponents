@@ -1,4 +1,4 @@
-import { vlElement, define } from "@uig/common/utilities";
+import { BaseElementOfType, define } from '@uig/common/utilities';
 
 /**
  * VlFormGroup
@@ -7,14 +7,14 @@ import { vlElement, define } from "@uig/common/utilities";
  *
  * @extends HTMLElement
  */
-export class VlFormGroup extends vlElement(HTMLDivElement) {
-  connectedCallback() {
-    this._addClasses();
-  }
+export class VlFormGroup extends BaseElementOfType(HTMLDivElement) {
+    connectedCallback() {
+        this._addClasses();
+    }
 
-  _addClasses() {
-    this.classList.add("vl-form__group");
-  }
+    _addClasses() {
+        this.classList.add('vl-form__group');
+    }
 }
 
-define("vl-form-group", VlFormGroup, { extends: "div" });
+define('vl-form-group', VlFormGroup, { extends: 'div' });

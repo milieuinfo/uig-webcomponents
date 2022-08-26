@@ -1,4 +1,4 @@
-import { vlElement, define } from "@uig/common/utilities";
+import { BaseElementOfType, define } from '@uig/common/utilities';
 
 /**
  * VLActionGroup
@@ -16,55 +16,42 @@ import { vlElement, define } from "@uig/common/utilities";
  * @property {boolean} data-vl-collapse-s - Attribuut wordt gebruikt om de button bij small schermen als block element te tonen.
  * @property {boolean} data-vl-collapse-xs - Attribuut wordt gebruikt om de button bij extra small schermen als block element te tonen.
  */
-export class VlActionGroup extends vlElement(HTMLDivElement) {
-  static get _observedClassAttributes() {
-    return [
-      "align",
-      "space-between",
-      "bordered",
-      "collapse-l",
-      "collapse-m",
-      "collapse-s",
-      "collapse-xs",
-    ];
-  }
+export class VlActionGroup extends BaseElementOfType(HTMLDivElement) {
+    static get _observedClassAttributes() {
+        return ['align', 'space-between', 'bordered', 'collapse-l', 'collapse-m', 'collapse-s', 'collapse-xs'];
+    }
 
-  connectedCallback() {
-    this.classList.add("vl-action-group");
-  }
+    connectedCallback() {
+        this.classList.add('vl-action-group');
+    }
 
-  get _classPrefix() {
-    return "vl-action-group--";
-  }
+    get _classPrefix() {
+        return 'vl-action-group--';
+    }
 
-  _alignChangedCallback(oldValue: string, newValue: string) {
-    this._changeClass(
-      this,
-      "align-" + oldValue,
-      "align-" + newValue,
-      this._classPrefix
-    );
-  }
+    _alignChangedCallback(oldValue: string, newValue: string) {
+        this._changeClass(this, 'align-' + oldValue, 'align-' + newValue, this._classPrefix);
+    }
 
-  _collapseLChangedCallback(oldValue: string, newValue: string) {
-    this._toggleCollapseClass(newValue, "l");
-  }
+    _collapseLChangedCallback(oldValue: string, newValue: string) {
+        this._toggleCollapseClass(newValue, 'l');
+    }
 
-  _collapseMChangedCallback(oldValue: string, newValue: string) {
-    this._toggleCollapseClass(newValue, "m");
-  }
+    _collapseMChangedCallback(oldValue: string, newValue: string) {
+        this._toggleCollapseClass(newValue, 'm');
+    }
 
-  _collapseSChangedCallback(oldValue: string, newValue: string) {
-    this._toggleCollapseClass(newValue, "s");
-  }
+    _collapseSChangedCallback(oldValue: string, newValue: string) {
+        this._toggleCollapseClass(newValue, 's');
+    }
 
-  _collapseXsChangedCallback(oldValue: string, newValue: string) {
-    this._toggleCollapseClass(newValue, "xs");
-  }
+    _collapseXsChangedCallback(oldValue: string, newValue: string) {
+        this._toggleCollapseClass(newValue, 'xs');
+    }
 
-  _toggleCollapseClass(value: string, type: string) {
-    this._toggleClass(this, value, `${this._classPrefix}collapse--${type}`);
-  }
+    _toggleCollapseClass(value: string, type: string) {
+        this._toggleClass(this, value, `${this._classPrefix}collapse--${type}`);
+    }
 }
 
-define("vl-action-group", VlActionGroup, { extends: "div" });
+define('vl-action-group', VlActionGroup, { extends: 'div' });

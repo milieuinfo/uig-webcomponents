@@ -1,6 +1,9 @@
-import { CATEGORIES, TYPES } from './stories.utils';
+import { CATEGORIES, TYPES } from '@uig/common/utilities';
 
-export const sharedButtonArgs = {
+export const buttonArgs = {
+    content: 'Button',
+    secondary: false,
+    tertiary: false,
     loading: false,
     disabled: false,
     error: false,
@@ -10,14 +13,25 @@ export const sharedButtonArgs = {
     narrow: false,
 };
 
-export const buttonArgs = {
-    content: 'Button',
-    secondary: false,
-    tertiary: false,
-    ...sharedButtonArgs,
-};
-
-export const sharedButtonArgTypes = {
+export const buttonArgTypes = {
+    secondary: {
+        name: 'data-vl-secondary',
+        type: { summary: TYPES.BOOLEAN },
+        description: 'Used in conjunction with a regular button to provide alternate actions.',
+        table: {
+            defaultValue: { summary: 'false' },
+            category: CATEGORIES.ATTRIBUTES,
+        },
+    },
+    tertiary: {
+        name: 'data-vl-tertiary',
+        type: { summary: TYPES.BOOLEAN },
+        description: 'Used in conjunction with regular and secondary buttons to provide alternate actions.',
+        table: {
+            defaultValue: { summary: 'false' },
+            category: CATEGORIES.ATTRIBUTES,
+        },
+    },
     disabled: {
         type: { summary: TYPES.BOOLEAN },
         description: 'Used to indicate to the user that the functionality is not active.',
@@ -85,26 +99,4 @@ export const sharedButtonArgTypes = {
         name: 'content (for demo purposes)',
         type: { summary: TYPES.STRING },
     },
-};
-
-export const buttonArgTypes = {
-    secondary: {
-        name: 'data-vl-secondary',
-        type: { summary: TYPES.BOOLEAN },
-        description: 'Used in conjunction with a regular button to provide alternate actions.',
-        table: {
-            defaultValue: { summary: 'false' },
-            category: CATEGORIES.ATTRIBUTES,
-        },
-    },
-    tertiary: {
-        name: 'data-vl-tertiary',
-        type: { summary: TYPES.BOOLEAN },
-        description: 'Used in conjunction with regular and secondary buttons to provide alternate actions.',
-        table: {
-            defaultValue: { summary: 'false' },
-            category: CATEGORIES.ATTRIBUTES,
-        },
-    },
-    ...sharedButtonArgTypes,
 };
