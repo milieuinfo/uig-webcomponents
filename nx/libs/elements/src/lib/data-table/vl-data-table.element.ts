@@ -1,4 +1,4 @@
-import { vlElement, define } from "@uig/common/utilities";
+import { BaseElementOfType, define } from '@uig/common/utilities';
 
 /**
  * VlDataTable
@@ -16,64 +16,54 @@ import { vlElement, define } from "@uig/common/utilities";
  * @property {boolean} data-vl-collaped-s - Vanaf een small schermgrootte zullen de cellen van elke rij onder elkaar ipv naast elkaar getoond worden.
  * @property {boolean} data-vl-collaped-xs - Vanaf een extra small schermgrootte zullen de cellen van elke rij onder elkaar ipv naast elkaar getoond worden.
  */
-export class VlDataTable extends vlElement(HTMLTableElement) {
-  static get _observedClassAttributes() {
-    return [
-      "hover",
-      "matrix",
-      "grid",
-      "zebra",
-      "collapsed-m",
-      "collapsed-s",
-      "collapsed-xs",
-    ];
-  }
-
-  connectedCallback() {
-    this._processClass();
-    this._processScopeAttributes();
-    this._observer = this._observeHeaderElements(() =>
-      this._processScopeAttributes()
-    );
-  }
-
-  disconnectedcallback() {
-    if (this._observer) {
-      this._observer.disconnect();
+export class VlDataTable extends BaseElementOfType(HTMLTableElement) {
+    static get _observedClassAttributes() {
+        return ['hover', 'matrix', 'grid', 'zebra', 'collapsed-m', 'collapsed-s', 'collapsed-xs'];
     }
-  }
 
-  get _headHeaderElements() {
-    return [...this.querySelectorAll("thead tr th")];
-  }
+    connectedCallback() {
+        this._processClass();
+        this._processScopeAttributes();
+        this._observer = this._observeHeaderElements(() => this._processScopeAttributes());
+    }
 
-  get _bodyHeaderElements() {
-    return [...this.querySelectorAll("tbody tr th")];
-  }
+    disconnectedcallback() {
+        if (this._observer) {
+            this._observer.disconnect();
+        }
+    }
 
-  get _classPrefix() {
-    return "vl-data-table--";
-  }
+    get _headHeaderElements() {
+        return [...this.querySelectorAll('thead tr th')];
+    }
 
-  _processClass() {
-    this.classList.add("vl-data-table");
-  }
+    get _bodyHeaderElements() {
+        return [...this.querySelectorAll('tbody tr th')];
+    }
 
-  _processScopeAttributes() {
-    this._headHeaderElements
-      .filter((header) => !header.hasAttribute("scope"))
-      .forEach((header) => header.setAttribute("scope", "col"));
-    this._bodyHeaderElements
-      .filter((header) => !header.hasAttribute("scope"))
-      .forEach((header) => header.setAttribute("scope", "row"));
-  }
+    get _classPrefix() {
+        return 'vl-data-table--';
+    }
 
-  _observeHeaderElements(callback: MutationCallback) {
-    const node = this as unknown as Node;
-    const observer = new MutationObserver(callback);
-    observer.observe(node, { childList: true });
-    return observer;
-  }
+    _processClass() {
+        this.classList.add('vl-data-table');
+    }
+
+    _processScopeAttributes() {
+        this._headHeaderElements
+            .filter((header) => !header.hasAttribute('scope'))
+            .forEach((header) => header.setAttribute('scope', 'col'));
+        this._bodyHeaderElements
+            .filter((header) => !header.hasAttribute('scope'))
+            .forEach((header) => header.setAttribute('scope', 'row'));
+    }
+
+    _observeHeaderElements(callback: MutationCallback) {
+        const node = this as unknown as Node;
+        const observer = new MutationObserver(callback);
+        observer.observe(node, { childList: true });
+        return observer;
+    }
 }
 
-define("vl-data-table", VlDataTable, { extends: "table" });
+define('vl-data-table', VlDataTable, { extends: 'table' });

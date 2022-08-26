@@ -1,4 +1,4 @@
-import { vlElement, define } from "@uig/common/utilities";
+import { BaseElementOfType, define } from '@uig/common/utilities';
 
 /**
  * VlInputGroup
@@ -8,10 +8,10 @@ import { vlElement, define } from "@uig/common/utilities";
  * @extends HTMLDivElement
  * @mixes nativeVlElement
  */
-export class VlInputGroupElement extends vlElement(HTMLDivElement) {
-  connectedCallback() {
-    this.classList.add("vl-input-group");
-  }
+export class VlInputGroupElement extends BaseElementOfType(HTMLDivElement) {
+    connectedCallback() {
+        this.classList.add('vl-input-group');
+    }
 }
 
-define("vl-input-group", VlInputGroupElement, { extends: "div" });
+define('vl-input-group', VlInputGroupElement, { extends: 'div' });

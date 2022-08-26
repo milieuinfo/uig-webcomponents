@@ -1,5 +1,5 @@
 import { define } from '@uig/common/utilities';
-import { vlButtonBaseElement } from './base/vl-button-base.element';
+import { BaseButtonOfType } from './base/button-base.element';
 
 /**
  * VlLinkButton
@@ -8,6 +8,6 @@ import { vlButtonBaseElement } from './base/vl-button-base.element';
  *
  * @extends HTMLAnchorElement
  */
-export class VlLinkButtonElement extends vlButtonBaseElement(HTMLAnchorElement) {}
+export class VlLinkButtonElement extends BaseButtonOfType(HTMLAnchorElement) {}
 
 define('vl-link-button', VlLinkButtonElement, { extends: 'a' });

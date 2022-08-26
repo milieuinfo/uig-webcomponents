@@ -1,4 +1,4 @@
-import { vlElement, define } from "@uig/common/utilities";
+import { BaseElementOfType, define } from '@uig/common/utilities';
 
 /**
  * VlRegion
@@ -17,27 +17,18 @@ import { vlElement, define } from "@uig/common/utilities";
  * @property {boolean} data-vl-bordered - Teken een rand.
  */
 
-export class VlRegionElement extends vlElement(HTMLElement) {
-  static get _observedClassAttributes() {
-    return [
-      "no-space",
-      "no-space-bottom",
-      "no-space-top",
-      "alt",
-      "small",
-      "medium",
-      "bordered",
-      "overlap",
-    ];
-  }
+export class VlRegionElement extends BaseElementOfType(HTMLElement) {
+    static get _observedClassAttributes() {
+        return ['no-space', 'no-space-bottom', 'no-space-top', 'alt', 'small', 'medium', 'bordered', 'overlap'];
+    }
 
-  connectedCallback() {
-    this.classList.add("vl-region");
-  }
+    connectedCallback() {
+        this.classList.add('vl-region');
+    }
 
-  get _classPrefix() {
-    return "vl-region--";
-  }
+    get _classPrefix() {
+        return 'vl-region--';
+    }
 }
 
-define("vl-region", VlRegionElement, { extends: "section" });
+define('vl-region', VlRegionElement, { extends: 'section' });

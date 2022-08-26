@@ -1,4 +1,4 @@
-import { vlElement } from '@uig/common/utilities';
+import { BaseElementOfType } from '@uig/common/utilities';
 
 /**
  * VlTitle
@@ -13,17 +13,17 @@ import { vlElement } from '@uig/common/utilities';
  * @property {boolean} data-vl-alt - Attribuut wordt gebruikt voor een alt titel en zal altijd een lijn toevoegen onder de titel.
  * @property {boolean} data-vl-no-space-bottom - Attribuut wordt gebruikt wanneer een titel gecombineerd wordt met de grid component.
  */
-export class VlTitleBaseElement extends vlElement(HTMLHeadingElement) {
-  static get _observedClassAttributes() {
-    return ["sans", "has-border", "alt", "no-space-bottom"];
-  }
+export class VlTitleBaseElement extends BaseElementOfType(HTMLHeadingElement) {
+    static get _observedClassAttributes() {
+        return ['sans', 'has-border', 'alt', 'no-space-bottom'];
+    }
 
-  connectedCallback() {
-    this.classList.add("vl-title");
-    this.classList.add("vl-title--" + this.tagName.toLowerCase());
-  }
+    connectedCallback() {
+        this.classList.add('vl-title');
+        this.classList.add('vl-title--' + this.tagName.toLowerCase());
+    }
 
-  get _classPrefix() {
-    return "vl-title--";
-  }
+    get _classPrefix() {
+        return 'vl-title--';
+    }
 }

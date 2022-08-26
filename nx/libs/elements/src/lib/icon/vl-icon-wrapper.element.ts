@@ -1,4 +1,4 @@
-import { vlElement, define } from '@uig/common/utilities';
+import { BaseElementOfType, define } from '@uig/common/utilities';
 
 /**
  * VlIconWrapper
@@ -8,14 +8,14 @@ import { vlElement, define } from '@uig/common/utilities';
  * @extends HTMLParagraphElement
  * @mixes nativeVlElement
  */
-export class VlIconWrapperElement extends vlElement(HTMLSpanElement) {
-  connectedCallback() {
-    this._addClass();
-  }
+export class VlIconWrapperElement extends BaseElementOfType(HTMLSpanElement) {
+    connectedCallback() {
+        this._addClass();
+    }
 
-  _addClass() {
-    this.classList.add("vl-icon-wrapper");
-  }
+    _addClass() {
+        this.classList.add('vl-icon-wrapper');
+    }
 }
 
-define("vl-icon-wrapper", VlIconWrapperElement, { extends: "span" });
+define('vl-icon-wrapper', VlIconWrapperElement, { extends: 'span' });

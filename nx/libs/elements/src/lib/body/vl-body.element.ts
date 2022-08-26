@@ -1,4 +1,4 @@
-import { vlElement, define } from '@uig/common/utilities';
+import { BaseElementOfType, define } from '@uig/common/utilities';
 
 /**
  * VlBody
@@ -8,10 +8,10 @@ import { vlElement, define } from '@uig/common/utilities';
  * @extends HTMLBodyElement
  * @mixes nativeVlElement
  */
-export class VlBodyElement extends vlElement(HTMLBodyElement) {
-  connectedCallback() {
-    this.classList.add("vl-u-sticky-gf");
-  }
+export class VlBodyElement extends BaseElementOfType(HTMLBodyElement) {
+    connectedCallback() {
+        this.classList.add('vl-u-sticky-gf');
+    }
 }
 
-define("vl-body", VlBodyElement, { extends: "body" });
+define('vl-body', VlBodyElement, { extends: 'body' });

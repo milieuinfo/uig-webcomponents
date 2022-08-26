@@ -1,13 +1,13 @@
-import { vlElement, define } from "@uig/common/utilities";
+import { BaseElementOfType, define } from '@uig/common/utilities';
 
-export class VlText extends vlElement(HTMLSpanElement) {
-  static get _observedClassAttributes() {
-    return ["visually-hidden"];
-  }
+export class VlText extends BaseElementOfType(HTMLSpanElement) {
+    static get _observedClassAttributes() {
+        return ['visually-hidden'];
+    }
 
-  get _classPrefix() {
-    return "vl-u-";
-  }
+    get _classPrefix() {
+        return 'vl-u-';
+    }
 }
 
-define("vl-text", VlText, { extends: "span" });
+define('vl-text', VlText, { extends: 'span' });

@@ -8,7 +8,7 @@ $vl-font-location: 'https://cdn.omgeving.vlaanderen.be/vlaanderen-font-new/LATES
 $vl-icon-font-location: 'https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/iconfont/3.12.23/';
 
 // @govflanders global styles
-@import '@govflanders/vl-ui-core/src/scss/core';
+@import '@govflanders-v14/vl-ui-core/src/scss/core';
 
 // @govflanders component styles
 @import '@govflanders/vl-ui-action-group/src/scss/action-group';
@@ -42,9 +42,9 @@ $vl-icon-font-location: 'https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/i
 @import '@govflanders/vl-ui-video-player/src/scss/video-player';
 @import '@govflanders/vl-ui-properties/src/scss/properties';
 
-// TODO: Tooltip styling needs to be know outside the shadow root of Tooltip itself. 
+// TODO: Tooltip styling needs to be know outside the shadow root of Tooltip itself.
 // Is this the correct place to register this styling globally?
 @import '@govflanders/vl-ui-tooltip/src/scss/tooltip';
 
 // @govflanders util styles
-@import '@govflanders/vl-ui-util/src/scss/util';
+@import '@govflanders-v14/vl-ui-util/src/scss/core';

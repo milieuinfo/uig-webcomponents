@@ -1,4 +1,4 @@
-import { vlElement, define } from "@uig/common/utilities";
+import { BaseElementOfType, define } from '@uig/common/utilities';
 
 /**
  * VlSideNavigationContent
@@ -8,17 +8,17 @@ import { vlElement, define } from "@uig/common/utilities";
  * @extends HTMLDivElement
  * @mixes nativeVlElement
  */
-export class VlSideNavigationContentElement extends vlElement(HTMLDivElement) {
-  constructor() {
-    super();
-    this._processClasses();
-  }
+export class VlSideNavigationContentElement extends BaseElementOfType(HTMLDivElement) {
+    constructor() {
+        super();
+        this._processClasses();
+    }
 
-  _processClasses() {
-    this.classList.add("vl-side-navigation__content");
-  }
+    _processClasses() {
+        this.classList.add('vl-side-navigation__content');
+    }
 }
 
-define("vl-side-navigation-content", VlSideNavigationContentElement, {
-  extends: "div",
+define('vl-side-navigation-content', VlSideNavigationContentElement, {
+    extends: 'div',
 });

@@ -1,7 +1,7 @@
-import { define, vlElement } from '@uig/common/utilities';
+import { define, BaseElementOfType } from '@uig/common/utilities';
 import styles from './style/vl-alert.scss';
 
-export class VlAlert extends vlElement(HTMLElement) {
+export class VlAlert extends BaseElementOfType(HTMLElement) {
     static get _observedAttributes() {
         return ['icon', 'title', 'closable', 'type', 'size'];
     }

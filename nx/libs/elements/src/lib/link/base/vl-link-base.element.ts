@@ -1,4 +1,4 @@
-import { Class, vlElement } from '@uig/common/utilities';
+import { Class, BaseElementOfType } from '@uig/common/utilities';
 
 /**
  * Gebruik de link mixin in combinatie met link elementen.
@@ -8,36 +8,36 @@ import { Class, vlElement } from '@uig/common/utilities';
  * @return {Object} class
  */
 export const vlLinkBaseElement = (SuperClass: Class): Class => {
-  return class extends vlElement(SuperClass) {
-    static get _observedAttributes() {
-      return ["error"];
-    }
+    return class extends BaseElementOfType(SuperClass) {
+        static get _observedAttributes() {
+            return ['error'];
+        }
 
-    static get _observedClassAttributes() {
-      return ["block", "inline", "small", "bold", "large"];
-    }
+        static get _observedClassAttributes() {
+            return ['block', 'inline', 'small', 'bold', 'large'];
+        }
 
-    connectedCallback() {
-      this.classList.add("vl-link");
-      this._setIconLinkAttribute();
-    }
+        connectedCallback() {
+            this.classList.add('vl-link');
+            this._setIconLinkAttribute();
+        }
 
-    get _classPrefix() {
-      return "vl-link--";
-    }
+        get _classPrefix() {
+            return 'vl-link--';
+        }
 
-    get _iconElementen() {
-      return this.querySelectorAll('[is="vl-icon"]');
-    }
+        get _iconElementen() {
+            return this.querySelectorAll('[is="vl-icon"]');
+        }
 
-    _setIconLinkAttribute() {
-      this._iconElementen.forEach((icon: Element) => {
-        icon.setAttribute("link", "");
-      });
-    }
+        _setIconLinkAttribute() {
+            this._iconElementen.forEach((icon: Element) => {
+                icon.setAttribute('link', '');
+            });
+        }
 
-    _errorChangedCallback(oldValue: string, newValue: string) {
-      this._toggleClass(this, newValue, "vl-u-text--error");
-    }
-  };
+        _errorChangedCallback(oldValue: string, newValue: string) {
+            this._toggleClass(this, newValue, 'vl-u-text--error');
+        }
+    };
 };
