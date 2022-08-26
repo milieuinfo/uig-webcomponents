@@ -44,6 +44,9 @@ export class AppElement extends HTMLElement {
                     <exhibit-functional-header></exhibit-functional-header>
                     <exhibit-pager></exhibit-pager>
                     <exhibit-search></exhibit-search>
+                    <exhibit-accordion></exhibit-accordion>
+                    <exhibit-infotile></exhibit-infotile>
+                    <exhibit-steps></exhibit-steps>
                 </div>
             </div>
       `;
