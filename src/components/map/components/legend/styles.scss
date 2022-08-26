@@ -1,9 +1,16 @@
+@import '../../../../../node_modules/ol/ol';
+@import '../../actions/style';
+@import '../../../form-message/styles.scss';
+@import '../../../../../node_modules/@govflanders/vl-ui-core/src/scss/setting/colorsRaw';
+@import '../../../../../node_modules/@govflanders/vl-ui-core/src/scss/setting/colors';
+@import '../../../../../node_modules/@govflanders/vl-ui-core/src/scss/setting/breakpoints';
+
 div.uig-map-legend {
   position: absolute;
   z-index: 1;
   display: flex;
-  background-color: #fff;
-  border: 1px #cbd2da solid;
+  background-color: white;
+  border: 1px $vl-border-color solid;
   padding-right: 0.5em;
 }
 
