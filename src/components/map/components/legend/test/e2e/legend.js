@@ -16,7 +16,7 @@ export class VlTestMapLegend extends VlElement {
     return map.getFeaturesLayers();
   }
 
-  cssToObj(css) {
+  static _cssToObj(css) {
     const obj = {};
     const s = css
       .toLowerCase()
