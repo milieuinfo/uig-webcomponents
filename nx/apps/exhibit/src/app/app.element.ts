@@ -43,6 +43,7 @@ export class AppElement extends HTMLElement {
                     <exhibit-document></exhibit-document>
                     <exhibit-functional-header></exhibit-functional-header>
                     <exhibit-pager></exhibit-pager>
+                    <exhibit-search></exhibit-search>
                 </div>
             </div>
       `;
