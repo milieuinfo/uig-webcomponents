@@ -93,18 +93,30 @@ export class VlMapLegend extends LitElement {
     layers.forEach((layer) => {
       if (layer._styles.length === 1) {
         const style = layer._styles[0];
-        if (!style.legendText && layer.name !== undefined) {
-          style.legendText = layer.name;
-        }
-      }
 
-      layer._styles.forEach((style) => {
-        if (style.legendText) {
-          this.items.push(style);
+        if (!style.name) {
+          if (layer.name !== undefined && layer.name != null) {
+            this.items.push(this.__createItem(style, layer.name));
+          }
+        } else {
+          this.items.push(this.__createItem(style, style.name));
         }
-      });
+      } else {
+        layer._styles.forEach((style) => {
+          if (style.name) {
+            this.items.push(this.__createItem(style, style.name));
+          }
+        });
+      }
     });
     this.requestUpdate();
+  }
+
+  __createItem(style, name) {
+    const item = {};
+    item.style = style;
+    item.name = name;
+    return item;
   }
 
   render() {
@@ -116,8 +128,8 @@ export class VlMapLegend extends LitElement {
       </div>
       ${this.items.map(
         (item) => html`<div class="uig-map-legend-item">
-          <div class="uig-map-legend-icon" style="${this.__generateIconStyle(item)}"></div>
-          <span class="uig-map-legend-text">${item.legendText}</span>
+          <div class="uig-map-legend-icon" style="${this.__generateIconStyle(item.style)}"></div>
+          <span class="uig-map-legend-text">${item.name}</span>
         </div>`,
       )}
     </div>`;

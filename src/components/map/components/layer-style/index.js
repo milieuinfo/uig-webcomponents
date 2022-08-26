@@ -31,7 +31,15 @@ import { vlElement, define } from '../../../../utils/core';
 export class VlMapLayerStyle extends vlElement(HTMLElement) {
   connectedCallback() {
     this._setStyleOnParent();
-    this.legendText = this.getAttribute('data-vl-name');
+  }
+
+  /**
+   * Geeft de name van de stijl terug.
+   *
+   * @Return {string}
+   */
+  get name() {
+    return this.getAttribute('data-vl-name');
   }
 
   /**

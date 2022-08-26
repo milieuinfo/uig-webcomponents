@@ -57,6 +57,19 @@ export const Default = (props) => {
       },
     ],
   };
+
+  const features3 = {
+    type: 'FeatureCollection',
+    features: [
+      {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [153055.0, 203908.0],
+        },
+      },
+    ],
+  };
   return html`<vl-map>
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
     <vl-map-features-layer .features=${features1} data-vl-name="Openbare onderzoeken laag">
@@ -72,6 +85,15 @@ export const Default = (props) => {
       <vl-map-layer-circle-style
         data-vl-name="Beslissing"
         data-vl-color="red"
+        data-vl-size="5"
+        data-vl-border-color="#000"
+        data-vl-border-size="1"
+      ></vl-map-layer-circle-style>
+      <vl-map-measure-action></vl-map-measure-action>
+    </vl-map-features-layer>
+    <vl-map-features-layer .features=${features3}>
+      <vl-map-layer-circle-style
+        data-vl-color="green"
         data-vl-size="5"
         data-vl-border-color="#000"
         data-vl-border-size="1"

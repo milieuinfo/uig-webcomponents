@@ -112,7 +112,7 @@ export const argTypes = {
     },
     control: { disable: true },
   },
-  legendText: {
+  name: {
     name: 'data-vl-name',
     type: { summary: TYPES.STRING },
     description:
