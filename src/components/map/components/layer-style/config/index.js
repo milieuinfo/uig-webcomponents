@@ -113,10 +113,10 @@ export const argTypes = {
     control: { disable: true },
   },
   legendText: {
-    name: 'data-vl-legend-text',
+    name: 'data-vl-name',
     type: { summary: TYPES.STRING },
     description:
-      'Attribuut wordt gebruikt om aan te geven wat de text is die getoond moet worden in de legende voor deze stijl indien de vl-map-legend op de kaart is toegevoegd. Een stijl zonder data-vl-legend-text zal nooit in de legende getoond worden.',
+      'Attribuut wordt gebruikt om aan te geven wat de naam van de stijl, deze naam wordt ook getoond als tekst in de legende voor deze stijl indien de vl-map-legend op de kaart is toegevoegd. Een stijl zonder data-vl-name zal nooit in de legende getoond worden. Tenzij de het om een enkele stijl in een features layer gaat. In dat geval worde de data-vl-name van de layer in de legende getoond.',
     table: {
       category: CATEGORIES.ATTRIBUTES,
     },

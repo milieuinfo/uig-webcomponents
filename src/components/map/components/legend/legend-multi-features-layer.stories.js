@@ -70,7 +70,7 @@ export const Default = (props) => {
     </vl-map-features-layer>
     <vl-map-features-layer .features=${features2} data-vl-name="Beslissingen laag">
       <vl-map-layer-circle-style
-        data-vl-legend-text="Beslissing"
+        data-vl-name="Beslissing"
         data-vl-color="red"
         data-vl-size="5"
         data-vl-border-color="#000"

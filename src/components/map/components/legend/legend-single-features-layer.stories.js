@@ -92,7 +92,7 @@ export const Default = (props) => {
     <vl-map-features-layer .features=${features} data-vl-name="Laag 1">
       <vl-map-layer-circle-style
         id="style-1"
-        data-vl-legend-text="Openbaar onderzoek"
+        data-vl-name="Openbaar onderzoek"
         data-vl-color="#ffe615"
         data-vl-size="5"
         data-vl-border-color="#000"
@@ -100,7 +100,7 @@ export const Default = (props) => {
       ></vl-map-layer-circle-style>
       <vl-map-layer-circle-style
         id="style-2"
-        data-vl-legend-text="Beslissing"
+        data-vl-name="Beslissing"
         data-vl-color="red"
         data-vl-size="5"
         data-vl-border-color="#000"
@@ -108,7 +108,7 @@ export const Default = (props) => {
       ></vl-map-layer-circle-style>
       <vl-map-layer-style
         id="style-3"
-        data-vl-legend-text="And another one"
+        data-vl-name="And another one"
         data-vl-color="rgba(255,0,0,0.5)"
         data-vl-border-color="rgba(255,255,100,1)"
         data-vl-border-size="2"

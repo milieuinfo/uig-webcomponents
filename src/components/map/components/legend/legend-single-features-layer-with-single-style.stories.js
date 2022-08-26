@@ -55,7 +55,7 @@ export const Default = (props) => {
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
     <vl-map-features-layer .features=${features} data-vl-name="Laag 1">
       <vl-map-layer-circle-style
-        data-vl-legend-text="Openbaar onderzoek"
+        data-vl-name="Openbaar onderzoek"
         data-vl-color="#ffe615"
         data-vl-size="5"
         data-vl-border-color="#000"
