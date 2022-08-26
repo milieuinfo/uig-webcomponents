@@ -102,11 +102,7 @@ export class VlMapLegend extends LitElement {
           this.items.push(this.__createItem(style, style.name));
         }
       } else {
-        layer._styles.forEach((style) => {
-          if (style.name) {
-            this.items.push(this.__createItem(style, style.name));
-          }
-        });
+        this.items = layer._styles.filter((style) => style.name).map((style) => this.__createItem(style, style.name));
       }
     });
     this.requestUpdate();
