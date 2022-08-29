@@ -26,7 +26,7 @@ const changes = [
         <p>New component to show a legend on the map.</p>
       </li>
       <li>
-        <p><code>vl-current-location</code></p>
+        <p><code>vl-map-current-location</code></p>
         <p>New component to go to the current location on the map.</p>
       </li>
     </ul>`,
