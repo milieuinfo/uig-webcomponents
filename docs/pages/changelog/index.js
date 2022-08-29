@@ -21,6 +21,10 @@ const changes = [
         <p><code>vl-autocomplete</code></p>
         <p>Fixed a layout issue when the autocomplete was added to a side-sheet.</p>
       </li>
+      <li>
+        <p><code>vl-map-legend</code></p>
+        <p>Nieuwe component om een legende op de kaart te tonen.</p>
+      </li>
     </ul>`,
   },
   {
