@@ -11,11 +11,15 @@ const changes = [
   ...unreleased,
   {
     version: '3.0.13',
-    date: '26/8/2022',
+    date: '29/8/2022',
     children: html` <ul>
       <li>
         <p><code>vl-upload</code></p>
         <p>Fix: close button is again outlined to the right</p>
+      </li>
+      <li>
+        <p><code>vl-autocomplete</code></p>
+        <p>Fixed a layout issue when the autocomplete was added to a side-sheet.</p>
       </li>
     </ul>`,
   },
