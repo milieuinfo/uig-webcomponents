@@ -23,7 +23,11 @@ const changes = [
       </li>
       <li>
         <p><code>vl-map-legend</code></p>
-        <p>Nieuwe component om een legende op de kaart te tonen.</p>
+        <p>New component to show a legend on the map.</p>
+      </li>
+      <li>
+        <p><code>vl-current-location</code></p>
+        <p>New component to go to the current location on the map.</p>
       </li>
     </ul>`,
   },
