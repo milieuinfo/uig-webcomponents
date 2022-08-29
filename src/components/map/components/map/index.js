@@ -318,6 +318,14 @@ export class VlMap extends vlElement(HTMLElement) {
       window.addEventListener('load', callback, { once: true });
     }
   }
+
+  get featuresLayers() {
+    return Array.from(this.querySelectorAll('vl-map-features-layer'));
+  }
+
+  get wfsLayers() {
+    return Array.from(this.querySelectorAll('vl-map-wfs-layer'));
+  }
 }
 
 define('vl-map', VlMap);

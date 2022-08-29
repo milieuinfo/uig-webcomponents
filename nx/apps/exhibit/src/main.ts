@@ -4,6 +4,7 @@ import '@uig/components';
 
 // app components
 import './app/app.element.ts';
+import './app/alert/alert.element';
 import './app/action-group/action-group.element';
 import './app/breadcrumb/breadcrumb.element';
 import './app/buttons/buttons.element.ts';
@@ -22,6 +23,11 @@ import './app/image/image.element';
 import './app/introduction/introduction.element';
 import './app/link/link.element';
 import './app/link-list/link-list.element';
+import './app/multiselect/multiselect.element';
+import './app/side-navigation/side-navigation.element';
 import './app/titles/titles.element';
 import './app/text/text.element';
+import './app/search-filter/search-filter.element';
+import './app/search-results/search-results.element';
+import './app/select/select.element';
 import './app/typography/typography.element';

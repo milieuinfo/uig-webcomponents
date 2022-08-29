@@ -26,7 +26,15 @@ $vl-icon-font-location: 'https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/i
 @import '@govflanders/vl-ui-introduction/src/scss/introduction';
 @import '@govflanders/vl-ui-link/src/scss/link';
 @import '@govflanders/vl-ui-link-list/src/scss/link-list';
+@import '@govflanders/vl-ui-pill/src/scss/pill';
+@import '@govflanders/vl-ui-pill-input/src/scss/pill-input';
+@import '@govflanders/vl-ui-select/src/scss/select';
+@import '@govflanders/vl-ui-select/src/scss/js-select';
+@import '@govflanders/vl-ui-multiselect/src/scss/multiselect';
 @import '@govflanders/vl-ui-popover/src/scss/popover';
+@import '@govflanders/vl-ui-search-filter/src/scss/search-filter';
+@import '@govflanders/vl-ui-search-results/src/scss/search-results';
+@import '@govflanders/vl-ui-side-navigation/src/scss/side-navigation';
 @import '@govflanders/vl-ui-titles/src/scss/titles';
 @import '@govflanders/vl-ui-typography/src/scss/typography';
 
