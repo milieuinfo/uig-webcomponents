@@ -10,6 +10,16 @@ const unreleased = [];
 const changes = [
   ...unreleased,
   {
+    version: '3.0.13',
+    date: '29/8/2022',
+    children: html`<ul>
+      <li>
+        <p><code>vl-autocomplete</code></p>
+        <p>Fixed a layout issue when the autocomplete was added to a side-sheet.</p>
+      </li>
+    </ul>`,
+  },
+  {
     version: '3.0.12',
     date: '22/8/2022',
     children: html`<ul>
