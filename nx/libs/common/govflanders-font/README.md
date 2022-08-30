@@ -3,7 +3,7 @@
 ## Context
 
 I.h.k.v. webuniversum voorziet Digitaal Vlaanderen (DV) fonts (zie eventueel https://overheid.vlaanderen.be/webuniversum/v3/). De frontend toepassingen van
-departement omgeving maken gebruik van deze fonts, deze worden momenteel centraal ter beschikking gesteld op de CDN.
+Departement Omgeving maken gebruik van deze fonts, deze worden momenteel centraal ter beschikking gesteld op de CDN.
 
 DV released echter geregeld nieuwe versies en daar kan een nieuw font inzitten. Omdat 1 van de fonts icoontjes bevat en nieuwe icoontjes op een random plaats
 worden toegevoegd maakt dit dat het icoontjes font niet backwards compatibel is. Om die rede is er nood om de fonts geversioneerd beschikbaar te stellen.
@@ -31,13 +31,15 @@ Deze folder (common/govflanders-font) maakt deel uit van de Nx-monorepo (alhoewe
 
 Als er nood is aan een nieuwe font versie:
  - omdat er nieuwe icoontjes zijn bijgekomen
- - omdat er ge-ugrade wordt naar een hoger DV versie
+ - omdat er ge-upgrade wordt naar een hoger DV versie
 
 Dan dienen: 
  - de folders 'flanders' en 'iconfont' overgenomen te worden uit 'node_modules/@govflanders/vl-ui-core/src/font'
  - het versie-nummer van vl-ui-core moet overgenomen worden als versie in de package.json van deze module
  - dit alles moet ge-commit worden met een relevante boodschap en ge-rebased met master
- - de feitelijke package moet gepubliceerd worden naar artifactory: 'npm run release'
+ - de feitelijke package moet gepubliceerd worden naar artifactory: 'npm run release' <br>
+   -> om dit te kunnen vanaf een lokale machine moet je create rechten hebben op local-npm
+   -> je dient expliciet op https://repo.omgeving.vlaanderen.be/artifactory/api/npm/local-npm/ in te loggen om te kunnen publiceren
  - nadien dient het 'infra' team op de hoogte gebracht worden, deze zullen er voor zorgen dat de nieuwe versie beschikbaar komt onder
    https://cdn.omgeving.vlaanderen.be/govflanders-font <br>
    -> dit zorgt er ook voor dat onder LATEST de nieuwste versie beschikbaar komt
