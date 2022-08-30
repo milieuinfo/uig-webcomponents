@@ -3,7 +3,7 @@ import { html } from 'lit-html';
 import { buttonArgs, buttonArgTypes } from './vl-button.stories-arg';
 
 export default {
-    title: 'Elements/vl-button',
+    title: 'Elements/button',
     args: buttonArgs,
     argTypes: buttonArgTypes,
 };
@@ -23,4 +23,4 @@ export const buttonDefault = (args: typeof buttonArgs) => html` <button
 >
     ${args.content}
 </button>`;
-buttonDefault.storyName = 'button - default';
+buttonDefault.storyName = 'vl-button - default';
