@@ -5,7 +5,13 @@ import styles from './style/vl-breadcrumb.scss';
 @customElement('vl-breadcrumb-item')
 export class VlBreadcrumbItem extends LitElement {
     @property({ type: String, attribute: 'data-vl-href', reflect: true })
-    private href = '';
+    href = '';
+
+    // static get properties() {
+    //     return {
+    //         href: { type: String, attribute: 'data-vl-href', reflect: true },
+    //     };
+    // }
 
     static get styles() {
         return [
