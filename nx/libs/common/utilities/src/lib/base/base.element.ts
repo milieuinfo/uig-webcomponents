@@ -1,6 +1,6 @@
 declare const vl: any;
 
-export const BaseElementOfType = (SuperClass: typeof HTMLElement): typeof HTMLElement => {
+export const BaseElementOfType = (SuperClass: typeof HTMLElement): any => {
     /**
      * VlElement
      * @class

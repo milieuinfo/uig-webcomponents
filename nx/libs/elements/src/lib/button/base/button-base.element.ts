@@ -7,7 +7,7 @@ import { BaseElementOfType } from '@uig/common/utilities';
  * @param {Object} SuperClass - Class die als base class gebruikt zal worden.
  * @return {Object} class
  */
-export const BaseButtonOfType = (SuperClass: typeof HTMLElement): typeof HTMLElement => {
+export const BaseButtonOfType = (SuperClass: typeof HTMLElement): any => {
     return class extends BaseElementOfType(SuperClass) {
         static get _observedAttributes() {
             return [];
