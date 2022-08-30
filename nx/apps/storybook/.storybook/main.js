@@ -32,6 +32,25 @@ const litCssLoaderRule = {
     },
 };
 
+const fixRulesForLit = (rules) => {
+    rules.forEach((rule) => {
+        if (Array.isArray(rule?.use)) {
+            rule.use.forEach((ruleUse) => {
+                if (Array.isArray(ruleUse?.options?.plugins)) {
+                    ruleUse.options.plugins.forEach((plugin) => {
+                        if (Array.isArray(plugin) && plugin[0].includes('plugin-proposal-decorators')) {
+                            plugin[1].experimentalDecorators = true;
+                            plugin[1].useDefineForClassFields = false;
+                        }
+                    });
+                }
+            });
+        }
+    });
+    console.log('fixRulesForLit: plugin-proposal-decorators -> experimentalDecorators && !useDefineForClassFields');
+    return rules;
+};
+
 module.exports = {
     core: {
         builder: 'webpack5',
@@ -44,9 +63,12 @@ module.exports = {
     addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
     framework: '@storybook/web-components',
     webpackFinal: async (config) => {
+        config.module.rules = fixRulesForLit(config.module.rules);
         config.module.rules = [...config.module.rules, scssLoader, litCssLoaderRule];
         config.resolve.plugins = [tsconfigPathsPlugin];
-        // console.log('webpackFinal', config);
+        // console.log('>>>>>>>>>>>>');
+        // console.log('webpackFinal', JSON.stringify(config.module.rules));
+        // console.log('<<<<<<<<<<<<');
         return config;
     },
 };
