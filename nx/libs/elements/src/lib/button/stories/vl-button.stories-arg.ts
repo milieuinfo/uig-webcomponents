@@ -1,11 +1,11 @@
 import { CATEGORIES, TYPES } from '@uig/common/utilities';
 
 export const buttonArgs = {
-    content: 'Button',
+    content: 'button',
+    disabled: false,
     secondary: false,
     tertiary: false,
     loading: false,
-    disabled: false,
     error: false,
     block: false,
     large: false,
@@ -14,6 +14,18 @@ export const buttonArgs = {
 };
 
 export const buttonArgTypes = {
+    content: {
+        name: 'content (for demo purposes)',
+        type: { summary: TYPES.STRING },
+    },
+    disabled: {
+        type: { summary: TYPES.BOOLEAN },
+        description: 'Used to indicate to the user that the functionality is not active.',
+        table: {
+            defaultValue: { summary: 'false' },
+            category: CATEGORIES.ATTRIBUTES,
+        },
+    },
     secondary: {
         name: 'data-vl-secondary',
         type: { summary: TYPES.BOOLEAN },
@@ -32,9 +44,10 @@ export const buttonArgTypes = {
             category: CATEGORIES.ATTRIBUTES,
         },
     },
-    disabled: {
+    loading: {
+        name: 'data-vl-loading',
         type: { summary: TYPES.BOOLEAN },
-        description: 'Used to indicate to the user that the functionality is not active.',
+        description: 'Used to indicate to the user that their action is currently being processed.',
         table: {
             defaultValue: { summary: 'false' },
             category: CATEGORIES.ATTRIBUTES,
@@ -85,18 +98,5 @@ export const buttonArgTypes = {
             defaultValue: { summary: 'false' },
             category: CATEGORIES.ATTRIBUTES,
         },
-    },
-    loading: {
-        name: 'data-vl-loading',
-        type: { summary: TYPES.BOOLEAN },
-        description: 'Used to indicate to the user that their action is currently being processed.',
-        table: {
-            defaultValue: { summary: 'false' },
-            category: CATEGORIES.ATTRIBUTES,
-        },
-    },
-    content: {
-        name: 'content (for demo purposes)',
-        type: { summary: TYPES.STRING },
     },
 };

@@ -5,7 +5,7 @@ import { iconButtonArgs, iconButtonArgTypes } from './vl-icon-button.stories-arg
 // TODO vl-icon en vl-text
 
 export default {
-    title: 'Elements/vl-button',
+    title: 'Elements/button',
     args: { ...buttonArgs, ...iconButtonArgs },
     argTypes: { ...buttonArgTypes, ...iconButtonArgTypes },
 };
