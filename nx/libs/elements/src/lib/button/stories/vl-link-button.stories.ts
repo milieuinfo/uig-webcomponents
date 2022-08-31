@@ -3,7 +3,7 @@ import '../vl-link-button.element';
 import { buttonArgs, buttonArgTypes } from './vl-button.stories-arg';
 
 export default {
-    title: 'Elements/vl-button',
+    title: 'Elements/button',
     args: { ...buttonArgs, content: 'Link button' },
     argTypes: buttonArgTypes,
 };
