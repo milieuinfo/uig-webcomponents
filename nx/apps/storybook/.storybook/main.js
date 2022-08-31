@@ -9,7 +9,7 @@ const scssLoader = {
 
 const tsconfigPathsPlugin = new TsconfigPathsPlugin({
     configFile: './apps/storybook/tsconfig.json',
-    extensions: ['.ts', '.tsx', '.js'],
+    extensions: ['.ts', '.tsx', '.js', '.css', '.scss'],
 });
 
 const litCssLoaderRule = {
@@ -32,23 +32,10 @@ const litCssLoaderRule = {
     },
 };
 
-const fixRulesForLit = (rules) => {
-    rules.forEach((rule) => {
-        if (Array.isArray(rule?.use)) {
-            rule.use.forEach((ruleUse) => {
-                if (Array.isArray(ruleUse?.options?.plugins)) {
-                    ruleUse.options.plugins.forEach((plugin) => {
-                        if (Array.isArray(plugin) && plugin[0].includes('plugin-proposal-decorators')) {
-                            plugin[1].experimentalDecorators = true;
-                            plugin[1].useDefineForClassFields = false;
-                        }
-                    });
-                }
-            });
-        }
-    });
-    console.log('fixRulesForLit: plugin-proposal-decorators -> experimentalDecorators && !useDefineForClassFields');
-    return rules;
+const tsRule = {
+    test: /\.ts$/,
+    use: 'ts-loader',
+    // exclude: /node_modules/,
 };
 
 module.exports = {
@@ -62,12 +49,83 @@ module.exports = {
     addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
     framework: '@storybook/web-components',
     webpackFinal: async (config) => {
-        config.module.rules = fixRulesForLit(config.module.rules);
+        // config.module.rules = fixRulesForLit(config.module.rules);
+        config.module.rules[0].use[0].options.assumptions = {
+            setPublicClassFields: true,
+            privateFieldsAsProperties: true,
+        };
+        config.module.rules[0].use[0].options.presets = [
+            [
+                '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/preset-env/lib/index.js',
+                {
+                    shippedProposals: true,
+                    loose: false,
+                },
+            ],
+            '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/preset-typescript/lib/index.js',
+        ];
+        config.module.rules[0].use[0].options.plugins = [
+            '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/plugin-transform-shorthand-properties/lib/index.js',
+            '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/plugin-transform-block-scoping/lib/index.js',
+            [
+                '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/plugin-proposal-decorators/lib/index.js',
+                {
+                    legacy: true,
+                },
+            ],
+            [
+                '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/plugin-proposal-class-properties/lib/index.js',
+                {
+                    loose: false,
+                },
+            ],
+            [
+                '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/plugin-proposal-private-property-in-object/lib/index.js',
+                {
+                    loose: false,
+                },
+            ],
+            [
+                '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/plugin-proposal-private-methods/lib/index.js',
+                {
+                    loose: false,
+                },
+            ],
+            '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/plugin-proposal-export-default-from/lib/index.js',
+            '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/plugin-syntax-dynamic-import/lib/index.js',
+            [
+                '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/plugin-proposal-object-rest-spread/lib/index.js',
+                {
+                    loose: false,
+                    useBuiltIns: true,
+                },
+            ],
+            '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/plugin-transform-classes/lib/index.js',
+            '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/plugin-transform-arrow-functions/lib/index.js',
+            '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/plugin-transform-parameters/lib/index.js',
+            '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/plugin-transform-destructuring/lib/index.js',
+            '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/plugin-transform-spread/lib/index.js',
+            '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/plugin-transform-for-of/lib/index.js',
+            '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@storybook/core-common/node_modules/babel-plugin-macros/dist/index.js',
+            '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/plugin-proposal-optional-chaining/lib/index.js',
+            '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/plugin-proposal-nullish-coalescing-operator/lib/index.js',
+            [
+                '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@storybook/core-common/node_modules/babel-plugin-polyfill-corejs3/lib/index.js',
+                {
+                    method: 'usage-global',
+                    absoluteImports:
+                        '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/core-js/index.js',
+                    version: '3.24.0',
+                },
+            ],
+        ];
+        // config.module.rules[0] = tsRule;
         config.module.rules = [...config.module.rules, scssLoader, litCssLoaderRule];
         config.resolve.plugins = [tsconfigPathsPlugin];
-        // console.log('>>>>>>>>>>>>');
-        // console.log('webpackFinal', JSON.stringify(config.module.rules));
-        // console.log('<<<<<<<<<<<<');
+        console.log('>>>>>>>>>>>>');
+        RegExp.prototype.toJSON = RegExp.prototype.toString;
+        console.log('webpackFinal', JSON.stringify(config.module.rules[0], null, 4));
+        console.log('<<<<<<<<<<<<');
         return config;
     },
 };
