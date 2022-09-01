@@ -50,16 +50,13 @@ module.exports = {
     framework: '@storybook/web-components',
     webpackFinal: async (config) => {
         // config.module.rules = fixRulesForLit(config.module.rules);
-        config.module.rules[0].use[0].options.assumptions = {
-            setPublicClassFields: true,
-            privateFieldsAsProperties: true,
-        };
         config.module.rules[0].use[0].options.presets = [
             [
                 '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/preset-env/lib/index.js',
                 {
                     shippedProposals: true,
-                    loose: false,
+                    loose: true,
+                    targets: { node: 'current' },
                 },
             ],
             '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/preset-typescript/lib/index.js',
@@ -70,25 +67,25 @@ module.exports = {
             [
                 '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/plugin-proposal-decorators/lib/index.js',
                 {
-                    legacy: true,
+                    version: 'legacy',
                 },
             ],
             [
                 '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/plugin-proposal-class-properties/lib/index.js',
                 {
-                    loose: false,
+                    loose: true,
                 },
             ],
             [
                 '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/plugin-proposal-private-property-in-object/lib/index.js',
                 {
-                    loose: false,
+                    loose: true,
                 },
             ],
             [
                 '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/plugin-proposal-private-methods/lib/index.js',
                 {
-                    loose: false,
+                    loose: true,
                 },
             ],
             '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/plugin-proposal-export-default-from/lib/index.js',
@@ -96,7 +93,7 @@ module.exports = {
             [
                 '/Users/krisspeltincx/Ontwikkeling/OMG/github/uig-webcomponents/nx/node_modules/@babel/plugin-proposal-object-rest-spread/lib/index.js',
                 {
-                    loose: false,
+                    loose: true,
                     useBuiltIns: true,
                 },
             ],

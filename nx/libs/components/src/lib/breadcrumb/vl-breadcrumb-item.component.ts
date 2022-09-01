@@ -5,7 +5,7 @@ import styles from './style/vl-breadcrumb.scss';
 @customElement('vl-breadcrumb-item')
 export class VlBreadcrumbItem extends LitElement {
     @property({ type: String, attribute: 'data-vl-href', reflect: true })
-    href = '';
+    public href = '';
 
     // static get properties() {
     //     return {

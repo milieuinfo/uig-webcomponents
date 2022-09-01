@@ -15,7 +15,8 @@
     },
     "private": true,
     "devDependencies": {
-        "@babel/core": "^7.18.9",
+        "@babel/core": "~7.9.6",
+        "@babel/plugin-proposal-decorators": "^7.18.10",
         "@mdx-js/react": "^1.6.22",
         "@nrwl/cli": "14.4.3",
         "@nrwl/cypress": "14.4.3",
