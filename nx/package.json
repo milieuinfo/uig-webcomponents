@@ -58,9 +58,9 @@
     },
     "dependencies": {
         "@govflanders/vl-ui-action-group": "^3.12.24",
+        "@govflanders-v14/vl-ui-action-group": "npm:@govflanders/vl-ui-action-group@14.0.1",
         "@govflanders/vl-ui-alert": "^3.12.24",
         "@govflanders/vl-ui-breadcrumb": "^3.12.3",
-        "@govflanders/vl-ui-button": "^3.12.24",
         "@govflanders-v14/vl-ui-button": "npm:@govflanders/vl-ui-button@14.0.1",
         "@govflanders/vl-ui-core": "^4.1.24",
         "@govflanders-v14/vl-ui-core": "npm:@govflanders/vl-ui-core@15.0.1",

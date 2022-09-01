@@ -8,10 +8,11 @@ export default {
     },
 };
 
-export const Default = () =>
+export const bodyDefault = () =>
     html`
         <!-- just shows usage -->
         <body is="vl-body" data-cy="body-default">
             <p>By using the native vl-body element incl. styling, a minimum of corporate identity will be loaded.</p>
         </body>
     `;
+bodyDefault.storyName = 'vl-body - default';
