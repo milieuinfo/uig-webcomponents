@@ -1,9 +1,9 @@
 import { BaseElementOfType, define } from '@uig/common/utilities';
-import './components/content/vl-doormat-content.element';
-import './components/title/vl-doormat-title.element';
-import './components/text/vl-doormat-text.element';
-import './components/image/vl-doormat-image.element';
-import './components/graphic-wrapper/vl-doormat-graphic-wrapper.element';
+import './child/vl-doormat-content.element';
+import './child/vl-doormat-title.element';
+import './child/vl-doormat-text.element';
+import './child/vl-doormat-image.element';
+import './child/vl-doormat-graphic-wrapper.element';
 
 export class VlDoormatElement extends BaseElementOfType(HTMLAnchorElement) {
     static get _observedClassAttributes() {
