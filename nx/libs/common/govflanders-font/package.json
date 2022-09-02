@@ -1,6 +1,6 @@
 {
     "name": "@domg/govflanders-font",
-    "version": "4.1.33",
+    "version": "15.0.1",
     "scripts": {
         "release": "npm publish"
     },
