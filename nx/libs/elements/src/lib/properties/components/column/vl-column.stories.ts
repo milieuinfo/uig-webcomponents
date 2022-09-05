@@ -25,26 +25,26 @@ interface DefaultInterface {
   full: string
 }
 
-export const Default = ({ full }: DefaultInterface) => html`<vl-properties>
+export const Default = ({ full }: DefaultInterface) => html`<vl-properties data-cy="properties">
   <h4 is="vl-h4">Gegevens</h4>
-  <div is="vl-properties-column" ?data-vl-full=${full}>
+  <div is="vl-properties-column" ?data-vl-full=${full} data-cy="properties-column-1">
     <dl is="vl-properties-list">
-      <dt is="vl-property-term">Voornaam</dt>
-      <dd is="vl-property-value">Koen</dd>
-      <dt is="vl-property-term">Naam</dt>
-      <dd is="vl-property-value">Peeters</dd>
-      <dt is="vl-property-term">Geslacht</dt>
-      <dd is="vl-property-value">Man</dd>
+      <dt is="vl-property-term" data-cy="property-term-1">Voornaam</dt>
+      <dd is="vl-property-value" data-cy="property-value-1">Koen</dd>
+      <dt is="vl-property-term" data-cy="property-term-2">Naam</dt>
+      <dd is="vl-property-value" data-cy="property-value-2">Peeters</dd>
+      <dt is="vl-property-term" data-cy="property-term-3">Geslacht</dt>
+      <dd is="vl-property-value" data-cy="property-value-3">Man</dd>
     </dl>
   </div>
-  <div is="vl-properties-column" ?data-vl-full=${full}>
+  <div is="vl-properties-column" ?data-vl-full=${full} data-cy="properties-column-2">
     <dl is="vl-properties-list">
-      <dt is="vl-property-term">Telefoon</dt>
-      <dd is="vl-property-value">000/00.00.00</dd>
-      <dt is="vl-property-term">Gsm-nummer</dt>
-      <dd is="vl-property-value">000/00.00.00</dd>
-      <dt is="vl-property-term">E-mailadres</dt>
-      <dd is="vl-property-value">koen.peeters@outlook.be</dd>
+      <dt is="vl-property-term" data-cy="property-term-4">Telefoon</dt>
+      <dd is="vl-property-value" data-cy="property-value-4">000/00.00.00</dd>
+      <dt is="vl-property-term" data-cy="property-term-5">Gsm-nummer</dt>
+      <dd is="vl-property-value" data-cy="property-value-5">000/00.00.00</dd>
+      <dt is="vl-property-term" data-cy="property-term-6">E-mailadres</dt>
+      <dd is="vl-property-value" data-cy="property-value-6">koen.peeters@outlook.be</dd>
     </dl>
   </div>
 </vl-properties>`;
