@@ -40,6 +40,7 @@ module.exports = {
         '../../../libs/components/src/lib/**/*.stories.@(js|jsx|ts|tsx)',
         '../../../libs/elements/src/lib/**/*.stories.@(js|jsx|ts|tsx)',
     ],
+    staticDirs: ['../../../'],
     addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
     framework: '@storybook/web-components',
     webpackFinal: async (config) => {

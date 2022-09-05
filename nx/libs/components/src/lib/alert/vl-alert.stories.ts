@@ -140,6 +140,7 @@ const Template = ({ closable, icon, title, size, type, content }: TemplateInterf
         data-vl-title=${title}
         data-vl-size=${size}
         data-vl-type=${type}
+        data-cy="alert"
     >
         <p>${content}</p>
     </vl-alert>
@@ -187,6 +188,7 @@ export const WithButton = ({ closable, icon, title, size, type, buttonSlotText, 
         data-vl-title=${title}
         data-vl-size=${size}
         data-vl-type=${type}
+        data-cy="alert"
     >
         <p>${content}</p>
         <button slot="actions" is="vl-button">${buttonSlotText}</button>
@@ -202,7 +204,7 @@ WithButton.argTypes = {
 };
 
 export const WithTitleSlot = ({ closable, icon, size, type, titleSlotText, content }: TemplateInterface) => html`
-    <vl-alert ?data-vl-closable=${closable} data-vl-icon=${icon} data-vl-size=${size} data-vl-type=${type}>
+    <vl-alert ?data-vl-closable=${closable} data-vl-icon=${icon} data-vl-size=${size} data-vl-type=${type} data-cy="alert">
         <span slot="title">${titleSlotText}</span>
         <p>${content}</p>
     </vl-alert>
