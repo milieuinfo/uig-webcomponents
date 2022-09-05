@@ -49,3 +49,4 @@ import './app/tooltip/tooltip.element';
 import './app/toaster/toaster.element';
 import './app/typography/typography.element';
 import './app/upload/upload.element';
+import './app/video-player/video-player.element';
