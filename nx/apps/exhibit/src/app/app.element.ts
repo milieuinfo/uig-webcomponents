@@ -62,6 +62,7 @@ export class AppElement extends HTMLElement {
                     <exhibit-pill></exhibit-pill>
                     <exhibit-typography></exhibit-typography>
                     <exhibit-checkbox></exhibit-checkbox>
+                    <exhibit-radio></exhibit-radio>
                 </div>
             </div>
       `;

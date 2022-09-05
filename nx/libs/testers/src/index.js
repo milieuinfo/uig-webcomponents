@@ -41,6 +41,8 @@ export * from './lib/element/pill';
 export * from './lib/element/pill-element';
 export * from './lib/element/properties';
 export * from './lib/element/properties-column';
+export * from './lib/element/radio';
+export * from './lib/element/radio-group';
 export * from './lib/element/region';
 export * from './lib/element/search-filter';
 export * from './lib/element/search-result';
