@@ -27,14 +27,15 @@ interface DefaultInterface {
 
 export const Default = ({ fullWidth }: DefaultInterface) => html`<vl-properties
   ?data-vl-full-width=${fullWidth}
+  data-cy="properties"
 >
   <h4 is="vl-h4">Gegevens</h4>
-  <dl is="vl-properties-list">
-    <dt is="vl-property-term">Voornaam</dt>
-    <dd is="vl-property-value">Koen</dd>
-    <dt is="vl-property-term">Naam</dt>
-    <dd is="vl-property-value">Peeters</dd>
-    <dt is="vl-property-term">Geslacht</dt>
-    <dd is="vl-property-value">Man</dd>
+  <dl is="vl-properties-list" data-cy="properties-list">
+    <dt is="vl-property-term" data-cy="property-term-1">Voornaam</dt>
+    <dd is="vl-property-value" data-cy="property-value-1">Koen</dd>
+    <dt is="vl-property-term" data-cy="property-term-2">Naam</dt>
+    <dd is="vl-property-value" data-cy="property-value-2">Peeters</dd>
+    <dt is="vl-property-term" data-cy="property-term-3">Geslacht</dt>
+    <dd is="vl-property-value" data-cy="property-value-3">Man</dd>
   </dl>
 </vl-properties>`;
