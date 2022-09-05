@@ -73,6 +73,7 @@ export const Default = ({ title, subTitle, link, backLink, back }: DefaultInterf
     data-vl-title=${title}
     data-vl-sub-title=${subTitle}
     data-vl-link=${link}
+    data-cy="functional-header"
   ></vl-functional-header>`;
 
 export const WithSlotElements = ({ title, subTitle, link, backLink, back }: DefaultInterface) =>
@@ -80,6 +81,7 @@ export const WithSlotElements = ({ title, subTitle, link, backLink, back }: Defa
     data-vl-link=${link}
     data-vl-back-link=${backLink}
     data-vl-back=${back}
+    data-cy="functional-header-with-slot-elements"
   >
     <span slot="title">${title}</span>
     <span slot="sub-title">${subTitle}</span>
@@ -114,6 +116,7 @@ export const WithUserInteraction = ({
     data-vl-link=${link}
     data-vl-back-link=${backLink}
     data-vl-back=${back}
+    data-cy="functional-header-with-user-interaction"
   >
     <span slot="title">${title}</span>
     <span slot="sub-title">${subTitle}</span>
