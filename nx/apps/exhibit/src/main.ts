@@ -41,6 +41,7 @@ import './app/progress-bar/progress-bar.element';
 import './app/side-navigation/side-navigation.element';
 import './app/titles/titles.element';
 import './app/text/text.element';
+import './app/toggle-button/toggle-button.element';
 import './app/search-filter/search-filter.element';
 import './app/search-results/search-results.element';
 import './app/select/select.element';
