@@ -51,6 +51,7 @@ export class AppElement extends HTMLElement {
                     <exhibit-tabs></exhibit-tabs>
                     <exhibit-code-preview></exhibit-code-preview>
                     <exhibit-modal></exhibit-modal>
+                    <exhibit-tooltip></exhibit-tooltip>
                 </div>
             </div>
       `;
