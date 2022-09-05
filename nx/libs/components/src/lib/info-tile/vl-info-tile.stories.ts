@@ -74,8 +74,8 @@ export const Default = ({
   titleSlotText,
   subtitleSlotText,
   contentSlotText,
-}: DefaultInterface) => html`<vl-info-tile ?data-vl-toggleable=${toggleable} ?data-vl-auto-open=${autoOpen}
-  ><span slot="title">${titleSlotText}</span>
+}: DefaultInterface) => html`
+<vl-info-tile ?data-vl-toggleable=${toggleable} ?data-vl-auto-open=${autoOpen} data-cy="info-tile"><span slot="title">${titleSlotText}</span>
   <span slot="subtitle">${subtitleSlotText}</span>
   <div slot="content">${contentSlotText}</div>
 </vl-info-tile>`;

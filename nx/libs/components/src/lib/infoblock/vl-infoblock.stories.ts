@@ -57,6 +57,7 @@ html`
     data-vl-title=${title}
     data-vl-type=${type}
     data-vl-icon=${icon}
+    data-cy="infoblock"
   >${content}</vl-infoblock>
 `;
 
@@ -125,8 +126,8 @@ interface WithSlotElementsInterface {
 }
 
 export const WithSlotElements = ({ title, content, type }: WithSlotElementsInterface) => html`
-  <vl-infoblock data-vl-type=${type}>
-    <h2 slot="title">${title}</h2>
+  <vl-infoblock data-vl-type=${type} data-cy="infoblock-with-slot-elements">
+    <h2 is="vl-h2"slot="title">${title}</h2>
     ${content}
   </vl-infoblock>
 `;

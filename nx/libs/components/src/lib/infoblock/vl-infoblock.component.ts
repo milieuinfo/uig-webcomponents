@@ -26,7 +26,7 @@ export class VlInfoblockComponent extends vlElement(HTMLElement) {
       <section id="infoblock-element" class="vl-infoblock">
         <header class="vl-infoblock__header" role="presentation">
           <span is="vl-icon" id="infoblock_icon" class="vl-infoblock__header__icon"></span>
-          <slot name="title" class="vl-infoblock__title"></slot>
+          <slot name="title" class="vl-infoblock__title">Testa</slot>
         </header>
         <div class="vl-infoblock__content" id="infoblock_content">
           <slot></slot>
@@ -35,12 +35,21 @@ export class VlInfoblockComponent extends vlElement(HTMLElement) {
     `);
   }
 
+
+  connectedCallback() {
+    const title = this.getAttribute('title');
+    if(title) {
+      this._titleChangedCallback('', this.getAttribute('title'));
+    }
+  }
+
   _titleChangedCallback(oldValue: string, newValue: string) {
     const currentSlot = this.querySelector('[slot="title"]');
     if (currentSlot) {
+      console.log("remove slot");
       currentSlot.remove();
     }
-    this.append(this._template(`<h2 slot='title'>${newValue}</h2>`));
+    this.appendChild(this._template(`<h2 is="vl-h2" slot='title'>${newValue}</h2>`));
   }
 
   _iconChangedCallback(oldValue: string, newValue: string) {
