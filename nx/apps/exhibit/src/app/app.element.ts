@@ -55,6 +55,7 @@ export class AppElement extends HTMLElement {
                     <exhibit-modal></exhibit-modal>
                     <exhibit-tooltip></exhibit-tooltip>
                     <exhibit-upload></exhibit-upload>
+                    <exhibit-description-data></exhibit-description-data>
                 </div>
             </div>
       `;
