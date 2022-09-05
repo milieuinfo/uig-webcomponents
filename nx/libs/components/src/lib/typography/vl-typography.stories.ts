@@ -1,8 +1,8 @@
 import { html } from "lit-html";
-import "./vl-typography.element";
+import "./vl-typography.component";
 
 export default {
-  title: "Elements/vl-typography",
+  title: "Components/vl-typography",
   parameters: {
     controls: { hideNoControlsWarning: true },
   },
@@ -22,7 +22,7 @@ export default {
   },
 };
 
-export const Default = () => html`<div is="vl-typography" data-cy="typography-default">
+export const Default = () => html`<vl-typography>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
     <a href="#">tempor incididunt</a> ut labore et dolore magna aliqua. Ut enim
@@ -33,18 +33,18 @@ export const Default = () => html`<div is="vl-typography" data-cy="typography-de
     est laborum.
   </p>
   <p>Lorem dolor sit amet, consectetur adipisicing elit. Deleniti, in.</p>
-</div>`;
+</vl-typography>`;
 
-export const Titles = () => html`<div is="vl-typography" data-cy="typography-headings">
+export const Titles = () => html`<vl-typography>
   <h1>Heading 1</h1>
   <h2>Heading 2</h2>
   <h3>Heading 3</h3>
   <h4>Heading 4</h4>
   <h5>Heading 5</h5>
   <h6>Heading 6</h6>
-</div>`;
+</vl-typography>`;
 
-export const Lists = () => html`<div is="vl-typography">
+export const Lists = () => html`<vl-typography>
   <ul>
     <li>Lorem ipsum dolor sit amet.</li>
     <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
@@ -127,9 +127,9 @@ export const Lists = () => html`<div is="vl-typography">
       </ol>
     </li>
   </ul>
-</div>`;
+</vl-typography>`;
 
-export const Markup = () => html`<div is="vl-typography">
+export const Markup = () => html`<vl-typography>
   <p><strong>strong-tag</strong></p>
   <p><b>b-tag</b></p>
   <p><em>em-tag</em></p>
@@ -146,9 +146,9 @@ export const Markup = () => html`<div is="vl-typography">
   <p></p>
   <blockquote>Lorem ipsum dolor sit amet.</blockquote>
   <p></p>
-</div>`;
+</vl-typography>`;
 
-export const Table = () => html`<div is="vl-typography">
+export const Table = () => html`<vl-typography>
   <table>
     <caption>
       table title
@@ -178,45 +178,38 @@ export const Table = () => html`<div is="vl-typography">
       </tr>
     </tbody>
   </table>
-</div>`;
+</vl-typography>`;
 
-// TODO gertjame: Add story with parameters.
-// interface ParametersInterface {
-//     parameters: [],
-//     key1: number,
-//     key2: number
-// }
+export const Parameters = ({ parameters, key1, key2 }) => {
+  return html`<vl-typography data-vl-parameters=${parameters}>
+    <p>
+      Lorem <b>${key1}</b> dolor sit amet, consectetur adipiscing elit. Duis
+      iaculis molestie feugiat. Lorem <b>${key2}</b> eros, consequat et
+      venenatis ac, scelerisque feugiat nunc. Nam molestie tincidunt lectus, nec
+      volutpat ante egestas at. Curabitur quis odio metus. Morbi at purus ac
+      purus convallis <b>${key1}</b> at eu est. Nunc id ligula quis justo semper
+      ullamcorper. Donec orci nisi, <b>${key1}</b> varius massa ut, vulputate
+      imperdiet nibh. Maecenas <b>${key1}</b> lectus quis turpis cursus, ac
+      vehicula ligula fermentum.
+    </p>
+    <p>
+      Praesent consequat diam nec semper congue. <b>${key2}</b> tempor ut erat
+      nec aliquam. Quisque ullamcorper sapien magna, sit amet porta
+      <b>${key2}</b> pulvinar aliquam. Sed eleifend fringilla augue in vehicula.
+      Sed leo sem, imperdiet non ornare maximus, bibendum facilisis massa. Nunc
+      condimentum leo mi, quis porta ante mattis ut. Quisque eu enim vel metus
+      consequat iaculis. Donec malesuada odio quis quam vulputate vestibulum.
+    </p>
+  </vl-typography>`;
+};
 
-// export const Parameters = ({ parameters, key1, key2 }: ParametersInterface) => {
-//   return html`<div is="vl-typography" data-vl-parameters=${parameters}>
-//     <p>
-//       Lorem <b>${key1}</b> dolor sit amet, consectetur adipiscing elit. Duis
-//       iaculis molestie feugiat. Lorem <b>${key2}</b> eros, consequat et
-//       venenatis ac, scelerisque feugiat nunc. Nam molestie tincidunt lectus, nec
-//       volutpat ante egestas at. Curabitur quis odio metus. Morbi at purus ac
-//       purus convallis <b>${key1}</b> at eu est. Nunc id ligula quis justo semper
-//       ullamcorper. Donec orci nisi, <b>${key1}</b> varius massa ut, vulputate
-//       imperdiet nibh. Maecenas <b>${key1}</b> lectus quis turpis cursus, ac
-//       vehicula ligula fermentum.
-//     </p>
-//     <p>
-//       Praesent consequat diam nec semper congue. <b>${key2}</b> tempor ut erat
-//       nec aliquam. Quisque ullamcorper sapien magna, sit amet porta
-//       <b>${key2}</b> pulvinar aliquam. Sed eleifend fringilla augue in vehicula.
-//       Sed leo sem, imperdiet non ornare maximus, bibendum facilisis massa. Nunc
-//       condimentum leo mi, quis porta ante mattis ut. Quisque eu enim vel metus
-//       consequat iaculis. Donec malesuada odio quis quam vulputate vestibulum.
-//     </p>
-//   </div>`;
-// };
+Parameters.args = {
+  key1: "${parameter.key1}",
+  key2: "${parameter.key1}",
+};
 
-// Parameters.args = {
-//   key1: "${parameter.key1}",
-//   key2: "${parameter.key1}",
-// };
-
-// Parameters.argTypes = {
-//   parameters: { control: { disable: false } },
-//   key1: { name: "key1 (for demo purposes)" },
-//   key2: { name: "key1 (for demo purposes)" },
-// };
+Parameters.argTypes = {
+  parameters: { control: { disable: false } },
+  key1: { name: "key1 (for demo purposes)" },
+  key2: { name: "key1 (for demo purposes)" },
+};
