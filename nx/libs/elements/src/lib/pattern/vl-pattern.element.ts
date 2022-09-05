@@ -41,7 +41,7 @@ export const vlPattern = {
    *
    * @param {HTMLElement} element
    */
-  dress(element: any) {
+  dress(element?: any) {
     const pattern = element.getAttribute("data-vl-pattern");
     if (pattern) {
       vl.pattern.dress(element);
