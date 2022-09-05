@@ -33,6 +33,7 @@ export * from './lib/element/layout';
 export * from './lib/element/link';
 export * from './lib/element/link-list';
 export * from './lib/element/list';
+export * from './lib/element/loader';
 export * from './lib/element/modal';
 export * from './lib/element/pager';
 export * from './lib/element/properties';

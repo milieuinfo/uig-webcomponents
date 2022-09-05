@@ -13,6 +13,7 @@ export * from './lib/functional-header/vl-functional-header.component';
 export * from './lib/infoblock/vl-infoblock.component';
 export * from './lib/info-tile/vl-info-tile.component';
 export * from './lib/modal/vl-modal.component';
+export * from './lib/loader/vl-loader.component';
 export * from './lib/pager/vl-pager.component';
 export * from './lib/progress-bar/vl-progress-bar.component';
 export * from './lib/share-buttons/components/share-button/vl-share-button.component';
