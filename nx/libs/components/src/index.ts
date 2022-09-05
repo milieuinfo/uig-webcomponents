@@ -17,3 +17,4 @@ export * from './lib/search/vl-search.component';
 export * from './lib/steps/vl-steps.component';
 export * from './lib/tabs/vl-tabs.component';
 export * from './lib/tooltip/vl-tooltip.component';
+export * from './lib/upload/vl-upload.component';
