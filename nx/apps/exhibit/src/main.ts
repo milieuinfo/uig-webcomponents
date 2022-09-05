@@ -11,6 +11,7 @@ import './app/breadcrumb/breadcrumb.element';
 import './app/buttons/buttons.element.ts';
 import './app/contact-card/contact-card.element';
 import './app/content-header/content-header.element';
+import './app/datepicker/datepicker.element';
 import './app/data-table/data-table.element';
 import './app/document/document.element';
 import './app/doormat/doormat.element.ts';

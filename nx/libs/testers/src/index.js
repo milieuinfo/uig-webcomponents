@@ -6,6 +6,7 @@ export * from './lib/element/body';
 export * from './lib/element/contact-card';
 export * from './lib/element/content-header';
 export * from './lib/element/column';
+export * from './lib/element/datepicker';
 export * from './lib/element/data-table';
 export * from './lib/element/doormat';
 export * from './lib/element/form';
