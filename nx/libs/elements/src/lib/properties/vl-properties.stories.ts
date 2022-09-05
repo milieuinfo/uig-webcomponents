@@ -1,8 +1,12 @@
 import { html } from "lit-html";
-import "./vl-properties.component";
+import "./vl-properties.element";
+import "./components/column/vl-properties-column.element";
+import "./components/list/vl-properties-list.element";
+import "./components/term/vl-property-term.element";
+import "./components/value/vl-property-value.element";
 
 export default {
-  title: "Components/vl-properties",
+  title: "Elements/vl-properties",
   args: { fullWidth: false },
   argTypes: {
     fullWidth: {
@@ -24,7 +28,7 @@ interface DefaultInterface {
 export const Default = ({ fullWidth }: DefaultInterface) => html`<vl-properties
   ?data-vl-full-width=${fullWidth}
 >
-  <h4>Gegevens</h4>
+  <h4 is="vl-h4">Gegevens</h4>
   <dl is="vl-properties-list">
     <dt is="vl-property-term">Voornaam</dt>
     <dd is="vl-property-value">Koen</dd>

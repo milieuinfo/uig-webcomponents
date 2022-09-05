@@ -15,7 +15,6 @@ export * from './lib/info-tile/vl-info-tile.component';
 export * from './lib/modal/vl-modal.component';
 export * from './lib/pager/vl-pager.component';
 export * from './lib/progress-bar/vl-progress-bar.component';
-export * from './lib/properties/vl-properties.component';
 export * from './lib/share-buttons/components/share-button/vl-share-button.component';
 export * from './lib/share-buttons/vl-share-buttons.component';
 export * from './lib/search/vl-search.component';

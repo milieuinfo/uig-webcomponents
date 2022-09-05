@@ -10,7 +10,7 @@ export class PropertiesElement extends HTMLElement {
                     <div class="container">
                         <h3 is="vl-h3" data-vl-has-border>Properties</h3>
                         <vl-properties>
-                            <h4>Gegevens</h4>
+                            <h4 is="vl-h4">Gegevens</h4>
                             <dl is="vl-properties-list">
                                 <dt is="vl-property-term">Voornaam</dt>
                                 <dd is="vl-property-value">Koen</dd>
@@ -24,7 +24,7 @@ export class PropertiesElement extends HTMLElement {
                     <div class="container">
                         <h3 is="vl-h3" data-vl-has-border>Properties with columns</h3>
                         <vl-properties id="properties">
-                            <h4>Gegevens</h4>
+                            <h4 is="vl-h4">Gegevens</h4>
                             <div is="vl-properties-column">
                                 <dl is="vl-properties-list">
                                 <dt is="vl-property-term">Voornaam</dt>

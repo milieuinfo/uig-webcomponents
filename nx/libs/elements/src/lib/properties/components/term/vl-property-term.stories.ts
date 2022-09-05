@@ -1,7 +1,7 @@
-import "../../vl-properties.stories";
+import "../../vl-properties.element";
 
 export default {
-  title: "Components/vl-properties/vl-property-value",
+  title: "Elements/vl-properties/vl-property-term",
   parameters: {
     controls: { hideNoControlsWarning: true },
   },

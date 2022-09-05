@@ -1,8 +1,12 @@
 import { html } from "lit-html";
-import "../../vl-properties.component";
+import "../../vl-properties.element";
+import "./vl-properties-column.element";
+import "../list/vl-properties-list.element";
+import "../term/vl-property-term.element";
+import "../value/vl-property-value.element";
 
 export default {
-  title: "Components/vl-properties/vl-properties-column",
+  title: "Elements/vl-properties/vl-properties-column",
   args: { full: false },
   argTypes: {
     full: {
@@ -22,7 +26,7 @@ interface DefaultInterface {
 }
 
 export const Default = ({ full }: DefaultInterface) => html`<vl-properties>
-  <h4>Gegevens</h4>
+  <h4 is="vl-h4">Gegevens</h4>
   <div is="vl-properties-column" ?data-vl-full=${full}>
     <dl is="vl-properties-list">
       <dt is="vl-property-term">Voornaam</dt>
