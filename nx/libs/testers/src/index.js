@@ -52,6 +52,7 @@ export * from './lib/element/tooltip';
 export * from './lib/element/titles';
 export * from './lib/element/toaster';
 export * from './lib/element/typography';
-export * from './lib/element/value';
 export * from './lib/element/upload';
 export * from './lib/element/upload-file';
+export * from './lib/element/value';
+export * from './lib/element/video-player';

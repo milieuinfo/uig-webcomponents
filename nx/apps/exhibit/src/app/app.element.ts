@@ -34,6 +34,7 @@ export class AppElement extends HTMLElement {
                     <exhibit-multiselect></exhibit-multiselect>
                     <!--<exhibit-side-navigation></exhibit-side-navigation>-->
                     <exhibit-toaster></exhibit-toaster>
+                    <exhibit-video-player></exhibit-video-player>
 
                     <h1 is="vl-h1" data-vl-alt data-vl-no-space-bottom>Componenten Overzicht UIG</h1>
                     <exhibit-alert></exhibit-alert>
