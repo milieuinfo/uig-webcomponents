@@ -33,6 +33,7 @@ import './app/image/image.element';
 import './app/introduction/introduction.element';
 import './app/link/link.element';
 import './app/link-list/link-list.element';
+import './app/loader/loader.element';
 import './app/modal/modal.element';
 import './app/multiselect/multiselect.element';
 import './app/pager/pager.element';
