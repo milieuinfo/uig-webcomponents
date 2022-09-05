@@ -11,6 +11,9 @@
         "build-storybook": "build-storybook"
     },
     "private": true,
+  "peerDependencies": {
+    "tinymce": "^5.10.3"
+  },
     "devDependencies": {
         "@babel/core": "^7.18.9",
         "@mdx-js/react": "^1.6.22",
@@ -98,6 +101,7 @@
         "@govflanders/vl-ui-side-navigation": "^3.12.3",
         "@govflanders/vl-ui-steps": "^3.12.3",
         "@govflanders/vl-ui-tabs": "^3.12.17",
+        "@govflanders/vl-ui-textarea": "^3.12.3",
         "@govflanders/vl-ui-titles": "^3.12.3",
         "@govflanders/vl-ui-toaster": "^3.12.3",
         "@govflanders/vl-ui-toggle": "^3.12.17",
@@ -111,6 +115,7 @@
         "lit": "^2.2.8",
         "reflect-metadata": "^0.1.13",
         "regenerator-runtime": "0.13.7",
-        "tslib": "^2.3.0"
+        "tslib": "^2.3.0",
+        "tinymce": "^5.10.3"
     }
 }

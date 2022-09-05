@@ -49,6 +49,7 @@ export * from './lib/element/steps';
 export * from './lib/element/tabs';
 export * from './lib/element/tab';
 export * from './lib/element/term';
+export * from './lib/element/textarea';
 export * from './lib/element/toggle';
 export * from './lib/element/tooltip';
 export * from './lib/element/titles';

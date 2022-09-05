@@ -44,6 +44,7 @@ export * from './lib/side-navigation/components/vl-side-navigation-content.eleme
 export * from './lib/side-navigation/components/vl-side-navigation-reference.element';
 export * from './lib/select/vl-select.element';
 export * from './lib/typography/vl-typography.element';
+export * from './lib/textarea/vl-textarea.element';
 export * from './lib/text/vl-text.element';
 export * from './lib/toaster/vl-toaster.element';
 export * from './lib/video-player/vl-video-player.element';
