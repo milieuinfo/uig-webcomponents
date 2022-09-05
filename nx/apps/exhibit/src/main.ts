@@ -9,6 +9,7 @@ import './app/action-group/action-group.element';
 import './app/accordion/accordion.element';
 import './app/breadcrumb/breadcrumb.element';
 import './app/buttons/buttons.element.ts';
+import './app/checkbox/checkbox.element';
 import './app/code-preview/code-preview.element';
 import './app/contact-card/contact-card.element';
 import './app/content-header/content-header.element';

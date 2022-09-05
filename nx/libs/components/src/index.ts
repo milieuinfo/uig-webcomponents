@@ -2,6 +2,7 @@ export * from './lib/accordion/vl-accordion.component';
 export * from './lib/alert/vl-alert.component';
 export * from './lib/breadcrumb/vl-breadcrumb.component';
 export * from './lib/breadcrumb/vl-breadcrumb-item.component';
+export * from './lib/checkbox/vl-checkbox.component';
 export * from './lib/code-preview/vl-code-preview.component';
 export * from './lib/contact-card/vl-contact-card.component';
 export * from './lib/content-header/vl-content-header.component';
