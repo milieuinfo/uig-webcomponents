@@ -35,7 +35,7 @@ export const Default = ({ href, type, title, metadata }: DefaultInterface) => ht
   is="vl-grid"
 >
   <div is="vl-column" data-vl-size="3" data-vl-medium-size="6">
-    <vl-document data-vl-href=${href}>
+    <vl-document data-vl-href=${href} data-cy="document">
       <span slot="type">${type}</span>
       <span slot="title">${title}</span>
       <span slot="metadata">${metadata}</span>
