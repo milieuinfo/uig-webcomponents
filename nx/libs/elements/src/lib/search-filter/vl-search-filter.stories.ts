@@ -29,6 +29,7 @@ const Template = ({ title, alt, mobileModal, mobileModalTitle, maxWidth }: Templ
             ?data-vl-alt=${alt}
             ?data-vl-mobile-modal=${mobileModal}
             data-vl-mobile-modal-title=${mobileModalTitle}
+            data-cy="search-filter"
         >
             <form is="vl-form">
                 <section>
