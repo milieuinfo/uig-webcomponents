@@ -48,6 +48,7 @@ export class AppElement extends HTMLElement {
                     <exhibit-infotile></exhibit-infotile>
                     <exhibit-steps></exhibit-steps>
                     <exhibit-datepicker></exhibit-datepicker>
+                    <exhibit-tabs></exhibit-tabs>
                 </div>
             </div>
       `;

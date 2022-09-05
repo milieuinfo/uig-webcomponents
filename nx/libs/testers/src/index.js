@@ -42,6 +42,8 @@ export * from './lib/element/side-navigation';
 export * from './lib/element/side-navigation-item';
 export * from './lib/element/step';
 export * from './lib/element/steps';
+export * from './lib/element/tabs';
+export * from './lib/element/tab';
 export * from './lib/element/term';
 export * from './lib/element/toggle';
 export * from './lib/element/titles';
