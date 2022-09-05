@@ -1,11 +1,9 @@
 import { html, css, LitElement, unsafeCSS } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { define } from '@uig/common/utilities';
 import styles from './style/vl-breadcrumb.scss';
 
-@customElement('vl-breadcrumb')
-export class VlBreadcrumb extends LitElement {
+export class VlBreadcrumbComponent extends LitElement {
     static get styles() {
-        // console.log('styles', styles);
         return [
             css`
                 ${unsafeCSS(styles)}
@@ -40,8 +38,10 @@ export class VlBreadcrumb extends LitElement {
     }
 }
 
+define('vl-breadcrumb', VlBreadcrumbComponent);
+
 declare global {
     interface HTMLElementTagNameMap {
-        'vl-breadcrumb': VlBreadcrumb;
+        'vl-breadcrumb': VlBreadcrumbComponent;
     }
 }

@@ -1,5 +1,6 @@
 import { html } from "lit-html";
 import "./vl-breadcrumb.component";
+import "./vl-breadcrumb-item.component";
 
 export default {
   title: "Components/vl-breadcrumb",

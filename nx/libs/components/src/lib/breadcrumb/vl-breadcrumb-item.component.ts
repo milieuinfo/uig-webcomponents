@@ -1,11 +1,15 @@
 import { html, css, LitElement, unsafeCSS } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { define } from '@uig/common/utilities';
 import styles from './style/vl-breadcrumb.scss';
 
-@customElement('vl-breadcrumb-item')
-export class VlBreadcrumbItem extends LitElement {
-    @property({ type: String, attribute: 'data-vl-href', reflect: true })
-    private href = '';
+export class VlBreadcrumbItemComponent extends LitElement {
+    public href = '';
+
+    static get properties() {
+        return {
+            href: { type: String, attribute: 'data-vl-href', reflect: true },
+        };
+    }
 
     static get styles() {
         return [
@@ -24,8 +28,10 @@ export class VlBreadcrumbItem extends LitElement {
     }
 }
 
+define('vl-breadcrumb-item', VlBreadcrumbItemComponent);
+
 declare global {
     interface HTMLElementTagNameMap {
-        'vl-breadcrumb-item': VlBreadcrumbItem;
+        'vl-breadcrumb-item': VlBreadcrumbItemComponent;
     }
 }
