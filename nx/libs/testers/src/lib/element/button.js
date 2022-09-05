@@ -1,4 +1,5 @@
-import { VlElement, By } from '../util/vl-element';
+import { VlElement } from '../util/vl-element';
+import { By } from '../util/setup';
 import { VlIcon } from '../icon/icon';
 
 class VlButtonElement extends VlElement {
