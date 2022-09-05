@@ -9,64 +9,64 @@ export default {
 };
 
 export const Default = () => html`
-    <vl-steps id="vl-steps-1">
-        <vl-step>
+    <vl-steps id="vl-steps-1" data-cy="steps">
+        <vl-step data-cy="step-1">
+            <span slot="identifier">1</span>
+            <span slot="title">Step 1: action</span>
+            <span slot="sub-title">This is a subtitle.</span>
+        </vl-step>
+        <vl-step disabled="" data-cy="step-2">
             <span slot="identifier">2</span>
-            <span slot="title">Step 2: Second action</span>
+            <span slot="title">Step 2: action</span>
             <span slot="sub-title">This is a subtitle.</span>
         </vl-step>
-        <vl-step disabled="">
+        <vl-step type="success" data-cy="step-3">
             <span slot="identifier">3</span>
-            <span slot="title">Step 3: Third action</span>
+            <span slot="title">Step 3: action</span>
             <span slot="sub-title">This is a subtitle.</span>
         </vl-step>
-        <vl-step type="success">
+        <vl-step type="warning" data-cy="step-4">
             <span slot="identifier">4</span>
-            <span slot="title">Step 4: Fourth action</span>
+            <span slot="title">Step 4: action</span>
             <span slot="sub-title">This is a subtitle.</span>
         </vl-step>
-        <vl-step type="warning">
+        <vl-step type="error" data-cy="step-5">
             <span slot="identifier">5</span>
-            <span slot="title">Step 5: Fifth action</span>
-            <span slot="sub-title">This is a subtitle.</span>
-        </vl-step>
-        <vl-step type="error">
-            <span slot="identifier">6</span>
-            <span slot="title">Step 6: sixth action</span>
+            <span slot="title">Step 5: action</span>
             <span slot="sub-title">This is a subtitle.</span>
         </vl-step>
     </vl-steps>
 `;
 
 export const WithAccordions = () => html`
-    <vl-steps id="vl-steps-2">
+    <vl-steps id="vl-steps-2" data-cy="steps-with-accordions">
         <vl-step data-vl-disabled="">
             <span slot="identifier">0</span>
             <span slot="title">Six centuries ago</span>
             <span slot="sub-title">The last visitor from earth entered my world.</span>
             <span slot="content"> Now, it's your turn to feel that pain. The gates are open. </span>
         </vl-step>
-        <vl-step data-vl-toggleable="">
+        <vl-step data-vl-toggleable="" data-cy="toggable-step-1">
             <span slot="identifier">1</span>
             <span slot="title">Gate 1</span>
             <span slot="content"> Darkness, the world of demons. Look around you, they're everywhere. </span>
         </vl-step>
-        <vl-step data-vl-toggleable="">
+        <vl-step data-vl-toggleable="" data-cy="toggable-step-2">
             <span slot="identifier">2</span>
             <span slot="title">Gate 2</span>
             <span slot="content"> My guards are watching you. </span>
         </vl-step>
-        <vl-step data-vl-toggleable="">
+        <vl-step data-vl-toggleable="" data-cy="toggable-step-3">
             <span slot="identifier">3</span>
             <span slot="title">Gate 3</span>
             <span slot="content"> Only evil lives here. </span>
         </vl-step>
-        <vl-step data-vl-toggleable="">
+        <vl-step data-vl-toggleable="" data-cy="toggable-step-4">
             <span slot="identifier">4</span>
             <span slot="title">Gate 4</span>
             <span slot="content"> There's no way out. </span>
         </vl-step>
-        <vl-step data-vl-toggleable="">
+        <vl-step data-vl-toggleable="" data-cy="toggable-step-5">
             <span slot="identifier">5</span>
             <span slot="title">Gate 5</span>
             <span slot="content"> Feel the fire. </span>
@@ -75,8 +75,8 @@ export const WithAccordions = () => html`
 `;
 
 export const WithTimeline = () => html`
-    <vl-steps id="vl-steps-3" data-vl-timeline="">
-        <vl-step>
+    <vl-steps id="vl-steps-3" data-vl-timeline="" data-cy="steps-with-timeline">
+        <vl-step data-cy="timeline-step-1">
             <span slot="identifier">2</span>
             <span slot="identifier-annotation">maa</span>
             <span slot="title">Central Station</span>
@@ -90,8 +90,8 @@ export const WithTimeline = () => html`
                 maintained and keeps dazzling archaeologists.
             </span>
         </vl-step>
-        <vl-duration-step> Vrije tijd: 1 uur </vl-duration-step>
-        <vl-step>
+        <vl-duration-step data-cy="timeline-duration-step-1"> Vrije tijd: 1 uur </vl-duration-step>
+        <vl-step data-cy="timeline-step-2">
             <span slot="identifier">3</span>
             <span slot="identifier-annotation">maa</span>
             <span slot="title">The Botanical Gardens</span>
@@ -102,8 +102,8 @@ export const WithTimeline = () => html`
                 this on less than 500m from the city center.
             </span>
         </vl-step>
-        <vl-duration-step> Vrije tijd: 2 uur </vl-duration-step>
-        <vl-step data-vl-disabled="">
+        <vl-duration-step data-cy="timeline-duration-step-2"> Vrije tijd: 2 uur </vl-duration-step>
+        <vl-step data-vl-disabled="" data-cy="timeline-step-3">
             <span slot="identifier">3</span>
             <span slot="identifier-annotation">maa</span>
             <span slot="title">Bike ride</span>
@@ -111,7 +111,7 @@ export const WithTimeline = () => html`
             <span slot="sub-title">Linkeroever</span>
             <span slot="content"> This activity is canceled. </span>
         </vl-step>
-        <vl-step data-vl-type="success">
+        <vl-step data-vl-type="success" data-cy="timeline-step-4">
             <span slot="identifier">3</span>
             <span slot="identifier-annotation">maa</span>
             <span slot="title">Bike ride</span>
@@ -119,7 +119,7 @@ export const WithTimeline = () => html`
             <span slot="sub-title">Linkeroever</span>
             <span slot="content"> This activity is new! </span>
         </vl-step>
-        <vl-step data-vl-type="warning">
+        <vl-step data-vl-type="warning" data-cy="timeline-step-5">
             <span slot="identifier">3</span>
             <span slot="identifier-annotation">maa</span>
             <span slot="title">Bike ride</span>
@@ -127,7 +127,7 @@ export const WithTimeline = () => html`
             <span slot="sub-title">Linkeroever</span>
             <span slot="content"> This activity is almost fully booked. </span>
         </vl-step>
-        <vl-step data-vl-type="error">
+        <vl-step data-vl-type="error" data-cy="timeline-step-6">
             <span slot="identifier">3</span>
             <span slot="identifier-annotation">maa</span>
             <span slot="title">Bike ride</span>
