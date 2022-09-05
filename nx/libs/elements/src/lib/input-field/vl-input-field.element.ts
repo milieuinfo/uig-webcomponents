@@ -1,5 +1,6 @@
 import { BaseElementOfType, define } from '@uig/common/utilities';
-import { vlFormValidation, vlFormValidationElement } from '../form-validation/vl-form-validation.element';
+import { vlFormValidationElement } from '../form-validation/vl-form-validation.element';
+import { vlFormValidation } from '../form-validation/vl-form-validation';
 import { vlPattern } from '../pattern/vl-pattern.element';
 
 Promise.all([vlFormValidation.ready(), vlPattern.ready()]).then(() =>

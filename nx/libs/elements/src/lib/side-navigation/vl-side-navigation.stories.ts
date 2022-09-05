@@ -1,27 +1,27 @@
-import { html } from "lit-html";
-import "./vl-side-navigation.element";
-import "./components/vl-side-navigation-item.element";
-import "./components/vl-side-navigation-group.element";
-import "./components/vl-side-navigation-title.element";
-import "./components/vl-side-navigation-toggle.elements";
-import "./components/vl-side-navigation-content.element";
-import "./components/vl-side-navigation-reference.element";
-import "../title/vl-h1.element";
-import "../title/vl-h2.element";
-import "../title/vl-h3.element";
-import "../title/vl-h4.element";
-import "../title/vl-h5.element";
-import "../title/vl-h6.element";
-import "../grid/vl-grid.element";
-import "../grid/components/column/vl-column.element";
-import "../grid/components/layout/vl-layout.element";
-import "../grid/components/region/vl-region.element";
+import { html } from 'lit-html';
+import './vl-side-navigation.element';
+import './components/vl-side-navigation-item.element';
+import './components/vl-side-navigation-group.element';
+import './components/vl-side-navigation-title.element';
+import './components/vl-side-navigation-toggle.elements';
+import './components/vl-side-navigation-content.element';
+import './components/vl-side-navigation-reference.element';
+import '../title/vl-h1.element';
+import '../title/vl-h2.element';
+import '../title/vl-h3.element';
+import '../title/vl-h4.element';
+import '../title/vl-h5.element';
+import '../title/vl-h6.element';
+import '../grid/vl-grid.element';
+import '../grid/vl-column.element';
+import '../grid/vl-layout.element';
+import '../grid/vl-region.element';
 
 export default {
-  title: "Elements/vl-side-navigation",
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
+    title: 'Elements/vl-side-navigation',
+    parameters: {
+        controls: { hideNoControlsWarning: true },
+    },
 };
 
 export const Default = () => html`<section is="vl-region">

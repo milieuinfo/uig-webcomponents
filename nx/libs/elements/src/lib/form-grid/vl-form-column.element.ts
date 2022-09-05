@@ -1,5 +1,5 @@
-import { define } from "@uig/common/utilities";
-import { VlColumnElement } from "../grid/components/column/vl-column.element";
+import { define } from '@uig/common/utilities';
+import { VlColumnElement } from '../grid/vl-column.element';
 
 /**
  * VlFormColumn
@@ -9,17 +9,17 @@ import { VlColumnElement } from "../grid/components/column/vl-column.element";
  * @extends VlColumn
  */
 export class VlFormColumn extends VlColumnElement {
-  connectedCallback() {
-    this.classList.add("vl-form-column");
-  }
+    connectedCallback() {
+        super.classList.add('vl-form-column');
+    }
 
-  get _columnClassPrefix() {
-    return "vl-form-col--";
-  }
+    get _columnClassPrefix() {
+        return 'vl-form-col--';
+    }
 
-  get _pushClassPrefix() {
-    return "vl-form-push--";
-  }
+    get _pushClassPrefix() {
+        return 'vl-form-push--';
+    }
 }
 
-define("vl-form-column", VlFormColumn, { extends: "div" });
+define('vl-form-column', VlFormColumn, { extends: 'div' });

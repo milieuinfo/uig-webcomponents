@@ -1,7 +1,7 @@
 import { BaseElementOfType, define } from '@uig/common/utilities';
-import './components/column/vl-column.element';
-import './components/layout/vl-layout.element';
-import './components/region/vl-region.element';
+import './vl-column.element';
+import './vl-layout.element';
+import './vl-region.element';
 
 /**
  * VlGrid

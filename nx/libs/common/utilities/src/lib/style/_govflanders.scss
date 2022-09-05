@@ -4,8 +4,11 @@
 // https://cdn.milieuinfo.be/vlaanderen-font/4.1.33/font
 // -> daaronder komt dan /flanders en /iconfont/
 
-$vl-font-location: 'https://cdn.omgeving.vlaanderen.be/vlaanderen-font-new/LATEST/font/flanders/';
-$vl-icon-font-location: 'https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/iconfont/3.12.23/';
+//$vl-font-location: 'https://cdn.omgeving.vlaanderen.be/vlaanderen-font-new/LATEST/font/flanders/';
+//$vl-icon-font-location: 'https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/iconfont/3.12.23/';
+
+$vl-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-font/15.0.1/flanders/';
+$vl-icon-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-font/15.0.1/iconfont/';
 
 // @govflanders global styles
 @import '@govflanders-v14/vl-ui-core/src/scss/core';
@@ -15,14 +18,14 @@ $vl-icon-font-location: 'https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/i
 @import '@govflanders-v14/vl-ui-button/src/scss/button';
 @import '@govflanders-v14/vl-ui-data-table/src/scss/data-table';
 @import '@govflanders-v14/vl-ui-doormat/src/scss/doormat';
-@import '@govflanders/vl-ui-form-message/src/scss/form-message';
-@import '@govflanders/vl-ui-form-structure/src/scss/form-structure';
+@import '@govflanders-v14/vl-ui-form-message/src/scss/form-message';
+@import '@govflanders-v14/vl-ui-form-structure/src/scss/form-structure';
 @import '@govflanders/vl-ui-icon/src/scss/icon';
 @import '@govflanders/vl-ui-infotext/src/scss/infotext';
-@import '@govflanders/vl-ui-input-addon/src/scss/input-addon';
-@import '@govflanders/vl-ui-input-group/src/scss/input-group';
 @import '@govflanders/vl-ui-image/src/scss/image';
-@import '@govflanders/vl-ui-input-field/src/scss/input-field';
+@import '@govflanders-v14/vl-ui-input-addon/src/scss/input-addon';
+@import '@govflanders-v14/vl-ui-input-field/src/scss/input-field';
+@import '@govflanders-v14/vl-ui-input-group/src/scss/input-group';
 @import '@govflanders/vl-ui-introduction/src/scss/introduction';
 @import '@govflanders/vl-ui-link/src/scss/link';
 @import '@govflanders/vl-ui-link-list/src/scss/link-list';

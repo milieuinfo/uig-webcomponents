@@ -2,9 +2,9 @@ import { html } from 'lit-html';
 import './vl-input-field.element';
 import '../button/vl-button.element';
 import '../link/vl-link.element';
-import '../form-message/vl-form-message.element';
-import { args, argTypes } from '../form-validation/config/form-validation.stories-helper';
-import { VALIDATION_TYPE } from '../form-validation/enums/enums';
+import '../form-message/vl-form-validation-message.element';
+import { formValidationArgs, formValidationArgTypes } from '../form-validation/stories/form-validation.stories-arg';
+import { VALIDATION_TYPE } from '../form-validation/vl-form-validation.model';
 
 export default {
     title: 'Elements/vl-input-field',
@@ -13,7 +13,7 @@ export default {
         error: false,
         small: false,
         success: false,
-        ...args,
+        ...formValidationArgs,
     },
     argTypes: {
         block: {
@@ -52,7 +52,7 @@ export default {
                 defaultValue: { summary: 'false' },
             },
         },
-        ...argTypes,
+        ...formValidationArgTypes,
     },
 };
 
