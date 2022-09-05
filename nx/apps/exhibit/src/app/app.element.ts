@@ -60,6 +60,7 @@ export class AppElement extends HTMLElement {
                     <exhibit-share-buttons></exhibit-share-buttons>
                     <exhibit-toggle-button></exhibit-toggle-button>
                     <exhibit-loader></exhibit-loader>
+                    <exhibit-pill></exhibit-pill>
                 </div>
             </div>
       `;

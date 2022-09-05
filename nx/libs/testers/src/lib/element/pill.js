@@ -1,29 +1,43 @@
 import { By } from '../util/setup';
+import { VlPillElement } from './pill-element';
 
-export class Pill {
-  constructor(webElement) {
-    this.webElement = webElement;
+export class VlPill extends VlPillElement {
+  async isClosable() {
+    return this.hasAttribute('data-vl-closable');
   }
 
-  async value() {
-    return this.webElement.getAttribute('data-value');
+  async isCheckable() {
+    return this.hasAttribute('data-vl-checkable');
   }
 
-  async isSelected() {
-    return true;
+  async isChecked() {
+    return this.driver.executeScript('return arguments[0].checked', this);
   }
 
-  async text() {
-    const span = await this.webElement.findElement(By.css('span'));
-    return span.getAttribute('innerText');
-  }
-
-  async remove() {
-    const closeButton = await this.webElement.findElements(By.css('.vl-pill__close'));
-    if (closeButton.length < 1) {
-      throw new Error('Dit item kan niet verwijderd worden!');
+  async toggleCheck() {
+    if (await this.isCheckable()) {
+      await this.click();
     }
-    return closeButton[0].click();
+  }
+
+  async close() {
+    if (await this.isClosable()) {
+      this.driver.executeScript('arguments[0].addEventListener("close", function(){closeIsFired = true})', this);
+      const closeButton = await this._getCloseButton();
+      await closeButton.click();
+    }
+  }
+
+  async getContentSlotNodes() {
+    const slot = await this._getContentSlot();
+    return this.getAssignedNodes(slot);
+  }
+
+  async _getContentSlot() {
+    return this.shadowRoot.findElement(By.css('slot'));
+  }
+
+  async _getCloseButton() {
+    return this.shadowRoot.findElement(By.css('button'));
   }
 }
-
