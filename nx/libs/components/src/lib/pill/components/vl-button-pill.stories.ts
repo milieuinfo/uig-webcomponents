@@ -1,6 +1,5 @@
 import { html } from 'lit-html';
 import './vl-button-pill.component';
-import { ifDefined } from 'lit-html/directives/if-defined';
 
 const argTypes = {
   type: {
@@ -30,4 +29,4 @@ interface DefaultInterface {
 }
 
 export const Default = ({ type }: DefaultInterface) =>
-  html` <button is="vl-button-pill" type="button" data-vl-type=${ifDefined(type)}>Optie 1</button> `;
+  html` <button is="vl-button-pill" type="button" data-vl-type=${type}>Optie 1</button> `;

@@ -12,7 +12,6 @@ export class AppElement extends HTMLElement {
                     <exhibit-introduction></exhibit-introduction>
                     <exhibit-titles></exhibit-titles>
                     <exhibit-image></exhibit-image>
-                    <exhibit-typography></exhibit-typography>
                     <exhibit-icon></exhibit-icon>
                     <exhibit-link></exhibit-link>
                     <exhibit-text></exhibit-text>
@@ -61,6 +60,7 @@ export class AppElement extends HTMLElement {
                     <exhibit-toggle-button></exhibit-toggle-button>
                     <exhibit-loader></exhibit-loader>
                     <exhibit-pill></exhibit-pill>
+                    <exhibit-typography></exhibit-typography>
                 </div>
             </div>
       `;
