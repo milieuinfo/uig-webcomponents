@@ -7,5 +7,5 @@ export default {
 
 // TODO Add options to the story.
 export const Default = () => html`
-  <vl-search id="search-inline" data-vl-inline=""></vl-search>
+  <vl-search id="search-inline" data-vl-inline="" data-cy="search"></vl-search>
 `;
