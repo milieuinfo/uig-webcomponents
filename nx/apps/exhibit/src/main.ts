@@ -46,5 +46,6 @@ import './app/search/search.element';
 import './app/steps/steps.element';
 import './app/tabs/tabs.element';
 import './app/tooltip/tooltip.element';
+import './app/toaster/toaster.element';
 import './app/typography/typography.element';
 import './app/upload/upload.element';
