@@ -19,15 +19,8 @@ export class VlPropertiesComponent extends vlElement(HTMLElement) {
     return ["full-width"];
   }
 
-  constructor() {
-    super(`
-      <div class="vl-properties">
-        <slot></slot>
-      </div>
-    `);
-  }
-
   connectedCallback() {
+    this.classList.add("vl-properties");
     this._setPropertiesTitle();
   }
 
@@ -46,4 +39,4 @@ export class VlPropertiesComponent extends vlElement(HTMLElement) {
   }
 }
 
-define("vl-properties", VlPropertiesComponent);
+define("vl-properties", VlPropertiesComponent, { extends: "div" });

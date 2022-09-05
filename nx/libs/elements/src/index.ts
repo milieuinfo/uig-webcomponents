@@ -32,6 +32,7 @@ export * from './lib/link-list/vl-link-list.element';
 export * from './lib/link-list/vl-link-list-item.element';
 export * from './lib/link/vl-button-link.element';
 export * from './lib/multiselect/vl-multiselect.element';
+export * from './lib/properties/vl-properties.element';
 export * from './lib/search-filter/vl-search-filter.element';
 export * from './lib/search-results/vl-search-result.element';
 export * from './lib/search-results/vl-search-results.element';

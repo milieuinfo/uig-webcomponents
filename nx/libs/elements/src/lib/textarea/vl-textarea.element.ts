@@ -1,8 +1,9 @@
-/* global tinyMCE */
 import { vlElement, define, awaitUntil } from '@uig/common/utilities';
 import { VlLinkToolbarFactory } from './vl-tinymce-link-toolbar';
 import { vlFormValidation, vlFormValidationElement } from '../../../../elements/src/lib/form-validation/vl-form-validation.element';
 import 'tinymce/tinymce';
+
+declare const tinyMCE: any;
 
 export class VlTextarea extends vlFormValidationElement(vlElement(HTMLTextAreaElement)) {
   static get _observedAttributes() {
