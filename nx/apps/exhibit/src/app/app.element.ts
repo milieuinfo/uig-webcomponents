@@ -57,6 +57,7 @@ export class AppElement extends HTMLElement {
                     <exhibit-upload></exhibit-upload>
                     <exhibit-description-data></exhibit-description-data>
                     <exhibit-progress-bar></exhibit-progress-bar>
+                    <exhibit-share-buttons></exhibit-share-buttons>
                 </div>
             </div>
       `;
