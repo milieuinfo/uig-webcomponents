@@ -37,6 +37,7 @@ import './app/modal/modal.element';
 import './app/multiselect/multiselect.element';
 import './app/pager/pager.element';
 import './app/properties/properties.element';
+import './app/progress-bar/progress-bar.element';
 import './app/side-navigation/side-navigation.element';
 import './app/titles/titles.element';
 import './app/text/text.element';

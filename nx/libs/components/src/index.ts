@@ -14,6 +14,7 @@ export * from './lib/infoblock/vl-infoblock.component';
 export * from './lib/info-tile/vl-info-tile.component';
 export * from './lib/modal/vl-modal.component';
 export * from './lib/pager/vl-pager.component';
+export * from './lib/progress-bar/vl-progress-bar.component';
 export * from './lib/properties/vl-properties.component';
 export * from './lib/search/vl-search.component';
 export * from './lib/steps/vl-steps.component';
