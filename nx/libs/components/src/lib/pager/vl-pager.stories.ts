@@ -36,6 +36,7 @@ const Template = ({
     ?data-vl-align-center=${alignCenter}
     ?data-vl-align-right=${alignRight}
     @change=${(event: any) => change(event.detail)}
+    data-cy="pager"
   ></vl-pager>
 `;
 
