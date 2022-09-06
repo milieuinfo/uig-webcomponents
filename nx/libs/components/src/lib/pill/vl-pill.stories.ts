@@ -27,6 +27,7 @@ export const Default = ({ closable, checkable, checked, type, disabled, close, c
     .checked=${checked}
     @close=${(event: any) => close(event)}
     @check=${(event: any) => check(event.detail)}
+    data-cy="pill"
     >Optie 1</vl-pill
   >
 `;
