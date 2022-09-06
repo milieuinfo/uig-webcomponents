@@ -12,7 +12,7 @@ export class ProgressBarElement extends HTMLElement {
                         <vl-progress-bar
                             data-vl-numeric
                             data-vl-focus-on-change
-                            .steps="['Stap 1/3: Aanvraag', 'Stap 2/3: Gegevens', 'Stap 3/3: Bevestigen']"
+                            steps="['Stap 1/3: Aanvraag', 'Stap 2/3: Gegevens', 'Stap 3/3: Bevestigen']"
                         ></vl-progress-bar>
                     </div>
                 </div>

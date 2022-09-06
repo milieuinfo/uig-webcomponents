@@ -84,6 +84,7 @@ export const Default = ({
     data-vl-active-step=${activeStep}
     .steps=${steps}
     @vl-click-step=${(event: any) => onClickStep(event.detail)}
+    data-cy="progress-bar"
   >
   </vl-progress-bar>`;
 };
