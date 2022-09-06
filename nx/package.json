@@ -114,6 +114,7 @@
         "@govflanders/vl-ui-util": "^3.12.24",
         "@govflanders/vl-ui-util-14": "npm:@govflanders/vl-ui-core@14.0.1",
         "@govflanders/vl-ui-video-player": "^3.12.3",
+        "@govflanders/vl-ui-wizard": "^3.12.3",
         "core-js": "^3.6.5",
         "lit": "^2.2.8",
         "reflect-metadata": "^0.1.13",

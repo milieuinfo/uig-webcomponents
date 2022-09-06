@@ -19,7 +19,7 @@ export class VlToggleButtonComponent extends LitElement {
   private loading = false;
   private disabled = false;
   private active:boolean|undefined = undefined;
-  private _active: boolean|undefined = true;
+  private _active: boolean|undefined = false;
   private isInMap = false;
 
   static get properties() {

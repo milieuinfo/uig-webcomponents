@@ -30,3 +30,5 @@ export * from './lib/toggle-button/vl-toggle-button.component';
 export * from './lib/typography/vl-typography.component';
 export * from './lib/tooltip/vl-tooltip.component';
 export * from './lib/upload/vl-upload.component';
+export * from './lib/wizard/vl-wizard.component';
+export * from './lib/wizard/components/vl-wizard-pane.component';

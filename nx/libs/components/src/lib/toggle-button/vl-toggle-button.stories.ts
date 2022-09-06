@@ -120,6 +120,7 @@ export const Default = ({active, icon, iconPlacement, textHidden, error, block, 
     @click=${(event: any) => {
       click(event);
     }}
+    data-cy="toggle-button"
     >${content}
   </vl-toggle-button>`;
 
@@ -139,6 +140,7 @@ export const WithIcon = ({active, icon, iconPlacement, textHidden, error, block,
     @click=${(event: any) => {
       click(event);
     }}
+    data-cy="toggle-button-with-icon"
     >${content}
   </vl-toggle-button>`;
 
@@ -165,6 +167,7 @@ export const Controlled = ({active, icon, iconPlacement, textHidden, error, bloc
     const toggleButton = getToggleButton();
     toggleButton.active = !toggleButton.active;
   }}
+  data-cy="toggle-button-controlled"
   >${content}
 </vl-toggle-button>`;
 
