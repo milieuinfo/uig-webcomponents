@@ -34,7 +34,7 @@ export const Default = () => html`<section is="vl-region">
         data-vl-small-size="8"
         data-vl-extra-small-size="12"
       >
-        <div is="vl-side-navigation-reference">
+        <div is="vl-side-navigation-reference" data-cy="side-navigation-reference">
           <section id="content-1" is="vl-region">
             <h2 is="vl-h2">content 1</h2>
           </section>
@@ -234,7 +234,7 @@ export const Default = () => html`<section is="vl-region">
         data-vl-small-size="4"
         data-vl-extra-small-size="0"
       >
-        <nav is="vl-side-navigation" aria-label="inhoudsopgave">
+        <nav is="vl-side-navigation" aria-label="inhoudsopgave" data-cy="side-navigation">
           <h5 is="vl-side-navigation-h5">Op deze pagina</h5>
           <div is="vl-side-navigation-content">
             <ul is="vl-side-navigation-group">
