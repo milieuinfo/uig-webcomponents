@@ -22,10 +22,10 @@ interface DefaultInterface {
   alt: string
 }
 
-export const Default = ({ alt }: DefaultInterface) => html`<vl-share-buttons ?data-vl-alt=${alt}>
-  <vl-share-button href="#" data-vl-medium="facebook"></vl-share-button>
-  <vl-share-button href="#" data-vl-medium="twitter"></vl-share-button>
-  <vl-share-button href="#" data-vl-medium="linkedin"></vl-share-button>
-  <vl-share-button href="#" data-vl-medium="googleplus"></vl-share-button>
-  <vl-share-button href="#" data-vl-medium="mail"></vl-share-button>
+export const Default = ({ alt }: DefaultInterface) => html`<vl-share-buttons ?data-vl-alt=${alt} data-cy="share-buttons">
+  <vl-share-button href="#" data-vl-medium="facebook" data-cy="share-button-1"></vl-share-button>
+  <vl-share-button href="#" data-vl-medium="twitter" data-cy="share-button-2"></vl-share-button>
+  <vl-share-button href="#" data-vl-medium="linkedin" data-cy="share-button-3"></vl-share-button>
+  <vl-share-button href="#" data-vl-medium="googleplus" data-cy="share-button-4"></vl-share-button>
+  <vl-share-button href="#" data-vl-medium="mail" data-cy="share-button-5"></vl-share-button>
 </vl-share-buttons>`;
