@@ -2,6 +2,11 @@ import { vlElement, define } from '@uig/common/utilities';
 
 // Mixin to add logic to a group of radio elements
 export const vlRadioGroupComponent = {
+  parentElement: undefined,
+  getRootNode(): any {
+    const host = '';
+  },
+
   setKeyEventsRegistered() {
     const parent = this._parentElement();
     parent.setAttribute('data-vl-key-events-registered', '');
@@ -93,6 +98,8 @@ export const vlRadioGroupComponent = {
 };
 
 export class VlRadioGroup extends vlElement(HTMLElement) {
+  private vlRadioGroupComponent = undefined;
+
   constructor() {
     super(`<slot></slot>`);
     Object.assign(this, vlRadioGroupComponent);

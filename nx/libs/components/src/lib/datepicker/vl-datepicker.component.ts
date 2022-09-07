@@ -1,6 +1,6 @@
 import {vlElement, define, awaitUntil} from '@uig/common/utilities';
-import {vlFormValidation, vlFormValidationElement} from '../../../../elements/src/lib/form-validation/vl-form-validation.element';
-import {vlPattern} from '../../../../elements/src/lib/pattern/vl-pattern.element';
+import {vlFormValidation, vlFormValidationElement} from '@uig/elements'; // TODO: Make more specific
+import {vlPattern} from '@uig/elements'; // TODO: Make more specific
 import './lib/vl-datepicker-lib.js';
 import styles from './style/vl-datepicker.scss';
 
@@ -216,7 +216,7 @@ export class VlDatepickerComponent extends vlFormValidationElement(vlElement(HTM
     this.dress = this._dress;
   }
 
-  __stateChanged({value, type}) {
+  __stateChanged({value , type}: any) {
     if (value != undefined) {
       this._inputElement.setAttribute(`data-vl-${type}`, '');
       this._visibleInputElement.classList.add(`vl-input-field--${type}`);
