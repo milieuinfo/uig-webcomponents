@@ -20,10 +20,10 @@ export * from './lib/grid/vl-layout.element';
 export * from './lib/grid/vl-region.element';
 export * from './lib/icon/vl-icon.element';
 export * from './lib/icon/vl-icon-wrapper.element';
-
-export * from './lib/input-addon/vl-input-addon.element';
-export * from './lib/input-group/vl-input-group.element';
 export * from './lib/input-addon/vl-button-input-addon.element';
+export * from './lib/input-addon/vl-input-addon.element';
+
+export * from './lib/input-group/vl-input-group.element';
 export * from './lib/infotext/vl-infotext.element';
 export * from './lib/input-field/vl-input-field.element';
 export * from './lib/button/vl-link-button.element';

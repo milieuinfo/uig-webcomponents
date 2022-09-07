@@ -4,17 +4,21 @@ import '../vl-input-addon.element';
 // import tooltipStyles from "../tooltip/styles.scss";
 
 export default {
-    title: 'Elements/vl-input-addon',
+    title: 'Elements/input-addon',
     parameters: {
         controls: { hideNoControlsWarning: true },
     },
 };
 
-export const Default = () => html` <p is="vl-input-addon" data-cy="input-addon">€</p> `;
+export const inputAddonDefault = () => html` <p is="vl-input-addon" data-cy="input-addon">€</p> `;
+inputAddonDefault.storyName = 'vl-input-addon - default';
 
-export const WithTooltip = () => html`
-    <p is="vl-input-addon" data-cy="input-addon-with-tooltip">
-        €
-        <vl-tooltip placement="top">Euro</vl-tooltip> -->
-    </p>
-`;
+// TODO: dit kan niet hier, een tooltip zou een circulaire dependency creeren met de components
+//  -> deze story zou dus bij tooltip kunnen gezet worden
+// export const inputAddonWithTooltip = () => html`
+//     <p is="vl-input-addon" data-cy="input-addon-with-tooltip">
+//         €
+//         <vl-tooltip placement="top">Euro</vl-tooltip>
+//     </p>
+// `;
+// inputAddonWithTooltip.storyName = 'vl-input-addon - with tooltip';

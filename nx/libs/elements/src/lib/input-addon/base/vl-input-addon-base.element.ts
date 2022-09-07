@@ -1,4 +1,4 @@
-import { Class, BaseElementOfType } from '@uig/common/utilities';
+import { BaseElementOfType } from '@uig/common/utilities';
 
 /**
  * Gebruik de input addon mixin in combinatie met een input addon elementen.
@@ -7,7 +7,7 @@ import { Class, BaseElementOfType } from '@uig/common/utilities';
  * @param {Object} SuperClass
  * @return {Object} SuperClass
  */
-export const vlInputAddonBaseElement = (SuperClass: Class): Class => {
+export const InputAddonBaseElementOfType = (SuperClass: typeof HTMLElement): any => {
     return class extends BaseElementOfType(SuperClass) {
         connectedCallback() {
             this.classList.add('vl-input-addon');
