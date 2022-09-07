@@ -131,3 +131,61 @@ export const formValidationArgTypes = {
         },
     },
 };
+
+export const formValidationArgsDisabled = {
+    validationType: {
+        control: {
+            disable: true,
+        },
+    },
+    required: {
+        control: {
+            disable: true,
+        },
+    },
+    errorMessage: {
+        control: {
+            disable: true,
+        },
+    },
+    errorPlaceholder: {
+        control: {
+            disable: true,
+        },
+    },
+    successClass: {
+        control: {
+            disable: true,
+        },
+    },
+    errorClass: {
+        control: {
+            disable: true,
+        },
+    },
+    numericalOnlyInteger: {
+        control: {
+            disable: true,
+        },
+    },
+    numericalGreaterThan: {
+        control: {
+            disable: true,
+        },
+    },
+    numericalGreaterThanOrEqualTo: {
+        control: {
+            disable: true,
+        },
+    },
+    numericalLessThan: {
+        control: {
+            disable: true,
+        },
+    },
+    numericalLessThanOrEqualTo: {
+        control: {
+            disable: true,
+        },
+    },
+};

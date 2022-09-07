@@ -1,45 +1,45 @@
-const url = 'http://localhost:4600/iframe.html?id=elements-vl-input-field--default&viewMode=story';
+const inputFieldUrl = 'http://localhost:4600/iframe.html?id=elements-input-field--input-field-default&viewMode=story';
 
 describe('story vl-input-field', () => {
     it('should contain an input field', () => {
-        cy.visit(`${url}`);
-        cy.getDataCy('input-field')
-            .should('have.class', 'vl-input-field')
+        cy.visit(`${inputFieldUrl}`);
+        cy.getDataCy('input-field').should('have.class', 'vl-input-field');
     });
 
     it('should contain an input field with a block state', () => {
-        cy.visit(`${url}&args=block:true`);
+        cy.visit(`${inputFieldUrl}&args=block:true`);
         cy.getDataCy('input-field')
             .should('have.class', 'vl-input-field')
-            .should('have.class', 'vl-input-field--block')
+            .should('have.class', 'vl-input-field--block');
     });
 
     it('should contain an input field with an error state ', () => {
-        cy.visit(`${url}&args=error:true`);
+        cy.visit(`${inputFieldUrl}&args=error:true`);
         cy.getDataCy('input-field')
             .should('have.class', 'vl-input-field')
-            .should('have.class', 'vl-input-field--error')
+            .should('have.class', 'vl-input-field--error');
     });
 
     it('should contain an input field with an success state ', () => {
-        cy.visit(`${url}&args=success:true`);
+        cy.visit(`${inputFieldUrl}&args=success:true`);
         cy.getDataCy('input-field')
             .should('have.class', 'vl-input-field')
-            .should('have.class', 'vl-input-field--success')
+            .should('have.class', 'vl-input-field--success');
     });
 
     it('should contain an input field with an disabled state ', () => {
-        cy.visit('http://localhost:4600/iframe.html?args=errorPlaceholder:sdfdsf&id=elements-vl-input-field--disabled&viewMode=story');
+        cy.visit(
+            'http://localhost:4600/iframe.html?args=&id=elements-input-field--input-field-disabled&viewMode=story'
+        );
         cy.getDataCy('input-field')
             .should('have.class', 'vl-input-field')
-            .should('have.class', 'vl-input-field--disabled')
+            .should('have.class', 'vl-input-field--disabled');
     });
 
     it('should contain an input field with a small state', () => {
-        cy.visit(`${url}&args=small:true`);
+        cy.visit(`${inputFieldUrl}&args=small:true`);
         cy.getDataCy('input-field')
             .should('have.class', 'vl-input-field')
-            .should('have.class', 'vl-input-field--small') 
+            .should('have.class', 'vl-input-field--small');
     });
-
 });
