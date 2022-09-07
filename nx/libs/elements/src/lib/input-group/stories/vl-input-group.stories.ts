@@ -7,13 +7,13 @@ import '../../icon/vl-icon.element';
 import '../../text/vl-text.element';
 
 export default {
-    title: 'Elements/vl-input-group',
+    title: 'Elements/input-group',
     parameters: {
         controls: { hideNoControlsWarning: true },
     },
 };
 
-export const Default = () => html`
+export const inputGroupDefault = () => html`
     <div is="vl-input-group" data-cy="input-group">
         <button is="vl-button-input-addon" type="button">
             <span is="vl-icon" data-vl-icon="location"></span>
@@ -22,8 +22,9 @@ export const Default = () => html`
         <input is="vl-input-field" type="text" />
     </div>
 `;
+inputGroupDefault.storyName = 'vl-input-group - default';
 
-export const WithInputAddonRight = () => html`
+export const inputGroupWithInputAddonRight = () => html`
     <div is="vl-input-group" data-cy="input-group">
         <input is="vl-input-field" type="text" />
         <button is="vl-button-input-addon" type="button">
@@ -32,22 +33,25 @@ export const WithInputAddonRight = () => html`
         </button>
     </div>
 `;
+inputGroupWithInputAddonRight.storyName = 'vl-input-group - with input addon right';
 
-export const WithTextAddonLeft = () => html`
+export const inputGroupWithTextAddonLeft = () => html`
     <div is="vl-input-group" data-cy="input-group">
         <button is="vl-button" type="button">Locatie kiezen</button>
         <input is="vl-input-field" type="text" />
     </div>
 `;
+inputGroupWithTextAddonLeft.storyName = 'vl-input-group - with text addon left';
 
-export const WithTextAddonRight = () => html`
+export const inputGroupWithTextAddonRight = () => html`
     <div is="vl-input-group" data-cy="input-group">
         <input is="vl-input-field" type="text" />
         <button is="vl-button" type="button">Locatie kiezen</button>
     </div>
 `;
+inputGroupWithTextAddonRight.storyName = 'vl-input-group - with text addon right';
 
-export const WithButtonLeft = () => html`
+export const inputGroupWithButtonLeft = () => html`
     <div is="vl-input-group" data-cy="input-group">
         <button is="vl-button" type="button">
             <span is="vl-icon" data-vl-icon="location"></span>
@@ -56,3 +60,4 @@ export const WithButtonLeft = () => html`
         <input is="vl-input-field" type="text" />
     </div>
 `;
+inputGroupWithButtonLeft.storyName = 'vl-input-group - with button left';
