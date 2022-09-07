@@ -1,5 +1,6 @@
 import { html } from 'lit-html';
 import '../vl-icon.element';
+import '../vl-icon-wrapper.element';
 
 export default {
     title: 'Elements/icon',

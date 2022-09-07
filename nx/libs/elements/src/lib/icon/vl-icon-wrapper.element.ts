@@ -8,7 +8,7 @@ import { BaseElementOfType, define } from '@uig/common/utilities';
  * @extends HTMLParagraphElement
  * @mixes nativeVlElement
  */
-export class VlIconWrapperElement extends BaseElementOfType(HTMLSpanElement) {
+export class VlIconWrapperElement extends BaseElementOfType(HTMLParagraphElement) {
     connectedCallback() {
         this._addClass();
     }
@@ -18,4 +18,5 @@ export class VlIconWrapperElement extends BaseElementOfType(HTMLSpanElement) {
     }
 }
 
-define('vl-icon-wrapper', VlIconWrapperElement, { extends: 'span' });
+// TODO: een span / HTMLSpanElement is logischer
+define('vl-icon-wrapper', VlIconWrapperElement, { extends: 'p' });

@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import '../vl-icon.element';
+import '../vl-icon-wrapper.element';
 import { iconArgs, iconArgTypes } from './vl-icon.stories-arg';
-import { formDefault } from '../../form/stories/vl-form.stories';
 
 export default {
     title: 'Elements/icon',
@@ -11,8 +11,8 @@ export default {
 
 export const iconDefault = ({ icon, size, light, rotate, fullRotate }: typeof iconArgs) => html`<span
     is="vl-icon"
-    data-vl-size=${size}
     data-vl-icon=${icon}
+    data-vl-size=${size}
     ?data-vl-light=${light}
     ?data-vl-90deg=${rotate}
     ?data-vl-180deg=${fullRotate}
@@ -21,17 +21,17 @@ export const iconDefault = ({ icon, size, light, rotate, fullRotate }: typeof ic
 iconDefault.storyName = 'vl-icon - default';
 iconDefault.argTypes = { content: { control: false } };
 
-export const iconBefore = ({ size, icon, light, rotate, fullRotate, content, before }: typeof iconArgs) => html`<p
+export const iconBefore = ({ icon, size, light, rotate, fullRotate, content, before }: typeof iconArgs) => html`<p
     is="vl-icon-wrapper"
 >
     <span
         is="vl-icon"
-        ?data-vl-before=${before}
         data-vl-icon=${icon}
         data-vl-size=${size}
         ?data-vl-light=${light}
         ?data-vl-90deg=${rotate}
         ?data-vl-180deg=${fullRotate}
+        ?data-vl-before=${before}
         data-cy="icon-before-element"
     ></span
     ><span>${content}</span>
@@ -41,18 +41,18 @@ iconBefore.args = {
     before: true,
 };
 
-export const iconAfter = ({ size, icon, light, rotate, fullRotate, content, after }: typeof iconArgs) => html`<p
+export const iconAfter = ({ icon, size, light, rotate, fullRotate, content, after }: typeof iconArgs) => html`<p
     is="vl-icon-wrapper"
 >
     <span>${content}</span
     ><span
         is="vl-icon"
-        ?data-vl-after=${after}
         data-vl-icon=${icon}
         data-vl-size=${size}
         ?data-vl-light=${light}
         ?data-vl-90deg=${rotate}
         ?data-vl-180deg=${fullRotate}
+        ?data-vl-after=${after}
         data-cy="icon-after-element"
     ></span>
 </p>`;
