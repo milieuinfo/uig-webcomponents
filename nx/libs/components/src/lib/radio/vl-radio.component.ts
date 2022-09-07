@@ -179,34 +179,34 @@ export class VlRadio extends vlElement(HTMLElement) {
     this._radios.filter((radio) => !radio.checked).forEach((radio) => (radio._inputElement.tabIndex = '-1'));
   }
 
-  _labelChangedCallback(oldValue, newValue) {
+  _labelChangedCallback(oldValue: string, newValue: string) {
     this._labelText.textContent = newValue;
   }
 
-  _valueChangedCallback(oldValue, newValue) {
+  _valueChangedCallback(oldValue: string, newValue: string) {
     this._inputElement.value = newValue;
   }
 
-  _nameChangedCallback(oldValue, newValue) {
+  _nameChangedCallback(oldValue: string, newValue: string) {
     if (this._inputElement.name != newValue) {
       this._inputElement.name = newValue;
       this.setAttribute('name', newValue);
     }
   }
 
-  _checkedChangedCallback(oldValue, newValue) {
+  _checkedChangedCallback(oldValue: string, newValue: string) {
     this._inputElement.checked = newValue != null;
   }
 
-  _disabledChangedCallback(oldValue, newValue) {
+  _disabledChangedCallback(oldValue: string, newValue: string) {
     this._inputElement.disabled = newValue != null;
   }
 
-  _singleChangedCallback(oldValue, newValue) {
+  _singleChangedCallback(oldValue: string, newValue: string) {
     this._toggleClass(this._labelText, newValue, 'vl-u-visually-hidden');
   }
 
-  _getActiveElement(element: any = document) {
+  _getActiveElement(element: any = document): any {
     if (element.activeElement && element.activeElement.shadowRoot) {
       return this._getActiveElement(element.activeElement.shadowRoot);
     }

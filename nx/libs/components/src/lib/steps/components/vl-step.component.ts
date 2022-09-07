@@ -75,7 +75,7 @@ export class VlStepComponent extends vlElement(HTMLElement) {
     const template = this._element.cloneNode(true);
     if (this._isToggleable) {
       vl.accordion.dress(template);
-      template.querySelector('#content').addEventListener('click', (e) => e.stopPropagation());
+      template.querySelector('#content').addEventListener('click', (e: Event) => e.stopPropagation());
     }
     return template;
   }
@@ -124,7 +124,7 @@ export class VlStepComponent extends vlElement(HTMLElement) {
     return this.hasAttribute('toggleable');
   }
 
-  _getSlot(name) {
+  _getSlot(name: string) {
     return this._shadow.querySelector(`[slot="${name}"]`);
   }
 
@@ -146,11 +146,11 @@ export class VlStepComponent extends vlElement(HTMLElement) {
     `;
   }
 
-  _typeChangedCallback(oldValue, newValue) {
+  _typeChangedCallback(oldValue: string, newValue: string) {
     this._changeClass(this._element, oldValue, newValue, this._classPrefix);
   }
 
-  _toggleableChangedCallback(oldValue, newValue) {
+  _toggleableChangedCallback(oldValue: string, newValue: string) {
     if (newValue != undefined) {
       this._element.classList.add('vl-step--accordion');
       this._element.classList.add('js-vl-accordion');
@@ -171,7 +171,7 @@ export class VlStepComponent extends vlElement(HTMLElement) {
     this.__processSlot(this._contentElement, 'content');
   }
 
-  __processSlot(parent, identifier) {
+  __processSlot(parent: string, identifier: string) {
     const element = this.querySelector(`[slot="${identifier}"]`);
     if (element) {
       this.__replaceSlot(parent, element, identifier);
@@ -180,12 +180,12 @@ export class VlStepComponent extends vlElement(HTMLElement) {
     }
   }
 
-  __replaceSlot(element, slot, name) {
+  __replaceSlot(element: any, slot: any, name: string) {
     element.hidden = false;
     element.replaceChild(slot.cloneNode(true), this._getSlot(name));
   }
 
-  __hideSlot(element, slot) {
+  __hideSlot(element: any, slot: any) {
     if (element) {
       element.hidden = true;
     }

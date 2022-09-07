@@ -338,7 +338,7 @@ export class VlPagerComponent extends vlElement(HTMLElement) {
   }
 
   __addPageBackLinkListener() {
-    this._pageBackLink.addEventListener("click", (e) => {
+    this._pageBackLink.addEventListener("click", (e: Event) => {
       e.preventDefault();
       if (!(this.currentPage - 1 <= 0)) {
         this.setAttribute("data-vl-current-page", this.currentPage - 1);

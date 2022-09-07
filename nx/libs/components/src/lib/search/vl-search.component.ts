@@ -1,5 +1,5 @@
 import { vlElement, define } from "@uig/common/utilities";
-import { VlSelect } from "../../../../elements/src/lib/select/vl-select.element";
+import { VlSelect } from "@uig/elements"; // TODO: make it more specific
 import styles from "./style/vl-search.scss";
 
 /**

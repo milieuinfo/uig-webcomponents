@@ -15,7 +15,7 @@ interface TemplateInterface {
   paginationDisabled: string,
   alignCenter: string,
   alignRight: string,
-  change: string,
+  change: any,
 
 }
 

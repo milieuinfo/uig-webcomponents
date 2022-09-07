@@ -180,7 +180,13 @@ export const Table = () => html`<vl-typography>
   </table>
 </vl-typography>`;
 
-export const Parameters = ({ parameters, key1, key2 }) => {
+interface ParametersInterface {
+    parameters: string,
+    key1: string,
+    key2: string,
+}
+
+export const Parameters = ({ parameters, key1, key2 }: ParametersInterface) => {
   return html`<vl-typography data-vl-parameters=${parameters}>
     <p>
       Lorem <b>${key1}</b> dolor sit amet, consectetur adipiscing elit. Duis

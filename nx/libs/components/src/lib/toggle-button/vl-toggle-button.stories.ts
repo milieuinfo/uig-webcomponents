@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import './vl-toggle-button.component';
 import { action } from '@storybook/addon-actions';
-import { sharedButtonArgs, sharedButtonArgTypes } from '../../../../elements/src/lib/button/helper/vl-button.stories-helper';
+import { sharedButtonArgs, sharedButtonArgTypes } from '@uig/elements/src/lib/button/helper/vl-button.stories-helper';
 
 const ICON_PLACEMENT = {
   BEFORE: 'before',
@@ -147,7 +147,7 @@ export const WithIcon = ({active, icon, iconPlacement, textHidden, error, block,
 WithIcon.args = { icon: 'pencil', iconPlacement: ICON_PLACEMENT.AFTER };
 
 // Get last toggle button, because storybook can render multiple stories
-const getToggleButton = () => getLastElement('vl-toggle-button');
+const getToggleButton: any = () => getLastElement('vl-toggle-button');
 
 export const Controlled = ({active, icon, iconPlacement, textHidden, error, block, large, wide, narrow, loading, disabled, change, click, content}: DefaultInterface) => html`<vl-toggle-button
   .active=${active}

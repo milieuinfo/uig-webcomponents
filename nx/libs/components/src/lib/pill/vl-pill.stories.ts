@@ -14,8 +14,8 @@ interface DefaultInterface {
     checked: string,
     type: string,
     disabled: string,
-    close: string,
-    check: string,
+    close: any,
+    check: any,
 }
 
 export const Default = ({ closable, checkable, checked, type, disabled, close, check }: DefaultInterface) => html`

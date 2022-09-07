@@ -45,7 +45,7 @@ export class VlTextarea extends vlFormValidationElement(vlElement(HTMLTextAreaEl
   }
 
   // TODO: Fix the styling for the wysiwyg editor (content_css property)
-  get _wysiwygConfig() {
+  get _wysiwygConfig(): any {
     return {
       target: this,
       menubar: false,

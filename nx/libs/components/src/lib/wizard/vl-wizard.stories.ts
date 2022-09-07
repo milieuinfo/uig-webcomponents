@@ -61,7 +61,7 @@ export default {
 };
 
 // get last wizard, because storybook can render Default multiple times
-const getWizard = () => getLastElement('vl-wizard');
+const getWizard: any = () => getLastElement('vl-wizard');
 
 interface DefaultInterface {
     activeStepSlider: string,
