@@ -1,6 +1,5 @@
 import { html } from 'lit-html';
 import '../vl-image.element';
-import { iconAfter } from '../../icon/stories/vl-icon.stories';
 
 export default {
     title: 'Elements/image',
