@@ -1,10 +1,10 @@
 import { html } from 'lit-html';
-import './vl-input-field.element';
-import '../button/vl-button.element';
-import '../link/vl-link.element';
-import '../form-message/vl-form-validation-message.element';
-import { formValidationArgs, formValidationArgTypes } from '../form-validation/stories/form-validation.stories-arg';
-import { VALIDATION_TYPE } from '../form-validation/vl-form-validation.model';
+import '../vl-input-field.element';
+import '../../button/vl-button.element';
+import '../../link/vl-link.element';
+import '../../form-message/vl-form-validation-message.element';
+import { formValidationArgs, formValidationArgTypes } from '../../form-validation/stories/form-validation.stories-arg';
+import { VALIDATION_TYPE } from '../../form-validation/vl-form-validation.model';
 
 export default {
     title: 'Elements/vl-input-field',

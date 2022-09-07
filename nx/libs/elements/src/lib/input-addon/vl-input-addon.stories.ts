@@ -15,6 +15,6 @@ export const Default = () => html` <p is="vl-input-addon" data-cy="input-addon">
 export const WithTooltip = () => html`
   <p is="vl-input-addon" data-cy="input-addon-with-tooltip">
     €
-    <vl-tooltip placement="top">Euro</vl-tooltip> 
-  
+    <vl-tooltip placement="top">Euro</vl-tooltip>
+
 `;
