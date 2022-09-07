@@ -2,7 +2,7 @@ import { html } from 'lit-html';
 import '../vl-infotext.element';
 
 export default {
-    title: 'Elements/vl-infotext',
+    title: 'Elements/infotext',
     args: {
         badge: false,
     },
@@ -21,11 +21,11 @@ export default {
     },
 };
 
-interface InfotextInterface {
+interface InfotextArgs {
     badge: string;
 }
 
-export const Default = ({ badge }: InfotextInterface) => html`
+export const infotextDefault = ({ badge }: InfotextArgs) => html`
     <div is="vl-infotext" ?data-vl-badge=${badge} data-cy="infotext">
         <div>
             <div data-vl-value="">3200</div>
@@ -33,8 +33,9 @@ export const Default = ({ badge }: InfotextInterface) => html`
         </div>
     </div>
 `;
+infotextDefault.storyName = 'vl-infotext - default';
 
-export const WithLink = ({ badge }: InfotextInterface) => html`
+export const infotextWithLink = ({ badge }: InfotextArgs) => html`
     <div is="vl-infotext" ?data-vl-badge=${badge} data-cy="infotext-link">
         <a href="#">
             <div data-vl-value="">3200</div>
@@ -42,8 +43,9 @@ export const WithLink = ({ badge }: InfotextInterface) => html`
         </a>
     </div>
 `;
+infotextWithLink.storyName = 'vl-infotext - with link';
 
-export const WithComplexContent = () => html`
+export const infotextWithComplexContent = () => html`
     <div is="vl-infotext" data-vl-badge data-cy="infotext-complex">
         <div>
             <div data-vl-value="">
@@ -57,3 +59,4 @@ export const WithComplexContent = () => html`
         </div>
     </div>
 `;
+infotextWithComplexContent.storyName = 'vl-infotext - with complex content';
