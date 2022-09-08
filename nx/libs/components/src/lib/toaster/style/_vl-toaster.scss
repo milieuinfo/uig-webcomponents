@@ -8,14 +8,11 @@ $vl-icon-font-location: 'https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/i
 @import '@govflanders/vl-ui-util/src/scss/util';
 
 // @govflanders component styles
-@import '@govflanders/vl-ui-modal/src/scss/modal';
+@import '@govflanders/vl-ui-toaster/src/scss/toaster';
 
-// Child styling needs to be available in the shadow root of the modal.
-@import '@govflanders/vl-ui-action-group/src/scss/action-group';
-@import '@govflanders/vl-ui-link/src/scss/link';
-@import '@govflanders/vl-ui-icon/src/scss/icon';
-
-:host([data-vl-allow-overflow]) dialog {
-  overflow: visible;
+[is='vl-toaster'] {
+  vl-alert {
+    display: block;
+    margin: 1rem;
+  }
 }
-

@@ -1,6 +1,5 @@
 import {vlElement, define, awaitUntil} from '@uig/common/utilities';
-import {vlFormValidation, vlFormValidationElement} from '@uig/elements'; // TODO: Make more specific
-import {vlPattern} from '@uig/elements'; // TODO: Make more specific
+import {vlFormValidation, vlFormValidationElement, vlPattern} from '@uig/elements';
 import './lib/vl-datepicker-lib.js';
 import styles from './style/vl-datepicker.scss';
 

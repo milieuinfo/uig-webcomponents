@@ -39,7 +39,6 @@ export class VlRadio extends vlElement(HTMLElement) {
   }
 
   connectedCallback() {
-    console.log("connected callback");
     this._inputElement.addEventListener('change', () => this._check());
     this._registerChangeEvent();
     setTimeout(() => {

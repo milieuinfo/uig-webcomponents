@@ -1,5 +1,5 @@
 import { html } from 'lit-html';
-import '../alert/vl-alert.component';
+import './vl-alert.component';
 
 const ALERT_TYPE = {
     INFO: 'info',
