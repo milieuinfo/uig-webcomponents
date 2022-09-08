@@ -7,7 +7,7 @@ import { Class, BaseElementOfType } from '@uig/common/utilities';
  * @param {Object} SuperClass - Class die als base class gebruikt zal worden.
  * @return {Object} class
  */
-export const vlLinkBaseElement = (SuperClass: Class): Class => {
+export const LinkBaseElementOfType = (SuperClass: Class): Class => {
     return class extends BaseElementOfType(SuperClass) {
         static get _observedAttributes() {
             return ['error'];

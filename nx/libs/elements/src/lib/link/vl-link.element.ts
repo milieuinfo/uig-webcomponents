@@ -1,5 +1,5 @@
 import { define } from '@uig/common/utilities';
-import { vlLinkBaseElement } from './base/vl-link-base.element';
+import { LinkBaseElementOfType } from './base/link-base.element';
 
 /**
  * VlLink
@@ -12,6 +12,6 @@ import { vlLinkBaseElement } from './base/vl-link-base.element';
  * @property {string} data-vl-block - Attribuut zorgt ervoor dat het element als block getoond wordt.
  * @property {string} data-vl-error - Attribuut zorgt ervoor dat het element als error getoond wordt.
  */
-export class VlLinkElement extends vlLinkBaseElement(HTMLAnchorElement) {}
+export class VlLinkElement extends LinkBaseElementOfType(HTMLAnchorElement) {}
 
-define("vl-link", VlLinkElement, { extends: "a" });
+define('vl-link', VlLinkElement, { extends: 'a' });

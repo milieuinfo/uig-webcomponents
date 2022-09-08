@@ -1,5 +1,5 @@
 import { define } from '@uig/common/utilities';
-import { InputAddonBaseElementOfType } from './base/vl-input-addon-base.element';
+import { InputAddonBaseElementOfType } from './base/input-addon-base.element';
 
 /**
  * VlButtonInputAddon

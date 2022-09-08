@@ -1,5 +1,5 @@
 import { define } from '@uig/common/utilities';
-import { vlLinkBaseElement} from "./base/vl-link-base.element";
+import { LinkBaseElementOfType } from './base/link-base.element';
 
 /**
  * VlButtonLink
@@ -13,6 +13,6 @@ import { vlLinkBaseElement} from "./base/vl-link-base.element";
  * @property {string} data-vl-error - Attribuut zorgt ervoor dat het element als error getoond wordt.
  */
 
-export class VlButtonLinkElement extends vlLinkBaseElement(HTMLButtonElement) {}
+export class VlButtonLinkElement extends LinkBaseElementOfType(HTMLButtonElement) {}
 
-define("vl-button-link", VlButtonLinkElement, { extends: "button" });
+define('vl-button-link', VlButtonLinkElement, { extends: 'button' });
