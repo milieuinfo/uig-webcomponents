@@ -148,7 +148,7 @@
             );
           });
           const fetchStub = sandbox.stub(window, 'fetch');
-          fetchStub.withArgs(`https://loc.geopunt.be/v4/Suggestion?q=${suggestions[0]}`).returns(response);
+          fetchStub.withArgs(`https://geo.api.vlaanderen.be/geolocation/Suggestion?q=${suggestions[0]}`).returns(response);
           const select = fixture('vl-select-location-fixture');
           await select.ready();
           select.dispatchEvent(
@@ -185,7 +185,7 @@
 
           const fetchStub = sandbox.stub(window, 'fetch');
           fetchStub
-            .withArgs(`https://loc.geopunt.be/v4/Location?c=5&xy=${lambertCoordinaat.x},${lambertCoordinaat.y}`)
+            .withArgs(`https://geo.api.vlaanderen.be/geolocation/Location?c=5&xy=${lambertCoordinaat.x},${lambertCoordinaat.y}`)
             .returns(response);
 
           const select = fixture('vl-select-location-fixture');
@@ -247,7 +247,7 @@
             );
           });
           const fetchStub = sandbox.stub(window, 'fetch');
-          fetchStub.withArgs(`https://loc.geopunt.be/v4/Location?q=${value}`).returns(response);
+          fetchStub.withArgs(`https://geo.api.vlaanderen.be/geolocation/Location?q=${value}`).returns(response);
           const select = fixture('vl-select-location-fixture');
           await select.ready();
           select.choices = choices;

@@ -15,7 +15,7 @@ import { VlMapBaseLayer } from '../../baselayer';
 export class VlMapBaseLayerGRB extends VlMapBaseLayer {
   constructor() {
     super();
-    this.url = 'https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts';
+    this.url = 'https://geo.api.vlaanderen.be/GRB/wmts';
     this.layer = 'grb_bsk';
     this.title = 'GRB basis laag';
   }
