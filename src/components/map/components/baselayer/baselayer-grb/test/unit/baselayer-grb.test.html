@@ -27,9 +27,10 @@
           const vlMapBaseLayerElement = element.querySelector(
             "vl-map-baselayer-grb"
           );
+          debugger;
           assert.equal(
             vlMapBaseLayerElement.url,
-            "https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts"
+            "https://geo.api.vlaanderen.be/GRB/wmts"
           );
           assert.equal(vlMapBaseLayerElement.type, "wmts");
           assert.equal(vlMapBaseLayerElement.layer, "grb_bsk");
