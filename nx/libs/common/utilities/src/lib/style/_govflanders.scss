@@ -42,5 +42,9 @@ $vl-icon-font-location: 'https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/i
 @import '@govflanders/vl-ui-video-player/src/scss/video-player';
 @import '@govflanders/vl-ui-properties/src/scss/properties';
 
+// TODO: Tooltip styling needs to be know outside the shadow root of Tooltip itself. 
+// Is this the correct place to register this styling globally?
+@import '@govflanders/vl-ui-tooltip/src/scss/tooltip';
+
 // @govflanders util styles
 @import '@govflanders/vl-ui-util/src/scss/util';

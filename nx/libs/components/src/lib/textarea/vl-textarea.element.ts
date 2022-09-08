@@ -1,6 +1,6 @@
 import { vlElement, define, awaitUntil } from '@uig/common/utilities';
 import { VlLinkToolbarFactory } from './vl-tinymce-link-toolbar';
-import { vlFormValidation, vlFormValidationElement } from '../../../../elements/src/lib/form-validation/vl-form-validation.element';
+import { vlFormValidation, vlFormValidationElement } from '@uig/elements';
 import 'tinymce/tinymce';
 
 declare const tinyMCE: any;

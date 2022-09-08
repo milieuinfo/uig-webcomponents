@@ -1,5 +1,5 @@
 import { define, vlElement } from '@uig/common/utilities';
-import {vlFormValidation, vlFormValidationElement} from '@uig/elements'; // TODO: Make more specific
+import {vlFormValidation, vlFormValidationElement} from '@uig/elements';
 import './lib/vl-upload-lib.js';
 import styles from './style/vl-upload.scss';
 

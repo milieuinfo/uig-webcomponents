@@ -1,12 +1,10 @@
 import { vlElement, define } from '@uig/common/utilities';
 
+
+//TODO: Can we make this a (abstract) class?
+
 // Mixin to add logic to a group of radio elements
 export const vlRadioGroupComponent = {
-  parentElement: undefined,
-  getRootNode(): any {
-    const host = '';
-  },
-
   setKeyEventsRegistered() {
     const parent = this._parentElement();
     parent.setAttribute('data-vl-key-events-registered', '');
@@ -93,7 +91,8 @@ export const vlRadioGroupComponent = {
   },
 
   _parentElement(): any {
-    return this.parentElement || this.getRootNode().host || this.getRootNode();
+    const self = this as any;
+    return self.parentElement || self.getRootNode().host || self.getRootNode();
   },
 };
 

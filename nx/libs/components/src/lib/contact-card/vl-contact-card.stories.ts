@@ -1,5 +1,4 @@
 import { html } from "lit-html";
-import "@uig/elements/src/lib/properties/vl-properties.element";
 import "../infoblock/vl-infoblock.component";
 import "./vl-contact-card.component";
 
