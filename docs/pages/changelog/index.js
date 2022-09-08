@@ -10,6 +10,16 @@ const unreleased = [];
 const changes = [
   ...unreleased,
   {
+    version: '3.0.15',
+    date: '08/09/2022',
+    children: html` <ul>
+      <li>
+        <p><code>vl-map</code></p>
+        <p>URLs van geo api's vlaanderen veranderen</p>
+      </li>
+    </ul>`,
+  },
+  {
     version: '3.0.14',
     date: '30/8/2022',
     children: html` <ul>
