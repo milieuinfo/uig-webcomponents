@@ -115,7 +115,7 @@ export class VlRadio extends vlElement(HTMLElement) {
     if (value) {
       this._check();
     }
-    // return value;
+    //  return value;
   }
 
   /**
@@ -193,7 +193,7 @@ export class VlRadio extends vlElement(HTMLElement) {
     }
   }
 
-  _checkedChangedCallback(oldValue: string, newValue: string) {
+  _checkedChangedCallback(oldValue: boolean, newValue: boolean) {
     this._inputElement.checked = newValue != null;
   }
 
