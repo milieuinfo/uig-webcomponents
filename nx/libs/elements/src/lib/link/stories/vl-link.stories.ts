@@ -12,8 +12,8 @@ import '../../icon/vl-icon.element';
 
 export default {
     title: 'Elements/link',
-    args: linkBaseArgs && linkDefaultArgs,
-    argTypes: linkBaseArgTypes && linkDefaultArgTypes,
+    args: { ...linkBaseArgs, ...linkDefaultArgs },
+    argTypes: { ...linkBaseArgTypes, ...linkDefaultArgTypes },
 };
 
 export const linkDefault = ({
