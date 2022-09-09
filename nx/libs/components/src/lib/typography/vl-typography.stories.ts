@@ -22,7 +22,7 @@ export default {
   },
 };
 
-export const Default = () => html`<vl-typography>
+export const Default = () => html`<vl-typography data-cy="typography">
   <p>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
     <a href="#">tempor incididunt</a> ut labore et dolore magna aliqua. Ut enim
@@ -35,7 +35,7 @@ export const Default = () => html`<vl-typography>
   <p>Lorem dolor sit amet, consectetur adipisicing elit. Deleniti, in.</p>
 </vl-typography>`;
 
-export const Titles = () => html`<vl-typography>
+export const Titles = () => html`<vl-typography data-cy="typography">
   <h1>Heading 1</h1>
   <h2>Heading 2</h2>
   <h3>Heading 3</h3>
@@ -44,7 +44,7 @@ export const Titles = () => html`<vl-typography>
   <h6>Heading 6</h6>
 </vl-typography>`;
 
-export const Lists = () => html`<vl-typography>
+export const Lists = () => html`<vl-typography data-cy="typography">
   <ul>
     <li>Lorem ipsum dolor sit amet.</li>
     <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
@@ -129,7 +129,7 @@ export const Lists = () => html`<vl-typography>
   </ul>
 </vl-typography>`;
 
-export const Markup = () => html`<vl-typography>
+export const Markup = () => html`<vl-typography data-cy="typography">
   <p><strong>strong-tag</strong></p>
   <p><b>b-tag</b></p>
   <p><em>em-tag</em></p>
@@ -148,7 +148,7 @@ export const Markup = () => html`<vl-typography>
   <p></p>
 </vl-typography>`;
 
-export const Table = () => html`<vl-typography>
+export const Table = () => html`<vl-typography data-cy="typography">
   <table>
     <caption>
       table title
@@ -187,7 +187,7 @@ interface ParametersInterface {
 }
 
 export const Parameters = ({ parameters, key1, key2 }: ParametersInterface) => {
-  return html`<vl-typography data-vl-parameters=${parameters}>
+  return html`<vl-typography data-vl-parameters=${parameters} data-cy="typography">
     <p>
       Lorem <b>${key1}</b> dolor sit amet, consectetur adipiscing elit. Duis
       iaculis molestie feugiat. Lorem <b>${key2}</b> eros, consequat et
