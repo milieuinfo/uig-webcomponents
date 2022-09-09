@@ -47,7 +47,7 @@ interface DefaultInterface {
   content: any,
 }
 
-export const Default = ({ toggleText, content }: DefaultInterface) => html`<vl-accordion data-vl-toggle-text=${toggleText}>
+export const Default = ({ toggleText, content }: DefaultInterface) => html`<vl-accordion data-vl-toggle-text=${toggleText} data-cy="accordion">
   <span>${content}</span>
 </vl-accordion>`;
 
@@ -57,7 +57,7 @@ Default.argTypes = {
 };
 
 export const WithTitleSlot = ({ toggleText, content }: DefaultInterface) => html`
-  <vl-accordion>
+  <vl-accordion data-cy="accordion-with-title-slot">
     <span slot="title">${toggleText}</span>
     <span>${content}</span>
   </vl-accordion>
@@ -81,6 +81,7 @@ export const DynamicToggle = ({ toggleText, content, openToggleText, closedToggl
     data-vl-toggle-text=${toggleText}
     data-vl-open-toggle-text=${openToggleText}
     data-vl-close-toggle-text=${closedToggleText}
+    data-cy="accordion"
   >
     <span>${content}</span>
   </vl-accordion>
