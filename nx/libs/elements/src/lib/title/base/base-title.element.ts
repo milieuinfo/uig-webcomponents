@@ -13,7 +13,7 @@ import { BaseElementOfType } from '@uig/common/utilities';
  * @property {boolean} data-vl-alt - Attribuut wordt gebruikt voor een alt titel en zal altijd een lijn toevoegen onder de titel.
  * @property {boolean} data-vl-no-space-bottom - Attribuut wordt gebruikt wanneer een titel gecombineerd wordt met de grid component.
  */
-export class VlTitleBaseElement extends BaseElementOfType(HTMLHeadingElement) {
+export class BaseTitleOfType extends BaseElementOfType(HTMLHeadingElement) {
     static get _observedClassAttributes() {
         return ['sans', 'has-border', 'alt', 'no-space-bottom'];
     }

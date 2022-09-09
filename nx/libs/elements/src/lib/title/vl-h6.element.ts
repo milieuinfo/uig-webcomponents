@@ -1,6 +1,6 @@
-import { define } from "@uig/common/utilities";
-import { VlTitleBaseElement } from "./base/vl-title-base.element";
+import { define } from '@uig/common/utilities';
+import { BaseTitleOfType } from './base/base-title.element';
 
-export class VlH6Element extends VlTitleBaseElement {}
+export class VlH6Element extends BaseTitleOfType {}
 
-define("vl-h6", VlH6Element, { extends: "h6" });
+define('vl-h6', VlH6Element, { extends: 'h6' });

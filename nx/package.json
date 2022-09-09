@@ -2,8 +2,8 @@
     "name": "nx",
     "version": "0.0.0",
     "license": "MIT",
-    "engines" : {
-        "node" : "^16.16.0"
+    "engines": {
+        "node": "^16.16.0"
     },
     "scripts": {
         "start": "nx serve",
@@ -76,7 +76,7 @@
         "@govflanders-v14/vl-ui-introduction": "npm:@govflanders/vl-ui-introduction@14.0.2",
         "@govflanders-v14/vl-ui-link": "npm:@govflanders/vl-ui-link@14.0.2",
         "@govflanders-v14/vl-ui-link-list": "npm:@govflanders/vl-ui-link-list@14.0.2",
-        "@govflanders/vl-ui-multiselect": "^3.11.5",
+        "@govflanders-v14/vl-ui-multiselect": "npm:@govflanders/vl-ui-multiselect@14.0.2",
         "@govflanders/vl-ui-pill": "^3.12.17",
         "@govflanders/vl-ui-pill-input": "^3.12.3",
         "@govflanders/vl-ui-popover": "^3.12.17",
@@ -84,7 +84,7 @@
         "@govflanders/vl-ui-search-results": "^3.12.3",
         "@govflanders/vl-ui-select": "^3.12.24",
         "@govflanders/vl-ui-side-navigation": "^3.12.3",
-        "@govflanders/vl-ui-titles": "^3.12.3",
+        "@govflanders-v14/vl-ui-titles": "npm:@govflanders/vl-ui-titles@14.0.2",
         "@govflanders/vl-ui-typography": "^3.12.17",
         "@govflanders/vl-ui-util": "^3.12.24",
         "@govflanders-v14/vl-ui-util": "npm:@govflanders/vl-ui-util@14.0.2",
