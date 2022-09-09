@@ -9,7 +9,7 @@ export default {
 };
 
 export const Default = () =>
-  html` <vl-code-preview>
+  html` <vl-code-preview data-cy="code-preview">
     <h3>This is a title</h3>
     <h2>This is a subtitle</h2>
     <div>
