@@ -11,7 +11,7 @@ export default {
 
 export const Default = () =>
     html`
-        <vl-breadcrumb>
+        <vl-breadcrumb data-cy="breadcrumb">
             <vl-breadcrumb-item data-vl-href="#">Vlaanderen Intern</vl-breadcrumb-item>
             <vl-breadcrumb-item data-vl-href="#">Regelgeving</vl-breadcrumb-item>
             <vl-breadcrumb-item data-vl-href="#">Webuniversum</vl-breadcrumb-item>
