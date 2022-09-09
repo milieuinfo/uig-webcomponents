@@ -36,6 +36,61 @@ export class VlElement extends WebElement {
     return element;
   }
 
+  async getElementsInShadow(parent, selector) {
+    const element = await this.driver.executeScript(
+      `return arguments[0].shadowRoot.querySelectorAll("${selector}")`,
+      parent,
+    );
+    return element;
+  }
+
+  async findShadowDomElements(parent, shadowDomElementSelector) {
+    let elements;
+
+    await (elements = this.getElementsInShadow(parent, shadowDomElementSelector));
+
+    if (this.isIterable(elements)) {
+      return Promise.all(elements).then((e) => e);
+    }
+
+    return elements.then((e) => e);
+  }
+
+  isIterable(obj) {
+    // checks for null and undefined
+    if (obj == null) {
+      return false;
+    }
+    return typeof obj[Symbol.iterator] === 'function';
+  }
+
+  async waitUntilShadowDomElementLocated(parent, shadowDomElementSelector) {
+    await this.driver.wait(() => {
+      return this.findShadowDomElements(parent, shadowDomElementSelector).then((elements) => {
+        if (this.isIterable(elements)) {
+          if (elements.length === 0) {
+            return false; // element not found
+          }
+          return elements[0];
+        }
+        return elements != null;
+      });
+    }, 5000);
+  }
+
+  async waitUntilShadowDomElementsCount(parent, shadowDomElementSelector, count) {
+    await this.driver.wait(
+      () =>
+        this.findShadowDomElements(parent, shadowDomElementSelector).then((elements) => {
+          if (elements.length === count) {
+            return elements;
+          }
+          return false;
+        }),
+      5000,
+    );
+  }
+
   async getClassList() {
     return (await this.getAttribute('class')).split(' ');
   }

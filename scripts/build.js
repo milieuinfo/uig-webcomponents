@@ -25,7 +25,25 @@ const buildConfig = {
     'titles',
     'video-player',
   ],
-  componentsWithStylesheetAndInlineStyling: ['properties', 'side-navigation', 'link', 'introduction', 'button', 'pill', 'tooltip', 'textarea', 'toaster', 'typography', 'proza-message', 'multiselect', 'icon', 'grid', 'data-table', 'form-grid'],
+  componentsWithStylesheetAndInlineStyling: [
+    'properties',
+    'side-navigation',
+    'link',
+    'introduction',
+    'button',
+    'pill',
+    'tooltip',
+    'textarea',
+    'toaster',
+    'typography',
+    'upload',
+    'proza-message',
+    'multiselect',
+    'icon',
+    'grid',
+    'data-table',
+    'form-grid',
+  ],
 };
 
 const { src, dist, componentsWithStylesheet, componentsWithStylesheetAndInlineStyling } = buildConfig;

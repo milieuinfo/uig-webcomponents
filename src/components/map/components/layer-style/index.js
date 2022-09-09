@@ -34,6 +34,15 @@ export class VlMapLayerStyle extends vlElement(HTMLElement) {
   }
 
   /**
+   * Geeft de name van de stijl terug.
+   *
+   * @Return {string}
+   */
+  get name() {
+    return this.getAttribute('data-vl-name');
+  }
+
+  /**
    * Geeft de color van de stijl terug.
    *
    * @Return {string}

@@ -64,7 +64,7 @@ class VlSelectLocation extends VlSelect {
   }
 
   get _url() {
-    return 'https://loc.geopunt.be/v4';
+    return 'https://geo.api.vlaanderen.be/geolocation';
   }
 
   get _searchUrl() {

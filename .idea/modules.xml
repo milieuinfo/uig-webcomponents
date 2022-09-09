@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/uig-webcomponents-nx.iml" filepath="$PROJECT_DIR$/.idea/uig-webcomponents-nx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/uig-webcomponents.iml" filepath="$PROJECT_DIR$/.idea/uig-webcomponents.iml" />
     </modules>
   </component>
 </project>

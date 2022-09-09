@@ -1,4 +1,4 @@
-import { VlElement } from '../util/test';
+import { VlElement } from '../util/vl-element';
 
 export class VlIcon extends VlElement {
     constructor(driver, selector) {

@@ -23,7 +23,7 @@ describe('vl-map', async () => {
 
     await assert.eventually.equal(
       baseLayerGrb.getUrl(),
-      'https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts',
+      'https://geo.api.vlaanderen.be/GRB/wmts',
     );
     await assert.eventually.equal(baseLayerGrb.getType(), 'wmts');
   });

@@ -3,7 +3,7 @@ import { docsIntro, TYPES } from '../../../../../.storybook/utils.js';
 import '../..';
 
 export default {
-  title: 'custom-elements/vl-breadcrumb/vl-breadcrumb-item',
+  title: 'custom-elements/vl-breadcrumb',
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
@@ -27,4 +27,20 @@ export default {
   },
 };
 
-export const Default = ({ href }) => html`<vl-breadcrumb-item data-vl-href=${href}>Regelgeving</vl-breadcrumb-item> `;
+export const breadCrumbItem = ({ href }) => html`
+  <vl-breadcrumb-item data-vl-href=${href}>Regelgeving</vl-breadcrumb-item>
+`;
+breadCrumbItem.storyName = 'breadcrumb-item - default';
+
+export const breadcrumbItemReactive = () => html`
+  <script>
+    console.log('BREADCRUMB-ITEM WORDT GEÏNITIALISEERD');
+    changeHref = (href) => {
+      console.log('changeHref to', href);
+      document.getElementById('breadCrumbItem1').setAttribute('data-vl-href', href);
+    };
+  </script>
+  <button onclick="changeHref('testUrl')">Href wijzigen</button>
+  <vl-breadcrumb-item id="breadCrumbItem1" data-vl-href="#">Vlaanderen Intern</vl-breadcrumb-item>
+`;
+breadcrumbItemReactive.storyName = 'breadcrumb-item - reactive';

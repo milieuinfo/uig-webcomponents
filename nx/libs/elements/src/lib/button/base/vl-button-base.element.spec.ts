@@ -1,7 +1,5 @@
-// import { elements } from './elements';
-//
-// describe('elements', () => {
-//     it('should work', () => {
-//         expect(elements()).toEqual('elements');
-//     });
-// });
+describe('Jest - elements:vl-button-base-element.ts', () => {
+    it('TODO: zinvolle testen schrijven of dit bestand verwijderen', () => {
+        expect(null === undefined).toEqual(false);
+    });
+});

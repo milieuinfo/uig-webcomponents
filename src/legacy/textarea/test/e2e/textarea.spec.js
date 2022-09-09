@@ -312,29 +312,6 @@ describe('vl-textarea', async () => {
     await assert.include(paragraph2Text, text2);
   });
 
-  it('as a user i can copy text with style', async () => {
-    if (config.browserName === 'chrome') {
-      const textarea = await vlTextareaPage.getTextareaRich();
-      await textarea.clear();
-
-        await textarea.activateBold();
-      const text = 'text';
-      await textarea.sendKeys(text);
-
-        let paragraph = await textarea.getChild('p');
-      let paragraphText = await textarea.getChildValue(paragraph);
-      await assert.exists(paragraph);
-      await assert.include(paragraphText, text);
-
-      await textarea.copyPasteValue();
-
-      paragraph = await textarea.getChild('b');
-      paragraphText = await textarea.getChildValue(paragraph);
-      await assert.exists(paragraph);
-      await assert.include(paragraphText, `${text}${text}`);
-    }
-  });
-
   it('as a user I can add text to a rich textarea in a shadow DOM', async () => {
     const textarea = await vlTextareaPage.getTextareaRichShadowDOM();
     const text = 'text';
