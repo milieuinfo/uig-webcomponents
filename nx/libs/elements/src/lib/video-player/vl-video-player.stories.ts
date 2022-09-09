@@ -15,6 +15,7 @@ export const Default = () => html`<div style="max-width: 780px">
     controls
     crossorigin
     playsinline
+    data-cy="video-player"
   >
     <!-- Video files -->
     <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" type="video/mp4" size="576" />
