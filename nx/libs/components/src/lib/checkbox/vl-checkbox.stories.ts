@@ -110,7 +110,6 @@ interface DefaultInterface {
 
 export const Default = ({ block, disabled, error, label, name, single, switchAttr, value}: DefaultInterface) => html`
     <vl-checkbox
-        data-vl-label="Optie 1"
         ?data-vl-block=${block}
         ?data-vl-disabled=${disabled}
         ?data-vl-error=${error}
