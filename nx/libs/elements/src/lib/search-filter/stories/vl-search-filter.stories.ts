@@ -1,27 +1,19 @@
 import { html } from 'lit-html';
-import '../form/vl-form.element';
-import '../button/vl-button.element';
-import '../select/vl-select.element';
-import '../input-field/vl-input-field.element';
-import './vl-search-filter.element';
-import '../link/vl-link.element';
-import { args, argTypes } from './helper/vl-search-filter.stories-helper';
+import '../../form/vl-form.element';
+import '../../button/vl-button.element';
+import '../../select/vl-select.element';
+import '../../input-field/vl-input-field.element';
+import '../vl-search-filter.element';
+import '../../link/vl-link.element';
+import { searchFilterArgs, searchFilterArgTypes } from './vl-search-filter.stories-arg';
 
 export default {
-    title: 'Elements/vl-search-filter',
-    args,
-    argTypes,
+    title: 'Elements/search-filter',
+    args: searchFilterArgs,
+    argTypes: searchFilterArgTypes,
 };
 
-interface TemplateInterface {
-    title: string;
-    alt: string;
-    mobileModal: string;
-    mobileModalTitle: string;
-    maxWidth: string;
-}
-
-const Template = ({ title, alt, mobileModal, mobileModalTitle, maxWidth }: TemplateInterface) => html`
+const searchFilterTemplate = ({ title, alt, mobileModal, mobileModalTitle, maxWidth }: typeof searchFilterArgs) => html`
     <div style="max-width: ${maxWidth}">
         <div
             is="vl-search-filter"
@@ -91,10 +83,9 @@ const Template = ({ title, alt, mobileModal, mobileModalTitle, maxWidth }: Templ
 `;
 
 // TODO kspeltin: 'as any' is een vuile fix
-export const Default = Template.bind({}) as any;
-export const Mobile = Template.bind({}) as any;
-
-Default.argTypes = {
+export const searchFilterDefault = searchFilterTemplate.bind({}) as any;
+searchFilterDefault.storyName = 'vl-search-filter - default';
+searchFilterDefault.argTypes = {
     mobileModal: {
         control: {
             disable: true,
@@ -107,12 +98,13 @@ Default.argTypes = {
     },
 };
 
-Mobile.args = {
+export const searchFilterMobile = searchFilterTemplate.bind({}) as any;
+searchFilterMobile.storyName = 'vl-search-filter - mobile';
+searchFilterMobile.args = {
     mobileModal: true,
     mobileModalTitle: 'Mobile title',
 };
-
-Mobile.argTypes = {
+searchFilterMobile.argTypes = {
     title: {
         control: {
             disable: true,
@@ -124,8 +116,7 @@ Mobile.argTypes = {
         },
     },
 };
-
-Mobile.parameters = {
+searchFilterMobile.parameters = {
     viewport: {
         defaultViewport: 'mobile1',
     },
