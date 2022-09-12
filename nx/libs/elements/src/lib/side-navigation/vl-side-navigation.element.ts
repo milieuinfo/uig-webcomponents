@@ -1,11 +1,11 @@
 import { BaseElementOfType, define } from '@uig/common/utilities';
-import './lib/side-navigation-lib.js';
-import './components/vl-side-navigation-reference.element';
-import './components/vl-side-navigation-title.element';
-import './components/vl-side-navigation-content.element';
-import './components/vl-side-navigation-group.element';
-import './components/vl-side-navigation-item.element';
-import './components/vl-side-navigation-toggle.elements';
+import './vl-side-navigation.lib.js';
+import './vl-side-navigation-reference.element';
+import './vl-side-navigation-title.element';
+import './vl-side-navigation-content.element';
+import './vl-side-navigation-group.element';
+import './vl-side-navigation-item.element';
+import './vl-side-navigation-toggle.element';
 
 declare const vl: any;
 

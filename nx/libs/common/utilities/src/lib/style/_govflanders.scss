@@ -40,7 +40,7 @@ $vl-icon-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-fon
 @import '@govflanders-v14/vl-ui-properties/src/scss/properties';
 @import '@govflanders-v14/vl-ui-search-filter/src/scss/search-filter';
 @import '@govflanders-v14/vl-ui-search-results/src/scss/search-results';
-@import '@govflanders/vl-ui-side-navigation/src/scss/side-navigation';
+@import '@govflanders-v14/vl-ui-side-navigation/src/scss/side-navigation';
 // TODO kspeltin: toaster en textarea zijn nu componenten, dit moet weg
 //  -> hiet zit enkel de styling voor de elementen
 //  -> misschien _govflanders-elements.scss noemen ?

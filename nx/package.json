@@ -103,7 +103,7 @@
         "@govflanders-v14/vl-ui-search-filter": "npm:@govflanders/vl-ui-search-filter@14.0.2",
         "@govflanders-v14/vl-ui-search-results": "npm:@govflanders/vl-ui-search-results@14.0.2",
         "@govflanders-v14/vl-ui-select": "npm:@govflanders/vl-ui-select@14.0.2",
-        "@govflanders/vl-ui-side-navigation": "^3.12.3",
+        "@govflanders-v14/vl-ui-side-navigation": "npm:@govflanders/vl-ui-side-navigation@14.0.2",
         "@govflanders/vl-ui-steps": "^3.12.3",
         "@govflanders/vl-ui-tabs": "^3.12.17",
         "@govflanders/vl-ui-textarea": "^3.12.3",
