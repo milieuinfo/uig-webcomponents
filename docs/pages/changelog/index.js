@@ -10,6 +10,19 @@ const unreleased = [];
 const changes = [
   ...unreleased,
   {
+    version: '3.0.16',
+    date: '12/09/2022',
+    children: html` <ul>
+      <li>
+        <p><code>vl-map-layer-circle-style</code></p>
+        <p>
+          Fixed an issue that data-vl-text-feature-attribute-name attribute was not displaying the feature attribute
+          value for layer-circle-style.
+        </p>
+      </li>
+    </ul>`,
+  },
+  {
     version: '3.0.15',
     date: '08/09/2022',
     children: html` <ul>
