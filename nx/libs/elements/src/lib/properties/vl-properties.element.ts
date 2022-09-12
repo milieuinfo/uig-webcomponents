@@ -1,8 +1,8 @@
 import { BaseElementOfType, define } from '@uig/common/utilities';
-import './components/column/vl-properties-column.element';
-import './components/list/vl-properties-list.element';
-import './components/term/vl-property-term.element';
-import './components/value/vl-property-value.element';
+import './vl-properties-column.element';
+import './vl-properties-list.element';
+import './vl-property-term.element';
+import './vl-property-value.element';
 
 /**
  * VlProperties
