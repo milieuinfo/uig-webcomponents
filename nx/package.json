@@ -115,7 +115,7 @@
         "@govflanders/vl-ui-upload": "^3.12.17",
         "@govflanders/vl-ui-util": "^3.12.24",
         "@govflanders-v14/vl-ui-util": "npm:@govflanders/vl-ui-util@14.0.2",
-        "@govflanders/vl-ui-video-player": "^3.12.3",
+        "@govflanders-v14/vl-ui-video-player": "npm:@govflanders/vl-ui-video-player@14.0.2",
         "@govflanders/vl-ui-wizard": "^3.12.3",
         "core-js": "^3.6.5",
         "lit": "^2.2.8",

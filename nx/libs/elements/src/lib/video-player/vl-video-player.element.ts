@@ -1,5 +1,5 @@
 import { BaseElementOfType, define } from '@uig/common/utilities';
-import './lib/vl-video-player-lib.js';
+import './vl-video-player.lib.js';
 
 declare const window: any;
 

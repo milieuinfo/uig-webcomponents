@@ -40,11 +40,14 @@ $vl-icon-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-fon
 @import '@govflanders/vl-ui-search-filter/src/scss/search-filter';
 @import '@govflanders/vl-ui-search-results/src/scss/search-results';
 @import '@govflanders/vl-ui-side-navigation/src/scss/side-navigation';
+// TODO kspeltin: toaster en textarea zijn nu componenten, dit moet weg
+//  -> hiet zit enkel de styling voor de elementen
+//  -> misschien _govflanders-elements.scss noemen ?
 @import '@govflanders/vl-ui-textarea/src/scss/textarea';
 @import '@govflanders/vl-ui-toaster/src/scss/toaster';
 @import '@govflanders-v14/vl-ui-titles/src/scss/titles';
 @import '@govflanders/vl-ui-typography/src/scss/typography';
-@import '@govflanders/vl-ui-video-player/src/scss/video-player';
+@import '@govflanders-v14/vl-ui-video-player/src/scss/video-player';
 @import '@govflanders/vl-ui-properties/src/scss/properties';
 
 // TODO: Tooltip styling needs to be know outside the shadow root of Tooltip itself.
