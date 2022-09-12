@@ -1,4 +1,4 @@
-import { vlElement, define } from "@uig/common/utilities";
+import { BaseElementOfType, define } from '@uig/common/utilities';
 
 /**
  * VlPropertiesColumn
@@ -10,18 +10,18 @@ import { vlElement, define } from "@uig/common/utilities";
  *
  * @property {boolean} data-vl-full - Attribuut wordt gebruikt om de kolom de volledige breedte te laten innemen.
  */
-export class VlPropertiesColumnElement extends vlElement(HTMLDivElement) {
-  static get _observedClassAttributes() {
-    return ["full"];
-  }
+export class VlPropertiesColumnElement extends BaseElementOfType(HTMLDivElement) {
+    static get _observedClassAttributes() {
+        return ['full'];
+    }
 
-  connectedCallback() {
-    this.classList.add("vl-properties__column");
-  }
+    connectedCallback() {
+        this.classList.add('vl-properties__column');
+    }
 
-  get _classPrefix() {
-    return "vl-properties__column--";
-  }
+    get _classPrefix() {
+        return 'vl-properties__column--';
+    }
 }
 
-define("vl-properties-column", VlPropertiesColumnElement, { extends: "div" });
+define('vl-properties-column', VlPropertiesColumnElement, { extends: 'div' });

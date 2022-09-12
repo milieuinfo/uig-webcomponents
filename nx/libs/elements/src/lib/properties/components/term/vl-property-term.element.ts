@@ -1,4 +1,4 @@
-import { vlElement, define } from "@uig/common/utilities";
+import { BaseElementOfType, define } from '@uig/common/utilities';
 
 /**
  * VlPropertyTerm
@@ -8,10 +8,10 @@ import { vlElement, define } from "@uig/common/utilities";
  * @extends HTMLElement
  * @mixes nativeVlElement
  */
-export class VlPropertyTermElement extends vlElement(HTMLElement) {
-  connectedCallback() {
-    this.classList.add("vl-properties__label");
-  }
+export class VlPropertyTermElement extends BaseElementOfType(HTMLElement) {
+    connectedCallback() {
+        this.classList.add('vl-properties__label');
+    }
 }
 
-define("vl-property-term", VlPropertyTermElement, { extends: "dt" });
+define('vl-property-term', VlPropertyTermElement, { extends: 'dt' });

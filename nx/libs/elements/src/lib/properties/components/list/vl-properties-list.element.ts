@@ -1,4 +1,4 @@
-import { vlElement, define } from "@uig/common/utilities";
+import { BaseElementOfType, define } from '@uig/common/utilities';
 
 /**
  * VlPropertiesList
@@ -8,10 +8,10 @@ import { vlElement, define } from "@uig/common/utilities";
  * @extends HTMLDListElement
  * @mixes nativeVlElement
  */
-export class VlPropertiesListElement extends vlElement(HTMLDListElement) {
-  connectedCallback() {
-    this.classList.add("vl-properties__list");
-  }
+export class VlPropertiesListElement extends BaseElementOfType(HTMLDListElement) {
+    connectedCallback() {
+        this.classList.add('vl-properties__list');
+    }
 }
 
-define("vl-properties-list", VlPropertiesListElement, { extends: "dl" });
+define('vl-properties-list', VlPropertiesListElement, { extends: 'dl' });
