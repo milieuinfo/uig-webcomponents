@@ -29,10 +29,12 @@ $vl-icon-font-location: 'https://cdn.omgeving.vlaanderen.be/domg/govflanders-fon
 @import '@govflanders-v14/vl-ui-introduction/src/scss/introduction';
 @import '@govflanders-v14/vl-ui-link/src/scss/link';
 @import '@govflanders-v14/vl-ui-link-list/src/scss/link-list';
-@import '@govflanders/vl-ui-pill/src/scss/pill';
+@import '@govflanders-v14/vl-ui-pill/src/scss/pill';
 @import '@govflanders/vl-ui-pill-input/src/scss/pill-input';
 @import '@govflanders-v14/vl-ui-select/src/scss/select';
 @import '@govflanders/vl-ui-select/src/scss/js-select';
+// TODO kspeltin: de css van multiselect heeft een dependency op die van pill en van select
+//  -> beide moeten nog feitelijk ge-upgrade worden - maar eerst rebasen tov master
 @import '@govflanders-v14/vl-ui-multiselect/src/scss/multiselect';
 @import '@govflanders/vl-ui-popover/src/scss/popover';
 @import '@govflanders/vl-ui-search-filter/src/scss/search-filter';

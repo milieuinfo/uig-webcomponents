@@ -1,4 +1,4 @@
-import { vlElement, define } from '@uig/common/utilities';
+import { BaseElementOfType, define } from '@uig/common/utilities';
 
 /**
  * VlDurationStep
@@ -8,24 +8,24 @@ import { vlElement, define } from '@uig/common/utilities';
  * @extends HTMLElement
  * @mixes vlElement
  */
-export class VlDurationStepComponent extends vlElement(HTMLElement) {
-  constructor() {
-    super(`
+export class VlDurationStepComponent extends BaseElementOfType(HTMLElement) {
+    constructor() {
+        super(`
       <li class="vl-duration-step"></li>
     `);
-  }
+    }
 
-  connectedCallback() {
-    this._processSlots();
-  }
+    connectedCallback() {
+        this._processSlots();
+    }
 
-  get template() {
-    return this._element.cloneNode(true);
-  }
+    get template() {
+        return this._element.cloneNode(true);
+    }
 
-  _processSlots() {
-    [...this.childNodes].forEach((child) => this._element.append(child.cloneNode(true)));
-  }
+    _processSlots() {
+        [...this.childNodes].forEach((child) => this._element.append(child.cloneNode(true)));
+    }
 }
 
 define('vl-duration-step', VlDurationStepComponent);

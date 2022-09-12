@@ -1,9 +1,9 @@
-import { vlElement, define } from '@uig/common/utilities';
+import { BaseElementOfType, define } from '@uig/common/utilities';
 import '../../modal/vl-modal.component';
 
-class VlTextareaModal extends vlElement(HTMLElement) {
-  constructor() {
-    super(`
+class VlTextareaModal extends BaseElementOfType(HTMLElement) {
+    constructor() {
+        super(`
       <vl-modal id="modal-cl" data-vl-title="Link toevoegen">
         <form is="vl-form" id="link-form" slot="content" data-vl-validate>
           <div is="vl-form-grid" is-stacked>
@@ -22,82 +22,82 @@ class VlTextareaModal extends vlElement(HTMLElement) {
         <button is="vl-button" slot="button" type="submit" form="link-form">Bewaar</button>
       </vl-modal>
     `);
-  }
+    }
 
-  connectedCallback() {
-    this._modal.on('close', () => setTimeout(() => this.clear()));
-  }
+    connectedCallback() {
+        this._modal.on('close', () => setTimeout(() => this.clear()));
+    }
 
-  get text() {
-    return this._textInputField.value;
-  }
+    get text() {
+        return this._textInputField.value;
+    }
 
-  set text(value: string) {
-    this._textInputField.value = value;
-  }
+    set text(value: string) {
+        this._textInputField.value = value;
+    }
 
-  get url() {
-    return this._urlInputField.value;
-  }
+    get url() {
+        return this._urlInputField.value;
+    }
 
-  set url(value) {
-    this._urlInputField.value = value;
-  }
+    set url(value) {
+        this._urlInputField.value = value;
+    }
 
-  focusUrl() {
-    this._urlInputField.setAttribute('autofocus', '');
-  }
+    focusUrl() {
+        this._urlInputField.setAttribute('autofocus', '');
+    }
 
-  get _textInputField() {
-    return this.shadowRoot.querySelector(`input#text`);
-  }
+    get _textInputField() {
+        return this.shadowRoot.querySelector(`input#text`);
+    }
 
-  get _urlInputField() {
-    return this.shadowRoot.querySelector(`input#url`);
-  }
+    get _urlInputField() {
+        return this.shadowRoot.querySelector(`input#url`);
+    }
 
-  get _form() {
-    return this.shadowRoot.querySelector('form');
-  }
+    get _form() {
+        return this.shadowRoot.querySelector('form');
+    }
 
-  get _submitButton() {
-    return this.shadowRoot.querySelector('button');
-  }
+    get _submitButton() {
+        return this.shadowRoot.querySelector('button');
+    }
 
-  get _modal() {
-    return this.shadowRoot.querySelector('vl-modal');
-  }
+    get _modal() {
+        return this.shadowRoot.querySelector('vl-modal');
+    }
 
-  open() {
-    this._modal.open();
-  }
+    open() {
+        this._modal.open();
+    }
 
-  close() {
-    this._modal.close();
-  }
+    close() {
+        this._modal.close();
+    }
 
-  clear() {
-    this._textInputField.value = '';
-    this._urlInputField.value = '';
-    this._textInputField.removeAttribute('autofocus');
-    this._urlInputField.removeAttribute('autofocus');
-  }
+    clear() {
+        this._textInputField.value = '';
+        this._urlInputField.value = '';
+        this._textInputField.removeAttribute('autofocus');
+        this._urlInputField.removeAttribute('autofocus');
+    }
 
-  onSubmit(callback: any) {
-    this._submitButton.addEventListener('click', (event: Event) => event.stopPropagation());
-    this._form.addEventListener(
-      'submit',
-      (event: any) => {
-        if (event.target.checkValidity()) {
-          this.close();
-          callback(event);
-        }
-      },
-      {
-        once: true,
-      },
-    );
-  }
+    onSubmit(callback: any) {
+        this._submitButton.addEventListener('click', (event: Event) => event.stopPropagation());
+        this._form.addEventListener(
+            'submit',
+            (event: any) => {
+                if (event.target.checkValidity()) {
+                    this.close();
+                    callback(event);
+                }
+            },
+            {
+                once: true,
+            }
+        );
+    }
 }
 
 customElements.whenDefined('vl-modal').then(() => define('vl-textarea-modal', VlTextareaModal));

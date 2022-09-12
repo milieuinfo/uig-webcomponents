@@ -1,7 +1,7 @@
-import { vlElement, define } from "@uig/common/utilities";
-import "@govflanders/vl-ui-util/dist/js/util.js";
-import "./lib/vl-tooltip-lib.js";
-import styles from "./style/vl-tooltip.scss";
+import { BaseElementOfType, define } from '@uig/common/utilities';
+import '@govflanders/vl-ui-util/dist/js/util.js';
+import './lib/vl-tooltip-lib.js';
+import styles from './style/vl-tooltip.scss';
 
 declare const vl: any;
 
@@ -16,71 +16,68 @@ declare const vl: any;
  * @property {(left | right | bottom | top)} data-vl-placement - Attribuut bepaalt de positie (t.o.v. het element) waar de tooltip moet verschijnen.
  * @property {boolean} data-vl-static - Attribuut zorgt voor een variant waarbij een statische, altijd zichtbare, tooltip wordt getoond voor het betreffende element.
  */
-export class VlTooltipComponent extends vlElement(HTMLElement) {
-  constructor() {
-    super(`
+export class VlTooltipComponent extends BaseElementOfType(HTMLElement) {
+    constructor() {
+        super(`
       <style>
         ${styles}
       </style>
     `);
-  }
-
-  connectedCallback() {
-    const node = this as unknown as Node;
-    new MutationObserver(() => {
-      if (!this._isStatic) {
-        this.parentNode.setAttribute(
-          "data-vl-tooltip-content",
-          this.textContent
-        );
-        this.tooltipInstance.updateTitleContent(this.textContent);
-      }
-    }).observe(node, {
-      characterData: true,
-      childList: true,
-      subtree: true,
-    });
-
-    if (!this._isStatic) {
-      this._dress();
     }
-  }
 
-  disconnectedCallback() {
-    vl.tooltip.undress(this.tooltipInstance);
-  }
+    connectedCallback() {
+        const node = this as unknown as Node;
+        new MutationObserver(() => {
+            if (!this._isStatic) {
+                this.parentNode.setAttribute('data-vl-tooltip-content', this.textContent);
+                this.tooltipInstance.updateTitleContent(this.textContent);
+            }
+        }).observe(node, {
+            characterData: true,
+            childList: true,
+            subtree: true,
+        });
 
-  static get _observedAttributes() {
-    return ["static", "placement"];
-  }
+        if (!this._isStatic) {
+            this._dress();
+        }
+    }
 
-  get _isStatic() {
-    return this.hasAttribute("static");
-  }
+    disconnectedCallback() {
+        vl.tooltip.undress(this.tooltipInstance);
+    }
 
-  get _placement() {
-    return this.getAttribute("placement");
-  }
+    static get _observedAttributes() {
+        return ['static', 'placement'];
+    }
 
-  get _staticTooltipElement() {
-    return this._shadow.querySelector(".vl-tooltip");
-  }
+    get _isStatic() {
+        return this.hasAttribute('static');
+    }
 
-  _dress() {
-    this.parentNode.setAttribute("data-vl-tooltip", "");
-    this.parentNode.setAttribute("data-vl-tooltip-placement", this._placement);
-    this.parentNode.setAttribute("data-vl-tooltip-content", this.textContent);
-    this.tooltipInstance = vl.tooltip.createTooltip(this.parentNode);
-  }
+    get _placement() {
+        return this.getAttribute('placement');
+    }
 
-  _removeDataTooltipAttributes() {
-    this.parentNode.removeAttribute("data-vl-tooltip");
-    this.parentNode.removeAttribute("data-vl-tooltip-placement");
-    this.parentNode.removeAttribute("data-vl-tooltip-content");
-  }
+    get _staticTooltipElement() {
+        return this._shadow.querySelector('.vl-tooltip');
+    }
 
-  _getStaticTooltipTemplate() {
-    return this._template(`
+    _dress() {
+        this.parentNode.setAttribute('data-vl-tooltip', '');
+        this.parentNode.setAttribute('data-vl-tooltip-placement', this._placement);
+        this.parentNode.setAttribute('data-vl-tooltip-content', this.textContent);
+        this.tooltipInstance = vl.tooltip.createTooltip(this.parentNode);
+    }
+
+    _removeDataTooltipAttributes() {
+        this.parentNode.removeAttribute('data-vl-tooltip');
+        this.parentNode.removeAttribute('data-vl-tooltip-placement');
+        this.parentNode.removeAttribute('data-vl-tooltip-content');
+    }
+
+    _getStaticTooltipTemplate() {
+        return this._template(`
       <div class="vl-tooltip vl-tooltip--static">
         <div class="vl-tooltip__inner">
           <slot></slot>
@@ -88,35 +85,35 @@ export class VlTooltipComponent extends vlElement(HTMLElement) {
         <div class="vl-tooltip__arrow"></div>
       </div>
     `);
-  }
-
-  _placementChangedCallback(oldValue: string, newValue: string) {
-    if (this._isStatic) {
-      this._staticTooltipElement.setAttribute("x-placement", newValue);
-    } else {
-      this.parentNode.setAttribute("data-vl-tooltip-placement", newValue);
-      if (this.parentNode.getAttribute("data-vl-tooltip-content")) {
-        vl.tooltip.undress(this.tooltipInstance);
-        this.tooltipInstance = vl.tooltip.createTooltip(this.parentNode);
-      }
-    }
-  }
-
-  _staticChangedCallback(oldValue: string, newValue: string) {
-    if (this._staticTooltipElement) {
-      this._staticTooltipElement.remove();
     }
 
-    if (newValue != undefined) {
-      vl.tooltip.undress(this.tooltipInstance);
-      this._removeDataTooltipAttributes();
-      const tooltipTemplate = this._getStaticTooltipTemplate();
-      this._shadow.appendChild(tooltipTemplate);
-      this._staticTooltipElement.setAttribute("x-placement", this._placement);
-    } else {
-      this._dress();
+    _placementChangedCallback(oldValue: string, newValue: string) {
+        if (this._isStatic) {
+            this._staticTooltipElement.setAttribute('x-placement', newValue);
+        } else {
+            this.parentNode.setAttribute('data-vl-tooltip-placement', newValue);
+            if (this.parentNode.getAttribute('data-vl-tooltip-content')) {
+                vl.tooltip.undress(this.tooltipInstance);
+                this.tooltipInstance = vl.tooltip.createTooltip(this.parentNode);
+            }
+        }
     }
-  }
+
+    _staticChangedCallback(oldValue: string, newValue: string) {
+        if (this._staticTooltipElement) {
+            this._staticTooltipElement.remove();
+        }
+
+        if (newValue != undefined) {
+            vl.tooltip.undress(this.tooltipInstance);
+            this._removeDataTooltipAttributes();
+            const tooltipTemplate = this._getStaticTooltipTemplate();
+            this._shadow.appendChild(tooltipTemplate);
+            this._staticTooltipElement.setAttribute('x-placement', this._placement);
+        } else {
+            this._dress();
+        }
+    }
 }
 
-define("vl-tooltip", VlTooltipComponent);
+define('vl-tooltip', VlTooltipComponent);

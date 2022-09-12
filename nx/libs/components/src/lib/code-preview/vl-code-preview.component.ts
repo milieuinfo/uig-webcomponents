@@ -1,10 +1,10 @@
-import { vlElement, define } from "@uig/common/utilities";
-import "@govflanders/vl-ui-util/dist/js/util.js";
-import "@govflanders/vl-ui-core/dist/js/core.js";
-import "@govflanders/vl-ui-code-preview/dist/js/code-preview.js";
-import styles from "./style/vl-code-preview.scss";
+import { BaseElementOfType, define } from '@uig/common/utilities';
+import '@govflanders/vl-ui-util/dist/js/util.js';
+import '@govflanders/vl-ui-core/dist/js/core.js';
+import '@govflanders/vl-ui-code-preview/dist/js/code-preview.js';
+import styles from './style/vl-code-preview.scss';
 
-declare const vl:any;
+declare const vl: any;
 
 /**
  * VlCodePreview
@@ -14,9 +14,9 @@ declare const vl:any;
  * @extends HTMLElement
  * @mixes vlElement
  */
-export class VlCodePreviewComponent extends vlElement(HTMLElement) {
-  constructor() {
-    super(`
+export class VlCodePreviewComponent extends BaseElementOfType(HTMLElement) {
+    constructor() {
+        super(`
       <style>
         ${styles}
       </style>
@@ -27,17 +27,17 @@ export class VlCodePreviewComponent extends vlElement(HTMLElement) {
       </div>
     `);
 
-    this._dress();
-  }
+        this._dress();
+    }
 
-  get _codeElement() {
-    return this.shadowRoot.querySelector("code");
-  }
+    get _codeElement() {
+        return this.shadowRoot.querySelector('code');
+    }
 
-  _dress() {
-    [...this.children].forEach((child) => this._codeElement.append(child));
-    vl.codePreview.dress(this._element);
-  }
+    _dress() {
+        [...this.children].forEach((child) => this._codeElement.append(child));
+        vl.codePreview.dress(this._element);
+    }
 }
 
-define("vl-code-preview", VlCodePreviewComponent);
+define('vl-code-preview', VlCodePreviewComponent);

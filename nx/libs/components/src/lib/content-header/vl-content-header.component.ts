@@ -1,5 +1,5 @@
-import { vlElement, define } from "@uig/common/utilities";
-import styles from "./style/vl-content-header.scss";
+import { BaseElementOfType, define } from '@uig/common/utilities';
+import styles from './style/vl-content-header.scss';
 
 /**
  * VlContentHeader
@@ -9,9 +9,9 @@ import styles from "./style/vl-content-header.scss";
  * @extends HTMLElement
  * @mixes vlElement
  */
-export class VlContentHeaderComponent extends vlElement(HTMLElement) {
-  constructor() {
-    super(`
+export class VlContentHeaderComponent extends BaseElementOfType(HTMLElement) {
+    constructor() {
+        super(`
       <style>
         ${styles}
       </style>
@@ -27,83 +27,75 @@ export class VlContentHeaderComponent extends vlElement(HTMLElement) {
         </div>
       </header>
     `);
-  }
-
-  connectedCallback() {
-    this.__processSlotElements();
-    this._observer = this.__observeSlotElements(() =>
-      this.__processSlotElements()
-    );
-  }
-
-  disconnectedCallback() {
-    this._observer.disconnect();
-  }
-
-  get pictureElement() {
-    return this._shadow.querySelector("#picture");
-  }
-
-  get pictureSlotElement() {
-    return this.querySelector('img[slot="image"]');
-  }
-
-  get contextElement() {
-    return this._shadow.querySelector("#context");
-  }
-
-  get contextSlotElement() {
-    return this.querySelector('a[slot="context-link"]');
-  }
-
-  get titleElement() {
-    return this._shadow.querySelector("#title");
-  }
-
-  get titleSlotElement() {
-    return this.querySelector('a[slot="title-link"]');
-  }
-
-  __processSlotElements() {
-    this.__processSlot(this.pictureElement, this.pictureSlotElement);
-
-    const contextSlot = this.__processSlot(
-      this.contextElement,
-      this.contextSlotElement
-    );
-    contextSlot.classList.add("vl-content-header__context__link");
-
-    const titleSlot = this.__processSlot(
-      this.titleElement,
-      this.titleSlotElement
-    );
-    titleSlot.classList.add("vl-content-header__title__link");
-  }
-
-  __clearChildren(element: Element) {
-    while (element.hasChildNodes()) {
-      element.firstChild?.remove();
     }
-  }
 
-  __processSlot(container: any, slotElement: any) {
-    this.__clearChildren(container);
-    const slotClone = slotElement.cloneNode(true);
-    container.appendChild(slotClone);
-    return slotClone;
-  }
+    connectedCallback() {
+        this.__processSlotElements();
+        this._observer = this.__observeSlotElements(() => this.__processSlotElements());
+    }
 
-  __observeSlotElements(callback: MutationCallback) {
-    const node = this as unknown as Node;
-    const observer = new MutationObserver(callback);
-    observer.observe(node, {
-      attributes: true,
-      childList: true,
-      characterData: true,
-      subtree: true,
-    });
-    return observer;
-  }
+    disconnectedCallback() {
+        this._observer.disconnect();
+    }
+
+    get pictureElement() {
+        return this._shadow.querySelector('#picture');
+    }
+
+    get pictureSlotElement() {
+        return this.querySelector('img[slot="image"]');
+    }
+
+    get contextElement() {
+        return this._shadow.querySelector('#context');
+    }
+
+    get contextSlotElement() {
+        return this.querySelector('a[slot="context-link"]');
+    }
+
+    get titleElement() {
+        return this._shadow.querySelector('#title');
+    }
+
+    get titleSlotElement() {
+        return this.querySelector('a[slot="title-link"]');
+    }
+
+    __processSlotElements() {
+        this.__processSlot(this.pictureElement, this.pictureSlotElement);
+
+        const contextSlot = this.__processSlot(this.contextElement, this.contextSlotElement);
+        contextSlot.classList.add('vl-content-header__context__link');
+
+        const titleSlot = this.__processSlot(this.titleElement, this.titleSlotElement);
+        titleSlot.classList.add('vl-content-header__title__link');
+    }
+
+    __clearChildren(element: Element) {
+        while (element.hasChildNodes()) {
+            element.firstChild?.remove();
+        }
+    }
+
+    __processSlot(container: any, slotElement: any) {
+        this.__clearChildren(container);
+        const slotClone = slotElement.cloneNode(true);
+        container.appendChild(slotClone);
+        return slotClone;
+    }
+
+    __observeSlotElements(callback: MutationCallback) {
+        const node = this as unknown as Node;
+        const observer = new MutationObserver(callback);
+        observer.observe(node, {
+            attributes: true,
+            childList: true,
+            characterData: true,
+            subtree: true,
+        });
+        return observer;
+    }
 }
 
-define("vl-content-header", VlContentHeaderComponent);
+define('vl-content-header', VlContentHeaderComponent);

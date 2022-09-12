@@ -1,5 +1,5 @@
-import { vlElement, define } from "@uig/common/utilities";
-import styles from "./style/vl-functional-header.scss";
+import { BaseElementOfType, define } from '@uig/common/utilities';
+import styles from './style/vl-functional-header.scss';
 
 /**
  * VlFunctionalHeader
@@ -15,13 +15,13 @@ import styles from "./style/vl-functional-header.scss";
  * @extends HTMLElement
  * @mixes vlElement
  */
-export class VlFunctionalHeaderComponent extends vlElement(HTMLElement) {
-  static get _observedAttributes() {
-    return ["back", "back-link", "title", "sub-title", "link"];
-  }
+export class VlFunctionalHeaderComponent extends BaseElementOfType(HTMLElement) {
+    static get _observedAttributes() {
+        return ['back', 'back-link', 'title', 'sub-title', 'link'];
+    }
 
-  constructor() {
-    super(`
+    constructor() {
+        super(`
       <style>
         ${styles}
       </style>
@@ -54,119 +54,111 @@ export class VlFunctionalHeaderComponent extends vlElement(HTMLElement) {
         </div>
       </header>
     `);
-  }
+    }
 
-  connectedCallback() {
-    this._observer = this.__observeSlotElements(() =>
-      this.__processSlotElements()
-    );
-    this.__processSlotElements();
-  }
+    connectedCallback() {
+        this._observer = this.__observeSlotElements(() => this.__processSlotElements());
+        this.__processSlotElements();
+    }
 
-  disconnectedCallback() {
-    this._observer.disconnect();
-  }
+    disconnectedCallback() {
+        this._observer.disconnect();
+    }
 
-  get _titleElement() {
-    return this._shadow.querySelector("#title");
-  }
+    get _titleElement() {
+        return this._shadow.querySelector('#title');
+    }
 
-  get _subTitleElement() {
-    return this._shadow.querySelector("#sub-title");
-  }
+    get _subTitleElement() {
+        return this._shadow.querySelector('#sub-title');
+    }
 
-  get _backLinkElement() {
-    return this._shadow.querySelector("#back-link");
-  }
+    get _backLinkElement() {
+        return this._shadow.querySelector('#back-link');
+    }
 
-  get _backLinkTextElement() {
-    return this._backLinkElement.querySelector("#back-link-text");
-  }
+    get _backLinkTextElement() {
+        return this._backLinkElement.querySelector('#back-link-text');
+    }
 
-  get _actionsElement() {
-    return this._shadow.querySelector("#actions");
-  }
+    get _actionsElement() {
+        return this._shadow.querySelector('#actions');
+    }
 
-  get _actionsListElement() {
-    return this._actionsElement.querySelector("ul");
-  }
+    get _actionsListElement() {
+        return this._actionsElement.querySelector('ul');
+    }
 
-  _getActionTemplate(element: Element) {
-    return this._template(`
+    _getActionTemplate(element: Element) {
+        return this._template(`
       <li class="vl-functional-header__action">
         <p>
           ${element.outerHTML}
         </p>
       </li>
     `);
-  }
-
-  _titleChangedCallback(oldValue: string, newValue: string) {
-    this._titleElement.innerText = newValue;
-  }
-
-  _subTitleChangedCallback(oldValue: string, newValue: string) {
-    this._subTitleElement.innerText = newValue;
-  }
-
-  _linkChangedCallback(oldValeu: string, newValue: string) {
-    this._titleElement.href = newValue;
-  }
-
-  _backChangedCallback(oldValue: string, newValue: string) {
-    this._backLinkTextElement.innerText = newValue;
-  }
-
-  _backLinkChangedCallback(oldValue: string, newValue: string) {
-    this._backLinkElement.href = newValue || document.referrer;
-  }
-
-  /**
-   * Zet de click event listener voor de 'Terug' knop. Default: ```() => window.history.back()```
-   *
-   * @param {Function} eventListener - Functie met de uit te voeren handeling als op de terug knop wordt geklikt.
-   */
-  set backLinkEventListener(eventListener: EventListener) {
-    if (this._backLinkEventListener) {
-      this._backLinkElement.removeEventListener(
-        "click",
-        this._backLinkEventListener
-      );
     }
-    this._backLinkEventListener = eventListener;
-    this._backLinkElement.addEventListener(
-      "click",
-      this._backLinkEventListener
-    );
-  }
 
-  __processSlotElements() {
-    this.__processSlotActions();
-  }
-
-  __processSlotActions() {
-    this._actionsListElement.innerHTML = "";
-    const actions = this.querySelector('[slot="actions"]');
-    if (actions) {
-      [...actions.children]
-        .map((action) => this._getActionTemplate(action))
-        .forEach((action) => this._actionsListElement.append(action));
-    } else {
-      this._actionsElement.hidden = true;
+    _titleChangedCallback(oldValue: string, newValue: string) {
+        this._titleElement.innerText = newValue;
     }
-  }
 
-  __observeSlotElements(callback: MutationCallback) {
-    const node = this as unknown as Node;
-    const observer = new MutationObserver(callback);
-    observer.observe(node, {
-      attributes: true,
-      childList: true,
-      characterData: true,
-      subtree: true,
-    });
-    return observer;
-  }
+    _subTitleChangedCallback(oldValue: string, newValue: string) {
+        this._subTitleElement.innerText = newValue;
+    }
+
+    _linkChangedCallback(oldValeu: string, newValue: string) {
+        this._titleElement.href = newValue;
+    }
+
+    _backChangedCallback(oldValue: string, newValue: string) {
+        this._backLinkTextElement.innerText = newValue;
+    }
+
+    _backLinkChangedCallback(oldValue: string, newValue: string) {
+        this._backLinkElement.href = newValue || document.referrer;
+    }
+
+    /**
+     * Zet de click event listener voor de 'Terug' knop. Default: ```() => window.history.back()```
+     *
+     * @param {Function} eventListener - Functie met de uit te voeren handeling als op de terug knop wordt geklikt.
+     */
+    set backLinkEventListener(eventListener: EventListener) {
+        if (this._backLinkEventListener) {
+            this._backLinkElement.removeEventListener('click', this._backLinkEventListener);
+        }
+        this._backLinkEventListener = eventListener;
+        this._backLinkElement.addEventListener('click', this._backLinkEventListener);
+    }
+
+    __processSlotElements() {
+        this.__processSlotActions();
+    }
+
+    __processSlotActions() {
+        this._actionsListElement.innerHTML = '';
+        const actions = this.querySelector('[slot="actions"]');
+        if (actions) {
+            [...actions.children]
+                .map((action) => this._getActionTemplate(action))
+                .forEach((action) => this._actionsListElement.append(action));
+        } else {
+            this._actionsElement.hidden = true;
+        }
+    }
+
+    __observeSlotElements(callback: MutationCallback) {
+        const node = this as unknown as Node;
+        const observer = new MutationObserver(callback);
+        observer.observe(node, {
+            attributes: true,
+            childList: true,
+            characterData: true,
+            subtree: true,
+        });
+        return observer;
+    }
 }
 
-define("vl-functional-header", VlFunctionalHeaderComponent);
+define('vl-functional-header', VlFunctionalHeaderComponent);

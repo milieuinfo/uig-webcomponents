@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { vlElement, define } from '@uig/common/utilities';
+import { BaseElementOfType, define } from '@uig/common/utilities';
 import '@govflanders/vl-ui-util/dist/js/util.js';
 import '@govflanders/vl-ui-accordion/dist/js/accordion.js';
 import styles from './style/vl-accordion.scss';
@@ -18,13 +18,13 @@ declare const vl: any;
  * @property {string} data-vl-open-toggle-text - Attribuut wordt gebruikt als tekst wanneer de gebruiker de accordion geopend heeft.
  * @property {string} data-vl-close-toggle-text - Attribuut wordt gebruikt als tekst wanneer de gebruiker de accordion gesloten heeft.
  */
-export class VlAccordionComponent extends vlElement(HTMLElement) {
-  static get _observedAttributes() {
-    return ['toggle-text', 'open-toggle-text', 'close-toggle-text'];
-  }
+export class VlAccordionComponent extends BaseElementOfType(HTMLElement) {
+    static get _observedAttributes() {
+        return ['toggle-text', 'open-toggle-text', 'close-toggle-text'];
+    }
 
-  constructor() {
-    super(`
+    constructor() {
+        super(`
       <style>
        ${styles}
       </style>
@@ -42,111 +42,111 @@ export class VlAccordionComponent extends vlElement(HTMLElement) {
         </div>
       </div>
     `);
-  }
-
-  connectedCallback() {
-    this.dress();
-    if (this._hasTitleSlot()) {
-      this._propagateTitleSlotClickToAccordion();
     }
-  }
 
-  _propagateTitleSlotClickToAccordion() {
-    this._titleElement.addEventListener('click', (event: Event) => {
-      event.stopPropagation();
-      this._buttonElement.click();
-    });
-  }
-
-  _hasTitleSlot() {
-    return this._titleElement.assignedElements().length > 0;
-  }
-
-  get _accordionElement() {
-    return this._element.querySelector('[data-vl-accordion]');
-  }
-
-  get _buttonElement() {
-    return this._element.querySelector('button');
-  }
-
-  get _titleElement() {
-    return this._buttonElement.querySelector('slot[name="title"]');
-  }
-
-  get _openToggleTextAttribute() {
-    return this.getAttribute('open-toggle-text');
-  }
-
-  get _closeToggleTextAttribute() {
-    return this.getAttribute('close-toggle-text');
-  }
-
-  get _dressedAttribute() {
-    return this.getAttribute('accordion-dressed');
-  }
-
-  get _isDressed() {
-    return !!this._dressedAttribute;
-  }
-
-  get _isOpen() {
-    return this._accordionElement.classList.contains('js-vl-accordion--open');
-  }
-
-  /**
-   * Activeer de accordion functionaliteit.
-   *
-   * @return {void}
-   */
-  dress() {
-    if (!this._isDressed) {
-      vl.accordion.dress(this._buttonElement);
+    connectedCallback() {
+        this.dress();
+        if (this._hasTitleSlot()) {
+            this._propagateTitleSlotClickToAccordion();
+        }
     }
-  }
 
-  /**
-   * Opent de accordion.
-   *
-   * @return {void}
-   */
-  open() {
-    vl.accordion.open(this._accordionElement);
-  }
-
-  /**
-   * Sluit de accordion.
-   *
-   * @return {void}
-   */
-  close() {
-    if (this._isOpen) {
-      this.toggle();
+    _propagateTitleSlotClickToAccordion() {
+        this._titleElement.addEventListener('click', (event: Event) => {
+            event.stopPropagation();
+            this._buttonElement.click();
+        });
     }
-  }
 
-  /**
-   * Opent of sluit de accordion afhankelijk van de huidige status (open of gesloten) van de accordion.
-   *
-   * @return {void}
-   */
-  toggle() {
-    vl.accordion.toggle(this._accordionElement);
-  }
+    _hasTitleSlot() {
+        return this._titleElement.assignedElements().length > 0;
+    }
 
-  _toggleTextChangedCallback(oldValue: string, newValue: string) {
-    this._titleElement.textContent = newValue;
-  }
+    get _accordionElement() {
+        return this._element.querySelector('[data-vl-accordion]');
+    }
 
-  _openToggleTextChangedCallback(oldValue: string, newValue: string) {
-    this._titleElement.classList.add('js-vl-accordion__toggle__text');
-    this._titleElement.setAttribute('data-vl-accordion-open-text', newValue);
-  }
+    get _buttonElement() {
+        return this._element.querySelector('button');
+    }
 
-  _closeToggleTextChangedCallback(oldValue: string, newValue: string) {
-    this._titleElement.classList.add('js-vl-accordion__toggle__text');
-    this._titleElement.setAttribute('data-vl-accordion-close-text', newValue);
-  }
+    get _titleElement() {
+        return this._buttonElement.querySelector('slot[name="title"]');
+    }
+
+    get _openToggleTextAttribute() {
+        return this.getAttribute('open-toggle-text');
+    }
+
+    get _closeToggleTextAttribute() {
+        return this.getAttribute('close-toggle-text');
+    }
+
+    get _dressedAttribute() {
+        return this.getAttribute('accordion-dressed');
+    }
+
+    get _isDressed() {
+        return !!this._dressedAttribute;
+    }
+
+    get _isOpen() {
+        return this._accordionElement.classList.contains('js-vl-accordion--open');
+    }
+
+    /**
+     * Activeer de accordion functionaliteit.
+     *
+     * @return {void}
+     */
+    dress() {
+        if (!this._isDressed) {
+            vl.accordion.dress(this._buttonElement);
+        }
+    }
+
+    /**
+     * Opent de accordion.
+     *
+     * @return {void}
+     */
+    open() {
+        vl.accordion.open(this._accordionElement);
+    }
+
+    /**
+     * Sluit de accordion.
+     *
+     * @return {void}
+     */
+    close() {
+        if (this._isOpen) {
+            this.toggle();
+        }
+    }
+
+    /**
+     * Opent of sluit de accordion afhankelijk van de huidige status (open of gesloten) van de accordion.
+     *
+     * @return {void}
+     */
+    toggle() {
+        vl.accordion.toggle(this._accordionElement);
+    }
+
+    _toggleTextChangedCallback(oldValue: string, newValue: string) {
+        this._titleElement.textContent = newValue;
+    }
+
+    _openToggleTextChangedCallback(oldValue: string, newValue: string) {
+        this._titleElement.classList.add('js-vl-accordion__toggle__text');
+        this._titleElement.setAttribute('data-vl-accordion-open-text', newValue);
+    }
+
+    _closeToggleTextChangedCallback(oldValue: string, newValue: string) {
+        this._titleElement.classList.add('js-vl-accordion__toggle__text');
+        this._titleElement.setAttribute('data-vl-accordion-close-text', newValue);
+    }
 }
 
 define('vl-accordion', VlAccordionComponent);

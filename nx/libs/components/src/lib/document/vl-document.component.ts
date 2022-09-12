@@ -1,5 +1,5 @@
-import { vlElement, define } from "@uig/common/utilities";
-import styles from "./style/vl-document.scss";
+import { BaseElementOfType, define } from '@uig/common/utilities';
+import styles from './style/vl-document.scss';
 
 /**
  * VlDocument
@@ -11,13 +11,13 @@ import styles from "./style/vl-document.scss";
  *
  * @property {string} data-vl-href - Attribuut wordt gebruikt om de download link te bepalen.
  */
-export class VlDocumentComponent extends vlElement(HTMLElement) {
-  static get _observedAttributes() {
-    return ["href"];
-  }
+export class VlDocumentComponent extends BaseElementOfType(HTMLElement) {
+    static get _observedAttributes() {
+        return ['href'];
+    }
 
-  constructor() {
-    super(`
+    constructor() {
+        super(`
       <style>
         ${styles}
       </style>
@@ -38,11 +38,11 @@ export class VlDocumentComponent extends vlElement(HTMLElement) {
         </div>
       </a>
     `);
-  }
+    }
 
-  _hrefChangedCallback(oldValue:string, newValue:string) {
-    this._element.href = newValue;
-  }
+    _hrefChangedCallback(oldValue: string, newValue: string) {
+        this._element.href = newValue;
+    }
 }
 
-define("vl-document", VlDocumentComponent);
+define('vl-document', VlDocumentComponent);

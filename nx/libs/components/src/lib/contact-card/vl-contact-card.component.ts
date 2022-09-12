@@ -1,5 +1,5 @@
-import { vlElement, define } from "@uig/common/utilities";
-import styles from "./style/vl-contact-card.scss";
+import { BaseElementOfType, define } from '@uig/common/utilities';
+import styles from './style/vl-contact-card.scss';
 
 /**
  * VlContactCard
@@ -9,9 +9,9 @@ import styles from "./style/vl-contact-card.scss";
  * @extends HTMLElement
  * @mixes vlElement
  */
-export class VlContactCardComponent extends vlElement(HTMLElement) {
-  constructor() {
-    super(`
+export class VlContactCardComponent extends BaseElementOfType(HTMLElement) {
+    constructor() {
+        super(`
         <style>
             ${styles}
         </style>
@@ -26,8 +26,7 @@ export class VlContactCardComponent extends vlElement(HTMLElement) {
             </div>
         </div>
      `);
-  }
-  
+    }
 }
 
-define("vl-contact-card", VlContactCardComponent);
+define('vl-contact-card', VlContactCardComponent);

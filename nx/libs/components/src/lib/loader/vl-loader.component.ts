@@ -1,4 +1,4 @@
-import { vlElement, define } from '@uig/common/utilities';
+import { BaseElementOfType, define } from '@uig/common/utilities';
 import styles from './style/vl-loader.scss';
 
 /**
@@ -13,13 +13,13 @@ import styles from './style/vl-loader.scss';
  * @property {boolean} data-vl-text - Attribuut wordt gebruikt om een informatieve tekst te tonen tijdens het laden.
  * @property {boolean} data-vl-single - Attribuut wordt gebruikt om aan te geven dat er geen tekst getoond mag worden.
  */
-export class VlLoaderComponent extends vlElement(HTMLElement) {
-  static get _observedAttributes() {
-    return ['light', 'text', 'single'];
-  }
+export class VlLoaderComponent extends BaseElementOfType(HTMLElement) {
+    static get _observedAttributes() {
+        return ['light', 'text', 'single'];
+    }
 
-  constructor() {
-    super(`
+    constructor() {
+        super(`
       <style>
         ${styles}
       </style>
@@ -32,31 +32,31 @@ export class VlLoaderComponent extends vlElement(HTMLElement) {
         </p>
       </div>
     `);
-  }
+    }
 
-  get _loader() {
-    return this._shadow.querySelector('.vl-loader');
-  }
+    get _loader() {
+        return this._shadow.querySelector('.vl-loader');
+    }
 
-  get _text() {
-    return this._shadow.querySelector('#text');
-  }
+    get _text() {
+        return this._shadow.querySelector('#text');
+    }
 
-  get _slot() {
-    return this._shadow.querySelector('slot');
-  }
+    get _slot() {
+        return this._shadow.querySelector('slot');
+    }
 
-  _lightChangedCallback(oldValue: string, newValue: string) {
-    this._toggleClass(this._loader, newValue, 'vl-loader--light');
-  }
+    _lightChangedCallback(oldValue: string, newValue: string) {
+        this._toggleClass(this._loader, newValue, 'vl-loader--light');
+    }
 
-  _textChangedCallback(oldValue: string, newValue: string) {
-    this._slot.innerText = newValue;
-  }
+    _textChangedCallback(oldValue: string, newValue: string) {
+        this._slot.innerText = newValue;
+    }
 
-  _singleChangedCallback(oldValue: string, newValue: string) {
-    this._toggleClass(this._text, newValue, 'vl-u-visually-hidden');
-  }
+    _singleChangedCallback(oldValue: string, newValue: string) {
+        this._toggleClass(this._text, newValue, 'vl-u-visually-hidden');
+    }
 }
 
 define('vl-loader', VlLoaderComponent);

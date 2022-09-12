@@ -1,4 +1,4 @@
-import { vlElement, define } from '@uig/common/utilities';
+import { BaseElementOfType, define } from '@uig/common/utilities';
 import '../../accordion/vl-accordion.component';
 
 declare const vl: any;
@@ -20,17 +20,17 @@ declare const vl: any;
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-steps.html|Demo}
  *
  */
-export class VlStepComponent extends vlElement(HTMLElement) {
-  static get _observedAttributes() {
-    return ['type', 'toggleable'];
-  }
+export class VlStepComponent extends BaseElementOfType(HTMLElement) {
+    static get _observedAttributes() {
+        return ['type', 'toggleable'];
+    }
 
-  static get _observedChildClassAttributes() {
-    return ['disabled'];
-  }
+    static get _observedChildClassAttributes() {
+        return ['disabled'];
+    }
 
-  constructor() {
-    super(`
+    constructor() {
+        super(`
       <li class="vl-step">
         <div id="icon" class="vl-step__icon">
           <span slot="identifier"></span>
@@ -63,73 +63,73 @@ export class VlStepComponent extends vlElement(HTMLElement) {
         </div>
       </li>
     `);
-    this._processSlots();
-  }
-
-  /**
-   * Geeft de step template.
-   * @return {HTMLElement}
-   */
-  get template() {
-    this._processSlots();
-    const template = this._element.cloneNode(true);
-    if (this._isToggleable) {
-      vl.accordion.dress(template);
-      template.querySelector('#content').addEventListener('click', (e: Event) => e.stopPropagation());
+        this._processSlots();
     }
-    return template;
-  }
 
-  get _iconElement() {
-    return this._shadow.querySelector('#icon');
-  }
+    /**
+     * Geeft de step template.
+     * @return {HTMLElement}
+     */
+    get template() {
+        this._processSlots();
+        const template = this._element.cloneNode(true);
+        if (this._isToggleable) {
+            vl.accordion.dress(template);
+            template.querySelector('#content').addEventListener('click', (e: Event) => e.stopPropagation());
+        }
+        return template;
+    }
 
-  get _subIconElement() {
-    return this._iconElement.querySelector('#sub-icon');
-  }
+    get _iconElement() {
+        return this._shadow.querySelector('#icon');
+    }
 
-  get _wrapperElement() {
-    return this._shadow.querySelector('.vl-step__wrapper');
-  }
+    get _subIconElement() {
+        return this._iconElement.querySelector('#sub-icon');
+    }
 
-  get _headerElement() {
-    return this._wrapperElement.querySelector('.vl-step__header');
-  }
+    get _wrapperElement() {
+        return this._shadow.querySelector('.vl-step__wrapper');
+    }
 
-  get _titleElement() {
-    return this._headerElement.querySelector('#title');
-  }
+    get _headerElement() {
+        return this._wrapperElement.querySelector('.vl-step__header');
+    }
 
-  get _titleLabelElement() {
-    return this._headerElement.querySelector('#title-label');
-  }
+    get _titleElement() {
+        return this._headerElement.querySelector('#title');
+    }
 
-  get _titleAnnotationElement() {
-    return this._headerElement.querySelector('#title-annotation');
-  }
+    get _titleLabelElement() {
+        return this._headerElement.querySelector('#title-label');
+    }
 
-  get _subTitleElement() {
-    return this._headerElement.querySelector('#sub-title');
-  }
+    get _titleAnnotationElement() {
+        return this._headerElement.querySelector('#title-annotation');
+    }
 
-  get _contentElement() {
-    return this._shadow.querySelector('#content');
-  }
+    get _subTitleElement() {
+        return this._headerElement.querySelector('#sub-title');
+    }
 
-  get _classPrefix() {
-    return 'vl-step--';
-  }
+    get _contentElement() {
+        return this._shadow.querySelector('#content');
+    }
 
-  get _isToggleable() {
-    return this.hasAttribute('toggleable');
-  }
+    get _classPrefix() {
+        return 'vl-step--';
+    }
 
-  _getSlot(name: string) {
-    return this._shadow.querySelector(`[slot="${name}"]`);
-  }
+    get _isToggleable() {
+        return this.hasAttribute('toggleable');
+    }
 
-  _getToggleableHeaderHTML() {
-    return `
+    _getSlot(name: string) {
+        return this._shadow.querySelector(`[slot="${name}"]`);
+    }
+
+    _getToggleableHeaderHTML() {
+        return `
       <button class="vl-step__header js-vl-accordion__toggle">
         <div class="vl-step__header__titles">
           <h3 id="title" class="vl-step__title">
@@ -144,56 +144,56 @@ export class VlStepComponent extends vlElement(HTMLElement) {
         </div>
       </button>
     `;
-  }
-
-  _typeChangedCallback(oldValue: string, newValue: string) {
-    this._changeClass(this._element, oldValue, newValue, this._classPrefix);
-  }
-
-  _toggleableChangedCallback(oldValue: string, newValue: string) {
-    if (newValue != undefined) {
-      this._element.classList.add('vl-step--accordion');
-      this._element.classList.add('js-vl-accordion');
-      this._headerElement.remove();
-      this._wrapperElement.insertAdjacentHTML('afterbegin', this._getToggleableHeaderHTML());
-      this.__processSlot(this._titleElement, 'title');
-      this.__processSlot(this._titleLabelElement, 'title-label');
-    }
-  }
-
-  _processSlots() {
-    this.__processSlot(this._iconElement, 'identifier');
-    this.__processSlot(this._subIconElement, 'identifier-annotation');
-    this.__processSlot(this._titleElement, 'title');
-    this.__processSlot(this._titleLabelElement, 'title-label');
-    this.__processSlot(this._titleAnnotationElement, 'title-annotation');
-    this.__processSlot(this._subTitleElement, 'sub-title');
-    this.__processSlot(this._contentElement, 'content');
-  }
-
-  __processSlot(parent: string, identifier: string) {
-    const element = this.querySelector(`[slot="${identifier}"]`);
-    if (element) {
-      this.__replaceSlot(parent, element, identifier);
-    } else {
-      this.__hideSlot(parent, this._getSlot(identifier));
-    }
-  }
-
-  __replaceSlot(element: any, slot: any, name: string) {
-    element.hidden = false;
-    element.replaceChild(slot.cloneNode(true), this._getSlot(name));
-  }
-
-  __hideSlot(element: any, slot: any) {
-    if (element) {
-      element.hidden = true;
     }
 
-    if (slot) {
-      slot.innerHTML = '';
+    _typeChangedCallback(oldValue: string, newValue: string) {
+        this._changeClass(this._element, oldValue, newValue, this._classPrefix);
     }
-  }
+
+    _toggleableChangedCallback(oldValue: string, newValue: string) {
+        if (newValue != undefined) {
+            this._element.classList.add('vl-step--accordion');
+            this._element.classList.add('js-vl-accordion');
+            this._headerElement.remove();
+            this._wrapperElement.insertAdjacentHTML('afterbegin', this._getToggleableHeaderHTML());
+            this.__processSlot(this._titleElement, 'title');
+            this.__processSlot(this._titleLabelElement, 'title-label');
+        }
+    }
+
+    _processSlots() {
+        this.__processSlot(this._iconElement, 'identifier');
+        this.__processSlot(this._subIconElement, 'identifier-annotation');
+        this.__processSlot(this._titleElement, 'title');
+        this.__processSlot(this._titleLabelElement, 'title-label');
+        this.__processSlot(this._titleAnnotationElement, 'title-annotation');
+        this.__processSlot(this._subTitleElement, 'sub-title');
+        this.__processSlot(this._contentElement, 'content');
+    }
+
+    __processSlot(parent: string, identifier: string) {
+        const element = this.querySelector(`[slot="${identifier}"]`);
+        if (element) {
+            this.__replaceSlot(parent, element, identifier);
+        } else {
+            this.__hideSlot(parent, this._getSlot(identifier));
+        }
+    }
+
+    __replaceSlot(element: any, slot: any, name: string) {
+        element.hidden = false;
+        element.replaceChild(slot.cloneNode(true), this._getSlot(name));
+    }
+
+    __hideSlot(element: any, slot: any) {
+        if (element) {
+            element.hidden = true;
+        }
+
+        if (slot) {
+            slot.innerHTML = '';
+        }
+    }
 }
 
 define('vl-step', VlStepComponent);
