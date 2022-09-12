@@ -97,3 +97,77 @@ export const Default = () => {
     </vl-map-features-layer>
   </vl-map>`;
 };
+
+export const ManyFeatures = () => {
+  const features = {
+    type: 'FeatureCollection',
+    features: [
+      {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [147055.0, 197108.0],
+        },
+        properties: {
+          label: 'Punt 1',
+        },
+      },
+      {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [147155.0, 197208.0],
+        },
+        properties: {
+          label: 'Punt 2',
+        },
+      },
+      {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [147255.0, 197308.0],
+        },
+        properties: {
+          label: 'Punt 3',
+        },
+      },
+      {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [147355.0, 197308.0],
+        },
+        properties: {
+          label: 'Punt 4',
+        },
+      },
+      {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [147455.0, 197408.0],
+        },
+        properties: {
+          label: 'Punt 5',
+        },
+      },
+    ],
+  };
+
+  return html`<vl-map>
+    <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
+
+    <vl-map-features-layer data-vl-cluster data-vl-cluster-distance="100" .features=${features}>
+      <vl-map-layer-circle-style
+        data-vl-color="#ffe615"
+        data-vl-size="10"
+        data-vl-border-color="#000"
+        data-vl-border-size="1"
+        data-vl-text-feature-attribute-name="label"
+        data-vl-text-color="black"
+        data-vl-text-size="20px"
+      ></vl-map-layer-circle-style>
+    </vl-map-features-layer>
+  </vl-map>`;
+};
