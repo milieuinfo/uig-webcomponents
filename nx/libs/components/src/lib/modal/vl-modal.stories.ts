@@ -121,4 +121,3 @@ export const WithOtherAction = () => html`
 WithOtherAction.parameters = {
     controls: { hideNoControlsWarning: false},
 };
-
