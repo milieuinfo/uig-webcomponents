@@ -1,7 +1,7 @@
 import { BaseElementOfType, awaitUntil, define } from '@uig/common/utilities';
 import { vlFormValidation } from '../form-validation/vl-form-validation';
 import { vlFormValidationElement } from '../form-validation/vl-form-validation.element';
-import './lib/select-lib.js';
+import './vl-select.lib.js';
 
 declare const vl: any;
 
