@@ -4,7 +4,7 @@ import '../vl-link-list.element';
 import { linkListArgs, linkListArgTypes } from './vl-link-list.stories-arg';
 
 export default {
-    title: 'Elements/vl-link-list',
+    title: 'Elements/link-list',
     args: linkListArgs,
     argTypes: linkListArgTypes,
 };

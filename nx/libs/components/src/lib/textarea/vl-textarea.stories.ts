@@ -2,7 +2,7 @@ import { html } from 'lit-html';
 import './vl-textarea.element';
 
 export default {
-    title: 'Elements/vl-textarea',
+    title: 'Components/vl-textarea',
     parameters: {
         controls: { hideNoControlsWarning: true },
     },
