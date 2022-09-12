@@ -38,6 +38,47 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="vl-map-layer-circle-style-met-text-feature-attribute-name-fixture">
+      <template>
+        <vl-map>
+          <vl-map-features-layer>
+            <vl-map-layer-circle-style data-vl-text-feature-attribute-name="label"></vl-map-layer-circle-style>
+          </vl-map-features-layer>
+        </vl-map>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-map-layer-circle-style-met-features-and-text-feature-attribute-name-fixture">
+      <template>
+        <vl-map>
+          <vl-map-features-layer
+            data-vl-features='
+        {
+        "type": "FeatureCollection",
+        "features": [{
+        "type": "Feature",
+        "geometry": {
+        "type": "Polygon",
+        "properties": {
+        "label": "Punt 5",
+        },
+        "coordinates": [ [
+        [147055.0,197908.0],
+        [157055.0,197908.0],
+        [157055.0,187908.0],
+        [147055.0,187908.0],
+        [147055.0,197908.0]
+        ] ]
+        }
+        }]
+          }'
+          >
+            <vl-map-layer-circle-style data-vl-text-feature-attribute-name="label"></vl-map-layer-circle-style>
+          </vl-map-features-layer>
+        </vl-map>
+      </template>
+    </test-fixture>
+
     <script type="module">
       import OlFeature from 'ol/Feature';
       import OlPoint from 'ol/geom/Point';
@@ -301,6 +342,107 @@
           assert.equal(styleImage.getRadius(), styleElement.size);
           assert.equal(styleTextFill.getColor(), styleElement.clusterTextColor);
           assert.isTrue(styleImage instanceof OlStyleCircle);
+        });
+
+        test('als er een featureAttributeName gedefinieerd is, zal de tekst stijl ook beschikbaar zijn', () => {
+          const element = fixture('vl-map-layer-circle-style-met-text-feature-attribute-name-fixture');
+          const vlMapLayerStyleElement = element.querySelector('vl-map-layer-circle-style');
+          assert.equal(vlMapLayerStyleElement.textFeatureAttributeName, 'label');
+          const style = vlMapLayerStyleElement.style({
+            get: (property) => property + 1,
+          });
+          assert.equal(style.getText().getFill().getColor(), '#FFF');
+          assert.equal(style.getText().getOffsetX(), '0');
+          assert.equal(style.getText().getOffsetY(), '0');
+          assert.equal(style.getText().getFont(), '10px "Flanders Art Sans",sans-serif');
+          assert.equal(style.getText().getBackgroundFill().getColor(), 'rgba(0, 0, 0, 0)');
+          assert.equal(style.getText().getStroke().getColor(), 'rgba(255, 255, 255, 0)');
+          assert.equal(style.getText().getStroke().getWidth(), 1);
+          assert.equal(style.getText().getText(), 'label1');
+        });
+
+        test('als er geen featureAttributeName gedefinieerd is én indien er geen features binnen een bepaalde afstand liggen van elkaar zullen ze niet geclusterd weergegeven worden en zal er geen tekst stijl beschikbaar zijn', () => {
+          const map = fixture('vl-map-layer-circle-style-fixture');
+          const styleElement = map.querySelector('vl-map-layer-circle-style');
+          assert.equal(styleElement.textFeatureAttributeName, null);
+
+          const feature = new OlFeature({
+            geometry: new OlPoint([109100, 204175]),
+          });
+          feature.set('label', 'feature1');
+
+          const features = OpenLayersUtil.createClusterFeaturesObject([feature]);
+          const style = styleElement.style(features);
+          const textStyle = style.getText();
+          assert.equal(textStyle.getText(), '');
+        });
+
+        test('als er een featureAttributeName gedefinieerd is én indien er geen features binnen een bepaalde afstand liggen van elkaar zullen ze niet geclusterd weergegeven worden en zal de tekst stijl ook beschikbaar zijn', () => {
+          const map = fixture('vl-map-layer-circle-style-met-text-feature-attribute-name-fixture');
+          const styleElement = map.querySelector('vl-map-layer-circle-style');
+          assert.equal(styleElement.textFeatureAttributeName, 'label');
+
+          const feature1 = new OlFeature({
+            geometry: new OlPoint([109100, 204175]),
+          });
+          feature1.set('label', 'feature1');
+
+          const feature2 = new OlFeature({
+            geometry: new OlPoint([109101, 204176]),
+          });
+          feature2.set('label', 'feature2');
+
+          const features1 = OpenLayersUtil.createClusterFeaturesObject([feature1]);
+          const style1 = styleElement.style(features1);
+          const textStyle1 = style1.getText();
+          assert.equal(textStyle1.getText(), 'feature1');
+
+          const features2 = OpenLayersUtil.createClusterFeaturesObject([feature2]);
+          const style2 = styleElement.style(features2);
+          const textStyle2 = style2.getText();
+          assert.equal(textStyle2.getText(), 'feature2');
+        });
+
+        test('als er geen featureAttributeName gedefinieerd is én indien er meerdere features binnen een bepaalde afstand liggen van elkaar zullen ze geclusterd weergegeven worden en zal het aantal features in de cluster weergegeven worden', () => {
+          const map = fixture('vl-map-layer-circle-style-fixture');
+          const styleElement = map.querySelector('vl-map-layer-circle-style');
+          assert.equal(styleElement.textFeatureAttributeName, null);
+
+          const feature1 = new OlFeature({
+            geometry: new OlPoint([109100, 204175]),
+          });
+          feature1.set('label', 'feature1');
+
+          const feature2 = new OlFeature({
+            geometry: new OlPoint([109101, 204176]),
+          });
+          feature2.set('label', 'feature2');
+
+          const features = OpenLayersUtil.createClusterFeaturesObject([feature1, feature2]);
+          const style = styleElement.style(features);
+          const textStyle = style.getText();
+          assert.equal(textStyle.getText(), '2');
+        });
+
+        test('als er een featureAttributeName gedefinieerd is én indien er meerdere features binnen een bepaalde afstand liggen van elkaar zullen ze geclusterd weergegeven worden en zal het aantal features in de cluster weergegeven worden', () => {
+          const map = fixture('vl-map-layer-circle-style-met-text-feature-attribute-name-fixture');
+          const styleElement = map.querySelector('vl-map-layer-circle-style');
+          assert.equal(styleElement.textFeatureAttributeName, 'label');
+
+          const feature1 = new OlFeature({
+            geometry: new OlPoint([109100, 204175]),
+          });
+          feature1.set('label', 'feature1');
+
+          const feature2 = new OlFeature({
+            geometry: new OlPoint([109101, 204176]),
+          });
+          feature2.set('label', 'feature2');
+
+          const features = OpenLayersUtil.createClusterFeaturesObject([feature1, feature2]);
+          const style = styleElement.style(features);
+          const textStyle = style.getText();
+          assert.equal(textStyle.getText(), '2');
         });
       });
     </script>
