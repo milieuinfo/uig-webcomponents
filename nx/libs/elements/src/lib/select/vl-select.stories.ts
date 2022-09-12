@@ -190,15 +190,16 @@ export const Default = ({
         data-vl-search-placeholder=${searchPlaceholder}
         data-vl-search-no-results-text=${searchNoResultsText}
         data-vl-no-more-options=${noMoreOptions}
+        data-cy="select"
     >
-        <option value="Belgium">België</option>
-        <option value="Germany">Duitsland</option>
-        <option value="France">Frankrijk</option>
+        <option value="Belgium" data-cy="option-1">België</option>
+        <option value="Germany" data-cy="option-2">Duitsland</option>
+        <option value="France" data-cy="option-3">Frankrijk</option>
     </select>
 `;
 
 export const WithoutSearch = () => html`
-    <select is="vl-select" id="select-not-searchable" tabindex="0" data-vl-select="" data-vl-select-search="false">
+    <select is="vl-select" id="select-not-searchable" tabindex="0" data-vl-select="" data-vl-select-search="false" data-cy="select">
         <optgroup label="Landen">
             <option value="België">België</option>
             <option value="Duitsland">Duitsland</option>
