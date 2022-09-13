@@ -24,6 +24,12 @@ const changes = [
           value for layer-circle-style when the map has clustering disabled.
         </p>
       </li>
+      <li>
+        <p><code>vl-autocomplete</code></p>
+        <p>
+          Fixed flaky e2e test by mocking api call response.
+        </p>
+      </li>
     </ul>`,
   },
   {
