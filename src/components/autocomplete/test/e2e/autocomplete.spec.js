@@ -10,7 +10,7 @@ const groupByUrl = `${defaultUrl}&args=groupBy:subtitle`;
 const captionFormatTitleOnlyUrl = `${defaultUrl}&args=captionFormat:title-only`;
 const selector = 'vl-autocomplete';
 
-const apiCallUrl = `${sbUrl}?id=custom-elements-vl-autocomplete--with-input-and-api-call`;
+const mockedApiCallUrl = `${sbUrl}?id=custom-elements-vl-autocomplete--with-input-and-mocked-api-call`;
 
 describe('vl-autocomplete', async () => {
   let driver;
@@ -154,9 +154,8 @@ describe('vl-autocomplete', async () => {
     ]);
   });
 
-  // TODO deze test faalde 2x op Bamboo maar lukt lokaal wel - flaky - momenteel ge-skipped
-  it.skip('as a user, I can see list of suggestions when the autocomplete is calling an api call to resolve the suggestions', async () => {
-    await driver.get(apiCallUrl);
+  it('as a user, I can see list of suggestions when the autocomplete is calling an api call to resolve the suggestions', async () => {
+    await driver.get(mockedApiCallUrl);
     const autocomplete = await new VlTestAutocomplete(driver, selector);
 
     await autocomplete.setInputValue('drabstraat');

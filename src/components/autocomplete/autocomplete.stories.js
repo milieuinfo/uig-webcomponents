@@ -1,5 +1,5 @@
 import { html } from 'lit-html';
-import { DEFAULT_MAX_MATCHES, DEFAULT_MIN_CHARS, DEFAULT_CAPTION_FORMAT } from '../autocomplete';
+import { DEFAULT_CAPTION_FORMAT, DEFAULT_MAX_MATCHES, DEFAULT_MIN_CHARS } from '../autocomplete';
 import { CATEGORIES, docsIntro, TYPES } from '../../../.storybook/utils.js';
 import { CAPTION_FORMAT, GROUP_BY } from './enums';
 
@@ -166,6 +166,47 @@ export const WithCustomCaptionFormatter = () => html` <vl-autocomplete
   data-vl-caption-format="${CAPTION_FORMAT.SUBTITLE_TITLE_HORIZONTAL}"
   placeholder="Hint: typ Gent"
 ></vl-autocomplete>`;
+
+//--------------------------
+async function mockedApiCall(searchTerm, maxSuggestions) {
+  const results = [
+    'Drabbinkdreef, Gent',
+    'Drabstraat, Gent',
+    'Drabstraat, Kontich',
+    'Drabstraat, Mechelen',
+    'Drabstraat, Mortsel',
+    'Drabstraat, Wichelen',
+    'Drabstraat, Zwevezele',
+  ];
+
+  const filteredResults = results
+    .filter((i) => i.toLowerCase().startsWith(searchTerm.toLowerCase()))
+    .slice(0, maxSuggestions);
+
+  return {
+    SuggestionResult: filteredResults,
+  };
+}
+
+async function fetchDataFromMockedApiCall(autocomplete, searchTerm) {
+  const responseBody = await mockedApiCall(searchTerm, autocomplete.maxSuggestions);
+
+  autocomplete.matches = responseBody.SuggestionResult.map((obj) => ({
+    title: obj,
+    value: obj,
+  }));
+}
+
+export const WithInputAndMockedApiCall = () => html`
+  <vl-autocomplete
+    @search=${(e) => fetchDataFromMockedApiCall(e.target, e.detail.searchTerm)}
+    placeholder="Gemeente, Straat of Project"
+    data-vl-min-chars="2"
+    data-vl-max-suggestions="5"
+  ></vl-autocomplete>
+`;
+
+//-------------------------
 
 //--------------------------
 async function fetchDataFromApiCall(autocomplete, searchTerm) {
