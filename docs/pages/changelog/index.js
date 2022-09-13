@@ -10,6 +10,16 @@ const unreleased = [];
 const changes = [
   ...unreleased,
   {
+    version: '3.0.17',
+    date: '14/09/2022',
+    children: html` <ul>
+      <li>
+        <p><code>vl-annotation</code></p>
+        <p>New uig webcomponent to show the web universum vl-annotation.</p>
+      </li>
+    </ul>`,
+  },
+  {
     version: '3.0.16',
     date: '12/09/2022',
     children: html` <ul>
