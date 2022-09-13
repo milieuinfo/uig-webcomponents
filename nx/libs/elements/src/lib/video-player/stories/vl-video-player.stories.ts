@@ -15,6 +15,7 @@ export const videoPlayerDefault = () => html` <div style="max-width: 780px">
         controls
         crossorigin
         playsinline
+        data-cy="video-player"
     >
         <!-- Video files -->
         <source

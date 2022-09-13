@@ -2,25 +2,33 @@ import { html } from 'lit-html';
 import './vl-toaster.element';
 
 export default {
-  title: 'Elements/vl-toaster',
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
+    title: 'Components/vl-toaster',
+    parameters: {
+        controls: { hideNoControlsWarning: true },
+    },
 };
 
 export const Default = () => html`
-      <div id="top-left-toaster" is="vl-toaster" data-vl-top-left data-cy="toaster-top-left"></div>
-      <div id="top-right-toaster" is="vl-toaster" data-vl-top-right data-cy="toaster-top-right"></div>
-      <div id="bottom-left-toaster" is="vl-toaster" data-vl-bottom-left data-cy="toaster-bottom-left"></div>
-      <div id="bottom-right-toaster" is="vl-toaster" data-vl-bottom-right data-cy="toaster-bottom-right"></div>
+    <div id="top-left-toaster" is="vl-toaster" data-vl-top-left data-cy="toaster-top-left"></div>
+    <div id="top-right-toaster" is="vl-toaster" data-vl-top-right data-cy="toaster-top-right"></div>
+    <div id="bottom-left-toaster" is="vl-toaster" data-vl-bottom-left data-cy="toaster-bottom-left"></div>
+    <div id="bottom-right-toaster" is="vl-toaster" data-vl-bottom-right data-cy="toaster-bottom-right"></div>
 
-      <button is="vl-button" onclick="topLeftToaster().push(newSuccessAlert());" data-cy="button-top-left">Top-left</button>
-      <button is="vl-button" onclick="topRightToaster().push(newSuccessAlert());" data-cy="button-top-right">Top-right</button>
-      <button is="vl-button" onclick="bottomLeftToaster().push(newSuccessAlert());" data-cy="button-bottom-left">Bottom-left</button>
-      <button is="vl-button" onclick="bottomRightToaster().push(newSuccessAlert());" data-cy="button-bottom-right">Bottom-right</button>
+    <button is="vl-button" onclick="topLeftToaster().push(newSuccessAlert());" data-cy="button-top-left">
+        Top-left
+    </button>
+    <button is="vl-button" onclick="topRightToaster().push(newSuccessAlert());" data-cy="button-top-right">
+        Top-right
+    </button>
+    <button is="vl-button" onclick="bottomLeftToaster().push(newSuccessAlert());" data-cy="button-bottom-left">
+        Bottom-left
+    </button>
+    <button is="vl-button" onclick="bottomRightToaster().push(newSuccessAlert());" data-cy="button-bottom-right">
+        Bottom-right
+    </button>
 
-      <br />
-      <br />
+    <br />
+    <br />
 
     <vl-alert
         id="alert-1"
@@ -58,18 +66,38 @@ export const Default = () => html`
 `;
 
 export const FadeOut = () => html`
-      <div id="top-left-toaster" is="vl-toaster" data-vl-top-left data-vl-fadeout data-cy="toaster-top-left"></div>
-      <div id="top-right-toaster" is="vl-toaster" data-vl-top-right data-vl-fadeout data-cy="toaster-top-right"></div>
-      <div id="bottom-left-toaster" is="vl-toaster" data-vl-bottom-left data-vl-fadeout data-cy="toaster-bottom-left"></div>
-      <div id="bottom-right-toaster" is="vl-toaster" data-vl-bottom-right data-vl-fadeout data-cy="toaster-bottom-right"></div>
+    <div id="top-left-toaster" is="vl-toaster" data-vl-top-left data-vl-fadeout data-cy="toaster-top-left"></div>
+    <div id="top-right-toaster" is="vl-toaster" data-vl-top-right data-vl-fadeout data-cy="toaster-top-right"></div>
+    <div
+        id="bottom-left-toaster"
+        is="vl-toaster"
+        data-vl-bottom-left
+        data-vl-fadeout
+        data-cy="toaster-bottom-left"
+    ></div>
+    <div
+        id="bottom-right-toaster"
+        is="vl-toaster"
+        data-vl-bottom-right
+        data-vl-fadeout
+        data-cy="toaster-bottom-right"
+    ></div>
 
-      <button is="vl-button" onclick="topLeftToaster().push(newSuccessAlert());" data-cy="button-top-left">Top-left</button>
-      <button is="vl-button" onclick="topRightToaster().push(newSuccessAlert());" data-cy="button-top-right">Top-right</button>
-      <button is="vl-button" onclick="bottomLeftToaster().push(newSuccessAlert());" data-cy="button-bottom-left">Bottom-left</button>
-      <button is="vl-button" onclick="bottomRightToaster().push(newSuccessAlert());" data-cy="button-bottom-right">Bottom-right</button>
+    <button is="vl-button" onclick="topLeftToaster().push(newSuccessAlert());" data-cy="button-top-left">
+        Top-left
+    </button>
+    <button is="vl-button" onclick="topRightToaster().push(newSuccessAlert());" data-cy="button-top-right">
+        Top-right
+    </button>
+    <button is="vl-button" onclick="bottomLeftToaster().push(newSuccessAlert());" data-cy="button-bottom-left">
+        Bottom-left
+    </button>
+    <button is="vl-button" onclick="bottomRightToaster().push(newSuccessAlert());" data-cy="button-bottom-right">
+        Bottom-right
+    </button>
 
-      <br />
-      <br />
+    <br />
+    <br />
 
     <vl-alert
         id="alert-1"
@@ -105,4 +133,3 @@ export const FadeOut = () => html`
         const bottomRightToaster = () => document.querySelector('#bottom-right-toaster');
     </script>
 `;
-
