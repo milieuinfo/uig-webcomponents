@@ -4,7 +4,8 @@ import styles from './style/vl-typography.scss';
 /**
  * VlTypography
  * @class
- * @classdesc Gebruik de typograhpy component om de standaard elementen te visualiseren binnen een container. De typography component wordt voornamelijk gebruikt om de stijl van de inhoud van een wysiwyg-editor correct te renderen.
+ * @classdesc Gebruik de typography component om de standaard elementen te visualiseren binnen een container.
+ * De typography component wordt voornamelijk gebruikt om de stijl van de inhoud van een wysiwyg-editor correct te renderen.
  *
  * @extends HTMLElement
  * @mixes vlElement
