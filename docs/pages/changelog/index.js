@@ -17,6 +17,13 @@ const changes = [
         <p><code>vl-annotation</code></p>
         <p>New uig webcomponent to show the web universum vl-annotation.</p>
       </li>
+      <li>
+        <p><code>vl-map-layer-circle-style</code></p>
+        <p>
+          Fixed an issue that data-vl-text-feature-attribute-name attribute was not displaying the feature attribute
+          value for layer-circle-style when the map has clustering disabled.
+        </p>
+      </li>
     </ul>`,
   },
   {

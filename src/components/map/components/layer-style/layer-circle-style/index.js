@@ -118,7 +118,7 @@ export class VlMapLayerCircleStyle extends VlMapLayerStyle {
     return (feature) => {
       const features = feature && feature.get ? feature.get('features') || [] : [];
 
-      if (Array.isArray(features)) {
+      if (Array.isArray(features) && features.length > 0) {
         const size = features.length || 1;
 
         if (size > 1) {
