@@ -444,6 +444,36 @@
           const textStyle = style.getText();
           assert.equal(textStyle.getText(), '2');
         });
+
+        test('als er geen featureAttributeName gedefinieerd is én clustering is niet ingeschakeld moet de er geen label van de feature weergegeven', () => {
+          const map = fixture('vl-map-layer-circle-style-fixture');
+          const styleElement = map.querySelector('vl-map-layer-circle-style');
+          assert.equal(styleElement.textFeatureAttributeName, null);
+
+          const feature = new OlFeature({
+            geometry: new OlPoint([109100, 204175]),
+          });
+          feature.set('label', 'feature');
+
+          const style = styleElement.style(feature);
+          const textStyle = style.getText();
+          assert.equal(textStyle.getText(), '');
+        });
+
+        test('als er een featureAttributeName gedefinieerd is én clustering is niet ingeschakeld moet de label van de feature goed weergegeven worden', () => {
+          const map = fixture('vl-map-layer-circle-style-met-text-feature-attribute-name-fixture');
+          const styleElement = map.querySelector('vl-map-layer-circle-style');
+          assert.equal(styleElement.textFeatureAttributeName, 'label');
+
+          const feature = new OlFeature({
+            geometry: new OlPoint([109100, 204175]),
+          });
+          feature.set('label', 'feature');
+
+          const style = styleElement.style(feature);
+          const textStyle = style.getText();
+          assert.equal(textStyle.getText(), 'feature');
+        });
       });
     </script>
   </body>
