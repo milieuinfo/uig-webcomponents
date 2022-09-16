@@ -3,8 +3,7 @@ import { vlFormValidationElement } from '../form-validation/vl-form-validation.e
 import { vlFormValidation } from '../form-validation/vl-form-validation';
 import { vlPattern } from '../pattern/vl-pattern.element';
 
-// TODO: WTF - waarom is dit nodig ?
-//  -> die van lijn 57 wordt toch sowieso uitgevoerd en de deze dan toch niet meer ?
+// TODO: waarom is dit nodig ?
 Promise.all([vlFormValidation.ready(), vlPattern.ready()]).then(() =>
     define('vl-input-field', VlInputFieldElement, { extends: 'input' })
 );
@@ -53,5 +52,3 @@ export class VlInputFieldElement extends vlFormValidationElement(BaseElementOfTy
         this.dress(this);
     }
 }
-
-define('vl-input-field', VlInputFieldElement, { extends: 'input' });
