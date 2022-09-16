@@ -14,7 +14,7 @@ import './vl-property-value.element';
  *
  * @property {boolean} data-vl-full-width - Attribuut wordt gebruikt om de maximale breedte van het label te benutten.
  */
-export class VlPropertiesComponent extends BaseElementOfType(HTMLElement) {
+export class VlPropertiesComponent extends BaseElementOfType(HTMLDivElement) {
     static get _observedClassAttributes() {
         return ['full-width'];
     }
