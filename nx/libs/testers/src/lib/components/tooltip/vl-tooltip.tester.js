@@ -1,7 +1,7 @@
-import { VlElementTester } from '../base/vl-element.tester';
-import { By } from '../util/tester.setup';
+import { VlElementTester } from '../../base/vl-element.tester';
+import { By } from '../../util/tester.setup';
 
-export class VlTooltip extends VlElementTester {
+export class VlTooltipTester extends VlElementTester {
     async _getPlacement() {
         return this.getAttribute('placement');
     }

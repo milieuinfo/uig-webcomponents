@@ -1,9 +1,9 @@
-import { VlElementTester } from '../base/vl-element.tester';
-import { By } from '../util/tester.setup';
+import { VlElementTester } from '../../base/vl-element.tester';
+import { By } from '../../util/tester.setup';
 import { StaleElementReferenceError } from 'selenium-webdriver/lib/error';
-import VlAlert from './alert';
+import VlAlert from '../alert';
 
-export class VlToaster extends VlElementTester {
+export class VlToasterTester extends VlElementTester {
     async shouldFadeOut() {
         return this.hasAttribute('fadeout');
     }

@@ -1,7 +1,7 @@
-import { VlElementTester } from '../base/vl-element.tester';
-import { By } from '../util/tester.setup';
+import { VlElementTester } from '../../base/vl-element.tester';
+import { By } from '../../util/tester.setup';
 
-export class VlAccordion extends VlElementTester {
+export class VlAccordionTester extends VlElementTester {
     async linkText() {
         return this.titleText();
     }

@@ -1,8 +1,8 @@
-import { VlElementTester } from '../base/vl-element.tester';
-import { By } from '../util/tester.setup';
-import { testerConfig } from '../util/tester.config';
+import { VlElementTester } from '../../base/vl-element.tester';
+import { By } from '../../util/tester.setup';
+import { testerConfig } from '../../util/tester.config';
 
-export class VlModal extends VlElementTester {
+export class VlModalTester extends VlElementTester {
     async isDisplayed() {
         const dialog = await this._getDialog();
         return dialog.isDisplayed();

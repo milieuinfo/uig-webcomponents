@@ -2,7 +2,7 @@ import { VlElementTester } from '../../base/vl-element.tester';
 import { By } from '../../util/tester.setup';
 import { Key } from '../../util/tester.setup';
 import { testerConfig } from '../../util/tester.config';
-import { VlModal } from '../modal';
+import { VlModalTester } from '../modal/vl-modal.tester';
 import { getOS } from '../../util/tester.helper';
 
 export class VlTextareaTester extends VlElementTester {
@@ -255,7 +255,7 @@ export class VlTextareaTester extends VlElementTester {
     async getLinkToolbarModal() {
         const parent = await this._parentElement();
         const element = await parent.findElement(By.css('vl-textarea-modal'));
-        return new VlModal(this.driver, element.shadowRoot);
+        return new VlModalTester(this.driver, element.shadowRoot);
     }
 
     async _parentElement() {

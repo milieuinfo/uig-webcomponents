@@ -1,7 +1,7 @@
-import { VlElementTester } from '../base/vl-element.tester';
-import { By } from '../util/tester.setup';
+import { VlElementTester } from '../../base/vl-element.tester';
+import { By } from '../../util/tester.setup';
 
-export class VlCodePreview extends VlElementTester {
+export class VlCodePreviewTester extends VlElementTester {
     async getText() {
         const code = await this._getCodeElement();
         return code.getText();
