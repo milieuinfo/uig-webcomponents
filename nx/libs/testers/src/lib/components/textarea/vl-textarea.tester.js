@@ -1,11 +1,11 @@
-import { VlElementTester } from '../base/vl-element.tester';
-import { By } from '../util/tester.setup';
-import { Key } from '../util/tester.setup';
-import { testerConfig } from '../util/tester.config';
-import { VlModal } from './modal';
-import { getOS } from '../util/tester.helper';
+import { VlElementTester } from '../../base/vl-element.tester';
+import { By } from '../../util/tester.setup';
+import { Key } from '../../util/tester.setup';
+import { testerConfig } from '../../util/tester.config';
+import { VlModal } from '../modal';
+import { getOS } from '../../util/tester.helper';
 
-export class VlTextarea extends VlElementTester {
+export class VlTextareaTester extends VlElementTester {
     async setValue(text) {
         await this.clear();
         await this.sendKeys(text);

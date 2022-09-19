@@ -1,8 +1,10 @@
-import { VlElementTester } from '../base/vl-element.tester';
-import { By } from '../util/tester.setup';
-import { VlInputField } from '../elements/input-field';
+import { VlElementTester } from '../../base/vl-element.tester';
+import { By } from '../../util/tester.setup';
+import { VlInputFieldTester } from '../../elements/input-field/vl-input-field.tester';
+import { VlMonthSelectTester } from './vl-month-select.tester';
+import { VlYearInputTester } from './vl-year-input.tester';
 
-export class VlDatepicker extends VlElementTester {
+export class VlDatepickerTester extends VlElementTester {
     async isOpen() {
         try {
             const flatpickr = await this._getFlatpicker();
@@ -143,12 +145,12 @@ export class VlDatepicker extends VlElementTester {
 
     async _getMonthSelect() {
         const select = await this.shadowRoot.findElement(By.css('select.flatpickr-monthDropdown-months'));
-        return new VlMonthSelect(this.driver, select);
+        return new VlMonthSelectTester(this.driver, select);
     }
 
     async _getYearInput() {
         const element = await this.shadowRoot.findElement(By.css('.numInput'));
-        return new VlYearInput(this.driver, element);
+        return new VlYearInputTester(this.driver, element);
     }
 
     async _getToggleButton() {
@@ -176,7 +178,7 @@ export class VlDatepicker extends VlElementTester {
     }
 
     async _getInputElement() {
-        return new VlInputField(this.driver, await this.shadowRoot.findElement(By.id('input')));
+        return new VlInputFieldTester(this.driver, await this.shadowRoot.findElement(By.id('input')));
     }
 
     async _getDayElementByText(text) {
@@ -260,35 +262,5 @@ export class VlDatepicker extends VlElementTester {
     async _toggleMeridian() {
         const element = await this._getMeridianElement();
         await element.click();
-    }
-}
-
-class VlMonthSelect extends VlElementTester {
-    async value() {
-        const value = await this.getAttribute('value');
-        const element = await this.findElement(By.css(`option[value="${value}"]`));
-        return element.getText();
-    }
-
-    async select(month) {
-        const options = await this.findElements(By.css(`option`));
-        const option = (await this._mapVisibleText(options)).find((m) => m.visibleText === month);
-        return option.webElement.click();
-    }
-
-    async _mapVisibleText(options) {
-        return Promise.all(
-            options.map(async (option) => {
-                const textContent = await option.getAttribute('textContent');
-                const visibleText = textContent.replace(/\s+/g, ' ').trim();
-                return { webElement: option, visibleText: visibleText };
-            })
-        );
-    }
-}
-
-class VlYearInput extends VlElementTester {
-    async value() {
-        return this.getAttribute('value');
     }
 }

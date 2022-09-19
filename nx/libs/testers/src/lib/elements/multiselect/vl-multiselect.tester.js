@@ -1,10 +1,10 @@
-import { By, Key } from '../util/tester.setup';
-import { VlSelect } from './select';
-import { Pill } from '../components/pill/vl-pill.tester';
-import { MultiselectItem } from './multiselect-item';
-import { Item } from './item';
+import { By, Key } from '../../util/tester.setup';
+import { VlSelectTester } from '../select/vl-select.tester';
+import { VlMultiselectItemTester } from './vl-multiselect-item.tester';
+import { VlMultiselectItemModel } from './vl-multiselect-item.model';
+import { VlMultiselectPillTester } from './vl-multiselect-pill.tester';
 
-export class VlMultiSelect extends VlSelect {
+export class VlMultiselectTester extends VlSelectTester {
     async _getRoot() {
         return this.findElement(By.xpath('../..'));
     }
@@ -28,7 +28,7 @@ export class VlMultiSelect extends VlSelect {
         const value = await pillOrMultiselectItem.value();
         const text = await pillOrMultiselectItem.text();
         const isSelected = await pillOrMultiselectItem.isSelected();
-        return new Item(value, text, isSelected, pillOrMultiselectItem);
+        return new VlMultiselectItemModel(value, text, isSelected, pillOrMultiselectItem);
     }
 
     async _getUnselectedItems() {
@@ -36,7 +36,7 @@ export class VlMultiSelect extends VlSelect {
         const items = await selectList.findElements(By.css('.vl-select__item'));
         return Promise.all(
             items.map(async (item) => {
-                return new MultiselectItem(item);
+                return new VlMultiselectItemTester(item);
             })
         );
     }
@@ -46,7 +46,7 @@ export class VlMultiSelect extends VlSelect {
         const selectedItems = await root.findElements(By.css('.vl-pill'));
         return Promise.all(
             selectedItems.map(async (item) => {
-                return new Pill(item);
+                return new VlMultiselectPillTester(item);
             })
         );
     }
@@ -83,7 +83,7 @@ export class VlMultiSelect extends VlSelect {
     }
 
     async select(item) {
-        const multiselect = await new VlSelect(this.driver, this);
+        const multiselect = await new VlSelectTester(this.driver, this);
         await multiselect.selectByValue(item.value);
         return this._closeDropdown();
     }

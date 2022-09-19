@@ -1,7 +1,7 @@
-import { VlElementTester } from '../base/vl-element.tester';
-import { By } from '../util/tester.setup';
+import { VlElementTester } from '../../base/vl-element.tester';
+import { By } from '../../util/tester.setup';
 
-export class VlUploadFile extends VlElementTester {
+export class VlUploadFileTester extends VlElementTester {
     async getName() {
         const nameSpan = await this.findElement(By.css('span[data-dz-name]'));
         return nameSpan.getText();

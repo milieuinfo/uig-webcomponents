@@ -1,8 +1,8 @@
-import { VlElementTester } from '../base/vl-element.tester';
-import { By } from '../util/tester.setup';
-import { VlSelectOptionGroup } from './select-option-group';
+import { VlElementTester } from '../../base/vl-element.tester';
+import { By } from '../../util/tester.setup';
+import { VlSelectOptionGroupTester } from './vl-select-option-group.tester';
 
-export class VlSelect extends VlElementTester {
+export class VlSelectTester extends VlElementTester {
     async open() {
         const isOpen = await this.isOpen();
         if (!isOpen) {
@@ -47,13 +47,13 @@ export class VlSelect extends VlElementTester {
                 const from = elements.indexOf(group) + 1;
                 const to =
                     index + 1 === selectGroups.length ? elements.length : elements.indexOf(selectGroups[index + 1]);
-                return new VlSelectOptionGroup(group, true, elements.slice(from, to));
+                return new VlSelectOptionGroupTester(group, true, elements.slice(from, to));
             });
         } else {
             const optGroupElements = await this.findElements(By.css('optgroup'));
             const optGroupElementPromises = optGroupElements.map(async (optGroupElement) => {
                 const options = await optGroupElement.findElements(By.css('option'));
-                return new VlSelectOptionGroup(optGroupElement, false, options);
+                return new VlSelectOptionGroupTester(optGroupElement, false, options);
             });
             return Promise.all(optGroupElementPromises);
         }
@@ -181,29 +181,5 @@ export class VlSelect extends VlElementTester {
             await this.open();
         }
         return option.click();
-    }
-}
-
-class Option {
-    constructor(optionItem, dressed) {
-        this.optionItem = optionItem;
-        this.dressed = dressed;
-    }
-
-    click() {
-        return this.optionItem.click();
-    }
-
-    async getValue() {
-        if (this.dressed) {
-            return this.optionItem.getAttribute('data-value');
-        } else {
-            return this.optionItem.getAttribute('value');
-        }
-    }
-
-    async getLabel() {
-        const textContent = await this.optionItem.getAttribute('textContent');
-        return textContent.trim();
     }
 }

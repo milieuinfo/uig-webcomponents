@@ -1,11 +1,11 @@
-import { VlElementTester } from '../base/vl-element.tester';
-import { By } from '../util/tester.setup';
-import { VlRadio } from './radio';
+import { VlElementTester } from '../../base/vl-element.tester';
+import { By } from '../../util/tester.setup';
+import { VlRadioTester } from './vl-radio.tester';
 
-export class VlRadioGroup extends VlElementTester {
+export class VlRadioGroupTester extends VlElementTester {
     async getRadios() {
         const elements = await this.findElements(By.css('vl-radio'));
-        return Promise.all(elements.map((element) => new VlRadio(this.driver, element)));
+        return Promise.all(elements.map((element) => new VlRadioTester(this.driver, element)));
     }
 
     async getRadio(number) {
@@ -21,6 +21,6 @@ export class VlRadioGroup extends VlElementTester {
     async _getRadio(number) {
         const id = await this.getAttribute('id');
         const element = await this.findElement(By.css(`#${id}-radio-${number}`));
-        return new VlRadio(this.driver, element);
+        return new VlRadioTester(this.driver, element);
     }
 }

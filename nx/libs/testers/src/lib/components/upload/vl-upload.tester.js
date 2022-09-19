@@ -1,8 +1,8 @@
-import { VlElementTester } from '../base/vl-element.tester';
-import { By } from '../util/tester.setup';
-import { VlUploadFile } from './upload-file';
+import { VlElementTester } from '../../base/vl-element.tester';
+import { By } from '../../util/tester.setup';
+import { VlUploadFileTester } from './vl-upload-file.tester';
 
-export class VlUpload extends VlElementTester {
+export class VlUploadTester extends VlElementTester {
     async uploadFile(path) {
         const input = await this.shadowRoot.findElement(By.css('input[type="file"].dz-hidden-input'));
         return input.sendKeys(path);
@@ -10,7 +10,7 @@ export class VlUpload extends VlElementTester {
 
     async getFiles() {
         const files = await this.shadowRoot.findElements(By.css('.vl-upload__files__container .vl-upload__file'));
-        return await Promise.all(files.map((file) => new VlUploadFile(this.driver, file)));
+        return await Promise.all(files.map((file) => new VlUploadFileTester(this.driver, file)));
     }
 
     async isError() {

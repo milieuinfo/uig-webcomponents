@@ -1,7 +1,7 @@
-import { VlElementTester } from '../base/vl-element.tester';
-import { By } from '../util/tester.setup';
+import { VlElementTester } from '../../base/vl-element.tester';
+import { By } from '../../util/tester.setup';
 
-export class VlRadio extends VlElementTester {
+export class VlRadioTester extends VlElementTester {
     async click() {
         const label = await this._getLabel();
         await label.click();

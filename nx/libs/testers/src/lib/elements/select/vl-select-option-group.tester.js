@@ -1,7 +1,7 @@
-import { By } from '../util/tester.setup';
-import { VlSelectOption } from './select-option';
+import { By } from '../../util/tester.setup';
+import { VlSelectOptionTester } from './vl-select-option.tester';
 
-export class VlSelectOptionGroup {
+export class VlSelectOptionGroupTester {
     constructor(groupItem = {}, dressed = false, options = []) {
         this.groupItem = groupItem;
         this._options = options;
@@ -20,7 +20,7 @@ export class VlSelectOptionGroup {
 
     get options() {
         return this._options.map((option) => {
-            return new VlSelectOption(option, this.dressed);
+            return new VlSelectOptionTester(option, this.dressed);
         });
     }
 }

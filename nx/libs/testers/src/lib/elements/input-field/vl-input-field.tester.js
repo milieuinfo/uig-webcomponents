@@ -1,11 +1,11 @@
-import { VlElementTester } from '../base/vl-element.tester';
-import { Key } from '../util/tester.setup';
-import { vlFormValidation } from './form-validation';
-import { vlPattern } from './pattern';
+import { VlElementTester } from '../../base/vl-element.tester';
+import { Key } from '../../util/tester.setup';
+import { vlFormValidationTester } from '../form-validation/vl-form-validation.tester';
+import { vlPatternTester } from '../pattern/vl-pattern.tester';
 
-export class VlInputField extends VlElementTester {
+export class VlInputFieldTester extends VlElementTester {
     constructor(driver, identifier) {
-        super(driver, identifier, [vlFormValidation, vlPattern]);
+        super(driver, identifier, [vlFormValidationTester, vlPatternTester]);
     }
 
     async setValue(content) {
