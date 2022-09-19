@@ -24,13 +24,19 @@ uig/
 │  │   -> @domg-uig/exhibit
 │  │   -> @domg-uig/storybook
 │  ├─ libs/
-│  │   -> @domg-lib/components (+ header-footer /  http-error-message) [ts]
-│  │   -> @domg-lib/elements [ts]
-│  │   -> @domg-lib/fat-header-footer [ts] (code zit onder components)
-│  │   -> @domg-lib/map [js]
-│  │   -> @domg-lib/proza-message [js]
-│  │   -> @domg-lib/test-support [js]
-│  │   -> @domg-lib/react-support [ts]
+│  │  ├─ components/
+│  │  │  -> @domg-lib/components (+ header-footer /  http-error-message) [ts]
+│  │  ├─ elements/
+│  │  │   -> @domg-lib/elements [ts]
+│  │  ├─ fat/
+│  │  │   -> @domg-lib/fat-header-footer [ts] (code zit onder components)
+│  │  ├─ map/
+│  │  │   -> @domg-lib/map [js]
+│  │  ├─ proza/
+│  │  │   -> @domg-lib/proza-message [js]
+│  │  ├─ support/
+│  │  │   -> @domg-lib/react-support [ts]
+│  │  │   -> @domg-lib/test-support [js]
 ```
 
 of
