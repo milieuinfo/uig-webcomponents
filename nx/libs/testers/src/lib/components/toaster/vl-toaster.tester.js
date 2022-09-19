@@ -1,7 +1,7 @@
 import { VlElementTester } from '../../base/vl-element.tester';
 import { By } from '../../util/tester.setup';
 import { StaleElementReferenceError } from 'selenium-webdriver/lib/error';
-import VlAlert from '../alert';
+import VlAlertTester from '../alert/vl-alert.tester';
 
 export class VlToasterTester extends VlElementTester {
     async shouldFadeOut() {
@@ -28,7 +28,7 @@ export class VlToasterTester extends VlElementTester {
         const children = await this.findElements(By.css('vl-alert'));
         if (children.length > 0) {
             try {
-                return await Promise.all(children.map((child) => new VlAlert(this.driver, child)));
+                return await Promise.all(children.map((child) => new VlAlertTester(this.driver, child)));
             } catch (error) {
                 if (error instanceof StaleElementReferenceError) {
                     return this.getAlerts();
