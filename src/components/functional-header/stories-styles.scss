@@ -1,0 +1,16 @@
+// ==========================================================================
+// Vlaanderen UI -- FunctionalHeader
+// ==========================================================================
+@charset "utf-8";
+
+// ==========================================================================
+// Core
+// ==========================================================================
+@import '../../../node_modules/@govflanders/vl-ui-core/src/scss/core';
+@import '../../../node_modules/@govflanders/vl-ui-core-4.1.24/src/scss/generic/iconfont';
+
+@import '../../../node_modules/@govflanders/vl-ui-annotation/src/scss/annotation';
+
+.super-title {
+  font-size: 1.7em;
+}
