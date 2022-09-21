@@ -1,6 +1,6 @@
-import { VlColumn } from '../column';
+import { VlGridColumnTester } from '../grid/vl-grid-column.tester';
 
-export class VlFormColumnTester extends VlColumn {
+export class VlFormColumnTester extends VlGridColumnTester {
     get _columnClassPrefix() {
         return 'vl-form-col--';
     }
