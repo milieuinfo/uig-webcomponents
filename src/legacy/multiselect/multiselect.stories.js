@@ -1,13 +1,12 @@
-
 import { html } from 'lit-html';
 import '../../components/link';
 import '../../legacy/multiselect';
-import linkStyles from '../../components/link/styles.scss';
 import { docsIntro, stylesheet } from '../../../.storybook/utils.js';
+import styles from './styles.scss';
 
 export default {
   title: 'legacy/vl-multiselect',
-  decorators: [(story) => html`${stylesheet(linkStyles)}${story()}`],
+  decorators: [(story) => html`${stylesheet(`${styles}`)}${story()}`],
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
