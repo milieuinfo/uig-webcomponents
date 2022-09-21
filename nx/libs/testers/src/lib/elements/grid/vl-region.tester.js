@@ -1,6 +1,6 @@
-import { VlElementTester } from '../base/vl-element.tester';
+import { VlElementTester } from '../../base/vl-element.tester';
 
-export class VlRegion extends VlElementTester {
+export class VlRegionTester extends VlElementTester {
     async hasNoSpace() {
         return this._hasClass('no-space');
     }

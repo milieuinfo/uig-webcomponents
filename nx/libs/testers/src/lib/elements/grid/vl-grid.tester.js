@@ -1,6 +1,6 @@
-import { VlElementTester } from '../base/vl-element.tester';
+import { VlElementTester } from '../../base/vl-element.tester';
 
-export class VlGrid extends VlElementTester {
+export class VlGridTester extends VlElementTester {
     async isStacked() {
         return this._hasClass('is-stacked');
     }

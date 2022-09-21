@@ -1,6 +1,6 @@
 import { VlElementTester } from '../../base/vl-element.tester';
 
-export class VlGridColumnTester extends VlElementTester {
+export class VlColumnTester extends VlElementTester {
     async getSize() {
         return this._getMinSize();
     }
