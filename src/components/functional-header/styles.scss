@@ -6,16 +6,29 @@
 // ==========================================================================
 // Core
 // ==========================================================================
-@import "../../../node_modules/@govflanders/vl-ui-core/src/scss/core";
-@import "../../../node_modules/@govflanders/vl-ui-core-4.1.24/src/scss/generic/iconfont";
+@import '../../../node_modules/@govflanders/vl-ui-core/src/scss/core';
+@import '../../../node_modules/@govflanders/vl-ui-core-4.1.24/src/scss/generic/iconfont';
 
 // ==========================================================================
 // Components
 // ==========================================================================
-@import "../../../node_modules/@govflanders/vl-ui-functional-header/src/scss/functional-header";
+@import '../../../node_modules/@govflanders/vl-ui-functional-header/src/scss/functional-header';
 
 // ==========================================================================
 // Util
 // ==========================================================================
-@import "../../../node_modules/@govflanders/vl-ui-util/src/scss/util";
+@import '../../../node_modules/@govflanders/vl-ui-util/src/scss/util';
 
+.uig-functional-header__topright {
+  font-size: 1.6rem;
+}
+
+.uig-functional-header__topright p {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.uig-functional-header__content {
+  display: flex;
+  flex-flow: column;
+}

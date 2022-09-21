@@ -1,7 +1,7 @@
-import { vlElement, define } from "../../utils/core";
-import "../link";
-import "../icon";
-import styles from "./styles.scss";
+import { vlElement, define } from '../../utils/core';
+import '../link';
+import '../icon';
+import styles from './styles.scss';
 
 /**
  * VlFunctionalHeader
@@ -24,7 +24,7 @@ import styles from "./styles.scss";
  */
 export class VlFunctionalHeader extends vlElement(HTMLElement) {
   static get _observedAttributes() {
-    return ["back", "back-link", "title", "sub-title", "link"];
+    return ['back', 'back-link', 'title', 'sub-title', 'link'];
   }
 
   constructor() {
@@ -35,38 +35,50 @@ export class VlFunctionalHeader extends vlElement(HTMLElement) {
       <header class="vl-functional-header">
         <div class="vl-layout">
           <div class="vl-functional-header__row">
-            <div class="vl-functional-header__content">
-              <div class="vl-title">
-                <a id="title" class="vl-functional-header__title" tabindex="0">
-                  <slot name="title"></slot>
-                </a>
-              </div>
+            <div class="uig-functional-header__content">
+                <div class="vl-functional-header__content">
+                    <slot name="top-left"></slot>
+                </div>
+                <div class="vl-functional-header__content">
+                    <div class="vl-title">
+                        <a id="title" class="vl-functional-header__title" tabindex="0">
+                            <slot name="title"></slot>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="top-right">
+                <ul></ul>
             </div>
             <div id="actions" class="vl-functional-header__actions">
-              <ul></ul>
-            </div>
+                <ul></ul>
+            </div>                   
           </div>
-          <div class="vl-functional-header__sub">
-            <ul class="vl-functional-header__sub__actions">
-              <li class="vl-functional-header__sub__action">
-                <a id="back-link" is="vl-link" tabindex="0" href="${document.referrer}">
-                  <span is="vl-icon" data-vl-icon="arrow-left-fat" data-vl-before></span><slot id="back-link-text" name="back"><span>Terug</span></slot>
-                </a>
-              </li>
-              <li id="sub-title" class="vl-functional-header__sub__action">
-                <slot name="sub-title"></slot>
-              </li>
-            </ul>
-          </div>
+          <div class="vl-functional-header__sub" id="default-sub-header">           
+            <ul class="vl-functional-header__sub__actions">            
+                <li class="vl-functional-header__sub__action">
+                    <slot name="back-link">
+                        <a id="back-link" is="vl-link" tabindex="0" href="${document.referrer}">
+                            <span is="vl-icon" data-vl-icon="arrow-left-fat" data-vl-before></span>
+                            <slot id="back-link-text" name="back"><span>Terug</span></slot>
+                        </a>
+                    </slot>
+                </li>
+                <li id="sub-title" class="vl-functional-header__sub__action">
+                    <slot name="sub-title"></slot>
+                </li>
+            </ul>    
+          </div>    
+          <div class="vl-functional-header__sub" id="sub-header">
+            <ul class="vl-functional-header__sub__actions"></ul>
+          </div>     
         </div>
       </header>
     `);
   }
 
   connectedCallback() {
-    this._observer = this.__observeSlotElements(() =>
-      this.__processSlotElements()
-    );
+    this._observer = this.__observeSlotElements(() => this.__processSlotElements());
     this.__processSlotElements();
   }
 
@@ -75,32 +87,72 @@ export class VlFunctionalHeader extends vlElement(HTMLElement) {
   }
 
   get _titleElement() {
-    return this._shadow.querySelector("#title");
+    return this._shadow.querySelector('#title');
   }
 
   get _subTitleElement() {
-    return this._shadow.querySelector("#sub-title");
+    return this._shadow.querySelector('#sub-title');
   }
 
   get _backLinkElement() {
-    return this._shadow.querySelector("#back-link");
+    return this._shadow.querySelector('#back-link');
   }
 
   get _backLinkTextElement() {
-    return this._backLinkElement.querySelector("#back-link-text");
+    return this._backLinkElement.querySelector('#back-link-text');
   }
 
   get _actionsElement() {
-    return this._shadow.querySelector("#actions");
+    return this._shadow.querySelector('#actions');
+  }
+
+  get _subHeaderElement() {
+    return this._shadow.querySelector('#sub-header');
+  }
+
+  get _defaultSubHeaderElement() {
+    return this._shadow.querySelector('#default-sub-header');
   }
 
   get _actionsListElement() {
-    return this._actionsElement.querySelector("ul");
+    return this._actionsElement.querySelector('ul');
+  }
+
+  get _subHeaderListElement() {
+    return this._subHeaderElement.querySelector('ul');
+  }
+
+  get _subTitleListElements() {
+    return this._subTitleListElement.querySelectorAll('li');
+  }
+
+  get _topRightListElement() {
+    return this._topRightElement.querySelector('ul');
+  }
+
+  get _topRightElement() {
+    return this._shadow.querySelector('#top-right');
   }
 
   _getActionTemplate(element) {
     return this._template(`
       <li class="vl-functional-header__action">
+        <p>${element.outerHTML}</p>
+      </li>
+    `);
+  }
+
+  _getSubHeaderTemplate(element) {
+    return this._getSubHeaderTemplateWithValue(element.outerHTML);
+  }
+
+  _getSubHeaderTemplateWithValue(text) {
+    return this._template(`<li class="vl-functional-header__sub__action">${text}</li>`);
+  }
+
+  _getTopRightItemTemplate(element) {
+    return this._template(`
+      <li  class="uig-functional-header__topright">
         <p>
           ${element.outerHTML}
         </p>
@@ -135,24 +187,33 @@ export class VlFunctionalHeader extends vlElement(HTMLElement) {
    */
   set backLinkEventListener(eventListener) {
     if (this._backLinkEventListener) {
-      this._backLinkElement.removeEventListener(
-        "click",
-        this._backLinkEventListener
-      );
+      this._backLinkElement.removeEventListener('click', this._backLinkEventListener);
     }
     this._backLinkEventListener = eventListener;
-    this._backLinkElement.addEventListener(
-      "click",
-      this._backLinkEventListener
-    );
+    this._backLinkElement.addEventListener('click', this._backLinkEventListener);
   }
 
   __processSlotElements() {
+    this.__processSlotSubHeader();
     this.__processSlotActions();
+    this.__processSlotTopRight();
+  }
+
+  __processSlotSubHeader() {
+    this._subHeaderListElement.innerHTML = '';
+    const subHeader = this.querySelector('[slot="sub-header"]');
+    if (subHeader) {
+      [...subHeader.children]
+        .map((action) => this._getSubHeaderTemplate(action))
+        .forEach((action) => this._subHeaderListElement.append(action));
+      this._defaultSubHeaderElement.hidden = true;
+    } else {
+      this._subHeaderElement.hidden = true;
+    }
   }
 
   __processSlotActions() {
-    this._actionsListElement.innerHTML = "";
+    this._actionsListElement.innerHTML = '';
     const actions = this.querySelector('[slot="actions"]');
     if (actions) {
       [...actions.children]
@@ -160,6 +221,18 @@ export class VlFunctionalHeader extends vlElement(HTMLElement) {
         .forEach((action) => this._actionsListElement.append(action));
     } else {
       this._actionsElement.hidden = true;
+    }
+  }
+
+  __processSlotTopRight() {
+    this._topRightListElement.innerHTML = '';
+    const dymnamics = this.querySelector('[slot="top-right"]');
+    if (dymnamics) {
+      [...dymnamics.children]
+        .map((dymnamic) => this._getTopRightItemTemplate(dymnamic))
+        .forEach((dymnamic) => this._topRightListElement.append(dymnamic));
+    } else {
+      this._topRightElement.hidden = true;
     }
   }
 
@@ -175,4 +248,4 @@ export class VlFunctionalHeader extends vlElement(HTMLElement) {
   }
 }
 
-define("vl-functional-header", VlFunctionalHeader);
+define('vl-functional-header', VlFunctionalHeader);

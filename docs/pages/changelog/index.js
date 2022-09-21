@@ -30,6 +30,12 @@ const changes = [
           Fixed flaky e2e test by mocking api call response.
         </p>
       </li>
+      <li>
+        <p><code>vl-functional-header</code></p>
+        <p>
+          Uitbreidingen van de functional header. Extra slots toegevoegd: top-left, top-right, sub-header en back-link.
+        </p>
+      </li>
     </ul>`,
   },
   {
