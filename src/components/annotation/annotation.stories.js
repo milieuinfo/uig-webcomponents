@@ -35,7 +35,7 @@ export default {
       },
     },
     small: {
-      name: 'small',
+      name: 'data-vl-small',
       type: { summary: TYPES.BOOLEAN, required: false },
       description: 'Zorgt ervoor zat de annotation klein getoond wordt.',
       table: {

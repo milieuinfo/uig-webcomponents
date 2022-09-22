@@ -65,7 +65,7 @@ export class VlElement extends WebElement {
   }
 
   async waitUntilShadowDomElementLocated(parent, shadowDomElementSelector) {
-    await this.driver.wait(() => {
+    return this.driver.wait(() => {
       return this.findShadowDomElements(parent, shadowDomElementSelector).then((elements) => {
         if (this.isIterable(elements)) {
           if (elements.length === 0) {
