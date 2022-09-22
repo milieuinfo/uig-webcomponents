@@ -17,6 +17,10 @@ const changes = [
         <p><code>vl-proza-message</code></p>
         <p>proza proxy url gewijzigd</p>
       </li>
+      <li>
+        <p><code>vl-spotlight</code></p>
+        <p>New uig webcomponent to show the web universum vl-spotlight.</p>
+      </li>
     </ul>`,
   },
   {
