@@ -15,8 +15,12 @@ export class ProzaRestClient {
       });
   }
 
-  static getMessage(domain, code) {
-    return ProzaRestClient.__fetchJson(`proza/domein/${domain}/${code}`)
+  static getMessage(domain, code, options = {}) {
+    const init = {};
+    if(options.forceUpdate) {
+      init['cache'] = 'no-store';
+    }
+    return ProzaRestClient.__fetchJson(`proza/domein/${domain}/${code}`, init)
       .then((message) => message.tekst)
       .catch((error) => {
         console.error(
@@ -28,7 +32,7 @@ export class ProzaRestClient {
   }
 
   static getMessages(domain) {
-    return ProzaRestClient.__fetchJson(`proza/domein/${domain}`)
+    return ProzaRestClient.__fetchJson(`proza/domein/${domain}`, {cache: 'no-cache'})
       .then((messages) => Object.assign({}, ...messages.map((message) => ({ [message.code]: message.tekst }))))
       .catch((error) => {
         console.error(`Er is iets fout gelopen bij het ophalen van de Proza berichten voor domein ${domain}`, error);
@@ -46,8 +50,8 @@ export class ProzaRestClient {
     });
   }
 
-  static __fetchJson(url) {
-    return fetch(url).then(ProzaRestClient.__handleError);
+  static __fetchJson(url, options) {
+    return fetch(url, options).then(ProzaRestClient.__handleError);
   }
 
   static __handleError(response) {
