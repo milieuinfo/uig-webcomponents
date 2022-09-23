@@ -54,32 +54,12 @@
         delete VlProzaMessagePreloader.__cache;
       });
 
-
-
-      test('haalt het bericht en de toegelaten operaties maar 1 keer op indien deze al in de preload cache zitten', (done) => {
+      test('haalt het bericht en de toegelaten operaties maar 1 keer op indien deze al in de preload cache zitten', async () => {
         fixture('preloader-vl-proza-message-fixture');
-        fetchMock.flush(true).then(() => {
-          assert.lengthOf(fetchMock.calls('proza/domein/foo'), 1);
-          assert.lengthOf(fetchMock.calls('proza/domein/foo/toegelatenoperaties'), 1);
-          done();
-        });
-        done();
+        await fetchMock.flush(true)
+        assert.lengthOf(fetchMock.calls('proza/domein/foo'), 1);
+        assert.lengthOf(fetchMock.calls('proza/domein/foo/toegelatenoperaties'), 1);
       });
-
-      /*test('er wordt een error gelogd indien er iets fout loopt bij het preloaden van proza berichten', (done) => {
-        sandbox.spy(console, 'error');
-        fetchMock.mock('proza/domein/foo/bar', {code: 'bar', tekst: 'foobar'});
-        fetchMock.mock('proza/domein/foo/foo', {code: 'foo', tekst: 'foofoo'});
-        fetchMock.mock('proza/domein/foo', 404, {overwriteRoutes: true});
-
-        const proza = fixture('preloader-vl-proza-message-fixture');
-        fetchMock.flush(true).then(() => {
-          assert.equal(proza.querySelector('#message-1')._wysiwygElement.textContent, '');
-          assert.equal(proza.querySelector('#message-2')._wysiwygElement.textContent, '');
-          assert(console.error.called);
-          done();
-        });
-      });*/
 
       test('een bericht wordt individueel opgehaald indien het niet in de preload cache gevonden kan worden', (done) => {
         sandbox.spy(console, 'warn');

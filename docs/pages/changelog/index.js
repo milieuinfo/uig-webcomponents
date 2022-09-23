@@ -10,6 +10,16 @@ const unreleased = [];
 const changes = [
   ...unreleased,
   {
+    version: '3.1.0',
+    date: '29/09/2022',
+    children: html` <ul>
+      <li>
+        <p><code>vl-proza-message</code></p>
+        <p>Simplified by removing the inline-editor in favor of link-to proza.</p>
+      </li>
+    </ul>`,
+  },
+  {
     version: '3.0.17',
     date: '14/09/2022',
     children: html` <ul>
