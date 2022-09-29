@@ -10,7 +10,7 @@ const unreleased = [];
 const changes = [
   ...unreleased,
   {
-    version: '3.1.0',
+    version: '3.0.18',
     date: '29/09/2022',
     children: html` <ul>
       <li>
