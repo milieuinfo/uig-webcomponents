@@ -254,7 +254,7 @@ export class VlProzaMessage extends vlElement(HTMLElement) {
     button.firstElementChild.addEventListener('click', (event) => {
       event.stopPropagation();
       event.preventDefault();
-      window.open(`/proza/#domeinen/${this._domain}/codes/${this._code}`, '_blank');
+      window.open(`/proza/domeinen/${this._domain}/codes/${this._code}`, '_blank');
     });
     return button
   }

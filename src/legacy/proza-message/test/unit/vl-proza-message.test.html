@@ -203,7 +203,7 @@
             await fetchMock.flush(true);
             proza._editButton.click();
             assert.isTrue(window.open.calledOnce);
-            assert.equal(window.open.getCall(-1).firstArg, '/proza/#domeinen/foo/codes/bar');
+            assert.equal(window.open.getCall(-1).firstArg, '/proza/domeinen/foo/codes/bar');
             assert.equal(window.open.getCall(-1).lastArg, '_blank');
           });
           test('bij het drukken op de refresh knop, word de nieuwste proza-message ophaalt', async () => {
