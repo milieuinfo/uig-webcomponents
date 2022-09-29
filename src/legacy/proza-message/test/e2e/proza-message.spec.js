@@ -3,11 +3,6 @@ import { VlProzaMessagePage } from './proza-message.page';
 
 describe('vl-proza-message', async () => {
   let vlProzaMessagePage;
-  let message;
-
-  beforeEach(() => {
-    message = undefined;
-  });
 
   before(() => {
     vlProzaMessagePage = new VlProzaMessagePage(getDriver());

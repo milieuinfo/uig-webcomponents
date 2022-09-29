@@ -48,7 +48,7 @@ export class VlProzaMessage extends vlElement(HTMLElement) {
   }
 
   async connectedCallback() {
-    if(await this.__updatenIsToegelaten()) {
+    if (await this.__updatenIsToegelaten()) {
       this.__setupUpdatableMessage();
     }
   }
@@ -137,9 +137,9 @@ export class VlProzaMessage extends vlElement(HTMLElement) {
 
     if (parameters) {
       return VlTypography.replaceTemplateParameters(message, parameters);
-    } else {
-      return message;
     }
+    return message;
+
   }
 
   static async __getRawMessage(domain, code) {
@@ -147,13 +147,12 @@ export class VlProzaMessage extends vlElement(HTMLElement) {
 
     if (messageCache[code]) {
       return messageCache[code];
-    } else {
-      try {
-        return await VlProzaMessage.__getMessageFromPreloaderCache(domain, code);
-      } catch (error) {
-        console.info(error);
-        return VlProzaMessage.__getSingleMessage(domain, code);
-      }
+    }
+    try {
+      return await VlProzaMessage.__getMessageFromPreloaderCache(domain, code);
+    } catch (error) {
+      console.info(error);
+      return VlProzaMessage.__getSingleMessage(domain, code);
     }
   }
 
@@ -222,9 +221,7 @@ export class VlProzaMessage extends vlElement(HTMLElement) {
   }
 
   __containsBlockElement() {
-    return [...this._typographyElement.children].some((element) => {
-      return ['block', 'inline-block', 'flex', 'grid', 'table'].includes(window.getComputedStyle(element)['display']);
-    });
+    return [...this._typographyElement.children].some((element) => ['block', 'inline-block', 'flex', 'grid', 'table'].includes(window.getComputedStyle(element).display));
   }
 
   async __updatenIsToegelaten() {
@@ -235,15 +232,16 @@ export class VlProzaMessage extends vlElement(HTMLElement) {
     this._element.classList.add('vl-proza-message--updatable');
     if(!this._actionsElement) {
       this._element.appendChild(this.__actionsElementTemplate());
-      this._actionsElement.appendChild(this.__editButtonTemplate());
-      this._actionsElement.appendChild(this.__refreshButtonTemplate());
     }
   }
 
   __actionsElementTemplate() {
-    return this._template(`
+    const template = this._template(`
         <div id="actions"></div>
     `);
+    template.firstElementChild.appendChild(this.__editButtonTemplate());
+    template.firstElementChild.appendChild(this.__refreshButtonTemplate());
+    return template;
   }
 
   __editButtonTemplate() {
@@ -263,7 +261,7 @@ export class VlProzaMessage extends vlElement(HTMLElement) {
 
   __refreshButtonTemplate() {
     const button = this._template(`
-        <button is="vl-button" id="refresh-button" >
+        <button is="vl-button" id="refresh-button">
             <span is="vl-icon" data-vl-icon="text-redo"></span>
             <span is="vl-text" data-vl-visually-hidden>refresh</span>
         </button>

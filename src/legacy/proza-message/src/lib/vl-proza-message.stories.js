@@ -1,20 +1,18 @@
 import { html } from 'lit-html';
-import {docsIntro, stylesheet} from '../../../../../.storybook/utils.js';
 import withMock from 'storybook-addon-mock';
+import {docsIntro, stylesheet} from '../../../../../.storybook/utils.js';
 
-import {VlProzaMessage} from "../../../../legacy/proza-message/src/index.js";
+import {VlProzaMessage} from '../../../../legacy/proza-message/src/index.js';
 
-import linkStyles from "../../../../components/link/styles.scss";
-import buttonStyles from "../../../../components/button/styles.scss";
-import gridStyles from "../../../../components/grid/styles.scss";
-import titleStyles from "../../../../components/titles/styles.scss";
+import linkStyles from '../../../../components/link/styles.scss';
+import buttonStyles from '../../../../components/button/styles.scss';
+import gridStyles from '../../../../components/grid/styles.scss';
+import titleStyles from '../../../../components/titles/styles.scss';
 
-import '../../../../components/button'
-import '../../../../components/link'
-import '../../../../components/grid'
-import '../../../../components/titles'
-
-import '../index.js';
+import '../../../../components/button';
+import '../../../../components/link';
+import '../../../../components/grid';
+import '../../../../components/titles';
 
 export default {
   title: 'legacy/vl-proza-message',
@@ -37,7 +35,7 @@ export default {
     },
     mockData: [
       {
-        url: '/proza/domein/default/inline',
+        url: '/proza/domein/noneditable/inline',
         method: 'GET',
         status: 200,
         response: {
@@ -46,7 +44,7 @@ export default {
         }
       },
       {
-        url: '/proza/domein/default/action',
+        url: '/proza/domein/noneditable/action',
         method: 'GET',
         status: 200,
         response: {
@@ -55,7 +53,7 @@ export default {
         }
       },
       {
-        url: '/proza/domein/default/block',
+        url: '/proza/domein/noneditable/block',
         method: 'GET',
         status: 200,
         response: {
@@ -72,7 +70,7 @@ export default {
         }
       },
       {
-        url: '/proza/domein/default/toegelatenoperaties',
+        url: '/proza/domein/noneditable/toegelatenoperaties',
         method: 'GET',
         status: 200,
         response: {
@@ -83,7 +81,7 @@ export default {
         }
       },
       {
-        url: '/proza/domein/edit/inline',
+        url: '/proza/domein/editable/inline',
         method: 'GET',
         status: 200,
         response: {
@@ -92,7 +90,7 @@ export default {
         }
       },
       {
-        url: '/proza/domein/edit/action',
+        url: '/proza/domein/editable/action',
         method: 'GET',
         status: 200,
         response: {
@@ -101,7 +99,7 @@ export default {
         }
       },
       {
-        url: '/proza/domein/edit/block',
+        url: '/proza/domein/editable/block',
         method: 'GET',
         status: 200,
         response: {
@@ -116,7 +114,7 @@ export default {
         }
       },
       {
-        url: '/proza/domein/edit/toegelatenoperaties',
+        url: '/proza/domein/editable/toegelatenoperaties',
         method: 'GET',
         status: 200,
         response: {
@@ -125,69 +123,66 @@ export default {
           update: true,
           delete: true,
         }
-      },
-      {
-        url: '/proza/domein/edit/bar',
-        method: 'PUT',
-        status: 200,
-        response: ({body}) => new Object({
-          code: 'bar',
-          tekst: body
-        })
       }
     ]
   },
 };
 
-export const Readonly = () => {
+export const NonEditable = () => {
   delete VlProzaMessage.__cache;
   return html`
     <div is="vl-grid" data-vl-is-stacked-small>
       <div is="vl-column" data-vl-size="12">
         <h6 is="vl-h6">Als een inline element:</h6>
-        <vl-proza-message data-vl-domain="default" data-vl-code="inline"></vl-proza-message>
+        <vl-proza-message data-vl-domain="noneditable" data-vl-code="inline"></vl-proza-message>
       </div>
       <div is="vl-column" data-vl-size="12">
         <h6 is="vl-h6">Als een block element:</h6>
-        <vl-proza-message data-vl-domain="default" data-vl-code="block"></vl-proza-message>
+        <vl-proza-message data-vl-domain="noneditable" data-vl-code="block"></vl-proza-message>
       </div>
       <div is="vl-column" data-vl-size="12">
         <h6 is="vl-h6">In een knop:</h6>
         <button is="vl-button">
-          <vl-proza-message data-vl-domain="default" data-vl-code="action"></vl-proza-message>
+          <vl-proza-message data-vl-domain="noneditable" data-vl-code="action"></vl-proza-message>
         </button>
       </div>
       <div is="vl-column" data-vl-size="12">
         <h6 is="vl-h6">In een link:</h6>
-        <a is="vl-link" href="" target="_blank">
-          <vl-proza-message data-vl-domain="default" data-vl-code="action"></vl-proza-message>
+        <a is="vl-link" href="#" target="_blank">
+          <vl-proza-message data-vl-domain="noneditable" data-vl-code="action"></vl-proza-message>
         </a>
       </div>
     </div>`
 }
 
-export const Edit = () => {
+export const Editable = () => {
   delete VlProzaMessage.__cache;
   return html`
     <div is="vl-grid" data-vl-is-stacked-small>
       <div is="vl-column" data-vl-size="12">
         <h6 is="vl-h6">Als een inline element:</h6>
-        <vl-proza-message data-vl-domain="edit" data-vl-code="inline"></vl-proza-message>
+        <vl-proza-message data-vl-domain="editable" data-vl-code="inline"></vl-proza-message>
       </div>
       <div is="vl-column" data-vl-size="12">
         <h6 is="vl-h6">Als een block element:</h6>
-        <vl-proza-message data-vl-domain="edit" data-vl-code="block"></vl-proza-message>
+        <vl-proza-message data-vl-domain="editable" data-vl-code="block"></vl-proza-message>
       </div>
       <div is="vl-column" data-vl-size="12">
         <h6 is="vl-h6">In een knop:</h6>
         <button is="vl-button">
-          <vl-proza-message data-vl-domain="edit" data-vl-code="action"></vl-proza-message>
+          <vl-proza-message data-vl-domain="editable" data-vl-code="action"></vl-proza-message>
+        </button>
+        <button is="vl-button" data-vl-secondary>
+            <vl-proza-message data-vl-domain="editable" data-vl-code="action"></vl-proza-message>
+        </button>
+        <button is="vl-button" data-vl-tertiary>
+            <vl-proza-message data-vl-domain="editable" data-vl-code="action"></vl-proza-message>
         </button>
       </div>
       <div is="vl-column" data-vl-size="12">
         <h6 is="vl-h6">In een link:</h6>
-        <a is="vl-link" href="" target="_blank">
-          <vl-proza-message data-vl-domain="edit" data-vl-code="action"></vl-proza-message>
+        <a is="vl-link" href="#" target="_blank">
+          <vl-proza-message data-vl-domain="editable" data-vl-code="action"></vl-proza-message>
         </a>
       </div>
     </div>`;

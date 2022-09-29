@@ -1,26 +1,13 @@
 export class ProzaRestClient {
-  static saveMessage(domain, code, text) {
-    return fetch(`proza/domein/${domain}/${code}`, {
-      method: 'PUT',
-      body: text,
-    })
-      .then((response) => ProzaRestClient.__handleError(response))
-      .then((message) => message.tekst)
-      .catch((error) => {
-        console.error(
-          `Er is iets fout gelopen bij het bewaren van het Proza bericht voor {domein: ${domain}, code: ${code}}`,
-          error,
-        );
-        return Promise.reject(error);
-      });
-  }
-
   static getMessage(domain, code, options = {}) {
-    const init = {};
+    const fetchOptions = {};
     if(options.forceUpdate) {
-      init['cache'] = 'no-store';
+      // Dev. Note: Maakt dat de request direct word opgevraagd van de server & niet uit de cache.
+      //            Daarnaast beland de request ook niet in de cache.
+      //            Zie: https://developer.mozilla.org/en-US/docs/Web/API/Request/cache
+      fetchOptions.cache = 'no-store';
     }
-    return ProzaRestClient.__fetchJson(`proza/domein/${domain}/${code}`, init)
+    return ProzaRestClient.__fetchJson(`proza/domein/${domain}/${code}`, fetchOptions)
       .then((message) => message.tekst)
       .catch((error) => {
         console.error(
@@ -32,6 +19,9 @@ export class ProzaRestClient {
   }
 
   static getMessages(domain) {
+    // Dev. Note: Maakt een "no-cache" request zodat deze altijd een "conditional-request" zal maken naar de server
+    //            om te controleren of er wijzigingen zijn gebeurd.
+    //            Zie: https://developer.mozilla.org/en-US/docs/Web/API/Request/cache
     return ProzaRestClient.__fetchJson(`proza/domein/${domain}`, {cache: 'no-cache'})
       .then((messages) => Object.assign({}, ...messages.map((message) => ({ [message.code]: message.tekst }))))
       .catch((error) => {
@@ -57,8 +47,8 @@ export class ProzaRestClient {
   static __handleError(response) {
     if (response.ok) {
       return response.json();
-    } else {
-      throw Error(`Response geeft aan dat er een fout is: ${response.statusText}`);
     }
+      throw Error(`Response geeft aan dat er een fout is: ${response.statusText}`);
+
   }
 }
