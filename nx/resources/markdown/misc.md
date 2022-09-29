@@ -7,6 +7,28 @@ npx sass _vl-elements.scss > vl-elements.css --load-path ../../../../node_module
 // de dist folder statisch serven
 npx http-server ./dist -p9090 --cors
 
+### update git user name
+
+https://mhagemann.medium.com/how-to-change-the-user-for-all-your-git-commits-ffefbacf2652
+
+```
+git filter-branch --env-filter '
+OLD_EMAIL="kris@bladerbeeld.be"
+NEW_NAME="Kris Speltincx"
+NEW_EMAIL="kris.speltincx@vlaanderen.be"
+if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
+then
+export GIT_COMMITTER_NAME="$NEW_NAME"
+export GIT_COMMITTER_EMAIL="$NEW_EMAIL"
+fi
+if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
+then
+export GIT_AUTHOR_NAME="$NEW_NAME"
+export GIT_AUTHOR_EMAIL="$NEW_EMAIL"
+fi
+' --tag-name-filter cat -- --branches --tags
+```
+
 
 // nieuwe repo & project structuur
  -> main ipv master
@@ -19,7 +41,7 @@ uig/
 ├─ cdn-assets/
 │  │   -> @domg-ext/govflanders-font
 │  │   -> @domg-ext/tinymce-theme
-├─ webcomponents/
+├─ web-components/
 │  ├─ apps/
 │  │   -> @domg-uig/exhibit
 │  │   -> @domg-uig/storybook
