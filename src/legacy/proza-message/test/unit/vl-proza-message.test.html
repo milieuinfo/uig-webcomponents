@@ -59,9 +59,7 @@
         delete VlProzaMessagePreloader.__cache;
       });
 
-      const prozaMessageUpdatableClass = (message) => {
-        return message.shadowRoot.querySelector('.vl-proza-message--updatable');
-      };
+      const prozaMessageUpdatableClass = (message) => message.shadowRoot.querySelector('.vl-proza-message--updatable');
 
       test('toont een bericht', async () => {
         const proza = fixture('vl-proza-messages-fixture');
@@ -216,6 +214,7 @@
             await fetchMock.flush(true);
             proza._refreshButton.click();
             await awaitUntil(() => proza._typographyElement.textContent === 'barfoo');
+            assert.equal(await VlProzaMessage.getMessage('foo', 'bar'), 'barfoo' )
           });
           test('word de click event van de edit knop gestopt', async () => {
               sandbox.stub(window, 'open');

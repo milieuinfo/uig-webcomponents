@@ -1,4 +1,4 @@
-import { VlElement, By, Key } from '../../../../utils/test';
+import { VlElement, By } from '../../../../utils/test';
 import { VlButton } from '../../../../components/button/test/e2e/button';
 import { VlTypography } from '../../../../components/typography/test/e2e/typography';
 

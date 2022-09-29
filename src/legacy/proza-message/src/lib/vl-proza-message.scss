@@ -10,7 +10,7 @@
 }
 
 .vl-proza-message--updatable:hover {
-    box-shadow: 0 0 0 1px inset rgba(255, 170, 51, 0.5);
+    box-shadow: 0 0 0 1px $vl-athens-gray;
 }
 
 .vl-proza-message--updatable {
@@ -37,10 +37,10 @@
     height: 1.5em !important;
     width: 1.5em !important;
 
-    background-color: $vl-amber !important;
+    background-color: $vl-athens-gray !important;
 
     &:hover {
-        background-color: $vl-orange-peel !important;
+        background-color: $vl-ghost !important;
     }
 
     [is="vl-icon"] {
