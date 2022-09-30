@@ -11,7 +11,7 @@ const changes = [
   ...unreleased,
   {
     version: '3.0.19',
-    date: '29/09/2022',
+    date: '30/09/2022',
     children: html` <ul>
       <li>
         <p><code>vl-proza-message</code></p>
