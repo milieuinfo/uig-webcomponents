@@ -10,6 +10,19 @@ const unreleased = [];
 const changes = [
   ...unreleased,
   {
+    version: '3.0.20',
+    date: '05/10/2022',
+    children: html` <ul>
+      <li>
+        <p><code>vl-spotlight</code></p>
+        <p>
+          Fix: aanpassingen in spotlight om slots als echte slots te behandelen en niet te parsen vanuit de component,
+          dit gaf namelijk problemen met geneste slots met dezelfde naam
+        </p>
+      </li>
+    </ul>`,
+  },
+  {
     version: '3.0.19',
     date: '30/09/2022',
     children: html` <ul>
@@ -50,9 +63,7 @@ const changes = [
       </li>
       <li>
         <p><code>vl-autocomplete</code></p>
-        <p>
-          Fixed flaky e2e test by mocking api call response.
-        </p>
+        <p>Fixed flaky e2e test by mocking api call response.</p>
       </li>
       <li>
         <p><code>vl-functional-header</code></p>

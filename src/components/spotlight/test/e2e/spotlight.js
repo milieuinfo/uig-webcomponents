@@ -24,7 +24,9 @@ export class VlTestSpotlight extends VlElement {
   }
 
   async getTitleSlot() {
-    return this.getElementInShadow(this, 'h3[class=vl-spotlight__title]>[slot=title]');
+    const slot = this.getElementInShadow(this, 'h3[class=vl-spotlight__title]>slot[name=title]');
+    const [assignedElement] = await this.getAssignedElements(slot);
+    return assignedElement;
   }
 
   async hasTitle() {
@@ -38,7 +40,9 @@ export class VlTestSpotlight extends VlElement {
   }
 
   async getSubTitleSlot() {
-    return this.getElementInShadow(this, 'p[class=vl-spotlight__subtitle]>[slot=subtitle]');
+    const slot = this.getElementInShadow(this, 'p[class=vl-spotlight__subtitle]>slot[name=subtitle]');
+    const [assignedElement] = await this.getAssignedElements(slot);
+    return assignedElement;
   }
 
   async hasSubTitle() {
@@ -52,7 +56,9 @@ export class VlTestSpotlight extends VlElement {
   }
 
   async getContentSlot() {
-    return this.getElementInShadow(this, 'div[class=vl-spotlight__content]>[slot=content]');
+    const slot = this.getElementInShadow(this, 'div[class=vl-spotlight__content]>slot[name=content]');
+    const [assignedElement] = await this.getAssignedElements(slot);
+    return assignedElement;
   }
 
   async hasContent() {
@@ -66,7 +72,9 @@ export class VlTestSpotlight extends VlElement {
   }
 
   async getTextSlot() {
-    return this.getElementInShadow(this, 'p[class=vl-spotlight__text]>[slot=text]');
+    const slot = this.getElementInShadow(this, 'p[class=vl-spotlight__text]>slot[name=text]');
+    const [assignedElement] = await this.getAssignedElements(slot);
+    return assignedElement;
   }
 
   async hasText() {
