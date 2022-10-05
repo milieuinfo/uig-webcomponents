@@ -213,18 +213,11 @@ InzageFunctionalHeader.args = {
     2458963498
     <span class="vl-annotation vl-annotation--small">(MILIEUBEDRIJF - RINGVAART - OCGT)</span>
   </h2>`,
-  topRight: html`<span>Toestand: In beroepsperiode tot 01.02.2023</span>
-    <a href="#">Ik wens een beroepschrift aan te maken</a>
-    <span>Project navigatie</span>`,
+  topRight: html`<p><span>Toestand: In beroepsperiode tot 01.02.2023</span></p>`,
   subHeader: html`<a id="back-link" is="vl-link" href="${document.referrer}" tabindex="0">
-      <span is="vl-icon" data-vl-icon="arrow-left-fat" data-vl-before></span>
-      <slot id="back-link-text" name="back">
-        <span>Eén stap terug</span>
-      </slot>
-    </a>
-    <span>Project inhoud</span>
-    <a href="#">Project information</a>
-    <a href="#">Project verloop</a>`,
+    <span is="vl-icon" data-vl-icon="arrow-left-fat" data-vl-before></span>
+    <span id="back-link-text">Eén stap terug</span>
+  </a>`,
 };
 
 InzageFunctionalHeader.argTypes = {

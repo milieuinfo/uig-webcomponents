@@ -23,15 +23,11 @@ export class VlFunctionalHeader extends VlElement {
   }
 
   async getSubHeaderSlotNodes() {
-    return this.shadowRoot.findElements(By.css('#sub-header ul li > *'));
+    return this._getSlotNodes('sub-header');
   }
 
   async getTopRightSlotNodes() {
-    return this.shadowRoot.findElements(By.css('#top-right ul li > *'));
-  }
-
-  async getDefaultSubHeader() {
-    return this.shadowRoot.findElement(By.css('#default-sub-header'));
+    return this._getSlotNodes('top-right');
   }
 
   async getActionNodes() {
