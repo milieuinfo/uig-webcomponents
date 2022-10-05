@@ -20,6 +20,14 @@ const changes = [
           dit gaf namelijk problemen met geneste slots met dezelfde naam
         </p>
       </li>
+      <li>
+        <p><code>vl-functional-header</code></p>
+        <p>
+          Fix: aanpassingen in functional header om recent toegevoegde slots top-left, top-right en sub-header als echte
+          slots te behandelen en niet te parsen vanuit de component, dit kan namelijk problemen geven de slots opgevuld
+          worden vanuit de afnemende applicatie met bijvoorbeeld react componenten
+        </p>
+      </li>
     </ul>`,
   },
   {

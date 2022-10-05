@@ -47,31 +47,28 @@ export class VlFunctionalHeader extends vlElement(HTMLElement) {
                     </div>
                 </div>
             </div>
-            <div id="top-right">
-                <ul></ul>
-            </div>
+            <slot name="top-right"></slot>           
             <div id="actions" class="vl-functional-header__actions">
                 <ul></ul>
             </div>                   
           </div>
-          <div class="vl-functional-header__sub" id="default-sub-header">           
-            <ul class="vl-functional-header__sub__actions">            
-                <li class="vl-functional-header__sub__action">
-                    <slot name="back-link">
-                        <a id="back-link" is="vl-link" tabindex="0" href="${document.referrer}">
-                            <span is="vl-icon" data-vl-icon="arrow-left-fat" data-vl-before></span>
-                            <slot id="back-link-text" name="back"><span>Terug</span></slot>
-                        </a>
-                    </slot>
-                </li>
-                <li id="sub-title" class="vl-functional-header__sub__action">
-                    <slot name="sub-title"></slot>
-                </li>
-            </ul>    
-          </div>    
           <div class="vl-functional-header__sub" id="sub-header">
-            <ul class="vl-functional-header__sub__actions"></ul>
-          </div>     
+            <slot name="sub-header">           
+              <ul class="vl-functional-header__sub__actions">            
+                  <li class="vl-functional-header__sub__action">
+                      <slot name="back-link">
+                          <a id="back-link" is="vl-link" tabindex="0" href="${document.referrer}">
+                              <span is="vl-icon" data-vl-icon="arrow-left-fat" data-vl-before></span>
+                              <slot id="back-link-text" name="back"><span>Terug</span></slot>
+                          </a>
+                      </slot>
+                  </li>
+                  <li id="sub-title" class="vl-functional-header__sub__action">
+                      <slot name="sub-title"></slot>
+                  </li>
+              </ul>                                            
+            </slot>
+          </div>
         </div>
       </header>
     `);
@@ -126,14 +123,6 @@ export class VlFunctionalHeader extends vlElement(HTMLElement) {
     return this._subTitleListElement.querySelectorAll('li');
   }
 
-  get _topRightListElement() {
-    return this._topRightElement.querySelector('ul');
-  }
-
-  get _topRightElement() {
-    return this._shadow.querySelector('#top-right');
-  }
-
   _getActionTemplate(element) {
     return this._template(`
       <li class="vl-functional-header__action">
@@ -148,16 +137,6 @@ export class VlFunctionalHeader extends vlElement(HTMLElement) {
 
   _getSubHeaderTemplateWithValue(text) {
     return this._template(`<li class="vl-functional-header__sub__action">${text}</li>`);
-  }
-
-  _getTopRightItemTemplate(element) {
-    return this._template(`
-      <li  class="uig-functional-header__topright">
-        <p>
-          ${element.outerHTML}
-        </p>
-      </li>
-    `);
   }
 
   _titleChangedCallback(oldValue, newValue) {
@@ -194,9 +173,7 @@ export class VlFunctionalHeader extends vlElement(HTMLElement) {
   }
 
   __processSlotElements() {
-    this.__processSlotSubHeader();
     this.__processSlotActions();
-    this.__processSlotTopRight();
   }
 
   __processSlotSubHeader() {
@@ -221,18 +198,6 @@ export class VlFunctionalHeader extends vlElement(HTMLElement) {
         .forEach((action) => this._actionsListElement.append(action));
     } else {
       this._actionsElement.hidden = true;
-    }
-  }
-
-  __processSlotTopRight() {
-    this._topRightListElement.innerHTML = '';
-    const dymnamics = this.querySelector('[slot="top-right"]');
-    if (dymnamics) {
-      [...dymnamics.children]
-        .map((dymnamic) => this._getTopRightItemTemplate(dymnamic))
-        .forEach((dymnamic) => this._topRightListElement.append(dymnamic));
-    } else {
-      this._topRightElement.hidden = true;
     }
   }
 
