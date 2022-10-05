@@ -1,11 +1,12 @@
 import { html } from 'lit-html';
-import { CATEGORIES, docsIntro, TYPES } from '../../../.storybook/utils.js';
+import { CATEGORIES, docsIntro, stylesheet, TYPES } from '../../../.storybook/utils.js';
 import { SIZE } from './enums/index.js';
+import styles from './stories-styles.scss';
 import '.';
-import { LEGEND_PLACEMENT } from '../map/components/legend/enums/index.js';
 
 export default {
   title: 'custom-elements/vl-spotlight',
+  decorators: [(story) => html`${stylesheet(styles)}${story()}`],
   parameters: {
     controls: { hideNoControlsWarning: true },
     docs: {
@@ -167,15 +168,11 @@ export const WithContent = () => html`
       <br />
       <br />
     </span>
-    <div class="vl-document" slot="content">
-      <div class="vl-document__type">
-        <i class="vl-vi vl-vi-document" aria-hidden="true"></i>
-        <span class="vl-document__type__text">DOCX</span>
-      </div>
-      <div class="vl-document__content">
-        <p class="vl-document__metadata">DOCX-112kb</p>
-      </div>
-    </div>
+    <vl-document slot="content">
+      <span slot="type">DOCX</span>
+      <span slot="title">document</span>
+      <span slot="metadata">DOCX-112kb</span>
+    </vl-document>
   </vl-spotlight>
 `;
 WithContent.storyName = 'spotlight - with content';

@@ -44,56 +44,49 @@ export class VlSpotlight extends LitElement {
     };
   }
 
-  __getSlotsArray(slotName) {
-    const slots = this.querySelectorAll(`[slot="${slotName}"]`);
-    if (slots && slots.length > 0) {
-      const spotlightSlots = [];
-      [...slots].forEach((element) => spotlightSlots.push(element));
-      return spotlightSlots;
-    }
-    return html``;
+  __getSlot(slotName) {
+    return html`<slot name="${slotName}"></slot>`;
   }
 
   __processSlotTitle() {
     if (this.imgSrc) return html``;
-    return this._getTitleTemplateWithValue(this.__getSlotsArray('title'));
+    return this._getTitleTemplateWithValue(this.__getSlot('title'));
   }
 
   __processSlotSubTitle() {
     if (this.imgSrc) return html``;
-    return this._getSubTitleTemplateWithValue(this.__getSlotsArray('subtitle'));
+    return this._getSubTitleTemplateWithValue(this.__getSlot('subtitle'));
   }
 
   __processSlotTitleInHeader() {
-    return this._getTitleTemplateWithValue(this.__getSlotsArray('title'));
+    return this._getTitleTemplateWithValue(this.__getSlot('title'));
   }
 
   __processSlotContent() {
-    return this._getContentTemplateWithValue(this.__getSlotsArray('content'));
+    return this._getContentTemplateWithValue(this.__getSlot('content'));
   }
 
   __processSlotText() {
-    return this._getTextTemplateWithValue(this.__getSlotsArray('text'));
+    return this._getTextTemplateWithValue(this.__getSlot('text'));
   }
 
   _getTitleTemplateWithValue(value) {
-    return this.__fallbackIfEmpty(value, html`<h3 class="vl-spotlight__title">${value}</h3>`);
+    return html`<h3 class="vl-spotlight__title">${value}</h3>`;
   }
 
   _getSubTitleTemplateWithValue(value) {
-    return this.__fallbackIfEmpty(value, html`<p class="vl-spotlight__subtitle">${value}</p>`);
+    return html`<p class="vl-spotlight__subtitle">${value}</p>`;
   }
 
   _getContentTemplateWithValue(value) {
-    return this.__fallbackIfEmpty(value, html`<div class="vl-spotlight__content">${value}</div>`);
+    return html`<div class="vl-spotlight__content">${value}</div>`;
   }
 
   _getTextTemplateWithValue(value) {
-    return this.__fallbackIfEmpty(value, html`<p class="vl-spotlight__text">${value}</p>`);
+    return html`<p class="vl-spotlight__text">${value}</p>`;
   }
 
   __fallbackIfEmpty(value, templateResult) {
-    console.log({ value });
     if (value && value.length > 0) {
       return templateResult;
     }
@@ -108,12 +101,11 @@ export class VlSpotlight extends LitElement {
           ${this.__processSlotContent()} ${this.__processSlotText()}
         </article>
       </a>`;
-    } else {
-      return html`<article class="${this.__applySpotlightStyling()}" role="none">
-        ${this.__processHeader()} ${this.__processSlotTitle()} ${this.__processSlotSubTitle()}
-        ${this.__processSlotContent()} ${this.__processSlotText()}
-      </article>`;
     }
+    return html`<article class="${this.__applySpotlightStyling()}" role="none">
+      ${this.__processHeader()} ${this.__processSlotTitle()} ${this.__processSlotSubTitle()}
+      ${this.__processSlotContent()} ${this.__processSlotText()}
+    </article>`;
   }
 
   __applySpotlightStyling() {
