@@ -10,6 +10,23 @@ const unreleased = [];
 const changes = [
   ...unreleased,
   {
+    version: '3.0.21',
+    date: '27/10/2022',
+    children: html` <ul>
+      <li>
+        <p><code>vl-functional-header</code></p>
+        <p>
+          Fix: aanpassingen in functional header om ervoor te zorgen dat top-right slot onderaan getoond wordt op een
+          kleiner scherm.
+        </p>
+      </li>
+      <li>
+        <p><code>vl-map</code></p>
+        <p>Fix: voorzien van attributen om tooltip tekst van zoom in, zoom out en current location te bepalen.</p>
+      </li>
+    </ul>`,
+  },
+  {
     version: '3.0.20',
     date: '05/10/2022',
     children: html` <ul>

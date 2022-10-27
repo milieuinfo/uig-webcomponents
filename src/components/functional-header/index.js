@@ -34,7 +34,7 @@ export class VlFunctionalHeader extends vlElement(HTMLElement) {
       </style>
       <header class="vl-functional-header">
         <div class="vl-layout">
-          <div class="vl-functional-header__row">
+          <div class="vl-functional-header__row uig-functional-header__row">
             <div class="uig-functional-header__content">
                 <div class="vl-functional-header__content">
                     <slot name="top-left"></slot>
@@ -47,7 +47,9 @@ export class VlFunctionalHeader extends vlElement(HTMLElement) {
                     </div>
                 </div>
             </div>
-            <slot name="top-right"></slot>           
+            <div class="uig-functional-header__top-right">
+                <slot name="top-right"></slot>
+            </div>           
             <div id="actions" class="vl-functional-header__actions">
                 <ul></ul>
             </div>                   
