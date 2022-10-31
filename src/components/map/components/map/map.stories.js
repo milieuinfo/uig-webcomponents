@@ -97,6 +97,8 @@ const Template = ({ allowFullscreen, disableEscape, disableRotation, disableMous
     ?data-vl-disable-escape-key=${disableEscape}
     ?data-vl-disable-rotation=${disableRotation}
     ?data-vl-disable-mouse-wheel-zoom=${disableMousewheelZoom}
+    data-vl-zoomInTooltip="Zoom in"
+    data-vl-zoomOutTooltip="Zoom uit"
   >
     <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
   </vl-map>

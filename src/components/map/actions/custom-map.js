@@ -13,7 +13,6 @@ export class VlCustomMap extends VlMapWithActions {
     options.layers = [options.customLayers.baseLayerGroup, options.customLayers.overlayGroup];
 
     options.controls = [
-      new Zoom(),
       new Rotate(),
       new ScaleLine({
         minWidth: 128,
@@ -33,6 +32,10 @@ export class VlCustomMap extends VlMapWithActions {
     });
 
     super(options);
+
+    if (options.defaultZoom === undefined || options.defaultZoom === true) {
+      this.addControl(new Zoom());
+    }
 
     this.projection = options.projection;
     this.view = options.view;
