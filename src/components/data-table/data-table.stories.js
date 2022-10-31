@@ -1,11 +1,11 @@
-import { html } from "lit-html";
-import "../data-table";
-import { stylesheet, docsIntro } from "../../../.storybook/utils.js";
-import { args, argTypes } from "./config";
-import styles from "./styles.scss";
+import { html } from 'lit-html';
+import '../data-table';
+import { stylesheet, docsIntro } from '../../../.storybook/utils.js';
+import { args, argTypes } from './config';
+import styles from './styles.scss';
 
 export default {
-  title: "native-elements/vl-data-table",
+  title: 'native-elements/vl-data-table',
   decorators: [(story) => html`${stylesheet(styles)}${story()}`],
   args,
   argTypes,
@@ -13,25 +13,17 @@ export default {
     docs: {
       description: {
         component: docsIntro({
-          stylesheets: ["data-table"],
-          root: "data-table",
+          stylesheets: ['data-table'],
+          root: 'data-table',
           intro:
-            "Gebruik een data table om op een gestructureerde manier (grote hoeveelheden) relationele data te tonen.",
+            'Gebruik een data table om op een gestructureerde manier (grote hoeveelheden) relationele data te tonen.',
         }),
       },
     },
   },
 };
 
-export const Default = ({
-  hover,
-  matrix,
-  grid,
-  zebra,
-  collapsedM,
-  collapsedS,
-  collapsedXS,
-}) => html`
+export const Default = ({ hover, matrix, grid, zebra, collapsedM, collapsedS, collapsedXS }) => html`
   <table
     is="vl-data-table"
     ?data-vl-hover=${hover}
@@ -55,35 +47,27 @@ export const Default = ({
     </thead>
     <tbody>
       <tr>
-        <td>Entry line 1</td>
-        <td>Entry line 2</td>
-        <td>Entry line 3</td>
-        <td>Entry line 4</td>
+        <td data-title="Entry Header 1">Entry line 1</td>
+        <td data-title="Entry Header 2">Entry line 2</td>
+        <td data-title="Entry Header 3">Entry line 3</td>
+        <td data-title="Entry Header 4">Entry line 4</td>
       </tr>
       <tr>
-        <td>Entry line 1</td>
-        <td colspan="2">Entry line 2</td>
-        <td>Entry line 3</td>
+        <td data-title="Entry Header 1">Entry line 1</td>
+        <td data-title="Entry Header 2" colspan="2">Entry line 2</td>
+        <td data-title="Entry Header 3">Entry line 3</td>
       </tr>
       <tr>
-        <td>Entry line 1</td>
-        <td>Entry line 2</td>
-        <td>Entry line 3</td>
-        <td>Entry line 4</td>
+        <td data-title="Entry Header 1">Entry line 1</td>
+        <td data-title="Entry Header 2">Entry line 2</td>
+        <td data-title="Entry Header 3">Entry line 3</td>
+        <td data-title="Entry Header 4">Entry line 4</td>
       </tr>
     </tbody>
   </table>
 `;
 
-export const MatrixWithJoinedRowTitles = ({
-  hover,
-  matrix,
-  grid,
-  zebra,
-  collapsedM,
-  collapsedS,
-  collapsedXS,
-}) => html`
+export const MatrixWithJoinedRowTitles = ({ hover, matrix, grid, zebra, collapsedM, collapsedS, collapsedXS }) => html`
   <table
     is="vl-data-table"
     ?data-vl-hover=${hover}

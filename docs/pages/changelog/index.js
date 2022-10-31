@@ -31,6 +31,12 @@ const changes = [
           knop.
         </p>
       </li>
+      <li>
+        <p><code>vl-data-table</code></p>
+        <p>
+          Fix: Aanpassing in storybook. Om de header te tonen op kleinere schermen moet de header gezet worden als data-title attribuut.
+        </p>
+      </li>
     </ul>`,
   },
   {
