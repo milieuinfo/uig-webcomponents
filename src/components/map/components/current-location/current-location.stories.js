@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import '../../index.js';
 import { CATEGORIES, docsIntro, TYPES } from '../../../../../.storybook/utils.js';
-import { DEFAULT_ZOOM } from '../current-location';
+import { DEFAULT_ZOOM, DEFAULT_TOOLTIP } from '../current-location';
 
 export default {
   title: 'custom-elements/vl-map/vl-map-current-location',
@@ -19,6 +19,7 @@ export default {
   },
   args: {
     zoom: 10,
+    tooltip: 'Huidige locatie',
   },
   argTypes: {
     zoom: {
@@ -32,14 +33,27 @@ export default {
         category: CATEGORIES.ATTRIBUTES,
       },
     },
+    tooltip: {
+      name: 'tooltip',
+      type: { summary: TYPES.STRING, required: false },
+      description: 'Bepaalt de text van de tooltip van de huidige locatie knop.',
+      table: {
+        defaultValue: { summary: DEFAULT_TOOLTIP },
+        category: CATEGORIES.ATTRIBUTES,
+      },
+    },
   },
 };
 
 //--------------------------
 
-const Template = ({ zoom }) => html`<vl-map id="map">
+const Template = ({ zoom, tooltip }) => html`<vl-map
+  id="map"
+  data-vl-zoomInTooltip="Zoom in"
+  data-vl-zoomOutTooltip="Zoom uit"
+>
   <vl-map-baselayer-grb-gray></vl-map-baselayer-grb-gray>
-  <vl-map-current-location data-vl-zoom="${zoom}"></vl-map-current-location>
+  <vl-map-current-location data-vl-zoom="${zoom}" data-vl-tooltip="${tooltip}"></vl-map-current-location>
 </vl-map> `;
 
 export const Default = Template.bind({});

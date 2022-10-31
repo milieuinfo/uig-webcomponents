@@ -7,6 +7,7 @@ import { VlCustomMap } from '../../actions/custom-map';
 import { EVENT } from '../../enums';
 
 import styles from './styles.scss';
+import { Zoom } from 'ol/control.js';
 
 export class VlMap extends vlElement(HTMLElement) {
   constructor() {
@@ -131,11 +132,29 @@ export class VlMap extends vlElement(HTMLElement) {
       projection: this._projection,
       target: this._mapElement,
       controls: this._controls,
+      defaultZoom: false,
     });
 
     this._map.initializeView();
     this.__updateMapSizeOnLoad();
     this.__updateOverviewMapSizeOnLoad();
+
+    this._map.addControl(this.__createZoomControl());
+  }
+
+  __createZoomControl() {
+    const zoomOptions = {};
+    if (this.zoomInTipLabel) zoomOptions.zoomInTipLabel = this.zoomInTipLabel;
+    if (this.zoomOutTipLabel) zoomOptions.zoomOutTipLabel = this.zoomOutTipLabel;
+    return new Zoom(zoomOptions);
+  }
+
+  get zoomInTipLabel() {
+    return this.getAttribute('data-vl-zoomInTooltip');
+  }
+
+  get zoomOutTipLabel() {
+    return this.getAttribute('data-vl-zoomOutTooltip');
   }
 
   addLayer(layer) {
@@ -271,7 +290,7 @@ export class VlMap extends vlElement(HTMLElement) {
    * Render the map again.
    */
   rerender() {
-    this.map.render();
+    this.map.this.map.render();
   }
 
   __updateMapSize() {

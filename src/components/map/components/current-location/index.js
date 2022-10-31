@@ -5,6 +5,7 @@ import '../../../icon';
 import iconStyles from '../../../icon/styles.scss';
 
 export const DEFAULT_ZOOM = 10;
+export const DEFAULT_TOOLTIP = 'Current location ddd';
 
 export class VlMapCurrentLocation extends LitElement {
   static get styles() {
@@ -25,6 +26,11 @@ export class VlMapCurrentLocation extends LitElement {
         attribute: 'data-vl-zoom',
         reflect: true,
       },
+      tooltip: {
+        type: String,
+        attribute: 'data-vl-tooltip',
+        reflect: true,
+      },
     };
   }
 
@@ -32,6 +38,7 @@ export class VlMapCurrentLocation extends LitElement {
     super();
 
     this.zoom = DEFAULT_ZOOM;
+    this.tooltip = DEFAULT_TOOLTIP;
   }
 
   connectedCallback() {
@@ -54,7 +61,7 @@ export class VlMapCurrentLocation extends LitElement {
 
   render() {
     return html`<div class="uig-map-current-location">
-      <button @click=${() => this._currentLocation()} type="button" title="Current location">
+      <button @click=${() => this._currentLocation()} type="button" title="${this.tooltip}">
         <span is="vl-icon" data-vl-icon="location-gps"></span>
       </button>
     </div>`;
