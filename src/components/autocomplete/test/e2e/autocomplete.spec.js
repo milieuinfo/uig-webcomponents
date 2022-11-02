@@ -8,6 +8,11 @@ const minCharsUrl = `${defaultUrl}&args=minChars:3`;
 const maxSuggestionsUrl = `${defaultUrl}&args=maxSuggestions:3`;
 const groupByUrl = `${defaultUrl}&args=groupBy:subtitle`;
 const captionFormatTitleOnlyUrl = `${defaultUrl}&args=captionFormat:title-only`;
+const withShowClearUrl = `${defaultUrl}&args=showClear:true`;
+const initialValueWithShowClearUrl = `${defaultUrl}&args=initialValue:waarde;showClear:true`;
+const initialValueWithoutShowClearUrl = `${defaultUrl}&args=initialValue:waarde`;
+const withLabelUrl = `${defaultUrl}&args=label:Zoekveld`;
+const withInitialValueUrl = `${defaultUrl}&args=initialValue:Eerste waarde`;
 const selector = 'vl-autocomplete';
 
 const mockedApiCallUrl = `${sbUrl}?id=custom-elements-vl-autocomplete--with-input-and-mocked-api-call`;
@@ -172,5 +177,69 @@ describe('vl-autocomplete', async () => {
       { title: 'Drabstraat, Mortsel' },
       { title: 'Drabstraat, Wichelen' },
     ]);
+  });
+
+  it('as a user, I can see the autocomplete initial value and clear icon if showClear attribute is set', async () => {
+    await driver.get(initialValueWithShowClearUrl);
+    const autocomplete = await new VlTestAutocomplete(driver, selector);
+
+    const value = await autocomplete.getValue();
+    assert.equal(value, 'waarde');
+
+    await autocomplete.assertHasClearIcon();
+  });
+
+  it('as a user, I can see the autocomplete initial value and no clear icon if showClear attribute is not set', async () => {
+    await driver.get(initialValueWithoutShowClearUrl);
+    const autocomplete = await new VlTestAutocomplete(driver, selector);
+
+    const value = await autocomplete.getValue();
+    assert.equal(value, 'waarde');
+
+    await autocomplete.assertHasNoClearIcon();
+  });
+
+  it('as a user, I can see clear icon if showClear attribute is set and a value is typed', async () => {
+    await driver.get(withShowClearUrl);
+    const autocomplete = await new VlTestAutocomplete(driver, selector);
+
+    let value = await autocomplete.getValue();
+    assert.equal(value, '');
+    await autocomplete.assertHasNoClearIcon();
+
+    await autocomplete.setInputValue('g');
+
+    const suggestions = await autocomplete.getSuggestions();
+    const size = suggestions.length;
+    assert.equal(size, 5);
+
+    value = await autocomplete.getValue();
+    assert.equal(value, 'g');
+    await autocomplete.assertHasClearIcon();
+
+    await autocomplete.clickOnClearIcon();
+
+    value = await autocomplete.getValue();
+    assert.equal(value, '');
+
+    await autocomplete.assertHasNoClearIcon();
+
+    await autocomplete.assertSuggestionsCount(0);
+  });
+
+  it('as a user, I can see the autocomplete label', async () => {
+    await driver.get(withLabelUrl);
+    const autocomplete = await new VlTestAutocomplete(driver, selector);
+
+    const text = await autocomplete.getLabel();
+    assert.equal('Zoekveld', text);
+  });
+
+  it('as a user, I can see the autocomplete with an initial value', async () => {
+    await driver.get(withInitialValueUrl);
+    const autocomplete = await new VlTestAutocomplete(driver, selector);
+
+    const value = await autocomplete.getValue();
+    assert.equal(value, 'Eerste waarde');
   });
 });

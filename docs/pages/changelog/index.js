@@ -24,6 +24,13 @@ const changes = [
         <p><code>vl-map</code></p>
         <p>Fix: voorzien van attributen om tooltip tekst van zoom in, zoom out en current location te bepalen.</p>
       </li>
+      <li>
+        <p><code>vl-functional-header</code></p>
+        <p>
+          Fix: toevoegen van e2e testen, add label attribute, implementeren van initial value, implementeren van clear
+          knop.
+        </p>
+      </li>
     </ul>`,
   },
   {
