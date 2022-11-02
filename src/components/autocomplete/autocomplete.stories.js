@@ -30,10 +30,13 @@ export default {
   },
   args: {
     placeholder: 'Hint: typ Gent',
+    initialValue: '',
+    label: '',
     minChars: 1,
     maxSuggestions: 5,
     captionFormat: CAPTION_FORMAT.TITLE_SUBTITLE_VERTICAL,
     groupBy: '',
+    showClear: false,
     items: complexItems,
   },
   argTypes: {
@@ -41,6 +44,24 @@ export default {
       name: 'placeholder',
       type: { summary: TYPES.STRING, required: false },
       description: 'Attribuut wordt gebruikt om de placeholder te bepalen.',
+      table: {
+        defaultValue: { summary: '' },
+        category: CATEGORIES.ATTRIBUTES,
+      },
+    },
+    initialValue: {
+      name: 'data-vl-initial-value',
+      type: { summary: TYPES.STRING, required: false },
+      description: 'Attribuut wordt gebruikt om de initiële waarde te bepalen.',
+      table: {
+        defaultValue: { summary: '' },
+        category: CATEGORIES.ATTRIBUTES,
+      },
+    },
+    label: {
+      name: 'data-vl-label',
+      type: { summary: TYPES.STRING, required: false },
+      description: 'Attribuut wordt gebruikt om de label te bepalen.',
       table: {
         defaultValue: { summary: '' },
         category: CATEGORIES.ATTRIBUTES,
@@ -108,6 +129,15 @@ export default {
         category: CATEGORIES.ATTRIBUTES,
       },
     },
+    showClear: {
+      name: 'showClear',
+      type: { summary: TYPES.BOOLEAN, required: false },
+      description: 'Attribuut wordt gebruikt te bepalen of het clear icoon moet tevoorschijn komen.',
+      table: {
+        defaultValue: { summary: '' },
+        category: CATEGORIES.ATTRIBUTES,
+      },
+    },
     items: {
       description: 'Use this property when you want to use a static list of items.',
       type: { summary: 'array' },
@@ -128,13 +158,26 @@ export default {
 
 //--------------------------
 
-const Template = ({ placeholder, minChars, maxSuggestions, captionFormat, groupBy, items }) => html`
+const Template = ({
+  placeholder,
+  initialValue,
+  label,
+  minChars,
+  maxSuggestions,
+  captionFormat,
+  groupBy,
+  items,
+  showClear,
+}) => html`
   <vl-autocomplete
     placeholder=${placeholder}
+    data-vl-initial-value=${initialValue}
+    data-vl-label=${label}
     data-vl-min-chars=${minChars}
     data-vl-max-suggestions=${maxSuggestions}
     data-vl-caption-format=${captionFormat}
     data-vl-group-by=${groupBy}
+    ?data-vl-show-clear=${showClear}
     .items=${items}
   ></vl-autocomplete>
 `;
@@ -165,6 +208,7 @@ export const WithCustomCaptionFormatter = () => html` <vl-autocomplete
   .items=${complexItems}
   data-vl-caption-format="${CAPTION_FORMAT.SUBTITLE_TITLE_HORIZONTAL}"
   placeholder="Hint: typ Gent"
+  @clear=${() => console.log('autocomplete cleared!!!')}
 ></vl-autocomplete>`;
 
 //--------------------------
@@ -197,14 +241,12 @@ async function fetchDataFromMockedApiCall(autocomplete, searchTerm) {
   }));
 }
 
-export const WithInputAndMockedApiCall = () => html`
-  <vl-autocomplete
-    @search=${(e) => fetchDataFromMockedApiCall(e.target, e.detail.searchTerm)}
-    placeholder="Gemeente, Straat of Project"
-    data-vl-min-chars="2"
-    data-vl-max-suggestions="5"
-  ></vl-autocomplete>
-`;
+export const WithInputAndMockedApiCall = () => html`<vl-autocomplete
+  @search=${(e) => fetchDataFromMockedApiCall(e.target, e.detail.searchTerm)}
+  placeholder="Gemeente, Straat of Project"
+  data-vl-min-chars="2"
+  data-vl-max-suggestions="5"
+></vl-autocomplete>`;
 
 //-------------------------
 
