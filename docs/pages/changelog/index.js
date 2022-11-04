@@ -25,16 +25,24 @@ const changes = [
         <p>Fix: voorzien van attributen om tooltip tekst van zoom in, zoom out en current location te bepalen.</p>
       </li>
       <li>
-        <p><code>vl-functional-header</code></p>
+        <p><code>vl-auto-complete</code></p>
         <p>
-          Fix: toevoegen van e2e testen, add label attribute, implementeren van initial value, implementeren van clear
-          knop.
+          Fix: toevoegen van e2e testen, add label attribute (data-vl-label), implementeren van initial value
+          (data-vl-initial-value), implementeren van clear (data-vl-show-clear) knop.
         </p>
       </li>
       <li>
         <p><code>vl-data-table</code></p>
         <p>
-          Fix: Aanpassing in storybook. Om de header te tonen op kleinere schermen moet de header gezet worden als data-title attribuut.
+          Fix: Aanpassing in storybook. Om de header te tonen op kleinere schermen moet de header gezet worden als
+          data-title attribuut.
+        </p>
+      </li>
+      <li>
+        <p><code>vl-auto-complete</code></p>
+        <p>
+          Fix: new attribute data-vl-no-matches-text to configure the text to be displayed when there are no
+          suggestions.
         </p>
       </li>
     </ul>`,

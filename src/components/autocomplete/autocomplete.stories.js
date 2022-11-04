@@ -37,6 +37,7 @@ export default {
     captionFormat: CAPTION_FORMAT.TITLE_SUBTITLE_VERTICAL,
     groupBy: '',
     showClear: false,
+    noMatchesText: 'Geen resultaat',
     items: complexItems,
   },
   argTypes: {
@@ -138,6 +139,15 @@ export default {
         category: CATEGORIES.ATTRIBUTES,
       },
     },
+    noMatchesText: {
+      name: 'data-vl-no-matches-text',
+      type: { summary: TYPES.STRING, required: false },
+      description: 'Attribuut wordt gebruikt de tekst te bepalen die getoond moet worden als er geen suggesties zijn.',
+      table: {
+        defaultValue: { summary: '' },
+        category: CATEGORIES.ATTRIBUTES,
+      },
+    },
     items: {
       description: 'Use this property when you want to use a static list of items.',
       type: { summary: 'array' },
@@ -168,6 +178,7 @@ const Template = ({
   groupBy,
   items,
   showClear,
+  noMatchesText,
 }) => html`
   <vl-autocomplete
     placeholder=${placeholder}
@@ -178,6 +189,7 @@ const Template = ({
     data-vl-caption-format=${captionFormat}
     data-vl-group-by=${groupBy}
     ?data-vl-show-clear=${showClear}
+    data-vl-no-matches-text=${noMatchesText}
     .items=${items}
   ></vl-autocomplete>
 `;
