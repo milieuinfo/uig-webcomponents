@@ -83,7 +83,7 @@ describe('vl-functional-header', async () => {
     await assert.eventually.equal(subHeaderSlotNodes[0].getText(), 'Eén stap terug');
 
     const topLeftSlotNodes = await functionalHeader.getTopLeftSlotNodes();
-    await assert.eventually.equal(topLeftSlotNodes[0].getText(), '2458963498 (MILIEUBEDRIJF - RINGVAART - OCGT)');
+    await assert.eventually.equal(topLeftSlotNodes[0].getText(), '2458963498 (MILIEUBEDRIJF)');
 
     const topRightSlotNodes = await functionalHeader.getTopRightSlotNodes();
     await assert.eventually.equal(topRightSlotNodes[0].getText(), 'Toestand: In beroepsperiode tot 01.02.2023');
@@ -94,7 +94,7 @@ describe('vl-functional-header', async () => {
     const functionalHeader = await new VlFunctionalHeader(driver, selector);
 
     const topLeftSlotNodes = await functionalHeader.getTopLeftSlotNodes();
-    await assert.eventually.equal(topLeftSlotNodes[0].getText(), '2458963498 (MILIEUBEDRIJF - RINGVAART - OCGT)');
+    await assert.eventually.equal(topLeftSlotNodes[0].getText(), '2458963498 (MILIEUBEDRIJF)');
 
     const topRightSlotNodes = await functionalHeader.getTopRightSlotNodes();
     await assert.eventually.equal(topRightSlotNodes[0].getText(), 'Toestand: In beroepsperiode tot 01.02.2023');
