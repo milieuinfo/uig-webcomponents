@@ -35,7 +35,7 @@ export class VlTestAutocomplete extends VlElement {
   }
 
   async _getClearIcon() {
-    const element = await this.shadowRoot.findElement(By.css('.uig-autocomplete__clear'));
+    const element = await this.getElementInShadow(this, '.uig-autocomplete__clear');
     return new VlElement(this.driver, element);
   }
 
