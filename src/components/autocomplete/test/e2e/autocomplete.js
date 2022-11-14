@@ -7,7 +7,7 @@ export class VlTestAutocomplete extends VlElement {
   }
 
   async _getInput() {
-    const inputElement = await this.shadowRoot.findElement(By.css('input'));
+    const inputElement = await this.getElementInShadow(this, 'input');
     return new VlElement(this.driver, inputElement);
   }
 
