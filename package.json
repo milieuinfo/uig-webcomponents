@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "npm run build && npm run test:unit && npm run test:e2e",
-    "test:bamboo": "npm run build",
+    "test:bamboo": "npm run build && npm run test:e2e:bamboo",
     "test:bamboo-with-e2e": "npm run build && npm run test:e2e:bamboo && npm run test:unit:bamboo",
     "test:server:start": "http-server ./ &",
     "test:unit": "wct --config-file ./config/wct.local.config.json",
