@@ -10,6 +10,18 @@ const unreleased = [];
 const changes = [
   ...unreleased,
   {
+    version: '3.0.22',
+    date: '15/11/2022',
+    children: html` <ul>
+      <li>
+        <p><code>vl-map</code></p>
+        <p>
+          Fix: rollback foutieve wijziging, fixen van unit testen en disablen van falende unit test
+        </p>
+      </li>
+    </ul>`,
+  },
+  {
     version: '3.0.21',
     date: '27/10/2022',
     children: html` <ul>
