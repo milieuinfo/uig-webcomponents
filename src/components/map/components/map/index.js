@@ -290,7 +290,7 @@ export class VlMap extends vlElement(HTMLElement) {
    * Render the map again.
    */
   rerender() {
-    this.map.this.map.render();
+    this.map.render();
   }
 
   __updateMapSize() {
