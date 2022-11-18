@@ -5,6 +5,10 @@
 @import '../../../node_modules/@govflanders/vl-ui-input-field/src/scss/input-field';
 @import '../../../node_modules/@govflanders/vl-ui-util/src/scss/util';
 
+label.small {
+  font-size: 14px;
+}
+
 li.uig-autocomplete-group {
   font-weight: bold;
 }

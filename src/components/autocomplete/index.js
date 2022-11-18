@@ -47,6 +47,8 @@ export class VlAutocomplete extends LitElement {
       showClear: { type: Boolean, attribute: 'data-vl-show-clear', reflect: true },
       label: { type: String, attribute: 'data-vl-label', reflect: true },
       noMatchesText: { type: String, attribute: 'data-vl-no-matches-text', reflect: true },
+      labelSmall: { type: Boolean, attribute: 'data-vl-label-small', reflect: true },
+      clearTooltip: { type: String, attribute: 'data-vl-clear-tooltip', reflect: true },
     };
   }
 
@@ -56,7 +58,7 @@ export class VlAutocomplete extends LitElement {
     }
 
     if (this.shadowRoot) {
-      this._inputEl = this.shadowRoot.getElementById('defaultInput');
+      this._inputEl = this.shadowRoot.getElementById(this.defaultInputId);
       return this._inputEl;
     }
 
@@ -69,6 +71,8 @@ export class VlAutocomplete extends LitElement {
 
   constructor() {
     super();
+
+    this.defaultInputId = 'autocompleteDefaultInput';
 
     this.initialised = false;
 
@@ -91,7 +95,8 @@ export class VlAutocomplete extends LitElement {
     this.maxSuggestions = DEFAULT_MAX_MATCHES;
     this.captionFormat = DEFAULT_CAPTION_FORMAT;
 
-    this.noMatchesText = 'Sorry, no matches.';
+    this.noMatchesText = 'Geen resultaat';
+    this.clearTooltip = 'Wissen';
   }
 
   firstUpdated() {
@@ -407,7 +412,13 @@ export class VlAutocomplete extends LitElement {
   _generateClear() {
     if (this.showClear && (this._hasSearchTerm() || (!this.initialised && this.initialValue))) {
       return html` <div class="uig-autocomplete__clear" aria-hidden="true">
-        <span class="uig-autocomplete__clear-icon" is="vl-icon" icon="close" @click="${this._clear}"></span>
+        <span
+          class="uig-autocomplete__clear-icon"
+          is="vl-icon"
+          icon="close"
+          @click="${this._clear}"
+          title="${this.clearTooltip}"
+        ></span>
       </div>`;
     }
     return ``;
@@ -415,53 +426,56 @@ export class VlAutocomplete extends LitElement {
 
   _wrapInLabel(content) {
     if (!this.label || this.label.length === 0) return content;
-    return html`<label>${this.label}${content}</label>`;
+    return html`<label class=${this.labelSmall ? 'small' : ''} for="${this.defaultInputId}">${this.label}</label
+      >${content}`;
   }
 
   render() {
-    const rendered = this._wrapInLabel(html`
-      <div class="js-vl-autocomplete">
-        <slot id="dropdown-input">
-          <input
-            type="text"
-            name="vl-autocomplete-1-input-name"
-            id="defaultInput"
-            placeholder="${this.placeholder}"
-            class="vl-input-field vl-input-field--block"
-            aria-describedby="vl-autocomplete-1-hint"
-            autocomplete="off"
-            autocapitalize="off"
-            spellcheck="off"
-            aria-autocomplete="list"
-            aria-owns="autocomplete-n_l4ccf1zt_60ntk4812m6ubixdrvocg"
-            aria-controls="autocomplete-n_l4ccf1zt_60ntk4812m6ubixdrvocg"
-            aria-haspopup="listbox"
-            .value=${this.initialValue}
-            @input=${this._notify}
-          />
-        </slot>
-        <div
-          class="vl-autocomplete__loader ${this._hasSearchTerm() ? 'ui-autocomplete__loader-with-clear' : ''}"
-          aria-hidden="true"
-          ?hidden=${!this.loading}
-        ></div>
-        ${this._generateClear()}
-        <div
-          class="vl-autocomplete"
-          ?hidden=${!this.opened}
-          @mouseenter=${this._handleItemMouseEnter}
-          @mouseleave=${this._handleItemMouseLeave}
-          aria-hidden="false"
-          aria-labelledby="vl-autocomplete-1-input"
-        >
-          <div class="vl-autocomplete__list-wrapper uig-autocomplete__list-wrapper">
-            <ul id="suggestions" class="vl-autocomplete__list" role="listbox">
-              ${this.generateItems()}
-            </ul>
+    const rendered = this._wrapInLabel(
+      html`
+        <div class="js-vl-autocomplete">
+          <slot id="dropdown-input">
+            <input
+              type="text"
+              name="vl-autocomplete-1-input-name"
+              id="${this.defaultInputId}"
+              placeholder="${this.placeholder}"
+              class="vl-input-field vl-input-field--block"
+              aria-describedby="vl-autocomplete-1-hint"
+              autocomplete="off"
+              autocapitalize="off"
+              spellcheck="off"
+              aria-autocomplete="list"
+              aria-owns="autocomplete-n_l4ccf1zt_60ntk4812m6ubixdrvocg"
+              aria-controls="autocomplete-n_l4ccf1zt_60ntk4812m6ubixdrvocg"
+              aria-haspopup="listbox"
+              .value=${this.initialValue}
+              @input=${this._notify}
+            />
+          </slot>
+          <div
+            class="vl-autocomplete__loader ${this._hasSearchTerm() ? 'ui-autocomplete__loader-with-clear' : ''}"
+            aria-hidden="true"
+            ?hidden=${!this.loading}
+          ></div>
+          ${this._generateClear()}
+          <div
+            class="vl-autocomplete"
+            ?hidden=${!this.opened}
+            @mouseenter=${this._handleItemMouseEnter}
+            @mouseleave=${this._handleItemMouseLeave}
+            aria-hidden="false"
+            aria-labelledby="vl-autocomplete-1-input"
+          >
+            <div class="vl-autocomplete__list-wrapper uig-autocomplete__list-wrapper">
+              <ul id="suggestions" class="vl-autocomplete__list" role="listbox">
+                ${this.generateItems()}
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-    `);
+      `,
+    );
 
     this.initialised = true;
 

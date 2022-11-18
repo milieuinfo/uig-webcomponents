@@ -5,7 +5,7 @@ import '../../../icon';
 import iconStyles from '../../../icon/styles.scss';
 
 export const DEFAULT_ZOOM = 10;
-export const DEFAULT_TOOLTIP = 'Current location ddd';
+export const DEFAULT_TOOLTIP = 'Huidige locatie';
 
 export class VlMapCurrentLocation extends LitElement {
   static get styles() {

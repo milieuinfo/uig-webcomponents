@@ -10,14 +10,29 @@ const unreleased = [];
 const changes = [
   ...unreleased,
   {
+    version: '3.0.23',
+    date: '22/11/2022',
+    children: html` <ul>
+      <li>
+        <p><code>vl-autocomplete</code></p>
+        <p>
+          Fix: nieuw clear knop tooltip attribuut, nieuw small label attribuut en correctie showClear attribuut naam in
+          storybook. Nederlandse waarde voor default tekst in geval van geen resultaat bij autocomplete.
+        </p>
+      </li>
+      <li>
+        <p><code>vl-map-current-location</code></p>
+        <p>Fix: Nederlandse waarde voor default tooltip van map current location component.</p>
+      </li>
+    </ul>`,
+  },
+  {
     version: '3.0.22',
     date: '15/11/2022',
     children: html` <ul>
       <li>
         <p><code>vl-map</code></p>
-        <p>
-          Fix: rollback foutieve wijziging, fixen van unit testen en disablen van falende unit test
-        </p>
+        <p>Fix: rollback foutieve wijziging, fixen van unit testen en disablen van falende unit test</p>
       </li>
     </ul>`,
   },
