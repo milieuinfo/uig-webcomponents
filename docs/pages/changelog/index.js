@@ -10,6 +10,18 @@ const unreleased = [];
 const changes = [
   ...unreleased,
   {
+    version: '3.0.24',
+    date: '29/11/2022',
+    children: html` <ul>
+      <li>
+        <p><code>vl-cookie-consent</code></p>
+        <p>
+          Toevoeging van Controle Viewer url's aan analytics
+        </p>
+      </li>
+    </ul>`,
+  },
+  {
     version: '3.0.23',
     date: '22/11/2022',
     children: html` <ul>
