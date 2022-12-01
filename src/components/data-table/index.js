@@ -1,4 +1,4 @@
-import { nativeVlElement, define } from "../../utils/core";
+import { nativeVlElement, define } from '../../utils/core';
 
 /**
  * VlDataTable
@@ -22,23 +22,14 @@ import { nativeVlElement, define } from "../../utils/core";
  */
 export class VlDataTable extends nativeVlElement(HTMLTableElement) {
   static get _observedClassAttributes() {
-    return [
-      "hover",
-      "matrix",
-      "grid",
-      "zebra",
-      "collapsed-m",
-      "collapsed-s",
-      "collapsed-xs",
-    ];
+    return ['hover', 'matrix', 'grid', 'uig-zebra', 'collapsed-m', 'collapsed-s', 'collapsed-xs'];
   }
 
   connectedCallback() {
     this._processClass();
     this._processScopeAttributes();
-    this._observer = this._observeHeaderElements(() =>
-      this._processScopeAttributes()
-    );
+    this._processRowElements();
+    this._observer = this._observeHeaderElements(() => this._processScopeAttributes());
   }
 
   disconnectedcallback() {
@@ -48,28 +39,108 @@ export class VlDataTable extends nativeVlElement(HTMLTableElement) {
   }
 
   get _headHeaderElements() {
-    return [...this.querySelectorAll("thead tr th")];
+    return [...this.querySelectorAll('thead tr th')];
   }
 
   get _bodyHeaderElements() {
-    return [...this.querySelectorAll("tbody tr th")];
+    return [...this.querySelectorAll('tbody tr th')];
+  }
+
+  get _bodyRowElements() {
+    return [...this.querySelectorAll('tbody tr')];
+  }
+
+  _detailsToggleButtonElement(id) {
+    return this.querySelector(`tbody tr td button[id="details-toggle-${id}"]`);
+  }
+
+  _detailsTableRowElement(id) {
+    return this.querySelector(`tbody tr[data-details-id="${id}"]`);
   }
 
   get _classPrefix() {
-    return "vl-data-table--";
+    return 'vl-data-table--';
   }
 
   _processClass() {
-    this.classList.add("vl-data-table");
+    this.classList.add('vl-data-table');
   }
 
   _processScopeAttributes() {
     this._headHeaderElements
-      .filter((header) => !header.hasAttribute("scope"))
-      .forEach((header) => header.setAttribute("scope", "col"));
+      .filter((header) => !header.hasAttribute('scope'))
+      .forEach((header) => header.setAttribute('scope', 'col'));
     this._bodyHeaderElements
-      .filter((header) => !header.hasAttribute("scope"))
-      .forEach((header) => header.setAttribute("scope", "row"));
+      .filter((header) => !header.hasAttribute('scope'))
+      .forEach((header) => header.setAttribute('scope', 'row'));
+  }
+
+  _expandCollapseTemplate(id) {
+    const template = this._template(
+      `<button id="details-toggle-${id}" type="button" is="vl-button" class="vl-button vl-button--icon-after" data-vl-narrow data-vl-secondary><span is="vl-icon" data-vl-icon="arrow-down-fat" ></span></button>`,
+    );
+
+    template.firstElementChild.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      this.toggleDetails(id);
+    });
+
+    return template;
+  }
+
+  collapseDetails(id) {
+    this._showDetails(id, false);
+  }
+
+  expandDetails(id) {
+    this._showDetails(id, true);
+  }
+
+  _showDetails(id, show) {
+    const details = this._detailsTableRowElement(id);
+    const button = this._detailsToggleButtonElement(id);
+    if (show) {
+      details.style.display = 'table-row';
+      if (button) button.innerHTML = '<span is="vl-icon" data-vl-icon="arrow-up-fat" class="vl-button__icon"></span>';
+    } else {
+      details.style.display = 'none';
+      if (button) button.innerHTML = '<span is="vl-icon" data-vl-icon="arrow-down-fat" class="vl-button__icon"></span>';
+    }
+  }
+
+  _processRowElements() {
+    const rows = this._bodyRowElements;
+    console.log({ rows });
+    let dataRowIndex = 0;
+    for (let i = 0; i < rows.length; i += 1) {
+      const row = rows[i];
+
+      const isDataRow = !row.hasAttribute('data-details-id');
+      if (isDataRow) {
+        dataRowIndex += 1;
+      } else {
+        const id = row.getAttribute('data-details-id');
+
+        row.style.display = 'none';
+
+        const dataRow = rows[i - 1];
+        if (dataRow.querySelectorAll('td[with-expand-details]').length === 0) {
+          const cell = document.createElement('td');
+          const button = this._expandCollapseTemplate(id);
+          cell.append(button);
+
+          dataRow.appendChild(cell);
+        }
+
+        const dataCellCount = dataRow.querySelectorAll('td').length;
+        const detailsCell = row.querySelector('td');
+        detailsCell.colSpan = dataCellCount;
+      }
+
+      const even = dataRowIndex % 2 === 0;
+      row.classList.add(even ? 'even' : 'odd');
+    }
   }
 
   _observeHeaderElements(callback) {
@@ -77,6 +148,12 @@ export class VlDataTable extends nativeVlElement(HTMLTableElement) {
     observer.observe(this, { childList: true });
     return observer;
   }
+
+  toggleDetails(id) {
+    const details = this._detailsTableRowElement(id);
+    const detailsVisible = details.style.display !== 'none';
+    this._showDetails(id, !detailsVisible);
+  }
 }
 
-define("vl-data-table", VlDataTable, { extends: "table" });
+define('vl-data-table', VlDataTable, { extends: 'table' });

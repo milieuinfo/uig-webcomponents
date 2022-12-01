@@ -6,15 +6,30 @@
 // ==========================================================================
 // Core
 // ==========================================================================
-@import "../../../node_modules/@govflanders/vl-ui-core/src/scss/core";
-@import "../../../node_modules/@govflanders/vl-ui-core-4.1.24/src/scss/generic/iconfont";
+@import '../../../node_modules/@govflanders/vl-ui-core/src/scss/core';
+@import '../../../node_modules/@govflanders/vl-ui-core-4.1.24/src/scss/generic/iconfont';
 
 // ==========================================================================
 // Components
 // ==========================================================================
-@import "../../../node_modules/@govflanders/vl-ui-data-table/src/scss/data-table";
+@import '../../../node_modules/@govflanders/vl-ui-data-table/src/scss/data-table';
 
 // ==========================================================================
 // Util
 // ==========================================================================
-@import "../../../node_modules/@govflanders/vl-ui-util/src/scss/util";
+@import '../../../node_modules/@govflanders/vl-ui-util/src/scss/util';
+
+@import '../../../node_modules/@govflanders/vl-ui-button/src/scss/button';
+
+.vl-data-table--uig-zebra {
+  tbody {
+    tr:not(.vl-data-table__element--warning):not(.vl-data-table__element--error):not(.vl-data-table__element--success) {
+      &.odd {
+        background-color: $vl-porcelain;
+        &:hover {
+          background-color: darken($vl-porcelain, 2%);
+        }
+      }
+    }
+  }
+}
