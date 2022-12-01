@@ -33,3 +33,9 @@
     }
   }
 }
+
+.vl-data-table tbody tr.vl-data-table__element--disabled,
+.vl-data-table tbody td.vl-data-table__element--disabled {
+  background: $vl-disabled-bg-color;
+  color: $vl-disabled-text-color;
+}

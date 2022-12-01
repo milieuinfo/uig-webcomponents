@@ -48,18 +48,18 @@ export const Default = ({ hover, matrix, grid, zebra, collapsedM, collapsedS, co
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr class="vl-data-table__element--disabled">
         <td data-title="Entry Header 1">Entry line 1</td>
         <td data-title="Entry Header 2">Entry line 2</td>
         <td data-title="Entry Header 3">Entry line 3</td>
         <td data-title="Entry Header 4">Entry line 4</td>
       </tr>
-      <tr>
+      <tr class="vl-data-table__element--disabled">
         <td data-title="Entry Header 1">Entry line 1</td>
         <td data-title="Entry Header 2" colspan="2">Entry line 2</td>
         <td data-title="Entry Header 3">Entry line 3</td>
       </tr>
-      <tr>
+      <tr class="vl-data-table__element--disabled">
         <td data-title="Entry Header 1">Entry line 1</td>
         <td data-title="Entry Header 2">Entry line 2</td>
         <td data-title="Entry Header 3">Entry line 3</td>
@@ -155,13 +155,13 @@ export const Expandable = ({ hover, matrix, grid, zebra, collapsedM, collapsedS,
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr class="vl-data-table__element--disabled">
         <td data-title="Entry Header 1">Entry line 1</td>
         <td data-title="Entry Header 2">Entry line 2</td>
         <td data-title="Entry Header 3">Entry line 3</td>
         <td data-title="Entry Header 4">Entry line 4</td>
       </tr>
-      <tr data-details-id="details-row1">
+      <tr class="vl-data-table__element--disabled" data-details-id="details-row1">
         <td>Details 1</td>
       </tr>
       <tr>
