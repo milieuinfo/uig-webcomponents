@@ -48,18 +48,18 @@ export const Default = ({ hover, matrix, grid, zebra, collapsedM, collapsedS, co
       </tr>
     </thead>
     <tbody>
-      <tr class="vl-data-table__element--disabled">
+      <tr>
         <td data-title="Entry Header 1">Entry line 1</td>
         <td data-title="Entry Header 2">Entry line 2</td>
         <td data-title="Entry Header 3">Entry line 3</td>
         <td data-title="Entry Header 4">Entry line 4</td>
       </tr>
-      <tr class="vl-data-table__element--disabled">
+      <tr>
         <td data-title="Entry Header 1">Entry line 1</td>
         <td data-title="Entry Header 2" colspan="2">Entry line 2</td>
         <td data-title="Entry Header 3">Entry line 3</td>
       </tr>
-      <tr class="vl-data-table__element--disabled">
+      <tr>
         <td data-title="Entry Header 1">Entry line 1</td>
         <td data-title="Entry Header 2">Entry line 2</td>
         <td data-title="Entry Header 3">Entry line 3</td>
