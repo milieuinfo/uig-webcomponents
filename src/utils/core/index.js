@@ -226,7 +226,7 @@ export const vlElement = (SuperClass) => {
      * Genereert een {HTMLTemplateElement} template met de HTML Literal.
      *
      * @protected
-     * @param {Literal} html - HTML literal
+     * @param {String} html - HTML literal
      * @return {HTMLTemplateElement}
      */
     _template(html) {

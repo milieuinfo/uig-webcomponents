@@ -10,14 +10,26 @@ const unreleased = [];
 const changes = [
   ...unreleased,
   {
+    version: '3.0.25',
+    date: '01/12/2022',
+    children: html` <ul>
+      <li>
+        <p><code>vl-data-table</code></p>
+        <p>
+          Feature: mogelijkheid om een details rij toe te voegen in de data table. Deze details rij is standaard
+          dichtgeklapt en kan opengeklapt worden met de expand/collapse knop die automatish toegevoegd wordt of via een
+          custom knop.
+        </p>
+      </li>
+    </ul>`,
+  },
+  {
     version: '3.0.24',
     date: '29/11/2022',
     children: html` <ul>
       <li>
         <p><code>vl-cookie-consent</code></p>
-        <p>
-          Toevoeging van Controle Viewer url's aan analytics
-        </p>
+        <p>Toevoeging van Controle Viewer url's aan analytics</p>
       </li>
     </ul>`,
   },
