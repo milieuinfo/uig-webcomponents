@@ -22,7 +22,7 @@ import { nativeVlElement, define } from '../../utils/core';
  */
 export class VlDataTable extends nativeVlElement(HTMLTableElement) {
   static get _observedClassAttributes() {
-    return ['hover', 'matrix', 'grid', 'uig-zebra', 'collapsed-m', 'collapsed-s', 'collapsed-xs'];
+    return ['hover', 'matrix', 'grid', 'zebra', 'uig-zebra', 'collapsed-m', 'collapsed-s', 'collapsed-xs'];
   }
 
   connectedCallback() {

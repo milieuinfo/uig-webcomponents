@@ -25,13 +25,14 @@ export default {
   },
 };
 
-export const Default = ({ hover, matrix, grid, zebra, collapsedM, collapsedS, collapsedXS }) => html`
+export const Default = ({ hover, matrix, grid, zebra, uigZebra, collapsedM, collapsedS, collapsedXS }) => html`
   <table
     is="vl-data-table"
     ?data-vl-hover=${hover}
     ?data-vl-matrix=${matrix}
     ?data-vl-grid=${grid}
-    ?data-vl-uig-zebra=${zebra}
+    ?data-vl-zebra=${zebra}
+    ?data-vl-uig-zebra=${uigZebra}
     ?data-vl-collapsed-m=${collapsedM}
     ?data-vl-collapsed-s=${collapsedS}
     ?data-vl-collapsed-xs=${collapsedXS}
@@ -69,13 +70,23 @@ export const Default = ({ hover, matrix, grid, zebra, collapsedM, collapsedS, co
   </table>
 `;
 
-export const MatrixWithJoinedRowTitles = ({ hover, matrix, grid, zebra, collapsedM, collapsedS, collapsedXS }) => html`
+export const MatrixWithJoinedRowTitles = ({
+  hover,
+  matrix,
+  grid,
+  zebra,
+  uigZebra,
+  collapsedM,
+  collapsedS,
+  collapsedXS,
+}) => html`
   <table
     is="vl-data-table"
     ?data-vl-hover=${hover}
     ?data-vl-matrix=${matrix}
     ?data-vl-grid=${grid}
     ?data-vl-zebra=${zebra}
+    ?data-vl-uig-zebra=${uigZebra}
     ?data-vl-collapsed-m=${collapsedM}
     ?data-vl-collapsed-s=${collapsedS}
     ?data-vl-collapsed-xs=${collapsedXS}
@@ -126,7 +137,7 @@ export const MatrixWithJoinedRowTitles = ({ hover, matrix, grid, zebra, collapse
   </table>
 `;
 
-export const Expandable = ({ hover, matrix, grid, zebra, collapsedM, collapsedS, collapsedXS }) => {
+export const Expandable = ({ hover, matrix, grid, zebra, uigZebra, collapsedM, collapsedS, collapsedXS }) => {
   let table;
   customElements.whenDefined('vl-data-table').then(() => {
     table = document.querySelector('#vl-data-table-with-expandable-details');
@@ -138,7 +149,8 @@ export const Expandable = ({ hover, matrix, grid, zebra, collapsedM, collapsedS,
     ?data-vl-hover=${hover}
     ?data-vl-matrix=${matrix}
     ?data-vl-grid=${grid}
-    ?data-vl-uig-zebra=${zebra}
+    ?data-vl-zebra=${zebra}
+    ?data-vl-uig-zebra=${uigZebra}
     ?data-vl-collapsed-m=${collapsedM}
     ?data-vl-collapsed-s=${collapsedS}
     ?data-vl-collapsed-xs=${collapsedXS}
@@ -190,6 +202,7 @@ export const ExpandableWithCustomToggleDetailsColumn = ({
   matrix,
   grid,
   zebra,
+  uigZebra,
   collapsedM,
   collapsedS,
   collapsedXS,
@@ -205,7 +218,8 @@ export const ExpandableWithCustomToggleDetailsColumn = ({
     ?data-vl-hover=${hover}
     ?data-vl-matrix=${matrix}
     ?data-vl-grid=${grid}
-    ?data-vl-uig-zebra=${zebra}
+    ?data-vl-zebra=${zebra}
+    ?data-vl-uig-zebra=${uigZebra}
     ?data-vl-collapsed-m=${collapsedM}
     ?data-vl-collapsed-s=${collapsedS}
     ?data-vl-collapsed-xs=${collapsedXS}
