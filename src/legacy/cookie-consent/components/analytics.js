@@ -73,6 +73,14 @@ class Analytics {
         'id': 31,
         'url': this._matomoOntwikkelUrl,
       },
+      'omgevingsloketinzage-ontwikkel.omgeving.vlaanderen.be': {
+        'id': 37,
+        'url': this._matomoOntwikkelUrl,
+      },
+      'omgevingsloketinzage2-ontwikkel.omgeving.vlaanderen.be': {
+        'id': 38,
+        'url': this._matomoOntwikkelUrl,
+      },
     }[window.location.host];
 
     if (!match) {
@@ -123,6 +131,14 @@ class Analytics {
         },
         'bed-oefen.omgeving.vlaanderen.be': {
           'id': 24,
+          'url': this._matomoOefenUrl,
+        },
+        'omgevingsloketinzage-oefen.omgeving.vlaanderen.be': {
+          'id': 27,
+          'url': this._matomoOefenUrl,
+        },
+        'omgevingsloketinzage2-oefen.omgeving.vlaanderen.be': {
+          'id': 28,
           'url': this._matomoOefenUrl,
         },
       }[window.location.host];
@@ -180,6 +196,10 @@ class Analytics {
         },
         'bed.omgeving.vlaanderen.be': {
           'id': 55,
+          'url': this._matomoProdUrl,
+        },
+        'omgevingsloketinzage.omgeving.vlaanderen.be': {
+          'id': 62,
           'url': this._matomoProdUrl,
         },
       }[window.location.host];
