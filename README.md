@@ -1,3 +1,3 @@
 # uig-webcomponents
 
-[Storybook](https://uig-webcomponents.omgeving.vlaanderen.be/)
+[Storybook](https://webcomponenten.omgeving.vlaanderen.be/storybook)
